@@ -11,6 +11,8 @@ This app is using [Next.js](https://nextjs.org/)
 - SSR(Server Side Rendered) 를 위해 NEXT.js 를 사용한다. (?)
 
 ## 부록
+- Frontend github : https://github.com/pythonkr/pyconkr-web
+- Backend github : https://github.com/pythonkr/pyconkr-api
 - 빠른 이해를 위한 간단한 설명 나열
 
 ### React
