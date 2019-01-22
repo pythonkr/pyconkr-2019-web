@@ -8,12 +8,22 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emotion/styled": "^10.0.6",
+    "@types/next": "^7.0.6",
     "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
     "@zeit/next-typescript": "^1.1.1",
+    "emotion": "^10.0.6",
+    "emotion-server": "^10.0.6",
     "next": "^7.0.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "typescript": "^3.2.2"
+  },
+  "devDependencies": {
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.17.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-microsoft-contrib": "^6.0.0"
   }
 }
