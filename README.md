@@ -8,7 +8,7 @@ This app is using [Next.js](https://nextjs.org/)
 - Frontend 는 React 자바스크립트 라이브러리를 사용하여 사용자가 보는 화면의 구조를 생성한다.
 - Backend 는 django 프레임웍을 사용하여 개발한다.
 - 동적인 데이터는 GraphQL 을 통해 조회하여 클라이언트 브라우져에서 완성하도록 한다.
-- SSR(Server Side Rendered) 를 위해 NEXT.js 를 사용한다. (?)
+- SSR(Server Side Rendered)를 위해 NEXT.js 를 사용한다. (?)
 
 ## 부록
 - Frontend github : https://github.com/pythonkr/pyconkr-web
@@ -48,4 +48,4 @@ This app is using [Next.js](https://nextjs.org/)
 
 #### 참고 링크
 - next.js 공식 페이지 : https://nextjs.org
--next.js 한글 튜토리얼 추천 : https://velopert.com/3293
+- next.js 한글 튜토리얼 추천 : https://velopert.com/3293
