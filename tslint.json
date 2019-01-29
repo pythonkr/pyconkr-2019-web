@@ -1,0 +1,65 @@
+{
+  "extends": [
+    "tslint-microsoft-contrib"
+    , "tslint-eslint-rules"
+  ],
+  "rules": {
+    "completed-docs": false,
+    "trailing-comma": [
+      true,
+      {
+        "multiline": "always",
+        "singleline": "ignore"
+      }
+    ],
+    "switch-default": true,
+    "encoding": true,
+    "missing-jsdoc": false,
+    "no-require-imports": false,
+    "no-relative-imports": false,
+    "no-implicit-dependencies": false,
+    "no-var-requires": false,
+    "no-submodule-imports": false,
+    "typedef": false,
+    "no-single-line-block-comment": false,
+    "no-any": false,
+    "no-console": false,
+    "no-multiline-string": false,
+    "no-http-string": false,
+    "no-parameter-properties": false,
+    "export-name": false,
+    "import-name": false,
+    "prefer-type-cast": false,
+    "no-angle-bracket-type-assertion": true,
+    "no-non-null-assertion": false,
+    "react-this.binding-issue": false,
+    "linebreak-style": false,
+    "member-access": false,
+    "quotemark": [true, "single"],
+    "variable-name": false,
+    "react-a11y-event-has-role": false,
+    "react-a11y-img-has-alt": false,
+    "function-name": false,
+    "react-this-binding-issue": false,
+    "no-import-side-effect": false,
+    "no-unused-expression": false,
+    "no-default-export": false,
+    "curly": [true, "ignore-same-line"],
+    "semicolon": false,
+    "no-unsafe-any": false,
+    "array-bracket-spacing": false,
+    "strict-boolean-expressions": false,
+    "no-string-based-set-timeout": false,
+    "match-default-export-name": false,
+    "promise-function-async": false,
+    "no-use-before-declare": false,
+    "no-void-expression": false,
+    "no-suspicious-comment": false,
+    "no-increment-decrement": false,
+    "indent": [true, "spaces", 2],
+    "react-a11y-anchors": false,
+    "no-null-keyword": false,
+    "react-a11y-input-elements": false,
+    "react-a11y-lang": false
+  }
+}
