@@ -5,7 +5,7 @@ import { getSnapshot } from 'mobx-state-tree'
 import { NextContext } from 'next'
 import React from 'react'
 import Page from '../components/Page'
-import { initStore } from '../store'
+import { initStore, IStore } from '../store'
 
 injectGlobal`
   html, body {
@@ -20,17 +20,17 @@ injectGlobal`
 
 export type PropsType = {
   isServer: boolean;
-  initialState: any;
+  initialState: IStore;
 }
 
-export default class Counter extends React.Component<PropsType> {
-  store: any
+class Index extends React.Component<PropsType> {
 
+  private store: IStore
   constructor (props: PropsType) {
     super(props)
-    this.store = initStore(props.isServer, props.initialState)
+    this.store = initStore(props.isServer, props.initialState) as IStore
   }
-  static getInitialProps ({ req }: NextContext) {
+  public static getInitialProps ({ req }: NextContext) {
     const isServer = !!req
     const store = initStore(isServer)
 
@@ -45,3 +45,5 @@ export default class Counter extends React.Component<PropsType> {
     )
   }
 }
+
+export default Index

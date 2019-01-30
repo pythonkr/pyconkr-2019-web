@@ -1,13 +1,13 @@
-import { applySnapshot, types } from 'mobx-state-tree'
+import { applySnapshot, Instance, IStateTreeNode, types } from 'mobx-state-tree'
 
-let store: any = null
+let store: IStateTreeNode = null as any
 
 const Store = types
   .model({
     lastUpdate: types.Date,
     light: false,
   })
-  .actions((self) => {
+  .actions(self => {
     let timer: NodeJS.Timeout
     const start = () => {
       timer = setInterval(() => {
@@ -18,7 +18,7 @@ const Store = types
     }
 
     const update = () => {
-      self.lastUpdate = new Date((new Date()).getTime() + 24 * 60 * 60 * 1000)
+      self.lastUpdate = new Date(Date.now())
       self.light = true
     }
 
@@ -29,7 +29,10 @@ const Store = types
     return { start, stop, update }
   })
 
-export function initStore (isServer: boolean, snapshot = null) {
+type IStore = Instance<typeof Store>
+const aaa: IStore = null as any;
+
+const initStore = (isServer: boolean, snapshot?: IStore) => {
   if (isServer) {
     store = Store.create({ lastUpdate: Date.now() })
   }
@@ -42,3 +45,5 @@ export function initStore (isServer: boolean, snapshot = null) {
 
   return store
 }
+
+export { initStore, IStore }

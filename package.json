@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "repository": "git@github.com:pythonkr/pyconkr-web.git",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "next",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "next start",
+    "tslint": "tslint -c tslint.json -p tsconfig.json"
   },
   "dependencies": {
     "@emotion/styled": "^10.0.6",
