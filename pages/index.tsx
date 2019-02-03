@@ -1,11 +1,7 @@
 
 import { injectGlobal } from 'emotion'
-import { Provider } from 'mobx-react'
-import { getSnapshot } from 'mobx-state-tree'
-import { NextContext } from 'next'
+import Link from 'next/link'
 import React from 'react'
-import Page from '../components/Page'
-import { initStore, IStore } from '../store'
 
 injectGlobal`
   html, body {
@@ -18,30 +14,15 @@ injectGlobal`
   }
 `
 
-export type PropsType = {
-  isServer: boolean;
-  initialState: IStore;
-}
-
-class Index extends React.Component<PropsType> {
-
-  private store: IStore
-  constructor (props: PropsType) {
-    super(props)
-    this.store = initStore(props.isServer, props.initialState) as IStore
-  }
-  public static getInitialProps ({ req }: NextContext) {
-    const isServer = !!req
-    const store = initStore(isServer)
-
-    return { initialState: getSnapshot(store), isServer }
-  }
-
+class Index extends React.Component {
   render () {
     return (
-      <Provider store={this.store}>
-        <Page title='Index Page' linkTo='/other' />
-      </Provider>
+      <React.Fragment>
+        <p>Welcome to next.js!</p>
+        <Link href='/clock'>
+          <a>Clock</a>
+        </Link>
+      </React.Fragment>
     )
   }
 }

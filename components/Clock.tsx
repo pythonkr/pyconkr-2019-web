@@ -2,8 +2,8 @@ import classnames from 'classnames'
 import { css } from 'emotion'
 
 export type PropsType = {
-  light: Date;
-  lastUpdate: string | number;
+  light: boolean;
+  lastUpdate: Date;
 }
 
 export default (props: PropsType) => {
