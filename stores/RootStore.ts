@@ -33,16 +33,20 @@ const RootStore = types
     })
     .views(self => ({
         get pendingCount() {
-            return (self.todos.values() as any)
-                .filter((todo: any) => !todo.done).length
+            if (!self.todos) return null
+
+            return Array.from(self.todos.values())
+                .filter((todo: any) => {
+                    return !todo.done;
+                }).length
         },
         get completedCount() {
-            return (self.todos.values() as any)
-                .filter((todo: TodoStoreType) => todo.done).length;
+            return Array.from(self.todos.values())
+                .filter((todo: TodoStoreType) => todo.done).length
         },
         getTodosWhereDoneIs(done: boolean) {
-            return (self.todos.values() as any)
-                .filter((todo: TodoStoreType) => todo.done === done);
+            return Array.from(self.todos.values())
+                .filter((todo: TodoStoreType) => todo.done === done)
         },
     }))
     .actions(self => {
@@ -50,7 +54,7 @@ const RootStore = types
             self.todos.set(id, TodoStore.create({ name }));
         }
 
-        return { addTodo };
+        return { addTodo }
     })
 
 type IRootStore = typeof RootStore.Type
