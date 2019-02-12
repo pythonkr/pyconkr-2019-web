@@ -14,8 +14,6 @@ export type HomePagePropsType = {
 class HomePage extends React.Component<HomePagePropsType> {
   render() {
     const { stores } = this.props
-    console.log(stores.completedCount)
-
     return (
       <PageTemplate
         header={<Header />}

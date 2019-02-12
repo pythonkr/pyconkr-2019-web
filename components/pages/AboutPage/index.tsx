@@ -13,9 +13,6 @@ export type AboutPagePropsType = {
 @observer
 class AboutPage extends React.Component<AboutPagePropsType> {
   render() {
-    const { stores } = this.props
-    console.log(stores)
-
     return (
       <PageTemplate
         header={<Header />}
