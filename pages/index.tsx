@@ -1,9 +1,9 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
-import { IRootStore } from '../stores/RootStore'
-import Footer from '../components/organisms/Footer'
-import Header from '../components/organisms/Header'
-import PageTemplate from '../components/templates/PageTemplate'
+import { IRootStore } from 'stores/RootStore'
+import Footer from 'components/organisms/Footer'
+import Header from 'components/organisms/Header'
+import PageTemplate from 'components/templates/PageTemplate'
 
 export type IndexPagePropsType = {
   stores: IRootStore;
@@ -18,7 +18,7 @@ class Index extends React.Component<{stores: IRootStore}> {
         header={<Header />}
         footer={<Footer />}
       >
-        Pycon HomePage
+        <span>Pycon HomePage</span>
       </PageTemplate>
       )
     }

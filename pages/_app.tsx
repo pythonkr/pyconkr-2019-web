@@ -1,4 +1,4 @@
-import withMstStore from "../lib/with-mst-store";
+import withMstStore from "lib/with-mst-store"
 import App, { Container } from 'next/app'
 import { Provider } from 'mobx-react'
 
@@ -17,7 +17,6 @@ class MyApp extends App<PropsType> {
         </Provider>
       </Container>
     )
-
   }
 }
 

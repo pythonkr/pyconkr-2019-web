@@ -62,6 +62,7 @@
     "react-a11y-input-elements": false,
     "react-a11y-lang": false,
     "interface-name": false,
-    "no-object-literal-type-assertion": false
+    "no-object-literal-type-assertion": false,
+    "no-string-literal": true
   }
 }

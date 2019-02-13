@@ -1,9 +1,9 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
-import { IRootStore } from '../stores/RootStore'
-import Footer from '../components/organisms/Footer'
-import Header from '../components/organisms/Header'
-import PageTemplate from '../components/templates/PageTemplate'
+import { IRootStore } from 'stores/RootStore'
+import Footer from 'components/organisms/Footer'
+import Header from 'components/organisms/Header'
+import PageTemplate from 'components/templates/PageTemplate'
 
 @inject('stores')
 @observer
@@ -16,7 +16,7 @@ class About extends React.Component<{stores: IRootStore}> {
           header={<Header />}
           footer={<Footer />}
         >
-            About Pycon
+            <span>About Pycon</span>
         </PageTemplate>
       )
     }

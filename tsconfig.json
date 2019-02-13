@@ -15,6 +15,7 @@
     "sourceMap": true,
     "strict": true,
     "target": "esnext",
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "baseUrl": "."
   }
 }

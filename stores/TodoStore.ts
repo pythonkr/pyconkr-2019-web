@@ -1,5 +1,5 @@
 import { types } from 'mobx-state-tree'
-import { UserStore, UserStoreType } from './UserStore'
+import { UserStore, UserStoreType } from 'stores/UserStore'
 
 const TodoStore = types
   .model({

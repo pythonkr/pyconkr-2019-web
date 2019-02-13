@@ -1,6 +1,6 @@
 import { applySnapshot, types } from 'mobx-state-tree'
-import { TodoStore, TodoStoreType } from './TodoStore'
-import { UserStore } from './UserStore'
+import { TodoStore, TodoStoreType } from 'stores/TodoStore'
+import { UserStore } from 'stores/UserStore'
 
 // tslint:disable:object-literal-key-quotes
 const snapShot: object = {
