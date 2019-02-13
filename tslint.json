@@ -60,6 +60,9 @@
     "react-a11y-anchors": false,
     "no-null-keyword": false,
     "react-a11y-input-elements": false,
-    "react-a11y-lang": false
+    "react-a11y-lang": false,
+    "interface-name": false,
+    "no-object-literal-type-assertion": false,
+    "no-string-literal": true
   }
 }
