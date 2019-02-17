@@ -6,7 +6,8 @@ module.exports = withTypescript({
     config.resolve.alias = {
       'lib': path.join(__dirname, 'lib'),
       'stores': path.join(__dirname, 'stores'),
-      'components': path.join(__dirname, 'components')
+      'components': path.join(__dirname, 'components'),
+      'styles': path.join(__dirname, 'styles')
     }
     return config
   }
