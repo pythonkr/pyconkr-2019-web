@@ -1,8 +1,8 @@
-import React from 'react'
-import { injectGlobal } from 'emotion'
-import emotionReset from 'emotion-reset'
 import styled from '@emotion/styled';
 import { ContentWidthWrapper } from 'components/atoms/ContentWidthWrapper';
+import { injectGlobal } from 'emotion'
+import emotionReset from 'emotion-reset'
+import React from 'react'
 
 injectGlobal`
   ${emotionReset}
