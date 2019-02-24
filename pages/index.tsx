@@ -34,6 +34,8 @@ class Index extends React.Component<{ stores: IRootStore }> {
       clientId = "bc6a4bddabaa55004090"
     } else if (oauthType == 'facebook'){
       clientId = "373255026827477"
+    } else if (oauthType == 'naver'){
+      clientId = "K1dzcT_4mOnrA7KTFVFq"
     }
     // 서버에 token 요청 하고
     const httpLink = createHttpLink({

@@ -43,6 +43,15 @@ const Navigation = () => (
           name="Facebook 로그인"
         />
       </NavItem>
+
+      <NavItem>
+        <NavLink
+          to="https://nid.naver.com/oauth2.0/authorize?client_id=K1dzcT_4mOnrA7KTFVFq&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&state=naver"
+          name="Naver 로그인"
+        />
+      </NavItem>
+
+      
       <NavItem>
         <button onClick={() => {}}>English</button>
       </NavItem>
