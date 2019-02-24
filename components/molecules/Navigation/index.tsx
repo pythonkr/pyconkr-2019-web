@@ -27,8 +27,20 @@ const Navigation = () => (
     <ul>
       <NavItem>
         <NavLink
-          to="https://github.com/login/oauth/authorize?client_id=e9bef37a5fda0f10f327&scope=user:email"
-          name="로그인"
+          to="https://github.com/login/oauth/authorize?state=github&client_id=bc6a4bddabaa55004090&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&scope=user:email"
+          name="GitHub 로그인"
+        />
+      </NavItem>
+      <NavItem>
+        <NavLink
+          to="https://accounts.google.com/o/oauth2/v2/auth?state=google&scope=profile%20email&include_granted_scopes=true&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&response_type=code&client_id=434664051101-ms06l6uja93lrjs3errmb73alb6dek1f.apps.googleusercontent.com"
+          name="Google 로그인"
+        />
+      </NavItem>
+      <NavItem>
+        <NavLink
+          to="https://www.facebook.com/v3.2/dialog/oauth?scope=email&client_id=373255026827477&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&state=facebook&response_type=code"
+          name="Facebook 로그인"
         />
       </NavItem>
       <NavItem>

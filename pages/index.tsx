@@ -23,7 +23,18 @@ class Index extends React.Component<{ stores: IRootStore }> {
     if (location.search.indexOf("code") == -1) {
       return;
     }
-    const { code } = qs.parse(location.search, { ignoreQueryPrefix: true });
+    localStorage.removeItem("token");
+    const { code, state } = qs.parse(location.search, { ignoreQueryPrefix: true });
+    const oauthType = state;
+    // 요건 다 localhost용 client id입니다.
+    var clientId = ''
+    if (oauthType == 'google'){
+      clientId = "434664051101-ms06l6uja93lrjs3errmb73alb6dek1f.apps.googleusercontent.com"
+    } else if (oauthType == 'github'){
+      clientId = "bc6a4bddabaa55004090"
+    } else if (oauthType == 'facebook'){
+      clientId = "373255026827477"
+    }
     // 서버에 token 요청 하고
     const httpLink = createHttpLink({
       // uri: "http://dev.pycon.kr/api/graphql"
@@ -48,10 +59,10 @@ class Index extends React.Component<{ stores: IRootStore }> {
     });
     client
       .mutate({
-        variables: { oauthType: "github", code: code },
+        variables: { oauthType: oauthType, clientId: clientId, code: code, redirectUri: 'http://localhost:3000/' },
         mutation: gql`
-          mutation OAuthTokenAuth($oauthType: String!, $code: String!) {
-            oAuthTokenAuth(oauthType: $oauthType, code: $code) {
+          mutation OAuthTokenAuth($oauthType: String!, $clientId: String!, $code: String!, $redirectUri: String!) {
+            oAuthTokenAuth(oauthType: $oauthType, clientId: $clientId, code: $code, redirectUri: $redirectUri) {
               token
             }
           }
@@ -66,9 +77,10 @@ class Index extends React.Component<{ stores: IRootStore }> {
         console.log(token);
         localStorage.setItem("token", token);
         return client.query({
+          
           query: gql`
             query {
-              profile {
+              me {
                 username
                 email
                 profile {
