@@ -1,6 +1,6 @@
 import { client } from 'lib/apollo_graphql/client'
 import { getProfile, ProfileType } from 'lib/apollo_graphql/queries/getProfile'
-import { action, observable, configure } from 'mobx'
+import { action, configure, observable } from 'mobx'
 
 configure({ enforceActions: 'always' })
 
