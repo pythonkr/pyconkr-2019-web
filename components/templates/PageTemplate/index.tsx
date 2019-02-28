@@ -6,6 +6,10 @@ import React from 'react'
 
 injectGlobal`
   ${emotionReset}
+  * {
+    word-break: keep-all;
+    box-sizing: border-box;
+  }
 `
 
 const ContentWrapper = styled(ContentWidthWrapper)`

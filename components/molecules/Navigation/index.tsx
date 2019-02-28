@@ -14,14 +14,11 @@ const NavWrapper = styled.nav`
     background-color: #088487;
     color: white;
 `
-
 const NavItem = styled.li`
     display: inline-block;
     margin: 0 10px;
     position: relative;
 `
-
-
 const NavMenuSubLinkList = styled.ul`
     position: absolute;
     top: 60px;
