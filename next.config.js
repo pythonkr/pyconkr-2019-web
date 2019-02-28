@@ -11,6 +11,7 @@ module.exports = withGraphQL(withTypescript({
       'components': path.join(__dirname, 'components'),
       'styles': path.join(__dirname, 'styles'),
       'locales': path.join(__dirname, 'locales'),
+      'routes': path.join(__dirname, 'routes'),
     }
 
     return config

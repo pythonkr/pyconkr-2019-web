@@ -9,7 +9,7 @@ injectGlobal`
 `
 
 const ContentWrapper = styled(ContentWidthWrapper)`
-  min-height: 800px;
+  min-height: 900px;
 `
 
 export type PageTemplatePropsType = {

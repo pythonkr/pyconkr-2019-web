@@ -3,7 +3,7 @@ import React from 'react'
 import styled from '@emotion/styled';
 import intl from 'react-intl-universal';
 
-const NavLinkA = styled.a`
+const NavMenuSubLinkA = styled.a`
   display: inline-flex;
   height: 60px;
   align-items: center;
@@ -11,18 +11,18 @@ const NavLinkA = styled.a`
   cursor: pointer;
 `
 
-export type NavLinkPropsType = {
+export type NavMenuSubLinkPropsType = {
   to: string;
   intlKey: string;
   name: string;
 }
 
-const NavLink = ({ to, intlKey, name }: NavLinkPropsType) => {
+const NavMenuSubLink = ({ to, intlKey, name }: NavMenuSubLinkPropsType) => {
   return (
     <Link href={to}>
-      <NavLinkA><span>{intl.get(intlKey).defaultMessage(name)}</span></NavLinkA>
+      <NavMenuSubLinkA><span>{intl.get(intlKey).defaultMessage(name)}</span></NavMenuSubLinkA>
     </Link>
   )
 }
 
-export default NavLink
+export default NavMenuSubLink

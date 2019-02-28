@@ -4,7 +4,7 @@ import PageTemplate from 'components/templates/PageTemplate'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
-import { StoresType } from './_app';
+import { StoresType } from '../_app';
 
 export type IndexPagePropsType = {
   stores: StoresType;
@@ -12,14 +12,14 @@ export type IndexPagePropsType = {
 
 @inject('stores')
 @observer
-export default class Sponsor extends React.Component<{stores: StoresType}> {
+export default class CFPDetailedGuide extends React.Component<{stores: StoresType}> {
     render () {
       const { stores } = this.props
       const { sponsors } = toJS(stores.sponsorStore)
 
       return (
         <PageTemplate
-          header={<Header title='파이콘 한국 2019' />}
+          header={<Header title='튜토리얼 제안하기 :: 파이콘 한국 2019' />}
           footer={<Footer />}
         >
           <span>Pycon Sponsors</span>

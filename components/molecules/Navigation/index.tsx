@@ -1,72 +1,133 @@
 import styled from '@emotion/styled'
 import NavLink from 'components/atoms/NavLink'
 import React from 'react'
-import { contentWidth } from 'styles/layout'
-import { LOCALE_KEY_EN, LOCALE_KEY_KR, localeMap, URL_LOCALE_KEY } from 'locales/contants';
-import { withRouter } from 'next/router';
+import { navigationPadding } from 'styles/layout';
+import NavMenuSubLink from 'components/atoms/NavMenuSubLink';
+import { paths } from 'routes/paths';
 
 const NavWrapper = styled.nav`
     display: flex;
     justify-content: space-between;
+    padding: 0 ${navigationPadding};
+    box-sizing: border-box;
     width: 100%;
-    max-width: ${contentWidth};
+    background-color: #088487;
+    color: white;
 `
 
 const NavItem = styled.li`
     display: inline-block;
-    padding: 10px;
+    margin: 0 10px;
+    position: relative;
 `
 
-const Navigation: React.SFC<any> = ({ router: { query: { lang: currentLocale }}}) => (
+
+const NavMenuSubLinkList = styled.ul`
+    position: absolute;
+    top: 60px;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    visibility: hidden;
+    width: 100px;
+    ${NavItem}:hover & {
+        visibility: visible;
+    }
+`
+
+
+const Navigation: React.SFC<any> = () => (
     <NavWrapper>
         <ul>
             <NavItem>
-                <NavLink to='/sponsor' name='후원' />
-            </NavItem>
-            <NavItem>
-                <NavLink to='/contribute' name='공헌' />
+                <span>파이콘 로고</span>
             </NavItem>
         </ul>
         <ul>
             <NavItem>
                 <NavLink
-                    to="https://github.com/login/oauth/authorize?state=github&client_id=bc6a4bddabaa55004090&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&scope=user:email"
-                    name="GitHub 로그인"
+                    to='/'
+                    intlKey='gnb.home'
+                    name='홈'
+                />
+            </NavItem>
+            <NavItem>
+                <NavLink
+                    to={paths.help.faq}
+                    intlKey='gnb.help.root'
+                    name='지원 및 안내'
+                />
+                <NavMenuSubLinkList>
+                    <NavMenuSubLink
+                        to={paths.help.faq}
+                        intlKey='gnb.help.faq'
+                        name='자주 묻는 질문'
                     />
-                </NavItem>
-            <NavItem>
-                <NavLink
-                to="https://accounts.google.com/o/oauth2/v2/auth?state=google&scope=profile%20email&include_granted_scopes=true&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&response_type=code&client_id=434664051101-ms06l6uja93lrjs3errmb73alb6dek1f.apps.googleusercontent.com"
-                name="Google 로그인"
-                />
+                    <NavMenuSubLink
+                        to={paths.help.notice}
+                        intlKey='gnb.help.notice'
+                        name='알림'
+                    />
+                    <NavMenuSubLink
+                        to={paths.help.venue}
+                        intlKey='gnb.help.venue'
+                        name='장소'
+                    />
+                </NavMenuSubLinkList>
             </NavItem>
             <NavItem>
                 <NavLink
-                to="https://www.facebook.com/v3.2/dialog/oauth?scope=email&client_id=373255026827477&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&state=facebook&response_type=code"
-                name="Facebook 로그인"
+                    to={paths.contribute.overview}
+                    intlKey='gnb.contribute.root'
+                    name='공헌하기'
                 />
+                <NavMenuSubLinkList>
+                    <NavMenuSubLink
+                        to={paths.contribute.overview}
+                        intlKey='gnb.contribute.overview'
+                        name='공헌 안내'
+                    />
+                     <NavMenuSubLink
+                        to={paths.contribute.cfpDetailedGuide}
+                        intlKey='gnb.contribute.cfpDetailedGuide'
+                        name='발표안 작성 가이드'
+                    />
+                     <NavMenuSubLink
+                        to={paths.contribute.proposingATalk}
+                        intlKey='gnb.contribute.proposingATalk'
+                        name='발표안 제안하기'
+                    />
+                </NavMenuSubLinkList>
             </NavItem>
-
             <NavItem>
                 <NavLink
-                to="https://nid.naver.com/oauth2.0/authorize?client_id=K1dzcT_4mOnrA7KTFVFq&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&state=naver"
-                name="Naver 로그인"
+                    to={paths.sponsor.prospectus}
+                    intlKey='gnb.sponsor.root'
+                    name='후원'
                 />
+                <NavMenuSubLinkList>
+                    <NavMenuSubLink
+                        to={paths.sponsor.prospectus}
+                        intlKey='gnb.sponsor.prospectus'
+                        name='후원사 안내'
+                    />
+                     <NavMenuSubLink
+                        to={paths.sponsor.applicationForm}
+                        intlKey='gnb.sponsor.applicationForm'
+                        name='후원사 신청'
+                    />
+                </NavMenuSubLinkList>
             </NavItem>
             <NavItem>
-                <button onClick={() => {
-                    window.location.assign(
-                        `${window.location.pathname}?${URL_LOCALE_KEY}=${
-                            currentLocale === LOCALE_KEY_EN
-                                ? LOCALE_KEY_KR
-                                : LOCALE_KEY_EN
-                        }`)
-                }}>{currentLocale === LOCALE_KEY_EN
-                    ?  localeMap[LOCALE_KEY_KR]
-                    : localeMap[LOCALE_KEY_EN]}</button>
-        </NavItem>
+                <NavLink
+                    to='/account/login'
+                    intlKey='gnb.login'
+                    name='로그인'
+                />
+            </NavItem>
         </ul>
     </NavWrapper>
 )
 
-export default withRouter(Navigation)
+export default Navigation

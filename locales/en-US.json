@@ -1,3 +1,11 @@
 {
-  "homeTitle": "Pycon Homepage"
+  "homeTitle": "Pycon Homepage",
+  "fixedFooter": {
+    "blogLink": "Blog",
+    "twitterLink": "Twitter",
+    "facebookLink": "Facebook",
+    "githubLink": "Github",
+    "flickerLink": "Flicker",
+    "youtubeLink": "Youtube"
+  }
 }
