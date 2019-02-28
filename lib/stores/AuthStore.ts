@@ -44,7 +44,6 @@ export class AuthStore {
       // Set Profile
       const profile = await ProfileStore.getProfile()
       ProfileStore.setProfile(profile.data.me as ProfileType)
-      debugger;
     }
   }
 }
