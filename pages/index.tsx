@@ -5,6 +5,7 @@ import { inject, observer } from 'mobx-react'
 import { parse } from 'qs'
 import React from 'react'
 import { StoresType } from './_app';
+import { H1 } from 'components/atoms/H1';
 
 @inject('stores')
 @observer
@@ -23,7 +24,7 @@ class Index extends React.Component<{stores: StoresType}> {
           header={<Header title='파이콘 한국 2019' />}
           footer={<Footer />}
         >
-          <span>Pycon HomePage</span>
+          <H1 intlKey='homeTitle'>파이콘 홈페이지</H1>
         </PageTemplate>
       )
     }
