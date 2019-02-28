@@ -1,0 +1,10 @@
+query getProfile {
+    me {
+        username
+        email
+        profile {
+            name
+            avatarUrl
+        }
+    }
+}
