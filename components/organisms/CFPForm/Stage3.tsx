@@ -82,7 +82,9 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
           value={this.state.comment}
           onChange={e => this.setState({ comment: e.target.value })}
         />
-        <button type='button'>이전</button>
+        <button type='button' onClick={() => {
+          stores.cfpStore.setCurrentStage(CFPFormStage.stage2)
+        }}>이전</button>
         <button type='button'>임시 저장</button>
         <button type='submit'>다음</button>
       </form>

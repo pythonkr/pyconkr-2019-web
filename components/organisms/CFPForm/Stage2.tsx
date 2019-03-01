@@ -155,7 +155,9 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
             required
           />
         </fieldset>
-        <button type='button'>이전</button>
+        <button type='button' onClick={() => {
+          stores.cfpStore.setCurrentStage(CFPFormStage.stage1)
+        }}>이전</button>
         <button type='button'>임시 저장</button>
         <button type='submit'>다음</button>
       </form>
