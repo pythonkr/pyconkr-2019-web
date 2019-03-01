@@ -1,15 +1,14 @@
 mutation UpdateProfile($profileInput: ProfileInput!) {
-  updateProfile(profileInput: $profileInput) {
-    profile {
-      user {
-        username
-        email
-      }
-      name
-      bio
-      phone
-      organization
-      nationality
+    updateProfile(profileInput: $profileInput) {
+        profile {
+            nameKo
+            nameEn
+            bioKo
+            bioEn
+            phone
+            email
+            organization
+            nationality
+        }
     }
-  }
 }

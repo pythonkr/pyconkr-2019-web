@@ -1,10 +1,12 @@
 query getProfile {
-    me {
-        username
+    profile {        
+        nameKo
+        nameEn
+        bioKo
+        bioEn
         email
-        profile {
-            name
-            avatarUrl
-        }
+        phone
+        organization
+        nationality
     }
 }

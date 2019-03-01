@@ -6,22 +6,18 @@
 // GraphQL query operation: getProfile
 // ====================================================
 
-export interface getProfile_me_profile {
+export interface getProfile_profile {
   __typename: "ProfileNode";
-  name: string;
-  avatarUrl: string | null;
-}
-
-export interface getProfile_me {
-  __typename: "UserNode";
-  /**
-   * 150자 이하 문자, 숫자 그리고 @/./+/-/_만 가능합니다.
-   */
-  username: string;
+  nameKo: string | null;
+  nameEn: string | null;
+  bioKo: string | null;
+  bioEn: string | null;
   email: string;
-  profile: getProfile_me_profile | null;
+  phone: string;
+  organization: string;
+  nationality: string;
 }
 
 export interface getProfile {
-  me: getProfile_me | null;
+  profile: getProfile_profile | null;
 }

@@ -26,8 +26,13 @@ export interface PresentationInput {
 
 export interface ProfileInput {
   name?: string | null;
+  nameKo?: string | null;
+  nameEn?: string | null;
   bio?: string | null;
+  bioKo?: string | null;
+  bioEn?: string | null;
   phone?: string | null;
+  email?: any | null;
   organization?: string | null;
   nationality?: string | null;
   signature?: string | null;

@@ -12,46 +12,57 @@ export interface ProfileFormPropType {
 @observer
 export default class ProfileForm extends React.Component<{stores: StoresType}> {
   state = {
-    name: '',
-    englishName: '',
+    nameKo: '',
+    nameEn: '',
+    email: '',
     phone: '',
     organization: '',
   }
-
+  componentDidMount() {
+    this.setState({
+      ...toJS(this.props.stores.profileStore).profile
+    })
+  }
+ 
   render () {
     const { stores } = this.props
-    const { email } = toJS(stores.profileStore)
+    const { profile } = toJS(stores.profileStore)
 
     return (
       <form onSubmit={() => {
         stores.profileStore.updateProfile(this.state)
         stores.cfpStore.setCurrentStage(CFPFormStage.stage2)
       }}>
-        <label>계정 이메일</label>
+        <label>이메일</label>
         <input
-          type='readonly'
-          value={email}
-        />
-        <label>이름</label>
-        <input
-          type='text'
-          value={this.state.name}
-          onChange={e => this.setState({ name: e.target.value })}
+          value={this.state.email}
+          onChange={e => this.setState({ email: e.target.value })}
           required
         />
-        <label>영문 이름</label>
+        <br/>
+        <label>이름(Korean)</label>
         <input
           type='text'
-          value={this.state.englishName}
-          onChange={e => this.setState({ englishName: e.target.value })}
+          value={this.state.nameKo}
+          onChange={e => this.setState({ nameKo: e.target.value })}
           required
         />
+        <br/>
+        <label>이름(English)</label>
+        <input
+          type='text'
+          value={this.state.nameEn}
+          onChange={e => this.setState({ nameEn: e.target.value })}
+          required
+        />
+        <br/>
         <label>연락 가능한 전화번호</label>
         <input
           type='tel'
           value={this.state.phone}
           onChange={e => this.setState({ phone: e.target.value })}
         />
+        <br/>
         <label>소속</label>
         <input
           type='text'

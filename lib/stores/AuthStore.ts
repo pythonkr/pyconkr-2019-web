@@ -1,6 +1,5 @@
 import { client } from 'lib/apollo_graphql/client'
 import { getAuthToken } from 'lib/apollo_graphql/mutations/getAuthToken'
-import { ProfileType } from 'lib/apollo_graphql/queries/getProfile'
 import { action, configure, observable } from 'mobx'
 import ProfileStore from './ProfileStore'
 
@@ -43,8 +42,7 @@ export class AuthStore {
       localStorage.setItem('token', token)
 
       // Set Profile
-      const profile = await ProfileStore.getProfile()
-      ProfileStore.setProfile(profile.data.me as ProfileType)
+      await ProfileStore.retrieveProfile()
     }
   }
 }

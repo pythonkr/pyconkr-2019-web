@@ -11,39 +11,33 @@ export class Profile {
 }
 
 export class ProfileStore {
-    @observable email: string = '';
     @observable profile = {}
-    @observable username: string = '';
 
     @action
-    getProfile() {
-        return getProfile(client)({})
+    async retrieveProfile() {
+        var response = await getProfile(client)({})
+        this.setProfile(response.data.profile)
     }
 
     @action
     setProfile(profile: ProfileType) {
-        this.email = profile.email
-        this.profile = {...profile.profile}
-        this.username = profile.username
+        this.profile = {...profile}
     }
 
     @action
     logout() {
-        this.email = ''
         this.profile = {}
-        this.username = ''
     }
 
     @action
-    async updateProfile({ name, phone, organization}) {
-        const result = await updateProfile(client)({
-            profileInput: {
-                name,
-                phone,
-                organization
-            }
+    async updateProfile(profile: ProfileType) {
+        if(profile && profile.hasOwnProperty('__typename')){
+            delete profile.__typename
+        }
+        const response = await updateProfile(client)({
+            profileInput: profile
         })
-        debugger
+        this.setProfile(response.data.updateProfile.profile)
     }
 }
 
