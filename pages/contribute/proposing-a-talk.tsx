@@ -7,11 +7,20 @@ import { StoresType } from '../_app';
 import { H1 } from 'components/atoms/H1';
 import { Paragraph } from 'components/atoms/Paragraph';
 import { H2 } from 'components/atoms/H2';
+import { toJS } from 'mobx';
+import { CFPFormStage } from 'lib/stores/CFPStore';
+import Stage1 from 'components/organisms/CFPForm/Stage1';
+import Stage2 from 'components/organisms/CFPForm/Stage2';
+import Stage3 from 'components/organisms/CFPForm/Stage3';
+import Stage4 from 'components/organisms/CFPForm/Stage4';
 
 @inject('stores')
 @observer
 export default class ProposingATalk extends React.Component<{stores: StoresType}> {
     render () {
+      const { stores } = this.props
+      const { currentStage } = toJS(stores.cfpStore)
+
       return (
         <PageTemplate
           header={<Header title='발표안 제안하기 :: 파이콘 한국 2019' />}
@@ -35,6 +44,13 @@ export default class ProposingATalk extends React.Component<{stores: StoresType}
           </section>
           <section>
             <H2 intlKey='ccc'>제안서 작성</H2>
+            {(currentStage === CFPFormStage.stage1) && <Stage1 stores={stores}/>}
+            {(currentStage === CFPFormStage.stage2) && <Stage2 stores={stores}/>}
+            {(currentStage === CFPFormStage.stage3) && <Stage3 stores={stores}/>}
+            {(currentStage === CFPFormStage.stage4) && <Stage4 stores={stores}/>}
+            {(currentStage === CFPFormStage.completed) && <div>
+              발표안을 제출했습니다! 호호호
+            </div>}
           </section>
         </PageTemplate>
       )
