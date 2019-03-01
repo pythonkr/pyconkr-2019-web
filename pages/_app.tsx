@@ -7,6 +7,7 @@ import { URL_LOCALE_KEY, LOCALE_KEY_KR } from 'locales/contants';
 import AuthStore, { AuthStore as AuthStoreType } from 'lib/stores/AuthStore'
 import ProfileStore, { ProfileStore as ProfileStoreType } from 'lib/stores/ProfileStore'
 import SponsorStore, { SponsorStore as SponsorStoreType } from 'lib/stores/SponsorStore'
+import CFPStore, { CFPStore as CFPStoreType } from 'lib/stores/CFPStore'
 
 global.Intl = IntlPolyfill
 require('intl/locale-data/jsonp/ko.js')
@@ -15,6 +16,7 @@ export type StoresType = {
   authStore: AuthStoreType;
   profileStore: ProfileStoreType;
   sponsorStore: SponsorStoreType;
+  cfpStore: CFPStoreType;
 }
 class MyApp extends App {
 
@@ -25,6 +27,7 @@ class MyApp extends App {
       authStore: AuthStore,
       profileStore: ProfileStore,
       sponsorStore: SponsorStore,
+      cfpStore: CFPStore,
     }
 
     const { router: { query } } = this.props
