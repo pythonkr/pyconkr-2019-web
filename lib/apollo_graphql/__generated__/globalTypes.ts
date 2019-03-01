@@ -6,6 +6,33 @@
 // START Enums and Input Objects
 //==============================================================
 
+export enum LanguageNode {
+  ENGLISH = "ENGLISH",
+  KOREAN = "KOREAN",
+}
+
+export interface PresentationInput {
+  nameKo: string;
+  nameEn?: string | null;
+  descKo?: string | null;
+  descEn?: string | null;
+  language?: LanguageNode | null;
+  submitted?: boolean | null;
+  slideUrl?: string | null;
+  pdfUrl?: string | null;
+  videoUrl?: string | null;
+  recordable?: boolean | null;
+}
+
+export interface ProfileInput {
+  name?: string | null;
+  bio?: string | null;
+  phone?: string | null;
+  organization?: string | null;
+  nationality?: string | null;
+  signature?: string | null;
+}
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================

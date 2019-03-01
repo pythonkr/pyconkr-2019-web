@@ -8,7 +8,7 @@
 
 export interface getProfile_me_profile {
   __typename: "ProfileNode";
-  name: string | null;
+  name: string;
   avatarUrl: string | null;
 }
 

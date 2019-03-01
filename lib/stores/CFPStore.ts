@@ -1,4 +1,6 @@
 import { action, configure, observable } from 'mobx'
+import { updateProfile } from 'lib/apollo_graphql/mutations/updateProfile';
+import { client } from 'lib/apollo_graphql/client';
 
 configure({ enforceActions: 'always' })
 
@@ -17,6 +19,7 @@ export class CFPStore {
     setCurrentStage(stage: CFPFormStage) {
       this.currentStage = stage
     }
+
 }
 
 export default new CFPStore()
