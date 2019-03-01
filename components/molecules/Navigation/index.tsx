@@ -142,12 +142,12 @@ export default class Navigation extends React.Component<{stores: StoresType}> {
                             />
                             <NavMenuSubLinkList>
                                 <NavMenuSubLink
-                                    // to={paths.sponsor.prospectus}
+                                    to={paths.sponsor.prospectus}
                                     intlKey='gnb.info.history'
                                     name='제안 및 신청 내역'
                                 />
                                 <NavMenuSubLink
-                                    // to={paths.sponsor.applicationForm}
+                                    to={paths.sponsor.applicationForm}
                                     intlKey='gnb.info.profile'
                                     name='프로필'
                                 />

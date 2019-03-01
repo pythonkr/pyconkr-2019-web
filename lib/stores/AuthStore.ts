@@ -13,6 +13,8 @@ export enum clientIdEnum {
   naver = 'K1dzcT_4mOnrA7KTFVFq'
 }
 
+const TOKEN_KEY = 'token'
+
 export class AuthStore {
   @observable inProgress: boolean = false
   @observable state: string = 'pending'
@@ -20,7 +22,7 @@ export class AuthStore {
   @observable clientId?: clientIdEnum
 
   @action
-  async login (oAuthType: clientIdEnum, code: string) {
+  async login (oAuthType: keyof typeof clientIdEnum, code: string) {
     if (oAuthType && code) {
       this.oAuthType = oAuthType
       this.clientId = clientIdEnum[this.oAuthType]
@@ -39,11 +41,21 @@ export class AuthStore {
 
       // Set Token
       const token = result.data.oAuthTokenAuth.token
-      localStorage.setItem('token', token)
+      localStorage.setItem(TOKEN_KEY, token)
 
       // Set Profile
       await ProfileStore.retrieveProfile()
     }
+  }
+
+  @action
+  getToken () {
+    return localStorage.getItem(TOKEN_KEY)
+  }
+
+  @action
+  hasToken () {
+    return localStorage.hasOwnProperty(TOKEN_KEY)
   }
 }
 
