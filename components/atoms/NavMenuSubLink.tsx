@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { ComponentProps } from 'react'
 import styled from '@emotion/styled';
 import intl from 'react-intl-universal';
 
@@ -11,16 +11,16 @@ const NavMenuSubLinkA = styled.a`
   cursor: pointer;
 `
 
-export type NavMenuSubLinkPropsType = {
+export interface NavMenuSubLinkPropsType extends ComponentProps<'a'> {
   to: string;
   intlKey: string;
   name: string;
 }
 
-const NavMenuSubLink = ({ to, intlKey, name }: NavMenuSubLinkPropsType) => {
+const NavMenuSubLink = ({ to, intlKey, name, ...props }: NavMenuSubLinkPropsType) => {
   return (
     <Link href={to}>
-      <NavMenuSubLinkA><span>{intl.get(intlKey).defaultMessage(name)}</span></NavMenuSubLinkA>
+      <NavMenuSubLinkA {...props}><span>{intl.get(intlKey).defaultMessage(name)}</span></NavMenuSubLinkA>
     </Link>
   )
 }

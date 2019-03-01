@@ -6,6 +6,7 @@ import 'cross-fetch/polyfill'
 
 const httpLink = createHttpLink({
   uri: 'http://dev.pycon.kr/api/graphql',
+  // uri: 'http://localhost:8000/api/graphql',
   fetch,
 })
 

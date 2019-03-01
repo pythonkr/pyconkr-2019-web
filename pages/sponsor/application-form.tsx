@@ -4,7 +4,7 @@ import PageTemplate from 'components/templates/PageTemplate'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
-import { StoresType } from '../_app';
+import { StoresType } from 'pages/_app';
 
 export type IndexPagePropsType = {
   stores: StoresType;

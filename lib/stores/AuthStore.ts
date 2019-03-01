@@ -11,6 +11,7 @@ export enum clientIdEnum {
   github = 'bc6a4bddabaa55004090',
   google = '434664051101-ms06l6uja93lrjs3errmb73alb6dek1f.apps.googleusercontent.com',
   facebook = '373255026827477',
+  naver = 'K1dzcT_4mOnrA7KTFVFq'
 }
 
 export class AuthStore {
@@ -20,8 +21,9 @@ export class AuthStore {
   @observable clientId?: clientIdEnum
 
   @action
-  async login (code: string) {
-    if (this.oAuthType && code) {
+  async login (oAuthType: clientIdEnum, code: string) {
+    if (oAuthType && code) {
+      this.oAuthType = oAuthType
       this.clientId = clientIdEnum[this.oAuthType]
 
       // Get AuthToken
@@ -29,9 +31,8 @@ export class AuthStore {
         clientId: this.clientId,
         oauthType: this.oAuthType,
         code,
-        redirectUri: 'http://localhost:3000/',
+        redirectUri: location.origin + '/',
       })
-
       // If error on getting a token
       if (result.errors) {
         throw new Error(`Authentication is failed: ${result.errors}`)

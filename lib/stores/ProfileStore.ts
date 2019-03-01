@@ -25,6 +25,13 @@ export class ProfileStore {
         this.profile = {...profile.profile}
         this.username = profile.username
     }
+
+    @action
+    logout() {
+        this.email = ''
+        this.profile = {}
+        this.username = ''
+    }
 }
 
 export default new ProfileStore()

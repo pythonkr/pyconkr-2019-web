@@ -12,10 +12,9 @@ import { H1 } from 'components/atoms/H1';
 class Index extends React.Component<{stores: StoresType}> {
     async componentDidMount () {
       const { stores } = this.props
-
       if (location.search.indexOf('code') === -1) return
-      const { code } = parse(location.search, { ignoreQueryPrefix: true })
-      await stores.authStore.login(code)
+      const { state, code } = parse(location.search, { ignoreQueryPrefix: true })
+      await stores.authStore.login(state, code)
     }
 
     render () {
