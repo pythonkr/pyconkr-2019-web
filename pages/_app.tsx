@@ -2,6 +2,7 @@ import IntlPolyfill from 'intl'
 import { Provider } from 'mobx-react'
 import App, { Container } from 'next/app'
 import intl from 'react-intl-universal'
+import FontFaceObserver from 'fontfaceobserver'
 
 import { URL_LOCALE_KEY, LOCALE_KEY_KR } from 'locales/contants';
 import AuthStore, { AuthStore as AuthStoreType } from 'lib/stores/AuthStore'
@@ -49,6 +50,13 @@ class MyApp extends App {
     const isServer = !!ctx.req
 
     return { pageProps, isServer }
+  }
+
+  componentDidMount() {
+    const spoqaHanSans = new FontFaceObserver('Spoqa Han Sans')
+    spoqaHanSans.load().then(() => {
+      document && document.body.classList.add('font-loaded')
+    })
   }
 
   render () {

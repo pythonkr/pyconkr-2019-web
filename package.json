@@ -13,6 +13,7 @@
   "dependencies": {
     "@emotion/core": "^10.0.7",
     "@emotion/styled": "^10.0.7",
+    "@types/fontfaceobserver": "^0.0.6",
     "@zeit/next-typescript": "^1.1.1",
     "apollo": "^2.5.1",
     "apollo-boost": "^0.1.27",
@@ -23,6 +24,7 @@
     "emotion-normalize": "^10.0.0",
     "emotion-reset": "^2.0.1",
     "emotion-server": "^10.0.6",
+    "fontfaceobserver": "^2.1.0",
     "graphql": "^14.1.1",
     "graphql-tag": "^2.10.1",
     "http": "^0.0.0",
