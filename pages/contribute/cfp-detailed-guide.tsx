@@ -8,10 +8,21 @@ import { H1 } from 'components/atoms/H1';
 import { Paragraph } from 'components/atoms/Paragraph';
 import { H2 } from 'components/atoms/H2';
 import { H3 } from 'components/atoms/H3';
+import styled from '@emotion/styled';
 
 export type IndexPagePropsType = {
   stores: StoresType;
 }
+
+const DetailGuideWrapper = styled.div`
+  section {
+    margin: 140px 0;
+  }
+  h2 {
+    font-size: 32px;
+    margin-bottom: 54px;
+  }
+`
 
 @inject('stores')
 @observer
@@ -22,6 +33,7 @@ export default class CFPDetailedGuide extends React.Component<{stores: StoresTyp
           header={<Header title='발표안 작성 가이드 :: 파이콘 한국 2019' />}
           footer={<Footer />}
         >
+          <DetailGuideWrapper>
           <H1 intlKey='contribute.overview.title'>
             발표안 작성 가이드
           </H1>
@@ -160,6 +172,7 @@ export default class CFPDetailedGuide extends React.Component<{stores: StoresTyp
               고급 레벨을 위한 발표 주제로는 최적화나 Tool의 내부 동작에 대한 내용, 또는 Python의 내부 구현에 대한 내용이 적당합니다.
             </Paragraph>
           </section>
+          </DetailGuideWrapper>
         </PageTemplate>
       )
     }

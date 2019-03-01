@@ -126,7 +126,7 @@ export default class Navigation extends React.Component<{stores: StoresType}> {
                     </NavMenuSubLinkList>
                 </NavItem>
                 <NavItem>
-                    { 
+                    {
                         (!profile || Object.keys(profile).length == 0) ?
                             <NavLink
                                 to='/account/login'
@@ -134,7 +134,7 @@ export default class Navigation extends React.Component<{stores: StoresType}> {
                                 name='로그인'
                             />
                         :
-                            <> 
+                            <>
                             <NavLink
                                 to='/account/login'
                                 intlKey='gnb.info'

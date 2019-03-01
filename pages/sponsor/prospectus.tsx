@@ -30,14 +30,16 @@ export default class Prospectus extends React.Component<{stores: StoresType}> {
           <section>
             <H2 intlKey='a'>문의</H2>
             <Paragraph>
-              sponsor@pycon.kr
+              <a href='mailto: sponsor@pycon.kr'>sponsor@pycon.kr</a><br/>
               이메일 주시면 상세한 스폰서 안내문서를 보내드립니다.
             </Paragraph>
           </section>
           <section>
             <H2 intlKey='a'>후원사 등급</H2>
             <Paragraph>
-              개최지와 여건에 따라 등급별 지원 내용은 다소 달라질 수 있습니다. 또한, 후원사에 의해 제공되는 튜토리얼이나 세션, 증정품은 준비위원회와 사전 협의가 필요합니다. 자세한 문의는 sponsor@pycon.kr 로 주시기 바랍니다.
+              개최지와 여건에 따라 등급별 지원 내용은 다소 달라질 수 있습니다. <br/>
+              또한, 후원사에 의해 제공되는 튜토리얼이나 세션, 증정품은 준비위원회와 사전 협의가 필요합니다. <br/>
+              자세한 문의는 <a href='mailto: sponsor@pycon.kr'>sponsor@pycon.kr</a> 으로 주시기 바랍니다.
             </Paragraph>
             {/* 유의사항  */}
             {/* Table */}
