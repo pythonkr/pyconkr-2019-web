@@ -1,13 +1,29 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloClient } from 'apollo-client'
+import { ApolloLink } from 'apollo-link';
 import { setContext } from 'apollo-link-context'
 import { createHttpLink } from 'apollo-link-http'
+import { onError } from "apollo-link-error";
 import 'cross-fetch/polyfill'
 
 const httpLink = createHttpLink({
   uri: 'http://dev.pycon.kr/api/graphql',
   fetch,
 })
+
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors)
+    graphQLErrors.map(({ message, locations, path }) =>
+      alert(
+        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
+      ),
+    );
+
+  if (networkError) {
+    alert(`[Network error]: ${networkError}`)
+    console.log(`[Network error]: ${networkError}`);
+  }
+});
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
@@ -22,7 +38,13 @@ const authLink = setContext((_, { headers }) => {
   }
 })
 
+const link = ApolloLink.from([
+  authLink,
+  errorLink,
+  httpLink,
+]);
+
 export const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link,
   cache: new InMemoryCache(),
 })

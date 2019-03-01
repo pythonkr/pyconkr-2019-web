@@ -26,12 +26,12 @@ export default class ProfileForm extends React.Component<{stores: StoresType}> {
  
   render () {
     const { stores } = this.props
-    const { profile } = toJS(stores.profileStore)
 
     return (
-      <form onSubmit={() => {
+      <form onSubmit={(e) => {
+        e.preventDefault();
         stores.profileStore.updateProfile(this.state)
-        stores.cfpStore.setCurrentStage(CFPFormStage.stage2)
+        // stores.cfpStore.setCurrentStage(CFPFormStage.stage2)
       }}>
         <label>이메일</label>
         <input

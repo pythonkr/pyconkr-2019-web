@@ -127,27 +127,21 @@ export default class Navigation extends React.Component<{stores: StoresType}> {
                 </NavItem>
                 <NavItem>
                     {
-                        (!profile || Object.keys(profile).length == 0) ?
-                            <NavLink
-                                to='/account/login'
-                                intlKey='gnb.login'
-                                name='로그인'
-                            />
-                        :
+                        stores.profileStore.isLogin ?
                             <>
                             <NavLink
-                                to='/account/login'
+                                to={paths.account.profile}
                                 intlKey='gnb.info'
                                 name='내정보'
                             />
                             <NavMenuSubLinkList>
                                 <NavMenuSubLink
-                                    to={paths.sponsor.prospectus}
+                                    to={paths.account.contribution}
                                     intlKey='gnb.info.history'
                                     name='제안 및 신청 내역'
                                 />
                                 <NavMenuSubLink
-                                    to={paths.sponsor.applicationForm}
+                                    to={paths.account.profile}
                                     intlKey='gnb.info.profile'
                                     name='프로필'
                                 />
@@ -156,6 +150,12 @@ export default class Navigation extends React.Component<{stores: StoresType}> {
                                 </button>
                             </NavMenuSubLinkList>
                             </>
+                            :
+                            <NavLink
+                                to={paths.account.login}
+                                intlKey='gnb.login'
+                                name='로그인'
+                            />
                     }
                 </NavItem>
             </ul>

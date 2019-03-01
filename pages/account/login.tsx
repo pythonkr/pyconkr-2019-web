@@ -13,11 +13,6 @@ import { H1 } from 'components/atoms/H1';
 @observer
 class Login extends React.Component<{stores: StoresType}> {
   async componentDidMount () {
-    const { stores } = this.props
-
-    if (location.search.indexOf('code') === -1) return
-    const { code } = parse(location.search, { ignoreQueryPrefix: true })
-    await stores.authStore.login(code)
   }
 
   handleGitHubLogin(){
