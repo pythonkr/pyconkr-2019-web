@@ -33,6 +33,8 @@ jobs:
           command: |
             sudo pip install fabric
             fab -H ${DEPLOY_HOST} -p -e deploy --branch ${CIRCLE_BRANCH} --sha1 $CIRCLE_SHA1
+            sleep 20
+            curl -f $HOST_NAME
 
 workflows:
   version: 2
