@@ -6,11 +6,19 @@ import ProfileStore from './ProfileStore'
 // don't allow state modifications outside actions
 configure({ enforceActions: 'observed' })
 
+// DefinePlugin으로 초기화한 변수를 Typescript에서 
+// 인식하게 하기 위해 declare 구문을 추가했습니다
+// next.config.js를 참고해주세요
+declare var GITHUB_CLIENT_ID: clientIdEnum;
+declare var GOOGLE_CLIENT_ID: clientIdEnum;
+declare var FACEBOOK_CLIENT_ID: clientIdEnum;
+declare var NAVER_CLIENT_ID: clientIdEnum;
+
 export enum clientIdEnum {
-  github = 'bc6a4bddabaa55004090',
-  google = '434664051101-ms06l6uja93lrjs3errmb73alb6dek1f.apps.googleusercontent.com',
-  facebook = '373255026827477',
-  naver = 'K1dzcT_4mOnrA7KTFVFq'
+  github = GITHUB_CLIENT_ID,
+  google = GOOGLE_CLIENT_ID,
+  facebook = FACEBOOK_CLIENT_ID,
+  naver = NAVER_CLIENT_ID
 }
 
 const TOKEN_KEY = 'token'

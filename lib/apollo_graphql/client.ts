@@ -6,8 +6,13 @@ import { createHttpLink } from 'apollo-link-http'
 import { onError } from "apollo-link-error";
 import 'cross-fetch/polyfill'
 
+// DefinePlugin으로 초기화한 변수를 Typescript에서 
+// 인식하게 하기 위해 declare 구문을 추가했습니다
+// next.config.js를 참고해주세요
+declare var API_SERVER: string;
+
 const httpLink = createHttpLink({
-  uri: 'http://dev.pycon.kr/api/graphql',
+  uri: API_SERVER,
   fetch,
 })
 

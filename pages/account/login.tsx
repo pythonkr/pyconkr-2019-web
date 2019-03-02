@@ -7,6 +7,7 @@ import { inject, observer } from 'mobx-react'
 import { parse } from 'qs'
 import React from 'react'
 import { StoresType } from '../_app';
+import { clientIdEnum } from 'lib/stores/AuthStore';
 import { H1 } from 'components/atoms/H1';
 
 @inject('stores')
@@ -17,9 +18,9 @@ class Login extends React.Component<{stores: StoresType}> {
 
   handleGitHubLogin(){
     const authorize_url = 'https://github.com/login/oauth/authorize'
-    const client_id = 'bc6a4bddabaa55004090'
+    const client_id = clientIdEnum['github']
     const state = 'github'
-    const redirect_uri = encodeURIComponent('http://localhost:3000/')
+    const redirect_uri = encodeURIComponent(location.origin + '/')
     const scope = encodeURIComponent('user:email')
     var url = `${authorize_url}?state=${state}&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}`
     window.location.href = url
@@ -27,9 +28,9 @@ class Login extends React.Component<{stores: StoresType}> {
 
   handleGoogleLogin(){
     const authorize_url = 'https://accounts.google.com/o/oauth2/v2/auth'
-    const client_id = '434664051101-ms06l6uja93lrjs3errmb73alb6dek1f.apps.googleusercontent.com'
+    const client_id = clientIdEnum['google']
     const state = 'google'
-    const redirect_uri = encodeURIComponent('http://localhost:3000/')
+    const redirect_uri = encodeURIComponent(location.origin + '/')
     const scope = encodeURIComponent('profile email')
     var url = `${authorize_url}?include_granted_scopes=true&state=${state}&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=code`
     window.location.href = url
@@ -37,9 +38,9 @@ class Login extends React.Component<{stores: StoresType}> {
 
   handleFacebookLogin(){
     const authorize_url = 'https://www.facebook.com/v3.2/dialog/oauth'
-    const client_id = '805820443107850'
+    const client_id = clientIdEnum['facebook']
     const state = 'facebook'
-    const redirect_uri = encodeURIComponent('http://localhost:3000/')
+    const redirect_uri = encodeURIComponent(location.origin + '/')
     const scope = encodeURIComponent('email')
     var url = `${authorize_url}?include_granted_scopes=true&state=${state}&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=code`
     window.location.href = url
@@ -47,9 +48,9 @@ class Login extends React.Component<{stores: StoresType}> {
 
   handleNaverLogin(){
     const authorize_url = 'https://nid.naver.com/oauth2.0/authorize'
-    const client_id = 'K1dzcT_4mOnrA7KTFVFq'
+    const client_id = clientIdEnum['naver']
     const state = 'naver'
-    const redirect_uri = encodeURIComponent('http://localhost:3000/')
+    const redirect_uri = encodeURIComponent(location.origin + '/')
     var url = `${authorize_url}?include_granted_scopes=true&state=${state}&client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code`
     window.location.href = url
   }
