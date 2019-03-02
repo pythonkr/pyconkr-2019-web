@@ -25,7 +25,7 @@ export class ProfileStore {
     }
 
     @action
-    logout() {
+    clearProfile() {
         this.profile = {}
     }
 

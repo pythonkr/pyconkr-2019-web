@@ -39,7 +39,9 @@ class Profile extends React.Component<{stores: StoresType}> {
         <H1 intlKey='homeTitle'>프로필</H1>
         <form onSubmit={(e) => {
           e.preventDefault();
-          stores.profileStore.updateProfile(this.state)
+          stores.profileStore.updateProfile(this.state).then((result) => {
+            alert('프로필이 수정되었습니다.')
+          })
       }}>
         <label>이메일</label>
         <input

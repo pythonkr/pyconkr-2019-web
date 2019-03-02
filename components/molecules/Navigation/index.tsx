@@ -145,7 +145,7 @@ export default class Navigation extends React.Component<{stores: StoresType}> {
                                     intlKey='gnb.info.profile'
                                     name='프로필'
                                 />
-                                <button onClick={() => { stores.profileStore.logout() }}>
+                                <button onClick={() => { stores.authStore.logout() }}>
                                     { intl.get('gnb.logout').defaultMessage('로그아웃') }
                                 </button>
                             </NavMenuSubLinkList>

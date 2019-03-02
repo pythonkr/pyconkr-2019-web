@@ -36,24 +36,23 @@ export class AuthStore {
       this.clientId = clientIdEnum[this.oAuthType]
 
       // Get AuthToken
-      const result = await getAuthToken(client)({
+      getAuthToken(client)({
         clientId: this.clientId,
         oauthType: this.oAuthType,
         code,
         redirectUri: location.origin + '/',
+      }).then((result: any) => {
+        const token = result.data.oAuthTokenAuth.token
+        localStorage.setItem(TOKEN_KEY, token)
+        ProfileStore.retrieveProfile()
       })
-      // If error on getting a token
-      if (result.errors) {
-        throw new Error(`Authentication is failed: ${result.errors}`)
-      }
-
-      // Set Token
-      const token = result.data.oAuthTokenAuth.token
-      localStorage.setItem(TOKEN_KEY, token)
-
-      // Set Profile
-      await ProfileStore.retrieveProfile()
     }
+  }
+
+  @action
+  logout() {
+    ProfileStore.clearProfile()
+    localStorage.removeItem(TOKEN_KEY)
   }
 
   @action
