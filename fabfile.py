@@ -4,7 +4,7 @@ import os
 from fabric import task
 
 @task
-def deploy(c, branch='dev', port='3000', sha1=''):
+def deploy(c, branch='develop', port='3000', sha1=''):
     target = branch
     if branch == 'master':
         target = 'www'
@@ -32,8 +32,8 @@ def deploy(c, branch='dev', port='3000', sha1=''):
         envs = [
             f'PORT={port}',
         ]
-        c.run(f'docker-compose -p "{project_name}" down')
+        c.run(f'docker-compose down')
         env_command = ' '.join(envs)
-        compose_command = f'docker-compose -p "{project_name}" up -d --build --force-recreate'
+        compose_command = f'docker-compose up -d --build --force-recreate'
         c.run(f'{env_command} {compose_command}')
         print('finish')
