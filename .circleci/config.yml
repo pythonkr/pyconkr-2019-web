@@ -36,22 +36,25 @@ jobs:
 
 workflows:
   version: 2
-  build-deploy:
+  build-deploy-dev:
     jobs:
       - build
-      - deploy:
-          context: STAGE
-          requires:
-            - build
           filters:
             branches:
               only:
                 - develop
       - deploy:
-          context: PROD
+          context: STAGE
           requires:
             - build
+  build-deploy-master:
+    jobs:
+      - build
           filters:
             branches:
               only:
                 - master
+      - deploy:
+          context: STAGE
+          requires:
+            - build
