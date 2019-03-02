@@ -32,5 +32,26 @@ jobs:
       - run:
           command: |
             sudo pip install fabric
-            fab -H ${DEPLOY_HOST} -p -e deploy --target www --sha1 $CIRCLE_SHA1
+            fab -H ${DEPLOY_HOST} -p -e deploy --branch ${CIRCLE_BRANCH} --sha1 $CIRCLE_SHA1
 
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          context: STAGE
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - develop
+      - deploy:
+          context: PROD
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
