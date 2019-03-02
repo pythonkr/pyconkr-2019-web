@@ -4,14 +4,16 @@ import os
 from fabric import task
 
 @task
-def deploy(c, branch='develop', port='3000', sha1=''):
-    target = branch
-    if branch == 'master':
-        target = 'www'
-    elif branch == 'develop':
-        target = 'dev'
-    project_name = f'{target}.pycon.kr'
-    target_dir = f'~/{project_name}/pyconkr-2019'
+def deploy(c, branch='develop', sha1=''):
+    target_dir = f'~/pyconkr.kr'
+
+    deploy_env = 'development'
+    if branch == 'develop':
+        target_dir = f'~/dev.pyconkr.kr'
+    elif branch == 'master':
+        target_dir = f'~/www.pyconkr.kr'
+        deploy_env = 'production'
+
     web_dir = f'{target_dir}/pyconkr-web'
     git_url = 'https://github.com/pythonkr/pyconkr-web.git'
 
@@ -30,9 +32,9 @@ def deploy(c, branch='develop', port='3000', sha1=''):
         else:
             c.run(f'git reset --hard origin/{branch}')
         envs = [
-            f'PORT={port}',
+            f'DEPLOY_ENV={deploy_env}',
         ]
-        c.run(f'docker-compose down')
+        c.run(f'docker-compose down | true')
         env_command = ' '.join(envs)
         compose_command = f'docker-compose up -d --build --force-recreate'
         c.run(f'{env_command} {compose_command}')
