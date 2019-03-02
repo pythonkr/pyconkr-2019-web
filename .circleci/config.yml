@@ -21,3 +21,16 @@ jobs:
           name: run build
           command: |
             yarn && yarn build
+  deploy:
+    docker:
+      - image: circleci/python:3.6.3
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "53:f6:f2:c2:3d:82:3d:b6:3c:51:13:af:e6:6f:57:35"
+      - run:
+          command: |
+            sudo pip install fabric
+            fab -H ${DEPLOY_HOST} -p -e deploy --target www --sha1 $CIRCLE_SHA1
+
