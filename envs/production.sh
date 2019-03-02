@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 export API_SERVER="https://www.pycon.kr/api/graphql"
 export GITHUB_CLIENT_ID="0dabbc90323dfc5753cc"

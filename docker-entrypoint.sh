@@ -2,9 +2,9 @@
 set -x
 
 if [ -z "$DEPLOY_ENV" ]; then
-    ./envs/development.sh
+    source ./envs/development.sh
 else
-    ./envs/${DEPLOY_ENV}.sh
+    source ./envs/${DEPLOY_ENV}.sh
 fi
 
 yarn && yarn build

@@ -25,6 +25,8 @@ const env = {
   NAVER_CLIENT_ID: JSON.stringify(NAVER_CLIENT_ID),
 }
 
+console.log(JSON.stringify(env))
+
 module.exports = withGraphQL(withTypescript({
   webpack: (config, {}) => {
     config.resolve.alias = {
