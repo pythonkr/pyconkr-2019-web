@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 if [ -z "$DEPLOY_ENV" ]; then
     ./envs/development.sh
