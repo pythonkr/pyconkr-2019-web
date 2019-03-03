@@ -1,6 +1,11 @@
 import {css} from '@emotion/core';
 import { TEAL_DARK, TEAL_SEMI_DARK, CORAL } from 'styles/colors';
+import styled from '@emotion/styled';
+import { ContentWidthWrapper } from 'components/atoms/ContentWidthWrapper';
 
+export const ContentWrapper = styled(ContentWidthWrapper)`
+  min-height: 900px;
+`
 export const pagesCSS= css`
 section {
   margin: 100px 0;
