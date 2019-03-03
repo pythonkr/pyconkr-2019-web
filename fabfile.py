@@ -4,7 +4,7 @@ import os
 from fabric import task
 
 @task
-def deploy(c, project_name, sha1='', port='3000'):
+def deploy(c, project_name, deploy_env='development', sha1='', port='3000'):
     target_dir = f'~/{project_name}'
     web_dir = f'{target_dir}/pyconkr-web'
     git_url = 'https://github.com/pythonkr/pyconkr-web.git'
@@ -35,8 +35,8 @@ def deploy(c, project_name, sha1='', port='3000'):
 
 @task
 def deploy_dev(c, sha1='origin/develop'):
-    deploy(c, project_name='dev.pycon.kr', sha1=sha1, port='3001')
+    deploy(c, project_name='dev.pycon.kr', deploy_env='development', sha1=sha1, port='3001')
 
 @task
 def deploy_master(c, sha1='origin/master'):
-    deploy(c, project_name='www.pycon.kr', sha1=sha1, port='3000')
+    deploy(c, project_name='www.pycon.kr', deploy_env='production', sha1=sha1, port='3000')
