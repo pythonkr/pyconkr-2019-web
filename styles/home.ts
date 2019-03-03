@@ -1,5 +1,4 @@
 import {css} from '@emotion/core';
-import { TEAL_DARK, TEAL_SEMI_DARK, CORAL } from 'styles/colors';
 
 export const homeCSS= css`
 section.schedule {
