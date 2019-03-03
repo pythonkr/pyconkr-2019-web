@@ -1,6 +1,6 @@
 import {css} from '@emotion/core';
 
-const reset = css`
+export const fontCSS = css`
 /**
  * Copyright (c) 2015 Spoqa, Inc.
  *
@@ -60,7 +60,5 @@ const reset = css`
   url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@01ff0283e4f36e159ffbf744b36e16ef742da6d8/Subset/SpoqaHanSans/SpoqaHanSansThin.ttf') format('truetype');
 }
 `;
-
-export default reset;
 
 

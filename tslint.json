@@ -1,17 +1,11 @@
 {
   "extends": [
-    "tslint-microsoft-contrib"
-    , "tslint-eslint-rules"
+    "tslint-microsoft-contrib",
+    "tslint-eslint-rules"
   ],
   "rules": {
     "completed-docs": false,
-    "trailing-comma": [
-      true,
-      {
-        "multiline": "always",
-        "singleline": "ignore"
-      }
-    ],
+    "trailing-comma": true,
     "switch-default": true,
     "encoding": true,
     "missing-jsdoc": false,
@@ -63,6 +57,9 @@
     "react-a11y-lang": false,
     "interface-name": false,
     "no-object-literal-type-assertion": false,
-    "no-string-literal": true
+    "no-string-literal": true,
+    "max-func-body-length": false,
+    "no-floating-promises": false,
+    "no-backbone-get-set-outside-model": false
   }
 }
