@@ -3,6 +3,8 @@ import { ApolloClient } from 'apollo-client'
 import { ApolloLink } from 'apollo-link';
 import { setContext } from 'apollo-link-context'
 import { createHttpLink } from 'apollo-link-http'
+import { createUploadLink } from 'apollo-upload-client'
+
 import { onError } from "apollo-link-error";
 import 'cross-fetch/polyfill'
 
@@ -12,6 +14,11 @@ import 'cross-fetch/polyfill'
 declare var API_SERVER: string;
 
 const httpLink = createHttpLink({
+  uri: API_SERVER,
+  fetch,
+})
+
+const uploadLink = createUploadLink({
   uri: API_SERVER,
   fetch,
 })
@@ -45,7 +52,8 @@ const authLink = setContext((_, { headers }) => {
 const link = ApolloLink.from([
   authLink,
   errorLink,
-  httpLink,
+  // httpLink,
+  uploadLink,
 ]);
 
 export const client = new ApolloClient({

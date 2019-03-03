@@ -2,6 +2,7 @@ import { client } from 'lib/apollo_graphql/client'
 import { getProfile, ProfileType } from 'lib/apollo_graphql/queries/getProfile'
 import { action, configure, observable, computed } from 'mobx'
 import { updateProfile } from 'lib/apollo_graphql/mutations/updateProfile';
+import { uploadProfileImage } from 'lib/apollo_graphql/mutations/uploadProfileImage';
 
 configure({ enforceActions: 'always' })
 
@@ -45,10 +46,26 @@ export class ProfileStore {
         if(profile && profile.hasOwnProperty('__typename')){
             delete profile.__typename
         }
-        const response = await updateProfile(client)({
+        
+        return updateProfile(client)({
             profileInput: profile
+        }).then((response) => {
+            this.setProfile(response.data.updateProfile.profile)
+            return response.data.updateProfile.profile
         })
-        this.setProfile(response.data.updateProfile.profile)
+    }
+
+    async uploadProfileImage(file: any) {
+        return uploadProfileImage(client)({
+            file
+        }).then((result: any)=>{
+            const image = result.data.uploadProfileImage.image
+            this.setProfile({
+                ...this.profile,
+                image
+            })
+            return image
+        })
     }
 }
 

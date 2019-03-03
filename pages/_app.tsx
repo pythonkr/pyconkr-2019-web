@@ -57,6 +57,13 @@ class MyApp extends App {
     spoqaHanSans.load().then(() => {
       document && document.body.classList.add('font-loaded')
     })
+    this.retrieveProfileIfTokenExists()
+  }
+
+  async retrieveProfileIfTokenExists() {
+    if (this.stores.authStore.hasToken()){
+      this.stores.profileStore.retrieveProfile()
+    }
   }
 
   render () {

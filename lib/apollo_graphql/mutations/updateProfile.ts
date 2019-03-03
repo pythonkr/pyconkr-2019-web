@@ -1,7 +1,7 @@
 import {
-  UpdateProfile as UpdateProfileType,
-  UpdateProfile_updateProfile as UpdateProfile2Type,
-  UpdateProfileVariables as UpdateProfileVariablesType,
+  UpdateProfile,
+  UpdateProfile_updateProfile,
+  UpdateProfileVariables,
 } from 'lib/apollo_graphql/__generated__/UpdateProfile'
 import {
   createMutationDefinition,
@@ -10,8 +10,8 @@ import {
 import * as _updateProfile from './_updateProfile.graphql'
 
 export const updateProfileMutationDefinition = createMutationDefinition<
-  UpdateProfileType,
-  UpdateProfileVariablesType
+  UpdateProfile,
+  UpdateProfileVariables
 >(_updateProfile)
 
 export const updateProfile = sendMutation(
@@ -19,5 +19,5 @@ export const updateProfile = sendMutation(
 )
 
 export {
-  UpdateProfile2Type,
+  UpdateProfile_updateProfile,
 }

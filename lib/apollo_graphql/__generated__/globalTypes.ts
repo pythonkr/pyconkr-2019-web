@@ -11,6 +11,13 @@ export enum LanguageNode {
   KOREAN = "KOREAN",
 }
 
+export enum OauthTypeNode {
+  FACEBOOK = "FACEBOOK",
+  GITHUB = "GITHUB",
+  GOOGLE = "GOOGLE",
+  NAVER = "NAVER",
+}
+
 export interface PresentationInput {
   nameKo: string;
   nameEn?: string | null;

@@ -13,7 +13,7 @@ import { H1 } from 'components/atoms/H1';
 class Index extends React.Component<{stores: StoresType}> {
     async componentDidMount () {
       this.handleOAuthCallback()
-      this.retrieveProfileIfTokenExists()
+      
     }
 
     async handleOAuthCallback () {
@@ -22,13 +22,6 @@ class Index extends React.Component<{stores: StoresType}> {
       const { state, code } = parse(location.search, { ignoreQueryPrefix: true })
       await stores.authStore.login(state, code)
       Router.push('/')
-    }
-
-    async retrieveProfileIfTokenExists() {
-      const { stores } = this.props
-      if (stores.authStore.hasToken()){
-        stores.profileStore.retrieveProfile()
-      }
     }
 
     render () {
