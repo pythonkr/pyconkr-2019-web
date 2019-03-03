@@ -1,0 +1,12 @@
+
+mutation getAuthToken(
+    $clientId: String!,
+    $code: String!,
+    $oauthType: String!,
+    $redirectUri: String!
+) {
+    oAuthTokenAuth(clientId: $clientId, code: $code, oauthType: $oauthType, redirectUri: $redirectUri) {
+        token
+    }
+}
+

@@ -1,0 +1,8 @@
+query getSponsors {
+   sponsors {
+    id
+    name
+    nameKo
+    desc
+  }
+}

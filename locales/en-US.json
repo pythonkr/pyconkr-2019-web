@@ -1,0 +1,76 @@
+{
+  "constant":{
+    "pyconKorea": {
+      "name": "PyCon Korea 2019",
+      "nameOnly": "PyCon Korea",
+      "schedule": "2019.08.15(Thu)-18(Sun)",
+      "venue": "Coex Grand Ballroom, Seoul",
+      "sprint": {
+        "name": "Sprint",
+        "schedule": "August 15-16",
+        "dayofweek": "Thu-Fri"
+      },
+      "tutorial": {
+        "name": "Tutorial",
+        "schedule": "August 16",
+        "dayofweek": "Fri"
+      },
+      "conference": {
+        "name": "Conference",
+        "schedule": "August 17-18",
+        "dayofweek": "Sat-Sun"
+      }
+    }
+  },
+  "gnb": {
+    "home": "Home",
+    "help": {
+      "root": "About",
+      "faq": "FAQ",
+      "notice": "Notice",
+      "venue": "Venue"
+    },
+    "contribute": {
+      "root": "Contribution",
+      "overview": "About Contribution",
+      "cfpDetailedGuide": "How to submit proposal",
+      "proposingATalk": "Proposing a talk"
+    },
+    "sponsor": {
+      "root": "Sponsor",
+      "prospectus": "Prospectus",
+      "applicationForm": "Application Form"
+    },
+    "info": {
+      "login": "Login",
+      "logout": "Logout",
+      "root": "My Info",
+      "history": "Proposal/Sponsor History",
+      "profile": "Profile"
+    }
+  },
+  "home": {
+    "sprintDescription": "Sprints are intensive development session on an open source project of your choice, in a team environment. It's a time to come together with colleagues, old and new, to share what you've learned and apply it to an open source project. Is this your first time joining in Sprints? No problem! It will be the time that you learn directly from the open source contributors. <br/>Sprint sessions are not just limited to the projects using Python, all languages are welcome!",
+    "tutorialDescription": "Tutorials are educational programs for beginners, or challengers for new era. Tutorial mentors and tutors will guide you to easy way of learning. We recommend tutorials for beginner programmers or Python strangers.",
+    "conferenceDescription": "There are over 50 different presentation sessions that share knowledge and use of Python use cases. In addition, various events such as sponsored company booth, young coder, lightning talk, open space are available. You can participate in the event and interact with various participants.",
+    "sponsor": {
+      "title": "파이콘 한국 2019 후원사 (모집 예정)",
+      "description": "파이콘 한국은 오픈소스 및 파이썬 커뮤니티의 중요성에 공감하는 후원사들의 감사한 지원 덕분에 비디오 녹화, 티켓 가격 지원 등 더 많은 개발자들이 참여할 수 있는 행사를 만들어 왔습니다.<br/>파이콘 후원을 통해 파이썬 커뮤니티의 성장을 지원하고 파이콘 한국 2019의 공식 후원사로서의 특별한 가치를 갖는 데 관심이 있는 후원사를 모십니다.",
+      "prospectus": "후원 모집 일정 및 안내 보기"
+    },
+    "pyconKoreaDescription": "PyCon is a non-commercial conference held by Python Programming Communities over the world. <br/>PyCon Korea has been successfully hold in several years with a group of volunteers called ‘PyCon Korea Preparation Organizers’, who support the local Korean Python community. ",
+    "sloganDescription": "파이콘 한국 2019의 슬로건은 \"Connect the Pythonistas\"입니다.<br/>파이콘은 파이썬을 쓰는 이들의 만남의 장이 되기도, 또 다른 언어, 커뮤니티와의 접점이 되기도 합니다. 파이콘에서 당신은 한 분야를 아주 깊게 연구한 사람을 만날 수도, 완전히 다른 분야의 파이써니스타를 만날 수도, 친한 동료를 만날 수도 있을 것입니다.<br/>우리는 파이콘을 통해, 방향과 분야가 숱하게 흩어져 각기 다른 점으로 존재하는 파이써니스타들이 모여 아름다운 별자리가 되기를 바랍니다. 2019년에도 우리, 파이콘에서 만나요.",
+    "differenceWithOthers": {
+      "title": "What's the difference between PyCon and other developer's conferences?",
+      "description": "PyCon Korea is a non-profitable, developer-oriented event organized by community members, and has different characteristics from conferences organized companies or organizations. All attendees, including speakers, tutorial hosts, voluntary workers, and organizers, participate in PyCon Korea without any profitable purpose, and only to broaden the usage of Python, an open source programming language, and activate its community."
+    }
+  },
+  "fixedFooter": {
+    "blogLink": "Blog",
+    "twitterLink": "Twitter",
+    "facebookLink": "Facebook",
+    "githubLink": "Github",
+    "flickerLink": "Flicker",
+    "youtubeLink": "Youtube"
+  }
+}

@@ -1,0 +1,13 @@
+version: "3"
+services:
+  frontend:
+    build:
+      context: .
+      args:
+        NODE_ENV: "development"
+    environment:
+      - DEPLOY_ENV=${DEPLOY_ENV:-development}
+    volumes:
+      - .:/web
+    ports:
+      - ${PORT:-3000}:3000

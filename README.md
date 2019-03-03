@@ -1,4 +1,8 @@
-# Pycon KR Web
+# PyCon Korea Web
+
+[![CircleCI](https://circleci.com/gh/pythonkr/pyconkr-web.svg?style=svg)](https://circleci.com/gh/pythonkr/pyconkr-web)
+
+This app is using [Next.js](https://nextjs.org/)
 
 ## Development Package Requirements (Mac)
 1. Install Homebrew (https://brew.sh/)
