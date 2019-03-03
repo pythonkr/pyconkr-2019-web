@@ -40,4 +40,3 @@ def deploy_dev(c, sha1='origin/develop'):
 @task
 def deploy_master(c, sha1='origin/master'):
     deploy(c, project_name='www.pycon.kr', sha1=sha1, port='3000')
-~
