@@ -68,18 +68,42 @@ injectGlobal`
       margin-top: 12px;
     }
   }
+  
   table {
-
+    width: 100%;
+    // margin: 0 auto;
+    border-collapse: collapse;
   }
+  
   thead {
 
   }
+  
   tr {
-
+    border-top: solid 1px #dfe3e6;
+    border-bottom: solid 1px #dfe3e6;
+    color: #152935;
   }
+  
+  // tr {
+  //   border-top: solid 1px rgba(85, 150, 230, 0.1);;
+  //   border-bottom: solid 1px #dfe3e6;
+  //   background: rgba(85, 150, 230, 0.1);
+  //   color: #3d70b2;
+  //   font-weight: bold;
+  // }
+
+  // tr {
+  //   border-top: solid 1px #dfe3e6;
+  //   border-bottom: solid 1px #dfe3e6;
+  //   background: rgba(57, 57, 57, 0.1);
+  //   color: #70777b;
+  //   font-weight: bold;
+  // }
+  
   td {
-
   }
+  
   ${ContentWrapper} {
     li {
       font-size: 16px;
