@@ -1,5 +1,32 @@
 {
   "homeTitle": "Pycon Homepage",
+  "gnb": {
+    "home": "Home",
+    "help": {
+      "root": "About",
+      "faq": "FAQ",
+      "notice": "Notice",
+      "venue": "Venue"
+    },
+    "contribute": {
+      "root": "Contribution",
+      "overview": "About Contribution",
+      "cfpDetailedGuide": "How to submit proposal",
+      "proposingATalk": "Proposing a talk"
+    },
+    "sponsor": {
+      "root": "Sponsor",
+      "prospectus": "Prospectus",
+      "applicationForm": "Application Form"
+    },
+    "info": {
+      "login": "Login",
+      "logout": "Logout",
+      "root": "My Info",
+      "history": "Proposal/Sponsor History",
+      "profile": "Profile"
+    }
+  },
   "fixedFooter": {
     "blogLink": "Blog",
     "twitterLink": "Twitter",

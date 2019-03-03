@@ -131,8 +131,8 @@ export default class Navigation extends React.Component<{stores: StoresType}> {
                             <>
                             <NavLink
                                 to={paths.account.profile}
-                                intlKey='gnb.info'
-                                name='내정보'
+                                intlKey='gnb.info.root'
+                                name='내 정보'
                             />
                             <NavMenuSubLinkList>
                                 <NavMenuSubLink
@@ -146,14 +146,14 @@ export default class Navigation extends React.Component<{stores: StoresType}> {
                                     name='프로필'
                                 />
                                 <button onClick={() => { stores.authStore.logout() }}>
-                                    { intl.get('gnb.logout').defaultMessage('로그아웃') }
+                                    { intl.get('gnb.info.logout').defaultMessage('로그아웃') }
                                 </button>
                             </NavMenuSubLinkList>
                             </>
                             :
                             <NavLink
                                 to={paths.account.login}
-                                intlKey='gnb.login'
+                                intlKey='gnb.info.login'
                                 name='로그인'
                             />
                     }

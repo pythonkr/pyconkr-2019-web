@@ -1,4 +1,42 @@
 {
+  "homeTitle": "파이콘 홈페이지",
+  "gnb": {
+    "home": "홈",
+    "help": {
+      "root": "지원 및 안내",
+      "faq": "자주 묻는 질문",
+      "notice": "알림",
+      "venue": "장소"
+    },
+    "contribute": {
+      "root": "공헌하기",
+      "overview": "공헌 안내",
+      "cfpDetailedGuide": "발표안 작성 가이드",
+      "proposingATalk": "발표안 제안하기"
+    },
+    "sponsor": {
+      "root": "후원",
+      "prospectus": "후원사 안내",
+      "applicationForm": "후원사 신청"
+    },
+    "info": {
+      "login": "로그인",
+      "logout": "로그아웃",
+      "root": "내 정보",
+      "history": "제안 및 신청 내역",
+      "profile": "프로필"
+    }
+  },
+    
+
+  "fixedFooter": {
+    "blogLink": "블로그",
+    "twitterLink": "트위터",
+    "facebookLink": "페이스북",
+    "githubLink": "깃헙",
+    "flickerLink": "플리커",
+    "youtubeLink": "유투브"
+  },
   "SIMPLE": "単文",
   "HELLO": "もしもし {name}, {where}へようこそ！",
   "TIP": "これは<span style='color:red'>HTML</span>です",

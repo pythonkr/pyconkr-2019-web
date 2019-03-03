@@ -44,7 +44,7 @@ class Profile extends React.Component<{stores: StoresType}> {
         footer={<Footer />}
       >
         <H1 intlKey='homeTitle'>프로필</H1>
-        <img width="100px" height="100px" src={this.state.profile.image}></img>
+        <img width="100px" height="100px" src={this.state.profile.image?this.state.profile.image:this.state.profile.avatarUrl}></img>
         <input
           type="file"
           multiple
