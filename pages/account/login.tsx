@@ -1,61 +1,58 @@
-import intl from 'react-intl-universal';
-
+import { H1 } from 'components/atoms/H1'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
+import { clientIdEnum } from 'lib/stores/AuthStore'
 import { inject, observer } from 'mobx-react'
-import { parse } from 'qs'
 import React from 'react'
-import { StoresType } from '../_app';
-import { clientIdEnum } from 'lib/stores/AuthStore';
-import { H1 } from 'components/atoms/H1';
+import intl from 'react-intl-universal'
+import { StoresType } from '../_app'
 
 @inject('stores')
 @observer
-class Login extends React.Component<{stores: StoresType}> {
-  async componentDidMount () {
-  }
-
-  handleGitHubLogin(){
+class Login extends React.Component<{ stores: StoresType }> {
+  handleGitHubLogin() {
     const authorize_url = 'https://github.com/login/oauth/authorize'
-    const client_id = clientIdEnum['github']
+    const client_id = clientIdEnum.github
     const state = 'github'
-    const redirect_uri = encodeURIComponent(location.origin + '/')
+    const redirect_uri = encodeURIComponent(`${location.origin}/`)
     const scope = encodeURIComponent('user:email')
-    var url = `${authorize_url}?state=${state}&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}`
+    const url = `${authorize_url}?state=${state}&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}`
     window.location.href = url
   }
 
-  handleGoogleLogin(){
+  handleGoogleLogin() {
     const authorize_url = 'https://accounts.google.com/o/oauth2/v2/auth'
-    const client_id = clientIdEnum['google']
+    const client_id = clientIdEnum.google
     const state = 'google'
-    const redirect_uri = encodeURIComponent(location.origin + '/')
+    const redirect_uri = encodeURIComponent(`${location.origin}/`)
     const scope = encodeURIComponent('profile email')
-    var url = `${authorize_url}?include_granted_scopes=true&state=${state}&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=code`
+    const url = `${authorize_url}?include_granted_scopes=true&state=${state
+      }&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=code`
     window.location.href = url
   }
 
-  handleFacebookLogin(){
+  handleFacebookLogin() {
     const authorize_url = 'https://www.facebook.com/v3.2/dialog/oauth'
-    const client_id = clientIdEnum['facebook']
+    const client_id = clientIdEnum.facebook
     const state = 'facebook'
-    const redirect_uri = encodeURIComponent(location.origin + '/')
+    const redirect_uri = encodeURIComponent(`${location.origin}/`)
     const scope = encodeURIComponent('email')
-    var url = `${authorize_url}?include_granted_scopes=true&state=${state}&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=code`
+    const url = `${authorize_url}?include_granted_scopes=true&state=${state
+      }&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=code`
     window.location.href = url
   }
 
-  handleNaverLogin(){
+  handleNaverLogin() {
     const authorize_url = 'https://nid.naver.com/oauth2.0/authorize'
-    const client_id = clientIdEnum['naver']
+    const client_id = clientIdEnum.naver
     const state = 'naver'
-    const redirect_uri = encodeURIComponent(location.origin + '/')
-    var url = `${authorize_url}?include_granted_scopes=true&state=${state}&client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code`
+    const redirect_uri = encodeURIComponent(`${location.origin}/`)
+    const url = `${authorize_url}?include_granted_scopes=true&state=${state
+      }&client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code`
     window.location.href = url
   }
-  
-  render () {
+  render() {
     return (
       <PageTemplate
         header={<Header title='파이콘 한국 2019' />}
@@ -64,25 +61,32 @@ class Login extends React.Component<{stores: StoresType}> {
         <H1 intlKey='homeTitle'>로그인 페이지</H1>
         <ul>
           <li>
-            <button onClick={this.handleGitHubLogin}>
-              { intl.get('account.login.githubButton').defaultMessage('GitHub 로그인') }
-            </button>
+            <button onClick={this.handleGitHubLogin}>{
+              intl
+                .get('account.login.githubButton')
+                .defaultMessage('GitHub 로그인')
+            }</button>
           </li>
           <li>
-            <button onClick={this.handleGoogleLogin}>
-              { intl.get('account.login.googleButton').defaultMessage('Google 로그인') }  
-            </button>
-              
+            <button onClick={this.handleGoogleLogin}>{
+              intl
+                .get('account.login.googleButton')
+                .defaultMessage('Google 로그인')
+            }</button>
           </li>
           <li>
-            <button onClick={this.handleFacebookLogin}>
-              { intl.get('account.login.facebookButton').defaultMessage('Facebook 로그인') }
-            </button>
+            <button onClick={this.handleFacebookLogin}>{
+              intl
+                .get('account.login.facebookButton')
+                .defaultMessage('Facebook 로그인')
+            }</button>
           </li>
           <li>
-            <button onClick={this.handleNaverLogin}>
-              { intl.get('account.login.naverButton').defaultMessage('Naver 로그인') }
-            </button>
+            <button onClick={this.handleNaverLogin}>{
+              intl
+                .get('account.login.naverButton')
+                .defaultMessage('Naver 로그인')
+            }</button>
           </li>
         </ul>
       </PageTemplate>

@@ -1,21 +1,21 @@
-import { H1 } from 'components/atoms/H1';
-import { H2 } from 'components/atoms/H2';
-import { H3 } from 'components/atoms/H3';
-import { Paragraph } from 'components/atoms/Paragraph';
-import { Span } from 'components/atoms/Span';
-import Footer from 'components/organisms/Footer';
-import Header from 'components/organisms/Header';
-import { injectGlobal } from 'emotion';
-import emotionReset from 'emotion-reset';
-import { inject, observer } from 'mobx-react';
-import Router from 'next/router';
-import { parse } from 'qs';
-import React from 'react';
-import intl from 'react-intl-universal';
-import { commonCSS } from 'styles/common';
-import { fontCSS } from 'styles/font';
-import { homeCSS } from 'styles/home';
-import { StoresType } from './_app';
+import { H1 } from 'components/atoms/H1'
+import { H2 } from 'components/atoms/H2'
+import { H3 } from 'components/atoms/H3'
+import { Paragraph } from 'components/atoms/Paragraph'
+import { Span } from 'components/atoms/Span'
+import Footer from 'components/organisms/Footer'
+import Header from 'components/organisms/Header'
+import { injectGlobal } from 'emotion'
+import emotionReset from 'emotion-reset'
+import { inject, observer } from 'mobx-react'
+import Router from 'next/router'
+import { parse } from 'qs'
+import React from 'react'
+import intl from 'react-intl-universal'
+import { commonCSS } from 'styles/common'
+import { fontCSS } from 'styles/font'
+import { homeCSS } from 'styles/home'
+import { StoresType } from './_app'
 
 injectGlobal`
   ${emotionReset}

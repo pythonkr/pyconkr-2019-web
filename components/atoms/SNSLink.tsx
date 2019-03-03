@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import intl from 'react-intl-universal';
+import styled from '@emotion/styled'
+import intl from 'react-intl-universal'
 
 const SNSLinkA = styled.a`
   display: inline-flex;
@@ -20,7 +20,8 @@ export const SNSLink = ({ to, intlKey, name }: SNSLinkPropTypes) => {
       href={to}
       target='blank'
     >
-      <span>{intl.get(intlKey).defaultMessage(name)}</span>
+      <span>{intl.get(intlKey)
+        .defaultMessage(name)}</span>
     </SNSLinkA>
   )
 }

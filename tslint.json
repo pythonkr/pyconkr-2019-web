@@ -39,7 +39,7 @@
     "no-unused-expression": false,
     "no-default-export": false,
     "curly": [true, "ignore-same-line"],
-    "semicolon": false,
+    "semicolon": [true, "never"],
     "no-unsafe-any": false,
     "array-bracket-spacing": false,
     "strict-boolean-expressions": false,
@@ -60,6 +60,8 @@
     "no-string-literal": true,
     "max-func-body-length": false,
     "no-floating-promises": false,
-    "no-backbone-get-set-outside-model": false
+    "no-backbone-get-set-outside-model": false,
+    "react-unused-props-and-state": false,
+    "use-simple-attributes": false
   }
 }

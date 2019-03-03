@@ -1,14 +1,13 @@
+import FontFaceObserver from 'fontfaceobserver'
 import IntlPolyfill from 'intl'
+import AuthStore, { AuthStore as AuthStoreType } from 'lib/stores/AuthStore'
+import CFPStore, { CFPStore as CFPStoreType } from 'lib/stores/CFPStore'
+import ProfileStore, { ProfileStore as ProfileStoreType } from 'lib/stores/ProfileStore'
+import SponsorStore, { SponsorStore as SponsorStoreType } from 'lib/stores/SponsorStore'
+import { LOCALE_KEY_KR, URL_LOCALE_KEY } from 'locales/constants'
 import { Provider } from 'mobx-react'
 import App, { Container } from 'next/app'
 import intl from 'react-intl-universal'
-import FontFaceObserver from 'fontfaceobserver'
-
-import { URL_LOCALE_KEY, LOCALE_KEY_KR } from 'locales/contants';
-import AuthStore, { AuthStore as AuthStoreType } from 'lib/stores/AuthStore'
-import ProfileStore, { ProfileStore as ProfileStoreType } from 'lib/stores/ProfileStore'
-import SponsorStore, { SponsorStore as SponsorStoreType } from 'lib/stores/SponsorStore'
-import CFPStore, { CFPStore as CFPStoreType } from 'lib/stores/CFPStore'
 
 global.Intl = IntlPolyfill
 require('intl/locale-data/jsonp/ko.js')
@@ -22,7 +21,7 @@ export type StoresType = {
 class MyApp extends App {
 
   stores: StoresType
-  constructor (props: any) {
+  constructor(props: any) {
     super(props)
     this.stores = {
       authStore: AuthStore,
@@ -38,14 +37,14 @@ class MyApp extends App {
       locales: {
         [currentLocale]: require(`locales/${currentLocale}`)
       }
-    });
+    })
   }
 
   static async getInitialProps({ Component, ctx }: any) {
     let pageProps = {}
 
     if (Component.getInitialProps) {
-        pageProps = await Component.getInitialProps(ctx)
+      pageProps = await Component.getInitialProps(ctx)
     }
     const isServer = !!ctx.req
 
@@ -54,19 +53,20 @@ class MyApp extends App {
 
   componentDidMount() {
     const spoqaHanSans = new FontFaceObserver('Spoqa Han Sans')
-    spoqaHanSans.load().then(() => {
-      document && document.body.classList.add('font-loaded')
-    })
+    spoqaHanSans.load()
+      .then(() => {
+        document && document.body.classList.add('font-loaded')
+      })
     this.retrieveProfileIfTokenExists()
   }
 
   async retrieveProfileIfTokenExists() {
-    if (this.stores.authStore.hasToken()){
+    if (this.stores.authStore.hasToken()) {
       this.stores.profileStore.retrieveProfile()
     }
   }
 
-  render () {
+  render() {
     const { Component, pageProps } = this.props
 
     return (

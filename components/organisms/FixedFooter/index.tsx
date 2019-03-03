@@ -1,9 +1,9 @@
-import styled from '@emotion/styled';
-import { withRouter } from 'next/router';
-import { LOCALE_KEY_EN, LOCALE_KEY_KR, localeMap, URL_LOCALE_KEY } from 'locales/contants';
-import Link from 'next/link';
-import { SNSLink } from 'components/atoms/SNSLink';
-import { navigationPadding } from 'styles/layout';
+import styled from '@emotion/styled'
+import { SNSLink } from 'components/atoms/SNSLink'
+import { LOCALE_KEY_EN, LOCALE_KEY_KR, localeMap, URL_LOCALE_KEY } from 'locales/constants'
+import Link from 'next/link'
+import { withRouter } from 'next/router'
+import { navigationPadding } from 'styles/layout'
 
 const FixedFooterWrapper = styled.nav`
   position: fixed;
@@ -21,8 +21,8 @@ const FixedFooterWrapper = styled.nav`
 `
 
 const FixedFooterItem = styled.li`
-    display: inline-block;
-    padding: 0 10px;
+  display: inline-block;
+  padding: 0 10px;
 `
 
 const FixedFooterLinkA = styled.a`

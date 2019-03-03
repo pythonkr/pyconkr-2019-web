@@ -1,5 +1,6 @@
-import {css} from '@emotion/core';
+import {css} from '@emotion/core'
 
+/* tslint:disable */
 export const fontCSS = css`
 /**
  * Copyright (c) 2015 Spoqa, Inc.
@@ -59,6 +60,5 @@ export const fontCSS = css`
   url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@01ff0283e4f36e159ffbf744b36e16ef742da6d8/Subset/SpoqaHanSans/SpoqaHanSansThin.woff') format('woff'),
   url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@01ff0283e4f36e159ffbf744b36e16ef742da6d8/Subset/SpoqaHanSans/SpoqaHanSansThin.ttf') format('truetype');
 }
-`;
-
+`
 

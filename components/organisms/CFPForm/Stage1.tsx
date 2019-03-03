@@ -1,12 +1,9 @@
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
+import { StoresType } from 'pages/_app'
 import React from 'react'
-import { StoresType } from 'pages/_app';
-import { CFPFormStage } from 'lib/stores/CFPStore';
 
-export interface ProfileFormPropType {
-
-}
+export interface ProfileFormPropType {}
 
 @inject('stores')
 @observer
@@ -23,14 +20,12 @@ export default class ProfileForm extends React.Component<{stores: StoresType}> {
       ...toJS(this.props.stores.profileStore).profile
     })
   }
- 
   render () {
     const { stores } = this.props
 
     return (
       <form onSubmit={(e) => {
-        e.preventDefault();
-        stores.profileStore.updateProfile(this.state)
+        e.preventDefault();        stores.profileStore.updateProfile(this.state)
         // stores.cfpStore.setCurrentStage(CFPFormStage.stage2)
       }}>
         <label>이메일</label>
@@ -38,6 +33,7 @@ export default class ProfileForm extends React.Component<{stores: StoresType}> {
           value={this.state.email}
           onChange={e => this.setState({ email: e.target.value })}
           required
+          aria-required={true}
         />
         <br/>
         <label>이름(Korean)</label>
@@ -46,6 +42,7 @@ export default class ProfileForm extends React.Component<{stores: StoresType}> {
           value={this.state.nameKo}
           onChange={e => this.setState({ nameKo: e.target.value })}
           required
+          aria-required={true}
         />
         <br/>
         <label>이름(English)</label>
@@ -54,6 +51,7 @@ export default class ProfileForm extends React.Component<{stores: StoresType}> {
           value={this.state.nameEn}
           onChange={e => this.setState({ nameEn: e.target.value })}
           required
+          aria-required={true}
         />
         <br/>
         <label>연락 가능한 전화번호</label>
@@ -78,7 +76,5 @@ export default class ProfileForm extends React.Component<{stores: StoresType}> {
     )
   }
 
-  submit = () => {
-
-  }
+  submit = () => {}
 }

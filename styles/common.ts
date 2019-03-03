@@ -1,7 +1,7 @@
-import {css} from '@emotion/core';
-import { CORAL } from 'styles/colors';
+import {css} from '@emotion/core'
+import { CORAL } from 'styles/colors'
 
-export const commonCSS= css`
+export const commonCSS = css`
   html {
     background-color: ${CORAL};
   }

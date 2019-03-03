@@ -1,6 +1,6 @@
-import {css} from '@emotion/core';
+import {css} from '@emotion/core'
 
-export const homeCSS= css`
+export const homeCSS = css`
 section.schedule {
   max-width: 1024px;
   margin: 0 auto;
