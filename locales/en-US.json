@@ -1,5 +1,27 @@
 {
-  "homeTitle": "Pycon Homepage",
+  "constant":{
+    "pyconKorea": {
+      "name": "PyCon Korea 2019",
+      "nameOnly": "PyCon Korea",
+      "schedule": "2019.08.15(Thu)-18(Sun)",
+      "venue": "Coex Grand Ballroom, Seoul",
+      "sprint": {
+        "name": "Sprint",
+        "schedule": "August 15-16",
+        "dayofweek": "Thu-Fri"
+      },
+      "tutorial": {
+        "name": "Tutorial",
+        "schedule": "August 16",
+        "dayofweek": "Fri"
+      },
+      "conference": {
+        "name": "Conference",
+        "schedule": "August 17-18",
+        "dayofweek": "Sat-Sun"
+      }
+    }
+  },
   "gnb": {
     "home": "Home",
     "help": {
@@ -25,6 +47,22 @@
       "root": "My Info",
       "history": "Proposal/Sponsor History",
       "profile": "Profile"
+    }
+  },
+  "home": {
+    "sprintDescription": "TBD",
+    "tutorialDescription": "TBD",
+    "conferenceDescription": "TBD",
+    "sponsor": {
+      "title": "TBD",
+      "description": "TBD",
+      "prospectus": "TBD"
+    },
+    "pyconKoreaDescription": "PyCon is a non-commercial conference held by Python Programming Communities over the world. <br/>PyCon Korea has been successfully hold in several years with a group of volunteers called ‘PyCon Korea Preparation Organizers’, who support the local Korean Python community. ",
+    "sloganDescription": "TBD",
+    "differenceWithOthers": {
+      "title": "What's the difference between PyCon and other developer's conferences?",
+      "description": "PyCon Korea is a non-profitable, developer-oriented event organized by community members, and has different characteristics from conferences organized companies or organizations. All attendees, including speakers, tutorial hosts, voluntary workers, and organizers, participate in PyCon Korea without any profitable purpose, and only to broaden the usage of Python, an open source programming language, and activate its community."
     }
   },
   "fixedFooter": {
