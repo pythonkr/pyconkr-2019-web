@@ -46,7 +46,7 @@ jobs:
       - run:
           command: |
             sudo pip install fabric
-            fab -H ${DEPLOY_HOST} -p -e deploy --branch ${CIRCLE_BRANCH} --sha1 $CIRCLE_SHA1
+            fab -H ${DEPLOY_HOST} -p -e deploy-dev --sha1 $CIRCLE_SHA1
             sleep 80
             curl -f ${URL_ROOT}/
       
@@ -61,7 +61,7 @@ jobs:
       - run:
           command: |
             sudo pip install fabric
-            fab -H ${DEPLOY_HOST} -p -e deploy --branch ${CIRCLE_BRANCH} --sha1 $CIRCLE_SHA1
+            fab -H ${DEPLOY_HOST} -p -e deploy-master --sha1 $CIRCLE_SHA1
             sleep 80
             curl -f ${URL_ROOT}/
 
