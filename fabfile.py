@@ -4,16 +4,8 @@ import os
 from fabric import task
 
 @task
-def deploy(c, branch='develop', sha1=''):
-    target_dir = f'~/pyconkr.kr'
-
-    deploy_env = 'development'
-    if branch == 'develop':
-        target_dir = f'~/dev.pyconkr.kr'
-    elif branch == 'master':
-        target_dir = f'~/www.pyconkr.kr'
-        deploy_env = 'production'
-
+def deploy(c, project_name, sha1='', port='3000'):
+    target_dir = f'~/{project_name}'
     web_dir = f'{target_dir}/pyconkr-web'
     git_url = 'https://github.com/pythonkr/pyconkr-web.git'
 
@@ -33,9 +25,19 @@ def deploy(c, branch='develop', sha1=''):
             c.run(f'git reset --hard origin/{branch}')
         envs = [
             f'DEPLOY_ENV={deploy_env}',
+            f'PORT={port}'
         ]
-        c.run(f'docker-compose down | true')
+        c.run(f'docker-compose -p {project_name} down | true')
         env_command = ' '.join(envs)
-        compose_command = f'docker-compose up -d --build --force-recreate'
+        compose_command = f'docker-compose -p {project_name} up -d --build --force-recreate'
         c.run(f'{env_command} {compose_command}')
         print('finish')
+
+@task
+def deploy_dev(c, sha1='origin/develop'):
+    deploy(c, project_name='dev.pycon.kr', sha1=sha1, port='3001')
+
+@task
+def deploy_master(c, sha1='origin/master'):
+    deploy(c, project_name='www.pycon.kr', sha1=sha1, port='3000')
+~
