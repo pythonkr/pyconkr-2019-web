@@ -1,6 +1,15 @@
 import {css} from '@emotion/core'
 
 export const homeCSS = css`
+section.banner {
+  height: 680px;
+  background: #263056;
+}
+
+section.banner > div{
+  padding-top: 255px;
+}
+
 section.schedule {
   max-width: 1024px;
   margin: 0 auto;
@@ -36,7 +45,7 @@ section.schedule li h3 {
   font-weight: bold;
 }
 
-section.schedule li span {
+section.schedule li > span {
   font-size: 20px;
   line-height: 39px;
   font-weight: bold;
@@ -125,7 +134,7 @@ section.introduce h2 {
 
 section.introduce p {
   font-size: 17px;
-  line-height: 32px;
+  line-height: 1.88;
   color: #000000;
   margin-top: 30px;
 }

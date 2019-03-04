@@ -43,17 +43,19 @@ class Index extends React.Component<{ stores: StoresType }> {
     return (
       <>
         <Header title='파이콘 한국 2019' />
-        <section>
-          <H1 intlKey='constant.pyconKorea.name'>파이콘 한국 2019</H1>
-          <H3 intlKey='constant.pyconKorea.schedule'>2019.08.15(수)-18(일)</H3>
-          <H3 intlKey='constant.pyconKorea.venue'>코엑스 그랜드볼룸, 서울</H3>
+        <section className={'banner'}>
+          <div>
+            <H1 intlKey='constant.pyconKorea.name'>파이콘 한국 2019</H1>
+            <H3 intlKey='constant.pyconKorea.schedule'>2019.08.15(수)-18(일)</H3>
+            <H3 intlKey='constant.pyconKorea.venue'>코엑스 그랜드볼룸, 서울</H3>
+          </div>
         </section>
         <section className={'schedule'}>
           <ul>
             <li>
               <H2 intlKey='constant.pyconKorea.sprint.name'>스프린트</H2>
               <H3 intlKey='constant.pyconKorea.sprint.schedule'>8월 15-16일</H3>
-              <Span intlKey='constant.pyconKorea.sprint.dayofweek'>&nbsp;+&nbsp;목-금</Span>
+              <Span intlKey='constant.pyconKorea.sprint.dayofweek'>목-금</Span>
               <hr />
               <Paragraph intlKey='home.sprintDescription'>
                 관심있는 오픈소스 프로젝트를 같은 장소에 모여 집중적으로 배우고 개발하는 자리입니다.
@@ -63,7 +65,7 @@ class Index extends React.Component<{ stores: StoresType }> {
             <li>
               <H2 intlKey='constant.pyconKorea.tutorial.name'>튜토리얼</H2>
               <H3 intlKey='constant.pyconKorea.tutorial.schedule'>8월 16일</H3>
-              <Span intlKey='constant.pyconKorea.tutorial.dayofweek'>&nbsp;+&nbsp;금</Span>
+              <Span intlKey='constant.pyconKorea.tutorial.dayofweek'>금</Span>
               <hr />
               <Paragraph intlKey='home.tutorialDescription'>
                 초보자들을 위해, 또는 새로운 것을 접하는 사람들을 위해 진행하는
@@ -73,7 +75,7 @@ class Index extends React.Component<{ stores: StoresType }> {
             <li>
               <H2 intlKey='constant.pyconKorea.conference.name'>컨퍼런스</H2>
               <H3 intlKey='constant.pyconKorea.conference.schedule'>8월 17-18일</H3>
-              <Span intlKey='constant.pyconKorea.conference.dayofweek'>&nbsp;+&nbsp;토-일</Span>
+              <Span intlKey='constant.pyconKorea.conference.dayofweek'>토-일</Span>
               <hr />
               <Paragraph intlKey='home.conferenceDescription'>
                 파이썬 사용 사례와 지식을 공유하는 50여개의 다양한 발표 세션이 열립니다.
@@ -115,15 +117,15 @@ class Index extends React.Component<{ stores: StoresType }> {
           <Paragraph intlKey='home.sloganDescription'>
             파이콘 한국 2019의 슬로건은 "Connect the Pythonistas"입니다.
           </Paragraph>
-          <Paragraph intlKey='home.sloganDescription'>
-            파이콘은 파이썬을 쓰는 이들의 만남의 장이 되기도, 또 다른 언어, 커뮤니티와의 접점이 되기도 합니다.
-            파이콘에서 당신은 한 분야를 아주 깊게 연구한 사람을 만날 수도,
-            완전히 다른 분야의 파이써니스타를 만날 수도, 친한 동료를 만날 수도 있을 것입니다.
-          </Paragraph>
-          <Paragraph intlKey='home.sloganDescription'>
-            우리는 파이콘을 통해, 방향과 분야가 숱하게 흩어져 각기 다른 점으로 존재하는 파이써니스타들이 모여
-            아름다운 별자리가 되기를 바랍니다. 2019년에도 우리, 파이콘에서 만나요.
-          </Paragraph>
+          {/*<Paragraph intlKey='home.sloganDescription'>*/}
+            {/*파이콘은 파이썬을 쓰는 이들의 만남의 장이 되기도, 또 다른 언어, 커뮤니티와의 접점이 되기도 합니다.*/}
+            {/*파이콘에서 당신은 한 분야를 아주 깊게 연구한 사람을 만날 수도,*/}
+            {/*완전히 다른 분야의 파이써니스타를 만날 수도, 친한 동료를 만날 수도 있을 것입니다.*/}
+          {/*</Paragraph>*/}
+          {/*<Paragraph intlKey='home.sloganDescription'>*/}
+            {/*우리는 파이콘을 통해, 방향과 분야가 숱하게 흩어져 각기 다른 점으로 존재하는 파이써니스타들이 모여*/}
+            {/*아름다운 별자리가 되기를 바랍니다. 2019년에도 우리, 파이콘에서 만나요.*/}
+          {/*</Paragraph>*/}
           <hr />
           <H2 intlKey='home.differenceWithOthers.title'>
             파이콘은 다른 개발자 행사와 무엇이 다른가요?

@@ -11,26 +11,29 @@ import { navigationPadding } from 'styles/layout'
 const NavWrapper = styled.nav`
   display: flex;
   justify-content: space-between;
-  padding: 0 ${navigationPadding};
-  box-sizing: border-box;
   width: 100%;
-  background-color: #088487;
+  padding: 0 ${navigationPadding};
+  background-color: #263056;
   color: white;
+  box-sizing: border-box;
 `
 const NavItem = styled.li`
   display: inline-block;
-  margin: 0 10px;
   position: relative;
+  margin: 0 10px;
+  font-size: 14px;
 `
 const NavMenuSubLinkList = styled.ul`
+  visibility: hidden;
+  display: flex;
   position: absolute;
+  flex-direction: column;
   top: 60px;
   left: 0;
-  display: flex;
-  flex-direction: column;
+  width: 180px;
+  font-size: 14px;
+  background: #FFF;
   color: black;
-  visibility: hidden;
-  width: 100px;
   ${NavItem}:hover & {
       visibility: visible;
   }
