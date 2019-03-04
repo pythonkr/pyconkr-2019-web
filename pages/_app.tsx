@@ -61,7 +61,8 @@ class MyApp extends App {
   }
 
   async retrieveProfileIfTokenExists() {
-    if (this.stores.authStore.hasToken()) {
+    this.stores.authStore.syncToken()
+    if (this.stores.authStore.logined) {
       this.stores.profileStore.retrieveProfile()
     }
   }

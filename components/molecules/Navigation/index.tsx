@@ -126,7 +126,7 @@ class Navigation extends React.Component<{ stores: StoresType }> {
           </NavItem>
           <NavItem>
             {
-              stores.profileStore.isLogin ?
+              stores.authStore.logined ?
                 <>
                   <NavLink
                     to={paths.account.profile}

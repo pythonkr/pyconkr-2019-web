@@ -7,7 +7,7 @@ const webpack = require('webpack');
 // localhost로 redirect되는 oauth application입니다.
 // 각 환경에 맞는 env를 실행하고 서버를 빌드해주세요
 const API_SERVER = process.env.API_SERVER ? 
-  process.env.API_SERVER : 'http://dev.pycon.kr/api/graphql'
+  process.env.API_SERVER : 'https://dev.pycon.kr/api/graphql'
 const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID ?
   process.env.GITHUB_CLIENT_ID : 'bc6a4bddabaa55004090'
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID ?
