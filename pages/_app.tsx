@@ -12,6 +12,14 @@ import intl from 'react-intl-universal'
 global.Intl = IntlPolyfill
 require('intl/locale-data/jsonp/ko.js')
 
+const intlWarningHandler = (message: string) => {
+  if (message.includes('react-intl-universal key') &&
+    message.includes(`not defined in ${LOCALE_KEY_KR}`)) {
+    return
+  }
+  console.error(message)
+}
+
 export type StoresType = {
   authStore: AuthStoreType;
   profileStore: ProfileStoreType;
@@ -32,11 +40,13 @@ class MyApp extends App {
 
     const { router: { query } } = this.props
     const currentLocale = query![URL_LOCALE_KEY] as string || LOCALE_KEY_KR
+
     intl.init({
       currentLocale,
       locales: {
         [currentLocale]: require(`locales/${currentLocale}`)
-      }
+      },
+      warningHandler: intlWarningHandler
     })
   }
 
@@ -51,7 +61,7 @@ class MyApp extends App {
     return { pageProps, isServer }
   }
 
-  componentDidMount() {
+componentDidMount() {
     const spoqaHanSans = new FontFaceObserver('Spoqa Han Sans')
     spoqaHanSans.load()
       .then(() => {
@@ -60,14 +70,14 @@ class MyApp extends App {
     this.retrieveProfileIfTokenExists()
   }
 
-  async retrieveProfileIfTokenExists() {
+async retrieveProfileIfTokenExists() {
     this.stores.authStore.syncToken()
     if (this.stores.authStore.logined) {
       this.stores.profileStore.retrieveProfile()
     }
   }
 
-  render() {
+render() {
     const { Component, pageProps } = this.props
 
     return (
