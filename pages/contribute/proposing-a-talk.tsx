@@ -37,6 +37,15 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
         <section>
           <H2 intlKey='aaa'>세부 일정</H2>
           {/* 일정 테이블  */}
+          <table>
+            <thead></thead>
+            {contributions.map(contribution => <tr>
+              <td>{contribution.title}</td>
+              <td>{contribution.openDate} - {contribution.closeDate}</td>
+              <td>준비 중</td>
+              <td><Link href={contribution.link}><a>자세히 보기</a></Link></td>
+            </tr>)}
+          </table>
         </section>
         <section>
           <H2 intlKey='bbb'>문의</H2>

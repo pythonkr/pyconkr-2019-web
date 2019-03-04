@@ -14,7 +14,6 @@ const FixedFooterWrapper = styled.nav`
   align-items: center;
   width: 100%;
   height: 40px;
-  box-sizing: border-box;
   padding: 0 ${navigationPadding};
   background-color: #F95858;
   color: white;

@@ -5,10 +5,12 @@ export const commonCSS = css`
   html {
     background-color: ${CORAL};
   }
+  * {
+    box-sizing: border-box;
+  }
   body {
     background-color: white;
     word-break: keep-all;
-    box-sizing: border-box;
     font-family: "Helvetica Neue", "Apple SD Gothic Neo", arial,
       나눔고딕, "Nanum Gothic", 돋움, Dotum, Tahoma, Geneva, sans-serif;
     color: #333333;

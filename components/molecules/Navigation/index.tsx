@@ -29,13 +29,13 @@ const NavMenuSubLinkList = styled.ul`
   position: absolute;
   flex-direction: column;
   top: 60px;
-  left: 0;
+  left: -30px;
   width: 180px;
   font-size: 14px;
   background: #FFF;
   color: black;
   ${NavItem}:hover & {
-      visibility: visible;
+    visibility: visible;
   }
 `
 

@@ -11,38 +11,43 @@ section.banner > div{
 }
 
 section.schedule {
-  max-width: 1024px;
+  max-width: 940px;
   margin: 0 auto;
   padding: 128px 0 116px 0;
-}
-
-section.schedule ul {
-  width: 100%;
-  margin: 0;
-  padding: 0;
 }
 
 section.schedule li {
   display: inline-block;
   list-style: none;
-  width: calc(100% / 3);
+  width: 281px;
   margin: 0;
   padding: 0;
   vertical-align: top;
 }
 
-section.schedule li h2 {
+section.schedule li + li {
+  margin-left: 48px;
+}
+
+section.schedule li > h2 {
   font-size: 30px;
   line-height: 39px;
   font-weight: bold;
 }
 
-section.schedule li h3 {
+section.schedule li > h3 {
   display: inline-block;
   margin-top: 10px;
   font-size: 20px;
   line-height: 39px;
   font-weight: bold;
+}
+
+section.schedule li > p {
+  max-width: 85%;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #262626;
 }
 
 section.schedule li > span {
@@ -52,22 +57,14 @@ section.schedule li > span {
   color: #b4b4b4;
 }
 
-section.schedule li hr {
-  max-width: 90%;
+section.schedule li > hr {
   height: 1px;
   margin: 10px 0 17px 0;
   border: none;
   background: #fcb5b5;
 }
 
-section.schedule li p {
-  max-width: 85%;
-  font-size: 15px;
-  line-height: 1.8;
-  color: #262626;
-}
-
-section.schedule li button.support {
+section.schedule li > button.support {
   margin-top: 22px;
   width: 148px;
   height: 40px;
@@ -81,31 +78,34 @@ section.schedule li button.support {
   outline: none;
 }
 
-//
 section.sponser {
-  padding: 86px 0 73px 0;
   background-color: #fde5e3;
+  padding: 15px 0;
 }
 
 section.sponser h2 {
   font-size: 36px;
-  line-height: 0.83;
+  line-height: 1.8;
   font-weight: bold;
   text-align: center;
   color: #4a4a4a;
 }
 
 section.sponser p {
-  width: 700px;
-  margin: 50px auto 63px;
+  margin: 32px 0 0;
   font-size: 17px;
   line-height: 1.88;
   color: #4a4a4a;
 }
 
+section.sponser p + p {
+  margin: 20px 0 63px;
+}
+
 section.sponser button {
   display: block;
-  width: 300px;
+  max-width: 300px;
+  width: 100%;
   height: 60px;
   margin: 0 auto;
   border: solid 2px #f95858;
@@ -118,11 +118,8 @@ section.sponser button {
   outline: none;
 }
 
-//
 section.introduce {
-  max-width: 700px;
-  padding: 155px 0 233px 0;
-  margin: 0 auto;
+  padding: 92px 0 171px 0;
 }
 
 section.introduce h2 {
@@ -138,6 +135,11 @@ section.introduce p {
   color: #000000;
   margin-top: 30px;
 }
+
+section.introduce p + p {
+  margin-top: 20px;
+}
+
 
 section.introduce hr {
   border: none;

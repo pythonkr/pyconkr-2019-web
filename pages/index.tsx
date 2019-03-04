@@ -1,3 +1,4 @@
+import { ContentWidthWrapper } from 'components/atoms/ContentWidthWrapper'
 import { H1 } from 'components/atoms/H1'
 import { H2 } from 'components/atoms/H2'
 import { H3 } from 'components/atoms/H3'
@@ -43,14 +44,14 @@ class Index extends React.Component<{ stores: StoresType }> {
     return (
       <>
         <Header title='파이콘 한국 2019' />
-        <section className={'banner'}>
+        <section className='banner'>
           <div>
             <H1 intlKey='constant.pyconKorea.name'>파이콘 한국 2019</H1>
             <H3 intlKey='constant.pyconKorea.schedule'>2019.08.15(수)-18(일)</H3>
             <H3 intlKey='constant.pyconKorea.venue'>코엑스 그랜드볼룸, 서울</H3>
           </div>
         </section>
-        <section className={'schedule'}>
+        <section className='schedule'>
           <ul>
             <li>
               <H2 intlKey='constant.pyconKorea.sprint.name'>스프린트</H2>
@@ -90,53 +91,59 @@ class Index extends React.Component<{ stores: StoresType }> {
           </ul>
         </section>
         <section className='sponser'>
-          <H2 intlKey='home.sponsor.title'>
-            파이콘 한국 2019 후원사 (모집 예정)
-          </H2>
-          <Paragraph intlKey='home.sponsor.description'>
-            파이콘 한국은 오픈소스 및 파이썬 커뮤니티의 중요성에 공감하는 후원사들의 감사한 지원 덕분에
-            비디오 녹화, 티켓 가격 지원 등 더 많은 개발자들이 참여할 수 있는 행사를 만들어 왔습니다.
-            파이콘 후원을 통해 파이썬 커뮤니티의 성장을 지원하고 파이콘 한국 2019의 공식 후원사로서의
-            특별한 가치를 갖는 데 관심이 있는 후원사를 모십니다.
-          </Paragraph>
-          <button>
-            {intl.get('home.sponsor.prospectus')
-              .defaultMessage('후원 모집 일정 및 안내 보기')}
-          </button>
+          <ContentWidthWrapper>
+            <H2 intlKey='home.sponsor.title'>
+              파이콘 한국 2019 후원사 (모집 예정)
+            </H2>
+            <Paragraph intlKey='home.sponsor.description'>
+              파이콘 한국은 오픈소스 및 파이썬 커뮤니티의 중요성에 공감하는 후원사들의 감사한 지원 덕분에
+              비디오 녹화, 티켓 가격 지원 등 더 많은 개발자들이 참여할 수 있는 행사를 만들어 왔습니다.
+            </Paragraph>
+            <Paragraph intlKey='home.sponsor.description'>
+              파이콘 후원을 통해 파이썬 커뮤니티의 성장을 지원하고 파이콘 한국 2019의 공식 후원사로서의
+              특별한 가치를 갖는 데에 관심이 있는 후원사를 모십니다.
+            </Paragraph>
+            <button>
+              {intl.get('home.sponsor.prospectus')
+                .defaultMessage('후원 모집 일정 및 안내 보기')}
+            </button>
+          </ContentWidthWrapper>
         </section>
         <section className='introduce'>
-          <H2 intlKey='constant.pyconKorea.nameOnly'>파이콘 한국</H2>
-          <Paragraph intlKey='home.pyconKoreaDescription'>
-            파이콘은 세계 각국의 파이썬 프로그래밍 언어 커뮤니티에서 주관하는 비영리 컨퍼런스입니다.
-            한국에서는 처음으로 열린 파이콘 한국 2014를 시작으로 파이콘 한국 준비위원회는
-            건강한 국내 파이썬 생태계에 지속적인 보탬이 되고자,
-            커뮤니티 멤버들의 자발적인 봉사로 운영되고 있습니다.
-          </Paragraph>
-          <hr />
-          <h2>CONNECT THE PYTHONISTAS</h2>
-          <Paragraph intlKey='home.sloganDescription'>
-            파이콘 한국 2019의 슬로건은 "Connect the Pythonistas"입니다.
-          </Paragraph>
-          {/*<Paragraph intlKey='home.sloganDescription'>*/}
-            {/*파이콘은 파이썬을 쓰는 이들의 만남의 장이 되기도, 또 다른 언어, 커뮤니티와의 접점이 되기도 합니다.*/}
-            {/*파이콘에서 당신은 한 분야를 아주 깊게 연구한 사람을 만날 수도,*/}
-            {/*완전히 다른 분야의 파이써니스타를 만날 수도, 친한 동료를 만날 수도 있을 것입니다.*/}
-          {/*</Paragraph>*/}
-          {/*<Paragraph intlKey='home.sloganDescription'>*/}
-            {/*우리는 파이콘을 통해, 방향과 분야가 숱하게 흩어져 각기 다른 점으로 존재하는 파이써니스타들이 모여*/}
-            {/*아름다운 별자리가 되기를 바랍니다. 2019년에도 우리, 파이콘에서 만나요.*/}
-          {/*</Paragraph>*/}
-          <hr />
-          <H2 intlKey='home.differenceWithOthers.title'>
-            파이콘은 다른 개발자 행사와 무엇이 다른가요?
-          </H2>
-          <Paragraph intlKey='home.differenceWithOthers.description'>
-            파이콘 한국은 커뮤니티 주관으로 이뤄지는 비영리 개발자 대상 행사로,
-            타 기업 및 기관에서 개최하는 개발자 행사와는 성격이 다릅니다.
-            발표자와 튜토리얼 진행자를 포함하여, 자원 봉사자와 준비위원회 담당자 등 모든 인원이
-            금전적 이득 없이 순수히 오픈소스 프로그래밍 언어인 파이썬의 저변 확대와
-            커뮤니티 활성화를 위해 진행하는 행사입니다.
-          </Paragraph>
+          <ContentWidthWrapper>
+            <H2 intlKey='constant.pyconKorea.nameOnly'>파이콘 한국</H2>
+            <Paragraph intlKey='home.pyconKoreaDescription'>
+              파이콘은 세계 각국의 파이썬 프로그래밍 언어 커뮤니티에서 주관하는 비영리 컨퍼런스입니다.
+              한국에서는 처음으로 열린 파이콘 한국 2014를 시작으로 파이콘 한국 준비위원회는
+              건강한 국내 파이썬 생태계에 지속적인 보탬이 되고자,
+              커뮤니티 멤버들의 자발적인 봉사로 운영되고 있습니다.
+            </Paragraph>
+            <hr />
+            <h2>CONNECT THE PYTHONISTAS</h2>
+            <Paragraph intlKey='home.sloganDescription'>
+              파이콘 한국 2019의 슬로건은 "Connect the Pythonistas"입니다.
+            </Paragraph>
+            <Paragraph intlKey='home.sloganDescription'>
+              파이콘은 파이썬을 쓰는 이들의 만남의 장이 되기도, 또 다른 언어, 커뮤니티와의 접점이 되기도 합니다.
+              파이콘에서 당신은 한 분야를 아주 깊게 연구한 사람을 만날 수도,
+              완전히 다른 분야의 파이써니스타를 만날 수도, 친한 동료를 만날 수도 있을 것입니다.
+            </Paragraph>
+            <Paragraph intlKey='home.sloganDescription'>
+              우리는 파이콘을 통해, 방향과 분야가 숱하게 흩어져 각기 다른 점으로 존재하는 파이써니스타들이 모여
+              아름다운 별자리가 되기를 바랍니다. 2019년에도 우리, 파이콘에서 만나요.
+            </Paragraph>
+            <hr />
+            <H2 intlKey='home.differenceWithOthers.title'>
+              파이콘은 다른 개발자 행사와 무엇이 다른가요?
+            </H2>
+            <Paragraph intlKey='home.differenceWithOthers.description'>
+              파이콘 한국은 커뮤니티 주관으로 이뤄지는 비영리 개발자 대상 행사로,
+              타 기업 및 기관에서 개최하는 개발자 행사와는 성격이 다릅니다.
+              발표자와 튜토리얼 진행자를 포함하여, 자원 봉사자와 준비위원회 담당자 등 모든 인원이
+              금전적 이득 없이 순수히 오픈소스 프로그래밍 언어인 파이썬의 저변 확대와
+              커뮤니티 활성화를 위해 진행하는 행사입니다.
+            </Paragraph>
+          </ContentWidthWrapper>
         </section>
         <Footer />
       </>
