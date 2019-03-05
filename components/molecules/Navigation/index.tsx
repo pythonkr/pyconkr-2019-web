@@ -7,6 +7,7 @@ import React from 'react'
 import intl from 'react-intl-universal'
 import { paths } from 'routes/paths'
 import { navigationPadding } from 'styles/layout'
+import Router from 'next/router';
 
 const NavWrapper = styled.nav`
   display: flex;
@@ -44,7 +45,6 @@ const NavMenuSubLinkList = styled.ul`
 class Navigation extends React.Component<{ stores: StoresType }> {
   render() {
     const { stores } = this.props
-
     return (
       <NavWrapper>
         <ul>
@@ -147,7 +147,10 @@ class Navigation extends React.Component<{ stores: StoresType }> {
                       intlKey='gnb.info.profile'
                       name='프로필'
                     />
-                    <button onClick={() => { stores.authStore.logout() }}>
+                    <button onClick={() => {
+                      stores.authStore.logout()
+                      Router.replace(paths.home)
+                    }}>
                       {intl.get('gnb.info.logout')
                         .defaultMessage('로그아웃')}
                     </button>

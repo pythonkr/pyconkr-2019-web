@@ -7,6 +7,8 @@ import { inject, observer } from 'mobx-react'
 import React from 'react'
 import intl from 'react-intl-universal'
 import { StoresType } from '../_app'
+import Router from 'next/router';
+import { paths } from 'routes/paths'
 
 @inject('stores')
 @observer
@@ -19,6 +21,14 @@ class Login extends React.Component<{ stores: StoresType }> {
     const scope = encodeURIComponent('user:email')
     const url = `${authorize_url}?state=${state}&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}`
     window.location.href = url
+  }
+
+  async componentDidMount() {
+    const {stores} = this.props
+    if (stores.authStore.logined){
+      Router.replace(paths.home)
+      return
+    }
   }
 
   handleGoogleLogin() {
