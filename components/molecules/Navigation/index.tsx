@@ -1,13 +1,14 @@
 import styled from '@emotion/styled'
 import NavLink from 'components/atoms/NavLink'
 import NavMenuSubLink from 'components/atoms/NavMenuSubLink'
+import { PyConKRLogo } from 'components/atoms/SVG'
 import { inject, observer } from 'mobx-react'
+import Router from 'next/router'
 import { StoresType } from 'pages/_app'
 import React from 'react'
 import intl from 'react-intl-universal'
 import { paths } from 'routes/paths'
 import { navigationPadding } from 'styles/layout'
-import Router from 'next/router';
 
 const NavWrapper = styled.nav`
   display: flex;
@@ -39,17 +40,27 @@ const NavMenuSubLinkList = styled.ul`
     visibility: visible;
   }
 `
+const HeaderLogo = styled.p`
+  padding: 23px 0 20px;
+`
 
 @inject('stores')
 @observer
 class Navigation extends React.Component<{ stores: StoresType }> {
   render() {
     const { stores } = this.props
+
     return (
       <NavWrapper>
         <ul>
           <NavItem>
-            <span>파이콘 로고</span>
+            <HeaderLogo>
+              <PyConKRLogo
+                width={139}
+                height={37}
+                color='black'
+              />
+            </HeaderLogo>
           </NavItem>
         </ul>
         <ul>

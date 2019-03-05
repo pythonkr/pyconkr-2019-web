@@ -140,7 +140,6 @@ section.introduce p + p {
   margin-top: 20px;
 }
 
-
 section.introduce hr {
   border: none;
   height: 1px;

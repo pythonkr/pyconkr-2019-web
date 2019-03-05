@@ -1,14 +1,36 @@
+import styled from '@emotion/styled'
 import { H1 } from 'components/atoms/H1'
+import { NaverLogo } from 'components/atoms/SVG'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
 import { clientIdEnum } from 'lib/stores/AuthStore'
 import { inject, observer } from 'mobx-react'
+import Router from 'next/router'
 import React from 'react'
 import intl from 'react-intl-universal'
-import { StoresType } from '../_app'
-import Router from 'next/router';
 import { paths } from 'routes/paths'
+import { NAVER_GREEN } from 'styles/colors'
+import { StoresType } from '../_app'
+
+const SubButton = styled.button`
+  width: 428px;
+  height: 54px;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07);
+  border: solid 1px #ced3d6;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+const ButtonText = styled.span`
+  display: block;
+  margin-left: 12px;
+  font-size: 15px;
+  text-align: center;
+  color: #4d5256;
+`
 
 @inject('stores')
 @observer
@@ -25,8 +47,9 @@ class Login extends React.Component<{ stores: StoresType }> {
 
   async componentDidMount() {
     const {stores} = this.props
-    if (stores.authStore.logined){
+    if (stores.authStore.logined) {
       Router.replace(paths.home)
+
       return
     }
   }
@@ -92,11 +115,17 @@ class Login extends React.Component<{ stores: StoresType }> {
             }</button>
           </li>
           <li>
-            <button onClick={this.handleNaverLogin}>{
-              intl
+            <SubButton onClick={this.handleNaverLogin}>
+              <NaverLogo
+                width={20}
+                height={20}
+                color={NAVER_GREEN}
+              />
+              <ButtonText>{intl
                 .get('account.login.naverButton')
-                .defaultMessage('Naver 로그인')
-            }</button>
+                .defaultMessage('네이버 계정으로 로그인')
+              }</ButtonText>
+            </SubButton>
           </li>
         </ul>
       </PageTemplate>

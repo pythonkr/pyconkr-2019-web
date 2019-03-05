@@ -29,7 +29,6 @@ injectGlobal`
 class Index extends React.Component<{ stores: StoresType }> {
   async componentDidMount() {
     this.handleOAuthCallback()
-
   }
 
   async handleOAuthCallback() {
