@@ -13,10 +13,20 @@ import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
 import { StoresType } from '../_app'
+import Router from 'next/router';
+import { paths } from 'routes/paths'
 
 @inject('stores')
 @observer
 export default class ProposingATalk extends React.Component<{ stores: StoresType }> {
+  async componentDidMount() {
+    const {stores} = this.props
+    if (!stores.authStore.logined){
+      Router.replace(paths.account.login)
+      return
+    }
+  }
+
   render() {
     const { stores } = this.props
     const { currentStage } = toJS(stores.cfpStore)
@@ -38,13 +48,13 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
           <H2 intlKey='aaa'>세부 일정</H2>
           {/* 일정 테이블  */}
           <table>
-            <thead></thead>
+            {/* <thead></thead>
             {contributions.map(contribution => <tr>
               <td>{contribution.title}</td>
               <td>{contribution.openDate} - {contribution.closeDate}</td>
               <td>준비 중</td>
               <td><Link href={contribution.link}><a>자세히 보기</a></Link></td>
-            </tr>)}
+            </tr>)} */}
           </table>
         </section>
         <section>
