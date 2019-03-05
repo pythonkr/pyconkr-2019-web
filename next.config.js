@@ -13,7 +13,7 @@ const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID ?
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID ?
   process.env.GOOGLE_CLIENT_ID : '434664051101-ms06l6uja93lrjs3errmb73alb6dek1f.apps.googleusercontent.com'
 const FACEBOOK_CLIENT_ID = process.env.FACEBOOK_CLIENT_ID ?
-  process.env.FACEBOOK_CLIENT_ID : '373255026827477'
+  process.env.FACEBOOK_CLIENT_ID : '395817644484509'
 const NAVER_CLIENT_ID = process.env.NAVER_CLIENT_ID ?
   process.env.NAVER_CLIENT_ID : 'K1dzcT_4mOnrA7KTFVFq'
 
