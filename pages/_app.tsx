@@ -1,3 +1,5 @@
+import { injectGlobal } from 'emotion'
+import emotionReset from 'emotion-reset'
 import FontFaceObserver from 'fontfaceobserver'
 import IntlPolyfill from 'intl'
 import AuthStore, { AuthStore as AuthStoreType } from 'lib/stores/AuthStore'
@@ -8,6 +10,8 @@ import { LOCALE_KEY_KR, URL_LOCALE_KEY } from 'locales/constants'
 import { Provider } from 'mobx-react'
 import App, { Container } from 'next/app'
 import intl from 'react-intl-universal'
+import { commonCSS } from 'styles/common'
+import { fontCSS } from 'styles/font'
 
 global.Intl = IntlPolyfill
 require('intl/locale-data/jsonp/ko.js')
@@ -20,12 +24,19 @@ const intlWarningHandler = (message: string) => {
   console.error(message)
 }
 
+injectGlobal`
+  ${emotionReset}
+  ${fontCSS}
+  ${commonCSS}
+`
+
 export type StoresType = {
   authStore: AuthStoreType;
   profileStore: ProfileStoreType;
   sponsorStore: SponsorStoreType;
   cfpStore: CFPStoreType;
 }
+
 class MyApp extends App {
 
   stores: StoresType

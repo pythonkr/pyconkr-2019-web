@@ -30,7 +30,7 @@ const NavMenuSubLinkList = styled.ul`
   display: flex;
   position: absolute;
   flex-direction: column;
-  top: 60px;
+  top: 80px;
   left: -30px;
   width: 180px;
   font-size: 14px;
@@ -41,7 +41,8 @@ const NavMenuSubLinkList = styled.ul`
   }
 `
 const HeaderLogo = styled.p`
-  padding: 23px 0 20px;
+  margin: 23px 0 20px;
+  line-height: 0;
 `
 
 @inject('stores')
@@ -58,7 +59,7 @@ class Navigation extends React.Component<{ stores: StoresType }> {
               <PyConKRLogo
                 width={139}
                 height={37}
-                color='black'
+                color='white'
               />
             </HeaderLogo>
           </NavItem>

@@ -1,3 +1,4 @@
+import styled from '@emotion/styled'
 import { ContentWidthWrapper } from 'components/atoms/ContentWidthWrapper'
 import { H1 } from 'components/atoms/H1'
 import { H2 } from 'components/atoms/H2'
@@ -6,24 +7,140 @@ import { Paragraph } from 'components/atoms/Paragraph'
 import { Span } from 'components/atoms/Span'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
-import { injectGlobal } from 'emotion'
-import emotionReset from 'emotion-reset'
 import { inject, observer } from 'mobx-react'
 import Router from 'next/router'
 import { parse } from 'qs'
 import React from 'react'
 import intl from 'react-intl-universal'
-import { commonCSS } from 'styles/common'
-import { fontCSS } from 'styles/font'
-import { homeCSS } from 'styles/home'
 import { StoresType } from './_app'
 
-injectGlobal`
-  ${emotionReset}
-  ${fontCSS}
-  ${commonCSS}
-  ${homeCSS}
+const BannerSection = styled.section`
+height: 680px;
+background: #263056;
+& > div {
+  padding-top: 255px;
+}
 `
+const ScheduleSection = styled.section`
+max-width: 940px;
+margin: 0 auto;
+padding: 128px 0 116px 0;
+li {
+  display: inline-block;
+  list-style: none;
+  width: 281px;
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+}
+li + li {
+  margin-left: 48px;
+}
+li > h2 {
+  font-size: 30px;
+  line-height: 39px;
+  font-weight: bold;
+}
+li > h3 {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 20px;
+  line-height: 39px;
+  font-weight: bold;
+}
+li > p {
+  max-width: 85%;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #262626;
+}
+li > span {
+  font-size: 20px;
+  line-height: 39px;
+  font-weight: bold;
+  color: #b4b4b4;
+}
+li > hr {
+  height: 1px;
+  margin: 10px 0 17px 0;
+  border: none;
+  background: #fcb5b5;
+}
+li > button {
+  margin-top: 22px;
+  width: 148px;
+  height: 40px;
+  border: solid 1px #263056;
+  background-color: #354379;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
+  outline: none;
+}
+`
+const SponserSection = styled.section`
+background-color: #fde5e3;
+padding: 15px 0;
+h2 {
+  font-size: 36px;
+  line-height: 1.8;
+  font-weight: bold;
+  text-align: center;
+  color: #4a4a4a;
+}
+p {
+  margin: 32px 0 0;
+  font-size: 17px;
+  line-height: 1.88;
+  color: #4a4a4a;
+}
+p + p {
+  margin: 20px 0 63px;
+}
+button {
+  display: block;
+  max-width: 300px;
+  width: 100%;
+  height: 60px;
+  margin: 0 auto;
+  border: solid 2px #f95858;
+  background: transparent;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  color: #f95858;
+  cursor: pointer;
+  outline: none;
+}
+`
+const IntroduceSection = styled.section`
+padding: 92px 0 171px 0;
+h2 {
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 1.08;
+  color: #263056;
+}
+p {
+  font-size: 17px;
+  line-height: 1.88;
+  color: #000000;
+  margin-top: 30px;
+}
+p + p {
+  margin-top: 20px;
+}
+hr {
+  border: none;
+  height: 1px;
+  background: #f95858;
+  width: 100%;
+  margin: 40px auto 58px;
+}
+`
+
 @inject('stores')
 @observer
 class Index extends React.Component<{ stores: StoresType }> {
@@ -43,14 +160,14 @@ class Index extends React.Component<{ stores: StoresType }> {
     return (
       <>
         <Header title='파이콘 한국 2019' />
-        <section className='banner'>
+        <BannerSection>
           <div>
             <H1 intlKey='constant.pyconKorea.name'>파이콘 한국 2019</H1>
             <H3 intlKey='constant.pyconKorea.schedule'>2019.08.15(수)-18(일)</H3>
             <H3 intlKey='constant.pyconKorea.venue'>코엑스 그랜드볼룸, 서울</H3>
           </div>
-        </section>
-        <section className='schedule'>
+        </BannerSection>
+        <ScheduleSection>
           <ul>
             <li>
               <H2 intlKey='constant.pyconKorea.sprint.name'>스프린트</H2>
@@ -82,14 +199,14 @@ class Index extends React.Component<{ stores: StoresType }> {
                 또 후원 기업 부스와 영코더, 라이트닝 토크, 열린 공간 등 다양한 이벤트를 통해
                 다양한 참가자와 교류할 수 있습니다.
               </Paragraph>
-              <button className='support'>
+              <button>
                 {intl.get('gnb.contribute.proposingATalk')
                   .defaultMessage('발표안 제안하기')}
               </button>
             </li>
           </ul>
-        </section>
-        <section className='sponser'>
+        </ScheduleSection>
+        <SponserSection>
           <ContentWidthWrapper>
             <H2 intlKey='home.sponsor.title'>
               파이콘 한국 2019 후원사 (모집 예정)
@@ -107,8 +224,8 @@ class Index extends React.Component<{ stores: StoresType }> {
                 .defaultMessage('후원 모집 일정 및 안내 보기')}
             </button>
           </ContentWidthWrapper>
-        </section>
-        <section className='introduce'>
+        </SponserSection>
+        <IntroduceSection>
           <ContentWidthWrapper>
             <H2 intlKey='constant.pyconKorea.nameOnly'>파이콘 한국</H2>
             <Paragraph intlKey='home.pyconKoreaDescription'>
@@ -143,7 +260,7 @@ class Index extends React.Component<{ stores: StoresType }> {
               커뮤니티 활성화를 위해 진행하는 행사입니다.
             </Paragraph>
           </ContentWidthWrapper>
-        </section>
+        </IntroduceSection>
         <Footer />
       </>
     )
