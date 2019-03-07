@@ -90,7 +90,7 @@ export const ContentWrapper = styled(ContentWidthWrapper)`
 
       td {
         font-weight: bold;
-        color: #3d70b2;
+        color: ${TEAL_DARK};
       }
     }
 
@@ -111,6 +111,11 @@ export const ContentWrapper = styled(ContentWidthWrapper)`
 
     &.center-align {
       text-align: center;
+    }
+
+    &.bold {
+      font-weight: 700;
+      color: ${TEAL_SEMI_DARK};
     }
   }
 

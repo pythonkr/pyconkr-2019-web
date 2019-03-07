@@ -1,17 +1,18 @@
+import { Button } from 'components/atoms/Button'
 import { H1 } from 'components/atoms/H1'
 import { H2 } from 'components/atoms/H2'
 import { Paragraph } from 'components/atoms/Paragraph'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
+import { differenceInCalendarDays, isFuture, isPast } from 'date-fns'
+import { keynoteRecommendation, lightningTalk, sprintProposal, talkProposal, tutorialProposal, volunteer } from 'dates'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
 import { paths } from 'routes/paths'
+import { DateDTO } from 'types/common'
+import { formatDateInWords } from 'utils/formatDate'
 import { StoresType } from '../_app'
-import { TableButton } from 'components/atoms/TableButton';
-import { isFuture, isPast, differenceInCalendarDays } from 'date-fns'
-import { DateDTO } from 'types/common';
-import { formatDateInWords } from 'utils/formatDate';
 
 export type IndexPagePropsType = {
   stores: StoresType;
@@ -20,39 +21,41 @@ export type IndexPagePropsType = {
 const contributions = [{
   title: '키노트 발표자 추천',
   intlKey: 'contribute.overview.table.keynote',
-  openDate: '2019-03-07T00:00:00+09:00',
+  openDate: keynoteRecommendation.open,
   link: paths.contribute.recommendingAKeynoteSpeaker,
 }, {
   title: '발표안 제안',
   intlKey: 'contribute.overview.table.talk',
-  openDate: '2019-03-13T00:00:00+09:00',
-  closeDate: '2019-04-19T11:59:59+09:00',
+  openDate: talkProposal.open,
+  closeDate: talkProposal.close,
   link: paths.contribute.proposingATalk
 }, {
   title: '튜토리얼 제안',
   intlKey: 'contribute.overview.table.tutorial',
-  openDate: '2019-04-29',
-  closeDate: '2019-05-19T11:59:59+09:00',
+  openDate: tutorialProposal.open,
+  closeDate: tutorialProposal.close,
   // link: paths.contribute.proposingATutorial
 }, {
   title: '스프린트 제안',
   intlKey: 'contribute.overview.table.sprint',
-  openDate: '2019-04-29T00:00:00+09:00',
+  openDate: sprintProposal.open,
   // link: paths.contribute.proposingASprint
 }, {
   title: '자원봉사자 모집',
   intlKey: 'contribute.overview.table.sprint',
-  openDate: '2019-06-10T00:00:00+09:00',
-  closeDate: '2019-06-23T11:59:59+09:00',
+  openDate: volunteer.open,
+  closeDate: volunteer.close,
 }, {
   title: '라이트닝 토크 신청',
   intlKey: 'contribute.overview.table.sprint',
-  openDate: '2019-08-15T00:00:00+09:00',
+  openDate: lightningTalk.open,
+  dateDescription: '컨퍼런스 당일'
 }]
 
 const getContributionClass = (openDate?: DateDTO, closeDate?: DateDTO) => {
   if (!openDate || isFuture(openDate)) return ''
   if (closeDate && isPast(closeDate)) return 'disabled'
+
   return 'active'
 }
 
@@ -60,11 +63,17 @@ const getContributionStatus = (openDate?: DateDTO, closeDate?: DateDTO, link?: s
   if (!openDate || !link) return '-'
   if (isFuture(openDate) && link) {
     const diff = differenceInCalendarDays(new Date(), openDate)
+
     return diff < 7
-      ? `D${diff}`
+      ? `모집 시작 D${diff}`
       : '준비 중'
   }
   if (closeDate && isPast(closeDate)) return '마감'
+
+  if (closeDate && differenceInCalendarDays(new Date(), closeDate) < 7) {
+    return `마감 D${differenceInCalendarDays(new Date(), closeDate)}`
+  }
+
   return '모집 중'
 }
 
@@ -86,27 +95,32 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           </Paragraph>
         <table>
           <tbody className='has-bg'>
-            {contributions.map(({ title, openDate, closeDate, link}) =>
+            {contributions.map(({ title, openDate, closeDate, link, dateDescription }) =>
               <tr
                 key={title}
                 className={getContributionClass(openDate, closeDate)}
               >
-                <td>{title}</td>
+                <td className='bold'>{title}</td>
                 <td>
-                  {formatDateInWords(openDate)} -&nbsp;
-                  {(closeDate && formatDateInWords(closeDate)) || '마감 시까지'}
+                  {
+                    dateDescription ||
+                    `${formatDateInWords(openDate)} -
+                      ${(closeDate && formatDateInWords(closeDate)) || '마감 시까지'}`
+                  }
                 </td>
                 <td>
                   {getContributionStatus(openDate, closeDate, link)}
                 </td>
                 <td className='center-align'>
                   {link
-                    ? <TableButton
+                    ? <Button
+                      size='small'
+                      height={27}
                       intlKey='contribute.overview.tableButton'
                       to={link}
                       disabled={getContributionClass(openDate, closeDate) === 'disabled'}
                       primary={getContributionClass(openDate, closeDate) === 'active' ? true : false}
-                    >자세히 보기</TableButton>
+                    >자세히 보기</Button>
                     : '-'
                   }
                 </td>

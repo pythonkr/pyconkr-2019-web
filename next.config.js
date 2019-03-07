@@ -37,6 +37,7 @@ module.exports = withGraphQL(withTypescript({
       'locales': path.join(__dirname, 'locales'),
       'routes': path.join(__dirname, 'routes'),
       'utils': path.join(__dirname, 'utils'),
+      'dates': path.join(__dirname, 'dates'),
     }
     config.plugins.push(new webpack.DefinePlugin(env))
     return config

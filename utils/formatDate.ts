@@ -1,9 +1,9 @@
 import format from 'date-fns/format'
-import ko from 'date-fns/locale/ko'
 import en from 'date-fns/locale/en'
-import { DateDTO } from 'types/common';
-import intl from 'react-intl-universal';
-import { LOCALE_KEY_KR, LOCALE_KEY_EN } from 'locales/constants';
+import ko from 'date-fns/locale/ko'
+import { LOCALE_KEY_EN, LOCALE_KEY_KR } from 'locales/constants'
+import intl from 'react-intl-universal'
+import { DateDTO } from 'types/common'
 
 const locales: { [index: string]: object } = {
   [LOCALE_KEY_KR]: ko,
@@ -12,6 +12,7 @@ const locales: { [index: string]: object } = {
 
 export const formatDate = (formatTemplate: string) => (date: DateDTO) => {
   const localeKey = intl.getInitOptions().currentLocale!
+
   return format(date, formatTemplate, {
     locale: locales[localeKey]
   })
@@ -19,7 +20,4 @@ export const formatDate = (formatTemplate: string) => (date: DateDTO) => {
 
 export const formatDateInWords = formatDate('MMMM Do')
 export const formatDateInWordsWithTime = formatDate('MMMM Do HH:mm')
-
-
-
-
+export const formatDateInWordsWithWeekdayAndTime = formatDate('MMMM Do [(]dd[)] HH:mm')
