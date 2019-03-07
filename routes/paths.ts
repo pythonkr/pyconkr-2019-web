@@ -7,6 +7,7 @@ export const paths = {
   },
   contribute: {
     overview: '/contribute/overview',
+    recommendingAKeynoteSpeaker: '/contribute/recommending-a-keynote-speaker',
     cfpDetailedGuide: '/contribute/cfp-detailed-guide',
     proposingATalk: '/contribute/proposing-a-talk',
     proposingASprint: '/contribute/proposing-a-sprint',

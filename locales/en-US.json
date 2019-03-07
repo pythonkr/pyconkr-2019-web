@@ -1,5 +1,6 @@
 {
   "constant":{
+    "DATE_IN_WORDS": "{dateDto, date, short}",
     "pyconKorea": {
       "name": "PyCon Korea 2019",
       "nameOnly": "PyCon Korea",

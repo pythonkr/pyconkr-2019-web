@@ -1,1 +1,5 @@
-{}
+{
+  "constant": {
+    "DATE_IN_WORDS": "{dateDto, date, short}"
+  }
+}

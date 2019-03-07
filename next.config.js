@@ -3,10 +3,10 @@ const withGraphQL = require('next-plugin-graphql')
 const path = require('path')
 const webpack = require('webpack');
 
-// 설정의 기본 값은 dev 서버를 바라보면서 
+// 설정의 기본 값은 dev 서버를 바라보면서
 // localhost로 redirect되는 oauth application입니다.
 // 각 환경에 맞는 env를 실행하고 서버를 빌드해주세요
-const API_SERVER = process.env.API_SERVER ? 
+const API_SERVER = process.env.API_SERVER ?
   process.env.API_SERVER : 'https://dev.pycon.kr/api/graphql'
 const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID ?
   process.env.GITHUB_CLIENT_ID : 'bc6a4bddabaa55004090'
@@ -36,6 +36,7 @@ module.exports = withGraphQL(withTypescript({
       'styles': path.join(__dirname, 'styles'),
       'locales': path.join(__dirname, 'locales'),
       'routes': path.join(__dirname, 'routes'),
+      'utils': path.join(__dirname, 'utils'),
     }
     config.plugins.push(new webpack.DefinePlugin(env))
     return config

@@ -4,9 +4,15 @@ import { TEAL_DARK, TEAL_SEMI_DARK } from 'styles/colors'
 
 export const ContentWrapper = styled(ContentWidthWrapper)`
   min-height: 900px;
+
+  /********************************* Sections ***********************************/
+
   section {
     margin: 100px 0;
   }
+
+  /********************************* Headings ***********************************/
+
   h1 {
     font-size: 46px;
     font-weight: 700;
@@ -16,6 +22,7 @@ export const ContentWrapper = styled(ContentWidthWrapper)`
     width: 100%;
     margin: 100px 0;
   }
+
   h2 {
     font-size: 26px;
     font-weight: 700;
@@ -23,6 +30,7 @@ export const ContentWrapper = styled(ContentWidthWrapper)`
     margin: 20px 0;
     color: ${TEAL_DARK};
   }
+
   h3 {
     font-size: 20px;
     font-weight: 700;
@@ -30,63 +38,95 @@ export const ContentWrapper = styled(ContentWidthWrapper)`
     margin: 34px 0 5px;
     color: ${TEAL_DARK};
   }
+
+  /********************************* Paragraph ***********************************/
+
   p {
     font-size: 17px;
     line-height: 1.88;
     margin: 10px 0;
+
     h1 + & {
       margin-top: 20px;
     }
+
     h2 + & {
       margin-top: 20px;
     }
+
     h3 + & {
       margin-top: 12px;
     }
+
+    & + table {
+      margin-top: 50px;
+    }
   }
+
+  /********************************* Table ***********************************/
 
   table {
     width: 100%;
-    // margin: 0 auto;
     border-collapse: collapse;
+    border-top: solid 2px ${TEAL_DARK};
+    border-bottom: solid 1px #dfe3e6;
+    margin: 10px 0;
   }
 
   thead {
+    height: 59px;
+  }
 
+  .has-bg td:first-child {
+    padding-left: 29px;
   }
 
   tr {
     border-top: solid 1px #dfe3e6;
-    border-bottom: solid 1px #dfe3e6;
-    color: #152935;
+    height: 59px;
+
+    &.active {
+      background-color: rgba(85, 150, 230, 0.1);
+
+      td {
+        font-weight: bold;
+        color: #3d70b2;
+      }
+    }
+
+    &.disabled {
+      background-color: rgba(57, 57, 57, 0.1);
+
+      td {
+        color: #a2a7aa;
+      }
+    }
   }
-
-  // tr {
-  //   border-top: solid 1px rgba(85, 150, 230, 0.1);;
-  //   border-bottom: solid 1px #dfe3e6;
-  //   background: rgba(85, 150, 230, 0.1);
-  //   color: #3d70b2;
-  //   font-weight: bold;
-  // }
-
-  // tr {
-  //   border-top: solid 1px #dfe3e6;
-  //   border-bottom: solid 1px #dfe3e6;
-  //   background: rgba(57, 57, 57, 0.1);
-  //   color: #70777b;
-  //   font-weight: bold;
-  // }
 
   td {
+    vertical-align: middle;
+    font-size: 15px;
+    line-height: 24px;
+    color: #152935;
+
+    &.center-align {
+      text-align: center;
+    }
   }
+
+
+  /********************************* List ***********************************/
+
   li {
     font-size: 16px;
     line-height: 2;
     margin: 9px 0;
   }
+
   ul, ol {
     margin: 20px 0;
   }
+
   ul > li {
     padding-left: 50px;
     position: relative;
@@ -101,9 +141,11 @@ export const ContentWrapper = styled(ContentWidthWrapper)`
       border-radius: 50%;
     }
   }
+
   ol {
     counter-reset: my-awesome-counter;
   }
+
   ol > li {
     padding-left: 50px;
     position: relative;
