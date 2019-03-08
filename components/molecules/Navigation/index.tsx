@@ -8,6 +8,7 @@ import { StoresType } from 'pages/_app'
 import React from 'react'
 import intl from 'react-intl-universal'
 import { paths } from 'routes/paths'
+import { CORAL, CORAL_LIGHT } from 'styles/colors'
 import { navigationPadding } from 'styles/layout'
 
 const NavWrapper = styled.nav`
@@ -15,9 +16,10 @@ const NavWrapper = styled.nav`
   justify-content: space-between;
   width: 100%;
   padding: 0 ${navigationPadding};
-  background-color: #263056;
-  color: white;
+  background-color: white;
   box-sizing: border-box;
+  border-bottom: solid 2px ${CORAL_LIGHT};
+  z-index: 100;
 `
 const NavItem = styled.li`
   display: inline-block;
@@ -59,7 +61,7 @@ class Navigation extends React.Component<{ stores: StoresType }> {
               <PyConKRLogo
                 width={139}
                 height={37}
-                color='white'
+                color={CORAL}
               />
             </HeaderLogo>
           </NavItem>

@@ -47,7 +47,7 @@ export const ContentWrapper = styled(ContentWidthWrapper)`
   p {
     font-size: 17px;
     line-height: 1.88;
-    margin: 10px 0;
+    margin: 20px 0;
 
     h1 + & {
       margin-top: 20px;

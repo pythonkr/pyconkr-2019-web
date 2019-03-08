@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import Link from 'next/link'
 import React, { HTMLProps } from 'react'
 import intl from 'react-intl-universal'
-import { TEAL_SEMI_DARK } from 'styles/colors'
+import { TEAL_SEMI_DARK, CORAL } from 'styles/colors'
 
 type ButtonSize = 'big' | 'normal' | 'small'
 
@@ -128,7 +128,7 @@ export const Button: React.SFC<Props>  = ({
   fontSize,
   width,
   height,
-  color = TEAL_SEMI_DARK,
+  color = CORAL,
   primary = true,
   disabled = false,
   tag = 'a',

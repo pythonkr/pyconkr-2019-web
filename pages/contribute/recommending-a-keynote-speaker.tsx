@@ -52,7 +52,6 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
         </Paragraph>
         <ContentButtonWrapper>
           <Button
-            size='big'
             intlKey='dsfd'
             to='https://goo.gl/forms/APta2y38kzBbT5DJ2'
             outlink

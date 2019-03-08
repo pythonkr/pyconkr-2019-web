@@ -6,6 +6,7 @@ const SNSLinkA = styled.a`
   height: 36px;
   align-items: center;
   text-decoration: none;
+  font-size: 14px;
 `
 
 type SNSLinkPropTypes = {

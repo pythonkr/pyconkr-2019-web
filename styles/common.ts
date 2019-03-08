@@ -15,7 +15,7 @@ export const commonCSS = css`
       나눔고딕, "Nanum Gothic", 돋움, Dotum, Tahoma, Geneva, sans-serif;
     color: #333333;
     -webkit-font-smoothing: antialiased;
-    -webkit-text-size-adjust: none;
+    -moz-osx-font-smoothing: grayscale;
     &.font-loaded {
       font-family: "Spoqa Han Sans", "Helvetica Neue",
       "Apple SD Gothic Neo", arial, 나눔고딕, "Nanum Gothic",
