@@ -1,3 +1,4 @@
+import { differenceInMilliseconds } from 'date-fns'
 import format from 'date-fns/format'
 import en from 'date-fns/locale/en'
 import ko from 'date-fns/locale/ko'
@@ -21,3 +22,5 @@ export const formatDate = (formatTemplate: string) => (date: DateDTO) => {
 export const formatDateInWords = formatDate('MMMM Do')
 export const formatDateInWordsWithTime = formatDate('MMMM Do HH:mm')
 export const formatDateInWordsWithWeekdayAndTime = formatDate('MMMM Do [(]dd[)] HH:mm')
+
+export const timeDiffToNow = (openDate: DateDTO) => differenceInMilliseconds(new Date(), openDate)

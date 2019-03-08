@@ -2,6 +2,9 @@ import styled from '@emotion/styled'
 import { ContentWidthWrapper } from 'components/atoms/ContentWidthWrapper'
 import { TEAL_DARK, TEAL_SEMI_DARK } from 'styles/colors'
 
+export const ContentTableWrapper = styled.div``
+export const ContentButtonWrapper = styled.div``
+
 export const ContentWrapper = styled(ContentWidthWrapper)`
   min-height: 900px;
 
@@ -65,19 +68,23 @@ export const ContentWrapper = styled(ContentWidthWrapper)`
 
   /********************************* Table ***********************************/
 
+  ${ContentTableWrapper} {
+    padding: 10px 0;
+  }
+
+
   table {
     width: 100%;
     border-collapse: collapse;
     border-top: solid 2px ${TEAL_DARK};
     border-bottom: solid 1px #dfe3e6;
-    margin: 10px 0;
   }
 
   thead {
     height: 59px;
   }
 
-  .has-bg td:first-child {
+  .has-bg td:first-of-type {
     padding-left: 29px;
   }
 
@@ -163,5 +170,12 @@ export const ContentWrapper = styled(ContentWidthWrapper)`
       left: 30px;
       top: 0;
     }
+  }
+
+  /***************************/
+  ${ContentButtonWrapper} {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    text-align: center;
   }
 `

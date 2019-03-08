@@ -1,6 +1,7 @@
 import { H1 } from 'components/atoms/H1'
 import { H2 } from 'components/atoms/H2'
 import { Paragraph } from 'components/atoms/Paragraph'
+import { StatusBar } from 'components/atoms/StatusBar'
 import Stage1 from 'components/organisms/CFPForm/Stage1'
 import Stage2 from 'components/organisms/CFPForm/Stage2'
 import Stage3 from 'components/organisms/CFPForm/Stage3'
@@ -53,7 +54,13 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
         <H1 intlKey='contribute.overview.title'>
           발표안 제안하기
         </H1>
-        {/* Status Bar */}
+        <StatusBar
+          title='발표안 모집'
+          actionText='제안'
+          link={paths.contribute.proposingATalk}
+          openDate={talkProposal.open}
+          closeDate={talkProposal.close}
+        />
         <Paragraph>
           파이썬에 대한 학술적 또는 상업적 프로젝트, 케이스 스터디 등 다양한 파이썬 관련 발표를 아래와 같은 일정으로 모집합니다.
           자세한 내용은 발표안 작성 가이드를 참고해주세요.

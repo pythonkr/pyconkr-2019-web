@@ -1,5 +1,5 @@
 import React from 'react'
-import { ContentWrapper } from 'styles/pages'
+import { ContentWrapper } from 'components/atoms/ContentWrapper'
 
 export type PageTemplatePropsType = {
   header: React.ReactNode;
