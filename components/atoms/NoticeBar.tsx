@@ -54,6 +54,14 @@ const StyledNoticeBar = styled.p`
   h1 + & {
     margin-bottom: 60px;
   }
+
+  a {
+    font-size: 16px;
+    color: ${({ textColor }) => textColor};
+    text-decoration: none;
+    display: inline-block;
+    border-bottom: solid 1px ${({ textColor }) => textColor};
+  }
 `
 
 const NoticeBarLink: React.SFC<LinkProps> = ({

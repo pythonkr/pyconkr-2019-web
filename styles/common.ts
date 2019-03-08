@@ -22,4 +22,12 @@ export const commonCSS = css`
       돋움, Dotum, Tahoma, Geneva, sans-serif;
     }
   }
+  a:any-link,
+  a:any-link:link,
+  a:any-link:visited,
+  a:any-link:hover,
+  a:any-link:active,
+  a:any-link:focus {
+    color: inherit;
+  }
 `
