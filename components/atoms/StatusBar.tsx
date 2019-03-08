@@ -87,20 +87,34 @@ const _StatusBar: React.SFC<Props>  = ({
     textColor={statusBarColors[barType].text}
     textLinkColor={statusBarColors[barType].textLink}
     text={getText(barType, title, dateDiff)}
-    subText={barType === 'scheduled'
-      ? `D${dateDiff}`
-      : barType === 'ongoing' && pathname === link && closeDate
-        ? `모집 마감 D${differenceInCalendarDays(new Date(), closeDate)}`
-        : !closeDate
-          ? '마감 시까지'
-          : undefined
+    subText={pathname === link
+      ? barType === 'scheduled'
+        ? `D${dateDiff}`
+        : barType === 'ongoing' && closeDate
+          ? `모집 마감 D${differenceInCalendarDays(new Date(), closeDate)}`
+          : !closeDate
+            ? '마감 시까지'
+            : undefined
+      : undefined
     }
-    link={barType === 'ongoing' && pathname !== link
-      ? {
-        title: `${actionText}하러 가기`,
-        to: link,
-        outlink: false,
-      }
+    link={pathname !== link
+      ? barType === 'ongoing'
+        ? {
+          title: `${actionText}하러 가기`,
+          to: link,
+          outlink: false,
+        }
+        : barType === 'scheduled'
+          ? {
+            title: `상세 일정 보기`,
+            to: link,
+            outlink: false,
+          }
+          : {
+            title: `지난 일정 보기`,
+            to: link,
+            outlink: false,
+          }
       : undefined
     }
   />

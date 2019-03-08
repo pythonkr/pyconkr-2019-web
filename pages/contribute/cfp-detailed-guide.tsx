@@ -3,14 +3,14 @@ import { H1 } from 'components/atoms/H1'
 import { H2 } from 'components/atoms/H2'
 import { H3 } from 'components/atoms/H3'
 import { Paragraph } from 'components/atoms/Paragraph'
-import { StatusBar } from 'components/atoms/StatusBar';
+import { StatusBar } from 'components/atoms/StatusBar'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
-import { talkProposal } from 'dates';
+import { talkProposal } from 'dates'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
-import { paths } from 'routes/paths';
+import { paths } from 'routes/paths'
 import { StoresType } from '../_app'
 
 export type IndexPagePropsType = {
@@ -44,7 +44,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
             title='발표안 모집'
             actionText='제안'
             link={paths.contribute.proposingATalk}
-            openDate={'2019-01-07T00:00:00+09:00'}
+            openDate={talkProposal.open}
             closeDate={talkProposal.close}
           />
           <Paragraph intlKey='contribute.overview.intro'>
