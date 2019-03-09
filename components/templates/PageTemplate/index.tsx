@@ -1,16 +1,5 @@
-import { injectGlobal } from 'emotion'
-import emotionReset from 'emotion-reset'
 import React from 'react'
-import { commonCSS } from 'styles/common'
-import { fontCSS } from 'styles/font'
-import { ContentWrapper, pagesCSS } from 'styles/pages'
-
-injectGlobal`
-  ${emotionReset}
-  ${fontCSS}
-  ${commonCSS}
-  ${pagesCSS}
-`
+import { ContentWrapper } from 'components/atoms/ContentWrapper'
 
 export type PageTemplatePropsType = {
   header: React.ReactNode;

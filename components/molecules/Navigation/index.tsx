@@ -1,11 +1,14 @@
 import styled from '@emotion/styled'
 import NavLink from 'components/atoms/NavLink'
 import NavMenuSubLink from 'components/atoms/NavMenuSubLink'
+import { PyConKRLogo } from 'components/atoms/SVG'
 import { inject, observer } from 'mobx-react'
+import Router from 'next/router'
 import { StoresType } from 'pages/_app'
 import React from 'react'
 import intl from 'react-intl-universal'
 import { paths } from 'routes/paths'
+import { CORAL, CORAL_LIGHT } from 'styles/colors'
 import { navigationPadding } from 'styles/layout'
 
 const NavWrapper = styled.nav`
@@ -13,9 +16,10 @@ const NavWrapper = styled.nav`
   justify-content: space-between;
   width: 100%;
   padding: 0 ${navigationPadding};
-  background-color: #263056;
-  color: white;
+  background-color: white;
   box-sizing: border-box;
+  border-bottom: solid 2px ${CORAL_LIGHT};
+  z-index: 100;
 `
 const NavItem = styled.li`
   display: inline-block;
@@ -28,7 +32,7 @@ const NavMenuSubLinkList = styled.ul`
   display: flex;
   position: absolute;
   flex-direction: column;
-  top: 60px;
+  top: 80px;
   left: -30px;
   width: 180px;
   font-size: 14px;
@@ -37,6 +41,10 @@ const NavMenuSubLinkList = styled.ul`
   ${NavItem}:hover & {
     visibility: visible;
   }
+`
+const HeaderLogo = styled.p`
+  margin: 23px 0 20px;
+  line-height: 0;
 `
 
 @inject('stores')
@@ -49,7 +57,13 @@ class Navigation extends React.Component<{ stores: StoresType }> {
       <NavWrapper>
         <ul>
           <NavItem>
-            <span>파이콘 로고</span>
+            <HeaderLogo>
+              <PyConKRLogo
+                width={139}
+                height={37}
+                color={CORAL}
+              />
+            </HeaderLogo>
           </NavItem>
         </ul>
         <ul>
@@ -147,7 +161,10 @@ class Navigation extends React.Component<{ stores: StoresType }> {
                       intlKey='gnb.info.profile'
                       name='프로필'
                     />
-                    <button onClick={() => { stores.authStore.logout() }}>
+                    <button onClick={() => {
+                      stores.authStore.logout()
+                      Router.replace(paths.home)
+                    }}>
                       {intl.get('gnb.info.logout')
                         .defaultMessage('로그아웃')}
                     </button>

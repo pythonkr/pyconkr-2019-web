@@ -56,7 +56,6 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
             <li>세부 사항은 행사 전까지 다소 변경될 수 있습니다.</li>
             <li>출판사 후원의 경우, 파이썬 관련 도서 출판 기록이 필요합니다.</li>
             <li>미디어 후원의 경우, 언론 보도 및 홍보 이력이 필요합니다.</li>
-            <li>자세한 문의는 sponsor@pycon.kr 로 주시기 바랍니다.</li>
           </ul>
         </section>
       </PageTemplate>

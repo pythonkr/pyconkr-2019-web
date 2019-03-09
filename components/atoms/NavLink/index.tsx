@@ -5,7 +5,7 @@ import intl from 'react-intl-universal'
 
 const NavLinkA = styled.a`
   display: inline-flex;
-  height: 60px;
+  height: 80px;
   align-items: center;
   padding: 0 10px;
   cursor: pointer;

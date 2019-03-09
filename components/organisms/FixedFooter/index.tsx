@@ -3,6 +3,7 @@ import { SNSLink } from 'components/atoms/SNSLink'
 import { LOCALE_KEY_EN, LOCALE_KEY_KR, localeMap, URL_LOCALE_KEY } from 'locales/constants'
 import Link from 'next/link'
 import { withRouter } from 'next/router'
+import { TEAL_SEMI_DARK } from 'styles/colors'
 import { navigationPadding } from 'styles/layout'
 
 const FixedFooterWrapper = styled.nav`
@@ -15,7 +16,7 @@ const FixedFooterWrapper = styled.nav`
   width: 100%;
   height: 40px;
   padding: 0 ${navigationPadding};
-  background-color: #F95858;
+  background-color: ${TEAL_SEMI_DARK};
   color: white;
 `
 
@@ -25,6 +26,7 @@ const FixedFooterItem = styled.li`
 `
 
 const FixedFooterLinkA = styled.a`
+  font-size: 14px;
   display: inline-flex;
   height: 36px;
   align-items: center;

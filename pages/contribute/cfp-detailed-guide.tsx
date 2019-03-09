@@ -3,11 +3,14 @@ import { H1 } from 'components/atoms/H1'
 import { H2 } from 'components/atoms/H2'
 import { H3 } from 'components/atoms/H3'
 import { Paragraph } from 'components/atoms/Paragraph'
+import { StatusBar } from 'components/atoms/StatusBar'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
+import { talkProposal } from 'dates'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
+import { paths } from 'routes/paths'
 import { StoresType } from '../_app'
 
 export type IndexPagePropsType = {
@@ -37,7 +40,13 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           <H1 intlKey='contribute.overview.title'>
             발표안 작성 가이드
           </H1>
-          {/* Status Bar */}
+          <StatusBar
+            title='발표안 모집'
+            actionText='제안'
+            link={paths.contribute.proposingATalk}
+            openDate={talkProposal.open}
+            closeDate={talkProposal.close}
+          />
           <Paragraph intlKey='contribute.overview.intro'>
             본 글은 파이콘 한국 2018 에 발표자로 지원해주신 분들에게 보다 상세한 도움을 드리고자 준비하였습니다.
             아래의 도움말을 통해 여러분의 발표 제안서가 더 설득력 있고 충분한 정보를 전달할 수 있게 되기를 바랍니다.

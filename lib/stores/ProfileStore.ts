@@ -17,7 +17,8 @@ export class ProfileStore {
     @action
     async retrieveProfile() {
         var response = await getProfile(client)({})
-        this.setProfile(response.data.profile)
+        if (response.data.profile)
+            this.setProfile(response.data.profile)
     }
 
     @action

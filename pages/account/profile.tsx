@@ -6,6 +6,8 @@ import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
 import { StoresType } from '../_app'
+import Router from 'next/router';
+import { paths } from 'routes/paths'
 
 @inject('stores')
 @observer
@@ -26,12 +28,17 @@ class Profile extends React.Component<{ stores: StoresType }> {
     },
     profileFile: null
   }
-
+  
   async componentDidMount() {
-    await this.props.stores.profileStore.retrieveProfile()
+    const {stores} = this.props
+    if (!stores.authStore.logined){
+      Router.replace(paths.account.login)
+      return
+    }
+    await stores.profileStore.retrieveProfile()
     this.setState({
       profile: {
-        ...toJS(this.props.stores.profileStore).profile
+        ...toJS(stores.profileStore).profile
       }
     })
   }

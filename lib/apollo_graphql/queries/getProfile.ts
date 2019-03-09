@@ -1,6 +1,6 @@
 import {
     getProfile as getProfileType,
-    getProfile_me as ProfileType,
+    getProfile_profile as ProfileType,
   } from 'lib/apollo_graphql/__generated__/getProfile'
 import {
     createQueryDefinition,
