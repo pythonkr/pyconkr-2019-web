@@ -1,12 +1,16 @@
 import styled from '@emotion/styled'
-import { ContentWidthWrapper } from 'components/atoms/ContentWidthWrapper'
 import { TEAL_DARK, TEAL_SEMI_DARK } from 'styles/colors'
+import { contentWidth } from 'styles/layout'
 
 export const ContentTableWrapper = styled.div``
 export const ContentButtonWrapper = styled.div``
 
-export const ContentWrapper = styled(ContentWidthWrapper)`
+export const ContentWrapper = styled.main`
   min-height: 900px;
+  width: 100%;
+  max-width: ${contentWidth};
+  padding: 63px 10px;
+  margin: 0 auto;
 
   /********************************* Sections ***********************************/
 
@@ -46,7 +50,7 @@ export const ContentWrapper = styled(ContentWidthWrapper)`
 
   p {
     font-size: 17px;
-    line-height: 1.88;
+    line-height: 33px;
     margin: 20px 0;
 
     h1 + & {
@@ -71,7 +75,6 @@ export const ContentWrapper = styled(ContentWidthWrapper)`
   ${ContentTableWrapper} {
     padding: 10px 0;
   }
-
 
   table {
     width: 100%;

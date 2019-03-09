@@ -1,8 +1,6 @@
 import intl from 'react-intl-universal'
 import { Button } from 'components/atoms/Button'
-import { H1 } from 'components/atoms/H1'
-import { H2 } from 'components/atoms/H2'
-import { Paragraph } from 'components/atoms/Paragraph'
+import { H1, H2, Paragraph } from 'components/atoms/withIntl'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
@@ -145,7 +143,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
         </table>
         <section>
           <H2 intlKey='common.contact'>문의</H2>
-          <Paragraph>program@pycon.kr</Paragraph>
+          <Paragraph intlKey='asdfasdfasdf'>program@pycon.kr</Paragraph>
         </section>
       </PageTemplate>
     )
