@@ -1,3 +1,4 @@
+import intl from 'react-intl-universal'
 import styled from '@emotion/styled'
 import { SNSLink } from 'components/atoms/SNSLink'
 import { LOCALE_KEY_EN, LOCALE_KEY_KR, localeMap, URL_LOCALE_KEY } from 'locales/constants'
@@ -38,7 +39,11 @@ const Footer: React.SFC<any> =  ({ router: { query: { lang: currentLocale }}}) =
     <ul>
       <FixedFooterItem>
         <Link href='/coc'>
-          <FixedFooterLinkA><span>파이콘 한국 성명서(CoC)</span></FixedFooterLinkA>
+          <FixedFooterLinkA><span>
+            {
+              intl.get('fixedFooter.coc').defaultMessage('파이콘 한국 성명서(CoC)')
+            }
+            </span></FixedFooterLinkA>
         </Link>
       </FixedFooterItem>
     </ul>

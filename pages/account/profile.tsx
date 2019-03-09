@@ -1,13 +1,13 @@
-import { H1 } from 'components/atoms/H1'
-import Footer from 'components/organisms/Footer'
-import Header from 'components/organisms/Header'
-import PageTemplate from 'components/templates/PageTemplate'
-import { toJS } from 'mobx'
-import { inject, observer } from 'mobx-react'
-import React from 'react'
-import { StoresType } from '../_app'
+import { H1 } from 'components/atoms/withIntl';
+import Footer from 'components/organisms/Footer';
+import Header from 'components/organisms/Header';
+import PageTemplate from 'components/templates/PageTemplate';
+import { toJS } from 'mobx';
+import { inject, observer } from 'mobx-react';
 import Router from 'next/router';
-import { paths } from 'routes/paths'
+import React from 'react';
+import { paths } from 'routes/paths';
+import { StoresType } from '../_app';
 
 @inject('stores')
 @observer
@@ -28,7 +28,7 @@ class Profile extends React.Component<{ stores: StoresType }> {
     },
     profileFile: null
   }
-  
+
   async componentDidMount() {
     const {stores} = this.props
     if (!stores.authStore.logined){

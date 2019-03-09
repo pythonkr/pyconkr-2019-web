@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import React from 'react'
 import intl from 'react-intl-universal'
 
-const StyledH3 = styled.h3`
+const StyledLI = styled.li`
 `
 
 interface Props {
@@ -10,9 +10,9 @@ interface Props {
   children: string
 }
 
-export const H3: React.SFC<Props> = ({ intlKey, children }) =>
-  <StyledH3>{
+export const LI: React.SFC<Props> = ({ intlKey, children }) =>
+  <StyledLI>{
     intl
       .get(intlKey)
       .defaultMessage(children)
-  }</StyledH3>
+  }</StyledLI>

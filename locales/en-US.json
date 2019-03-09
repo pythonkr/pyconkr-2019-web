@@ -59,11 +59,11 @@
     "conferenceDescription": "There are over 50 different presentation sessions that share knowledge and use of Python use cases. In addition, various events such as sponsored company booth, young coder, lightning talk, open space are available. You can participate in the event and interact with various participants.",
     "sponsor": {
       "title": "파이콘 한국 2019 후원사 (모집 예정)",
-      "description": "파이콘 한국은 오픈소스 및 파이썬 커뮤니티의 중요성에 공감하는 후원사들의 감사한 지원 덕분에 비디오 녹화, 티켓 가격 지원 등 더 많은 개발자들이 참여할 수 있는 행사를 만들어 왔습니다.<br/>파이콘 후원을 통해 파이썬 커뮤니티의 성장을 지원하고 파이콘 한국 2019의 공식 후원사로서의 특별한 가치를 갖는 데 관심이 있는 후원사를 모십니다.",
+      "description": "Thanks to the support of sponsors who are sympathetic to the importance of open source and the Python community, PyCon Korea has held an event where more developers can participate, such as video recording and financial support.<br/>We are looking for sponsors who are interested in supporting the growth of the Python community through sponsorship of PyCon Korea and interested in having special value as an official sponsor of PyCon Korea 2019.",
       "prospectus": "후원 모집 일정 및 안내 보기"
     },
     "pyconKoreaDescription": "PyCon is a non-commercial conference held by Python Programming Communities over the world. <br/>PyCon Korea has been successfully hold in several years with a group of volunteers called ‘PyCon Korea Preparation Organizers’, who support the local Korean Python community. ",
-    "sloganDescription": "파이콘 한국 2019의 슬로건은 \"Connect the Pythonistas\"입니다.<br/>파이콘은 파이썬을 쓰는 이들의 만남의 장이 되기도, 또 다른 언어, 커뮤니티와의 접점이 되기도 합니다. 파이콘에서 당신은 한 분야를 아주 깊게 연구한 사람을 만날 수도, 완전히 다른 분야의 파이써니스타를 만날 수도, 친한 동료를 만날 수도 있을 것입니다.<br/>우리는 파이콘을 통해, 방향과 분야가 숱하게 흩어져 각기 다른 점으로 존재하는 파이써니스타들이 모여 아름다운 별자리가 되기를 바랍니다. 2019년에도 우리, 파이콘에서 만나요.",
+    "sloganDescription": "The slogan of PyCon Korea 2019 is \"Connect the Pythonistas\". <br/>PyCon Korea is a meeting point for Python users, and is also a contact point with other languages and communities. At PyCon Korea, you can meet a person who has studied a field in-depth, meet pythonistas in a completely different field, or meet a close friend. <br/>We hope that, through the Pycon Korea, a lot of directions and fields are scattered so that the pian stars, who exist in different points, will gather together to become beautiful constellations. See you in PyCon Korea 2019.",
     "differenceWithOthers": {
       "title": "What's the difference between PyCon and other developer's conferences?",
       "description": "PyCon Korea is a non-profitable, developer-oriented event organized by community members, and has different characteristics from conferences organized companies or organizations. All attendees, including speakers, tutorial hosts, voluntary workers, and organizers, participate in PyCon Korea without any profitable purpose, and only to broaden the usage of Python, an open source programming language, and activate its community."
@@ -91,14 +91,87 @@
         },
         "moreDetail": "More detail"
       }
+    },
+    "cfpGuide": {
+      "title": "How to submit proposal",
+      "intro": "This page has written to provide detailed information for speakers of PyCon Korea. Below information and suggestion will guide your presentation to be more informative and persuasive to audience in PyCon Korea.",
+      "notice": {
+        "title": "Guide for Speeker",
+        "record": {
+          "title": "Session recording",
+          "content": "All session of PyCon Korea will be recorded and open to public after conference. Please consider this before you submit your proposal."
+        },
+        "pays": {
+          "title": "Everybody Pays",
+          "content": "PyCon is Python community's voluntary event. Please understand we are not able to provide all the material expense supports (pay, expenses, free tickets) to our speakers. Regards on this matter, please visit page explains about PyCon’s main value and philosophy <a href=\"http://jessenoller.com/blog/2011/05/25/pycon-everybody-pays\"> \"Everybody Pays\" </a>."
+        },
+        "vote": {
+          "title": "Voting preference",
+          "content": "Also, first screened proposal will be voted by early bird ticket holders. The purpose of this vote is to find out preference and interest of sessions and rate those voted proposals. Program team will select final speakers based on preference vote to make this event more fun and enjoyable to as many audience as possible."
+        },
+        "communication": {
+          "title": "Continuing communication",
+          "content": "For the last, please understand the moment you submit your proposal and till it get selected, there will be continuing communication with program team. We recommend you to submit your proposal earlier before its deadline to communicate with program team to build your talk session more fun and informative."
+        },
+        "conclusion": "If you’re all familiar with guidance now, are you ready to start your proposal?"
+      },
+      "beforeProposal": {
+        "title": "Before you start to fill your proposal",
+        "consider": {
+          "description": "There are a few things to consider before working on proposal.",
+          "item1": "What is your main topic? What would you like to talk about?",
+          "item2": "Who is your target audience?",
+          "item3": "What can your audience get from your talk?",
+          "item4": "How would you manage time in your session?"
+        },
+        "information": {
+          "description": "Also, below information must be included in your proposal.",
+          "item1": "Title",
+          "item2": "Summary of your talk",
+          "item3": "Details of your talk ",
+          "item4": "Note or Question (Only PyCon program team can view this section, so feel free to write in any form)",
+          "item5": "Target audience",
+          "item6": "Prefer time slot(25min or 40min)",
+          "item7": "Language (Korean/English)",
+          "conclusion": "Only title, summary, details, target audience, time slot, and language will open to early bird holders during preference vote."
+        },
+        "conclusion": "Do you feel a little bit pressured with all these criteria? Don't worry! Real guidance is now here. We'll help you with detail information to work on your proposal."
+      },
+      "selectTopic": {
+        "title": "Select topic",
+        "description": "The best way to select topic is to review topics from previous PyCon event. Not only look for topic, but also get the reference from presentation slides will help you start. Choose interesting topic for audience!",
+        "conclusion": "Once you decide your topic, now you can start thinking about what should be on your proposal in detailed level. Check below information for help."
+      },
+      "proposalType": {
+        "title": "Good proposal vs Not good proposal",
+        "good": {
+          "title": "Good proposal 👍",
+          "item1": "Include below information on your summary/details section.",
+          "item1-1": "What kind of background does audience need to understand this talk?",
+          "item1-2": "What will audience gain after attend this talk?",
+          "item2": "Write presentation flow and estimate time of your talk.",
+          "item3": "If your topic is not familiar to most of Python users, Please include blog address, wiki, source code to help understand topic."
+        },
+        "bad": {
+          "title": "Not good proposal 🙅‍️",
+          "item1": "Please avoid deliver only simple information such as how to use or advertise your(or your company's) products. However, If you have case at company where you solve programming issue or open source project that helps to audience is more then welcome.",
+          "item2": "Proposal should be completed and detailed. Incomplete proposal is not acceptable."
+        }
+      }
     }
   }, 
   "fixedFooter": {
+    "coc": "PyCon Korea Code of Conduct(CoC)",
+    "sponsor": "Sponsor",
+    "program": "Program",
+    "other": "Others",
     "blogLink": "Blog",
     "twitterLink": "Twitter",
     "facebookLink": "Facebook",
     "githubLink": "Github",
     "flickerLink": "Flicker",
-    "youtubeLink": "Youtube"
+    "youtubeLink": "Youtube",
+    "poweredBy": "Powered by Django and next.js",
+    "hostedOn": "Hosted on Naver D2"
   }
 }
