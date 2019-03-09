@@ -79,12 +79,19 @@ export const ContentWrapper = styled.main`
   table {
     width: 100%;
     border-collapse: collapse;
-    border-top: solid 2px ${TEAL_DARK};
-    border-bottom: solid 1px #dfe3e6;
+    border: none;
   }
 
   thead {
-    height: 59px;
+    font-size: 14px;
+    td {
+      padding-bottom: 12px;
+    }
+  }
+
+  tbody {
+    border-top: solid 2px ${TEAL_DARK};
+    border-bottom: solid 1px #dfe3e6;
   }
 
   .has-bg td:first-of-type {

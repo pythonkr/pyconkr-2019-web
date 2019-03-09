@@ -77,6 +77,29 @@ const outline = [{
   }]
 }]
 
+const cfpFormTable = [{
+  title: '발표 제목',
+}, {
+  title: '카테고리',
+  desc: `목록 보기`,
+}, {
+  title: '간략한 설명',
+}, {
+  title: '상세한 발표 내용',
+}, {
+  title: '대상 청중 (난이도)',
+  desc: '초보 / 중급 / 고급',
+}, {
+  title: '예상 발표 시간',
+  desc: '25분 / 40분',
+}, {
+  title: '발표 언어',
+  desc: '한국어 / 영어',
+}, {
+  title: '참고 및 질문 사항',
+  review: false,
+}]
+
 @inject('stores')
 @observer
 export default class CFPDetailedGuide extends React.Component<{ stores: StoresType }> {
@@ -147,7 +170,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
             <Paragraph intlKey='contribute.cfpGuide.beforeProposal.information.description'>
               또, 제안서에 채워야 하는 항목은 아래와 같습니다.
             </Paragraph>
-            <ul>
+            {/* <ul>
               <LI intlKey='contribute.cfpGuide.beforeProposal.information.item1'>발표 제목</LI>
               <LI intlKey='contribute.cfpGuide.beforeProposal.information.item2'>간략한 발표 내용</LI>
               <LI intlKey='contribute.cfpGuide.beforeProposal.information.item3'>상세한 발표 내용</LI>
@@ -160,8 +183,22 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
             </ul>
             <Paragraph intlKey='contribute.cfpGuide.beforeProposal.information.conclusion'>
               선호도 투표 오픈 시 공개되는 항목은 제목, 간략한 발표 내용, 상세한 발표 내용, 대상 청중, 예상 발표 시간, 발표 언어입니다.
-            </Paragraph>
-            <Paragraph intlKey='contribute.cfpGuide.beforeProposal.conclusion'>
+            </Paragraph> */}
+            <table>
+              <thead>
+                <td>항목</td>
+                <td>내용</td>
+                <td>선호도 투표 시 공개 여부</td>
+              </thead>
+              <tbody>
+                {cfpFormTable.map(({ title, desc, review = true }) => <tr>
+                  <td>{title}</td>
+                  <td>{desc || '-'}</td>
+                  <td>{review ?  '✅' : '❌'}</td>
+                </tr>)}
+              </tbody>
+            </table>
+            <Paragraph intlKey='asdfasdfasdf'>
               고려해야 할 부분들이 다소 어렵게 느껴지시나요?
               안내문은 이제 시작이니 겁내지 마세요.
               조금 더 상세한 설명과 함께 제안서를 작성해보세요.
