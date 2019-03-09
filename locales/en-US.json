@@ -23,6 +23,9 @@
       }
     }
   },
+  "common": {
+    "contact": "Contact"
+  },
   "gnb": {
     "home": "Home",
     "help": {
@@ -66,6 +69,30 @@
       "description": "PyCon Korea is a non-profitable, developer-oriented event organized by community members, and has different characteristics from conferences organized companies or organizations. All attendees, including speakers, tutorial hosts, voluntary workers, and organizers, participate in PyCon Korea without any profitable purpose, and only to broaden the usage of Python, an open source programming language, and activate its community."
     }
   },
+  "contribute": {
+    "overview": {
+      "title": "Various ways to contribute to PyCon Korea",
+      "intro": "You can contribute to PyCon Korea in various ways including keynote, speeker, tutorial, sprint, volunteer and lightning talk. <br/>We will recruit each item with the following schedule.",
+      "table": {
+        "keynote": "Recommending Keynote Speaker",
+        "talk":"Proposing a Talk",
+        "tutorial":"Proposing a Tutorial",
+        "sprint": "Proposing a Sprint",
+        "volunteer":"Recruiting Volunteer",
+        "lightingtalk":"Proposing a Lightning Talk",
+        "status": {
+          "onProgress": "On Progress",
+          "preparing": "Preparing",
+          "openBefore": "Open D{diff}",
+          "closeAfter": "Close D{diff}",
+          "closed": "Closed",
+          "untilSelected": "Until Selected",
+          "conferenceDays": "Conference Days"
+        },
+        "moreDetail": "More detail"
+      }
+    }
+  }, 
   "fixedFooter": {
     "blogLink": "Blog",
     "twitterLink": "Twitter",

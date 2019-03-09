@@ -1,3 +1,4 @@
+import intl from 'react-intl-universal'
 import { Button } from 'components/atoms/Button'
 import { H1 } from 'components/atoms/H1'
 import { H2 } from 'components/atoms/H2'
@@ -42,14 +43,17 @@ const contributions = [{
   // link: paths.contribute.proposingASprint
 }, {
   title: '자원봉사자 모집',
-  intlKey: 'contribute.overview.table.sprint',
+  intlKey: 'contribute.overview.table.volunteer',
   openDate: volunteer.open,
   closeDate: volunteer.close,
 }, {
   title: '라이트닝 토크 신청',
-  intlKey: 'contribute.overview.table.sprint',
+  intlKey: 'contribute.overview.table.lightingtalk',
   openDate: lightningTalk.open,
-  dateDescription: '컨퍼런스 당일'
+  dateDescription: {
+    default: '컨퍼런스 당일',
+    intlKey: 'contribute.overview.table.status.conferenceDays' 
+  }
 }]
 
 const getContributionClass = (openDate?: DateDTO, closeDate?: DateDTO) => {
@@ -65,16 +69,24 @@ const getContributionStatus = (openDate?: DateDTO, closeDate?: DateDTO, link?: s
     const diff = differenceInCalendarDays(new Date(), openDate)
 
     return diff < 7
-      ? `모집 시작 D${diff}`
-      : '준비 중'
+      ? intl.get("contribute.overview.table.status.openBefore", { diff })
+        .defaultMessage(`모집 시작 D${diff}`)
+      : intl.get("contribute.overview.table.status.preparing")
+        .defaultMessage('준비 중')
   }
-  if (closeDate && isPast(closeDate)) return '마감'
+  if (closeDate && isPast(closeDate)) {
+    return intl.get("contribute.overview.table.status.closed")
+      .defaultMessage('마감')
+  }
 
   if (closeDate && differenceInCalendarDays(new Date(), closeDate) < 7) {
-    return `마감 D${differenceInCalendarDays(new Date(), closeDate)}`
+    const diff = differenceInCalendarDays(new Date(), closeDate)
+    return intl.get("contribute.overview.table.status.closeAfter", { diff })
+      .defaultMessage(`마감 D${diff}`)
   }
 
-  return '모집 중'
+  return intl.get("contribute.overview.table.status.onProgress")
+    .defaultMessage('모집 중')
 }
 
 @inject('stores')
@@ -87,25 +99,28 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
         footer={<Footer />}
       >
         <H1 intlKey='contribute.overview.title'>
-          파이콘에 공헌하는 다양한 방법
+          파이콘 한국에 공헌하는 다양한 방법
         </H1>
         <Paragraph intlKey='contribute.overview.intro'>
-          파이콘 한국에는 발표, 튜토리얼 진행, 스프린트 진행, 자원 봉사 등 다양한 형태로 공헌할 수 있습니다.
+          파이콘 한국에는 발표, 튜토리얼 튜터 및 멘토, 스프린트 진행, 자원 봉사 등 다양한 형태로 공헌할 수 있습니다.
           각 항목은 아래와 같은 일정으로 모집합니다.
           </Paragraph>
         <table>
           <tbody className='has-bg'>
-            {contributions.map(({ title, openDate, closeDate, link, dateDescription }) =>
+            {contributions.map(({ title, intlKey, openDate, closeDate, link, dateDescription }) =>
               <tr
                 key={title}
                 className={getContributionClass(openDate, closeDate)}
               >
-                <td className='bold'>{title}</td>
+                <td className='bold'>
+                  { intl.get(intlKey).defaultMessage(title) }</td>
                 <td>
                   {
-                    dateDescription ||
-                    `${formatDateInWords(openDate)} -
-                      ${(closeDate && formatDateInWords(closeDate)) || '마감 시까지'}`
+                    dateDescription? intl.get(dateDescription.intlKey).defaultMessage(dateDescription.default)
+                    : `${formatDateInWords(openDate)} -
+                      ${(closeDate && formatDateInWords(closeDate)) || 
+                      intl.get("contribute.overview.table.status.untilSelected")
+                        .defaultMessage('마감 시까지')}`
                   }
                 </td>
                 <td>
@@ -116,7 +131,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
                     ? <Button
                       size='small'
                       height={27}
-                      intlKey='contribute.overview.tableButton'
+                      intlKey='contribute.overview.table.moreDetail'
                       to={link}
                       disabled={getContributionClass(openDate, closeDate) === 'disabled'}
                       primary={getContributionClass(openDate, closeDate) === 'active' ? true : false}
