@@ -94,11 +94,17 @@
     }
   }, 
   "fixedFooter": {
+    "coc": "PyCon Korea Code of Conduct(CoC)",
+    "sponsor": "Sponsor",
+    "program": "Program",
+    "other": "Others",
     "blogLink": "Blog",
     "twitterLink": "Twitter",
     "facebookLink": "Facebook",
     "githubLink": "Github",
     "flickerLink": "Flicker",
-    "youtubeLink": "Youtube"
+    "youtubeLink": "Youtube",
+    "poweredBy": "Powered by Django and next.js",
+    "hostedOn": "Hosted on Naver D2"
   }
 }
