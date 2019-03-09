@@ -3,8 +3,8 @@ import intl from 'react-intl-universal'
 
 const SNSLinkA = styled.a`
   display: inline-flex;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   vertical-align: middle;
   align-items: center;
   text-decoration: none;
