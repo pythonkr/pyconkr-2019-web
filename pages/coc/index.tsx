@@ -4,12 +4,9 @@ import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
+import { CORAL, CORAL_DARK, CORAL_LIGHT } from 'styles/colors'
+import { NoticeBar } from 'components/atoms/NoticeBar'
 import { StoresType } from '../_app'
-import {paths} from "../../routes/paths";
-import {talkProposal} from "../../dates";
-import {StatusBar} from "../../components/atoms/StatusBar";
-import {NoticeBar} from "../../components/atoms/NoticeBar";
-import { CORAL, CORAL_LIGHT, CORAL_DARK } from 'styles/colors'
 
 @inject('stores')
 @observer
@@ -28,7 +25,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
             borderColor={CORAL}
             textColor={CORAL}
             textLinkColor={CORAL_DARK}
-            text={"파이콘 성명서는 2019년 5월 중에 업데이트될 예정입니다."}
+            text={'파이콘 성명서는 2019년 5월 중에 업데이트될 예정입니다.'}
         />
         <Paragraph intlKey='contribute.overview.intro'>
           파이콘 한국(이하 파이콘)은 커뮤니티 주관으로 이뤄지는 비영리 개발자 대상 행사로,

@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import Link from 'next/link'
 import React, { HTMLProps } from 'react'
 import intl from 'react-intl-universal'
-import { TEAL_SEMI_DARK, CORAL } from 'styles/colors'
+import { CORAL, TEAL_SEMI_DARK } from 'styles/colors'
 
 type ButtonSize = 'big' | 'normal' | 'small'
 
@@ -48,7 +48,7 @@ const StyledA = styled.a`
   text-decoration: none;
   width: ${({ width }: StyledAProps) => `${width}px`};
   height: ${({ height })  => `${height}px`};
-  background-color: ${({ primary, color }) => primary ? color : 'white'};
+  background-color: ${({ primary, color }) => primary ? color : 'none'};
   border: solid 1px ${({ disabled, color }) => disabled ? '#bcc0c2' : color};
   span {
     color: ${({ primary, disabled, color }) => primary
@@ -68,7 +68,7 @@ const StyledButton = styled.button`
   ${buttonStyle}
   width: ${({ width }: StyledAProps) => `${width}px`};
   height: ${({ height })  => `${height}px`};
-  background-color: ${({ primary, color }) => primary ? color : 'white'};
+  background-color: ${({ primary, color }) => primary ? color : 'none'};
   border: solid 1px ${({ disabled, color }) => disabled ? '#bcc0c2' : color};
   span {
     color: ${({ primary, disabled, color }) => primary
