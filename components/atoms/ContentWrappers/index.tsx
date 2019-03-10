@@ -142,7 +142,7 @@ ${THead} & {
 `
 
 export const Td = styled.td`
-  vertical-align: middle;
+  vertical-align: top;
   font-size: 15px;
   line-height: 24px;
   color: #152935;

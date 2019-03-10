@@ -69,7 +69,7 @@ const outline = [{
   }]
 }, {
   id: 'contribute.cfpGuide.difficulty.title',
-  title: '대상 청중(난이도)를 정하는 방법',
+  title: '대상 청중 (난이도)를 정하는 방법',
   children: [{
     id: 'contribute.cfpGuide.difficulty.beginner.title',
     title: '초보'
@@ -230,7 +230,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
             </H3>
             <Paragraph><IntlText intlKey='contribute.cfpGuide.notice.communication.content'>
               마지막으로, 발표 제안서를 제출하신 순간부터 최종 확정이 될 때까지 필요에 따라
-              프로그램팀과 발표 내용에 대한 지속적인 협의가 있을 수 있다는 점을 참고해주시기 바랍니다.
+              프로그램 팀과 발표 내용에 대한 지속적인 협의가 있을 수 있다는 점을 참고해주시기 바랍니다.
               마감일에 맞추어 제안서를 제출하시기보다는 미리 여유 있게 제안서를 제출해주시면
               충분한 협의를 통해 더 효과적인 발표를 함께 만들 수 있습니다.
             </IntlText></Paragraph>
@@ -390,7 +390,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           <Section>
             <H2 id='contribute.cfpGuide.difficulty.title'>
               <IntlText intlKey='contribute.cfpGuide.difficulty.title'>
-                대상 청중(난이도)를 정하는 방법
+                대상 청중 (난이도)를 정하는 방법
               </IntlText>
             </H2>
             <Paragraph><IntlText intlKey='contribute.cfpGuide.difficulty.desc1'>

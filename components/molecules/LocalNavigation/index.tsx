@@ -4,11 +4,21 @@ import { withRouter } from 'next/router'
 import React from 'react'
 import intl from 'react-intl-universal'
 import { CORAL, TEAL_DARK } from 'styles/colors'
-import { navigationPadding } from 'styles/layout'
+import { mobileWidth, navigationPadding } from 'styles/layout'
 
 const NavWrapper = styled.nav`
   padding: 24px ${navigationPadding} 63px;
   background-color: white;
+  @media (max-width: ${mobileWidth}) {
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: -20px;
+  }
+`
+const NavList = styled.ul`
+text-align: center;
+white-space: nowrap;
+overflow-x: auto;
 `
 const NavItem = styled.li`
   display: inline-block;
@@ -44,7 +54,7 @@ type Props = {
 
 const _LocalNavigation: React.SFC<Props> = ({ router, list }) => (
   <NavWrapper>
-    <ul style={{ textAlign: 'center' }}>
+    <NavList>
       {list.map(({ title, link, intlKey }) =>
         <NavItem key={title}>
           <Link href={link}>
@@ -59,7 +69,7 @@ const _LocalNavigation: React.SFC<Props> = ({ router, list }) => (
           </Link>
         </NavItem>
       )}
-    </ul>
+    </NavList>
   </NavWrapper>
 )
 
