@@ -62,6 +62,7 @@ const getContributionClass = (openDate?: DateDTO, closeDate?: DateDTO) => {
   return 'active'
 }
 
+
 const getContributionStatus = (openDate?: DateDTO, closeDate?: DateDTO, link?: string) => {
   if (!openDate || !link) return '-'
   if (isFuture(openDate) && link) {
@@ -114,12 +115,12 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
             intlKey='gnb.contribute.cfpDetailedGuide'
             name='발표안 작성 가이드'
           />
-        </div>
-        {/* <NavLink
+          {/* <NavLink
           to={paths.contribute.proposingATalk}
           intlKey='gnb.contribute.proposingATalk'
           name='발표안 제안하기'
         /> */}
+        </div>
         <H1 intlKey='contribute.overview.title'>
           파이콘 한국에 공헌하는 다양한 방법
         </H1>

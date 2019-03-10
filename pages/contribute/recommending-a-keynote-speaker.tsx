@@ -1,5 +1,6 @@
 import { Button } from 'components/atoms/Button'
 import { ContentButtonWrapper, ContentTableWrapper } from 'components/atoms/ContentWrapper'
+import NavLink from 'components/atoms/NavLink'
 import { H1, H2, Paragraph } from 'components/atoms/withIntl'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
@@ -33,6 +34,29 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
         header={<Header title='키노트 연사 추천하기 :: 파이콘 한국 2019' />}
         footer={<Footer />}
       >
+        <div>
+          <NavLink
+            to={paths.contribute.overview}
+            intlKey='gnb.contribute.overview'
+            name='공헌 안내'
+          />
+            <NavLink
+            to={paths.contribute.recommendingAKeynoteSpeaker}
+            intlKey='gnb.contribute.recommendKeynoteSpeaker'
+            name='키노트 연사 추천'
+          />
+          <NavLink
+            to={paths.contribute.cfpDetailedGuide}
+            intlKey='gnb.contribute.cfpDetailedGuide'
+            name='발표안 작성 가이드'
+          />
+          {/* <NavLink
+          to={paths.contribute.proposingATalk}
+          intlKey='gnb.contribute.proposingATalk'
+          name='발표안 제안하기'
+          /> */}
+        </div>
+        
         <H1 intlKey='contribute.overview.title'>
           키노트 연사 추천하기
         </H1>
