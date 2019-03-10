@@ -1,4 +1,4 @@
-import Navigation from 'components/molecules/Navigation'
+import Navigation from 'components/molecules/GlobalNavigation'
 import Head from 'next/head'
 import React from 'react'
 import intl from 'react-intl-universal'

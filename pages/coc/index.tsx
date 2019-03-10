@@ -1,4 +1,4 @@
-import { H1, H2, Paragraph, Section, Ul, Li } from 'components/atoms/ContentWrappers'
+import { H1, H2, Li, Paragraph, Section, Ul } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
 import { NoticeBar } from 'components/atoms/NoticeBar'
 import Footer from 'components/organisms/Footer'
