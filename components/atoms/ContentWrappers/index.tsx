@@ -27,11 +27,12 @@ margin: 100px 0;
 export const H1 = styled.h1`
   font-size: 46px;
   font-weight: 700;
-  line-height: 1.26;
+  line-height: 1.4;
   color: #4a4a4a;
   text-align: center;
   width: 100%;
-  margin: 100px 0;
+  margin: 100px auto;
+  max-width: 500px;
 `
 
 export const H2 = styled.h2`

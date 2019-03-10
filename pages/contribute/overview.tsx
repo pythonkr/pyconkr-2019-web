@@ -9,10 +9,11 @@ import { keynoteRecommendation, lightningTalk, sprintProposal, talkProposal, tut
 import { inject, observer } from 'mobx-react'
 import React from 'react'
 import intl from 'react-intl-universal'
-import { paths } from 'routes/paths'
+import { paths, contributionMenu } from 'routes/paths'
 import { DateDTO } from 'types/common'
 import { formatDateInWords } from 'utils/formatDate'
 import { StoresType } from '../_app'
+import { LocalNavigation } from 'components/molecules/LocalNavigation';
 
 export type IndexPagePropsType = {
   stores: StoresType;
@@ -98,6 +99,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
         header={<Header title='공헌 안내 :: 파이콘 한국 2019' />}
         footer={<Footer />}
       >
+        <LocalNavigation list={contributionMenu} />
         <H1><IntlText intlKey='contribute.overview.title'>
           파이콘 한국에 공헌하는 다양한 방법
         </IntlText></H1>

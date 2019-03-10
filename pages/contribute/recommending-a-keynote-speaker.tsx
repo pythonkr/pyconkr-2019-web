@@ -14,10 +14,11 @@ import { keynoteRecommendation } from 'dates'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
 import intl from 'react-intl-universal'
-import { paths } from 'routes/paths'
+import { paths, contributionMenu } from 'routes/paths'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 import { StatusBar } from '../../components/atoms/StatusBar'
 import { StoresType } from '../_app'
+import { LocalNavigation } from 'components/molecules/LocalNavigation';
 
 export type IndexPagePropsType = {
   stores: StoresType;
@@ -45,28 +46,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
         header={<Header title='키노트 연사 추천하기 :: 파이콘 한국 2019' />}
         footer={<Footer />}
       >
-        <div style={ {textAlign: 'center'} }>
-          <NavLink
-            to={paths.contribute.overview}
-            intlKey='gnb.contribute.overview'
-            name='공헌 안내'
-          />
-            <NavLink
-            to={paths.contribute.recommendingAKeynoteSpeaker}
-            intlKey='gnb.contribute.recommendKeynoteSpeaker'
-            name='키노트 연사 추천'
-          />
-          <NavLink
-            to={paths.contribute.cfpDetailedGuide}
-            intlKey='gnb.contribute.cfpDetailedGuide'
-            name='발표안 작성 가이드'
-          />
-          {/* <NavLink
-          to={paths.contribute.proposingATalk}
-          intlKey='gnb.contribute.proposingATalk'
-          name='발표안 제안하기'
-          /> */}
-        </div>
+        <LocalNavigation list={contributionMenu} />
 
         <H1><IntlText intlKey='contribute.recommendKeynoteSpeaker.title'>
           키노트 연사 추천하기

@@ -1,4 +1,4 @@
-import { H1, H2, Paragraph, Section } from 'components/atoms/ContentWrappers'
+import { H1, H2, Paragraph, Section, Ul, Li } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
 import { NoticeBar } from 'components/atoms/NoticeBar'
 import Footer from 'components/organisms/Footer'
@@ -39,60 +39,60 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
         <Paragraph><IntlText intlKey='asdfasdfasdf'>
           사안들을 명확하게 하기 위해 모든 참석자, 발표자, 전시 참여자, 운영자와 자원봉사자는 모든 파이콘 행사에서 아래의 성명서를 따르셔야 함을 알려드립니다.
           운영자들은 행사 기간 동안 성명서의 내용을 시행할 것입니다.
-          </IntlText></Paragraph>
+        </IntlText></Paragraph>
         {/* 목차  */}
         <Section>
           <H2><IntlText intlKey='contribute.detail.notice.title'>요약</IntlText></H2>
-          <ul>
-            <li>
+          <Ul>
+            <Li>
               파이콘은 모든 분들이 성별, 성적 지향, 장애, 외모, 신체 사이즈, 인종, 종교에 상관없이 컨퍼런스에 참여하실 수 있도록
               최선의 노력을 다하고 있으며 어떤 형태의 차별도 허용하지 않고 있습니다.
-              </li>
-            <li>
+            </Li>
+            <Li>
               모든 의사소통은 다양한 배경을 가진 전문적인 청중에게 적합한 것이어야 합니다.
               성적인 언어나 묘사는 대화를 포함해서 컨퍼런스의 장소 어디에서든 허용되지 않습니다.
-              </li>
-            <li>
+            </Li>
+            <Li>
               다른 사람을 존중해 주십시오. 다른 참석자들을 모욕하거나 상처주지 마십시오. 전문가답게 행동하십시오.
               차별이나 성희롱, 인종차별, 공격적인 농담은 파이콘에서 허용되지 않습니다.
-              </li>
-            <li>
+            </Li>
+            <Li>
               이러한 규칙을 어기는 참석자들은 운영진의 재량에 의해 행사에 더 이상 참석하실 수 없으며, 참가 비용은 환불해드리지 않습니다.
-              </li>
-          </ul>
+            </Li>
+          </Ul>
         </Section>
         <Section>
           <H2><IntlText intlKey='contribute.detail.notice.title'>자세한 설명</IntlText></H2>
-          <ul>
-            <li>
+          <Ul>
+            <Li>
               성별, 성적 지향, 장애, 외모, 신체사이즈, 인종, 종교, 공개장소에서 성적인 묘사,
               고의적인 협박, 스토킹, 차별적인 사진이나 영상, 지속적인 행사를 방해,
               부적절한 신체접촉 등 모든 공격적인 언행 및 행동은 공격적인 행동으로 간주합니다.
-              </li>
-            <li>
+            </Li>
+            <Li>
               누구라도 공격적인 행동을 한 사람은 그 행동을 중지해야 하며 운영진의 요청에 즉시 따라야 합니다.
-              </li>
-            <li>
+            </Li>
+            <Li>
               발표장의 전시자들이나 스폰서, 부스 운영자 또는 모든 작은 활동 등은 차별 금지 정책에 따라야 합니다.
               특히, 전시자들은 성적 묘사, 행동 또는 다른 자료들을 사용할 수 없습니다.
               자원봉사를 포함한 부스 운영자들은 외설적인 옷이나 유니폼, 복장을 입거나 다른 성적인 상황을 만들어서는 안됩니다.
-              </li>
-            <li>
+            </Li>
+            <Li>
               사용하는 단어에 유의해 주십시오. 성희롱, 인종 차별, 공격적인 농담은 주위 사람들에게 공격적으로 느껴질 수 있습니다.
               지나친 언행이나 공격적인 농담은 파이콘에 어울리지 않습니다.
-              </li>
-            <li>
+            </Li>
+            <Li>
               참석자가 성명서에 위배되는 행위를 한다면, 운영진은 그 행위를 한 사람에게 경고를 하거나
               환불 없이 컨퍼런스에서 추방하는 등 필요한 행동을 취할 것입니다.
-              </li>
-          </ul>
+            </Li>
+          </Ul>
         </Section>
         <Section>
           <H2><IntlText intlKey='contribute.detail.notice.title'>라이센스</IntlText></H2>
           <Paragraph><IntlText intlKey='asdfasdfasdf'>
             이 성명서는 Ada Initiative와 다른 자원봉사자들에 의해 작성된 Geek Feminism wiki의 정책 예시를 기본으로 하여 작성되었습니다.
             원문은 Creative Commons Zero 라이센스를 따르고 있습니다.   깃허브 링크 >
-            </IntlText></Paragraph>
+          </IntlText></Paragraph>
         </Section>
       </PageTemplate>
     )

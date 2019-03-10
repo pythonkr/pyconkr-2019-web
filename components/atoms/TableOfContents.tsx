@@ -1,8 +1,8 @@
-import intl from 'react-intl-universal'
 import styled from '@emotion/styled'
 import { H2 } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
 import React from 'react'
+import intl from 'react-intl-universal'
 import { CORAL, TEAL } from 'styles/colors'
 
 const StyledOutlineItem = styled.li``

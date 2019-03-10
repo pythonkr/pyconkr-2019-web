@@ -88,7 +88,7 @@ li > button {
 `
 const SponserSection = styled.section`
 background-color: #fde5e3;
-padding: 15px 0;
+padding: 86px 0 15px;
 h2 {
   font-size: 36px;
   line-height: 1.8;
@@ -122,7 +122,7 @@ button {
 }
 `
 const IntroduceSection = styled.section`
-padding: 92px 0 171px 0;
+padding: 155px 0 171px 0;
 h2 {
   font-size: 26px;
   font-weight: bold;
@@ -167,8 +167,8 @@ class Index extends React.Component<{ stores: StoresType }> {
       <>
         <Header title='파이콘 한국 2019' />
         <BannerSection>
-          <div style={{ padding: 0, width: '100%', marginLeft: '5%' }}>
-            <svg width='inherit' height='inherit' viewBox='0 0 1293 591' version='1.1' xmlns='http://www.w3.org/2000/svg'>
+          <div style={{ padding: 0, width: '100%', marginLeft: '5%', pointerEvents: 'none'}}>
+            <svg viewBox='0 0 1293 591' version='1.1' xmlns='http://www.w3.org/2000/svg'>
               <title>Group 11</title>
               <desc>Created with Sketch.</desc>
                 <g id='홈' stroke='none' strokeWidth='1' fill='none' fillRule='evenodd'>
