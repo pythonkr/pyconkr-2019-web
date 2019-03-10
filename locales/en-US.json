@@ -42,7 +42,7 @@
     },
     "sponsor": {
       "root": "Sponsor",
-      "prospectus": "Prospectus",
+      "prospectus": "Sponsor Prospectus",
       "applicationForm": "Application Form"
     },
     "info": {
@@ -54,16 +54,19 @@
     }
   },
   "home": {
-    "sprintDescription": "Sprints are intensive development session on an open source project of your choice, in a team environment. It's a time to come together with colleagues, old and new, to share what you've learned and apply it to an open source project. Is this your first time joining in Sprints? No problem! It will be the time that you learn directly from the open source contributors. <br/>Sprint sessions are not just limited to the projects using Python, all languages are welcome!",
+    "sprintDescription": "Sprints are intensive development session on an open source project of your choice, in a team environment. It's a time to come together with colleagues, old and new, to share what you've learned and apply it to an open source project. Is this your first time joining in Sprints? No problem! It will be the time that you learn directly from the open source contributors. Sprint sessions are not just limited to the projects using Python, all languages are welcome!",
     "tutorialDescription": "Tutorials are educational programs for beginners, or challengers for new era. Tutorial mentors and tutors will guide you to easy way of learning. We recommend tutorials for beginner programmers or Python strangers.",
     "conferenceDescription": "There are over 50 different presentation sessions that share knowledge and use of Python use cases. In addition, various events such as sponsored company booth, young coder, lightning talk, open space are available. You can participate in the event and interact with various participants.",
     "sponsor": {
-      "title": "파이콘 한국 2019 후원사 (모집 예정)",
-      "description": "Thanks to the support of sponsors who are sympathetic to the importance of open source and the Python community, PyCon Korea has held an event where more developers can participate, such as video recording and financial support.<br/>We are looking for sponsors who are interested in supporting the growth of the Python community through sponsorship of PyCon Korea and interested in having special value as an official sponsor of PyCon Korea 2019.",
-      "prospectus": "후원 모집 일정 및 안내 보기"
+      "title": "PyCon Korea 2019 Sponsor",
+      "description": "Thanks to the support of sponsors who are sympathetic to the importance of open source and the Python community, PyCon Korea has held an event where more developers can participate, such as video recording and financial support. We are looking for sponsors who are interested in supporting the growth of the Python community through sponsorship of PyCon Korea and interested in having special value as an official sponsor of PyCon Korea 2019.",
+      "prospectus": "Schedule & Prospectus"
     },
-    "pyconKoreaDescription": "PyCon is a non-commercial conference held by Python Programming Communities over the world. <br/>PyCon Korea has been successfully hold in several years with a group of volunteers called ‘PyCon Korea Preparation Organizers’, who support the local Korean Python community. ",
-    "sloganDescription": "The slogan of PyCon Korea 2019 is \"Connect the Pythonistas\". <br/>PyCon Korea is a meeting point for Python users, and is also a contact point with other languages and communities. At PyCon Korea, you can meet a person who has studied a field in-depth, meet pythonistas in a completely different field, or meet a close friend. <br/>We hope that, through the Pycon Korea, a lot of directions and fields are scattered so that the pian stars, who exist in different points, will gather together to become beautiful constellations. See you in PyCon Korea 2019.",
+    "pyconKoreaTitle": "About PyCon Korea",
+    "pyconKoreaDescription": "PyCon is a non-commercial conference held by Python Programming Communities over the world. PyCon Korea has been successfully hold in several years with a group of volunteers called ‘PyCon Korea Preparation Organizers’, who support the local Korean Python community.",
+    "sloganDescription1": "The slogan of PyCon Korea 2019 is \"Connect the Pythonistas\".",
+    "sloganDescription2": "PyCon Korea is a meeting point for Python users, and is also a contact point with other languages and communities. At PyCon Korea, you can meet a person who has studied a field in-depth, meet pythonistas in a completely different field, or meet a close friend.",
+    "sloganDescription3": "We hope that, through the Pycon Korea, a lot of directions and fields are scattered so that the pian stars, who exist in different points, will gather together to become beautiful constellations. See you in PyCon Korea 2019.",
     "differenceWithOthers": {
       "title": "What's the difference between PyCon and other developer's conferences?",
       "description": "PyCon Korea is a non-profitable, developer-oriented event organized by community members, and has different characteristics from conferences organized companies or organizations. All attendees, including speakers, tutorial hosts, voluntary workers, and organizers, participate in PyCon Korea without any profitable purpose, and only to broaden the usage of Python, an open source programming language, and activate its community."
@@ -72,7 +75,7 @@
   "contribute": {
     "overview": {
       "title": "Various ways to contribute to PyCon Korea",
-      "intro": "You can contribute to PyCon Korea in various ways including keynote, speeker, tutorial, sprint, volunteer and lightning talk. <br/>We will recruit each item with the following schedule.",
+      "intro": "You can contribute to PyCon Korea in various ways including keynote, speeker, tutorial, sprint, volunteer and lightning talk. We will recruit each item with the following schedule.",
       "table": {
         "keynote": "Recommending Keynote Speaker",
         "talk":"Proposing a Talk",
@@ -160,6 +163,11 @@
       }
     }
   }, 
+  "sponsor": {
+    "prospectus": {
+      "title": "Sponsor Prospectus"
+    }
+  },
   "fixedFooter": {
     "coc": "PyCon Korea Code of Conduct(CoC)",
     "sponsor": "Sponsor",

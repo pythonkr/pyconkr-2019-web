@@ -281,7 +281,7 @@ class Index extends React.Component<{ stores: StoresType }> {
         </SponserSection>
         <IntroduceSection>
           <ContentWidthWrapper>
-            <H2 intlKey='constant.pyconKorea.nameOnly'>파이콘 한국</H2>
+            <H2 intlKey='home.pyconKoreaTitle'>파이콘 한국이란</H2>
             <Paragraph intlKey='home.pyconKoreaDescription'>
               파이콘은 세계 각국의 파이썬 프로그래밍 언어 커뮤니티에서 주관하는 비영리 컨퍼런스입니다.
               한국에서는 처음으로 열린 파이콘 한국 2014를 시작으로 파이콘 한국 준비위원회는
@@ -290,15 +290,15 @@ class Index extends React.Component<{ stores: StoresType }> {
             </Paragraph>
             <hr />
             <h2>CONNECT THE PYTHONISTAS</h2>
-            <Paragraph intlKey='home.sloganDescription'>
+            <Paragraph intlKey='home.sloganDescription1'>
               파이콘 한국 2019의 슬로건은 "Connect the Pythonistas"입니다.
             </Paragraph>
-            <Paragraph intlKey='home.sloganDescription'>
+            <Paragraph intlKey='home.sloganDescription2'>
               파이콘은 파이썬을 쓰는 이들의 만남의 장이 되기도, 또 다른 언어, 커뮤니티와의 접점이 되기도 합니다.
               파이콘에서 당신은 한 분야를 아주 깊게 연구한 사람을 만날 수도,
               완전히 다른 분야의 파이써니스타를 만날 수도, 친한 동료를 만날 수도 있을 것입니다.
             </Paragraph>
-            <Paragraph intlKey='home.sloganDescription'>
+            <Paragraph intlKey='home.sloganDescription3'>
               우리는 파이콘을 통해, 방향과 분야가 숱하게 흩어져 각기 다른 점으로 존재하는 파이써니스타들이 모여
               아름다운 별자리가 되기를 바랍니다. 2019년에도 우리, 파이콘에서 만나요.
             </Paragraph>

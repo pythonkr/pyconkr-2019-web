@@ -28,51 +28,51 @@ const DetailGuideWrapper = styled.div`
 `
 
 const outline = [{
-  id: 'contribute.detail.notice.title',
+  id: 'contribute.cfpGuide.notice.title',
   title: '발표자를 위한 안내',
   children: [{
-    id: 'asdfasdfasdf',
+    id: 'contribute.cfpGuide.notice.record.title',
     title: '발표 녹화'
   }, {
-    id: 'asdfasdfasdf',
+    id: 'contribute.cfpGuide.notice.pays.title',
     title: 'Everybody Pays'
   }, {
-    id: 'asdfasdfasdf',
+    id: 'contribute.cfpGuide.notice.vote.title',
     title: '선호도 투표'
   }, {
-    id: 'asdfasdfasdf',
+    id: 'contribute.cfpGuide.notice.communication.title',
     title: '지속적인 협의'
   }]
 }, {
-  id: 'contribute.detail.notice.title',
+  id: 'contribute.cfpGuide.beforeProposal.title',
   title: '제안서를 작성하기 전에'
 }, {
-  id: 'contribute.detail.notice.title',
+  id: 'contribute.cfpGuide.selectTopic.title',
   title: '주제 선정'
+// }, {
+//   id: 'contribute.detail.notice.title',
+//   title: '내 주제에 맞는 카테고리 선택하기'
 }, {
-  id: 'contribute.detail.notice.title',
-  title: '내 주제에 맞는 카테고리 선택하기'
-}, {
-  id: 'contribute.detail.notice.title',
+  id: 'contribute.cfpGuide.proposalType.title',
   title: '좋은 제안과 나쁜 제안',
   children: [{
-    id: 'asdfasdfasdf',
+    id: 'contribute.cfpGuide.proposalType.good.title',
     title: '좋은 제안'
   }, {
-    id: 'asdfasdfasdf',
+    id: 'contribute.cfpGuide.proposalType.bad.title',
     title: '나쁜 제안'
   }]
 }, {
-  id: 'contribute.detail.notice.title',
+  id: 'contribute.cfpGuide.difficulty.title',
   title: '대상 청중(난이도)를 정하는 방법',
   children: [{
-    id: 'asdfasdfasdf',
+    id: 'contribute.cfpGuide.difficulty.beginner.title',
     title: '초보'
   }, {
-    id: 'asdfasdfasdf',
+    id: 'contribute.cfpGuide.difficulty.intermediate.title',
     title: '중급'
   }, {
-    id: 'asdfasdfasdf',
+    id: 'contribute.cfpGuide.difficulty.experienced.title',
     title: '고급'
   }]
 }]
@@ -126,26 +126,26 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           </Paragraph>
           <TableOfContents outline={outline} />
           <section>
-            <H2 intlKey='contribute.cfpGuide.notice.title'>발표자를 위한 안내</H2>
-            <H3 intlKey='contribute.cfpGuide.notice.title'>발표 녹화</H3>
+            <H2 intlKey='contribute.cfpGuide.notice.title' id='contribute.cfpGuide.notice.title'>발표자를 위한 안내</H2>
+            <H3 intlKey='contribute.cfpGuide.notice.record.title' id='contribute.cfpGuide.notice.record.title'>발표 녹화</H3>
             <Paragraph intlKey='contribute.cfpGuide.notice.record.content'>
               파이콘 한국의 모든 발표 내용은 녹화 후 공개될 예정입니다.
               따라서 발표 제안서를 작성하시기 전에 이 점을 염두에 두시기 바랍니다.
             </Paragraph>
-            <H3 intlKey='contribute.detail.pays.title'>Everybody Pays</H3>
+            <H3 intlKey='contribute.cfpGuide.notice.pays.title' id='contribute.cfpGuide.notice.pays.title'>Everybody Pays</H3>
             <Paragraph intlKey='contribute.cfpGuide.notice.pays.content'>
               PyCon은 커뮤니티의 자발적인 도움으로 치러지는 행사입니다.
               발표자를 위한 물질적인 혜택(강연료, 무료 티켓 등)을 제공해드릴 수 없는 점 양해 부탁드립니다.
               이와 관련하여 파이콘의 철학인 ‘Everybody Pays’에 대한 내용을 담고 있는 글을 참고해주세요.
             </Paragraph>
-            <H3 intlKey='contribute.cfpGuide.notice.vote.title'>선호도 투표</H3>
+            <H3 intlKey='contribute.cfpGuide.notice.vote.title' id='contribute.cfpGuide.notice.vote.title'>선호도 투표</H3>
             <Paragraph intlKey='contribute.cfpGuide.notice.vote.content'>
               1차로 선정된 발표 내용은 얼리버드 구매자들을 대상으로 선호도 투표가 진행됩니다.
               선호도 투표는 순수하게 발표 내용만을 공개하여 진행하며 발표자 개인에 대한 내용은 비공개로 진행됩니다.
               파이콘 한국 준비위원회의 프로그램팀은 선호도 투표 결과를 참고하여
               최대한 다양한 참가자들이 즐길 수 있는 행사가 되도록 최종 발표자를 선정합니다.
             </Paragraph>
-            <H3 intlKey='contribute.cfpGuide.notice.communication.title'>지속적인 협의</H3>
+            <H3 intlKey='contribute.cfpGuide.notice.communication.title' id='contribute.cfpGuide.notice.communication.title'>지속적인 협의</H3>
             <Paragraph intlKey='contribute.cfpGuide.notice.communication.content'>
               마지막으로, 발표 제안서를 제출하신 순간부터 최종 확정이 될 때까지 필요에 따라
               프로그램팀과 발표 내용에 대한 지속적인 협의가 있을 수 있다는 점을 참고해주시기 바랍니다.
@@ -157,7 +157,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
             </Paragraph>
           </section>
           <section>
-            <H2 intlKey='contribute.cfpGuide.beforeProposal.title'>제안서를 작성하기 전에</H2>
+            <H2 intlKey='contribute.cfpGuide.beforeProposal.title' id='contribute.cfpGuide.beforeProposal.title'>제안서를 작성하기 전에</H2>
             <Paragraph intlKey='contribute.cfpGuide.beforeProposal.consider.description'>
               제안서를 작성하기 전 생각해보아야 할 사항은 아래와 같습니다.
             </Paragraph>
@@ -205,7 +205,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
             </Paragraph>
           </section>
           <section>
-            <H2 intlKey='contribute.cfpGuide.selectTopic.title'>주제 선정</H2>
+            <H2 intlKey='contribute.cfpGuide.selectTopic.title' id='contribute.cfpGuide.selectTopic.title'>주제 선정</H2>
             <Paragraph intlKey='contribute.cfpGuide.selectTopic.description'>
               가장 좋은 방법은 기존에 진행된 PyCon 행사에서 수락된 발표 주제들을 둘러보는 것이 좋습니다.
               발표 주제뿐만 아니라 발표 슬라이드를 참고하는 것도 도움이 될 것입니다.
@@ -225,8 +225,8 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
             </Paragraph>
           </section>
           <section>
-            <H2 intlKey='contribute.cfpGuide.proposalType.title'>좋은 제안과 나쁜 제안</H2>
-            <H3 intlKey='contribute.cfpGuide.proposalType.good.title'>좋은 제안 👍</H3>
+            <H2 intlKey='contribute.cfpGuide.proposalType.title' id='contribute.cfpGuide.proposalType.title'>좋은 제안과 나쁜 제안</H2>
+            <H3 intlKey='contribute.cfpGuide.proposalType.good.title' id='contribute.cfpGuide.proposalType.good.title'>좋은 제안 👍</H3>
             <ol>
               <li>
                 {
@@ -261,7 +261,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
                 }
               </li>
             </ol>
-            <H3 intlKey='contribute.cfpGuide.proposalType.bad.title'>나쁜 제안 🙅‍️</H3>
+            <H3 intlKey='contribute.cfpGuide.proposalType.bad.title' id='contribute.cfpGuide.proposalType.bad.title'>나쁜 제안 🙅‍️</H3>
             <ol>
               <li>
                 {
@@ -278,7 +278,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
             </ol>
           </section>
           <section>
-            <H2 intlKey='contribute.detail.notice.title'>대상 청중(난이도)를 정하는 방법</H2>
+            <H2 intlKey='contribute.cfpGuide.difficulty.title' id='contribute.cfpGuide.difficulty.title'>대상 청중(난이도)를 정하는 방법</H2>
             <Paragraph intlKey='asdfasdfasdf'>좋은 발표는 특정 Python 레벨과 대상 청중에게 알맞은 발표입니다. </Paragraph>
             <ul>
               <li>
@@ -291,7 +291,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
               위와 같이 명백한 경우가 있는 반면에 대상 레벨을 정하기 애매한 내용들도 분명 있습니다.
               대상 레벨을 정하기 어려운 분들을 위해 간단한 가이드라인을 제시해드리고자 합니다.
             </Paragraph>
-            <H3 intlKey='contribute.detail.notice.first.title'>초보</H3>
+            <H3 intlKey='contribute.cfpGuide.difficulty.beginner.title' id='contribute.cfpGuide.difficulty.beginner.title'>초보</H3>
             <Paragraph intlKey='asdfasdfasdf'>
               Python에 대한 지식이 전혀 없거나 생소합니다. Python의 기본적인 문법이나 흐름에 대한 지식은 가지고 있으나,
               표준 라이브러리 모듈 중에는 모르는 것도 많으며 프로그래밍 전반에 대한 이해가 깊지 않습니다.
@@ -300,7 +300,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
               초보 레벨을 위한 발표 주제로는 Python을 배운 경험, 중급 사용자로 거듭나기 위해 필요한 Python 프로그래밍 스킬 등의 내용이 적당합니다.
               Pandas나 Django와 같은 Python 기본 내장 패키지가 아닌 패키지에 대한 내용은 초보자를 위한 것이 아닙니다.
             </Paragraph>
-            <H3 intlKey='contribute.detail.notice.first.title'>중급</H3>
+            <H3 intlKey='contribute.cfpGuide.difficulty.intermediate.title' id='contribute.cfpGuide.difficulty.intermediate.title'>중급</H3>
             <Paragraph intlKey='asdfasdfasdf'>
               Python을 배운지 오래되지 않아 Python이 어떻게 활용될 수 있는지를 알고 싶어 합니다.
               혹은, 파이썬을 오랫동안 사용했지만 다양한 활용 분야에 대한 경험이 부족합니다. 여러 분야에서 활용되는 내용들을 다룰 수 있습니다.
@@ -309,7 +309,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
               중급 레벨을 위한 발표 주제로는 웹 프레임워크 사용, 기계 학습, 웹 트래픽 모니터링, 자동화 등의 이야기가 선정될 수 있습니다.
               중급 레벨 대상의 제안서는 제안서 검토 후 초보자용 또는 고급자용 레벨로 조정 요청을 드릴 수 있다는 것을 알아두시기 바랍니다.
             </Paragraph>
-            <H3 intlKey='contribute.detail.notice.first.title'>고급</H3>
+            <H3 intlKey='contribute.cfpGuide.difficulty.experienced.title' id='contribute.cfpGuide.difficulty.experienced.title'>고급</H3>
             <Paragraph intlKey='asdfasdfasdf'>
               Python 기술에 익숙하고 일반적인 프로그래밍 개념이 잘 갖춰져있습니다.
               중급과 고급의 가장 큰 차이는 고급자용은 더 많은 해당 분야의 전문 지식을 요구한다는 점입니다.

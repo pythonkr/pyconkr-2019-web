@@ -191,7 +191,7 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
         header={<Header title='후원사 안내 :: 파이콘 한국 2019' />}
         footer={<Footer />}
       >
-        <H1 intlKey='contribute.overview.title'>
+        <H1 intlKey='sponsor.prospectus.title'>
           후원사 안내
         </H1>
         {/* Status Bar */}
