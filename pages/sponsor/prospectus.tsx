@@ -3,11 +3,13 @@ import { ContentTableWrapper } from 'components/atoms/ContentWrapper'
 import { NoticeBar } from 'components/atoms/NoticeBar'
 import { StatusBar } from 'components/atoms/StatusBar'
 import { H1, H2, Paragraph } from 'components/atoms/withIntl'
+import NavLink from 'components/atoms/NavLink'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
 import { callForSponsors } from 'dates'
 import { inject, observer } from 'mobx-react'
+import { paths } from 'routes/paths'
 import React from 'react'
 // import { paths } from 'routes/paths'
 import { ALERT_BLUE_DARK, ALERT_YELLOW, ALERT_YELLOW_DARK, ALERT_YELLOW_SEMI_DARK, TEAL_DARK } from 'styles/colors'
@@ -203,6 +205,13 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
         header={<Header title='후원사 안내 :: 파이콘 한국 2019' />}
         footer={<Footer />}
       >
+        <div style={ {textAlign: 'center'} }>
+          <NavLink
+            to={paths.sponsor.prospectus}
+            intlKey='gnb.sponsor.prospectus'
+            name='후원사 안내'
+          />
+        </div>
         <H1 intlKey='sponsor.prospectus.title'>
           후원사 안내
         </H1>
