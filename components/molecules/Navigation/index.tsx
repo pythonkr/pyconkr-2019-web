@@ -30,16 +30,24 @@ const NavItem = styled.li`
   font-size: 14px;
 `
 const NavMenuSubLinkList = styled.ul`
+  z-index: 200;
   visibility: hidden;
   display: flex;
   position: absolute;
   flex-direction: column;
   top: 80px;
-  left: -30px;
+  left: -40px;
+  ${NavItem}:last-of-type & {
+    right: 0;
+    left: initial;
+  }
   width: 180px;
   font-size: 14px;
   background: #FFF;
   color: black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+  border: solid 1px #dfe3e6;
+  background-color: #ffffff;
   ${NavItem}:hover & {
     visibility: visible;
   }
