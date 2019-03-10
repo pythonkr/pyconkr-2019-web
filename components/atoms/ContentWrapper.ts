@@ -84,7 +84,8 @@ export const ContentWrapper = styled.main`
 
   thead {
     font-size: 14px;
-    td {
+    th {
+      // padding-top: 0;
       padding-bottom: 12px;
     }
   }
@@ -98,17 +99,21 @@ export const ContentWrapper = styled.main`
     padding-left: 29px;
   }
 
+  th {
+    vertical-align: middle;
+    padding: 21px 0 18px;
+  }
+
   tr {
-    border-top: solid 1px #dfe3e6;
-    height: 59px;
+      border-top: solid 1px #dfe3e6;
 
-    &.active {
-      background-color: rgba(85, 150, 230, 0.1);
+      &.active {
+        background-color: rgba(85, 150, 230, 0.1);
 
-      td {
-        font-weight: bold;
-        color: ${TEAL_DARK};
-      }
+        td {
+          font-weight: bold;
+          color: ${TEAL_DARK};
+        }
     }
 
     &.disabled {
@@ -125,6 +130,7 @@ export const ContentWrapper = styled.main`
     font-size: 15px;
     line-height: 24px;
     color: #152935;
+    padding: 21px 0 18px;
 
     &.center-align {
       text-align: center;
@@ -133,6 +139,15 @@ export const ContentWrapper = styled.main`
     &.bold {
       font-weight: 700;
       color: ${TEAL_SEMI_DARK};
+    }
+
+    .small &, &.small {
+      font-size: 14px;
+      line-height:2;
+    }
+
+    .align-top &, &.align-top {
+      vertical-align: top;
     }
   }
 

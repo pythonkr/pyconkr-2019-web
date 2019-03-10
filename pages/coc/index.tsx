@@ -22,7 +22,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
       >
         <H1 intlKey='contribute.overview.title'>
           파이콘 성명서
-          </H1>
+        </H1>
         <NoticeBar
             color={CORAL_LIGHT}
             borderColor={CORAL}
@@ -94,7 +94,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           <Paragraph intlKey='asdfasdfasdf'>
             이 성명서는 Ada Initiative와 다른 자원봉사자들에 의해 작성된 Geek Feminism wiki의 정책 예시를 기본으로 하여 작성되었습니다.
             원문은 Creative Commons Zero 라이센스를 따르고 있습니다.   깃허브 링크 >
-            </Paragraph>
+          </Paragraph>
         </section>
       </PageTemplate>
     )
