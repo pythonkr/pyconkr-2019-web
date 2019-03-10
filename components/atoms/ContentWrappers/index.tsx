@@ -107,6 +107,10 @@ border-bottom: solid 1px #dfe3e6;
 export const Tr = styled.tr`
 border-top: solid 1px #dfe3e6;
 
+${THead} & {
+  border-top: 0;
+}
+
 &.${isActive} {
   background-color: rgba(85, 150, 230, 0.1);
 }
@@ -119,9 +123,16 @@ border-top: solid 1px #dfe3e6;
 export const Th = styled.th`
 vertical-align: middle;
 padding: 21px 0 18px;
+text-align: left;
+font-weight: 700;
 
-${THead} {
+${THead} & {
   padding-bottom: 12px;
+  text-align: left;
+}
+
+&.${alignCenter} {
+  text-align: center;
 }
 `
 

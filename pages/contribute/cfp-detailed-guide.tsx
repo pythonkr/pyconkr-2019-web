@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import {
   ContentTableWrapper, H1, H2, H3, Li, Ol, Paragraph, Section,
-  Table, TBody, Td, Th, THead, Tr, Ul
+  Table, TBody, Td, Th, THead, Tr, Ul, alignCenter, isBold
 } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
 import NavLink from 'components/atoms/NavLink'
@@ -278,18 +278,27 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
             </IntlText></Paragraph>
             <ContentTableWrapper>
               <Table>
+                <colgroup>
+                  <col width='33%'/>
+                  <col width='34%'/>
+                  <col width='33%'/>
+                </colgroup>
                 <THead>
-                  <Th>{intl.get('contribute.cfpGuide.beforeProposal.information.header.item').d('항목')}</Th>
-                  <Th>{intl.get('contribute.cfpGuide.beforeProposal.information.header.description').d('내용') }</Th>
-                  <Th>{intl.get('contribute.cfpGuide.beforeProposal.information.header.visibility').d('선호도 투표 시 공개 여부')}</Th>
+                  <Tr>
+                    <Th>{intl.get('contribute.cfpGuide.beforeProposal.information.header.item').d('항목')}</Th>
+                    <Th>{intl.get('contribute.cfpGuide.beforeProposal.information.header.description').d('내용') }</Th>
+                    <Th className={alignCenter}>
+                      {intl.get('contribute.cfpGuide.beforeProposal.information.header.visibility').d('선호도 투표 시 공개 여부')}
+                    </Th>
+                  </Tr>
                 </THead>
                 <TBody>
                   {cfpFormTable.map(({ title, desc, review = true }) => {
                     return (
-                    <Tr>
-                      <Td align='center'>{getTitleStr(title)}</Td>
-                      <Td align='center'>{getDescStr(desc)}</Td>
-                      <Td align='center'>{review ?  '✅' : '❌'}</Td>
+                    <Tr key={getTitleStr(title)}>
+                      <Td className={isBold}>{getTitleStr(title)}</Td>
+                      <Td>{getDescStr(desc)}</Td>
+                      <Td className={alignCenter}>{review ?  '✅' : '❌'}</Td>
                     </Tr>)
                   }
                   )}
