@@ -14,12 +14,10 @@ interface Props {
 export const Paragraph: React.SFC<Props> = ({ intlKey,  children, bold}) =>
   <StyledP>
     {bold ? <b>{intlKey
-      ? intl.getHTML(intlKey)
-        .defaultMessage(children)
+      ? intl.getHTML(intlKey).d(children)
       : children
     }</b> : intlKey
-      ? intl.getHTML(intlKey)
-        .defaultMessage(children)
+      ? intl.getHTML(intlKey).d(children)
       : children
     }
   </StyledP>

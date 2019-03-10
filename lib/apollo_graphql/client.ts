@@ -46,7 +46,6 @@ const authLink = setContext((_, { headers }) => {
 
 const acceptLanguageLink = setContext((_, { headers }) => {
   const locale = intl.getInitOptions()['currentLocale']
-  console.log(locale)
   return {
     headers: {
       ...headers,
@@ -59,6 +58,7 @@ const link = ApolloLink.from([
   authLink,
   errorLink,
   // httpLink,
+  acceptLanguageLink,
   uploadLink,
 ]);
 

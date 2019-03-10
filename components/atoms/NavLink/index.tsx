@@ -27,7 +27,6 @@ export type NavLinkPropsType = {
 
 const NavLink = ({ router, to, intlKey, name }: NavLinkPropsType) => {
   let isActive = false
-  console.log(to, router.asPath)
   if(router.asPath == (to)){
     isActive = true
   } else if (to !== '/' && router.asPath.startsWith(to)){

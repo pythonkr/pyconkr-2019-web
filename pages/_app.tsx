@@ -51,7 +51,6 @@ class MyApp extends App {
 
     const { router: { query } } = this.props
     const currentLocale = query![URL_LOCALE_KEY] as string || LOCALE_KEY_KR
-    console.log(currentLocale)
     intl.init({
       currentLocale,
       locales: {
