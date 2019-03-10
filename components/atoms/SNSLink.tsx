@@ -22,9 +22,10 @@ type SNSLinkPropTypes = {
   name: string;
   src: string;
   viewBox: string;
+  fill: string;
 }
 
-export const SNSLink = ({ to, intlKey, name, viewBox, src }: SNSLinkPropTypes) => {
+export const SNSLink = ({ to, intlKey, name, src, viewBox, fill }: SNSLinkPropTypes) => {
   return (
     <SNSLinkA
       href={to}
@@ -34,7 +35,7 @@ export const SNSLink = ({ to, intlKey, name, viewBox, src }: SNSLinkPropTypes) =
         {/*.defaultMessage(name)}</span>*/}
       <span aria-label={intl.get(intlKey).defaultMessage(name)}>
         {/*<img alt={intl.get(intlKey).defaultMessage(name)} src={intl.get(intlKey).defaultMessage(src)}/>*/}
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox={intl.get(intlKey).defaultMessage(viewBox)}>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox={intl.get(intlKey).defaultMessage(viewBox)} fill={intl.get(intlKey).defaultMessage(fill)}>
           <path d={intl.get(intlKey).defaultMessage(src)}/>
         </svg>
       </span>
