@@ -1,8 +1,6 @@
 import { Button } from 'components/atoms/Button'
 import { ContentButtonWrapper, ContentTableWrapper } from 'components/atoms/ContentWrapper'
-import { H1 } from 'components/atoms/H1'
-import { H2 } from 'components/atoms/H2'
-import { Paragraph } from 'components/atoms/Paragraph'
+import { H1, H2, Paragraph } from 'components/atoms/withIntl'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
@@ -44,10 +42,10 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           link={paths.contribute.recommendingAKeynoteSpeaker}
           openDate={keynoteRecommendation.open}
         />
-        <Paragraph>
+        <Paragraph intlKey='asdfasdfasdf'>
           파이써니스타들의 북극성이 되어주실 파이콘 한국 2019 키노트 연사를 찾고 있습니다.
         </Paragraph>
-        <Paragraph>
+        <Paragraph intlKey='asdfasdfasdf'>
           생활/일/취미 등에 파이썬을 적극적으로 활용하시는 분, 주변 사람들에게 파이썬을 열심히 전파하시는 분 등 파이썬을 적극적으로 사용하는 분이 있다면 주저 말고 추천해주시기 바랍니다.
         </Paragraph>
         <ContentButtonWrapper>
@@ -76,7 +74,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
         </section>
         <section>
           <H2 intlKey='bbb'>문의</H2>
-          <Paragraph>program@pycon.kr</Paragraph>
+          <Paragraph intlKey='asdfasdfasdf'>program@pycon.kr</Paragraph>
         </section>
         <section></section>
       </PageTemplate>

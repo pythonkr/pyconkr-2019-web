@@ -1,17 +1,17 @@
-import styled from '@emotion/styled'
-import { H1 } from 'components/atoms/H1'
-import { NaverLogo } from 'components/atoms/SVG'
-import Footer from 'components/organisms/Footer'
-import Header from 'components/organisms/Header'
-import PageTemplate from 'components/templates/PageTemplate'
-import { clientIdEnum } from 'lib/stores/AuthStore'
-import { inject, observer } from 'mobx-react'
-import Router from 'next/router'
-import React from 'react'
-import intl from 'react-intl-universal'
-import { paths } from 'routes/paths'
-import { FACEBOOK_BLUE, NAVER_GREEN } from 'styles/colors'
-import { StoresType } from '../_app'
+import styled from '@emotion/styled';
+import { NaverLogo } from 'components/atoms/SVG';
+import { H1 } from 'components/atoms/withIntl';
+import Footer from 'components/organisms/Footer';
+import Header from 'components/organisms/Header';
+import PageTemplate from 'components/templates/PageTemplate';
+import { clientIdEnum } from 'lib/stores/AuthStore';
+import { inject, observer } from 'mobx-react';
+import Router from 'next/router';
+import React from 'react';
+import intl from 'react-intl-universal';
+import { paths } from 'routes/paths';
+import { FACEBOOK_BLUE, NAVER_GREEN } from 'styles/colors';
+import { StoresType } from '../_app';
 
 const LoginButtonsWrapper = styled.div`
   width: 700px;

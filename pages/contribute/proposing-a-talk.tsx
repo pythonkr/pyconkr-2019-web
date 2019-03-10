@@ -1,6 +1,4 @@
-import { H1 } from 'components/atoms/H1'
-import { H2 } from 'components/atoms/H2'
-import { Paragraph } from 'components/atoms/Paragraph'
+import { H1, H2, Paragraph } from 'components/atoms/withIntl'
 import { StatusBar } from 'components/atoms/StatusBar'
 import Stage1 from 'components/organisms/CFPForm/Stage1'
 import Stage2 from 'components/organisms/CFPForm/Stage2'
@@ -62,7 +60,7 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
           openDate={talkProposal.open}
           closeDate={talkProposal.close}
         />
-        <Paragraph>
+        <Paragraph intlKey='asdfasdfasdf'>
           파이썬에 대한 학술적 또는 상업적 프로젝트, 케이스 스터디 등 다양한 파이썬 관련 발표를 아래와 같은 일정으로 모집합니다.
           자세한 내용은 발표안 작성 가이드를 참고해주세요.
         </Paragraph>
@@ -83,7 +81,7 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
         </section>
         <section>
           <H2 intlKey='bbb'>문의</H2>
-          <Paragraph>program@pycon.kr</Paragraph>
+          <Paragraph intlKey='asdfasdfasdf'>program@pycon.kr</Paragraph>
         </section>
         <section>
           <H2 intlKey='ccc'>제안서 작성</H2>

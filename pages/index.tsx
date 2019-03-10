@@ -1,10 +1,6 @@
 import styled from '@emotion/styled'
 import { ContentWidthWrapper } from 'components/atoms/ContentWidthWrapper'
-import { H1 } from 'components/atoms/H1'
-import { H2 } from 'components/atoms/H2'
-import { H3 } from 'components/atoms/H3'
-import { Paragraph } from 'components/atoms/Paragraph'
-import { Span } from 'components/atoms/Span'
+import { H1, H2, H3, Paragraph, Span } from 'components/atoms/withIntl'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import { inject, observer } from 'mobx-react'
@@ -174,18 +170,18 @@ class Index extends React.Component<{ stores: StoresType }> {
             <svg width='inherit' height='inherit' viewBox='0 0 1293 591' version='1.1' xmlns='http://www.w3.org/2000/svg'>
               <title>Group 11</title>
               <desc>Created with Sketch.</desc>
-                <g id='홈' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'>
+                <g id='홈' stroke='none' strokeWidth='1' fill='none' fillRule='evenodd'>
                     <g id='Home-Sponsor-Open' transform='translate(-147.000000, -100.000000)'>
                         <g id='Group-11' transform='translate(150.000000, 103.000000)'>
-                            <g id='Group-10' stroke='white' stroke-width='3'>
-                                <polyline id='Stroke-1' points='114.869229 177.63068 292.499909 1.70530257e-13 584.999909 292.5 541.278471 336.221438'></polyline>
-                                <polyline id='Stroke-3' points='59.7540937 352.254551 -2.84217094e-14 292.500457 60.5237344 231.976723'></polyline>
-                                <polyline id='Stroke-5' points='466.012005 411.488269 292.500091 585.000183 118.485443 410.985534'></polyline>
-                                <polyline id='Stroke-8' points='114.539801 177.301709 326.933191 11.241232 573.759316 326.93374 548.821863 346.430693'></polyline>
-                                <polyline id='Stroke-9' points='72.2795836 336.13707 11.241232 258.066991 56.8758023 222.386562'></polyline>
-                                <polyline id='Stroke-10' points='465.837054 411.313317 258.066077 573.759591 126.878913 405.969708'></polyline>
+                            <g id='Group-10' stroke='white' strokeWidth='3'>
+                                <polyline id='Stroke-1' points='114.869229 177.63068 292.499909 1.70530257e-13 584.999909 292.5 541.278471 336.221438' />
+                                <polyline id='Stroke-3' points='59.7540937 352.254551 -2.84217094e-14 292.500457 60.5237344 231.976723'/>
+                                <polyline id='Stroke-5' points='466.012005 411.488269 292.500091 585.000183 118.485443 410.985534'/>
+                                <polyline id='Stroke-8' points='114.539801 177.301709 326.933191 11.241232 573.759316 326.93374 548.821863 346.430693'/>
+                                <polyline id='Stroke-9' points='72.2795836 336.13707 11.241232 258.066991 56.8758023 222.386562'/>
+                                <polyline id='Stroke-10' points='465.837054 411.313317 258.066077 573.759591 126.878913 405.969708'/>
                             </g>
-                            <g id='Group-13' transform='translate(319.810908, 292.697179)' stroke='white' stroke-width='3'>
+                            <g id='Group-13' transform='translate(319.810908, 292.697179)' stroke='white' strokeWidth='3'>
                                 <path d='M1048.18909,0.802821094 L0.189092188,0.802821094' id='Stroke-11'></path>
                             </g>
                             <g id='Group-8' transform='translate(70.271845, 189.100062)' fill='white'>
