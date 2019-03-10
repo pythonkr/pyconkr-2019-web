@@ -94,25 +94,33 @@
             "deprecationReason": null
           },
           {
-            "name": "category",
+            "name": "categories",
             "description": null,
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "CategoryNode",
-              "ofType": null
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "CategoryNode",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "difficulty",
+            "name": "difficulties",
             "description": null,
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "DifficultyNode",
-              "ofType": null
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DifficultyNode",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -503,7 +511,7 @@
       {
         "kind": "SCALAR",
         "name": "ImageUrl",
-        "description": "It is used to get image url for graphene queries.\ne.g)\nimage = ImageUrl.Field(SeoulDateTime)\nto)\nimage: http://www.pycon.kr/media/profile/image.png",
+        "description": "It is used to get image url for graphene queries.\ne.g)\nimage = graphene.Field(ImageUrl)\nto)\nimage: http://www.pycon.kr/media/profile/image.png",
         "fields": null,
         "inputFields": null,
         "interfaces": null,

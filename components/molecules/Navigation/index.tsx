@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import Link from 'next/link'
 import NavLink from 'components/atoms/NavLink'
 import NavMenuSubLink from 'components/atoms/NavMenuSubLink'
 import { PyConKRLogo } from 'components/atoms/SVG'
@@ -57,13 +58,15 @@ class Navigation extends React.Component<{ stores: StoresType }> {
       <NavWrapper>
         <ul>
           <NavItem>
-            <HeaderLogo>
-              <PyConKRLogo
-                width={139}
-                height={37}
-                color={CORAL}
-              />
-            </HeaderLogo>
+            <Link href='/'>
+              <HeaderLogo>
+                <PyConKRLogo
+                  width={139}
+                  height={37}
+                  color={CORAL}
+                />
+              </HeaderLogo>
+            </Link>
           </NavItem>
         </ul>
         <ul>
@@ -74,12 +77,13 @@ class Navigation extends React.Component<{ stores: StoresType }> {
               name='홈'
             />
           </NavItem>
-          <NavItem>
+          {/* <NavItem>
             <NavLink
               to={paths.help.faq}
               intlKey='gnb.help.root'
               name='지원 및 안내'
             />
+            
             <NavMenuSubLinkList>
               <NavMenuSubLink
                 to={paths.help.faq}
@@ -97,7 +101,7 @@ class Navigation extends React.Component<{ stores: StoresType }> {
                 name='장소'
               />
             </NavMenuSubLinkList>
-          </NavItem>
+          </NavItem> */}
           <NavItem>
             <NavLink
               to={paths.contribute.overview}
@@ -115,11 +119,11 @@ class Navigation extends React.Component<{ stores: StoresType }> {
                 intlKey='gnb.contribute.cfpDetailedGuide'
                 name='발표안 작성 가이드'
               />
-              <NavMenuSubLink
+              {/* <NavMenuSubLink
                 to={paths.contribute.proposingATalk}
                 intlKey='gnb.contribute.proposingATalk'
                 name='발표안 제안하기'
-              />
+              /> */}
             </NavMenuSubLinkList>
           </NavItem>
           <NavItem>
@@ -134,14 +138,14 @@ class Navigation extends React.Component<{ stores: StoresType }> {
                 intlKey='gnb.sponsor.prospectus'
                 name='후원사 안내'
               />
-              <NavMenuSubLink
+              {/* <NavMenuSubLink
                 to={paths.sponsor.applicationForm}
                 intlKey='gnb.sponsor.applicationForm'
                 name='후원사 신청'
-              />
+              /> */}
             </NavMenuSubLinkList>
           </NavItem>
-          <NavItem>
+          {/* <NavItem>
             {
               stores.authStore.logined ?
                 <>
@@ -177,7 +181,7 @@ class Navigation extends React.Component<{ stores: StoresType }> {
                   name='로그인'
                 />
             }
-          </NavItem>
+          </NavItem> */}
         </ul>
       </NavWrapper>
     )

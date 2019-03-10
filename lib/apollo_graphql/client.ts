@@ -1,9 +1,9 @@
+import intl from 'react-intl-universal'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloClient } from 'apollo-client'
 import { ApolloLink } from 'apollo-link'
 import { setContext } from 'apollo-link-context'
 import { createUploadLink } from 'apollo-upload-client'
-
 import { onError } from "apollo-link-error";
 import 'cross-fetch/polyfill'
 
@@ -40,6 +40,17 @@ const authLink = setContext((_, { headers }) => {
     headers: {
       ...headers,
       authorization: token ? `JWT ${token}` : '',
+    },
+  }
+})
+
+const acceptLanguageLink = setContext((_, { headers }) => {
+  const locale = intl.getInitOptions()['currentLocale']
+  console.log(locale)
+  return {
+    headers: {
+      ...headers,
+      'Accept-Language': locale
     },
   }
 })
