@@ -97,7 +97,7 @@ const _StatusBar: React.SFC<Props>  = ({
             : undefined
       : undefined
     }
-    link={pathname !== link
+    link={link && pathname !== link
       ? barType === 'ongoing'
         ? {
           title: `${actionText}하러 가기`,
