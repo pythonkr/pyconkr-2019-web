@@ -61,7 +61,7 @@ export default class CFPFormStage4 extends React.Component<{stores: StoresType},
           <label>제안 내용과 발표 내용이 다르면 발표가 취소될 수 있습니다.</label>
         </fieldset>
         <fieldset>
-          <legend>파이콘 한국 2018에서는 세션 내용을 녹화 및 공개합니다. 이에 동의하십니까?</legend>
+          <legend>파이콘 한국 2019에서는 세션 내용을 녹화 및 공개합니다. 이에 동의하십니까?</legend>
           <label>예</label>
           <input
             type='radio'

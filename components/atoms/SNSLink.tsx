@@ -9,7 +9,7 @@ const SNSLinkA = styled.a`
   align-items: center;
   text-decoration: none;
   font-size: 14px;
-  
+
   svg {
     width: 100%;
     height: 100%;
@@ -31,11 +31,12 @@ export const SNSLink = ({ to, intlKey, name, src, viewBox, fill }: SNSLinkPropTy
       href={to}
       target='blank'
     >
-      {/*<span>{intl.get(intlKey)*/}
-        {/*.defaultMessage(name)}</span>*/}
       <span aria-label={intl.get(intlKey).defaultMessage(name)}>
-        {/*<img alt={intl.get(intlKey).defaultMessage(name)} src={intl.get(intlKey).defaultMessage(src)}/>*/}
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox={intl.get(intlKey).defaultMessage(viewBox)} fill={intl.get(intlKey).defaultMessage(fill)}>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          viewBox={intl.get(intlKey).defaultMessage(viewBox)}
+          fill={intl.get(intlKey).defaultMessage(fill)}
+        >
           <path d={intl.get(intlKey).defaultMessage(src)}/>
         </svg>
       </span>
