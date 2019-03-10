@@ -3,6 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 import intl from 'react-intl-universal'
 import { CORAL } from 'styles/colors'
+import { mobileWidth } from 'styles/layout'
 
 const NavLinkA = styled.a`
   display: inline-flex;
@@ -10,12 +11,21 @@ const NavLinkA = styled.a`
   align-items: center;
   padding: 0 10px;
   cursor: pointer;
+  @media (max-width: ${mobileWidth}) {
+    padding: 0;
+    width: 100%;
+    height: auto;
+  }
 `
 const Span = styled.span`
   font-size: 16px;
   padding: 10px 0;
   font-weight: ${(props: { isActive: boolean }) => props.isActive ? '700' : 'normal'};
   border-bottom: ${(props: { isActive: boolean }) => `solid 2px ${props.isActive ? CORAL : 'rgba(1, 1, 1, 0)'}`};
+  @media (max-width: ${mobileWidth}) {
+    margin: 10px 0;
+    padding: 0;
+  }
 `
 
 export type NavLinkPropsType = {

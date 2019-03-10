@@ -90,7 +90,7 @@ div#navMenuList ul.navMiniMenu li {
 div#navMenuList ul.navMenuSNS {
   margin: 10px 0 0 -10px;
 
-  &:first-of-typed {
+  &:first-of-type {
     margin-top: 25px;
   }
 }
