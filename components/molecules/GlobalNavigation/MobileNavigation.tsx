@@ -1,8 +1,8 @@
-import styled from '@emotion/styled';
-import { SNSLink } from 'components/atoms/SNSLink';
-import { PyConKRLogo } from 'components/atoms/SVG';
-import React from 'react';
-import { CORAL, CORAL_LIGHT } from 'styles/colors';
+import styled from '@emotion/styled'
+import { SNSLink } from 'components/atoms/SNSLink'
+import { PyConKRLogo } from 'components/atoms/SVG'
+import React from 'react'
+import { CORAL, CORAL_LIGHT } from 'styles/colors'
 
 const NavWrapper = styled.nav`
   display: flex;
@@ -90,7 +90,7 @@ div#navMenuList ul.navMiniMenu li {
 div#navMenuList ul.navMenuSNS {
   margin: 10px 0 0 -10px;
 
-  &:first-child {
+  &:first-of-typed {
     margin-top: 25px;
   }
 }

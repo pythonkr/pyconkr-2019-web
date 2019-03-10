@@ -1,6 +1,5 @@
-import { ContentTableWrapper, H1, H2, Li, Paragraph, Section, Table, TBody, Td, Tr, Ul } from 'components/atoms/ContentWrappers'
+import { ContentTableWrapper, H1, H2, Li, Paragraph, ScheduleTable, Section, TBody, Td, Tr, Ul } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
-import NavLink from 'components/atoms/NavLink'
 import { NoticeBar } from 'components/atoms/NoticeBar'
 import { StatusBar } from 'components/atoms/StatusBar'
 import Footer from 'components/organisms/Footer'
@@ -10,11 +9,9 @@ import PageTemplate from 'components/templates/PageTemplate'
 import { callForSponsors } from 'dates'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
-import { paths, sponsorMenu } from 'routes/paths'
 import { ALERT_BLUE_DARK, ALERT_YELLOW, ALERT_YELLOW_DARK, ALERT_YELLOW_SEMI_DARK } from 'styles/colors'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 import { StoresType } from '../_app'
-import { LocalNavigation } from 'components/molecules/LocalNavigation';
 
 const schedule = [{
   title: '후원사 모집 오픈',
@@ -59,7 +56,7 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
         <Section>
           <H2><IntlText intlKey='aaa'>세부 일정</IntlText></H2>
           <ContentTableWrapper>
-            <Table style={{ width: '518px' }}>
+            <ScheduleTable>
               <TBody>
                 {schedule.map(({ title, date, desc }) =>
                   <Tr key={title}>
@@ -72,7 +69,7 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
                   </Tr>
                 )}
               </TBody>
-            </Table>
+            </ScheduleTable>
           </ContentTableWrapper>
         </Section>
         <Section>

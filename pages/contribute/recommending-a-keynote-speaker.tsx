@@ -1,12 +1,12 @@
 import { Button } from 'components/atoms/Button'
 import {
-  ContentButtonWrapper, ContentTableWrapper, H1, H2, isBold, Paragraph, Section,
-  Table, TBody, Td, Tr
+  ContentButtonWrapper, ContentTableWrapper, H1, H2, isBold, Paragraph, ScheduleTable,
+  Section, TBody, Td, Tr
 } from 'components/atoms/ContentWrappers'
 import {
   IntlText
 } from 'components/atoms/IntlText'
-import NavLink from 'components/atoms/NavLink'
+import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
@@ -14,11 +14,10 @@ import { keynoteRecommendation } from 'dates'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
 import intl from 'react-intl-universal'
-import { paths, contributionMenu } from 'routes/paths'
+import { contributionMenu, paths } from 'routes/paths'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 import { StatusBar } from '../../components/atoms/StatusBar'
 import { StoresType } from '../_app'
-import { LocalNavigation } from 'components/molecules/LocalNavigation';
 
 export type IndexPagePropsType = {
   stores: StoresType;
@@ -75,7 +74,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
         <Section>
           <H2><IntlText intlKey='common.schedule'>일정</IntlText></H2>
           <ContentTableWrapper>
-            <Table style={{ width: '518px' }}>
+            <ScheduleTable>
               <TBody>
                 {schedule.map(({ title, date, description, intlKey }) =>
                   <Tr key={title}>
@@ -90,7 +89,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
                   </Tr>
                 )}
               </TBody>
-            </Table>
+            </ScheduleTable>
           </ContentTableWrapper>
         </Section>
         <Section>

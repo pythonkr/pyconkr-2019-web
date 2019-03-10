@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { TEAL_DARK, TEAL_SEMI_DARK } from 'styles/colors'
-import { contentWidth } from 'styles/layout'
+import { contentWidth, contentWidthPadding } from 'styles/layout'
 
 /**
  * classnames
@@ -16,7 +16,7 @@ export const ContentWrapper = styled.main`
   min-height: 900px;
   width: 100%;
   max-width: ${contentWidth};
-  padding: 10px 15px 63px;
+  padding: 10px ${contentWidthPadding} 63px;
   margin: 0 auto;
 `
 
@@ -90,6 +90,10 @@ border: none;
 ${Paragraph} + table {
   margin-top: 50px;
 }
+`
+
+export const ScheduleTable = styled(Table)`
+max-width: 518px;
 `
 
 export const TableWithBg = styled(Table)`
