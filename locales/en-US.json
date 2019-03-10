@@ -63,15 +63,16 @@
     "tutorialDescription": "Tutorials are educational programs for beginners, or challengers for new era. Tutorial mentors and tutors will guide you to easy way of learning. We recommend tutorials for beginner programmers or Python strangers.",
     "conferenceDescription": "There are over 50 different presentation sessions that share knowledge and use of Python use cases. In addition, various events such as sponsored company booth, young coder, lightning talk, open space are available. You can participate in the event and interact with various participants.",
     "sponsor": {
-      "title": "PyCon Korea 2019 Sponsor",
-      "description": "Thanks to the support of sponsors who are sympathetic to the importance of open source and the Python community, PyCon Korea has held an event where more developers can participate, such as video recording and financial support. We are looking for sponsors who are interested in supporting the growth of the Python community through sponsorship of PyCon Korea and interested in having special value as an official sponsor of PyCon Korea 2019.",
+      "title": "Looking for sponsors for PyCon Korea 2019",
+      "description1": "Thanks to all the sponsors who supported the importance of open source and Python community, we could organize an event that more programmers can attend by providing many speech sessions, side programs, video recordings and financial aid.",
+      "description2": "We are currently looking for the officinal sponsors for PyCon Korea 2019 who are interested in supporting the growth of Python community. ",
       "prospectus": "Schedule & Prospectus"
     },
     "pyconKoreaTitle": "About PyCon Korea",
     "pyconKoreaDescription": "PyCon is a non-commercial conference held by Python Programming Communities over the world. PyCon Korea has been successfully hold in several years with a group of volunteers called ‘PyCon Korea Preparation Organizers’, who support the local Korean Python community.",
     "sloganDescription1": "The slogan of PyCon Korea 2019 is \"Connect the Pythonistas\".",
-    "sloganDescription2": "PyCon Korea is a meeting point for Python users, and is also a contact point with other languages and communities. At PyCon Korea, you can meet a person who has studied a field in-depth, meet pythonistas in a completely different field, or meet a close friend.",
-    "sloganDescription3": "We hope that, through the Pycon Korea, a lot of directions and fields are scattered so that the pian stars, who exist in different points, will gather together to become beautiful constellations. See you in PyCon Korea 2019.",
+    "sloganDescription2": "PyCon can be a place where Python users meet, or a place that connects with other languages or communities. In PyCon, you can meet someone who is researching deeply on one thing, another Pythonista from a different field, or a friend of yours.",
+    "sloganDescription3": "With PyCon, we want all the Pythonistas who are in different fields and heading to different directions to get together and become an awesome constellation. See you again at PyCon Korea 2019.",
     "differenceWithOthers": {
       "title": "What's the difference between PyCon and other developer's conferences?",
       "description": "PyCon Korea is a non-profitable, developer-oriented event organized by community members, and has different characteristics from conferences organized companies or organizations. All attendees, including speakers, tutorial hosts, voluntary workers, and organizers, participate in PyCon Korea without any profitable purpose, and only to broaden the usage of Python, an open source programming language, and activate its community."

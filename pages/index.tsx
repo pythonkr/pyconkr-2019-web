@@ -282,11 +282,11 @@ class Index extends React.Component<{ stores: StoresType }> {
             <H2 intlKey='home.sponsor.title'>
               파이콘 한국 2019 후원사 (모집 예정)
             </H2>
-            <Paragraph intlKey='home.sponsor.description'>
+            <Paragraph intlKey='home.sponsor.description1'>
               파이콘 한국은 오픈소스 및 파이썬 커뮤니티의 중요성에 공감하는 후원사들의 감사한 지원 덕분에
               비디오 녹화, 티켓 가격 지원 등 더 많은 개발자들이 참여할 수 있는 행사를 만들어 왔습니다.
             </Paragraph>
-            <Paragraph intlKey='home.sponsor.description'>
+            <Paragraph intlKey='home.sponsor.description2'>
               파이콘 후원을 통해 파이썬 커뮤니티의 성장을 지원하고 파이콘 한국 2019의 공식 후원사로서의
               특별한 가치를 갖는 데에 관심이 있는 후원사를 모십니다.
             </Paragraph>
