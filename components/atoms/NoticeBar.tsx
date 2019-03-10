@@ -50,8 +50,13 @@ const StyledNoticeBar = styled.p`
   }
 
   margin: 10px 0;
+
   h1 + & {
     margin-bottom: 60px;
+  }
+
+  p + & {
+    margin-top: 30px;
   }
 
   a {

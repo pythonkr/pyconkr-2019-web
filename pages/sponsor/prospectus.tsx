@@ -11,10 +11,11 @@ import { inject, observer } from 'mobx-react'
 import React from 'react'
 // import { paths } from 'routes/paths'
 import { ALERT_BLUE_DARK, ALERT_YELLOW, ALERT_YELLOW_DARK, ALERT_YELLOW_SEMI_DARK, TEAL_DARK } from 'styles/colors'
+import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 import { StoresType } from '../_app'
 
 const SponsorTable = styled(ContentTableWrapper)`
-  padding:40px 0;
+  margin: 40px 0;
   thead th {
     border-top: solid 2px ${TEAL_DARK};
     border-bottom: solid 1px ${TEAL_DARK};
@@ -185,6 +186,14 @@ const SponsorTable = styled(ContentTableWrapper)`
 //   },
 // }
 
+const schedule = [{
+  title: '후원사 모집 오픈',
+  date: callForSponsors.open
+}, {
+  title: '후원사 모집 마감',
+  desc: '마감 시까지'
+}]
+
 @inject('stores')
 @observer
 export default class Prospectus extends React.Component<{ stores: StoresType }> {
@@ -198,11 +207,11 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
           후원사 안내
         </H1>
         <StatusBar
-            title='후원사 모집'
-            actionText='신청'
-            // link={paths.sponsor.applicationForm}
-            openDate={callForSponsors.open}
-          />
+          title='후원사 모집'
+          actionText='신청'
+          // link={paths.sponsor.applicationForm}
+          openDate={callForSponsors.open}
+        />
         <Paragraph intlKey='asdfasdfasdf'>
           파이콘은 커뮤니티 주관으로 이뤄지는 비영리 개발자 대상 행사로,
           여타 기업 및 기관에서 개최하는 개발자 행사와는 성격이 다릅니다.
@@ -216,6 +225,23 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
           이를 우수한 개발자 모집의 장으로 활용하실 수 있습니다.
         </Paragraph>
         <section>
+          <H2 intlKey='aaa'>세부 일정</H2>
+          <table style={{ width: '518px' }}>
+            <tbody>
+              {schedule.map(({ title, date, desc }) =>
+                <tr key={title}>
+                  <td className='bold'>{title}</td>
+                  <td>
+                    {date
+                      ? formatDateInWordsWithWeekdayAndTime(date)
+                      : desc}
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </section>
+        <section>
           <H2 intlKey='a'>문의</H2>
           <Paragraph intlKey='asdfasdfasdf'>
             <a href='mailto: sponsor@pycon.kr'>sponsor@pycon.kr</a><br />
@@ -226,8 +252,7 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
           <H2 intlKey='a'>후원사 패키지</H2>
           <Paragraph intlKey='asdfasdfasdf'>
             개최지와 여건에 따라 등급별 지원 내용은 다소 달라질 수 있습니다. <br />
-            또한, 후원사에 의해 제공되는 튜토리얼이나 세션, 증정품은 준비위원회와 사전 협의가 필요합니다. <br />
-            자세한 문의는 <a href='mailto: sponsor@pycon.kr'>sponsor@pycon.kr</a> 으로 주시기 바랍니다.
+            또한, 후원사에 의해 제공되는 튜토리얼이나 세션, 증정품은 준비위원회와 사전 협의가 필요합니다.
           </Paragraph>
           <NoticeBar
             color={ALERT_YELLOW}

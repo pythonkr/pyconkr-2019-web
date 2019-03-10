@@ -1,9 +1,10 @@
 import styled from '@emotion/styled'
-import Link from 'next/link'
 import NavLink from 'components/atoms/NavLink'
 import NavMenuSubLink from 'components/atoms/NavMenuSubLink'
+import { SNSLink } from 'components/atoms/SNSLink'
 import { PyConKRLogo } from 'components/atoms/SVG'
 import { inject, observer } from 'mobx-react'
+import Link from 'next/link'
 import Router from 'next/router'
 import { StoresType } from 'pages/_app'
 import React from 'react'
@@ -11,7 +12,6 @@ import intl from 'react-intl-universal'
 import { paths } from 'routes/paths'
 import { CORAL, CORAL_LIGHT } from 'styles/colors'
 import { navigationPadding } from 'styles/layout'
-import { SNSLink } from 'components/atoms/SNSLink'
 
 const NavWrapper = styled.nav`
   display: flex;
@@ -158,14 +158,14 @@ class Navigation extends React.Component<{ stores: StoresType }> {
     // FIXME :: 모바일 햄버거 메뉴
     if (document.getElementById('navHambuger')) {
       document.getElementById('navHambuger').addEventListener('click', () => {
-        document.getElementById('navMenuList').classList.toggle('active');
-      });
+        document.getElementById('navMenuList').classList.toggle('active')
+      })
 
       for (let i = 0; i < document.getElementsByClassName('navMenuLi').length; i++) {
         document.getElementsByClassName('navMenuLi')[i].getElementsByTagName('span')[0].addEventListener('click', () => {
-          document.getElementsByClassName('navMenuLi')[i].getElementsByClassName('caret')[0].classList.toggle('active');
-          document.getElementsByClassName('navMenuLi')[i].getElementsByClassName('navMiniMenu')[0].classList.toggle('active');
-        });
+          document.getElementsByClassName('navMenuLi')[i].getElementsByClassName('caret')[0].classList.toggle('active')
+          document.getElementsByClassName('navMenuLi')[i].getElementsByClassName('navMiniMenu')[0].classList.toggle('active')
+        })
       }
     }
   }
@@ -305,7 +305,7 @@ class Navigation extends React.Component<{ stores: StoresType }> {
       <NavWrapper>
         <ul>
           <NavItem>
-            <Link href="/">
+            <Link href='/'>
               <HeaderLogo>
                 <PyConKRLogo
                   width={139}
