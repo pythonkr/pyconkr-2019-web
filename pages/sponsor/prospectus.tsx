@@ -1,15 +1,15 @@
 import styled from '@emotion/styled'
 import { ContentTableWrapper } from 'components/atoms/ContentWrapper'
 import { NoticeBar } from 'components/atoms/NoticeBar'
-import { StatusBar } from 'components/atoms/StatusBar';
+import { StatusBar } from 'components/atoms/StatusBar'
 import { H1, H2, Paragraph } from 'components/atoms/withIntl'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
-import { callForSponsors } from 'dates';
+import { callForSponsors } from 'dates'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
-import { paths } from 'routes/paths';
+// import { paths } from 'routes/paths'
 import { ALERT_BLUE_DARK, ALERT_YELLOW, ALERT_YELLOW_DARK, ALERT_YELLOW_SEMI_DARK, TEAL_DARK } from 'styles/colors'
 import { StoresType } from '../_app'
 
@@ -200,7 +200,7 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
         <StatusBar
             title='후원사 모집'
             actionText='신청'
-            link={paths.sponsor.applicationForm}
+            // link={paths.sponsor.applicationForm}
             openDate={callForSponsors.open}
           />
         <Paragraph intlKey='asdfasdfasdf'>
