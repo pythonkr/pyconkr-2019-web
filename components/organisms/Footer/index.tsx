@@ -1,7 +1,7 @@
-import intl from 'react-intl-universal'
 import styled from '@emotion/styled'
 import { WideContentWidthWrapper } from 'components/atoms/WideContentWidthWrapper'
 import FixedFooter from 'components/organisms/FixedFooter'
+import intl from 'react-intl-universal'
 
 const FooterWrapper = styled.footer`
   background-color: #f5f5f5;

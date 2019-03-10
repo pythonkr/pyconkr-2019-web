@@ -1,17 +1,18 @@
-import styled from '@emotion/styled';
-import { NaverLogo } from 'components/atoms/SVG';
-import { H1 } from 'components/atoms/withIntl';
-import Footer from 'components/organisms/Footer';
-import Header from 'components/organisms/Header';
-import PageTemplate from 'components/templates/PageTemplate';
-import { clientIdEnum } from 'lib/stores/AuthStore';
-import { inject, observer } from 'mobx-react';
-import Router from 'next/router';
-import React from 'react';
-import intl from 'react-intl-universal';
-import { paths } from 'routes/paths';
-import { FACEBOOK_BLUE, NAVER_GREEN } from 'styles/colors';
-import { StoresType } from '../_app';
+import styled from '@emotion/styled'
+import { H1 } from 'components/atoms/ContentWrappers'
+import { IntlText } from 'components/atoms/IntlText'
+import { NaverLogo } from 'components/atoms/SVG'
+import Footer from 'components/organisms/Footer'
+import Header from 'components/organisms/Header'
+import PageTemplate from 'components/templates/PageTemplate'
+import { clientIdEnum } from 'lib/stores/AuthStore'
+import { inject, observer } from 'mobx-react'
+import Router from 'next/router'
+import React from 'react'
+import intl from 'react-intl-universal'
+import { paths } from 'routes/paths'
+import { FACEBOOK_BLUE, NAVER_GREEN } from 'styles/colors'
+import { StoresType } from '../_app'
 
 const LoginButtonsWrapper = styled.div`
   width: 700px;
@@ -122,7 +123,7 @@ class Login extends React.Component<{ stores: StoresType }> {
         header={<Header title='파이콘 한국 2019' />}
         footer={<Footer />}
       >
-        <H1 intlKey='homeTitle'>로그인</H1>
+        <H1><IntlText intlKey='homeTitle'>로그인</IntlText></H1>
         <LoginButtonsWrapper>
           <MainButton onClick={this.handleGitHubLogin}>
             <ButtonText color='white'>{

@@ -1,14 +1,19 @@
-import intl from 'react-intl-universal'
 import { Button } from 'components/atoms/Button'
-import { ContentButtonWrapper, ContentTableWrapper } from 'components/atoms/ContentWrapper'
+import {
+  ContentButtonWrapper, ContentTableWrapper, H1, H2, isBold, Paragraph, Section,
+  Table, TBody, Td, Tr
+} from 'components/atoms/ContentWrappers'
+import {
+  IntlText
+} from 'components/atoms/IntlText'
 import NavLink from 'components/atoms/NavLink'
-import { H1, H2, Paragraph } from 'components/atoms/withIntl'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
 import { keynoteRecommendation } from 'dates'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
+import intl from 'react-intl-universal'
 import { paths } from 'routes/paths'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 import { StatusBar } from '../../components/atoms/StatusBar'
@@ -62,22 +67,24 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           name='발표안 제안하기'
           /> */}
         </div>
-        
-        <H1 intlKey='contribute.recommendKeynoteSpeaker.title'>
+
+        <H1><IntlText intlKey='contribute.recommendKeynoteSpeaker.title'>
           키노트 연사 추천하기
-        </H1>
+        </IntlText></H1>
         <StatusBar
           title='키노트 연사 추천'
           actionText='추천'
           link={paths.contribute.recommendingAKeynoteSpeaker}
           openDate={keynoteRecommendation.open}
         />
-        <Paragraph intlKey='contribute.recommendKeynoteSpeaker.description1'>
+        <Paragraph><IntlText intlKey='contribute.recommendKeynoteSpeaker.description1'>
           파이써니스타들의 북극성이 되어주실 파이콘 한국 2019 키노트 연사를 찾고 있습니다.
-        </Paragraph>
-        <Paragraph intlKey='contribute.recommendKeynoteSpeaker.description2'>
-          생활/일/취미 등에 파이썬을 적극적으로 활용하시는 분, 주변 사람들에게 파이썬을 열심히 전파하시는 분 등 파이썬을 적극적으로 사용하는 분이 있다면 주저 말고 추천해주시기 바랍니다.
-        </Paragraph>
+        </IntlText></Paragraph>
+        <Paragraph><IntlText intlKey='contribute.recommendKeynoteSpeaker.description2'>
+          생활/일/취미 등에 파이썬을 적극적으로 활용하시는 분,
+          주변 사람들에게 파이썬을 열심히 전파하시는 분 등 파이썬을 적극적으로 사용하는 분이 있다면
+          주저 말고 추천해주시기 바랍니다.
+        </IntlText></Paragraph>
         <ContentButtonWrapper>
           <Button
             intlKey='contribute.recommendKeynoteSpeaker.recommendButton'
@@ -85,32 +92,31 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
             outlink
           >추천 양식 열기</Button>
         </ContentButtonWrapper>
-        <section>
-          <H2 intlKey='common.schedule'>일정</H2>
+        <Section>
+          <H2><IntlText intlKey='common.schedule'>일정</IntlText></H2>
           <ContentTableWrapper>
-            <table style={{ width: '518px' }}>
-              <tbody>
-                {schedule.map(({ title, intlKey, date, description }) =>
-                  <tr key={title}>
-                    <td className='bold'>{intl.get(intlKey).d(title)}</td>
-                    <td>
+            <Table style={{ width: '518px' }}>
+              <TBody>
+                {schedule.map(({ title, date, description, intlKey }) =>
+                  <Tr key={title}>
+                    <Td className={isBold}>{intl.get(intlKey).d(title)}</Td>
+                    <Td>
                       {
                         description ?
                         intl.get(description.intlKey).d(description.default)
                         : formatDateInWordsWithWeekdayAndTime(date!)
                       }
-                    </td>
-                  </tr>
+                    </Td>
+                  </Tr>
                 )}
-              </tbody>
-            </table>
+              </TBody>
+            </Table>
           </ContentTableWrapper>
-        </section>
-        <section>
-          <H2 intlKey='common.contact'>문의</H2>
-          <Paragraph intlKey='asdfasdfasdf'>program@pycon.kr</Paragraph>
-        </section>
-        <section></section>
+        </Section>
+        <Section>
+          <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
+          <Paragraph>program@pycon.kr</Paragraph>
+        </Section>
       </PageTemplate>
     )
   }

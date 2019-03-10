@@ -1,16 +1,13 @@
 import styled from '@emotion/styled'
-import { H1 } from 'components/atoms/withIntl';
-import Footer from 'components/organisms/Footer';
-import Header from 'components/organisms/Header';
-import PageTemplate from 'components/templates/PageTemplate';
-import { toJS } from 'mobx';
-import { inject, observer } from 'mobx-react';
-import Router from 'next/router';
-import React from 'react';
-import { paths } from 'routes/paths';
+import { H1 } from 'components/atoms/ContentWrappers'
+import { IntlText } from 'components/atoms/IntlText'
+import Footer from 'components/organisms/Footer'
+import Header from 'components/organisms/Header'
+import PageTemplate from 'components/templates/PageTemplate'
+import { inject, observer } from 'mobx-react'
+import React from 'react'
 import { CORAL } from 'styles/colors'
-import { StoresType } from '../_app';
-
+import { StoresType } from '../_app'
 
 // TODO:: disabled 속성 분리 + 파일 업로드 CSS 관리
 const Wrapper = styled.div`
@@ -85,12 +82,12 @@ button.disabled {
     border-radius: .4em;
     text-align:center;
     color: #FFF;
-    
+
     &:hover {
         cursor: pointer;
     }
 }
-    
+
 .file-upload__input {
     position: absolute;
     left: 0;
@@ -146,31 +143,37 @@ class Profile extends React.Component<{ stores: StoresType }> {
         header={<Header title='프로필' />}
         footer={<Footer />}
       >
-        <H1 intlKey='homeTitle'>프로필</H1>
+        <H1><IntlText intlKey='homeTitle'>프로필</IntlText></H1>
         <Wrapper>
             <label>프로필 사진</label>
-            <img width='160px' height='160px' src={this.state.profile.image ? this.state.profile.image : this.state.profile.avatarUrl}></img>
-            <label htmlFor="upload" className="file-upload__label">업로드</label>
+            <img
+              width='160px'
+              height='160px'
+              src={this.state.profile.image ? this.state.profile.image : this.state.profile.avatarUrl}
+            />
+            <label
+              htmlFor='upload'
+              className='file-upload__label'
+            >업로드</label>
           <input
-              id="upload"
-              className="file-upload__input"
-              name="file-upload"
-              type='file'
-              multiple
-              onChange={({ target: { validity, files } }) => {
-                if (!validity.valid || !files) {
-                  return
-                }
-                stores.profileStore.uploadProfileImage(files[0]).then((image) => {
-                  this.setState({
-                    profile: {
-                      ...this.state.profile,
-                      image
-                    }
-                  })
+            id='upload'
+            className='file-upload__input'
+            name='file-upload'
+            type='file'
+            multiple
+            onChange={({ target: { validity, files } }) => {
+              if (!validity.valid || !files) {
+                return
+              }
+              stores.profileStore.uploadProfileImage(files[0]).then((image) => {
+                this.setState({
+                  profile: {
+                    ...this.state.profile,
+                    image
+                  }
                 })
-              }
-              }
+              })
+            }}
           />
           <form onSubmit={(e) => {
             e.preventDefault()
@@ -195,7 +198,7 @@ class Profile extends React.Component<{ stores: StoresType }> {
           }}>
             <label>이메일</label>
             <input
-                className="disabled"
+                className='disabled'
                 type='text'
                 value={this.state.profile.email}
                 onChange={e => this.setState({

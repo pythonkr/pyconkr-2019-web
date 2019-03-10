@@ -1,4 +1,5 @@
-import { H1, H2, Paragraph } from 'components/atoms/withIntl'
+import { H1, H2, Paragraph, Section } from 'components/atoms/ContentWrappers'
+import { IntlText } from 'components/atoms/IntlText'
 import { StatusBar } from 'components/atoms/StatusBar'
 import Stage1 from 'components/organisms/CFPForm/Stage1'
 import Stage2 from 'components/organisms/CFPForm/Stage2'
@@ -35,6 +36,7 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
     const {authStore, cfpStore} = this.props.stores
     if (!authStore.logined) {
       Router.replace(paths.account.login)
+
       return
     }
     cfpStore.retrieveCategories()
@@ -50,9 +52,9 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
         header={<Header title='발표안 제안하기 :: 파이콘 한국 2019' />}
         footer={<Footer />}
       >
-        <H1 intlKey='contribute.overview.title'>
+        <H1><IntlText intlKey='contribute.overview.title'>
           발표안 제안하기
-        </H1>
+        </IntlText></H1>
         <StatusBar
           title='발표안 모집'
           actionText='제안'
@@ -60,12 +62,12 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
           openDate={talkProposal.open}
           closeDate={talkProposal.close}
         />
-        <Paragraph intlKey='asdfasdfasdf'>
+        <Paragraph><IntlText intlKey='asdfasdfasdf'>
           파이썬에 대한 학술적 또는 상업적 프로젝트, 케이스 스터디 등 다양한 파이썬 관련 발표를 아래와 같은 일정으로 모집합니다.
           자세한 내용은 발표안 작성 가이드를 참고해주세요.
-        </Paragraph>
-        <section>
-          <H2 intlKey='aaa'>세부 일정</H2>
+        </IntlText></Paragraph>
+        <Section>
+          <H2><IntlText intlKey='aaa'>세부 일정</IntlText></H2>
           <table style={{ width: '518px' }}>
             <tbody>
               {schedule.map(({ title, date }) =>
@@ -78,13 +80,13 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
               )}
             </tbody>
           </table>
-        </section>
-        <section>
-          <H2 intlKey='bbb'>문의</H2>
-          <Paragraph intlKey='asdfasdfasdf'>program@pycon.kr</Paragraph>
-        </section>
-        <section>
-          <H2 intlKey='ccc'>제안서 작성</H2>
+        </Section>
+        <Section>
+          <H2><IntlText intlKey='bbb'>문의</IntlText></H2>
+          <Paragraph><IntlText intlKey='asdfasdfasdf'>program@pycon.kr</IntlText></Paragraph>
+        </Section>
+        <Section>
+          <H2><IntlText intlKey='ccc'>제안서 작성</IntlText></H2>
           {(currentStage === CFPFormStage.stage1) && <Stage1 stores={stores} />}
           {(currentStage === CFPFormStage.stage2) && <Stage2 stores={stores} />}
           {(currentStage === CFPFormStage.stage3) && <Stage3 stores={stores} />}
@@ -92,7 +94,7 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
           {(currentStage === CFPFormStage.completed) && <div>
             발표안을 제출했습니다! 호호호
             </div>}
-        </section>
+        </Section>
       </PageTemplate>
     )
   }

@@ -1,9 +1,9 @@
 import { Button } from 'components/atoms/Button'
-import { H1, H2, Paragraph } from 'components/atoms/withIntl'
+import { H1, H2, isBold, Paragraph, Section, TableWithBg, TBody, Td, Tr, ContentTableWrapper } from 'components/atoms/ContentWrappers'
+import { IntlText } from 'components/atoms/IntlText'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
-import NavLink from 'components/atoms/NavLink'
 import { differenceInCalendarDays, isFuture, isPast } from 'date-fns'
 import { keynoteRecommendation, lightningTalk, sprintProposal, talkProposal, tutorialProposal, volunteer } from 'dates'
 import { inject, observer } from 'mobx-react'
@@ -62,7 +62,6 @@ const getContributionClass = (openDate?: DateDTO, closeDate?: DateDTO) => {
   return 'active'
 }
 
-
 const getContributionStatus = (openDate?: DateDTO, closeDate?: DateDTO, link?: string) => {
   if (!openDate || !link) return '-'
   if (isFuture(openDate) && link) {
@@ -99,77 +98,57 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
         header={<Header title='공헌 안내 :: 파이콘 한국 2019' />}
         footer={<Footer />}
       >
-        <div style={ {textAlign: 'center'} }>
-          <NavLink
-            to={paths.contribute.overview}
-            intlKey='gnb.contribute.overview'
-            name='공헌 안내'
-          />
-            <NavLink
-            to={paths.contribute.recommendingAKeynoteSpeaker}
-            intlKey='gnb.contribute.recommendKeynoteSpeaker'
-            name='키노트 연사 추천'
-          />
-          <NavLink
-            to={paths.contribute.cfpDetailedGuide}
-            intlKey='gnb.contribute.cfpDetailedGuide'
-            name='발표안 작성 가이드'
-          />
-          {/* <NavLink
-          to={paths.contribute.proposingATalk}
-          intlKey='gnb.contribute.proposingATalk'
-          name='발표안 제안하기'
-        /> */}
-        </div>
-        <H1 intlKey='contribute.overview.title'>
+        <H1><IntlText intlKey='contribute.overview.title'>
           파이콘 한국에 공헌하는 다양한 방법
-        </H1>
-        <Paragraph intlKey='contribute.overview.intro'>
+        </IntlText></H1>
+        <Paragraph><IntlText intlKey='contribute.overview.intro'>
           파이콘 한국에는 발표, 튜토리얼 튜터 및 멘토, 스프린트 진행, 자원 봉사 등 다양한 형태로 공헌할 수 있습니다.
           각 항목은 아래와 같은 일정으로 모집합니다.
-          </Paragraph>
-        <table>
-          <tbody className='has-bg'>
-            {contributions.map(({ title, intlKey, openDate, closeDate, link, dateDescription }) =>
-              <tr
-                key={title}
-                className={getContributionClass(openDate, closeDate)}
-              >
-                <td className='bold'>
-                  { intl.get(intlKey).defaultMessage(title) }</td>
-                <td>
-                  {
-                    dateDescription ? intl.get(dateDescription.intlKey).defaultMessage(dateDescription.default)
-                    : `${formatDateInWords(openDate)} -
-                      ${(closeDate && formatDateInWords(closeDate)) ||
-                      intl.get('contribute.overview.table.status.untilSelected')
-                        .defaultMessage('마감 시까지')}`
-                  }
-                </td>
-                <td>
-                  {getContributionStatus(openDate, closeDate, link)}
-                </td>
-                <td className='center-align'>
-                  {link
-                    ? <Button
-                      size='small'
-                      height={27}
-                      intlKey='contribute.overview.table.moreDetail'
-                      to={link}
-                      disabled={getContributionClass(openDate, closeDate) === 'disabled'}
-                      primary={getContributionClass(openDate, closeDate) === 'active' ? true : false}
-                    >자세히 보기</Button>
-                    : '-'
-                  }
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-        <section>
-          <H2 intlKey='common.contact'>문의</H2>
-          <Paragraph intlKey='asdfasdfasdf'>program@pycon.kr</Paragraph>
-        </section>
+        </IntlText></Paragraph>
+        <ContentTableWrapper>
+          <TableWithBg>
+            <TBody>
+              {contributions.map(({ title, intlKey, openDate, closeDate, link, dateDescription }) =>
+                <Tr
+                  key={title}
+                  className={getContributionClass(openDate, closeDate)}
+                >
+                  <Td className={isBold}>
+                    { intl.get(intlKey).defaultMessage(title) }</Td>
+                  <Td>
+                    {
+                      dateDescription ? intl.get(dateDescription.intlKey).defaultMessage(dateDescription.default)
+                      : `${formatDateInWords(openDate)} -
+                        ${(closeDate && formatDateInWords(closeDate)) ||
+                        intl.get('contribute.overview.table.status.untilSelected')
+                          .defaultMessage('마감 시까지')}`
+                    }
+                  </Td>
+                  <Td>
+                    {getContributionStatus(openDate, closeDate, link)}
+                  </Td>
+                  <Td className='center-align'>
+                    {link
+                      ? <Button
+                        size='small'
+                        height={27}
+                        intlKey='contribute.overview.table.moreDetail'
+                        to={link}
+                        disabled={getContributionClass(openDate, closeDate) === 'disabled'}
+                        primary={getContributionClass(openDate, closeDate) === 'active' ? true : false}
+                      >자세히 보기</Button>
+                      : '-'
+                    }
+                  </Td>
+                </Tr>
+              )}
+            </TBody>
+          </TableWithBg>
+        </ContentTableWrapper>
+        <Section>
+          <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
+          <Paragraph><a href='mailto:program@pycon.kr'>program@pycon.kr</a></Paragraph>
+        </Section>
       </PageTemplate>
     )
   }

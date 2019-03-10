@@ -62,6 +62,7 @@
     "no-floating-promises": false,
     "no-backbone-get-set-outside-model": false,
     "react-unused-props-and-state": false,
-    "use-simple-attributes": false
+    "use-simple-attributes": false,
+    "newline-per-chained-call": false
   }
 }

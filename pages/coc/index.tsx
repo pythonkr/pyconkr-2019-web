@@ -1,11 +1,12 @@
-import { H1, H2, Paragraph } from 'components/atoms/withIntl'
+import { H1, H2, Paragraph, Section } from 'components/atoms/ContentWrappers'
+import { IntlText } from 'components/atoms/IntlText'
+import { NoticeBar } from 'components/atoms/NoticeBar'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
 import { CORAL, CORAL_DARK, CORAL_LIGHT } from 'styles/colors'
-import { NoticeBar } from 'components/atoms/NoticeBar'
 import { StoresType } from '../_app'
 
 @inject('stores')
@@ -17,9 +18,9 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
         header={<Header title='파이콘 성명서 :: 파이콘 한국 2019' />}
         footer={<Footer />}
       >
-        <H1 intlKey='contribute.overview.title'>
+        <H1><IntlText intlKey='contribute.overview.title'>
           파이콘 성명서
-        </H1>
+        </IntlText></H1>
         <NoticeBar
             color={CORAL_LIGHT}
             borderColor={CORAL}
@@ -27,21 +28,21 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
             textLinkColor={CORAL_DARK}
             text={'파이콘 성명서는 2019년 5월 중에 업데이트될 예정입니다.'}
         />
-        <Paragraph intlKey='contribute.overview.intro'>
+        <Paragraph><IntlText intlKey='contribute.overview.intro'>
           파이콘 한국(이하 파이콘)은 커뮤니티 주관으로 이뤄지는 비영리 개발자 대상 행사로,
           오픈 소스 프로그래밍 언어인 파이썬의 저변 확대와 커뮤니티 활성화를 위해 진행하는 행사입니다.
-        </Paragraph>
-        <Paragraph intlKey='contribute.overview.intro'>
+          </IntlText></Paragraph>
+        <Paragraph><IntlText intlKey='contribute.overview.intro'>
           우리는 이 행사에 참여하는 모든 파이썬 커뮤니티의 참여를 소중히 여기며, 모든 참석자분들이 즐겁고 만족스러운 시간을 보내시기를 바랍니다.
           이를 위해 모든 참석자분들에게 행사 동안 공식적으로, 그리고 비공식적으로 모든 행사의 다른 참석자분들을 존중하고 서로 예의 있게 대해주실 것을 부탁드립니다.
-        </Paragraph>
-        <Paragraph intlKey='asdfasdfasdf'>
+          </IntlText> </Paragraph>
+        <Paragraph><IntlText intlKey='asdfasdfasdf'>
           사안들을 명확하게 하기 위해 모든 참석자, 발표자, 전시 참여자, 운영자와 자원봉사자는 모든 파이콘 행사에서 아래의 성명서를 따르셔야 함을 알려드립니다.
           운영자들은 행사 기간 동안 성명서의 내용을 시행할 것입니다.
-        </Paragraph>
+          </IntlText></Paragraph>
         {/* 목차  */}
-        <section>
-          <H2 intlKey='contribute.detail.notice.title'>요약</H2>
+        <Section>
+          <H2><IntlText intlKey='contribute.detail.notice.title'>요약</IntlText></H2>
           <ul>
             <li>
               파이콘은 모든 분들이 성별, 성적 지향, 장애, 외모, 신체 사이즈, 인종, 종교에 상관없이 컨퍼런스에 참여하실 수 있도록
@@ -59,9 +60,9 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
               이러한 규칙을 어기는 참석자들은 운영진의 재량에 의해 행사에 더 이상 참석하실 수 없으며, 참가 비용은 환불해드리지 않습니다.
               </li>
           </ul>
-        </section>
-        <section>
-          <H2 intlKey='contribute.detail.notice.title'>자세한 설명</H2>
+        </Section>
+        <Section>
+          <H2><IntlText intlKey='contribute.detail.notice.title'>자세한 설명</IntlText></H2>
           <ul>
             <li>
               성별, 성적 지향, 장애, 외모, 신체사이즈, 인종, 종교, 공개장소에서 성적인 묘사,
@@ -85,14 +86,14 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
               환불 없이 컨퍼런스에서 추방하는 등 필요한 행동을 취할 것입니다.
               </li>
           </ul>
-        </section>
-        <section>
-          <H2 intlKey='contribute.detail.notice.title'>라이센스</H2>
-          <Paragraph intlKey='asdfasdfasdf'>
+        </Section>
+        <Section>
+          <H2><IntlText intlKey='contribute.detail.notice.title'>라이센스</IntlText></H2>
+          <Paragraph><IntlText intlKey='asdfasdfasdf'>
             이 성명서는 Ada Initiative와 다른 자원봉사자들에 의해 작성된 Geek Feminism wiki의 정책 예시를 기본으로 하여 작성되었습니다.
             원문은 Creative Commons Zero 라이센스를 따르고 있습니다.   깃허브 링크 >
-          </Paragraph>
-        </section>
+            </IntlText></Paragraph>
+        </Section>
       </PageTemplate>
     )
   }

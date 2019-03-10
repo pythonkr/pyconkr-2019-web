@@ -1,8 +1,9 @@
 import intl from 'react-intl-universal'
 import styled from '@emotion/styled'
-import { H2 } from 'components/atoms/withIntl'
+import { H2 } from 'components/atoms/ContentWrappers'
+import { IntlText } from 'components/atoms/IntlText'
 import React from 'react'
-import { TEAL, CORAL } from 'styles/colors'
+import { CORAL, TEAL } from 'styles/colors'
 
 const StyledOutlineItem = styled.li``
 const StyledTableOfContents = styled.section`
@@ -69,7 +70,7 @@ const OutlineItem: React.SFC<OutlineItemProps> = ({ id, title, children }) => <S
 
 export const TableOfContents: React.SFC<Props> = ({ outline }) =>
   <StyledTableOfContents>
-    <H2 intlKey='common.tableOfContents'>목차</H2>
+    <H2><IntlText intlKey='common.tableOfContents'>목차</IntlText></H2>
     <ul>
       {outline.map(item =>
         <OutlineItem
