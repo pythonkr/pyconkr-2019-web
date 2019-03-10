@@ -1,3 +1,4 @@
+import intl from 'react-intl-universal'
 import styled from '@emotion/styled'
 import { H2 } from 'components/atoms/withIntl'
 import React from 'react'
@@ -57,7 +58,7 @@ interface Props {
 }
 
 const OutlineItem: React.SFC<OutlineItemProps> = ({ id, title, children }) => <StyledOutlineItem>
-  <a href={`#${id}`}>{title}</a>
+  <a href={`#${id}`}>{intl.get(id).d(title)}</a>
   {!!children && <ul>{children.map(item =>
     <OutlineItem
       key={item.title}
@@ -68,7 +69,7 @@ const OutlineItem: React.SFC<OutlineItemProps> = ({ id, title, children }) => <S
 
 export const TableOfContents: React.SFC<Props> = ({ outline }) =>
   <StyledTableOfContents>
-    <H2 intlKey='glossary.tableOfContents'>목차</H2>
+    <H2 intlKey='common.tableOfContents'>목차</H2>
     <ul>
       {outline.map(item =>
         <OutlineItem

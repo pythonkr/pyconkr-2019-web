@@ -1,3 +1,4 @@
+import intl from 'react-intl-universal'
 import { Button } from 'components/atoms/Button'
 import { ContentButtonWrapper, ContentTableWrapper } from 'components/atoms/ContentWrapper'
 import NavLink from 'components/atoms/NavLink'
@@ -19,10 +20,15 @@ export type IndexPagePropsType = {
 
 const schedule = [{
   title: '키노트 연사 추천 오픈',
+  intlKey: 'contribute.recommendKeynoteSpeaker.schedule.open',
   date: keynoteRecommendation.open
 }, {
   title: '키노트 연사 추천 마감',
-  description: '마감 시까지'
+  intlKey: 'contribute.recommendKeynoteSpeaker.schedule.deadline',
+  description: {
+    default: '마감 시까지',
+    intlKey: 'contribute.overview.table.status.untilSelected'
+  }
 }]
 
 @inject('stores')
@@ -57,7 +63,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           /> */}
         </div>
         
-        <H1 intlKey='contribute.overview.title'>
+        <H1 intlKey='contribute.recommendKeynoteSpeaker.title'>
           키노트 연사 추천하기
         </H1>
         <StatusBar
@@ -66,29 +72,33 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           link={paths.contribute.recommendingAKeynoteSpeaker}
           openDate={keynoteRecommendation.open}
         />
-        <Paragraph intlKey='asdfasdfasdf'>
+        <Paragraph intlKey='contribute.recommendKeynoteSpeaker.description1'>
           파이써니스타들의 북극성이 되어주실 파이콘 한국 2019 키노트 연사를 찾고 있습니다.
         </Paragraph>
-        <Paragraph intlKey='asdfasdfasdf'>
+        <Paragraph intlKey='contribute.recommendKeynoteSpeaker.description2'>
           생활/일/취미 등에 파이썬을 적극적으로 활용하시는 분, 주변 사람들에게 파이썬을 열심히 전파하시는 분 등 파이썬을 적극적으로 사용하는 분이 있다면 주저 말고 추천해주시기 바랍니다.
         </Paragraph>
         <ContentButtonWrapper>
           <Button
-            intlKey='dsfd'
+            intlKey='contribute.recommendKeynoteSpeaker.recommendButton'
             to='https://goo.gl/forms/APta2y38kzBbT5DJ2'
             outlink
           >추천 양식 열기</Button>
         </ContentButtonWrapper>
         <section>
-          <H2 intlKey='aaa'>일정</H2>
+          <H2 intlKey='common.schedule'>일정</H2>
           <ContentTableWrapper>
             <table style={{ width: '518px' }}>
               <tbody>
-                {schedule.map(({ title, date, description }) =>
+                {schedule.map(({ title, intlKey, date, description }) =>
                   <tr key={title}>
-                    <td className='bold'>{title}</td>
+                    <td className='bold'>{intl.get(intlKey).d(title)}</td>
                     <td>
-                      {description || formatDateInWordsWithWeekdayAndTime(date!)}
+                      {
+                        description ?
+                        intl.get(description.intlKey).d(description.default)
+                        : formatDateInWordsWithWeekdayAndTime(date!)
+                      }
                     </td>
                   </tr>
                 )}
@@ -97,7 +107,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           </ContentTableWrapper>
         </section>
         <section>
-          <H2 intlKey='bbb'>문의</H2>
+          <H2 intlKey='common.contact'>문의</H2>
           <Paragraph intlKey='asdfasdfasdf'>program@pycon.kr</Paragraph>
         </section>
         <section></section>

@@ -257,7 +257,7 @@ class Index extends React.Component<{ stores: StoresType }> {
               </Paragraph>
               <p style={{ margin: '22px 0 10px' }}>
                 <Button
-                  intlKey='gnb.contribute.recommendingAKeynoteSpeaker'
+                  intlKey='gnb.contribute.recommendKeynoteSpeaker'
                   to={paths.contribute.recommendingAKeynoteSpeaker}
                   fontSize={14}
                 >

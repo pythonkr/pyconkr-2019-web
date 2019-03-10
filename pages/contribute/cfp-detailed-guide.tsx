@@ -80,27 +80,81 @@ const outline = [{
 }]
 
 const cfpFormTable = [{
-  title: '발표 제목',
+  title: {
+    default: '발표 제목',
+    intlKey: 'contribute.cfpGuide.beforeProposal.information.item.title.title'
+  }
 }, {
-  title: '카테고리',
-  desc: `목록 보기`,
+  title: {
+    default: '카테고리',
+    intlKey: 'contribute.cfpGuide.beforeProposal.information.item.category.title'
+  },
+  desc: {
+    default: '제안 페이지에서 카테고리를 확인할 수 있습니다.',
+    intlKey: 'contribute.cfpGuide.beforeProposal.information.item.category.desc'
+  }
 }, {
-  title: '간략한 설명',
+  title: {
+    default: '간략한 설명',
+    intlKey: 'contribute.cfpGuide.beforeProposal.information.item.summary.title'
+  }
 }, {
-  title: '상세한 발표 내용',
+  title: {
+    default: '상세한 발표 내용',
+    intlKey: 'contribute.cfpGuide.beforeProposal.information.item.detail.title'
+  }
 }, {
-  title: '대상 청중 (난이도)',
-  desc: '초보 / 중급 / 고급',
+  title: {
+    default: '대상 청중 (난이도)',
+    intlKey: 'contribute.cfpGuide.beforeProposal.information.item.audience.title'
+  },
+  desc: {
+    default: '초보 / 중급 / 고급',
+    intlKey: 'contribute.cfpGuide.beforeProposal.information.item.audience.desc'
+  }
 }, {
-  title: '예상 발표 시간',
-  desc: '25분 / 40분',
+  title: {
+    default: '예상 발표 시간',
+    intlKey: 'contribute.cfpGuide.beforeProposal.information.item.timeslot.title'
+  },
+  desc: {
+    default: '25분 / 40분',
+    intlKey: 'contribute.cfpGuide.beforeProposal.information.item.timeslot.desc'
+  }
 }, {
-  title: '발표 언어',
-  desc: '한국어 / 영어',
+  title: {
+    default: '발표 언어',
+    intlKey: 'contribute.cfpGuide.beforeProposal.information.item.language.title'
+  },
+  desc: {
+    default: '한국어 / 영어',
+    intlKey: 'contribute.cfpGuide.beforeProposal.information.item.language.desc'
+  }
 }, {
-  title: '참고 및 질문 사항',
+  title: {
+    default: '참고 및 질문 사항',
+    intlKey: 'contribute.cfpGuide.beforeProposal.information.item.note.title'
+  },
+  desc: {
+    default: '오직 파이콘 준비위원회에만 공개되는 항목이니 자유롭게 작성해주셔도 괜찮습니다',
+    intlKey: 'contribute.cfpGuide.beforeProposal.information.item.note.desc'
+  },
   review: false,
 }]
+
+const getTitleStr = (title) => {
+  if(title){
+    return intl.get(title.intlKey).d(title.default)
+  }
+  return ''
+}
+
+const getDescStr = (desc) => {
+  if(desc){
+    return intl.get(desc.intlKey).d(desc.default)
+  }
+  return '-'
+}
 
 @inject('stores')
 @observer
@@ -194,35 +248,25 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
             <Paragraph intlKey='contribute.cfpGuide.beforeProposal.information.description'>
               또, 제안서에 채워야 하는 항목은 아래와 같습니다.
             </Paragraph>
-            {/* <ul>
-              <LI intlKey='contribute.cfpGuide.beforeProposal.information.item1'>발표 제목</LI>
-              <LI intlKey='contribute.cfpGuide.beforeProposal.information.item2'>간략한 발표 내용</LI>
-              <LI intlKey='contribute.cfpGuide.beforeProposal.information.item3'>상세한 발표 내용</LI>
-              <LI intlKey='contribute.cfpGuide.beforeProposal.information.item4'>
-                참고 사항 혹은 질문 사항 (오직 파이콘 준비위원회에만 공개되는 항목이니 자유롭게 작성해주셔도 괜찮습니다)
-              </LI>
-              <LI intlKey='contribute.cfpGuide.beforeProposal.information.item5'>대상 청중</LI>
-              <LI intlKey='contribute.cfpGuide.beforeProposal.information.item6'>예상 발표 시간</LI>
-              <LI intlKey='contribute.cfpGuide.beforeProposal.information.item7'>발표 언어 (한국어, 영어)</LI>
-            </ul>
-            <Paragraph intlKey='contribute.cfpGuide.beforeProposal.information.conclusion'>
-              선호도 투표 오픈 시 공개되는 항목은 제목, 간략한 발표 내용, 상세한 발표 내용, 대상 청중, 예상 발표 시간, 발표 언어입니다.
-            </Paragraph> */}
             <table>
               <thead>
-                <th>항목</th>
-                <th>내용</th>
-                <th>선호도 투표 시 공개 여부</th>
+                <th>{intl.get('contribute.cfpGuide.beforeProposal.information.header.item').d('항목')}</th>
+                <th>{intl.get('contribute.cfpGuide.beforeProposal.information.header.description').d('내용') }</th>
+                <th>{intl.get('contribute.cfpGuide.beforeProposal.information.header.visibility').d('선호도 투표 시 공개 여부')}</th>
               </thead>
               <tbody>
-                {cfpFormTable.map(({ title, desc, review = true }) => <tr>
-                  <td>{title}</td>
-                  <td>{desc || '-'}</td>
-                  <td>{review ?  '✅' : '❌'}</td>
-                </tr>)}
+                {cfpFormTable.map(({ title, desc, review = true }) => {
+                  return (
+                  <tr>
+                    <td align="center">{getTitleStr(title)}</td>
+                    <td align="center">{getDescStr(desc)}</td>
+                    <td align="center">{review ?  '✅' : '❌'}</td>
+                  </tr>)
+                }
+                )}
               </tbody>
             </table>
-            <Paragraph intlKey='asdfasdfasdf'>
+            <Paragraph intlKey='contribute.cfpGuide.beforeProposal.conclusion'>
               고려해야 할 부분들이 다소 어렵게 느껴지시나요?
               안내문은 이제 시작이니 겁내지 마세요.
               조금 더 상세한 설명과 함께 제안서를 작성해보세요.
@@ -241,7 +285,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
               <li><a href='https://www.pycon.kr/2016/'>PyCon Korea 2016</a></li>
               <li><a href='https://www.pycon.kr/2015/'>PyCon Korea 2015</a></li>
               <li><a href='https://www.pycon.kr/2014/'>PyCon Korea 2014</a></li>
-              <li><a href='http://www.pycon.org/'>각국 파이콘 행사 보기 👉</a></li>
+              <li><a href='http://www.pycon.org/'>{ intl.get('contribute.cfpGuide.selectTopic.viewOtherPycon').d('각국 파이콘 행사 보기 👉') }</a></li>
             </ul>
             <Paragraph intlKey='contribute.cfpGuide.selectTopic.conclusion'>
               주제를 선정했다면 이제 제안서에 채워야 할 내용들을 더 구체적으로 생각해볼 수 있습니다.
@@ -303,42 +347,44 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           </section>
           <section>
             <H2 intlKey='contribute.cfpGuide.difficulty.title' id='contribute.cfpGuide.difficulty.title'>대상 청중(난이도)를 정하는 방법</H2>
-            <Paragraph intlKey='asdfasdfasdf'>좋은 발표는 특정 Python 레벨과 대상 청중에게 알맞은 발표입니다. </Paragraph>
+            <Paragraph intlKey='contribute.cfpGuide.difficulty.desc1'>좋은 발표는 특정 Python 레벨과 대상 청중에게 알맞은 발표입니다. </Paragraph>
             <ul>
-              <li>
+              <LI intlKey='contribute.cfpGuide.difficulty.desc1-1'>
                 Cython을 사용하여 C 코드 블럭이 실행될 때 GIL을 해제하여 성능 이슈를 해결하는 방법에 대한 내용을
                 초보자/중급자를 위한 발표라고 표시하는 것은 좋지 않습니다.
-              </li>
-              <li>반대로, Cython에 대한 소개나 GIL에 대한 설명은 고급 사용자를 위한 발표로 적절하지 않습니다.</li>
+              </LI>
+              <LI intlKey='contribute.cfpGuide.difficulty.desc1-2'>
+                반대로, Cython에 대한 소개나 GIL에 대한 설명은 고급 사용자를 위한 발표로 적절하지 않습니다.
+              </LI>
             </ul>
-            <Paragraph intlKey='asdfasdfasdf'>
+            <Paragraph intlKey='contribute.cfpGuide.difficulty.desc2'>
               위와 같이 명백한 경우가 있는 반면에 대상 레벨을 정하기 애매한 내용들도 분명 있습니다.
               대상 레벨을 정하기 어려운 분들을 위해 간단한 가이드라인을 제시해드리고자 합니다.
             </Paragraph>
             <H3 intlKey='contribute.cfpGuide.difficulty.beginner.title' id='contribute.cfpGuide.difficulty.beginner.title'>초보</H3>
-            <Paragraph intlKey='asdfasdfasdf'>
+            <Paragraph intlKey='contribute.cfpGuide.difficulty.beginner.desc1'>
               Python에 대한 지식이 전혀 없거나 생소합니다. Python의 기본적인 문법이나 흐름에 대한 지식은 가지고 있으나,
               표준 라이브러리 모듈 중에는 모르는 것도 많으며 프로그래밍 전반에 대한 이해가 깊지 않습니다.
             </Paragraph>
-            <Paragraph intlKey='asdfasdfasdf'>
+            <Paragraph intlKey='contribute.cfpGuide.difficulty.beginner.desc2'>
               초보 레벨을 위한 발표 주제로는 Python을 배운 경험, 중급 사용자로 거듭나기 위해 필요한 Python 프로그래밍 스킬 등의 내용이 적당합니다.
               Pandas나 Django와 같은 Python 기본 내장 패키지가 아닌 패키지에 대한 내용은 초보자를 위한 것이 아닙니다.
             </Paragraph>
             <H3 intlKey='contribute.cfpGuide.difficulty.intermediate.title' id='contribute.cfpGuide.difficulty.intermediate.title'>중급</H3>
-            <Paragraph intlKey='asdfasdfasdf'>
+            <Paragraph intlKey='contribute.cfpGuide.difficulty.intermediate.desc1'>
               Python을 배운지 오래되지 않아 Python이 어떻게 활용될 수 있는지를 알고 싶어 합니다.
               혹은, 파이썬을 오랫동안 사용했지만 다양한 활용 분야에 대한 경험이 부족합니다. 여러 분야에서 활용되는 내용들을 다룰 수 있습니다.
             </Paragraph>
-            <Paragraph intlKey='asdfasdfasdf'>
+            <Paragraph intlKey='contribute.cfpGuide.difficulty.intermediate.desc2'>
               중급 레벨을 위한 발표 주제로는 웹 프레임워크 사용, 기계 학습, 웹 트래픽 모니터링, 자동화 등의 이야기가 선정될 수 있습니다.
               중급 레벨 대상의 제안서는 제안서 검토 후 초보자용 또는 고급자용 레벨로 조정 요청을 드릴 수 있다는 것을 알아두시기 바랍니다.
             </Paragraph>
             <H3 intlKey='contribute.cfpGuide.difficulty.experienced.title' id='contribute.cfpGuide.difficulty.experienced.title'>고급</H3>
-            <Paragraph intlKey='asdfasdfasdf'>
+            <Paragraph intlKey='contribute.cfpGuide.difficulty.experienced.desc1'>
               Python 기술에 익숙하고 일반적인 프로그래밍 개념이 잘 갖춰져있습니다.
               중급과 고급의 가장 큰 차이는 고급자용은 더 많은 해당 분야의 전문 지식을 요구한다는 점입니다.
             </Paragraph>
-            <Paragraph intlKey='asdfasdfasdf'>
+            <Paragraph intlKey='contribute.cfpGuide.difficulty.experienced.desc2'>
               고급 레벨을 위한 발표 주제로는 최적화나 Tool의 내부 동작에 대한 내용, 또는 Python의 내부 구현에 대한 내용이 적당합니다.
             </Paragraph>
           </section>
