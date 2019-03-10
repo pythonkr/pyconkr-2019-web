@@ -1,14 +1,10 @@
 import styled from '@emotion/styled'
 import NavLink from 'components/atoms/NavLink'
 import NavMenuSubLink from 'components/atoms/NavMenuSubLink'
-import { SNSLink } from 'components/atoms/SNSLink'
 import { PyConKRLogo } from 'components/atoms/SVG'
-import { inject, observer } from 'mobx-react'
 import Link from 'next/link'
-import Router, { withRouter } from 'next/router'
-import { StoresType } from 'pages/_app'
+import { withRouter } from 'next/router'
 import React from 'react'
-import intl from 'react-intl-universal'
 import { paths } from 'routes/paths'
 import { CORAL, CORAL_LIGHT } from 'styles/colors'
 import { navigationPadding } from 'styles/layout'
@@ -35,8 +31,9 @@ const NavMenuSubLinkList = styled.ul`
   display: flex;
   position: absolute;
   flex-direction: column;
-  top: 80px;
+  top: 78px;
   left: -40px;
+  padding: 8px 16px 10px;
   ${NavItem}:last-of-type & {
     right: 0;
     left: initial;
@@ -60,7 +57,6 @@ const HeaderLogo = styled.p`
 
 class Navigation extends React.Component<any> {
   render() {
-    console.log(this.props)
     return (
       <NavWrapper>
         <ul>
@@ -119,24 +115,24 @@ class Navigation extends React.Component<any> {
               basePath='/contribute'
             />
             <NavMenuSubLinkList>
-              <NavMenuSubLink
+              <li><NavMenuSubLink
                 to={paths.contribute.overview}
                 intlKey='gnb.contribute.overview'
                 name='공헌 안내'
-                // currentPath={this.props.router.pathname}
-              />
-              <NavMenuSubLink
+                currentPath={this.props.router.pathname}
+              /></li>
+              <li><NavMenuSubLink
                 to={paths.contribute.recommendingAKeynoteSpeaker}
                 intlKey='gnb.contribute.recommendKeynoteSpeaker'
                 name='키노트 연사 추천'
-                // currentPath={this.props.router.pathname}
-              />
-              <NavMenuSubLink
+                currentPath={this.props.router.pathname}
+              /></li>
+              <li><NavMenuSubLink
                 to={paths.contribute.cfpDetailedGuide}
                 intlKey='gnb.contribute.cfpDetailedGuide'
                 name='발표안 작성 가이드'
-                // currentPath={this.props.router.pathname}
-              />
+                currentPath={this.props.router.pathname}
+              /></li>
               {/* <NavMenuSubLink
                 to={paths.contribute.proposingATalk}
                 intlKey='gnb.contribute.proposingATalk'
@@ -153,12 +149,12 @@ class Navigation extends React.Component<any> {
               basePath='/sponsor'
             />
             <NavMenuSubLinkList>
-              <NavMenuSubLink
+              <li><NavMenuSubLink
                 to={paths.sponsor.prospectus}
                 intlKey='gnb.sponsor.prospectus'
                 name='후원사 안내'
-                // currentPath={this.props.router.pathname}
-              />
+                currentPath={this.props.router.pathname}
+              /></li>
               {/* <NavMenuSubLink
                 to={paths.sponsor.applicationForm}
                 intlKey='gnb.sponsor.applicationForm'

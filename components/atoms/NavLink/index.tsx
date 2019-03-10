@@ -1,10 +1,8 @@
 import styled from '@emotion/styled'
-import { css } from '@emotion/core'
-import { RouterProps, withRouter } from 'next/router'
 import Link from 'next/link'
 import React from 'react'
 import intl from 'react-intl-universal'
-import { CORAL } from 'styles/colors';
+import { CORAL } from 'styles/colors'
 
 const NavLinkA = styled.a`
   display: inline-flex;
@@ -17,7 +15,7 @@ const Span = styled.span`
   font-size: 16px;
   padding: 10px 0;
   font-weight: ${(props: { isActive: boolean }) => props.isActive ? '700' : 'normal'};
-  border-bottom: ${(props: { isActive: boolean }) => props.isActive ? `solid 2px ${CORAL}` : 'none'};
+  border-bottom: ${(props: { isActive: boolean }) => `solid 2px ${props.isActive ? CORAL : 'rgba(1, 1, 1, 0)'}`};
 `
 
 export type NavLinkPropsType = {
