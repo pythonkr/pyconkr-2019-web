@@ -1,12 +1,15 @@
 import styled from '@emotion/styled'
 import { ContentTableWrapper } from 'components/atoms/ContentWrapper'
 import { NoticeBar } from 'components/atoms/NoticeBar'
+import { StatusBar } from 'components/atoms/StatusBar';
 import { H1, H2, Paragraph } from 'components/atoms/withIntl'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
+import { callForSponsors } from 'dates';
 import { inject, observer } from 'mobx-react'
 import React from 'react'
+import { paths } from 'routes/paths';
 import { ALERT_BLUE_DARK, ALERT_YELLOW, ALERT_YELLOW_DARK, ALERT_YELLOW_SEMI_DARK, TEAL_DARK } from 'styles/colors'
 import { StoresType } from '../_app'
 
@@ -194,7 +197,12 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
         <H1 intlKey='contribute.overview.title'>
           후원사 안내
         </H1>
-        {/* Status Bar */}
+        <StatusBar
+            title='후원사 모집'
+            actionText='신청'
+            link={paths.sponsor.applicationForm}
+            openDate={callForSponsors.open}
+          />
         <Paragraph intlKey='asdfasdfasdf'>
           파이콘은 커뮤니티 주관으로 이뤄지는 비영리 개발자 대상 행사로,
           여타 기업 및 기관에서 개최하는 개발자 행사와는 성격이 다릅니다.
