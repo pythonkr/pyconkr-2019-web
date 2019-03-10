@@ -99,7 +99,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
         header={<Header title='공헌 안내 :: 파이콘 한국 2019' />}
         footer={<Footer />}
       >
-        <div>
+        <div style={ {textAlign: 'center'} }>
           <NavLink
             to={paths.contribute.overview}
             intlKey='gnb.contribute.overview'
