@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import React, { PropsWithChildren } from 'react'
+import { mobileWidth } from 'styles/layout'
 
 export interface LinkProps {
   title: string,
@@ -30,6 +31,11 @@ interface StyledNoticeBarProps {
 const StyledNoticeBarContent = styled.span`
   color: inherit;
   font-size: inherit;
+  font-weight: 700;
+  @media (max-width: ${mobileWidth}) {
+    line-height: 1.4;
+    width: 100%;
+  }
 `
 
 const StyledNoticeBar = styled.p`
@@ -42,10 +48,10 @@ const StyledNoticeBar = styled.p`
   background-color: ${({ color }: StyledNoticeBarProps) => color};
   border: solid 1px ${({ borderColor }) => borderColor};
   color: ${({ textColor }) => textColor};
+
   ${StyledNoticeBarContent} {
-    font-weight: 700;
     a {
-        color: ${({ textLinkColor }) => textLinkColor};
+      color: ${({ textLinkColor }) => textLinkColor};
     }
   }
 
@@ -65,7 +71,25 @@ const StyledNoticeBar = styled.p`
     text-decoration: none;
     display: inline-block;
     border-bottom: solid 1px ${({ textColor }) => textColor};
+    @media (max-width: ${mobileWidth}) {
+      line-height: 1.4;
+    }
   }
+
+  @media (max-width: ${mobileWidth}) {
+    flex-direction: column;;
+    padding: 15px 20px;
+    height: auto;
+  }
+`
+
+const SubText = styled.span`
+@media (max-width: ${mobileWidth}) {
+  display: block;
+  line-height: 1.4;
+  width: 100%;
+  padding-top: 5px;
+}
 `
 
 const NoticeBarLink: React.SFC<LinkProps> = ({
@@ -102,7 +126,7 @@ export const NoticeBar: React.SFC<PropsWithChildren<Props & StyledNoticeBarProps
     textLinkColor={textLinkColor}
   >
     <StyledNoticeBarContent>{text}</StyledNoticeBarContent>
-    {!!subText && <span>{subText}</span>}
+    {!!subText && <SubText>{subText}</SubText>}
     {!!link && <NoticeBarLink {...link} />}
     {!!actionButton && <ActionButton {...actionButton} />}
   </StyledNoticeBar>

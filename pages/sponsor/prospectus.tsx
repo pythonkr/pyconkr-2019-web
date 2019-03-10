@@ -83,7 +83,7 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
           <H2><IntlText intlKey='a'>후원사 패키지</IntlText></H2>
           <Paragraph><IntlText intlKey='asdfasdfasdf'>
             개최지와 여건에 따라 등급별 지원 내용은 다소 달라질 수 있습니다. <br />
-            또한, 후원사에 의해 제공되는 튜토리얼이나 세션, 증정품은 준비위원회와 사전 협의가 필요합니다.
+            또한, 후원사에 의해 제공되는 세션 및 튜토리얼, 증정품은 준비위원회와 사전 협의가 필요합니다.
           </IntlText></Paragraph>
           <NoticeBar
             color={ALERT_YELLOW}

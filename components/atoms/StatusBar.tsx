@@ -14,7 +14,7 @@ interface Props {
   openDate: DateDTO,
   closeDate?: DateDTO,
   link: string,
-  actionText:  ActionText
+  actionText: ActionText
 }
 
 const statusBarColors  = {
@@ -93,7 +93,7 @@ const _StatusBar: React.SFC<Props>  = ({
         : barType === 'ongoing' && closeDate
           ? `모집 마감 D${differenceInCalendarDays(new Date(), closeDate)}`
           : !closeDate
-            ? '마감 시까지'
+            ? '~마감 시까지'
             : undefined
       : undefined
     }
