@@ -38,7 +38,8 @@
       "root": "Contribution",
       "overview": "About Contribution",
       "cfpDetailedGuide": "How to submit proposal",
-      "proposingATalk": "Proposing a talk"
+      "proposingATalk": "Proposing a talk",
+      "recommendKeynoteSpeaker": "Recommending Keynote Speaker"
     },
     "sponsor": {
       "root": "Sponsor",
