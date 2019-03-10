@@ -43,7 +43,6 @@ const StyledNoticeBar = styled.p`
   border: solid 1px ${({ borderColor }) => borderColor};
   color: ${({ textColor }) => textColor};
   ${StyledNoticeBarContent} {
-    font-size: 18px;
     font-weight: 700;
     a {
         color: ${({ textLinkColor }) => textLinkColor};

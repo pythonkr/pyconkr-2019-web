@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
+import { LI } from 'components/atoms/LI'
 import { StatusBar } from 'components/atoms/StatusBar'
 import { TableOfContents } from 'components/atoms/TableOfContents'
 import { H1, H2, H3, Paragraph } from 'components/atoms/withIntl'
-import { LI } from 'components/atoms/LI'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
@@ -186,9 +186,9 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
             </Paragraph> */}
             <table>
               <thead>
-                <td>항목</td>
-                <td>내용</td>
-                <td>선호도 투표 시 공개 여부</td>
+                <th>항목</th>
+                <th>내용</th>
+                <th>선호도 투표 시 공개 여부</th>
               </thead>
               <tbody>
                 {cfpFormTable.map(({ title, desc, review = true }) => <tr>
@@ -217,6 +217,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
               <li><a href='https://www.pycon.kr/2016/'>PyCon Korea 2016</a></li>
               <li><a href='https://www.pycon.kr/2015/'>PyCon Korea 2015</a></li>
               <li><a href='https://www.pycon.kr/2014/'>PyCon Korea 2014</a></li>
+              <li><a href='http://www.pycon.org/'>각국 파이콘 행사 보기 👉</a></li>
             </ul>
             <Paragraph intlKey='contribute.cfpGuide.selectTopic.conclusion'>
               주제를 선정했다면 이제 제안서에 채워야 할 내용들을 더 구체적으로 생각해볼 수 있습니다.
