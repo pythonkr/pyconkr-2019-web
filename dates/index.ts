@@ -31,3 +31,7 @@ export const volunteer = {
 export const lightningTalk = {
   open: `2019-08-15T${defaultOpenTime}${timeZone}`,
 }
+
+export const callForSponsors = {
+  open: `2019-04-08T${defaultOpenTime}${timeZone}`,
+}

@@ -271,6 +271,11 @@ class Navigation extends React.Component<{ stores: StoresType }> {
                     intlKey='gnb.contribute.overview'
                     name='공헌 안내'
                   />
+                   <NavMenuSubLink
+                    to={paths.contribute.recommendingAKeynoteSpeaker}
+                    intlKey='gnb.contribute.recommendKeynoteSpeaker'
+                    name='키노트 연사 추천'
+                  />
                   <NavMenuSubLink
                     to={paths.contribute.cfpDetailedGuide}
                     intlKey='gnb.contribute.cfpDetailedGuide'

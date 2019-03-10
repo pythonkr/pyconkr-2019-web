@@ -10,7 +10,7 @@ import { talkProposal } from 'dates'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
 import intl from 'react-intl-universal'
-import { paths } from 'routes/paths'
+// import { paths } from 'routes/paths'
 import { StoresType } from '../_app'
 
 export type IndexPagePropsType = {
@@ -116,7 +116,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           <StatusBar
             title='발표안 모집'
             actionText='제안'
-            link={paths.contribute.proposingATalk}
+            // link={paths.contribute.proposingATalk}
             openDate={talkProposal.open}
             closeDate={talkProposal.close}
           />

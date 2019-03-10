@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Button } from 'components/atoms/Button';
 import { ContentWidthWrapper } from 'components/atoms/ContentWidthWrapper'
 import { H1, H2, H3, Paragraph, Span } from 'components/atoms/withIntl'
 import Footer from 'components/organisms/Footer'
@@ -8,6 +9,7 @@ import Router from 'next/router'
 import { parse } from 'qs'
 import React from 'react'
 import intl from 'react-intl-universal'
+import { paths } from 'routes/paths';
 import { CORAL } from 'styles/colors'
 import { StoresType } from './_app'
 
@@ -253,10 +255,25 @@ class Index extends React.Component<{ stores: StoresType }> {
                 또 후원 기업 부스와 영코더, 라이트닝 토크, 열린 공간 등 다양한 이벤트를 통해
                 다양한 참가자와 교류할 수 있습니다.
               </Paragraph>
-              <button>
-                {intl.get('gnb.contribute.proposingATalk')
-                  .defaultMessage('발표안 제안하기')}
-              </button>
+              <p style={{ margin: '22px 0 10px' }}>
+                <Button
+                  intlKey='gnb.contribute.recommendingAKeynoteSpeaker'
+                  to={paths.contribute.recommendingAKeynoteSpeaker}
+                  fontSize={14}
+                >
+                  키노트 연사 추천하기
+                </Button>
+              </p>
+              <p>
+                <Button
+                  primary={false}
+                  intlKey='gnb.contribute.proposingATalk'
+                  to={paths.contribute.cfpDetailedGuide}
+                  fontSize={14}
+                >
+                  발표안 제안하기
+                </Button>
+              </p>
             </li>
           </ul>
         </ScheduleSection>
@@ -273,10 +290,16 @@ class Index extends React.Component<{ stores: StoresType }> {
               파이콘 후원을 통해 파이썬 커뮤니티의 성장을 지원하고 파이콘 한국 2019의 공식 후원사로서의
               특별한 가치를 갖는 데에 관심이 있는 후원사를 모십니다.
             </Paragraph>
-            <button>
-              {intl.get('home.sponsor.prospectus')
-                .defaultMessage('후원 모집 일정 및 안내 보기')}
-            </button>
+            <p style={{ textAlign: 'center' }}>
+              <Button
+                intlKey='home.sponsor.prospectus'
+                to={paths.sponsor.prospectus}
+                primary={false}
+                size='big'
+              >
+                후원 모집 일정 및 안내 보기
+              </Button>
+            </p>
           </ContentWidthWrapper>
         </SponserSection>
         <IntroduceSection>
