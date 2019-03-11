@@ -82,6 +82,13 @@ const StyledNoticeBar = styled.p`
     flex-direction: column;;
     padding: 15px 20px;
     height: auto;
+    h1 + & {
+      margin-bottom: 50px;
+    }
+
+    p + & {
+      margin-top: 20px;
+    }
   }
 `
 
