@@ -30,7 +30,7 @@ class Header extends React.Component<PropsType> {
                 .d('파이콘 한국 2019')
             }
           />
-          <meta property='og:url' content='https://dev.pycon.kr/'/>
+          <meta property='og:url' content='https://www.pycon.kr'/>
           <meta
             property='og:description'
             content={
