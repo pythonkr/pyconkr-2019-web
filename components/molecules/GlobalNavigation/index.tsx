@@ -220,6 +220,19 @@ const SubmenuItemLink = styled(NavMenuSubLink)`
 }`
 
 class Navigation extends React.Component<any> {
+  state = {
+    isMenuOpened: false,
+    openedSubmenu: null,
+  }
+
+  toggleSubmenu = (menuKey: string) => {
+    this.setState({
+      openedSubmenu: this.state.openedSubmenu === menuKey
+        ? null
+        : menuKey
+    })
+  }
+
   render() {
     return (
       <NavWrapper>
@@ -236,17 +249,30 @@ class Navigation extends React.Component<any> {
             </Link>
           </NavItem>
         </ul>
-        <HamburgerCheckbox type='checkbox' id='menu-btn' defaultChecked={false} />
-        <HamburgerButtonLabel htmlFor='menu-btn'><HamburgerButtonIcon /></HamburgerButtonLabel>
+        <HamburgerCheckbox
+          type='checkbox'
+          id='menu-btn'
+          checked={this.state.isMenuOpened}
+          onChange={() => {
+            this.setState({
+              isMenuOpened: !this.state.isMenuOpened,
+              openedSubmenu: this.state.isMenuOpened ? false : this.state.openedSubmenu
+            })
+          }}
+        />
+        <HamburgerButtonLabel htmlFor='menu-btn'>
+          <HamburgerButtonIcon />
+        </HamburgerButtonLabel>
         <NavMenuList>
           {
             globalNavigationMenu.map(({ title, intlKey, link, basePath, submenu }) =>
               submenu
-                ? <NavItem key={inlKey}>
+                ? <NavItem key={intlKey}>
                   <SubmenuButtonCheckbox
                     type='checkbox'
                     id={intlKey}
-                    defaultChecked={false}
+                    checked={this.state.openedSubmenu === intlKey}
+                    onChange={() => this.toggleSubmenu(intlKey)}
                   />
                   <SubmenuButtonLabel htmlFor={intlKey}>
                     <SubmenuButtonSpan isActive={this.props.router.pathname.startsWith(basePath)}>
@@ -256,7 +282,7 @@ class Navigation extends React.Component<any> {
                   <Caret />
                   <SubmenuList>
                     {submenu.map(({ title, intlKey, link }) =>
-                      <SubmenuItem><SubmenuItemLink
+                      <SubmenuItem key={intlKey}><SubmenuItemLink
                         to={link}
                         intlKey={intlKey}
                         name={title}
@@ -265,7 +291,7 @@ class Navigation extends React.Component<any> {
                     )}
                   </SubmenuList>
                 </NavItem>
-                : <NavItem key={inlKey}>
+                : <NavItem key={intlKey}>
                   <NavLink
                     to={link}
                     intlKey={intlKey}
