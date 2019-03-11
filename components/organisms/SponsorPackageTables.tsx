@@ -91,28 +91,24 @@ export const SponsorPackageTables = () => <>
         <Tr>
           <Th>{ intl.get('sponsor.prospectus.packages.logo.header').d('로고 노출 위치') }</Th>
           <Td className={`${isSmall} ${verticalAlignTop}`}>
-            { intl.get('sponsor.prospectus.packages.logo.attendeePass').d('참가자 네임택 줄') }
+            { intl.get('sponsor.prospectus.packages.logo.attendeePass').d('참가자 네임택 줄') }<br/>
             { intl.get('sponsor.prospectus.packages.logo.hangingBanner').d('현수막') }<br/>
             { intl.get('sponsor.prospectus.packages.logo.standingBanner').d('스탠딩 배너') }<br/>
-            { intl.get('sponsor.prospectus.packages.logo.poster').d('포스터') }<br/>
             { intl.get('sponsor.prospectus.packages.logo.website').d('웹사이트') }
           </Td>
           <Td className={`${isSmall} ${verticalAlignTop}`}>
             { intl.get('sponsor.prospectus.packages.logo.hangingBanner').d('현수막') }<br/>
             { intl.get('sponsor.prospectus.packages.logo.standingBanner').d('스탠딩 배너') }<br/>
-            { intl.get('sponsor.prospectus.packages.logo.poster').d('포스터') }<br/>
             { intl.get('sponsor.prospectus.packages.logo.website').d('웹사이트') }
           </Td>
           <Td className={`${isSmall} ${verticalAlignTop}`}>
           { intl.get('sponsor.prospectus.packages.logo.hangingBanner').d('현수막') }<br/>
             { intl.get('sponsor.prospectus.packages.logo.standingBanner').d('스탠딩 배너') }<br/>
-            { intl.get('sponsor.prospectus.packages.logo.poster').d('포스터') }<br/>
             { intl.get('sponsor.prospectus.packages.logo.website').d('웹사이트') }
           </Td>
           <Td className={`${isSmall} ${verticalAlignTop}`}>
           { intl.get('sponsor.prospectus.packages.logo.hangingBanner').d('현수막') }<br/>
             { intl.get('sponsor.prospectus.packages.logo.standingBanner').d('스탠딩 배너') }<br/>
-            { intl.get('sponsor.prospectus.packages.logo.poster').d('포스터') }<br/>
             { intl.get('sponsor.prospectus.packages.logo.website').d('웹사이트') }
           </Td>
         </Tr>
@@ -161,7 +157,6 @@ export const SponsorPackageTables = () => <>
           <Th>{ intl.get('sponsor.prospectus.packages.logo.header').d('로고 노출 위치') }</Th>
           <Td className={`${isSmall} ${verticalAlignTop}`}>
             { intl.get('sponsor.prospectus.packages.logo.standingBanner').d('스탠딩 배너') }<br/>
-            { intl.get('sponsor.prospectus.packages.logo.poster').d('포스터') }<br/>
             { intl.get('sponsor.prospectus.packages.logo.website').d('웹사이트') }
           </Td>
           <Td className={`${isSmall} ${verticalAlignTop}`}>
