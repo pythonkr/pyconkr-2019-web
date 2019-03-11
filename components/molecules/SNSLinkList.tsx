@@ -1,19 +1,13 @@
 import styled from '@emotion/styled'
 import { SNSLink } from 'components/atoms/SNSLink'
-import { mobileWidth } from 'styles/layout'
 
-const StyledLinkList = styled.ul`
-  @media (max-width: ${mobileWidth}) {
-    display: none;
-  }
-`
 export const FixedFooterItem = styled.li`
   display: inline-block;
   padding: 0 10px;
   vertical-align: middle;
 `
 
-export const SNSLinkList = ({ color } : { color: string }) => <StyledLinkList>
+export const SNSLinkList = ({ color } : { color: string }) => <ul>
   <FixedFooterItem>
     <SNSLink
       to='https://blog.pycon.kr/'
@@ -74,4 +68,4 @@ export const SNSLinkList = ({ color } : { color: string }) => <StyledLinkList>
       fill={color}
     />
   </FixedFooterItem>
-</StyledLinkList>
+</ul>

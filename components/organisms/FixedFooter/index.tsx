@@ -76,6 +76,20 @@ const FixedFooterLinkA = styled.a`
 //   cursor: pointer;
 // `
 
+const RightPane = styled.div`
+display: flex;
+justify-content: space-between;
+align-items: center;
+@media (max-width: ${mobileWidth}) {
+  display: none;
+}
+`
+const LanguageButton = styled.button`
+cursor: pointer;
+color: white;
+font-size: 14px;
+`
+
 const Footer: React.SFC<any> =  ({ router: { query: { lang: currentLocale }}}) => {
   return (
     <FixedFooterWrapper>
@@ -88,25 +102,22 @@ const Footer: React.SFC<any> =  ({ router: { query: { lang: currentLocale }}}) =
           </Link>
         </FixedFooterItem>
       </ul>
-      <SNSLinkList color='white' />
-      <FixedFooterItem>
-        {/* Currently should reload page on language change */}
-        <button
+      <RightPane>
+        <SNSLinkList color='white' />
+        <LanguageButton
           onClick={() => {
             window.location.assign(
               `${window.location.pathname}?${URL_LOCALE_KEY}=${
                   currentLocale === LOCALE_KEY_EN
                     ? LOCALE_KEY_KR
                     : LOCALE_KEY_EN
-                  }`)
-          }}>
-          <IntlText intlKey='fixedFooter.youtubeLink'>
-            {currentLocale === LOCALE_KEY_EN
-              ? localeMap[LOCALE_KEY_KR]
-              : localeMap[LOCALE_KEY_EN]}
-          </IntlText>
-        </button>
-      </FixedFooterItem>
+              }`)
+        }}>
+          {currentLocale === LOCALE_KEY_EN
+            ? localeMap[LOCALE_KEY_KR]
+            : localeMap[LOCALE_KEY_EN]}
+        </LanguageButton>
+      </RightPane>
     </FixedFooterWrapper>
   )
 }

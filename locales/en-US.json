@@ -24,7 +24,7 @@
       }
     }
   },
-  
+
   "common": {
     "contact": "Contact",
     "schedule": "Schedule",
@@ -238,7 +238,7 @@
 
       }
     }
-  }, 
+  },
   "sponsor": {
     "prospectus": {
       "title": "Sponsor Prospectus",
@@ -326,7 +326,7 @@
     
   },
   "fixedFooter": {
-    "coc": "PyCon Korea Code of Conduct(CoC)",
+    "coc": "Code of Conduct",
     "sponsor": "Sponsor",
     "program": "Program",
     "other": "Others",
