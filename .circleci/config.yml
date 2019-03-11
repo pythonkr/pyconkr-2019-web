@@ -33,7 +33,7 @@ jobs:
             docker-compose up -d
             sleep 80
             docker-compose logs
-            curl http://localhost:3000/
+            curl -L http://localhost:3000/
 
   deploy-dev:
     docker:
@@ -48,7 +48,7 @@ jobs:
             sudo pip install fabric
             fab -H ${DEPLOY_HOST} -p -e deploy-dev --sha1 $CIRCLE_SHA1
             sleep 80
-            curl -f ${URL_ROOT}/
+            curl -Lf ${URL_ROOT}/
       
   deploy-prod:
     docker:
@@ -63,7 +63,7 @@ jobs:
             sudo pip install fabric
             fab -H ${DEPLOY_HOST} -p -e deploy-master --sha1 $CIRCLE_SHA1
             sleep 80
-            curl -f ${URL_ROOT}/
+            curl -Lf ${URL_ROOT}/
 
 workflows:
   version: 2
