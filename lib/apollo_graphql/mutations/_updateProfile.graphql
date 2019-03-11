@@ -1,14 +1,20 @@
 mutation UpdateProfile($profileInput: ProfileInput!) {
     updateProfile(profileInput: $profileInput) {
         profile {
+            id
+            oauthType
+            name       
             nameKo
             nameEn
+            bio
             bioKo
             bioEn
-            phone
             email
+            phone
             organization
             nationality
+            image
+            avatarUrl
         }
     }
 }

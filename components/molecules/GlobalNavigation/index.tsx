@@ -4,6 +4,7 @@ import NavMenuSubLink from 'components/atoms/NavMenuSubLink'
 import { PyConKRLogo } from 'components/atoms/SVG'
 import Link from 'next/link'
 import { withRouter } from 'next/router'
+import { inject, observer } from 'mobx-react'
 import React from 'react'
 import intl from 'react-intl-universal'
 import { paths } from 'routes/paths'
@@ -219,8 +220,12 @@ const SubmenuItemLink = styled(NavMenuSubLink)`
   padding: 20px 0;
 }`
 
+@inject('stores')
+@withRouter
+@observer
 class Navigation extends React.Component<any> {
   render() {
+    const {stores, router} = this.props
     return (
       <NavWrapper>
         <ul>
@@ -328,47 +333,52 @@ class Navigation extends React.Component<any> {
               /> */}
             </SubmenuList>
           </NavItem>
-          {/* <NavItem>
+          <NavItem>
             {
               stores.authStore.logined ?
                 <>
-                  <NavLink
-                    to={paths.account.profile}
-                    intlKey='gnb.info.root'
-                    name='내 정보'
-                  />
-                  <NavMenuSubLinkList>
-                    <SubmenuItemLink
+                  <SubmenuButtonCheckbox type='checkbox' id='info' defaultChecked={false} />
+                  <SubmenuButtonLabel htmlFor='info'>
+                    <SubmenuButtonSpan isActive={this.props.router.pathname.startsWith('/account')}>
+                      {intl.get('gnb.info.root').d('내 정보')}
+                    </SubmenuButtonSpan>
+                  </SubmenuButtonLabel>
+                  <Caret />
+                  <SubmenuList>
+                    <SubmenuItem><SubmenuItemLink
                       to={paths.account.contribution}
                       intlKey='gnb.info.history'
                       name='제안 및 신청 내역'
-                    />
-                    <SubmenuItemLink
+                      currentPath={this.props.router.pathname}
+                    /></SubmenuItem>
+                    <SubmenuItem><SubmenuItemLink
                       to={paths.account.profile}
                       intlKey='gnb.info.profile'
                       name='프로필'
-                    />
+                      currentPath={this.props.router.pathname}
+                    /></SubmenuItem>
                     <button onClick={() => {
                       stores.authStore.logout()
-                      Router.replace(paths.home)
+                      router.replace(paths.home)
                     }}>
                       {intl.get('gnb.info.logout')
                         .defaultMessage('로그아웃')}
                     </button>
-                  </NavMenuSubLinkList>
+                  </SubmenuList>
                 </>
                 :
                 <NavLink
                   to={paths.account.login}
                   intlKey='gnb.info.login'
                   name='로그인'
+                  currentPath={this.props.router.pathname}
                 />
             }
-          </NavItem> */}
+          </NavItem>
         </NavMenuList>
       </NavWrapper>
     )
   }
 }
 
-export default withRouter(Navigation)
+export default Navigation

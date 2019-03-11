@@ -404,7 +404,7 @@ class Navigation extends React.Component<{ stores: StoresType }> {
               /> */}
             </NavMenuSubLinkList>
           </NavItem>
-          {/* <NavItem>
+          <NavItem>
             {
               stores.authStore.logined ?
                 <>
@@ -440,7 +440,7 @@ class Navigation extends React.Component<{ stores: StoresType }> {
                   name='로그인'
                 />
             }
-          </NavItem> */}
+          </NavItem>
         </ul>
       </NavWrapper>
     )

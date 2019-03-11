@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { withRouter } from 'next/router'
 import { H1 } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
 import Footer from 'components/organisms/Footer'
@@ -6,6 +7,7 @@ import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
+import { paths } from 'routes/paths'
 import { CORAL } from 'styles/colors'
 import { StoresType } from '../_app'
 
@@ -29,7 +31,7 @@ input[type=file] {
 }
 
 input[type=text], input[type=tel] {
-    width: 608px;
+    width: 100%;
     height: 54px;
     margin-bottom: 34px;
     padding: 17px 31px;
@@ -46,7 +48,7 @@ input[type=text].disabled, input[type=tel].disabled {
 }
 
 textarea {
-    width: 608px;
+    width: 100%;
     height: 141px;
     margin-bottom: 34px;
     border-radius: 4px;
@@ -58,7 +60,7 @@ textarea {
 
 button {
     display: block;
-    width: 371px;
+    width: 100%;
     height: 54px;
     margin: 19px auto 0px;
     border-radius: 4px;
@@ -102,6 +104,7 @@ button.disabled {
 `
 
 @inject('stores')
+@withRouter
 @observer
 class Profile extends React.Component<{ stores: StoresType }> {
   state = {
@@ -122,17 +125,17 @@ class Profile extends React.Component<{ stores: StoresType }> {
   }
 
   async componentDidMount() {
-    // const {stores} = this.props
-    // if (!stores.authStore.logined){
-    //   Router.replace(paths.account.login)
-    //   return
-    // }
-    // await stores.profileStore.retrieveProfile()
-    // this.setState({
-    //   profile: {
-    //     ...toJS(stores.profileStore).profile
-    //   }
-    // })
+    const {stores, router} = this.props
+    if (!stores.authStore.logined){
+      router.replace(paths.account.login)
+      return
+    }
+    await stores.profileStore.retrieveProfile()
+    this.setState({
+      profile: {
+        ...stores.profileStore.profile
+      }
+    })
   }
 
   render() {
