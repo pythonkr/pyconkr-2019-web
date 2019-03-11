@@ -12,10 +12,10 @@ import { paths } from 'routes/paths'
 import { CORAL } from 'styles/colors'
 import { StoresType } from './_app'
 import { wideContentWidth, contentWidthPadding, mobileWidth, contentWidth } from 'styles/layout';
-import { MainBannerSvg } from 'components/atoms/SVG';
+import { MainBannerSvg, MainBannerSvgCompact } from 'components/atoms/SVG';
 
 const BannerSection = styled.section`
-height: 60vw;
+height: 65vw;
 max-height: 560px;
 background-color: ${CORAL};
 background-repeat: no-repeat;
@@ -25,8 +25,60 @@ position: relative;
 display: flex;
 justify-content: center;
 align-items: center;
-& > div {
-  padding-top: 255px;
+@media (max-width: 500px) {
+  height: auto;
+  max-height: none;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px 0;
+  justify-content: flex-start;
+}
+`
+const MainBannerSvgWrapper = styled.div`
+padding: 0;
+width: 100%;
+margin-left: 5%;
+pointer-events: none;
+position: relative;
+svg {
+  height: 100%;
+  width: auto;
+}
+@media (max-width: 500px) {
+  display: none;
+  margin: 0;
+}
+`
+const MainBannerSvgWrapperCompact = styled.div`
+padding: 0;
+width: 95%;
+pointer-events: none;
+svg {
+  height: auto;
+  width: 100%;
+}
+@media (min-width: 500px) {
+display: none;
+}
+`
+const MainBannerInfoWrapper = styled.div`
+position: absolute;
+right: 10%;
+color: white;
+h1, p {
+  margin: 20px 0;
+}
+h1 {
+  font-weight: 700;
+  font-size: 1.4em;
+  margin-top: 2.2em;
+}
+p {
+  font-size: 1.1em;
+  line-height: 1.6em;
+}
+@media (max-width: 500px) {
+  position: initial;
 }
 `
 const ScheduleSection = styled.section`
@@ -201,6 +253,7 @@ hr {
 }
 `
 
+
 @inject('stores')
 @observer
 class Index extends React.Component<{ stores: StoresType }> {
@@ -221,14 +274,19 @@ class Index extends React.Component<{ stores: StoresType }> {
       <>
         <Header title='파이콘 한국 2019' />
         <BannerSection>
-          <div style={{ padding: 0, width: '100%', marginLeft: '5%', pointerEvents: 'none'}}>
+          <MainBannerSvgWrapper>
             <MainBannerSvg color='white' />
-          </div>
-          {/* <div>
+          </MainBannerSvgWrapper>
+          <MainBannerSvgWrapperCompact>
+            <MainBannerSvgCompact color='white' />
+          </MainBannerSvgWrapperCompact>
+          <MainBannerInfoWrapper>
             <h1><IntlText intlKey='constant.pyconKorea.name'>파이콘 한국 2019</IntlText></h1>
-            <h3><IntlText intlKey='constant.pyconKorea.schedule'>2019.08.15(수)-18(일)</h3>
-            <h3>< intlKey='constant.pyconKorea.venue'>코엑스 그랜드볼룸, 서울</h3>
-          </div> */}
+            <p>
+              <IntlText intlKey='constant.pyconKorea.venue'>코엑스 그랜드볼룸, 서울</IntlText><br/>
+              <IntlText intlKey='constant.pyconKorea.schedule'>2019.08.15(수)-18(일)</IntlText>
+            </p>
+          </MainBannerInfoWrapper>
         </BannerSection>
         <ScheduleSection>
           <ul>
