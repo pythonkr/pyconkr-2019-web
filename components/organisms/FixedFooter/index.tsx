@@ -1,9 +1,13 @@
-import styled from '@emotion/styled';
-import { withRouter } from 'next/router';
-import { LOCALE_KEY_EN, LOCALE_KEY_KR, localeMap, URL_LOCALE_KEY } from 'locales/contants';
-import Link from 'next/link';
-import { SNSLink } from 'components/atoms/SNSLink';
-import { navigationPadding } from 'styles/layout';
+import styled from '@emotion/styled'
+import { SNSLink } from 'components/atoms/SNSLink'
+import { LOCALE_KEY_EN, LOCALE_KEY_KR, localeMap, URL_LOCALE_KEY } from 'locales/constants'
+import Link from 'next/link'
+import { withRouter } from 'next/router'
+import intl from 'react-intl-universal'
+import { TEAL } from 'styles/colors'
+import { mobileWidth, navigationPadding } from 'styles/layout'
+import { FixedFooterItem, SNSLinkList } from 'components/molecules/SNSLinkList';
+import { IntlText } from 'components/atoms/IntlText';
 
 const FixedFooterWrapper = styled.nav`
   position: fixed;
@@ -14,93 +18,82 @@ const FixedFooterWrapper = styled.nav`
   align-items: center;
   width: 100%;
   height: 40px;
-  box-sizing: border-box;
   padding: 0 ${navigationPadding};
-  background-color: #F95858;
+  background-color: ${TEAL};
   color: white;
-`
+  font-weight: 700;
 
-const FixedFooterItem = styled.li`
+  span {
     display: inline-block;
-    padding: 0 10px;
+  }
+
+  button {
+    background: transparent;
+    border: none;
+    outline: none;
+    margin-top: 2px;
+  }
+
+  @media (max-width: ${mobileWidth}) {
+    padding: 0 0 5px 0;
+    height: 60px;
+    position: relative;
+    justify-content: center;
+  }
 `
 
 const FixedFooterLinkA = styled.a`
+  font-size: 14px;
   display: inline-flex;
   height: 36px;
   align-items: center;
   cursor: pointer;
 `
 
-const Footer: React.SFC<any> =  ({ router: { query: { lang: currentLocale }}}) => (
-  <FixedFooterWrapper>
-    <ul>
-      <FixedFooterItem>
-        <Link href='/coc'>
-          <FixedFooterLinkA><span>파이콘 한국 성명서(CoC)</span></FixedFooterLinkA>
-        </Link>
-      </FixedFooterItem>
-    </ul>
-    <ul>
-      <FixedFooterItem>
-        <SNSLink
-          to='https://blog.pycon.kr/'
-          intlKey='fixedFooter.blogLink'
-          name='블로그'
-        />
-      </FixedFooterItem>
-      <FixedFooterItem>
-        <SNSLink
-          to='https://twitter.com/pyconkr'
-          intlKey='fixedFooter.twitterLink'
-          name='트위터'
-        />
-      </FixedFooterItem>
-      <FixedFooterItem>
-        <SNSLink
-          to='https://ko-kr.facebook.com/pyconkorea/'
-          intlKey='fixedFooter.facebookLink'
-          name='페이스북'
-        />
-      </FixedFooterItem>
-      <FixedFooterItem>
-        <SNSLink
-          to='https://github.com/pythonkr'
-          intlKey='fixedFooter.githubLink'
-          name='깃헙'
-        />
-      </FixedFooterItem>
-      <FixedFooterItem>
-        <SNSLink
-          to='https://www.flickr.com/photos/126829363@N08/sets/'
-          intlKey='fixedFooter.flickerLink'
-          name='플리커'
-        />
-      </FixedFooterItem>
-      <FixedFooterItem>
-        <SNSLink
-          to='https://www.youtube.com/channel/UC26x6D5xpKx6io4ShfXa_Ow'
-          intlKey='fixedFooter.youtubeLink'
-          name='유투브'
-        />
-      </FixedFooterItem>
-      <FixedFooterItem>
-        <button
+const RightPane = styled.div`
+display: flex;
+justify-content: space-between;
+align-items: center;
+@media (max-width: ${mobileWidth}) {
+  display: none;
+}
+`
+const LanguageButton = styled.button`
+cursor: pointer;
+color: white;
+font-size: 14px;
+`
+
+const Footer: React.SFC<any> =  ({ router: { query: { lang: currentLocale }}}) => {
+  return (
+    <FixedFooterWrapper>
+      <ul>
+        <FixedFooterItem>
+          <Link href='/coc'>
+            <FixedFooterLinkA><span>
+              {intl.get('fixedFooter.coc').defaultMessage('파이콘 한국 성명서(CoC)')}
+            </span></FixedFooterLinkA>
+          </Link>
+        </FixedFooterItem>
+      </ul>
+      <RightPane>
+        <SNSLinkList color='white' />
+        <LanguageButton
           onClick={() => {
             window.location.assign(
               `${window.location.pathname}?${URL_LOCALE_KEY}=${
-                currentLocale === LOCALE_KEY_EN
-                  ? LOCALE_KEY_KR
-                  : LOCALE_KEY_EN
-            }`)
-          }}>
-            {currentLocale === LOCALE_KEY_EN
-              ? localeMap[LOCALE_KEY_KR]
-              : localeMap[LOCALE_KEY_EN]}
-          </button>
-      </FixedFooterItem>
-    </ul>
+                  currentLocale === LOCALE_KEY_EN
+                    ? LOCALE_KEY_KR
+                    : LOCALE_KEY_EN
+              }`)
+        }}>
+          {currentLocale === LOCALE_KEY_EN
+            ? localeMap[LOCALE_KEY_KR]
+            : localeMap[LOCALE_KEY_EN]}
+        </LanguageButton>
+      </RightPane>
     </FixedFooterWrapper>
-)
+  )
+}
 
 export default withRouter(Footer)

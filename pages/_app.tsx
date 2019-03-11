@@ -1,17 +1,34 @@
+import { injectGlobal } from 'emotion'
+import emotionReset from 'emotion-reset'
+import FontFaceObserver from 'fontfaceobserver'
 import IntlPolyfill from 'intl'
+import AuthStore, { AuthStore as AuthStoreType } from 'lib/stores/AuthStore'
+import CFPStore, { CFPStore as CFPStoreType } from 'lib/stores/CFPStore'
+import ProfileStore, { ProfileStore as ProfileStoreType } from 'lib/stores/ProfileStore'
+import SponsorStore, { SponsorStore as SponsorStoreType } from 'lib/stores/SponsorStore'
+import { LOCALE_KEY_KR, URL_LOCALE_KEY } from 'locales/constants'
 import { Provider } from 'mobx-react'
 import App, { Container } from 'next/app'
 import intl from 'react-intl-universal'
-import FontFaceObserver from 'fontfaceobserver'
-
-import { URL_LOCALE_KEY, LOCALE_KEY_KR } from 'locales/contants';
-import AuthStore, { AuthStore as AuthStoreType } from 'lib/stores/AuthStore'
-import ProfileStore, { ProfileStore as ProfileStoreType } from 'lib/stores/ProfileStore'
-import SponsorStore, { SponsorStore as SponsorStoreType } from 'lib/stores/SponsorStore'
-import CFPStore, { CFPStore as CFPStoreType } from 'lib/stores/CFPStore'
+import { commonCSS } from 'styles/common'
+import { fontCSS } from 'styles/font'
 
 global.Intl = IntlPolyfill
 require('intl/locale-data/jsonp/ko.js')
+
+const intlWarningHandler = (message: string) => {
+  if (message.includes('react-intl-universal key') &&
+    message.includes(`not defined in ${LOCALE_KEY_KR}`)) {
+    return
+  }
+  console.error(message)
+}
+
+injectGlobal`
+  ${emotionReset}
+  ${fontCSS}
+  ${commonCSS}
+`
 
 export type StoresType = {
   authStore: AuthStoreType;
@@ -19,10 +36,11 @@ export type StoresType = {
   sponsorStore: SponsorStoreType;
   cfpStore: CFPStoreType;
 }
+
 class MyApp extends App {
 
   stores: StoresType
-  constructor (props: any) {
+  constructor(props: any) {
     super(props)
     this.stores = {
       authStore: AuthStore,
@@ -37,36 +55,39 @@ class MyApp extends App {
       currentLocale,
       locales: {
         [currentLocale]: require(`locales/${currentLocale}`)
-      }
-    });
+      },
+      warningHandler: intlWarningHandler
+    })
   }
 
   static async getInitialProps({ Component, ctx }: any) {
     let pageProps = {}
 
     if (Component.getInitialProps) {
-        pageProps = await Component.getInitialProps(ctx)
+      pageProps = await Component.getInitialProps(ctx)
     }
     const isServer = !!ctx.req
 
     return { pageProps, isServer }
   }
 
-  componentDidMount() {
+componentDidMount() {
     const spoqaHanSans = new FontFaceObserver('Spoqa Han Sans')
-    spoqaHanSans.load().then(() => {
-      document && document.body.classList.add('font-loaded')
-    })
+    spoqaHanSans.load()
+      .then(() => {
+        document && document.body.classList.add('font-loaded')
+      })
     this.retrieveProfileIfTokenExists()
   }
 
-  async retrieveProfileIfTokenExists() {
-    if (this.stores.authStore.hasToken()){
+async retrieveProfileIfTokenExists() {
+    this.stores.authStore.syncToken()
+    if (this.stores.authStore.logined) {
       this.stores.profileStore.retrieveProfile()
     }
   }
 
-  render () {
+render() {
     const { Component, pageProps } = this.props
 
     return (

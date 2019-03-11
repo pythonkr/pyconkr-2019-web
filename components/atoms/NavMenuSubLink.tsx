@@ -1,27 +1,40 @@
+import styled from '@emotion/styled'
 import Link from 'next/link'
 import React, { ComponentProps } from 'react'
-import styled from '@emotion/styled';
-import intl from 'react-intl-universal';
+import intl from 'react-intl-universal'
 
 const NavMenuSubLinkA = styled.a`
-  display: inline-flex;
-  height: 60px;
+  display: flex;
   align-items: center;
-  padding: 0 10px;
+  padding: 10px 0;
+  width: 100%;
   cursor: pointer;
 `
 
-export interface NavMenuSubLinkPropsType extends ComponentProps<'a'> {
+const Span = styled.span`
+  font-size: 14px;
+  line-height: 1.3;
+  font-weight: ${(props: { isActive: boolean }) => props.isActive ? '700' : 'normal'};
+`
+
+export type  NavMenuSubLinkPropsType = {
   to: string;
   intlKey: string;
   name: string;
+  currentPath: string;
 }
 
-const NavMenuSubLink = ({ to, intlKey, name, ...props }: NavMenuSubLinkPropsType) => {
+const NavMenuSubLink = ({ to, intlKey, name, currentPath, ...props }: NavMenuSubLinkPropsType & ComponentProps<'a'>) => {
   return (
     <Link href={to}>
-      <NavMenuSubLinkA {...props}><span>{intl.get(intlKey).defaultMessage(name)}</span></NavMenuSubLinkA>
-    </Link>
+      <NavMenuSubLinkA {...props}>
+        <Span isActive={currentPath === to}>{
+          intl
+            .get(intlKey)
+            .defaultMessage(name)
+        }</Span>
+      </NavMenuSubLinkA>
+    </Link >
   )
 }
 

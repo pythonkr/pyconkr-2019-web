@@ -1,9 +1,11 @@
 {
   "constant":{
+    "DATE_IN_WORDS": "{dateDto, date, short}",
     "pyconKorea": {
       "name": "PyCon Korea 2019",
       "nameOnly": "PyCon Korea",
       "schedule": "2019.08.15(Thu)-18(Sun)",
+      "scheduleWithNameAndVenue": "PyCon Korea 2019: 8.15(Thu)-18(Sun), Coex Grand Ballroom",
       "venue": "Coex Grand Ballroom, Seoul",
       "sprint": {
         "name": "Sprint",
@@ -22,6 +24,26 @@
       }
     }
   },
+
+  "common": {
+    "contact": "Contact",
+    "schedule": "Schedule",
+    "tableOfContents": "Table Of Contents",
+    "unit": {
+      "ea": "{number} EA",
+      "krw": "{number} KRW",
+      "minimumKrw": "Minimum {number} KRW"
+    },
+    "status": {
+      "onProgress": "On Progress",
+      "preparing": "Preparing",
+      "openBefore": "Open D{diff}",
+      "closeAfter": "Close D{diff}",
+      "closed": "Closed",
+      "untilSelected": "Until Selected",
+      "conferenceDays": "Conference Days"
+    }
+  },
   "gnb": {
     "home": "Home",
     "help": {
@@ -34,11 +56,12 @@
       "root": "Contribution",
       "overview": "About Contribution",
       "cfpDetailedGuide": "How to submit proposal",
-      "proposingATalk": "Proposing a talk"
+      "proposingATalk": "Proposing a talk",
+      "recommendKeynoteSpeaker": "Recommending Keynote"
     },
     "sponsor": {
       "root": "Sponsor",
-      "prospectus": "Prospectus",
+      "prospectus": "Sponsor Prospectus",
       "applicationForm": "Application Form"
     },
     "info": {
@@ -50,27 +73,270 @@
     }
   },
   "home": {
-    "sprintDescription": "Sprints are intensive development session on an open source project of your choice, in a team environment. It's a time to come together with colleagues, old and new, to share what you've learned and apply it to an open source project. Is this your first time joining in Sprints? No problem! It will be the time that you learn directly from the open source contributors. <br/>Sprint sessions are not just limited to the projects using Python, all languages are welcome!",
+    "sprintDescription": "Sprints are intensive development session on an open source project of your choice, in a team environment. It's a time to come together with colleagues, old and new, to share what you've learned and apply it to an open source project. Is this your first time joining in Sprints? No problem! It will be the time that you learn directly from the open source contributors. Sprint sessions are not just limited to the projects using Python, all languages are welcome!",
     "tutorialDescription": "Tutorials are educational programs for beginners, or challengers for new era. Tutorial mentors and tutors will guide you to easy way of learning. We recommend tutorials for beginner programmers or Python strangers.",
     "conferenceDescription": "There are over 50 different presentation sessions that share knowledge and use of Python use cases. In addition, various events such as sponsored company booth, young coder, lightning talk, open space are available. You can participate in the event and interact with various participants.",
     "sponsor": {
-      "title": "파이콘 한국 2019 후원사 (모집 예정)",
-      "description": "파이콘 한국은 오픈소스 및 파이썬 커뮤니티의 중요성에 공감하는 후원사들의 감사한 지원 덕분에 비디오 녹화, 티켓 가격 지원 등 더 많은 개발자들이 참여할 수 있는 행사를 만들어 왔습니다.<br/>파이콘 후원을 통해 파이썬 커뮤니티의 성장을 지원하고 파이콘 한국 2019의 공식 후원사로서의 특별한 가치를 갖는 데 관심이 있는 후원사를 모십니다.",
-      "prospectus": "후원 모집 일정 및 안내 보기"
+      "title": "Looking for sponsors for PyCon Korea 2019",
+      "description1": "Thanks to all the sponsors who supported the importance of open source and Python community, we could organize an event that more programmers can attend by providing many speech sessions, side programs, video recordings and financial aid.",
+      "description2": "We are currently looking for the officinal sponsors for PyCon Korea 2019 who are interested in supporting the growth of Python community. ",
+      "prospectus": "Schedule & Prospectus"
     },
-    "pyconKoreaDescription": "PyCon is a non-commercial conference held by Python Programming Communities over the world. <br/>PyCon Korea has been successfully hold in several years with a group of volunteers called ‘PyCon Korea Preparation Organizers’, who support the local Korean Python community. ",
-    "sloganDescription": "파이콘 한국 2019의 슬로건은 \"Connect the Pythonistas\"입니다.<br/>파이콘은 파이썬을 쓰는 이들의 만남의 장이 되기도, 또 다른 언어, 커뮤니티와의 접점이 되기도 합니다. 파이콘에서 당신은 한 분야를 아주 깊게 연구한 사람을 만날 수도, 완전히 다른 분야의 파이써니스타를 만날 수도, 친한 동료를 만날 수도 있을 것입니다.<br/>우리는 파이콘을 통해, 방향과 분야가 숱하게 흩어져 각기 다른 점으로 존재하는 파이써니스타들이 모여 아름다운 별자리가 되기를 바랍니다. 2019년에도 우리, 파이콘에서 만나요.",
+    "pyconKoreaTitle": "About PyCon Korea",
+    "pyconKoreaDescription": "PyCon is a non-commercial conference held by Python Programming Communities over the world. PyCon Korea has been successfully hold in several years with a group of volunteers called ‘PyCon Korea Preparation Organizers’, who support the local Korean Python community.",
+    "sloganDescription1": "The slogan of PyCon Korea 2019 is \"Connect the Pythonistas\".",
+    "sloganDescription2": "PyCon can be a place where Python users meet, or a place that connects with other languages or communities. In PyCon, you can meet someone who is researching deeply on one thing, another Pythonista from a different field, or a friend of yours.",
+    "sloganDescription3": "With PyCon, we want all the Pythonistas who are in different fields and heading to different directions to get together and become an awesome constellation. See you again at PyCon Korea 2019.",
     "differenceWithOthers": {
       "title": "What's the difference between PyCon and other developer's conferences?",
       "description": "PyCon Korea is a non-profitable, developer-oriented event organized by community members, and has different characteristics from conferences organized companies or organizations. All attendees, including speakers, tutorial hosts, voluntary workers, and organizers, participate in PyCon Korea without any profitable purpose, and only to broaden the usage of Python, an open source programming language, and activate its community."
     }
   },
+  "contribute": {
+    "overview": {
+      "title": "Various ways to contribute to PyCon Korea",
+      "intro": "You can contribute to PyCon Korea in various ways including keynote, speeker, tutorial, sprint, volunteer and lightning talk. We will recruit each item with the following schedule.",
+      "table": {
+        "keynote": "Recommending Keynote Speaker",
+        "talk":"Proposing a Talk",
+        "tutorial":"Proposing a Tutorial",
+        "sprint": "Proposing a Sprint",
+        "volunteer":"Recruiting Volunteer",
+        "lightingtalk":"Proposing a Lightning Talk",
+        "moreDetail": "More detail"
+      }
+    },
+    "recommendKeynoteSpeaker": {
+      "title": "Recommending Keynote Speaker",
+      "description1": "We are looking for PyCon Korea 2019 Keynote Speaker to be the Polaris of Pythonistas.",
+      "description2": "If you know someone who is actively using Python for life/work/hobbies, please do not hesitate to recommend it.",
+      "recommendButton": "Recommentation Form",
+      "schedule": {
+        "open": "Recommendation Open",
+        "deadline": "Recommendation Deadline"
+      }
+
+    },
+    "cfpGuide": {
+      "title": "How to submit proposal",
+      "intro": "This page has written to provide detailed information for speakers of PyCon Korea. Below information and suggestion will guide your presentation to be more informative and persuasive to audience in PyCon Korea.",
+      "notice": {
+        "title": "Guide for Speeker",
+        "record": {
+          "title": "Session recording",
+          "content": "All session of PyCon Korea will be recorded and open to public after conference. Please consider this before you submit your proposal."
+        },
+        "pays": {
+          "title": "Everybody Pays",
+          "content": "PyCon is Python community's voluntary event. Please understand we are not able to provide all the material expense supports (pay, expenses, free tickets) to our speakers. Regards on this matter, please visit page explains about PyCon’s main value and philosophy <a href=\"http://jessenoller.com/blog/2011/05/25/pycon-everybody-pays\"> \"Everybody Pays\" </a>."
+        },
+        "vote": {
+          "title": "Voting preference",
+          "content": "Also, first screened proposal will be voted by early bird ticket holders. The purpose of this vote is to find out preference and interest of sessions and rate those voted proposals. Program team will select final speakers based on preference vote to make this event more fun and enjoyable to as many audience as possible."
+        },
+        "communication": {
+          "title": "Continuing communication",
+          "content": "For the last, please understand the moment you submit your proposal and till it get selected, there will be continuing communication with program team. We recommend you to submit your proposal earlier before its deadline to communicate with program team to build your talk session more fun and informative."
+        },
+        "conclusion": "If you’re all familiar with guidance now, are you ready to start your proposal?"
+      },
+      "beforeProposal": {
+        "title": "Before you start to fill your proposal",
+        "consider": {
+          "description": "There are a few things to consider before working on proposal.",
+          "item1": "What is your main topic? What would you like to talk about?",
+          "item2": "Who is your target audience?",
+          "item3": "What can your audience get from your talk?",
+          "item4": "How would you manage time in your session?"
+        },
+        "information": {
+          "description": "Also, below information must be included in your proposal.",
+          "header": {
+            "item": "Item",
+            "description": "Description",
+            "visibility": "Visibility at the time of vote"
+          },
+          "item":{
+            "title": {
+              "title": "Title"
+            },
+            "category": {
+              "title": "Category",
+              "desc": "You can see the list of categories on the proposal page."
+            },
+            "summary": {
+              "title": "Summary of your talk"
+            },
+            "detail": {
+              "title": "Details of your talk "
+            },
+            "audience": {
+              "title": "Target audience(Difficulty)",
+              "desc": "Beginner/Intermediate/Experienced"
+            },
+            "timeslot": {
+              "title": "Prefer time slot",
+              "desc": "25min/40min"
+            },
+            "language": {
+              "title": "Language",
+              "desc": "Korean/English"
+            },
+            "note": {
+              "title":"Note or Question",
+              "desc": "Only PyCon Korea Organizer can view this section, so feel free to write in any form"
+            }
+          },
+          "conclusion": "Only title, summary, details, target audience, time slot, and language will open to early bird holders during preference vote."
+        },
+        "conclusion": "Do you feel a little bit pressured with all these criteria? Don't worry! Real guidance is now here. We'll help you with detail information to work on your proposal."
+      },
+      "selectTopic": {
+        "title": "Select topic",
+        "description": "The best way to select topic is to review topics from previous PyCon event. Not only look for topic, but also get the reference from presentation slides will help you start. Choose interesting topic for audience!",
+        "viewOtherPycon": "See PyCon in other countries 👉",
+        "conclusion": "Once you decide your topic, now you can start thinking about what should be on your proposal in detailed level. Check below information for help."
+      },
+      "proposalType": {
+        "title": "Good proposal vs Not good proposal",
+        "good": {
+          "title": "Good proposal 👍",
+          "item1": "Include below information on your summary/details section.",
+          "item1-1": "What kind of background does audience need to understand this talk?",
+          "item1-2": "What will audience gain after attend this talk?",
+          "item2": "Write presentation flow and estimate time of your talk.",
+          "item3": "If your topic is not familiar to most of Python users, Please include blog address, wiki, source code to help understand topic."
+        },
+        "bad": {
+          "title": "Not good proposal 🙅‍️",
+          "item1": "Please avoid deliver only simple information such as how to use or advertise your(or your company's) products. However, If you have case at company where you solve programming issue or open source project that helps to audience is more then welcome.",
+          "item2": "Proposal should be completed and detailed. Incomplete proposal is not acceptable."
+        }
+      },
+      "difficulty": {
+        "title": "How to target your audience",
+        "desc1": "A good presentation delivers right information to specific target audience with certain Python level.",
+        "desc1-1": "It’s not a good to talk about solve performance issue to release GIL within C code block which is generated by Cython to beginner level audience.",
+        "desc1-2": "Other cases, basic introduction of Cython or GIL is too easy for expert level audience.",
+        "desc2": "Just like an example above, some cases are easier to select audience than others. but, not all cases are this easy! For those who needs little more guide line on target audience selection, we have few things to tell you.",
+        "beginner": {
+          "title":"Beginner",
+          "desc1": "None or little bit of knowledge about Python. They have basic syntax and control flow knowledge but don’t have much of knowledge or experience in standard library and programming in general.",
+          "desc2": "For topic for beginners, topic like \"experience with python\" or \"how to become intermediate in python programming skill\" would be appropriate. Like Pandas or Django, not a built-in package of python is not for beginners."
+        },
+        "intermediate": {
+          "title":"Intermediate",
+          "desc1": "Usually, intermediate level audience like to know how python can be utilized in other programming area. Most of them used python for a long time but have less experience in how python can be utilized and used in many other area such as machine learning or data analysis.",
+          "desc2": "For this target audience, use of web framework, machine learning, web traffic monitoring, and automation could be a good topic. Please understand a proposal for intermediate level users may asked to modify its contents to beginner or expert level after review from program team."
+        },
+        "experienced": {
+          "title":"Experienced",
+          "desc1": "Expert level users are familiar with python programming and general concept of programming. A difference between intermediate and expert is the knowledge and experience of specific field they are in and higher level of programming knowledge.",
+          "desc2": "For expert level users, optimization, internals of library, or Python internal is recommended."
+        }
+
+
+      }
+    }
+  },
+  "sponsor": {
+    "prospectus": {
+      "title": "Sponsor Prospectus",
+      "description1": "So, sponsoring this event is the most honest way to show the direction and attitude of the sponsor or individual to the open source community and Python users. In addition, we will support you in various media, sponsor tutorial, sponsor session and booth composition, and you can use it as a place to recruit excellent developers.",
+      "schedule": {
+        "open": "Sponsor Invitation Open",
+        "deadline": "Sponsor Invitation Deadline"
+      },
+      "contactDescription": "Please contact us by e-mail and we will send you detailed information about sponsorship.",
+      "packageTitle": "Sponsorship Packages",
+      "packageDesc": "Sponsorship packages may vary by venue and circumstances. And sessions, tutorials and bag inserts provided by sponsors should be served after consultation with PyCon Korea Organizers.",
+      "boothDesc": "The sponsor booth will only be available at conferences that will be held between August 17 (Sat) and 18 (Sun).",
+      "packages" : {
+        "level": {
+          "header": "Level",
+          "keystone": "Keystone",
+          "diamond": "Diamond",
+          "sapphire": "Sapphire",
+          "platinum": "Platinum",
+          "gold": "Gold",
+          "silver": "Silver",
+          "community": "Community"
+        },
+        "fee": {
+          "header": "Sponsorship Fee"
+        },
+        "availability": {
+          "header": "Availability",
+          "unlimited": "Unlimited"
+        },
+        "conferencePasses": {
+          "header": "Conference Passes"
+        },
+        "booth": {
+          "header": "Booth",
+          "table": "Table (2nd floor robby)"
+        },
+        "ost": {
+          "header": "OST room name for sponsor",
+          "space": "Space for {number} people"
+        },
+        "session": {
+          "header": "Sponsor Session"
+        },
+        "goods": {
+          "header" : "Goods can be included in eco bag"
+        },
+        "logo": {
+          "header": "Logo placement",
+          "attendeePass": "Attendee pass",
+          "website": "WebSite", 
+          "hangingBanner": "Hanging banner",
+          "standingBanner": "Standing banner",
+          "webSite": "WebSite"
+        },
+        "desc1": "Sponsorship Fee does not include VAT. 10% VAT will be added.",
+        "desc2": "booth dimension is 3m x 2m x 2.5m (approx.)",
+        "desc3": "\"Goods can be included in eco bag\" means that the goods can be included in the eco bag provided to all participants.",
+        "desc4": "Details may change slightly before the event.",
+        "desc5": "Community sponsorship is only available for non-commercial organizations.",
+        "desc6": "Publishing sponsorship: history of publishing for Python book is required.",
+        "desc7": "Media sponsorship: Any related history for python is required."
+      }
+    }
+  },
+  "coc": {
+    "title": "Code Of Conduct",
+    "notice": "The PyCon Korea CoC will be updated in May 2019.",
+    "desc1": "PyCon Korea(henceforth referred as PyCon) is a non-profit community conference intended for networking and collaborating in the developer community.",
+    "desc2": "We value the participation of each member of the Python community and want all attendees to have an enjoyable and fulfilling experience. Accordingly, all attendees are expected to show respect and courtesy to other attendees throughout the conference and at all conference events, whether officially sponsored by PyCon or not.",
+    "desc3": "To make clear what is expected, all delegates/attendees, speakers, exhibitors, organizers and volunteers at any PyCon event are required to conform to the following Code of Conduct. Organizers will enforce this code throughout the event.",
+    "shortVersion": "The short version",
+    "short1": "PyCon is dedicated to providing a harassment-free conference experience for everyone, regardless of gender, sexual orientation, disability, physical appearance, body size, race, or religion. We do not tolerate harassment of conference participants in any form.",
+    "short2": "All communication should be appropriate for a professional audience including people of many different backgrounds. Sexual language and imagery is not appropriate for any conference venue, including talks.",
+    "short3": "Be kind to others. Do not insult or put down other attendees. Behave professionally. Remember that harassment and sexist, racist, or exclusionary jokes are not appropriate for PyCon.",
+    "short4": "Attendees violating these rules may be asked to leave the conference without a refund at the sole discretion of the conference organizers.",
+    "longVersion": "The longer version",
+    "long1": "Harassment includes offensive communication related to gender, sexual orientation, disability, physical appearance, body size, race, religion, sexual images in public spaces, deliberate intimidation, stalking, following, harassing photography or recording, sustained disruption of talks or other events, inappropriate physical contact, and unwelcome sexual attention.",
+    "long2": "Participants asked to stop any harassing behavior are expected to comply immediately.",
+    "long3": "Exhibitors in the expo hall, sponsor or vendor booths, or similar activities are also subject to the anti-harassment policy. In particular, exhibitors should not use sexualized images, activities, or other material. Booth staffs (including volunteers) should not wear sexualized clothing/uniforms/costumes, or otherwise create a sexualized environment.",
+    "long4": "Be careful in the words that you choose. Remember that sexist, racist, and other exclusionary jokes can be offensive to those around you. Excessive swearing and offensive jokes are not appropriate for PyCon.",
+    "long5": "If a participant engages in behavior that violates this code of conduct, the conference organizers may take any action they deem appropriate, including warning the offender or expulsion from the conference with no refund.",
+    "license": "License",
+    "licenseDesc": "This Code of Conduct was forked from the example policy from the Geek Feminism wiki, created by the Ada Initiative and other volunteers. which is under a Creative Commons Zero license. <a href=\"https://github.com/pythonkr/pycon-code-of-conduct\">github link</a>"
+    
+  },
   "fixedFooter": {
+    "coc": "Code of Conduct",
+    "sponsor": "Sponsor",
+    "program": "Program",
+    "other": "Others",
     "blogLink": "Blog",
     "twitterLink": "Twitter",
     "facebookLink": "Facebook",
     "githubLink": "Github",
     "flickerLink": "Flicker",
-    "youtubeLink": "Youtube"
+    "youtubeLink": "Youtube",
+    "poweredBy": "Powered by Django and next.js",
+    "hostedOn": "Hosted on Naver D2"
   }
 }

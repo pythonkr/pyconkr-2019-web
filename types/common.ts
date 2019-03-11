@@ -1,4 +1,4 @@
-export type DateDTO = string; // ISO 8601
+export type DateDTO = string // ISO 8601
 
 declare global {
   interface Window {

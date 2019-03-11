@@ -1,8 +1,7 @@
 echo $PWD
 
 # default
-# ENDPOINT=${ENDPOINT:='http://dev.pycon.kr/api/graphql'}
-ENDPOINT=${ENDPOINT:='http://localhost:8000/api/graphql'}
+ENDPOINT=${ENDPOINT:='http://dev.pycon.kr/api/graphql'}
 
 echo $ENDPOINT
 apollo service:download --endpoint=$ENDPOINT graphql_schema.json

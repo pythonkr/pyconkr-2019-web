@@ -1,0 +1,8 @@
+query getCategories {
+  categories {
+    name
+    nameKo
+    nameEn
+    slug
+  }
+}

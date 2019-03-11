@@ -1,6 +1,6 @@
 import { client } from 'lib/apollo_graphql/client'
 import { getProfile, ProfileType } from 'lib/apollo_graphql/queries/getProfile'
-import { action, configure, observable, computed } from 'mobx'
+import { action, configure, observable } from 'mobx'
 import { updateProfile } from 'lib/apollo_graphql/mutations/updateProfile';
 import { uploadProfileImage } from 'lib/apollo_graphql/mutations/uploadProfileImage';
 
@@ -17,7 +17,8 @@ export class ProfileStore {
     @action
     async retrieveProfile() {
         var response = await getProfile(client)({})
-        this.setProfile(response.data.profile)
+        if (response.data.profile)
+            this.setProfile(response.data.profile)
     }
 
     @action
@@ -28,17 +29,6 @@ export class ProfileStore {
     @action
     clearProfile() {
         this.profile = {}
-    }
-
-    @computed
-    get isLogin() {
-        if (Object.keys(this.profile).length == 0){
-            return false
-        }
-        if (!this.profile){
-            return false
-        }
-        return true
     }
 
     @action

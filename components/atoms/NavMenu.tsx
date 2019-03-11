@@ -1,6 +1,6 @@
+import styled from '@emotion/styled'
 import React, { ComponentProps } from 'react'
-import styled from '@emotion/styled';
-import intl from 'react-intl-universal';
+import intl from 'react-intl-universal'
 
 const NavMenuButton = styled.button`
   display: inline-flex;
@@ -11,15 +11,17 @@ const NavMenuButton = styled.button`
 `
 
 export interface NavMenuPropsType extends ComponentProps<'button'> {
-  intlKey: string;
-  name: string;
+  intlKey: string
+  name: string
 }
 
-const NavMenu: React.SFC<NavMenuPropsType> = ({ intlKey, name }) =>  {
+const NavMenu: React.SFC<NavMenuPropsType> = ({ intlKey, name }) => {
   return (
-    <NavMenuButton>
-      <span>{intl.get(intlKey).defaultMessage(name)}</span>
-    </NavMenuButton>
+    <NavMenuButton><span>{
+      intl
+        .get(intlKey)
+        .defaultMessage(name)
+    }</span></NavMenuButton>
   )
 }
 

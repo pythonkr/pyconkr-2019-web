@@ -1,6 +1,6 @@
 import { client } from 'lib/apollo_graphql/client'
 import { getAuthToken } from 'lib/apollo_graphql/mutations/getAuthToken'
-import { action, configure, observable } from 'mobx'
+import { action, configure, observable, computed } from 'mobx'
 import ProfileStore from './ProfileStore'
 
 // don't allow state modifications outside actions
@@ -28,42 +28,52 @@ export class AuthStore {
   @observable state: string = 'pending'
   @observable oAuthType?: keyof typeof clientIdEnum
   @observable clientId?: clientIdEnum
+  @observable accessToken?: string | null = null
 
   @action
   async login (oAuthType: keyof typeof clientIdEnum, code: string) {
-    if (oAuthType && code) {
-      this.oAuthType = oAuthType
-      this.clientId = clientIdEnum[this.oAuthType]
-
-      // Get AuthToken
-      getAuthToken(client)({
-        clientId: this.clientId,
-        oauthType: this.oAuthType,
-        code,
-        redirectUri: location.origin + '/',
-      }).then((result: any) => {
-        const token = result.data.oAuthTokenAuth.token
-        localStorage.setItem(TOKEN_KEY, token)
-        ProfileStore.retrieveProfile()
-      })
+    if (!oAuthType || !code) {
+      return
     }
+    this.oAuthType = oAuthType
+    this.clientId = clientIdEnum[this.oAuthType]
+
+    // Get AuthToken
+    getAuthToken(client)({
+      clientId: this.clientId,
+      oauthType: this.oAuthType,
+      code,
+      redirectUri: location.origin + '/',
+    }).then((result: any) => {
+      const accessToken = result.data.oAuthTokenAuth.token
+      this.setAccessToken(accessToken)
+      localStorage.setItem(TOKEN_KEY, accessToken)
+      ProfileStore.retrieveProfile()
+    })
   }
 
   @action
   logout() {
+    this.accessToken = null
     ProfileStore.clearProfile()
     localStorage.removeItem(TOKEN_KEY)
   }
 
   @action
-  getToken () {
-    return localStorage.getItem(TOKEN_KEY)
+  setAccessToken(accessToken: string | null) {
+    this.accessToken = accessToken
+  }
+
+  @computed
+  get logined() {
+    return this.accessToken != null
   }
 
   @action
-  hasToken () {
-    return localStorage.hasOwnProperty(TOKEN_KEY)
+  syncToken() {
+    this.accessToken = localStorage.getItem(TOKEN_KEY)
   }
+
 }
 
 export default new AuthStore()

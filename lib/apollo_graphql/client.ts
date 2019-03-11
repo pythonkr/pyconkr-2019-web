@@ -1,10 +1,9 @@
+import intl from 'react-intl-universal'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloClient } from 'apollo-client'
-import { ApolloLink } from 'apollo-link';
+import { ApolloLink } from 'apollo-link'
 import { setContext } from 'apollo-link-context'
-import { createHttpLink } from 'apollo-link-http'
 import { createUploadLink } from 'apollo-upload-client'
-
 import { onError } from "apollo-link-error";
 import 'cross-fetch/polyfill'
 
@@ -13,10 +12,6 @@ import 'cross-fetch/polyfill'
 // next.config.js를 참고해주세요
 declare var API_SERVER: string;
 
-const httpLink = createHttpLink({
-  uri: API_SERVER,
-  fetch,
-})
 
 const uploadLink = createUploadLink({
   uri: API_SERVER,
@@ -49,10 +44,21 @@ const authLink = setContext((_, { headers }) => {
   }
 })
 
+const acceptLanguageLink = setContext((_, { headers }) => {
+  const locale = intl.getInitOptions()['currentLocale']
+  return {
+    headers: {
+      ...headers,
+      'Accept-Language': locale
+    },
+  }
+})
+
 const link = ApolloLink.from([
   authLink,
   errorLink,
   // httpLink,
+  acceptLanguageLink,
   uploadLink,
 ]);
 

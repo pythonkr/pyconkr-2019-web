@@ -1,7 +1,7 @@
+import { CFPFormStage } from 'lib/stores/CFPStore'
 import { inject, observer } from 'mobx-react'
+import { StoresType } from 'pages/_app'
 import React from 'react'
-import { StoresType } from 'pages/_app';
-import { CFPFormStage } from 'lib/stores/CFPStore';
 
 interface State {
   detailedDescription: string,
@@ -33,9 +33,10 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
       }}>
         <label>자세한 설명</label>
         <input
-          type='readonly'
+          type='text'
           value={this.state.detailedDescription}
           onChange={e => this.setState({ detailedDescription: e.target.value })}
+          aria-required={true}
           required
         />
         <label>세션을 이해하는 데에 필요한 선수 지식</label>
@@ -43,6 +44,7 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
           type='text'
           value={this.state.requirements}
           onChange={e => this.setState({ requirements: e.target.value })}
+          aria-required={true}
           required
         />
         <fieldset>
@@ -51,17 +53,17 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
           <input
             type='radio'
             value={'true'}
+            aria-checked={this.state.previousPresentation === true}
             checked={this.state.previousPresentation === true}
             onChange={() => this.setState({ previousPresentation: true })}
-            required
           />
           <label>아니오</label>
           <input
             type='radio'
             value={'false'}
+            aria-checked={this.state.previousPresentation === false}
             checked={this.state.previousPresentation === false}
             onChange={() => this.setState({ previousPresentation: false })}
-            required
           />
         </fieldset>
         <label>발표한 행사</label>

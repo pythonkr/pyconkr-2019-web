@@ -1,5 +1,6 @@
 import { action, configure, observable } from 'mobx'
-import { updateProfile } from 'lib/apollo_graphql/mutations/updateProfile';
+import { getCategories, CategoryType } from 'lib/apollo_graphql/queries/getCategories'
+import { getDifficulties, DifficultyType } from 'lib/apollo_graphql/queries/getDifficulties'
 import { client } from 'lib/apollo_graphql/client';
 
 configure({ enforceActions: 'always' })
@@ -14,10 +15,30 @@ export enum CFPFormStage {
 
 export class CFPStore {
     @observable currentStage: CFPFormStage = CFPFormStage.stage1;
-
+    @observable categories: CategoryType[] = []
+    @observable difficulties: DifficultyType[] = [] 
+    
     @action
     setCurrentStage(stage: CFPFormStage) {
       this.currentStage = stage
+    }
+
+    @action
+    async retrieveCategories() {
+      var response = await getCategories(client)({})
+      this.categories = {
+        ...response.data.categories
+      }
+      console.log(this.categories)
+    }
+
+    @action
+    async retrieveDifficulties() {
+      var response = await getDifficulties(client)({})
+      this.difficulties = {
+        ...response.data.difficulties
+      }
+      console.log(response)
     }
 
 }
