@@ -306,7 +306,7 @@ class Index extends React.Component<{ stores: StoresType }> {
             <h1><IntlText intlKey='constant.pyconKorea.name'>파이콘 한국 2019</IntlText></h1>
             <p>
               <IntlText intlKey='constant.pyconKorea.venue'>코엑스 그랜드볼룸, 서울</IntlText><br/>
-              <IntlText intlKey='constant.pyconKorea.schedule'>2019.08.15(수)-18(일)</IntlText>
+              <IntlText intlKey='constant.pyconKorea.schedule'>2019.08.15(목)-18(일)</IntlText>
             </p>
           </MainBannerInfoWrapper>
         </BannerSection>
