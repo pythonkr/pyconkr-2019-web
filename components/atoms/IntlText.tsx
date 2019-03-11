@@ -8,6 +8,6 @@ interface Props {
 export const IntlText: React.SFC<PropsWithChildren<Props>> = ({ intlKey, children }) =>
 <>{
   intl
-    .get(intlKey)
+    .getHTML(intlKey)
     .defaultMessage(children as string | JSX.Element)
 }</>
