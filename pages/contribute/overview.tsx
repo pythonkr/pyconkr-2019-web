@@ -14,6 +14,8 @@ import { DateDTO } from 'types/common'
 import { formatDateInWords } from 'utils/formatDate'
 import { StoresType } from '../_app'
 import { LocalNavigation } from 'components/molecules/LocalNavigation';
+import styled from '@emotion/styled'
+import { mobileWidth } from 'styles/layout'
 
 export type IndexPagePropsType = {
   stores: StoresType;
@@ -85,6 +87,15 @@ const getContributionStatus = (openDate?: DateDTO, closeDate?: DateDTO, link?: s
   return intl.get('common.status.onProgress').d('모집 중')
 }
 
+const ShowDetailButton = styled(Button)`
+@media (max-width: ${mobileWidth}) {
+  width: 50px;
+  font-size: 10px;
+  height: 50px;
+  padding: 10px;
+}
+`
+
 @inject('stores')
 @observer
 export default class CFPDetailedGuide extends React.Component<{ stores: StoresType }> {
@@ -125,14 +136,14 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
                   </Td>
                   <Td className='center-align'>
                     {link
-                      ? <Button
+                      ? <ShowDetailButton
                         size='small'
                         height={27}
                         intlKey='contribute.overview.table.moreDetail'
                         to={link}
                         disabled={getContributionClass(openDate, closeDate) === 'disabled'}
                         primary={getContributionClass(openDate, closeDate) === 'active' ? true : false}
-                      >자세히 보기</Button>
+                      >자세히 보기</ShowDetailButton>
                       : '-'
                     }
                   </Td>

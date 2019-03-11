@@ -9,7 +9,7 @@ import Router from 'next/router'
 import { parse } from 'qs'
 import React from 'react'
 import { paths } from 'routes/paths'
-import { CORAL } from 'styles/colors'
+import { CORAL, TEAL, HEADING_LIGHT_BLACK, BG_GRAY } from 'styles/colors'
 import { StoresType } from './_app'
 import { wideContentWidth, contentWidthPadding, mobileWidth, contentWidth } from 'styles/layout';
 import { MainBannerSvg, MainBannerSvgCompact } from 'components/atoms/SVG';
@@ -118,6 +118,11 @@ li > h2 {
   font-size: 30px;
   line-height: 39px;
   font-weight: bold;
+  color: ${TEAL};
+  @media (max-width: ${mobileWidth}) {
+    font-size: 28px;
+    line-height: 36px;
+  }
 }
 li > h3 {
   display: inline-block;
@@ -125,16 +130,20 @@ li > h3 {
   font-size: 20px;
   line-height: 39px;
   font-weight: bold;
+  color: ${HEADING_LIGHT_BLACK};
+  @media (max-width: ${mobileWidth}) {
+    font-size: 18px;
+    line-height: 32px;
+  }
 }
 li > p {
   max-width: 85%;
   font-size: 15px;
   line-height: 1.8;
-  color: #262626;
   @media (max-width: 920px) {
     margin-top: 16px;
-    font-size: 17px;
-    line-height: 1.88;
+    font-size: 16px;
+    line-height: 1.9em;
     max-width: none;
   }
 }
@@ -142,7 +151,11 @@ li > span {
   font-size: 20px;
   line-height: 39px;
   font-weight: bold;
-  color: #b4b4b4;
+  color: ${BG_GRAY};
+  @media (max-width: ${mobileWidth}) {
+    font-size: 18px;
+    line-height: 32px;
+  }
   &:before {
     display: inline-block;
     content: '✦';
@@ -207,13 +220,16 @@ h2 {
     width: auto;
     margin: 0;
     text-align: left;
+    font-size: 34px;
   }
 }
 p {
   margin: 32px 0 0;
   font-size: 17px;
-  line-height: 1.88;
-  color: #4a4a4a;
+  line-height: 1.9em;
+  @media (max-width: ${mobileWidth}) {
+    font-size: 16px;
+  }
 }
 p + p {
   margin: 20px 0 63px;
@@ -233,13 +249,19 @@ h2 {
   font-size: 26px;
   font-weight: bold;
   line-height: 1.6;
-  color: #263056;
+  color: ${TEAL};
+  @media (max-width: ${mobileWidth}) {
+    font-size: 28px;
+    line-height: 36px;
+  }
 }
 p {
   font-size: 17px;
-  line-height: 1.88;
-  color: #000000;
+  line-height: 1.9em;
   margin-top: 30px;
+  @media (max-width: ${mobileWidth}) {
+    font-size: 16px;
+  }
 }
 p + p {
   margin-top: 20px;
@@ -247,7 +269,7 @@ p + p {
 hr {
   border: none;
   height: 1px;
-  background: #f95858;
+  background: ${CORAL};
   width: 100%;
   margin: 40px auto 58px;
 }
@@ -284,7 +306,7 @@ class Index extends React.Component<{ stores: StoresType }> {
             <h1><IntlText intlKey='constant.pyconKorea.name'>파이콘 한국 2019</IntlText></h1>
             <p>
               <IntlText intlKey='constant.pyconKorea.venue'>코엑스 그랜드볼룸, 서울</IntlText><br/>
-              <IntlText intlKey='constant.pyconKorea.schedule'>2019.08.15(수)-18(일)</IntlText>
+              <IntlText intlKey='constant.pyconKorea.schedule'>2019.08.15(목)-18(일)</IntlText>
             </p>
           </MainBannerInfoWrapper>
         </BannerSection>

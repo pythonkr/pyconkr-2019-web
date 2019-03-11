@@ -1,6 +1,7 @@
 export const TEAL = '#088487'
 export const TEAL_SEMI_DARK = '#077477'
 export const TEAL_DARK = '#044748'
+export const TEAL_LIGHT = '#e6f3f3'
 export const CORAL_LIGHT = 'rgba(249, 88, 88, 0.1)'
 export const CORAL = '#F95858'
 export const CORAL_DARK = '#d24343'
@@ -19,3 +20,6 @@ export const ALERT_BLUE = '#3b7ed3'
 
 export const NAVER_GREEN = '#1EC800'
 export const FACEBOOK_BLUE = '#3b5998'
+
+export const DEFAULT_TEXT_BLACK = '#222222'
+export const HEADING_LIGHT_BLACK = '#4a4a4a'

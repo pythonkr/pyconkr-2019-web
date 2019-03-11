@@ -2,13 +2,13 @@ import intl from 'react-intl-universal'
 import styled from '@emotion/styled'
 import { ContentTableWrapper, isSmall, Table, TBody, Td, Th, THead, Tr, verticalAlignTop } from 'components/atoms/ContentWrappers'
 import React from 'react'
-import { TEAL_DARK } from 'styles/colors'
+import { TEAL } from 'styles/colors'
 
 const SponsorTableWrapper = styled(ContentTableWrapper)`
 margin: 40px 0;
 ${THead} ${Th} {
-  border-top: solid 2px ${TEAL_DARK};
-  border-bottom: solid 1px ${TEAL_DARK};
+  border-top: solid 2px ${TEAL};
+  border-bottom: solid 1px ${TEAL};
   padding: 18px 0 18px 10px;;
 }
 ${TBody} {
