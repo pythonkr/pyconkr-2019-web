@@ -35,8 +35,8 @@ const FixedFooterWrapper = styled.nav`
   }
 
   @media (max-width: ${mobileWidth}) {
-    padding: 0 0 16px 0;
-    height: 70px;
+    padding: 0 0 5px 0;
+    height: 60px;
     position: relative;
     justify-content: center;
   }
