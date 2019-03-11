@@ -52,7 +52,7 @@ const contributions = [{
   openDate: lightningTalk.open,
   dateDescription: {
     default: '컨퍼런스 당일',
-    intlKey: 'contribute.overview.table.status.conferenceDays'
+    intlKey: 'common.status.conferenceDays'
   }
 }]
 
@@ -69,25 +69,20 @@ const getContributionStatus = (openDate?: DateDTO, closeDate?: DateDTO, link?: s
     const diff = differenceInCalendarDays(new Date(), openDate)
 
     return diff < 7
-      ? intl.get('contribute.overview.table.status.openBefore', { diff })
-        .defaultMessage(`모집 시작 D${diff}`)
-      : intl.get('contribute.overview.table.status.preparing')
-        .defaultMessage('준비 중')
+      ? intl.get('common.status.openBefore', { diff }).d(`모집 시작 D${diff}`)
+      : intl.get('common.status.preparing').d('준비 중')
   }
   if (closeDate && isPast(closeDate)) {
-    return intl.get('contribute.overview.table.status.closed')
-      .defaultMessage('마감')
+    return intl.get('common.status.closed').d('마감')
   }
 
   if (closeDate && differenceInCalendarDays(new Date(), closeDate) < 7) {
     const diff = differenceInCalendarDays(new Date(), closeDate)
 
-    return intl.get('contribute.overview.table.status.closeAfter', { diff })
-      .defaultMessage(`마감 D${diff}`)
+    return intl.get('common.status.closeAfter', { diff }).d(`마감 D${diff}`)
   }
 
-  return intl.get('contribute.overview.table.status.onProgress')
-    .defaultMessage('모집 중')
+  return intl.get('common.status.onProgress').d('모집 중')
 }
 
 @inject('stores')
@@ -116,14 +111,13 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
                   className={getContributionClass(openDate, closeDate)}
                 >
                   <Td className={isBold}>
-                    { intl.get(intlKey).defaultMessage(title) }</Td>
+                    { intl.get(intlKey).d(title) }</Td>
                   <Td>
                     {
-                      dateDescription ? intl.get(dateDescription.intlKey).defaultMessage(dateDescription.default)
+                      dateDescription ? intl.get(dateDescription.intlKey).d(dateDescription.default)
                       : `${formatDateInWords(openDate)} -
                         ${(closeDate && formatDateInWords(closeDate)) ||
-                        intl.get('contribute.overview.table.status.untilSelected')
-                          .defaultMessage('마감 시까지')}`
+                        intl.get('common.status.untilSelected').d('마감 시까지')}`
                     }
                   </Td>
                   <Td>

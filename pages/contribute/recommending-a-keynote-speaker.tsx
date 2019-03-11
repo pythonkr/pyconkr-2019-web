@@ -30,9 +30,9 @@ const schedule = [{
 }, {
   title: '키노트 연사 추천 마감',
   intlKey: 'contribute.recommendKeynoteSpeaker.schedule.deadline',
-  description: {
+  desc: {
     default: '마감 시까지',
-    intlKey: 'contribute.overview.table.status.untilSelected'
+    intlKey: 'common.status.untilSelected'
   }
 }]
 
@@ -76,13 +76,13 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           <ContentTableWrapper>
             <ScheduleTable>
               <TBody>
-                {schedule.map(({ title, date, description, intlKey }) =>
+                {schedule.map(({ title, date, desc, intlKey }) =>
                   <Tr key={title}>
                     <Td className={isBold}>{intl.get(intlKey).d(title)}</Td>
                     <Td>
                       {
-                        description ?
-                        intl.get(description.intlKey).d(description.default)
+                        desc ?
+                        intl.get(desc.intlKey).d(desc.default)
                         : formatDateInWordsWithWeekdayAndTime(date!)
                       }
                     </Td>

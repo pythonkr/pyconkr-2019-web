@@ -1,3 +1,4 @@
+import intl from 'react-intl-universal'
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import React, { PropsWithChildren } from 'react'
@@ -16,6 +17,7 @@ export interface ActionButtonProps {
 
 interface Props {
   text: string,
+  textIntlKey?: string,
   subText?: string,
   link?: LinkProps,
   actionButton?: ActionButtonProps
