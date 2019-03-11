@@ -19,7 +19,10 @@ const FooterWrapper = styled.footer`
     @media (max-width: 700px) {
       display: block;
       height: auto;
-      padding: 24px 20px;
+      padding: 24px 20px 30px;
+    }
+    @media (max-width: ${mobileWidth}) {
+      padding-bottom: 10px;
     }
   }
 
@@ -40,6 +43,7 @@ const FooterWrapper = styled.footer`
 `
 
 const MobileSNSFooterListWrapper = styled.div`
+  padding-top: 20px;
   @media (min-width: ${mobileWidth}) {
     display: none;
   }

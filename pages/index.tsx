@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Button } from 'components/atoms/Button'
+import { Button, StyledA } from 'components/atoms/Button'
 import { ContentWidthWrapper } from 'components/atoms/ContentWidthWrapper'
 import { IntlText } from 'components/atoms/IntlText'
 import Footer from 'components/organisms/Footer'
@@ -11,6 +11,7 @@ import React from 'react'
 import { paths } from 'routes/paths'
 import { CORAL } from 'styles/colors'
 import { StoresType } from './_app'
+import { wideContentWidth, contentWidthPadding, mobileWidth, contentWidth } from 'styles/layout';
 
 const BannerSection = styled.section`
 height: 680px;
@@ -28,20 +29,38 @@ align-items: center;
 }
 `
 const ScheduleSection = styled.section`
-max-width: 940px;
+max-width: ${wideContentWidth};
 margin: 0 auto;
-padding: 128px 0 116px 0;
+padding: 128px ${contentWidthPadding} 116px;
+
+@media (max-width: 920px) {
+  max-width: ${contentWidth};
+}
+
+ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: top;
+  flex-direction: row;
+  @media (max-width: 920px) {
+    display: block;
+  }
+}
+
 li {
-  display: inline-block;
-  list-style: none;
   width: 281px;
-  margin: 0;
-  padding: 0;
-  vertical-align: top;
+  @media (max-width: 920px) {
+    width: auto;
+    padding-bottom: 40px;
+    margin-bottom: 58px;
+    border-bottom: solid 1px ${CORAL};
+    &:last-of-type {
+      border: none;
+      padding-bottom: 0;
+    }
+  }
 }
-li + li {
-  margin-left: 48px;
-}
+
 li > h2 {
   font-size: 30px;
   line-height: 39px;
@@ -59,42 +78,83 @@ li > p {
   font-size: 15px;
   line-height: 1.8;
   color: #262626;
+  @media (max-width: 920px) {
+    margin-top: 16px;
+    font-size: 17px;
+    line-height: 1.88;
+    max-width: none;
+  }
 }
 li > span {
   font-size: 20px;
   line-height: 39px;
   font-weight: bold;
   color: #b4b4b4;
+  &:before {
+    display: inline-block;
+    content: '✦';
+    font-size: 10px;
+    vertical-align: middle;
+    margin: -5px 6px 0;
+  }
 }
 li > hr {
   height: 1px;
   margin: 10px 0 17px 0;
   border: none;
   background: #fcb5b5;
+  @media (max-width: 920px) {
+    display: none;
+  }
 }
-li > button {
-  margin-top: 22px;
-  width: 148px;
-  height: 40px;
-  border: solid 1px #263056;
-  background-color: #354379;
-  font-size: 14px;
-  font-weight: bold;
+${StyledA} {
+  margin: 10px 0 4px;
+  @media (max-width: 920px) {
+    width: 52%;
+    height: 54px;
+    margin: 10px 0 6px;
+  }
+  @media (max-width: ${mobileWidth}) {
+    width: 100%;
+  }
+}
+`
+const ScheduleButtonsWrapper = styled.p`
+  margin: 22px 0;
+@media (max-width: 920px) {
+  margin: 30px 0;
+}
+`
+const SponsorComingSoonBadge = styled.div`
+  font-family: 'Sriracha', cursive;
   text-align: center;
-  color: #ffffff;
-  cursor: pointer;
-  outline: none;
-}
+  color: ${CORAL};
+  font-size: 24px;
+  margin-bottom: 20px;
+  span {
+    font-size: 12px;
+    vertical-align: middle;
+  }
+  @media (max-width: ${mobileWidth}) {
+    text-align: left;
+  }
 `
 const SponserSection = styled.section`
 background-color: #fde5e3;
-padding: 86px 0 15px;
+padding: 86px 0;
 h2 {
   font-size: 36px;
-  line-height: 1.8;
+  line-height: 1.4;
   font-weight: bold;
   text-align: center;
   color: #4a4a4a;
+  max-width: 400px;
+  margin: 0 auto;
+  @media (max-width: ${mobileWidth}) {
+    width: auto;
+    margin: 0;
+    text-align: left;
+  }
 }
 p {
   margin: 32px 0 0;
@@ -104,21 +164,14 @@ p {
 }
 p + p {
   margin: 20px 0 63px;
+  @media (max-width: ${mobileWidth}) {
+    margin-bottom: 40px;
+  }
 }
-button {
-  display: block;
-  max-width: 300px;
-  width: 100%;
-  height: 60px;
-  margin: 0 auto;
-  border: solid 2px #f95858;
-  background: transparent;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  color: #f95858;
-  cursor: pointer;
-  outline: none;
+${StyledA} {
+  @media (max-width: ${mobileWidth}) {
+    width: 100%;
+  }
 }
 `
 const IntroduceSection = styled.section`
@@ -126,7 +179,7 @@ padding: 155px 0 171px 0;
 h2 {
   font-size: 26px;
   font-weight: bold;
-  line-height: 1.08;
+  line-height: 1.6;
   color: #263056;
 }
 p {
@@ -256,7 +309,7 @@ class Index extends React.Component<{ stores: StoresType }> {
                   다양한 참가자와 교류할 수 있습니다.
                 </IntlText>
               </p>
-              <p style={{ margin: '22px 0 10px' }}>
+              <ScheduleButtonsWrapper>
                 <Button
                   intlKey='gnb.contribute.recommendKeynoteSpeaker'
                   to={paths.contribute.recommendingAKeynoteSpeaker}
@@ -264,8 +317,6 @@ class Index extends React.Component<{ stores: StoresType }> {
                 >
                   키노트 연사 추천하기
                 </Button>
-              </p>
-              <p>
                 <Button
                   primary={false}
                   intlKey='gnb.contribute.proposingATalk'
@@ -274,14 +325,15 @@ class Index extends React.Component<{ stores: StoresType }> {
                 >
                   발표안 제안하기
                 </Button>
-              </p>
+              </ScheduleButtonsWrapper>
             </li>
           </ul>
         </ScheduleSection>
         <SponserSection>
           <ContentWidthWrapper>
+            <SponsorComingSoonBadge><span>✦</span> Coming Soon <span>✦</span></SponsorComingSoonBadge>
             <h2><IntlText intlKey='home.sponsor.title'>
-              파이콘 한국 2019 후원사 (모집 예정)
+              파이콘 한국 2019 후원사
             </IntlText></h2>
             <p><IntlText intlKey='home.sponsor.description1'>
               파이콘 한국은 오픈소스 및 파이썬 커뮤니티의 중요성에 공감하는 후원사들의 감사한 지원 덕분에
@@ -291,16 +343,17 @@ class Index extends React.Component<{ stores: StoresType }> {
               파이콘 후원을 통해 파이썬 커뮤니티의 성장을 지원하고 파이콘 한국 2019의 공식 후원사로서의
               특별한 가치를 갖는 데에 관심이 있는 후원사를 모십니다.
               </IntlText></p>
-            <p style={{ textAlign: 'center' }}>
+            <div style={{ textAlign: 'center' }}>
+
               <Button
                 intlKey='home.sponsor.prospectus'
                 to={paths.sponsor.prospectus}
                 primary={false}
                 size='big'
               >
-                후원 모집 일정 및 안내 보기
+                후원 안내 및 모집 일정 보기
               </Button>
-            </p>
+            </div>
           </ContentWidthWrapper>
         </SponserSection>
         <IntroduceSection>

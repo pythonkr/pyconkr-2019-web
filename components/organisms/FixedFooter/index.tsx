@@ -50,32 +50,6 @@ const FixedFooterLinkA = styled.a`
   cursor: pointer;
 `
 
-// FIXME :: 모바일 푸터 스타일
-// const FixedFooterWrapper = styled.nav`
-//   position: fixed;
-//   bottom: 0;
-//   left: 0;
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   width: 100%;
-//   padding: 10px;
-//   background-color: ${CORAL};
-//   text-align: center;
-//   color: white;
-// `
-//
-// const FixedFooterLinkA = styled.a`
-//   display: inline-flex;
-//   justify-content: center;
-//   align-items: center;
-//   width: 100%;
-//   font-size: 14px;
-//   font-weight: bold;
-//   text-align: center;
-//   cursor: pointer;
-// `
-
 const RightPane = styled.div`
 display: flex;
 justify-content: space-between;
