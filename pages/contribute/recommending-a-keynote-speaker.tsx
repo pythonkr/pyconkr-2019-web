@@ -94,7 +94,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
         </Section>
         <Section>
           <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
-          <Paragraph>program@pycon.kr</Paragraph>
+          <Paragraph><a href='mailto:program@pycon.kr'>program@pycon.kr</a></Paragraph>
         </Section>
       </PageTemplate>
     )
