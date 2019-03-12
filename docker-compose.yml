@@ -3,6 +3,7 @@ services:
   frontend:
     build:
       context: .
+      restart: always
       args:
         NODE_ENV: "development"
     environment:
