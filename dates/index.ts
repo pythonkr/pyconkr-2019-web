@@ -8,7 +8,7 @@ export const keynoteRecommendation = {
 }
 
 export const talkProposal = {
-  open: `2019-03-13T${defaultOpenTime}${timeZone}`,
+  open: `2019-03-14T${defaultOpenTime}${timeZone}`,
   close: `2019-04-19T${defaultCloseTime}${timeZone}`,
   announcement: `2019-05-13T${defaultNoticeTime}${timeZone}`,
 }
