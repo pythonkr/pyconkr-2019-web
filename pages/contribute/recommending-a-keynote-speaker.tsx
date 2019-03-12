@@ -82,7 +82,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
                     <Td>
                       {
                         desc ?
-                        intl.get(desc.intlKey).d(desc.default)
+                        <IntlText intlKey={desc.intlKey}>{desc.default}</IntlText>
                         : formatDateInWordsWithWeekdayAndTime(date!)
                       }
                     </Td>
