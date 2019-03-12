@@ -233,11 +233,12 @@ class Navigation extends React.Component<any> {
       return true
     }
     const {stores} = this.props
-    // TODO: STAFF인지 USER인지 구분 필요(지금은 로그인만으로 합니다.)
     if (permission === 'anonymous'){
       return !stores.authStore.logined
     }
 
+    // TODO: STAFF인지 USER인지 구분 필요(지금은 로그인만으로 합니다.)
+    // 차후 참가자 확인 기능 등을 위해서는 권한 구분이 필요합니다.
     if (permission === 'user'){
       return stores.authStore.logined
     }
@@ -311,7 +312,7 @@ class Navigation extends React.Component<any> {
                     )}
                   </SubmenuList>
                 </NavItem>
-                : <NavItem key={intlKey}>
+                : this.hasPermission(permission) && <NavItem key={intlKey}>
                     <NavLink
                       to={link}
                       intlKey={intlKey}
