@@ -16,7 +16,6 @@ import { StoresType } from '../_app'
 
 const LoginButtonsWrapper = styled.div`
   width: 700px;
-  height: 536px;
   background-color: #fbfbfb;
   padding: 90px 137px 105px;
   margin-top: -70px;

@@ -201,7 +201,6 @@ class Profile extends React.Component<{ stores: StoresType }> {
           }}>
             <label>이메일</label>
             <input
-                className='disabled'
                 type='text'
                 value={this.state.profile.email}
                 onChange={e => this.setState({

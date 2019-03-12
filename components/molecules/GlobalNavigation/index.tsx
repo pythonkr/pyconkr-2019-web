@@ -304,11 +304,12 @@ class Navigation extends React.Component<any> {
                 name='발표안 작성 가이드'
                 currentPath={this.props.router.pathname}
               /></SubmenuItem>
-              {/* <SubmenuItemLink
+              <SubmenuItem><SubmenuItemLink
                 to={paths.contribute.proposingATalk}
                 intlKey='gnb.contribute.proposingATalk'
                 name='발표안 제안하기'
-              /> */}
+                currentPath={this.props.router.pathname}
+              /></SubmenuItem>
             </SubmenuList>
           </NavItem>
           <NavItem>
