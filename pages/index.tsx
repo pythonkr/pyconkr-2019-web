@@ -93,7 +93,7 @@ padding: 128px ${contentWidthPadding} 116px;
 ul {
   display: flex;
   justify-content: space-between;
-  align-items: top;
+  align-items: flex-start;
   flex-direction: row;
   @media (max-width: 920px) {
     display: block;
