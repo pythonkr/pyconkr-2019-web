@@ -48,7 +48,7 @@ export const StyledA = styled.a`
   text-decoration: none;
   width: ${({ width }: StyledAProps) => `${width}px`};
   height: ${({ height })  => `${height}px`};
-  background-color: ${({ primary, color }) => primary ? color : 'none'};
+  background-color: ${({ primary, color }) => primary ? color : 'transparent'};
   border: solid 1px ${({ disabled, color }) => disabled ? '#bcc0c2' : color};
   span {
     color: ${({ primary, disabled, color }) => primary
@@ -68,7 +68,7 @@ export const StyledButton = styled.button`
   ${buttonStyle}
   width: ${({ width }: StyledAProps) => `${width}px`};
   height: ${({ height })  => `${height}px`};
-  background-color: ${({ primary, color }) => primary ? color : 'none'};
+  background-color: ${({ primary, color }) => primary ? color : 'transparent'};
   border: solid 1px ${({ disabled, color }) => disabled ? '#bcc0c2' : color};
   span {
     color: ${({ primary, disabled, color }) => primary
