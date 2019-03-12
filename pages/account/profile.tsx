@@ -1,6 +1,5 @@
-import styled from '@emotion/styled'
-import { withRouter } from 'next/router'
-import { H1 } from 'components/atoms/ContentWrappers'
+import { withRouter, RouterProps } from 'next/router'
+import { H1, FormWrapper } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
@@ -8,105 +7,15 @@ import PageTemplate from 'components/templates/PageTemplate'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
 import { paths } from 'routes/paths'
-import { CORAL } from 'styles/colors'
 import { StoresType } from '../_app'
 
 // TODO:: disabled 속성 분리 + 파일 업로드 CSS 관리
-const Wrapper = styled.div`
-background: #f6faff;
-padding: 35px 41px 57px 51px;
 
-label {
-    display: block;
-    height: 29px;
-    font-size: 14px;
-    line-height: 29px;
-    color: #878d91;
-}
-
-input[type=file] {
-    margin-bottom: 39px;
-    padding: 17px 31px;
-    outline: none;
-}
-
-input[type=text], input[type=tel] {
-    width: 100%;
-    height: 54px;
-    margin-bottom: 34px;
-    padding: 17px 31px;
-    border-radius: 4px;
-    border: solid 1px #ced3d6;
-    background-color: #FFFFFF;
-    font-size: 14px;
-    outline: none;
-}
-
-input[type=text].disabled, input[type=tel].disabled {
-    border: solid 1px #eaeeef;
-    background-color: #f7f7f7;
-}
-
-textarea {
-    width: 100%;
-    height: 141px;
-    margin-bottom: 34px;
-    border-radius: 4px;
-    border: solid 1px #ced3d6;
-    background-color: #ffffff;
-    font-size: 14px;
-    outline: none;
-}
-
-button {
-    display: block;
-    width: 100%;
-    height: 54px;
-    margin: 19px auto 0px;
-    border-radius: 4px;
-    border: solid 1px #c9d9fb;
-    background-color: #c9d9fb;
-    font-size: 14px;
-    text-align: center;
-    color: #ffffff;
-}
-
-button.disabled {
-    border: solid 1px #c9d9fb;
-    background-color: #c9d9fb;
-}
-
-.file-upload__label {
-    display: block;
-    width: 160px;
-    margin: 5px 0 34px 0;
-    background: ${CORAL};
-    border-radius: .4em;
-    text-align:center;
-    color: #FFF;
-
-    &:hover {
-        cursor: pointer;
-    }
-}
-
-.file-upload__input {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    font-size: 1;
-    width: 0;
-    height: 100%;
-    opacity: 0;
-}
-`
 
 @inject('stores')
 @withRouter
 @observer
-class Profile extends React.Component<{ stores: StoresType }> {
+class Profile extends React.Component<{ stores: StoresType, router: RouterProps }> {
   state = {
     profile: {
       email: '',
@@ -147,7 +56,7 @@ class Profile extends React.Component<{ stores: StoresType }> {
         footer={<Footer />}
       >
         <H1><IntlText intlKey='homeTitle'>프로필</IntlText></H1>
-        <Wrapper>
+        <FormWrapper>
             <label>프로필 사진</label>
             <img
               width='160px'
@@ -294,10 +203,9 @@ class Profile extends React.Component<{ stores: StoresType }> {
 
             <button type='submit'>프로필 업데이트</button>
           </form>
-        </Wrapper>
+        </FormWrapper>
       </PageTemplate>
     )
-
   }
 }
 
