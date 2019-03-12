@@ -1,9 +1,9 @@
 version: "3"
 services:
   frontend:
+    restart: always
     build:
       context: .
-      restart: always
       args:
         NODE_ENV: "development"
     environment:
