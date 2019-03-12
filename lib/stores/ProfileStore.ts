@@ -45,6 +45,7 @@ export class ProfileStore {
         })
     }
 
+    @action
     async uploadProfileImage(file: any) {
         return uploadProfileImage(client)({
             file

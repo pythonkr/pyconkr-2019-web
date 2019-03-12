@@ -1,6 +1,6 @@
-import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
+import { CFPFormStage } from 'lib/stores/CFPStore'
 import React from 'react'
 
 export interface ProfileFormPropType {}
@@ -16,8 +16,13 @@ export default class ProfileForm extends React.Component<{stores: StoresType}> {
     organization: '',
   }
   componentDidMount() {
+    const { profile } = this.props.stores.profileStore
     this.setState({
-      ...toJS(this.props.stores.profileStore).profile
+      nameKo: profile['nameKo'],
+      nameEn: profile['nameEn'],
+      email: profile['email'],
+      phone: profile['phone'],
+      organization: profile['organization'],
     })
   }
   render () {
@@ -25,8 +30,9 @@ export default class ProfileForm extends React.Component<{stores: StoresType}> {
 
     return (
       <form onSubmit={(e) => {
-        e.preventDefault();        stores.profileStore.updateProfile(this.state)
-        // stores.cfpStore.setCurrentStage(CFPFormStage.stage2)
+        e.preventDefault();
+        stores.profileStore.updateProfile(this.state)
+        stores.cfpStore.setCurrentStage(CFPFormStage.stage2)
       }}>
         <label>이메일</label>
         <input
@@ -71,7 +77,7 @@ export default class ProfileForm extends React.Component<{stores: StoresType}> {
           발표자 정보로 등록한 내용들은 프로필로 저장되며, 내 프로필 페이지에서 수정할 수 있습니다.
           프로필은 추후 프로그램 페이지에서 사용됩니다.
         </p>
-        <button type='submit'>프로필 저장하고 계속하기</button>
+        <button type='submit'>프로필 저장하고 계속하기 ></button>
       </form>
     )
   }

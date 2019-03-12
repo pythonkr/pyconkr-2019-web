@@ -16,7 +16,6 @@ import { StoresType } from '../_app'
 
 const LoginButtonsWrapper = styled.div`
   width: 700px;
-  height: 536px;
   background-color: #fbfbfb;
   padding: 90px 137px 105px;
   margin-top: -70px;
@@ -31,6 +30,7 @@ const MainButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 `
 const SubButton = styled.button`
   width: 428px;
@@ -43,6 +43,7 @@ const SubButton = styled.button`
   align-items: center;
   justify-content: center;
   margin-top: 15px;
+  cursor: pointer;
 `
 const ButtonText = styled.span`
   display: block;
@@ -133,13 +134,13 @@ class Login extends React.Component<{ stores: StoresType }> {
             }</ButtonText>
           </MainButton>
           <Hr/>
-          <SubButton onClick={this.handleGoogleLogin}>
+          {/* <SubButton onClick={this.handleGoogleLogin}>
             <ButtonText>{
               intl
                 .get('account.login.googleButton')
                 .defaultMessage('Google 계정으로 로그인')
             }</ButtonText>
-          </SubButton>
+          </SubButton> */}
           <SubButton
             color={FACEBOOK_BLUE}
             onClick={this.handleFacebookLogin}
@@ -150,7 +151,7 @@ class Login extends React.Component<{ stores: StoresType }> {
                 .defaultMessage('Facebook 계정으로 로그인')
             }</ButtonText>
           </SubButton>
-          <SubButton onClick={this.handleNaverLogin}>
+          {/* <SubButton onClick={this.handleNaverLogin}>
             <NaverLogo
               width={20}
               height={20}
@@ -160,7 +161,7 @@ class Login extends React.Component<{ stores: StoresType }> {
               .get('account.login.naverButton')
               .defaultMessage('네이버 계정으로 로그인')
             }</ButtonText>
-          </SubButton>
+          </SubButton> */}
         </LoginButtonsWrapper>
       </PageTemplate>
     )
