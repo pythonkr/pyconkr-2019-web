@@ -1,5 +1,5 @@
 import {css} from '@emotion/core'
-import { CORAL } from 'styles/colors'
+import { CORAL, DEFAULT_TEXT_BLACK } from 'styles/colors'
 
 export const commonCSS = css`
   html {
@@ -13,7 +13,7 @@ export const commonCSS = css`
     word-break: keep-all;
     font-family: "Helvetica Neue", "Apple SD Gothic Neo", arial,
       나눔고딕, "Nanum Gothic", 돋움, Dotum, Tahoma, Geneva, sans-serif;
-    color: #333333;
+    color: ${DEFAULT_TEXT_BLACK};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     &.font-loaded {

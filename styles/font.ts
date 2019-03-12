@@ -60,5 +60,7 @@ export const fontCSS = css`
   url('/static/fonts/SpoqaHanSansThin.woff') format('woff'),
   url('/static/fonts/SpoqaHanSansThin.ttf') format('truetype');
 }
+
+@import url('https://fonts.googleapis.com/css?family=Sriracha');
 `
 

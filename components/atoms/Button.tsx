@@ -43,7 +43,7 @@ const buttonStyle = css`
   border-radius: 2px;
 `
 
-const StyledA = styled.a`
+export const StyledA = styled.a`
   ${buttonStyle}
   text-decoration: none;
   width: ${({ width }: StyledAProps) => `${width}px`};
@@ -64,7 +64,7 @@ const StyledA = styled.a`
   }
 `
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
   ${buttonStyle}
   width: ${({ width }: StyledAProps) => `${width}px`};
   height: ${({ height })  => `${height}px`};

@@ -10,20 +10,24 @@ const FooterWrapper = styled.footer`
   padding-bottom: 40px;
 
   ${WideContentWidthWrapper} {
-    padding: 37px 0 39px;
+    padding-top: 37px;
+    padding-bottom: 39px;
     height: 160px;
     display: flex;
     justify-content: space-between;
 
-    @media (max-width: ${mobileWidth}) {
-      height: auto;
+    @media (max-width: 700px) {
       display: block;
-      padding: 24px 20px;
+      height: auto;
+      padding: 24px 20px 30px;
+    }
+    @media (max-width: ${mobileWidth}) {
+      padding-bottom: 10px;
     }
   }
 
   ul {
-    @media (max-width: ${mobileWidth}) {
+    @media (max-width: 700px) {
       margin: 10px 0;
     }
   }
@@ -31,26 +35,35 @@ const FooterWrapper = styled.footer`
   li, p {
     font-size: 14px;
     line-height: 2;
-    @media (max-width: ${mobileWidth}) {
+    @media (max-width: 700px) {
       font-size: 12px;
       line-height: 2;
     }
   }
 `
 
+const MobileSNSFooterListWrapper = styled.div`
+  padding-top: 20px;
+  @media (min-width: ${mobileWidth}) {
+    display: none;
+  }
+`
+
 const Footer = () => (<>
   <FooterWrapper>
     <WideContentWidthWrapper>
-      <ul>
+      <ul style={{ padding: '0 10px' }}>
         <li>{ intl.get('fixedFooter.sponsor').defaultMessage('후원') } sponsor@pycon.kr</li>
         <li>{ intl.get('fixedFooter.program').defaultMessage('프로그램') } program@pycon.kr</li>
         <li>{ intl.get('fixedFooter.other').defaultMessage('기타 문의') } support@pycon.kr</li>
       </ul>
-      <p>
+      <p style={{ padding: '0 10px' }}>
         { intl.get('fixedFooter.poweredBy').defaultMessage('파이썬 웹 프레임워크 Django와 Next.js로 만들었습니다.') } <br/>
         { intl.get('fixedFooter.hostedOn').defaultMessage('홈페이지 호스팅은 Naver D2의 지원을 받고 있습니다.') }
       </p>
-      <SNSLinkList color='black' />
+      <MobileSNSFooterListWrapper>
+        <SNSLinkList color='black' />
+      </MobileSNSFooterListWrapper>
     </WideContentWidthWrapper>
   </FooterWrapper>
   <FixedFooter />

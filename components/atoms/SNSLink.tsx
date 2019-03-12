@@ -31,7 +31,7 @@ export const SNSLink = ({ to, intlKey, name, src, viewBox, fill }: SNSLinkPropTy
       href={to}
       target='blank'
     >
-      <span aria-label={intl.get(intlKey).defaultMessage(name)}>
+      <span aria-label={intl.get(intlKey).defaultMessage(name)} style={{ width: '20px' }}>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           viewBox={intl.get(intlKey).defaultMessage(viewBox)}

@@ -170,7 +170,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
         header={<Header title='발표안 작성 가이드 :: 파이콘 한국 2019' />}
         footer={<Footer />}
       >
-        <LocalNavigation list={contributionMenu} />
+        <LocalNavigation list={contributionMenu.submenu} />
         <DetailGuideWrapper>
           <H1><IntlText intlKey='contribute.cfpGuide.title'>
             발표안 작성 가이드

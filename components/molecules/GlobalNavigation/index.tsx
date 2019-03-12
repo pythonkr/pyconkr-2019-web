@@ -7,7 +7,7 @@ import { withRouter } from 'next/router'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
 import intl from 'react-intl-universal'
-import { paths } from 'routes/paths'
+import { paths, globalNavigationMenu, GNBMenu } from 'routes/paths'
 import { CORAL, CORAL_LIGHT } from 'styles/colors'
 import { mobileWidth, navigationPadding } from 'styles/layout'
 
@@ -224,6 +224,34 @@ const SubmenuItemLink = styled(NavMenuSubLink)`
 @withRouter
 @observer
 class Navigation extends React.Component<any> {
+  state = {
+    isMenuOpened: false,
+    openedSubmenu: null,
+  }
+  hasPermission = (permission: string) => {
+    if (!permission){
+      return true
+    }
+    const {stores} = this.props
+    // TODO: STAFF인지 USER인지 구분 필요(지금은 로그인만으로 합니다.)
+    if (permission === 'anonymous'){
+      return !stores.authStore.logined
+    }
+
+    if (permission === 'user'){
+      return stores.authStore.logined
+    }
+    return false
+  }
+
+  toggleSubmenu = (menuKey: string) => {
+    this.setState({
+      openedSubmenu: this.state.openedSubmenu === menuKey
+        ? null
+        : menuKey
+    })
+  }
+
   render() {
     const {stores, router} = this.props
     return (
@@ -241,141 +269,59 @@ class Navigation extends React.Component<any> {
             </Link>
           </NavItem>
         </ul>
-        <HamburgerCheckbox type='checkbox' id='menu-btn' defaultChecked={false} />
-        <HamburgerButtonLabel htmlFor='menu-btn'><HamburgerButtonIcon /></HamburgerButtonLabel>
+        <HamburgerCheckbox
+          type='checkbox'
+          id='menu-btn'
+          checked={this.state.isMenuOpened}
+          onChange={() => {
+            this.setState({
+              isMenuOpened: !this.state.isMenuOpened,
+              openedSubmenu: this.state.isMenuOpened ? false : this.state.openedSubmenu
+            })
+          }}
+        />
+        <HamburgerButtonLabel htmlFor='menu-btn'>
+          <HamburgerButtonIcon />
+        </HamburgerButtonLabel>
         <NavMenuList>
-          <NavItem>
-            <NavLink
-              to='/'
-              intlKey='gnb.home'
-              name='홈'
-              currentPath={this.props.router.pathname}
-              basePath='/'
-            />
-          </NavItem>
-          {/* <NavItem>
-            <NavLink
-              to={paths.help.faq}
-              intlKey='gnb.help.root'
-              name='지원 및 안내'
-            />
-            <NavMenuSubLinkList>
-              <SubmenuItemLink
-                to={paths.help.faq}
-                intlKey='gnb.help.faq'
-                name='자주 묻는 질문'
-              />
-              <SubmenuItemLink
-                to={paths.help.notice}
-                intlKey='gnb.help.notice'
-                name='알림'
-              />
-              <SubmenuItemLink
-                to={paths.help.venue}
-                intlKey='gnb.help.venue'
-                name='장소'
-              />
-            </NavMenuSubLinkList>
-          </NavItem> */}
-          <NavItem>
-            <SubmenuButtonCheckbox type='checkbox' id='contribute' defaultChecked={false} />
-            <SubmenuButtonLabel htmlFor='contribute'>
-              <SubmenuButtonSpan isActive={this.props.router.pathname.startsWith('/contribute')}>
-                {intl.get('gnb.contribute.root').d('공헌하기')}
-              </SubmenuButtonSpan>
-            </SubmenuButtonLabel>
-            <Caret />
-            <SubmenuList>
-              <SubmenuItem><SubmenuItemLink
-                to={paths.contribute.overview}
-                intlKey='gnb.contribute.overview'
-                name='공헌 안내'
-                currentPath={this.props.router.pathname}
-              /></SubmenuItem>
-              <SubmenuItem><SubmenuItemLink
-                to={paths.contribute.recommendingAKeynoteSpeaker}
-                intlKey='gnb.contribute.recommendKeynoteSpeaker'
-                name='키노트 연사 추천'
-                currentPath={this.props.router.pathname}
-              /></SubmenuItem>
-              <SubmenuItem><SubmenuItemLink
-                to={paths.contribute.cfpDetailedGuide}
-                intlKey='gnb.contribute.cfpDetailedGuide'
-                name='발표안 작성 가이드'
-                currentPath={this.props.router.pathname}
-              /></SubmenuItem>
-              <SubmenuItem><SubmenuItemLink
-                to={paths.contribute.proposingATalk}
-                intlKey='gnb.contribute.proposingATalk'
-                name='발표안 제안하기'
-                currentPath={this.props.router.pathname}
-              /></SubmenuItem>
-            </SubmenuList>
-          </NavItem>
-          <NavItem>
-            <SubmenuButtonCheckbox type='checkbox' id='sponsor' defaultChecked={false} />
-            <SubmenuButtonLabel htmlFor='sponsor'>
-              <SubmenuButtonSpan isActive={this.props.router.pathname.startsWith('/sponsor')}>
-                {intl.get('gnb.sponsor.root').d('후원')}
-              </SubmenuButtonSpan>
-            </SubmenuButtonLabel>
-            <Caret />
-            <SubmenuList>
-              <SubmenuItem><SubmenuItemLink
-                to={paths.sponsor.prospectus}
-                intlKey='gnb.sponsor.prospectus'
-                name='후원사 안내'
-                currentPath={this.props.router.pathname}
-              /></SubmenuItem>
-              {/* <SubmenuItemLink
-                to={paths.sponsor.applicationForm}
-                intlKey='gnb.sponsor.applicationForm'
-                name='후원사 신청'
-              /> */}
-            </SubmenuList>
-          </NavItem>
-          <NavItem>
-            {
-              stores.authStore.logined ?
-                <>
-                  <SubmenuButtonCheckbox type='checkbox' id='info' defaultChecked={false} />
-                  <SubmenuButtonLabel htmlFor='info'>
-                    <SubmenuButtonSpan isActive={this.props.router.pathname.startsWith('/account')}>
-                      {intl.get('gnb.info.root').d('내 정보')}
+          {
+            globalNavigationMenu.map(({ title, intlKey, link, basePath, permission, submenu }) =>
+              submenu 
+                ? this.hasPermission(permission) && <NavItem key={intlKey}>
+                  <SubmenuButtonCheckbox
+                    type='checkbox'
+                    id={intlKey}
+                    checked={this.state.openedSubmenu === intlKey}
+                    onChange={() => this.toggleSubmenu(intlKey)}
+                  />
+                  <SubmenuButtonLabel htmlFor={intlKey}>
+                    <SubmenuButtonSpan isActive={this.props.router.pathname.startsWith(basePath)}>
+                      {intl.get(intlKey).d(title)}
                     </SubmenuButtonSpan>
                   </SubmenuButtonLabel>
                   <Caret />
                   <SubmenuList>
-                    <SubmenuItem><SubmenuItemLink
-                      to={paths.account.contribution}
-                      intlKey='gnb.info.history'
-                      name='제안 및 신청 내역'
-                      currentPath={this.props.router.pathname}
-                    /></SubmenuItem>
-                    <SubmenuItem><SubmenuItemLink
-                      to={paths.account.profile}
-                      intlKey='gnb.info.profile'
-                      name='프로필'
-                      currentPath={this.props.router.pathname}
-                    /></SubmenuItem>
-                    <button onClick={() => {
-                      stores.authStore.logout()
-                      router.replace(paths.home)
-                    }}>
-                      {intl.get('gnb.info.logout')
-                        .defaultMessage('로그아웃')}
-                    </button>
+                    {submenu.map(({ title, intlKey, link }) =>
+                      <SubmenuItem key={intlKey}><SubmenuItemLink
+                        to={link}
+                        intlKey={intlKey}
+                        name={title }
+                        currentPath={this.props.router.pathname}
+                      /></SubmenuItem>
+                    )}
                   </SubmenuList>
-                </>
-                :
-                <NavLink
-                  to={paths.account.login}
-                  intlKey='gnb.info.login'
-                  name='로그인'
-                  currentPath={this.props.router.pathname}
-                />
-            }
-          </NavItem>
+                </NavItem>
+                : <NavItem key={intlKey}>
+                    <NavLink
+                      to={link}
+                      intlKey={intlKey}
+                      name={title}
+                      currentPath={this.props.router.pathname}
+                      basePath={link}
+                    />
+                </NavItem>
+            )
+          }
         </NavMenuList>
       </NavWrapper>
     )

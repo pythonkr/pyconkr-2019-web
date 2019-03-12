@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { withRouter } from 'next/router'
 import React from 'react'
 import intl from 'react-intl-universal'
-import { CORAL, TEAL_DARK } from 'styles/colors'
+import { CORAL, TEAL } from 'styles/colors'
 import { mobileWidth, navigationPadding } from 'styles/layout'
 
 const NavWrapper = styled.nav`
@@ -36,7 +36,7 @@ const NavLinkA = styled.a`
 const NavSpan = styled.span`
   font-size: 14px;
   padding: 9px 0;
-  color: ${TEAL_DARK};
+  color: ${TEAL};
   font-weight: ${(props: { isActive: boolean }) => props.isActive ? '700' : 'normal'};
   border-bottom: ${(props: { isActive: boolean }) => props.isActive ? `solid 2px ${CORAL}` : 'none'};
 `
