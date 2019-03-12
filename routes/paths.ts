@@ -23,6 +23,7 @@ export const paths = {
   account: {
     base: '/account',
     login: '/account/login',
+    logout: '/account/logout',
     profile: '/account/profile',
     contribution: '/account/contribution',
   }
@@ -138,6 +139,11 @@ export const accountMenu: WithSubMenu = {
       intlKey: 'gnb.info.profile',
       link: paths.account.profile,
     },
+    {
+      title: '로그아웃',
+      intlKey: 'gnb.info.logout',
+      link: paths.account.logout,
+    }
     // 로그아웃
     // stores.authStore.logined ?
     // <button onClick={() => {
