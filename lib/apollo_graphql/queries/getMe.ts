@@ -1,6 +1,6 @@
 import {
     getMe as getMeType,
-    getMe_me as MeType,
+    getMe_me as UserType,
   } from 'lib/apollo_graphql/__generated__/getMe'
 import {
     createQueryDefinition,
@@ -18,5 +18,5 @@ export const getMe = sendQuery(
 )
 
 export {
-    MeType,
+  UserType,
 }

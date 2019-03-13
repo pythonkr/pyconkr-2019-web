@@ -48,14 +48,14 @@ export class AuthStore {
       const accessToken = result.data.oAuthTokenAuth.token
       this.setAccessToken(accessToken)
       localStorage.setItem(TOKEN_KEY, accessToken)
-      return ProfileStore.retrieveProfile()
+      return ProfileStore.retrieveMe()
     })
   }
 
   @action
   logout() {
     this.accessToken = null
-    ProfileStore.clearProfile()
+    ProfileStore.clearUser()
     localStorage.removeItem(TOKEN_KEY)
   }
 

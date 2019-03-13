@@ -1,63 +1,87 @@
-import { client } from 'lib/apollo_graphql/client'
-import { getProfile, ProfileType } from 'lib/apollo_graphql/queries/getProfile'
-import { action, configure, observable } from 'mobx'
-import { updateProfile } from 'lib/apollo_graphql/mutations/updateProfile';
-import { uploadProfileImage } from 'lib/apollo_graphql/mutations/uploadProfileImage';
+import { client } from "lib/apollo_graphql/client";
+import { getMe } from "lib/apollo_graphql/queries/getMe";
+import { action, configure, observable } from "mobx";
+import {
+  updateProfile,
+  ProfileNode
+} from "lib/apollo_graphql/mutations/updateProfile";
+import { uploadProfileImage } from "lib/apollo_graphql/mutations/uploadProfileImage";
+import { updateAgreement } from "lib/apollo_graphql/mutations/updateAgreement";
+import { setupMaster } from "cluster";
 
-configure({ enforceActions: 'always' })
-
-export class Profile {
-    @observable name: string = '';
-    @observable avatarUrl: string = '';
-}
+configure({ enforceActions: "always" });
 
 export class ProfileStore {
-    @observable profile = {}
+  @observable user = {};
+  @observable profile = {};
 
-    @action
-    async retrieveProfile() {
-        var response = await getProfile(client)({})
-        if (response.data.profile)
-            this.setProfile(response.data.profile)
+  @action
+  async retrieveMe() {
+    var response = await getMe(client)({});
+    if (response.data.me) {
+      await this.setUser(response.data.me);
+    }
+  }
+
+  @action
+  async updateAgreement(agreements: any) {
+    var response = await updateAgreement(client)({
+      ...agreements
+    });
+    if (response.updateAgreement.isActive) {
+      await this.retrieveMe();
+    }
+  }
+
+  @action
+  setUser(user: any) {
+    this.profile = { ...user.profile };
+    delete user.profile;
+    this.user = { ...user };
+    console.log(this.profile);
+    console.log(this.user);
+  }
+
+  @action
+  clearUser() {
+    this.user = {};
+    this.profile = {};
+  }
+
+  @action
+  setProfile(profile: ProfileNode) {
+    this.profile = {
+      ...profile
+    };
+  }
+
+  @action
+  async updateProfile(profile: ProfileNode) {
+    if (profile && profile.hasOwnProperty("__typename")) {
+      delete profile.__typename;
     }
 
-    @action
-    setProfile(profile: ProfileType) {
-        this.profile = {...profile}
-    }
+    return updateProfile(client)({
+      profileInput: profile
+    }).then(response => {
+      this.setProfile(response.data.updateProfile.profile);
+      return response.data.updateProfile.profile;
+    });
+  }
 
-    @action
-    clearProfile() {
-        this.profile = {}
-    }
-
-    @action
-    async updateProfile(profile: ProfileType) {
-        if(profile && profile.hasOwnProperty('__typename')){
-            delete profile.__typename
-        }
-        
-        return updateProfile(client)({
-            profileInput: profile
-        }).then((response) => {
-            this.setProfile(response.data.updateProfile.profile)
-            return response.data.updateProfile.profile
-        })
-    }
-
-    @action
-    async uploadProfileImage(file: any) {
-        return uploadProfileImage(client)({
-            file
-        }).then((result: any)=>{
-            const image = result.data.uploadProfileImage.image
-            this.setProfile({
-                ...this.profile,
-                image
-            })
-            return image
-        })
-    }
+  @action
+  async uploadProfileImage(file: any) {
+    return uploadProfileImage(client)({
+      file
+    }).then((result: any) => {
+      const image = result.data.uploadProfileImage.image;
+      this.setProfile({
+        ...this.profile,
+        image
+      });
+      return image;
+    });
+  }
 }
 
-export default new ProfileStore()
+export default new ProfileStore();

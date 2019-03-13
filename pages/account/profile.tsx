@@ -39,7 +39,7 @@ class Profile extends React.Component<{ stores: StoresType, router: RouterProps 
       router.replace(paths.account.login)
       return
     }
-    await stores.profileStore.retrieveProfile()
+    await stores.profileStore.retrieveMe()
     this.setState({
       profile: {
         ...stores.profileStore.profile

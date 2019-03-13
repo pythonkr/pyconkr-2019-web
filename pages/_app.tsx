@@ -83,7 +83,7 @@ componentDidMount() {
 async retrieveProfileIfTokenExists() {
     this.stores.authStore.syncToken()
     if (this.stores.authStore.logined) {
-      this.stores.profileStore.retrieveProfile()
+      this.stores.profileStore.retrieveMe()
     }
   }
 
