@@ -5,24 +5,24 @@ import { FormWrapper } from 'components/atoms/ContentWrappers'
 import React from 'react'
 
 interface State {
-  detailedDescription: string,
-  requirements: string,
-  previousPresentation: boolean | null,
-  previouslyPresentedEvent: string,
-  slideLink: string,
-  comment: string
+  desc: string,
+  backgroundDesc: string,
+  isPresentedBefore: boolean | null,
+  placePresentedBefore: string,
+  presentedSlideUrlBefore: string,
+  question: string
 }
 
 @inject('stores')
 @observer
 export default class CFPFormStage3 extends React.Component<{stores: StoresType}, State> {
   state = {
-    detailedDescription: '',
-    requirements: '',
-    previousPresentation: null,
-    previouslyPresentedEvent: '',
-    slideLink: '',
-    comment: ''
+    desc: '',
+    backgroundDesc: '',
+    isPresentedBefore: false,
+    placePresentedBefore: '',
+    presentedSlideUrlBefore: '',
+    question: ''
   }
 
   render () {
@@ -30,22 +30,25 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
 
     return (
       <FormWrapper>
-        <form onSubmit={() => {
-          stores.cfpStore.setCurrentStage(CFPFormStage.stage4)
+        <form onSubmit={(e) => {
+          e.preventDefault();
+          stores.cfpStore.createOrUpdatePresentation(this.state).then(()=>{
+            stores.cfpStore.setCurrentStage(CFPFormStage.stage4)
+          })
         }}>
           <label>자세한 설명</label>
           <input
             type='text'
-            value={this.state.detailedDescription}
-            onChange={e => this.setState({ detailedDescription: e.target.value })}
+            value={this.state.desc}
+            onChange={e => this.setState({ desc: e.target.value })}
             aria-required={true}
             required
           />
           <label>세션을 이해하는 데에 필요한 선수 지식</label>
           <input
             type='text'
-            value={this.state.requirements}
-            onChange={e => this.setState({ requirements: e.target.value })}
+            value={this.state.backgroundDesc}
+            onChange={e => this.setState({ backgroundDesc: e.target.value })}
             aria-required={true}
             required
           />
@@ -55,41 +58,45 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
             <input
               type='radio'
               value={'true'}
-              aria-checked={this.state.previousPresentation === true}
-              checked={this.state.previousPresentation === true}
-              onChange={() => this.setState({ previousPresentation: true })}
+              aria-checked={this.state.isPresentedBefore === true}
+              checked={this.state.isPresentedBefore === true}
+              onChange={() => this.setState({ isPresentedBefore: true })}
             />
             <label>아니오</label>
             <input
               type='radio'
               value={'false'}
-              aria-checked={this.state.previousPresentation === false}
-              checked={this.state.previousPresentation === false}
-              onChange={() => this.setState({ previousPresentation: false })}
+              aria-checked={this.state.isPresentedBefore === false}
+              checked={this.state.isPresentedBefore === false}
+              onChange={() => this.setState({ isPresentedBefore: false })}
             />
           </fieldset>
           <label>발표한 행사</label>
           <input
             type='text'
-            value={this.state.previouslyPresentedEvent}
-            onChange={e => this.setState({ previouslyPresentedEvent: e.target.value })}
+            value={this.state.placePresentedBefore}
+            onChange={e => this.setState({ placePresentedBefore: e.target.value })}
           />
           <label>발표 자료 링크</label>
           <input
             type='text'
-            value={this.state.slideLink}
-            onChange={e => this.setState({ slideLink: e.target.value })}
+            value={this.state.presentedSlideUrlBefore}
+            onChange={e => this.setState({ presentedSlideUrlBefore: e.target.value })}
           />
           <label>참고 및 질문 사항</label>
           <input
             type='text'
-            value={this.state.comment}
-            onChange={e => this.setState({ comment: e.target.value })}
+            value={this.state.question}
+            onChange={e => this.setState({ question: e.target.value })}
           />
           <button type='button' onClick={() => {
             stores.cfpStore.setCurrentStage(CFPFormStage.stage2)
           }}>이전</button>
-          <button type='button'>임시 저장</button>
+          <button type='button' onClick={() => {
+            stores.cfpStore.createOrUpdatePresentation(this.state).then(()=>{
+              alert('저장이 완료되었습니다')
+            })
+          }}>임시 저장</button>
           <button type='submit'>다음</button>
         </form>
       </FormWrapper>
