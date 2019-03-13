@@ -14,6 +14,7 @@
     "@emotion/core": "^10.0.7",
     "@emotion/styled": "^10.0.7",
     "@types/fontfaceobserver": "^0.0.6",
+    "@zeit/next-css": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
     "apollo": "^2.5.1",
     "apollo-boost": "^0.1.27",
@@ -38,6 +39,7 @@
     "next-routes": "^1.4.2",
     "node-fetch": "^1.7.2",
     "qs": "^6.6.0",
+    "rc-steps": "^3.3.1",
     "react": "^16.7.0",
     "react-apollo": "^2.4.1",
     "react-dom": "^16.7.0",
@@ -62,7 +64,7 @@
     "tslint-config-prettier": "^1.17.0",
     "tslint-eslint-rules": "^5.4.0",
     "tslint-microsoft-contrib": "^6.0.0",
-    "typescript-tslint-plugin": "^0.3.1",
-    "typescript": "^3.2.2"
+    "typescript": "^3.2.2",
+    "typescript-tslint-plugin": "^0.3.1"
   }
 }

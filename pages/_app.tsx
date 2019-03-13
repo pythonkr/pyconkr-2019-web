@@ -9,6 +9,8 @@ import SponsorStore, { SponsorStore as SponsorStoreType } from 'lib/stores/Spons
 import { LOCALE_KEY_KR, URL_LOCALE_KEY } from 'locales/constants'
 import { Provider } from 'mobx-react'
 import App, { Container } from 'next/app'
+import 'rc-steps/assets/iconfont.css'
+import 'rc-steps/assets/index.css'
 import intl from 'react-intl-universal'
 import { commonCSS } from 'styles/common'
 import { fontCSS } from 'styles/font'
@@ -71,23 +73,24 @@ class MyApp extends App {
     return { pageProps, isServer }
   }
 
-componentDidMount() {
+  componentDidMount() {
     const spoqaHanSans = new FontFaceObserver('Spoqa Han Sans')
     spoqaHanSans.load()
       .then(() => {
         document && document.body.classList.add('font-loaded')
       })
+
     this.retrieveProfileIfTokenExists()
   }
 
-async retrieveProfileIfTokenExists() {
+  async retrieveProfileIfTokenExists() {
     this.stores.authStore.syncToken()
     if (this.stores.authStore.logined) {
       this.stores.profileStore.retrieveMe()
     }
   }
 
-render() {
+  render() {
     const { Component, pageProps } = this.props
 
     return (

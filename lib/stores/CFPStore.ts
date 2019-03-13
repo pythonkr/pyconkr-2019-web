@@ -8,11 +8,11 @@ import { createOrUpdatePresentation } from 'lib/apollo_graphql/mutations/createO
 configure({ enforceActions: 'always' })
 
 export enum CFPFormStage {
-  stage1 = 1,
-  stage2 = 2,
-  stage3 = 3,
-  stage4 = 4,
-  completed = 5
+  stage1 = 0,
+  stage2 = 1,
+  stage3 = 2,
+  stage4 = 3,
+  completed = 4
 }
 
 export class CFPStore {

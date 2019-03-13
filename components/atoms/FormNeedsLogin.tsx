@@ -4,7 +4,7 @@ import { Button } from 'components/atoms/Button'
 import { paths } from 'routes/paths'
 import { TEAL } from 'styles/colors'
 
-const PaddingWrapper = styled.div`
+export const PaddingWrapper = styled.div`
 padding: 10px 0;
 `
 

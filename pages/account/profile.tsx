@@ -8,6 +8,9 @@ import { inject, observer } from 'mobx-react'
 import React from 'react'
 import { paths } from 'routes/paths'
 import { StoresType } from '../_app'
+import { Button } from 'components/atoms/Button';
+import { TEAL } from 'styles/colors';
+import { FlexCenterWrapper } from 'components/atoms/FlexWrapper';
 
 // TODO:: disabled 속성 분리 + 파일 업로드 CSS 관리
 
@@ -56,7 +59,7 @@ class Profile extends React.Component<{ stores: StoresType, router: RouterProps 
         footer={<Footer />}
       >
         <H1><IntlText intlKey='homeTitle'>프로필</IntlText></H1>
-        <FormWrapper>
+        <FormWrapper  style={{ marginBottom: '140px'}}>
             <label>프로필 사진</label>
             <img
               width='160px'
@@ -66,28 +69,30 @@ class Profile extends React.Component<{ stores: StoresType, router: RouterProps 
             <label
               htmlFor='upload'
               className='file-upload__label'
-            >업로드</label>
-          <input
-            id='upload'
-            className='file-upload__input'
-            name='file-upload'
-            type='file'
-            multiple
-            onChange={({ target: { validity, files } }) => {
-              if (!validity.valid || !files) {
-                return
-              }
-              stores.profileStore.uploadProfileImage(files[0]).then((image) => {
-                this.setState({
-                  profile: {
-                    ...this.state.profile,
-                    image
+            >업로드
+              <input
+                id='upload'
+                className='file-upload__input'
+                name='file-upload'
+                type='file'
+                multiple
+                onChange={({ target: { validity, files } }) => {
+                  if (!validity.valid || !files) {
+                    return
                   }
-                })
-              })
-            }}
-          />
-          <form onSubmit={(e) => {
+                  stores.profileStore.uploadProfileImage(files[0]).then((image) => {
+                    this.setState({
+                      profile: {
+                        ...this.state.profile,
+                        image
+                      }
+                    })
+                  })
+                }}
+              />
+            </label>
+          <form
+            onSubmit={(e) => {
             e.preventDefault()
             stores.profileStore.updateProfile({
               nameKo: this.state.profile.nameKo,
@@ -200,8 +205,16 @@ class Profile extends React.Component<{ stores: StoresType, router: RouterProps 
                   }
                 })}
             />
-
-            <button type='submit'>프로필 업데이트</button>
+            <FlexCenterWrapper>
+              <Button
+                type='submit'
+                intlKey='asdfasdfsd'
+                color={TEAL}
+                style={{ marginTop: '20px' }}
+              >
+                프로필 업데이트
+              </Button>
+            </FlexCenterWrapper>
           </form>
         </FormWrapper>
       </PageTemplate>

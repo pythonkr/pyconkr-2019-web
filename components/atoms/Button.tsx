@@ -49,6 +49,8 @@ export const StyledA = styled.a`
   width: ${({ width }: StyledAProps) => `${width}px`};
   height: ${({ height })  => `${height}px`};
   background-color: ${({ primary, color }) => primary ? color : 'none'};
+  opacity: ${({ disabled }) => disabled ? 0.4 : 1};
+  cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
   border: solid 1px ${({ disabled, color }) => disabled ? '#bcc0c2' : color};
   span {
     color: ${({ primary, disabled, color }) => primary
@@ -69,6 +71,8 @@ export const StyledButton = styled.button`
   width: ${({ width }: StyledAProps) => `${width}px`};
   height: ${({ height })  => `${height}px`};
   background-color: ${({ primary, color }) => primary ? color : 'none'};
+  opacity: ${({ disabled }) => disabled ? 0.4 : 1};
+  cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
   border: solid 1px ${({ disabled, color }) => disabled ? '#bcc0c2' : color};
   span {
     color: ${({ primary, disabled, color }) => primary
@@ -106,7 +110,7 @@ const getButtonHeight = (size: ButtonSize, height?: number) => {
     case 'small':
      return 30
     default:
-      return 40
+      return 50
   }
 }
 

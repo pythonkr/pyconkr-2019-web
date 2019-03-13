@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { TEAL, HEADING_LIGHT_BLACK, DEFAULT_TEXT_BLACK, TEAL_LIGHT, TEAL_SEMI_DARK } from 'styles/colors'
+import { TEAL, HEADING_LIGHT_BLACK, DEFAULT_TEXT_BLACK, TEAL_LIGHT, TEAL_SEMI_DARK, TEAL_LIGHT_LIGHT } from 'styles/colors'
 import { contentWidth, contentWidthPadding, mobileWidth } from 'styles/layout'
 import { CORAL } from 'styles/colors'
 
@@ -283,15 +283,23 @@ ${Ol} > & {
 `
 
 export const FormWrapper = styled.div`
-background: #f6faff;
-padding: 35px 41px 57px 51px;
+background: ${TEAL_LIGHT_LIGHT};
+padding: 35px 41px 60px 51px;
+@media (max-width: ${mobileWidth}) {
+  padding: 35px 15px 60px;
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.8;
+}
 
 label {
-    display: block;
-    height: 29px;
-    font-size: 14px;
-    line-height: 29px;
-    color: #878d91;
+  display: block;
+  padding: 7px 0;
+  font-size: 14px;
+  line-height: 29px;
+  color: ${HEADING_LIGHT_BLACK};
 }
 
 input[type=file] {
@@ -300,60 +308,42 @@ input[type=file] {
     outline: none;
 }
 
-input[type=text], input[type=tel] {
+
+input[type=text], input[type=tel], textarea {
     width: 100%;
-    height: 54px;
-    margin-bottom: 34px;
-    padding: 17px 31px;
+    height: 58px;
+    margin-bottom: 30px;
+    padding: 17px 21px;
     border-radius: 4px;
     border: solid 1px #ced3d6;
-    background-color: #FFFFFF;
-    font-size: 14px;
+    background-color: white;
+    font-size: 17px;
+    line-height: 1.8;
     outline: none;
-}
 
-input[type=text].disabled, input[type=tel].disabled {
-    border: solid 1px #eaeeef;
-    background-color: #f7f7f7;
+    &:focus {
+      border: solid 1px ${TEAL};
+    }
+
+    &:disabled {
+      border: solid 1px #eaeeef;
+      background-color: #f7f7f7;
+    }
 }
 
 textarea {
-    width: 100%;
-    height: 141px;
-    margin-bottom: 34px;
-    border-radius: 4px;
-    border: solid 1px #ced3d6;
-    background-color: #ffffff;
-    font-size: 14px;
-    outline: none;
-}
-
-button {
-    display: block;
-    width: 100%;
-    height: 54px;
-    margin: 19px auto 0px;
-    border-radius: 4px;
-    border: solid 1px #c9d9fb;
-    background-color: #c9d9fb;
-    font-size: 14px;
-    text-align: center;
-    color: #ffffff;
-}
-
-button.disabled {
-    border: solid 1px #c9d9fb;
-    background-color: #c9d9fb;
+  height: 141px;
 }
 
 .file-upload__label {
     display: block;
     width: 160px;
     margin: 5px 0 34px 0;
-    background: ${CORAL};
-    border-radius: .4em;
-    text-align:center;
-    color: #FFF;
+    border: solid 1px ${TEAL};
+    border-radius: 2px;
+    text-align: center;
+    color: ${TEAL};
+    position: relative;
 
     &:hover {
         cursor: pointer;
@@ -370,5 +360,6 @@ button.disabled {
     width: 0;
     height: 100%;
     opacity: 0;
+    pointer-events: none;
 }
 `

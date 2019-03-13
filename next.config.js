@@ -2,6 +2,7 @@ const withTypescript = require('@zeit/next-typescript')
 const withGraphQL = require('next-plugin-graphql')
 const path = require('path')
 const webpack = require('webpack');
+const withCSS = require('@zeit/next-css')
 
 // 설정의 기본 값은 dev 서버를 바라보면서
 // localhost로 redirect되는 oauth application입니다.
@@ -27,7 +28,7 @@ const env = {
 
 console.log(JSON.stringify(env))
 
-module.exports = withGraphQL(withTypescript({
+module.exports = withCSS(withGraphQL(withTypescript({
   webpack: (config, {}) => {
     config.resolve.alias = {
       'lib': path.join(__dirname, 'lib'),
@@ -42,4 +43,4 @@ module.exports = withGraphQL(withTypescript({
     config.plugins.push(new webpack.DefinePlugin(env))
     return config
   }
-}))
+})))
