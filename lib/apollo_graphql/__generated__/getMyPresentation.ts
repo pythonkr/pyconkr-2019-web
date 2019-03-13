@@ -46,7 +46,7 @@ export interface getMyPresentation_myPresentation_difficulty {
 export interface getMyPresentation_myPresentation {
   __typename: "PresentationNode";
   id: string;
-  owner: getMyPresentation_myPresentation_owner;
+  owner: getMyPresentation_myPresentation_owner | null;
   name: string | null;
   nameKo: string | null;
   nameEn: string | null;

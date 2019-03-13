@@ -46,7 +46,7 @@ export interface CreateOrUpdatePresentation_createOrUpdatePresentation_presentat
 export interface CreateOrUpdatePresentation_createOrUpdatePresentation_presentation {
   __typename: "PresentationNode";
   id: string;
-  owner: CreateOrUpdatePresentation_createOrUpdatePresentation_presentation_owner;
+  owner: CreateOrUpdatePresentation_createOrUpdatePresentation_presentation_owner | null;
   name: string | null;
   nameKo: string | null;
   nameEn: string | null;

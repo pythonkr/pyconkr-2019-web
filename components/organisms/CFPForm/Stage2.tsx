@@ -3,42 +3,35 @@ import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import { FormWrapper } from 'components/atoms/ContentWrappers'
 import React from 'react'
+import { LanguageNode, DurationNode} from 'lib/apollo_graphql/__generated__/globalTypes';
 
-export enum SessionLength {
-  short = 'SHORT',
-  long = 'LONG'
-}
 
-export enum SessionLanguage {
-  ko = 'KOREAN',
-  en = 'ENGLISH'
-}
+
 
 
 interface State {
-  sessionTitle: string,
-  sessionTitleEn: string,
-  category: string,
-  briefDescription: string,
-  briefDescriptionEn: string,
-  sessionLength: SessionLength | null,
-  language: SessionLanguage | null,
-  levelOfDifficulty: LevelOfDifficulty | null,
+  nameKo: string,
+  nameEn: string,
+  categoryId: string,
+  difficultyId: string,
+  shortDescKo: string,
+  shortDescEn: string,
+  duration: DurationNode | null,
+  language: LanguageNode | null,
 }
 
 @inject('stores')
 @observer
 export default class CFPFormStage2 extends React.Component<{stores: StoresType}, State> {
   state = {
-    sessionTitle: '',
-    sessionTitleEn: '',
+    nameKo: '',
+    nameEn: '',
     categoryId: '',
-    briefDescription: '',
-    briefDescriptionEn: '',
-    sessionLength: null,
-    language: null,
-    levelOfDifficulty: null,
     difficultyId: '',
+    shortDescKo: '',
+    shortDescEn: '',
+    duration: DurationNode.SHORT,
+    language: LanguageNode.KOREAN,
   }
 
   render () {
@@ -46,30 +39,32 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
 
     return (
       <FormWrapper>
-        <form onSubmit={() => {
-          stores.cfpStore.createOrUpdatePresentation()
-          stores.cfpStore.setCurrentStage(CFPFormStage.stage3)
+        <form onSubmit={(e) => {
+          e.preventDefault();
+          console.log(this.state)
+          // stores.cfpStore.createOrUpdatePresentation()
+          // stores.cfpStore.setCurrentStage(CFPFormStage.stage3)
         }}>
           <label>세션 제목</label>
           <input
             type='text'
-            value={this.state.sessionTitle}
-            onChange={e => this.setState({ sessionTitle: e.target.value })}
+            value={this.state.nameKo}
+            onChange={e => this.setState({ nameKo: e.target.value })}
             aria-required={true}
             required
           />
           <label>영문 제목</label>
           <input
             type='text'
-            value={this.state.sessionTitleEn}
-            onChange={e => this.setState({ sessionTitleEn: e.target.value })}
+            value={this.state.nameEn}
+            onChange={e => this.setState({ nameEn: e.target.value })}
             required
             aria-required={true}
           />
           <label>세션 카테고리</label>
           <select
             value={this.state.categoryId}
-            // onBlur={e => this.setState({ category: e.target.value })}
+            onBlur={e => this.setState({ categoryId: e.target.value })}
             onChange={e => this.setState({ categoryId: e.target.value })}
             aria-required={true}
             required
@@ -77,7 +72,7 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
           {
             stores.cfpStore.categories.map(category =>
               <option
-                // aria-selected={this.state.category === 'grapefruit'}
+                aria-selected={this.state.categoryId === 'category.id' }
                 key={category.id}
                 value={category.id}
               >{category.name}</option>
@@ -87,16 +82,16 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
           <label>간략한 설명</label>
           <input
             type='text'
-            value={this.state.briefDescription}
-            onChange={e => this.setState({ briefDescription: e.target.value })}
+            value={this.state.shortDescKo}
+            onChange={e => this.setState({ shortDescKo: e.target.value })}
             aria-required={true}
             required
           />
           <label>간략한 설명 - 영문</label>
           <input
             type='text'
-            value={this.state.briefDescriptionEn}
-            onChange={e => this.setState({ briefDescriptionEn: e.target.value })}
+            value={this.state.shortDescEn}
+            onChange={e => this.setState({ shortDescEn: e.target.value })}
             aria-required={true}
             required
           />
@@ -105,18 +100,18 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
             <label>25분</label>
             <input
               type='radio'
-              value={SessionLength.short}
-              aria-checked={this.state.sessionLength === SessionLength.short}
-              checked={this.state.sessionLength === SessionLength.short}
-              onChange={() => this.setState({ sessionLength: SessionLength.short })}
+              value={DurationNode.SHORT}
+              aria-checked={this.state.duration === DurationNode.SHORT}
+              checked={this.state.duration === DurationNode.SHORT}
+              onChange={() => this.setState({ duration: DurationNode.SHORT })}
             />
             <label>45분</label>
             <input
               type='radio'
-              value={SessionLength.long}
-              aria-checked={this.state.sessionLength === SessionLength.long}
-              checked={this.state.sessionLength === SessionLength.long}
-              onChange={() => this.setState({ sessionLength: SessionLength.long })}
+              value={DurationNode.LONG}
+              aria-checked={this.state.duration === DurationNode.LONG}
+              checked={this.state.duration === DurationNode.LONG}
+              onChange={() => this.setState({ duration: DurationNode.LONG })}
             />
           </fieldset>
           <fieldset>
@@ -124,18 +119,18 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
             <label>한국어</label>
             <input
               type='radio'
-              value={SessionLanguage.ko}
-              aria-checked={this.state.language === SessionLanguage.ko}
-              checked={this.state.language === SessionLanguage.ko}
-              onChange={() => this.setState({ language: SessionLanguage.ko })}
+              value={LanguageNode.KOREAN}
+              aria-checked={this.state.language === LanguageNode.KOREAN}
+              checked={this.state.language === LanguageNode.KOREAN}
+              onChange={() => this.setState({ language: LanguageNode.KOREAN })}
             />
             <label>영어</label>
             <input
               type='radio'
-              value={SessionLanguage.en}
-              aria-checked={this.state.language === SessionLanguage.en}
-              checked={this.state.language === SessionLanguage.en}
-              onChange={() => this.setState({ language: SessionLanguage.en })}
+              value={LanguageNode.ENGLISH}
+              aria-checked={this.state.language === LanguageNode.ENGLISH}
+              checked={this.state.language === LanguageNode.ENGLISH}
+              onChange={() => this.setState({ language: LanguageNode.ENGLISH })}
             />
           </fieldset>
           <fieldset>
@@ -147,9 +142,9 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
                     type='radio'
                     value={difficulty.id}
                     key={difficulty.id}
-                    // aria-checked={this.state.levelOfDifficulty === LevelOfDifficulty.beginner}
-                    checked={this.state.categoryId === difficulty.id}
-                    onChange={() => this.setState({ categoryId: difficulty.id })}>
+                    aria-checked={this.state.difficultyId === difficulty.id}
+                    checked={this.state.difficultyId === difficulty.id}
+                    onChange={() => this.setState({ difficultyId: difficulty.id })}>
                   </input>
                   <label>{difficulty.name}</label>
                 </>
@@ -160,7 +155,10 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
           <button type='button' onClick={() => {
             stores.cfpStore.setCurrentStage(CFPFormStage.stage1)
           }}>이전</button>
-          <button type='button'>임시 저장</button>
+          <button type='button' onClick={() => {
+            stores.cfpStore.createOrUpdatePresentation(this.state)
+            
+          }}>임시 저장</button>
           <button type='submit'>다음</button>
         </form>
       </FormWrapper>
