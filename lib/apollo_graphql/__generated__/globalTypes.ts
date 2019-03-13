@@ -24,7 +24,7 @@ export enum OauthTypeNode {
 }
 
 export interface PresentationInput {
-  name: string;
+  name?: string | null;
   nameKo?: string | null;
   nameEn?: string | null;
   desc?: string | null;

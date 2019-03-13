@@ -39,7 +39,7 @@ export class AuthStore {
     this.clientId = clientIdEnum[this.oAuthType]
 
     // Get AuthToken
-    getAuthToken(client)({
+    return getAuthToken(client)({
       clientId: this.clientId,
       oauthType: this.oAuthType,
       code,
@@ -48,7 +48,7 @@ export class AuthStore {
       const accessToken = result.data.oAuthTokenAuth.token
       this.setAccessToken(accessToken)
       localStorage.setItem(TOKEN_KEY, accessToken)
-      ProfileStore.retrieveProfile()
+      return ProfileStore.retrieveProfile()
     })
   }
 
