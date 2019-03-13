@@ -95,10 +95,9 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
         <Section>
           <H2><IntlText intlKey='ccc'>제안서 작성</IntlText></H2>
           {this.state.isFormInitialized
-            ? <FormNeedsLogin />
-            // ? authStore.logined
-            //   ? <CFPForm />
-            //   : <NeedLogin />
+            ? authStore.logined
+              ? <CFPForm />
+              : <FormNeedsLogin />
             : <Loading width={50} height={50}/>
           }
         </Section>

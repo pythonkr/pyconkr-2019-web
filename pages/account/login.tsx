@@ -56,7 +56,7 @@ const Hr = styled.hr`
   margin: 52px 0 37px;
   position: relative;
   &:after {
-    content: '또는';
+    content: '';
     position: absolute;
     top: -5px;
     display: block;
@@ -68,6 +68,15 @@ const Hr = styled.hr`
 @inject('stores')
 @observer
 class Login extends React.Component<{ stores: StoresType }> {
+  async componentDidMount() {
+    const {stores} = this.props
+    if (stores.authStore.logined) {
+      Router.replace(paths.home)
+
+      return
+    }
+  }
+
   handleGitHubLogin() {
     const authorize_url = 'https://github.com/login/oauth/authorize'
     const client_id = clientIdEnum.github
@@ -76,15 +85,6 @@ class Login extends React.Component<{ stores: StoresType }> {
     const scope = encodeURIComponent('user:email')
     const url = `${authorize_url}?state=${state}&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}`
     window.location.href = url
-  }
-
-  async componentDidMount() {
-    const {stores} = this.props
-    if (stores.authStore.logined) {
-      Router.replace(paths.home)
-
-      return
-    }
   }
 
   handleGoogleLogin() {
@@ -118,6 +118,7 @@ class Login extends React.Component<{ stores: StoresType }> {
       }&client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code`
     window.location.href = url
   }
+
   render() {
     return (
       <PageTemplate
