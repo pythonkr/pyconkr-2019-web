@@ -8,6 +8,7 @@
 
 export interface getCategories_categories {
   __typename: "CategoryNode";
+  id: string;
   name: string;
   nameKo: string | null;
   nameEn: string | null;

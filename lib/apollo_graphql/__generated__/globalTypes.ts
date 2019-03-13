@@ -6,6 +6,11 @@
 // START Enums and Input Objects
 //==============================================================
 
+export enum DurationNode {
+  LONG = "LONG",
+  SHORT = "SHORT",
+}
+
 export enum LanguageNode {
   ENGLISH = "ENGLISH",
   KOREAN = "KOREAN",
@@ -19,16 +24,32 @@ export enum OauthTypeNode {
 }
 
 export interface PresentationInput {
-  nameKo: string;
+  id?: string | null;
+  name: string;
+  nameKo?: string | null;
   nameEn?: string | null;
+  desc?: string | null;
   descKo?: string | null;
   descEn?: string | null;
+  shortDesc?: string | null;
+  shortDescKo?: string | null;
+  shortDescEn?: string | null;
+  backgroundDesc?: string | null;
+  backgroundDescKo?: string | null;
+  backgroundDescEn?: string | null;
   language?: LanguageNode | null;
   submitted?: boolean | null;
+  duration?: DurationNode | null;
+  categoryId?: number | null;
+  difficultyId?: number | null;
   slideUrl?: string | null;
   pdfUrl?: string | null;
   videoUrl?: string | null;
   recordable?: boolean | null;
+  isPresentedBefore?: boolean | null;
+  placePresentedBefore?: string | null;
+  presentedSlideUrlBefore?: string | null;
+  question?: string | null;
 }
 
 export interface ProfileInput {

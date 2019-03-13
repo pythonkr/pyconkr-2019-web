@@ -43,7 +43,6 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
     const {authStore, cfpStore} = this.props.stores
     if (!authStore.logined) {
       Router.replace(paths.account.login)
-
       return
     }
     cfpStore.retrieveCategories()

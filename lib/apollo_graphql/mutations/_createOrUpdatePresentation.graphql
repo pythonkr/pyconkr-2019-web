@@ -1,0 +1,60 @@
+mutation CreateOrUpdatePresentation($presentationInput: PresentationInput!) {
+    createOrUpdatePresentation(presentationInput: $presentationInput) {
+      presentation {
+        id
+        owner {
+          profile {
+            name
+            nameKo
+            nameEn
+            bio
+            bioKo
+            bioEn
+            email
+            organization
+            nationality
+            image
+            avatarUrl
+          }
+        }
+        name
+        nameKo
+        nameEn
+        desc
+        descKo
+        descEn
+        shortDesc
+        shortDescKo
+        shortDescEn
+        visible
+        backgroundDesc
+        backgroundDescKo
+        backgroundDescEn
+        language 
+        submitted
+        accepted
+        place { 
+          name
+        }
+        duration
+        startedAt
+        finishedAt
+        category {
+          id
+        }
+        difficulty {
+          id
+        }
+        slideUrl
+        pdfUrl
+        videoUrl
+        recordable
+        isPresentedBefore
+        placePresentedBefore
+        presentedSlideUrlBefore
+        question
+        createdAt
+        updatedAt
+      }
+    }
+  }
