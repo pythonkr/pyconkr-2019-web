@@ -42,8 +42,9 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
         <form onSubmit={(e) => {
           e.preventDefault();
           console.log(this.state)
-          // stores.cfpStore.createOrUpdatePresentation()
-          // stores.cfpStore.setCurrentStage(CFPFormStage.stage3)
+          stores.cfpStore.createOrUpdatePresentation(this.state).then(()=>{
+            stores.cfpStore.setCurrentStage(CFPFormStage.stage3)
+          })
         }}>
           <label>세션 제목</label>
           <input
@@ -156,8 +157,9 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
             stores.cfpStore.setCurrentStage(CFPFormStage.stage1)
           }}>이전</button>
           <button type='button' onClick={() => {
-            stores.cfpStore.createOrUpdatePresentation(this.state)
-            
+            stores.cfpStore.createOrUpdatePresentation(this.state).then(()=>{
+              alert('저장이 완료되었습니다')
+            })
           }}>임시 저장</button>
           <button type='submit'>다음</button>
         </form>
