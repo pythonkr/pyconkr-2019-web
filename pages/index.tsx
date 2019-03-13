@@ -275,7 +275,6 @@ hr {
 }
 `
 
-
 @inject('stores')
 @observer
 class Index extends React.Component<{ stores: StoresType }> {

@@ -1,24 +1,18 @@
-import { 
-  H1, H2, Paragraph, Section, ContentTableWrapper, ScheduleTable,
-  TBody, Td, Tr, isBold
-} from 'components/atoms/ContentWrappers'
+import { ContentTableWrapper, H1, H2, isBold, Paragraph, ScheduleTable, Section, TBody, Td, Tr } from 'components/atoms/ContentWrappers'
+import { FormNeedsLogin } from 'components/atoms/FormNeedsLogin'
 import { IntlText } from 'components/atoms/IntlText'
+import { Loading } from 'components/atoms/Loading'
 import { StatusBar } from 'components/atoms/StatusBar'
-import Stage1 from 'components/organisms/CFPForm/Stage1'
-import Stage2 from 'components/organisms/CFPForm/Stage2'
-import Stage3 from 'components/organisms/CFPForm/Stage3'
-import Stage4 from 'components/organisms/CFPForm/Stage4'
+import { LocalNavigation } from 'components/molecules/LocalNavigation'
+import CFPForm from 'components/organisms/CFPForm'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
-import { contributionMenu, paths } from 'routes/paths'
-import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import { talkProposal } from 'dates'
-import { CFPFormStage } from 'lib/stores/CFPStore'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
-import Router from 'next/router'
 import React from 'react'
+import { contributionMenu, paths } from 'routes/paths'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 import { StoresType } from '../_app'
 
@@ -39,19 +33,20 @@ const schedule = [{
 @inject('stores')
 @observer
 export default class ProposingATalk extends React.Component<{ stores: StoresType }> {
+  state = {
+    isFormInitialized: false
+  }
+
   async componentDidMount() {
-    const {authStore, cfpStore} = this.props.stores
-    if (!authStore.logined) {
-      Router.replace(paths.account.login)
-      return
+    if (this.props.stores) {
+      this.setState({
+        isFormInitialized: true,
+      })
     }
-    cfpStore.retrieveCategories()
-    cfpStore.retrieveDifficulties()
   }
 
   render() {
-    const { stores } = this.props
-    const { currentStage } = toJS(stores.cfpStore)
+    const { authStore } = this.props.stores
 
     return (
       <PageTemplate
@@ -82,10 +77,9 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
                   <Tr key={title}>
                     <Td className={isBold}><IntlText intlKey={intlKey}>{title}</IntlText></Td>
                     <Td>
-                      {
-                        desc ?
-                        <IntlText intlKey={desc.intlKey}>{desc.default}</IntlText>
-                        : formatDateInWordsWithWeekdayAndTime(date!)
+                      {desc
+                          ? <IntlText intlKey={desc.intlKey}>{desc.default}</IntlText>
+                          : formatDateInWordsWithWeekdayAndTime(date!)
                       }
                     </Td>
                   </Tr>
@@ -100,13 +94,13 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
         </Section>
         <Section>
           <H2><IntlText intlKey='ccc'>제안서 작성</IntlText></H2>
-          {(currentStage === CFPFormStage.stage1) && <Stage1 stores={stores} />}
-          {(currentStage === CFPFormStage.stage2) && <Stage2 stores={stores} />}
-          {(currentStage === CFPFormStage.stage3) && <Stage3 stores={stores} />}
-          {(currentStage === CFPFormStage.stage4) && <Stage4 stores={stores} />}
-          {(currentStage === CFPFormStage.completed) && <div>
-            발표안을 제출했습니다! 호호호
-            </div>}
+          {this.state.isFormInitialized
+            ? <FormNeedsLogin />
+            // ? authStore.logined
+            //   ? <CFPForm />
+            //   : <NeedLogin />
+            : <Loading width={50} height={50}/>
+          }
         </Section>
       </PageTemplate>
     )

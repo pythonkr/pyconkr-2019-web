@@ -18,9 +18,9 @@ export enum CFPFormStage {
 export class CFPStore {
     @observable currentStage: CFPFormStage = CFPFormStage.stage1
     @observable categories: CategoryType[] = []
-    @observable difficulties: DifficultyType[] = [] 
+    @observable difficulties: DifficultyType[] = []
     @observable presentation: PresentationType
-    
+
     @action
     setCurrentStage(stage: CFPFormStage) {
       this.currentStage = stage
