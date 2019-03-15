@@ -77,8 +77,8 @@ export interface CreateOrUpdatePresentation_createOrUpdatePresentation_presentat
   placePresentedBefore: string;
   presentedSlideUrlBefore: string;
   question: string;
-  createdAt: any;
-  updatedAt: any;
+  createdAt: any | null;
+  updatedAt: any | null;
 }
 
 export interface CreateOrUpdatePresentation_createOrUpdatePresentation {

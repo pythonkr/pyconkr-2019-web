@@ -35,11 +35,12 @@ export class ProfileStore {
 
   @action
   setUser(user: any) {
+    console.log(user);
     this.profile = { ...user.profile };
     delete user.profile;
     this.user = { ...user };
-    console.log(this.profile);
-    console.log(this.user);
+    // console.log(this.profile);
+    // console.log(this.user);
   }
 
   @action

@@ -33,10 +33,6 @@ export interface getMe_me {
    */
   username: string;
   /**
-   * 이 사용자가 활성화되어 있는지를 나타냅니다. 계정을 삭제하는 대신 이것을 선택 해제하세요.
-   */
-  isActive: boolean;
-  /**
    * 사용자가 관리사이트에 로그인이 가능한지를 나타냅니다.
    */
   isStaff: boolean;
@@ -44,6 +40,7 @@ export interface getMe_me {
    * 해당 사용자에게 모든 권한을 허가합니다.
    */
   isSuperuser: boolean;
+  isAgreed: boolean | null;
   profile: getMe_me_profile | null;
 }
 

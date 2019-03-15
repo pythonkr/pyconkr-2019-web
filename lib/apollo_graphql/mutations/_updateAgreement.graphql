@@ -1,11 +1,11 @@
 mutation UpdateAgreement($isPrivacyPolicy: Boolean, $isTermsOfService: Boolean) {
     updateAgreement(isPrivacyPolicy: $isPrivacyPolicy, isTermsOfService: $isTermsOfService) {
-        isActive
+        agreed
         user {
             username
-            isActive
             isStaff
             isSuperuser
+            isAgreed
             profile { 
                 id
                 oauthType

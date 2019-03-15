@@ -1,9 +1,9 @@
 query getMe {
     me {
         username
-        isActive
         isStaff
         isSuperuser
+        isAgreed
         profile { 
             id
             oauthType
