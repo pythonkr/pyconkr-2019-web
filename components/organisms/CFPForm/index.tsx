@@ -35,11 +35,11 @@ const StepsWrapper = styled.div`
 `
 
 const steps = [
-  intl.get('askdjfhkajdh').d('프로필 저장'),
-  intl.get('askdjfhkajdh').d('기본 발표 내용'),
-  intl.get('askdjfhkajdh').d('상세 발표 내용'),
-  intl.get('askdjfhkajdh').d('CoC 및 발표 윤리'),
-  intl.get('askdjfhkajdh').d('제출 완료'),
+  intl.get('contribute.talkProposal.application.stages.stages1.header').d('프로필 저장'),
+  intl.get('contribute.talkProposal.application.stages.stages2.header').d('기본 발표 내용'),
+  intl.get('contribute.talkProposal.application.stages.stages3.header').d('상세 발표 내용'),
+  intl.get('contribute.talkProposal.application.stages.stages4.header').d('CoC 및 발표 윤리'),
+  intl.get('contribute.talkProposal.application.stages.stages5.header').d('제출 완료'),
 ]
 
 @inject('stores')
