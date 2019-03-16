@@ -10,6 +10,7 @@ import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import Steps from 'rc-steps'
 import React from 'react'
+import intl from 'react-intl-universal'
 import { TEAL, TEAL_LIGHT, TEAL_LIGHT_LIGHT, TEAL_SEMI_DARK } from 'styles/colors'
 import { isEmpty } from 'utils/isEmpty'
 
@@ -32,6 +33,14 @@ const StepsWrapper = styled.div`
     align-items: center;
   }
 `
+
+const steps = [
+  intl.get('askdjfhkajdh').d('프로필 저장'),
+  intl.get('askdjfhkajdh').d('기본 발표 내용'),
+  intl.get('askdjfhkajdh').d('상세 발표 내용'),
+  intl.get('askdjfhkajdh').d('CoC 및 발표 윤리'),
+  intl.get('askdjfhkajdh').d('제출 완료'),
+]
 
 @inject('stores')
 @observer
@@ -62,11 +71,7 @@ export default class CFPForm extends React.Component<{ stores: StoresType }> {
       <PaddingWrapper>
         <StepsWrapper>
           <Steps current={currentStage} labelPlacement='vertical'>
-            <Steps.Step title='프로필 저장' />
-            <Steps.Step title='기본 발표 내용' />
-            <Steps.Step title='상세 발표 내용' />
-            <Steps.Step title='CoC 및 발표 윤리' />
-            <Steps.Step title='제출 완료' />
+            {steps.map(step => <Steps.Step title={step} />)}
           </Steps>
         </StepsWrapper>
         {currentStage === CFPFormStage.stage1 && <Stage1 stores={stores} />}

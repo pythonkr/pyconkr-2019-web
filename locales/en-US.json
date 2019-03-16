@@ -24,7 +24,6 @@
       }
     }
   },
-
   "common": {
     "contact": "Contact",
     "schedule": "Schedule",
@@ -115,7 +114,6 @@
         "open": "Recommendation Open",
         "deadline": "Recommendation Deadline"
       }
-
     },
     "cfpGuide": {
       "title": "How to submit proposal",
@@ -239,7 +237,7 @@
       }
     },
     "talkProposal": {
-      "description1": "We are recruiting a variety of Python-related presentations, such as academic or commercial projects for Python, case studies. Please refer to the Guide for Speakers for more information.",  
+      "description1": "We are recruiting a variety of Python-related presentations, such as academic or commercial projects for Python, case studies. Please refer to the Guide for Speakers for more information.",
       "schedule": {
         "open": "CFP Open",
         "close": "CFP Close",
@@ -299,7 +297,7 @@
         "logo": {
           "header": "Logo placement",
           "attendeePass": "Attendee pass",
-          "website": "WebSite", 
+          "website": "WebSite",
           "hangingBanner": "Hanging banner",
           "standingBanner": "Standing banner",
           "webSite": "WebSite"
@@ -333,7 +331,7 @@
     "long5": "If a participant engages in behavior that violates this code of conduct, the conference organizers may take any action they deem appropriate, including warning the offender or expulsion from the conference with no refund.",
     "license": "License",
     "licenseDesc": "This Code of Conduct was forked from the example policy from the Geek Feminism wiki, created by the Ada Initiative and other volunteers. which is under a Creative Commons Zero license. <a href=\"https://github.com/pythonkr/pycon-code-of-conduct\">github link</a>"
-    
+
   },
   "fixedFooter": {
     "coc": "Code of Conduct",
