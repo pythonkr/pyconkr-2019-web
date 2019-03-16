@@ -184,7 +184,6 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
               >다음</Button>
             </div>
           </FlexSpaceBetweenWrapper>
-
         </form>
       </FormWrapper>
     )
