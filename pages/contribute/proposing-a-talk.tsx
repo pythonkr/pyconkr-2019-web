@@ -93,7 +93,7 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
           <Paragraph><IntlText intlKey='asdfasdfasdf'>program@pycon.kr</IntlText></Paragraph>
         </Section>
         <Section>
-          <H2><IntlText intlKey='contribute.talkProposal.application'>제안서 작성</IntlText></H2>
+          <H2><IntlText intlKey='contribute.talkProposal.application.title'>제안서 작성</IntlText></H2>
           {this.state.isFormInitialized
             ? authStore.logined
               ? <CFPForm />
