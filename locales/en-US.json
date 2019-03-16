@@ -252,8 +252,8 @@
             "item2": "Name in Korean",
             "item3": "Name in English",
             "item4": "Affiliation",
-            "item5": "Phone Number"
-            "desc1": "The information registered as a speaker profile will be saved in profile and can be edited in My Profile page. The profile will be used in Progam page later."
+            "item5": "Phone Number",
+            "desc1": "The information registered as a speaker profile will be saved in profile and can be edited in My Profile page. The profile will be used in Progam page later.",
             "button": "Save the profile and Continue"
           },
           "stages2": {
@@ -274,7 +274,7 @@
           "stages3": {
             "header": "Detailed information",
             "item1": {
-            "sub1": "Contents of CFP in detail"
+            "sub1": "Contents of CFP in detail",
             "desc1": "In case it's accessive, please provide an external link."
             },
             "item2":{
