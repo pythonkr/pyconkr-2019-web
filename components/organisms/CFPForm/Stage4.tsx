@@ -1,8 +1,9 @@
+import { FormWrapper } from 'components/atoms/ContentWrappers'
 import { CFPFormStage } from 'lib/stores/CFPStore'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
-import { FormWrapper } from 'components/atoms/ContentWrappers'
 import React from 'react'
+import { IntlText } from 'components/atoms/IntlText'
 
 interface State {
   cooperationConsent: boolean,
@@ -29,36 +30,42 @@ export default class CFPFormStage4 extends React.Component<{stores: StoresType},
     return (
       <FormWrapper>
         <form onSubmit={(e) => {
-          e.preventDefault();
+          e.preventDefault()
           stores.cfpStore.createOrUpdatePresentation(
-            {submitted:true, recordable: this.state.recordable}
-            ).then(()=>{
+            {submitted: true, recordable: this.state.recordable}
+          ).then(() => {
             stores.cfpStore.setCurrentStage(CFPFormStage.completed)
           })
         }}>
           <fieldset>
-            <legend>약관 및 동의</legend>
+            <legend><IntlText intlKey='asdfasdf'>약관 및 동의</IntlText></legend>
             <input
               type='checkbox'
               aria-checked={this.state.cooperationConsent}
               checked={this.state.cooperationConsent}
               onChange={() => this.setState({ cooperationConsent: !this.state.cooperationConsent })}
             />
-            <label>업무 관련 내용은 회사의 동의를 받으셨나요? (무관한 경우도 체크)</label>
+            <label><IntlText intlKey='asdfasdf'>
+              업무 관련 내용은 회사의 동의를 받으셨나요? (무관한 경우도 체크)
+            </IntlText></label>
             <input
               type='checkbox'
               aria-checked={this.state.cocConsent}
               checked={this.state.cocConsent}
               onChange={() => this.setState({ cocConsent: !this.state.cocConsent })}
             />
-            <label>CoC(성명서)를 준수하는 발표 내용인가요?</label>
+            <label><IntlText intlKey='asdfasdf'>
+              CoC(성명서)를 준수하는 발표 내용인가요?
+            </IntlText></label>
             <input
               type='checkbox'
               aria-checked={this.state.noPlagiarismConsent}
               checked={this.state.noPlagiarismConsent}
               onChange={() => this.setState({ noPlagiarismConsent: !this.state.noPlagiarismConsent })}
             />
-            <label>표절이 확인될 경우 발표가 취소될 수 있습니다. </label>
+            <label><IntlText intlKey='asdfasdf'>
+              표절이 확인될 경우 발표가 취소될 수 있습니다.
+            </IntlText></label>
             <input
               type='checkbox'
               aria-checked={this.state.contentConsistencyConsent}
@@ -68,8 +75,10 @@ export default class CFPFormStage4 extends React.Component<{stores: StoresType},
             <label>제안 내용과 발표 내용이 다르면 발표가 취소될 수 있습니다.</label>
           </fieldset>
           <fieldset>
-            <legend>파이콘 한국 2019에서는 세션 내용을 녹화 및 공개합니다. 이에 동의하십니까?</legend>
-            <label>예</label>
+            <legend><IntlText intlKey='asdfasdf'>
+              파이콘 한국 2019에서는 세션 내용을 녹화 및 공개합니다. 이에 동의하십니까?
+            </IntlText></legend>
+            <label><IntlText intlKey='asdfasdf'>예</IntlText></label>
             <input
               type='radio'
               value={'true'}
@@ -77,7 +86,7 @@ export default class CFPFormStage4 extends React.Component<{stores: StoresType},
               checked={this.state.recordable === true}
               onChange={() => this.setState({ recordable: true })}
             />
-            <label>아니오</label>
+            <label><IntlText intlKey='asdfasdf'>아니오</IntlText></label>
             <input
               type='radio'
               value={'false'}

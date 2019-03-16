@@ -1,12 +1,14 @@
 import { Button } from 'components/atoms/Button'
 import { FormWrapper } from 'components/atoms/ContentWrappers'
 import { FlexCenterWrapper } from 'components/atoms/FlexWrapper'
+import { IntlText } from 'components/atoms/IntlText'
 import { ProfileNode } from 'lib/apollo_graphql/mutations/updateProfile'
 import { CFPFormStage } from 'lib/stores/CFPStore'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import React from 'react'
+import intl from 'react-intl-universal'
 import { TEAL } from 'styles/colors'
 
 /* tslint:disable:react-a11y-required  */
@@ -31,27 +33,27 @@ export default class ProfileForm extends React.Component<{stores: StoresType}, S
   state: State = {
     profile: {
       email:  {
-        title: '이메일',
+        title: intl.get('asdfad').d('이메일'),
         isRequired: true,
         value: ''
       },
       nameKo: {
-        title: '한글 이름',
+        title: intl.get('asdfad').d('한글 이름'),
         isRequired: true,
         value: ''
       },
       nameEn:  {
-        title: '영문 이름',
+        title: intl.get('asdfad').d('영문 이름'),
         isRequired: true,
         value: ''
       },
       phone:  {
-        title: '소속',
+        title: intl.get('asdfad').d('소속'),
         isRequired: false,
         value: ''
       },
       organization:  {
-        title: '연락 가능한 전화번호',
+        title: intl.get('asdfad').d('연락 가능한 전화번호'),
         isRequired: false,
         value: ''
       },
@@ -93,8 +95,6 @@ export default class ProfileForm extends React.Component<{stores: StoresType}, S
         },
       }
     })
-    console.log(this.state)
-    // Object.keys(this.state.profile).forEach(console.log)
   }
 
   isFormValid () {
@@ -148,10 +148,10 @@ export default class ProfileForm extends React.Component<{stores: StoresType}, S
               />
             </React.Fragment>
           })}
-          <p>
+          <p><IntlText intlKey='asdfasdf'>
             발표자 정보로 등록한 내용들은 프로필로 저장되며, 내 프로필 페이지에서 수정할 수 있습니다.
             프로필은 추후 프로그램 페이지에서 사용됩니다.
-          </p>
+          </IntlText></p>
           <FlexCenterWrapper>
             <Button
               type='submit'
@@ -169,6 +169,4 @@ export default class ProfileForm extends React.Component<{stores: StoresType}, S
       </FormWrapper>
     )
   }
-
-  submit = () => {}
 }
