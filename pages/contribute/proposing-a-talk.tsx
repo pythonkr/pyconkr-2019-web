@@ -18,15 +18,15 @@ import { StoresType } from '../_app'
 
 const schedule = [{
   title: '발표안 제안 오픈',
-  intlKey: 'talkProposal.schedule.open',
+  intlKey: 'contribute.talkProposal.schedule.open',
   date: talkProposal.open
 }, {
   title: '발표안 제안 마감',
-  intlKey: 'talkProposal.schedule.close',
+  intlKey: 'contribute.talkProposal.schedule.close',
   date: talkProposal.close
 }, {
   title: '최종 발표자 확정',
-  intlKey: 'talkProposal.schedule.announcement',
+  intlKey: 'contribute.talkProposal.schedule.announcement',
   date: talkProposal.announcement
 }]
 
@@ -64,7 +64,7 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
           openDate={talkProposal.open}
           closeDate={talkProposal.close}
         />
-        <Paragraph><IntlText intlKey='talkProposal.description1'>
+        <Paragraph><IntlText intlKey='contribute.talkProposal.description1'>
           파이썬에 대한 학술적 또는 상업적 프로젝트, 케이스 스터디 등 다양한 파이썬 관련 발표를 아래와 같은 일정으로 모집합니다.
           자세한 내용은 발표안 작성 가이드를 참고해주세요.
         </IntlText></Paragraph>
@@ -89,11 +89,11 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
           </ContentTableWrapper>
         </Section>
         <Section>
-          <H2><IntlText intlKey='talkProposal.enquries'>문의</IntlText></H2>
+          <H2><IntlText intlKey='contribute.talkProposal.enquries'>문의</IntlText></H2>
           <Paragraph><IntlText intlKey='asdfasdfasdf'>program@pycon.kr</IntlText></Paragraph>
         </Section>
         <Section>
-          <H2><IntlText intlKey='talkProposal.application'>제안서 작성</IntlText></H2>
+          <H2><IntlText intlKey='contribute.talkProposal.application'>제안서 작성</IntlText></H2>
           {this.state.isFormInitialized
             ? authStore.logined
               ? <CFPForm />
