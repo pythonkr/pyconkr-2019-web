@@ -237,6 +237,16 @@
 
 
       }
+    },
+    "talkProposal": {
+      "description1": "We are recruting a variety of Python-related presentations, such as academic or commercial projects for Python, case studies. Please refer to the Guide for Speakers for more information.",  
+      "schedule": {
+        "open": "CFP Open",
+        "close": "CFP Close",
+        "announcement": "Speaker Confirmation"
+      },
+      "enquiry": "Enquiries",
+      "application": "Apply for CFP"
     }
   },
   "sponsor": {
