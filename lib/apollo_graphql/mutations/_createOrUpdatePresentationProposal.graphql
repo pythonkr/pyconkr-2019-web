@@ -1,0 +1,17 @@
+mutation CreateOrUpdatePresentationProposal($data: PresentationProposalInput!) {
+    createOrUpdatePresentationProposal(data: $data) {
+        proposal {
+          name
+          backgroundDesc
+          detailDesc
+          language
+          duration
+          isPresentedBefore
+          placePresentedBefore
+          presentedSlideUrlBefore
+          comment
+          submitted
+        }
+        success
+    }
+}

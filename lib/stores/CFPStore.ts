@@ -2,8 +2,8 @@ import { action, configure, observable } from 'mobx'
 import { getCategories, CategoryType } from 'lib/apollo_graphql/queries/getCategories'
 import { getDifficulties, DifficultyType } from 'lib/apollo_graphql/queries/getDifficulties'
 import { client } from 'lib/apollo_graphql/client';
-import { PresentationType, getMyPresentation } from 'lib/apollo_graphql/queries/getMyPresentation';
-import { createOrUpdatePresentation } from 'lib/apollo_graphql/mutations/createOrUpdatePresentation';
+import { PresentationProposalType, getMyPresentationProposal } from 'lib/apollo_graphql/queries/getMyPresentationProposal';
+import { createOrUpdatePresentationProposal } from 'lib/apollo_graphql/mutations/createOrUpdatePresentationProposal';
 
 configure({ enforceActions: 'always' })
 
@@ -40,7 +40,7 @@ export class CFPStore {
 
     @action
     async retriveMyPresentation() {
-      var response = await getMyPresentation(client)({})
+      var response = await getMyPresentationProposal(client)({})
       this.presentation = response.data.myPresentation
     }
 
@@ -49,8 +49,8 @@ export class CFPStore {
       if(presentation && presentation.hasOwnProperty('__typename')){
         delete presentation.__typename
       }
-      var response = await createOrUpdatePresentation(client)({
-        presentationInput: presentation
+      var response = await createOrUpdatePresentationProposal(client)({
+        data: presentation
       })
       this.presentation = {
         ...response.data.createOrUpdatePresentation.presentation

@@ -23,32 +23,23 @@ export enum OauthTypeNode {
   NAVER = "NAVER",
 }
 
-export interface PresentationInput {
+export interface PresentationProposalInput {
   name?: string | null;
-  nameKo?: string | null;
-  nameEn?: string | null;
-  desc?: string | null;
-  descKo?: string | null;
-  descEn?: string | null;
-  shortDesc?: string | null;
-  shortDescKo?: string | null;
-  shortDescEn?: string | null;
-  backgroundDesc?: string | null;
-  backgroundDescKo?: string | null;
-  backgroundDescEn?: string | null;
-  language?: LanguageNode | null;
-  submitted?: boolean | null;
-  duration?: DurationNode | null;
   categoryId?: number | null;
   difficultyId?: number | null;
-  slideUrl?: string | null;
-  pdfUrl?: string | null;
-  videoUrl?: string | null;
-  recordable?: boolean | null;
+  backgroundDesc?: string | null;
+  language?: LanguageNode | null;
+  duration?: DurationNode | null;
+  submitted?: boolean | null;
+  detailDesc?: string | null;
   isPresentedBefore?: boolean | null;
   placePresentedBefore?: string | null;
   presentedSlideUrlBefore?: string | null;
-  question?: string | null;
+  comment?: string | null;
+  isCocAgreed?: boolean | null;
+  isContentsAgreed?: boolean | null;
+  isEtcAgreed?: boolean | null;
+  isProposalAgreed?: boolean | null;
 }
 
 export interface ProfileInput {
