@@ -76,7 +76,7 @@ class Profile extends React.Component<{
                 : this.state.profile.avatarUrl
             }
           />
-          <label htmlFor='upload' className='file-upload__label'><IntlText intlKey='account.profile..button1'>
+          <label htmlFor='upload' className='file-upload__label'><IntlText intlKey='account.profile.button1'>
             업로드
             <input
               id='upload'
@@ -140,7 +140,7 @@ class Profile extends React.Component<{
               aria-required={true}
               required
             />
-            <label><IntlText intlKey='gnb.info.profile.item3'>
+            <label><IntlText intlKey='account.profile.item3'>
               이름
             </IntlText></label>
             <input
