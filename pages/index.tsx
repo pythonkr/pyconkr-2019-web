@@ -286,6 +286,7 @@ const IntroduceSection = styled.section`
 class Index extends React.Component<{ stores: StoresType }> {
   async componentDidMount() {
     this.handleOAuthCallback();
+    this.syncUserProfile();
   }
 
   async handleOAuthCallback() {
@@ -293,7 +294,17 @@ class Index extends React.Component<{ stores: StoresType }> {
     if (location.search.indexOf("code") === -1) return;
     const { state, code } = parse(location.search, { ignoreQueryPrefix: true });
     await stores.authStore.login(state, code);
-    Router.push("/");
+    if (stores.profileStore.isAgreed){
+      Router.push(paths.home);
+    } else {
+      Router.push(paths.account.agreement);
+    }
+  }
+
+  async syncUserProfile() {
+    const { stores } = this.props;
+    stores.authStore.syncToken();
+    await stores.profileStore.retrieveMe();
   }
 
   render() {

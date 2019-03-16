@@ -30,6 +30,10 @@ export class AuthStore {
   @observable clientId?: clientIdEnum;
   @observable accessToken?: string | null = null;
 
+  constructor(){
+    // this.accessToken = localStorage.getItem(TOKEN_KEY);
+  }
+
   @action
   async login(oAuthType: keyof typeof clientIdEnum, code: string) {
     if (!oAuthType || !code) {
@@ -39,17 +43,16 @@ export class AuthStore {
     this.clientId = clientIdEnum[this.oAuthType];
 
     // Get AuthToken
-    return getAuthToken(client)({
+    let response = await getAuthToken(client)({
       clientId: this.clientId,
       oauthType: this.oAuthType,
       code,
       redirectUri: location.origin + "/"
-    }).then((result: any) => {
-      const accessToken = result.data.oAuthTokenAuth.token;
-      this.setAccessToken(accessToken);
-      localStorage.setItem(TOKEN_KEY, accessToken);
-      return ProfileStore.retrieveMe();
-    });
+    })
+    const accessToken = response.data.oAuthTokenAuth.token;
+    this.setAccessToken(accessToken);
+    localStorage.setItem(TOKEN_KEY, accessToken);
+    return ProfileStore.retrieveMe();
   }
 
   @action

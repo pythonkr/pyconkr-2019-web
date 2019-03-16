@@ -40,7 +40,7 @@ class Profile extends React.Component<{
 
   async componentDidMount() {
     const { stores, router } = this.props;
-    stores.authStore.syncToken();
+    
     if (!stores.authStore.logined) {
       router.replace(paths.account.login);
       return;

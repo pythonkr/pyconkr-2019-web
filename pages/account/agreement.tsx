@@ -61,9 +61,9 @@ class Logout extends React.Component<{
               type="checkbox"
               aria-checked={this.state.isTermsOfService}
               checked={this.state.isTermsOfService}
-              onChange={() =>
+              onChange={(event) =>
                 this.setState({
-                  isTermsOfService: !this.state.isTermsOfService
+                  isTermsOfService: event.target.checked
                 })
               }
             />
@@ -72,8 +72,10 @@ class Logout extends React.Component<{
               type="checkbox"
               aria-checked={this.state.isPrivacyPolicy}
               checked={this.state.isPrivacyPolicy}
-              onChange={() =>
-                this.setState({ isPrivacyPolicy: !this.state.isPrivacyPolicy })
+              onChange={(event) =>
+                this.setState({ 
+                  isPrivacyPolicy: event.target.checked 
+                })
               }
             />
             <button type="submit">동의합니다!</button>

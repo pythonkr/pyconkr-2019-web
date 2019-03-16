@@ -79,7 +79,6 @@ class MyApp extends App {
       .then(() => {
         document && document.body.classList.add('font-loaded')
       })
-
     this.retrieveProfileIfTokenExists()
   }
 
