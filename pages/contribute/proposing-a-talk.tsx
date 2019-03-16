@@ -89,7 +89,7 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
           </ContentTableWrapper>
         </Section>
         <Section>
-          <H2><IntlText intlKey='contribute.talkProposal.enquries'>문의</IntlText></H2>
+          <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
           <Paragraph><IntlText intlKey='asdfasdfasdf'>program@pycon.kr</IntlText></Paragraph>
         </Section>
         <Section>
