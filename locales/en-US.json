@@ -243,8 +243,60 @@
         "close": "CFP Close",
         "announcement": "Speaker Confirmation"
       },
-      "enquiry": "Enquiries",
-      "application": "Apply for CFP"
+      "application": {
+        "title": "Apply for CFP",
+        "stages": {
+          "stages1": {
+            "header": "Save a profile",
+            "item1": "E-mail",
+            "item2": "Name in Korean",
+            "item3": "Name in English",
+            "item4": "Affiliation",
+            "item5": "Phone Number"
+            "desc1": "The information registered as a speaker profile will be saved in profile and can be edited in My Profile page. The profile will be used in Progam page later."
+            "button": "Save the profile and Continue"
+          },
+          "stages2": {
+            "header": "Basic information",
+            "item1": "Topic",
+            "item2": "Session Category",
+            "item3": "Session Difficulty",
+            "item4": "Prerequisities to understand the session",
+            "item5": {
+              "header": "Session Length",
+              "sub1": "25 mins",
+              "sub2": "40 mins"
+            },
+            "button1": "Previous",
+            "button2": "Save draft",
+            "button3": "Next"
+          },
+          "stages3": {
+            "header": "Detailed information",
+            "item1": {
+            "sub1": "Contents of CFP in detail"
+            "desc1": "In case it's accessive, please provide an external link."
+            },
+            "item2":{
+              "header": "Have you presented the material in other events?",
+              "button1": "Yes, I have",
+              "button2": "No, I haven't"
+            },
+            "item3": "A conference you presented the material",
+            "item4": "External link to your presentation material",
+            "item5": {
+              "header": "Comments and Enquiries",
+              "desc1": "Feel free to write comments to reviewers"
+            }
+          },
+          "stages4": "CoC and Ethics",
+          "stages5": {
+            "header": "Submit CFP",
+            "desc1": "You can check and edit your CFP at Proposal and Application page",
+            "button1": "View Proposal and Application"
+          }
+        }
+      }
     }
   },
   "sponsor": {
