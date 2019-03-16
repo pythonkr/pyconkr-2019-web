@@ -1,9 +1,9 @@
-import { action, configure, observable } from 'mobx'
-import { getCategories, CategoryType } from 'lib/apollo_graphql/queries/getCategories'
-import { getDifficulties, DifficultyType } from 'lib/apollo_graphql/queries/getDifficulties'
 import { client } from 'lib/apollo_graphql/client';
-import { PresentationProposalType, getMyPresentationProposal } from 'lib/apollo_graphql/queries/getMyPresentationProposal';
 import { createOrUpdatePresentationProposal } from 'lib/apollo_graphql/mutations/createOrUpdatePresentationProposal';
+import { CategoryType, getCategories } from 'lib/apollo_graphql/queries/getCategories';
+import { DifficultyType, getDifficulties } from 'lib/apollo_graphql/queries/getDifficulties';
+import { getMyPresentationProposal } from 'lib/apollo_graphql/queries/getMyPresentationProposal';
+import { action, configure, observable } from 'mobx';
 
 configure({ enforceActions: 'always' })
 
@@ -28,28 +28,28 @@ export class CFPStore {
 
     @action
     async retrieveCategories() {
-      var response = await getCategories(client)({})
+      const response = await getCategories(client)({})
       this.categories = response.data.categories
     }
 
     @action
     async retrieveDifficulties() {
-      var response = await getDifficulties(client)({})
+      const response = await getDifficulties(client)({})
       this.difficulties = response.data.difficulties
     }
 
     @action
     async retriveMyPresentation() {
-      var response = await getMyPresentationProposal(client)({})
+      const response = await getMyPresentationProposal(client)({})
       this.presentation = response.data.myPresentation
     }
 
     @action
     async createOrUpdatePresentation(presentation: any) {
-      if(presentation && presentation.hasOwnProperty('__typename')){
+      if (presentation && presentation.hasOwnProperty('__typename')) {
         delete presentation.__typename
       }
-      var response = await createOrUpdatePresentationProposal(client)({
+      const response = await createOrUpdatePresentationProposal(client)({
         data: presentation
       })
       this.presentation = {

@@ -68,21 +68,24 @@
       "logout": "Logout",
       "root": "My Info",
       "history": "Proposal/Sponsor History",
-      "profile": {
-        "header": "Profile",
-        "item1": "Profile Picture",
-        "button1": "Upload",
-        "item2": "Email",
-        "item3": "Name in Korean",
-        "item4": "Name in English",
-        "item5": "Phone Number",
-        "item6": "Affiliation",
-        "item7": "Nationality",
-        "item8": "Bio in Korean",
-        "item9": "Bio in English",
-        "button2": "Update Profile",
-        "alert1": "The profile has been updated"
-      }
+      "profile": "My Profile"
+    }
+  },
+  "account": {
+    "profile": {
+      "header": "Profile",
+      "item1": "Profile Picture",
+      "button1": "Upload",
+      "item2": "Email",
+      "item3": "Name in Korean",
+      "item4": "Name in English",
+      "item5": "Phone Number",
+      "item6": "Affiliation",
+      "item7": "Nationality",
+      "item8": "Bio in Korean",
+      "item9": "Bio in English",
+      "button2": "Update Profile",
+      "alert1": "The profile has been updated"
     }
   },
   "home": {
@@ -246,8 +249,6 @@
           "desc1": "Expert level users are familiar with python programming and general concept of programming. A difference between intermediate and expert is the knowledge and experience of specific field they are in and higher level of programming knowledge.",
           "desc2": "For expert level users, optimization, internals of library, or Python internal is recommended."
         }
-
-
       }
     },
     "talkProposal": {
@@ -397,7 +398,6 @@
     "long5": "If a participant engages in behavior that violates this code of conduct, the conference organizers may take any action they deem appropriate, including warning the offender or expulsion from the conference with no refund.",
     "license": "License",
     "licenseDesc": "This Code of Conduct was forked from the example policy from the Geek Feminism wiki, created by the Ada Initiative and other volunteers. which is under a Creative Commons Zero license. <a href=\"https://github.com/pythonkr/pycon-code-of-conduct\">github link</a>"
-
   },
   "fixedFooter": {
     "coc": "Code of Conduct",
