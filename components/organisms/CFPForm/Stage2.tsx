@@ -1,12 +1,13 @@
+import { Button } from 'components/atoms/Button'
 import { FormWrapper } from 'components/atoms/ContentWrappers'
+import { FlexSpaceBetweenWrapper } from 'components/atoms/FlexWrapper'
+import { IntlText } from 'components/atoms/IntlText'
 import { DurationNode, LanguageNode} from 'lib/apollo_graphql/__generated__/globalTypes'
 import { CFPFormStage } from 'lib/stores/CFPStore'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import React from 'react'
-import { Button } from 'components/atoms/Button';
-import { TEAL } from 'styles/colors';
-import { FlexSpaceBetweenWrapper } from 'components/atoms/FlexWrapper';
+import { TEAL } from 'styles/colors'
 
 interface State {
   nameKo: string,
@@ -40,7 +41,7 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
             stores.cfpStore.setCurrentStage(CFPFormStage.stage3)
           })
         }}>
-          <label>주제</label>
+          <label><IntlText intlKey='asdfasdf'>주제</IntlText></label>
           <input
             type='text'
             value={this.state.nameKo}
@@ -48,7 +49,7 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
             aria-required={true}
             required
           />
-          <label>세션 카테고리</label>
+          <label><IntlText intlKey='asdfasdf'>세션 카테고리</IntlText></label>
           {/* tslint:disable-next-line:react-a11y-no-onchange */}
           <select
             value={this.state.categoryId}
@@ -68,7 +69,7 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
             }
           </select>
           <fieldset>
-            <legend>세션 난이도</legend>
+            <legend><IntlText intlKey='asdfasdf'>세션 난이도</IntlText></legend>
             {
               stores.cfpStore.difficulties.map(difficulty =>
                 <p key={difficulty.id}>
@@ -85,7 +86,9 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
               )
             }
           </fieldset>
-          <label>세션을 이해하는 데에 필요한 선수 지식</label>
+          <label><IntlText intlKey='asdfasdf'>
+            세션을 이해하는 데에 필요한 선수 지식
+          </IntlText></label>
           <input
             type='text'
             value={this.state.backgroundDesc}
