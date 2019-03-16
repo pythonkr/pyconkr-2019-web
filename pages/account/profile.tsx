@@ -61,10 +61,10 @@ class Profile extends React.Component<{
     return (
       <PageTemplate header={<Header title='프로필' />} footer={<Footer />}>
         <H1>
-          <IntlText intlKey='gnb.info.profile.header'>프로필</IntlText>
+          <IntlText intlKey='account.profile.header'>프로필</IntlText>
         </H1>
         <FormWrapper style={{ marginBottom: '140px' }}>
-          <label><IntlText intlKey='gnb.info.profile.item1'>
+          <label><IntlText intlKey='account.profile.item1'>
             프로필 사진
           </IntlText></label>
           <img
@@ -76,7 +76,7 @@ class Profile extends React.Component<{
                 : this.state.profile.avatarUrl
             }
           />
-          <label htmlFor='upload' className='file-upload__label'><IntlText intlKey='gnb.info.profile..button1'>
+          <label htmlFor='upload' className='file-upload__label'><IntlText intlKey='account.profile..button1'>
             업로드
             <input
               id='upload'
@@ -114,7 +114,7 @@ class Profile extends React.Component<{
                   nationality: this.state.profile.nationality
                 })
                 .then((profile: any) => {
-                  window.alert(intl.get('gnb.info.profile.alter1').d('프로필이 수정되었습니다.'))
+                  window.alert(intl.get('account.profile.alter1').d('프로필이 수정되었습니다.'))
                   this.setState({
                     profile: {
                       ...profile
@@ -123,7 +123,7 @@ class Profile extends React.Component<{
                 })
             }}
           >
-            <label><IntlText intlKey='gnb.info.profile.item2'>
+            <label><IntlText intlKey='account.profile.item2'>
               이메일
             </IntlText></label>
             <input
@@ -157,7 +157,7 @@ class Profile extends React.Component<{
               aria-required={true}
               required
             />
-            <label><IntlText intlKey='gnb.info.profile.item4'>
+            <label><IntlText intlKey='account.profile.item4'>
               영문 이름
             </IntlText></label>
             <input
@@ -174,7 +174,7 @@ class Profile extends React.Component<{
               aria-required={true}
               required
             />
-            <label><IntlText intlKey='gnb.info.profile.item5'>
+            <label><IntlText intlKey='account.profile.item5'>
               전화번호
             </IntlText></label>
             <input
@@ -189,7 +189,7 @@ class Profile extends React.Component<{
                 })
               }
             />
-            <label><IntlText intlKey='gnb.info.profile.item6'>
+            <label><IntlText intlKey='account.profile.item6'>
               소속
             </IntlText></label>
             <input
@@ -204,7 +204,7 @@ class Profile extends React.Component<{
                 })
               }
             />
-            <label><IntlText intlKey='gnb.info.profile.item7'>
+            <label><IntlText intlKey='account.profile.item7'>
               국적
             </IntlText></label>
             <input
@@ -219,7 +219,7 @@ class Profile extends React.Component<{
                 })
               }
             />
-            <label><IntlText intlKey='gnb.info.profile.item8'>
+            <label><IntlText intlKey='account.profile.item8'>
               소개
             </IntlText></label>
             <textarea
@@ -233,7 +233,7 @@ class Profile extends React.Component<{
                 })
               }
             />
-            <label><IntlText intlKey='gnb.info.profile.item9'>
+            <label><IntlText intlKey='account.profile.item9'>
               영문소개
             </IntlText></label>
             <textarea
@@ -250,7 +250,7 @@ class Profile extends React.Component<{
             <FlexCenterWrapper>
               <Button
                 type='submit'
-                intlKey='gnb.info.profile.button2'
+                intlKey='account.profile.button2'
                 color={TEAL}
                 style={{ marginTop: '20px' }}
               >
