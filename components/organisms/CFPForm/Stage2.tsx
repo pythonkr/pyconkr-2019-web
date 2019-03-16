@@ -1,21 +1,18 @@
+import { FormWrapper } from 'components/atoms/ContentWrappers'
+import { DurationNode, LanguageNode} from 'lib/apollo_graphql/__generated__/globalTypes'
 import { CFPFormStage } from 'lib/stores/CFPStore'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
-import { FormWrapper } from 'components/atoms/ContentWrappers'
 import React from 'react'
-import { LanguageNode, DurationNode} from 'lib/apollo_graphql/__generated__/globalTypes';
-
-
-
-
+import { Button } from 'components/atoms/Button';
+import { TEAL } from 'styles/colors';
+import { FlexSpaceBetweenWrapper } from 'components/atoms/FlexWrapper';
 
 interface State {
   nameKo: string,
-  nameEn: string,
   categoryId: string,
   difficultyId: string,
-  shortDescKo: string,
-  shortDescEn: string,
+  backgroundDesc: string,
   duration: DurationNode | null,
   language: LanguageNode | null,
 }
@@ -25,11 +22,9 @@ interface State {
 export default class CFPFormStage2 extends React.Component<{stores: StoresType}, State> {
   state = {
     nameKo: '',
-    nameEn: '',
     categoryId: '',
     difficultyId: '',
-    shortDescKo: '',
-    shortDescEn: '',
+    backgroundDesc: '',
     duration: DurationNode.SHORT,
     language: LanguageNode.KOREAN,
   }
@@ -40,13 +35,12 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
     return (
       <FormWrapper>
         <form onSubmit={(e) => {
-          e.preventDefault();
-          console.log(this.state)
-          stores.cfpStore.createOrUpdatePresentation(this.state).then(()=>{
+          e.preventDefault()
+          stores.cfpStore.createOrUpdatePresentation(this.state).then(() => {
             stores.cfpStore.setCurrentStage(CFPFormStage.stage3)
           })
         }}>
-          <label>세션 제목</label>
+          <label>주제</label>
           <input
             type='text'
             value={this.state.nameKo}
@@ -54,15 +48,8 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
             aria-required={true}
             required
           />
-          <label>영문 제목</label>
-          <input
-            type='text'
-            value={this.state.nameEn}
-            onChange={e => this.setState({ nameEn: e.target.value })}
-            required
-            aria-required={true}
-          />
           <label>세션 카테고리</label>
+          {/* tslint:disable-next-line:react-a11y-no-onchange */}
           <select
             value={this.state.categoryId}
             onBlur={e => this.setState({ categoryId: e.target.value })}
@@ -70,98 +57,131 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
             aria-required={true}
             required
           >
-          {
-            stores.cfpStore.categories.map(category =>
-              <option
-                aria-selected={this.state.categoryId === 'category.id' }
-                key={category.id}
-                value={category.id}
-              >{category.name}</option>
-            )
-          }
+            {
+              stores.cfpStore.categories.map(category =>
+                <option
+                  key={category.id}
+                  aria-selected={this.state.categoryId === 'category.id' }
+                  value={category.id}
+                >{category.name}</option>
+              )
+            }
           </select>
-          <label>간략한 설명</label>
-          <input
-            type='text'
-            value={this.state.shortDescKo}
-            onChange={e => this.setState({ shortDescKo: e.target.value })}
-            aria-required={true}
-            required
-          />
-          <label>간략한 설명 - 영문</label>
-          <input
-            type='text'
-            value={this.state.shortDescEn}
-            onChange={e => this.setState({ shortDescEn: e.target.value })}
-            aria-required={true}
-            required
-          />
-          <fieldset>
-            <legend>세션 길이</legend>
-            <label>25분</label>
-            <input
-              type='radio'
-              value={DurationNode.SHORT}
-              aria-checked={this.state.duration === DurationNode.SHORT}
-              checked={this.state.duration === DurationNode.SHORT}
-              onChange={() => this.setState({ duration: DurationNode.SHORT })}
-            />
-            <label>45분</label>
-            <input
-              type='radio'
-              value={DurationNode.LONG}
-              aria-checked={this.state.duration === DurationNode.LONG}
-              checked={this.state.duration === DurationNode.LONG}
-              onChange={() => this.setState({ duration: DurationNode.LONG })}
-            />
-          </fieldset>
-          <fieldset>
-            <legend>언어</legend>
-            <label>한국어</label>
-            <input
-              type='radio'
-              value={LanguageNode.KOREAN}
-              aria-checked={this.state.language === LanguageNode.KOREAN}
-              checked={this.state.language === LanguageNode.KOREAN}
-              onChange={() => this.setState({ language: LanguageNode.KOREAN })}
-            />
-            <label>영어</label>
-            <input
-              type='radio'
-              value={LanguageNode.ENGLISH}
-              aria-checked={this.state.language === LanguageNode.ENGLISH}
-              checked={this.state.language === LanguageNode.ENGLISH}
-              onChange={() => this.setState({ language: LanguageNode.ENGLISH })}
-            />
-          </fieldset>
           <fieldset>
             <legend>세션 난이도</legend>
             {
               stores.cfpStore.difficulties.map(difficulty =>
-                <>
+                <p key={difficulty.id}>
                   <input
                     type='radio'
+                    id={difficulty.name}
                     value={difficulty.id}
-                    key={difficulty.id}
                     aria-checked={this.state.difficultyId === difficulty.id}
                     checked={this.state.difficultyId === difficulty.id}
                     onChange={() => this.setState({ difficultyId: difficulty.id })}>
                   </input>
-                  <label>{difficulty.name}</label>
-                </>
+                  <label htmlFor={difficulty.name}>{difficulty.name}</label>
+                </p>
               )
-
             }
           </fieldset>
-          <button type='button' onClick={() => {
-            stores.cfpStore.setCurrentStage(CFPFormStage.stage1)
-          }}>이전</button>
-          <button type='button' onClick={() => {
-            stores.cfpStore.createOrUpdatePresentation(this.state).then(()=>{
-              alert('저장이 완료되었습니다')
-            })
-          }}>임시 저장</button>
-          <button type='submit'>다음</button>
+          <label>세션을 이해하는 데에 필요한 선수 지식</label>
+          <input
+            type='text'
+            value={this.state.backgroundDesc}
+            onChange={e => this.setState({ backgroundDesc: e.target.value })}
+            aria-required={true}
+            required
+          />
+          <div role='group'>
+            <fieldset>
+              <legend>세션 길이</legend>
+              <p>
+                <input
+                  type='radio'
+                  id={DurationNode.SHORT}
+                  value={DurationNode.SHORT}
+                  aria-checked={this.state.duration === DurationNode.SHORT}
+                  checked={this.state.duration === DurationNode.SHORT}
+                  onChange={() => this.setState({ duration: DurationNode.SHORT })}
+                />
+                <label htmlFor={DurationNode.SHORT}>25분</label>
+              </p>
+              <p>
+                <input
+                  type='radio'
+                  id={DurationNode.LONG}
+                  value={DurationNode.LONG}
+                  aria-checked={this.state.duration === DurationNode.LONG}
+                  checked={this.state.duration === DurationNode.LONG}
+                  onChange={() => this.setState({ duration: DurationNode.LONG })}
+                />
+                <label htmlFor={DurationNode.LONG}>45분</label>
+              </p>
+            </fieldset>
+            <fieldset>
+              <legend>언어</legend>
+              <p>
+                <input
+                  type='radio'
+                  id={LanguageNode.KOREAN}
+                  value={LanguageNode.KOREAN}
+                  aria-checked={this.state.language === LanguageNode.KOREAN}
+                  checked={this.state.language === LanguageNode.KOREAN}
+                  onChange={() => this.setState({ language: LanguageNode.KOREAN })}
+                />
+                <label htmlFor={LanguageNode.KOREAN}>한국어</label>
+              </p>
+              <p>
+                <input
+                  type='radio'
+                  id={LanguageNode.ENGLISH}
+                  value={LanguageNode.ENGLISH}
+                  aria-checked={this.state.language === LanguageNode.ENGLISH}
+                  checked={this.state.language === LanguageNode.ENGLISH}
+                  onChange={() => this.setState({ language: LanguageNode.ENGLISH })}
+                />
+                <label htmlFor={LanguageNode.ENGLISH}>영어</label>
+              </p>
+            </fieldset>
+          </div>
+          <FlexSpaceBetweenWrapper style={{ marginTop: 80 }}>
+            <Button
+              tag='button'
+              type='button'
+              intlKey='adsfasdfa'
+              color={TEAL}
+              width={120}
+              primary={false}
+              onClick={() => {
+                stores.cfpStore.setCurrentStage(CFPFormStage.stage1)
+              }}
+            >이전</Button>
+            <div>
+              <Button
+                tag='button'
+                type='button'
+                intlKey='adsfasdfa'
+                color={TEAL}
+                width={120}
+                primary={false}
+                onClick={() => {
+                  stores.cfpStore.createOrUpdatePresentation(this.state).then(() => {
+                    alert('저장이 완료되었습니다')
+                  })
+                }}
+              >임시 저장</Button>
+              <Button
+                tag='button'
+                type='submit'
+                intlKey='adsfasdfa'
+                color={TEAL}
+                width={120}
+                style={{ marginLeft: 10 }}
+              >다음</Button>
+            </div>
+          </FlexSpaceBetweenWrapper>
+
         </form>
       </FormWrapper>
     )

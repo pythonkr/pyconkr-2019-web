@@ -309,7 +309,10 @@ input[type=file] {
     outline: none;
 }
 
-input[type=text], input[type=tel], textarea {
+input[type=text],
+input[type=tel],
+textarea,
+select {
     width: 100%;
     height: 58px;
     margin-bottom: 30px;
@@ -333,6 +336,22 @@ input[type=text], input[type=tel], textarea {
 
 textarea {
   height: 141px;
+}
+
+select {
+  appearance: none;
+  padding: 0 21px;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    background: red;
+  }
 }
 
 .file-upload__label {
@@ -361,5 +380,41 @@ textarea {
     height: 100%;
     opacity: 0;
     pointer-events: none;
+}
+
+div[role='group'] {
+  display: flex;
+  flex-direction: row;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 12px 0 8px;
+  border: 0px;
+  width: 20px;
+  height: 20px;
+
+  & + label {
+    display: inline-block;
+    font-size: 17px;
+    line-height: 20px;
+    color: ${DEFAULT_TEXT_BLACK};
+    cursor: pointer;
+    padding: 10px;
+    vertical-align: top;
+  }
+}
+
+fieldset {
+  width: 50%;
+  margin-bottom: 30px;
+
+  legend {
+    display: block;
+    padding: 7px 0;
+    font-size: 14px;
+    line-height: 29px;
+    color: ${HEADING_LIGHT_BLACK};
+  }
 }
 `

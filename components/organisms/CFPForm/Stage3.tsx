@@ -1,12 +1,11 @@
+import { FormWrapper } from 'components/atoms/ContentWrappers'
 import { CFPFormStage } from 'lib/stores/CFPStore'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
-import { FormWrapper } from 'components/atoms/ContentWrappers'
 import React from 'react'
 
 interface State {
   desc: string,
-  backgroundDesc: string,
   isPresentedBefore: boolean | null,
   placePresentedBefore: string,
   presentedSlideUrlBefore: string,
@@ -18,7 +17,6 @@ interface State {
 export default class CFPFormStage3 extends React.Component<{stores: StoresType}, State> {
   state = {
     desc: '',
-    backgroundDesc: '',
     isPresentedBefore: false,
     placePresentedBefore: '',
     presentedSlideUrlBefore: '',
@@ -31,8 +29,8 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
     return (
       <FormWrapper>
         <form onSubmit={(e) => {
-          e.preventDefault();
-          stores.cfpStore.createOrUpdatePresentation(this.state).then(()=>{
+          e.preventDefault()
+          stores.cfpStore.createOrUpdatePresentation(this.state).then(() => {
             stores.cfpStore.setCurrentStage(CFPFormStage.stage4)
           })
         }}>
@@ -41,14 +39,6 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
             type='text'
             value={this.state.desc}
             onChange={e => this.setState({ desc: e.target.value })}
-            aria-required={true}
-            required
-          />
-          <label>세션을 이해하는 데에 필요한 선수 지식</label>
-          <input
-            type='text'
-            value={this.state.backgroundDesc}
-            onChange={e => this.setState({ backgroundDesc: e.target.value })}
             aria-required={true}
             required
           />
@@ -93,7 +83,7 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
             stores.cfpStore.setCurrentStage(CFPFormStage.stage2)
           }}>이전</button>
           <button type='button' onClick={() => {
-            stores.cfpStore.createOrUpdatePresentation(this.state).then(()=>{
+            stores.cfpStore.createOrUpdatePresentation(this.state).then(() => {
               alert('저장이 완료되었습니다')
             })
           }}>임시 저장</button>

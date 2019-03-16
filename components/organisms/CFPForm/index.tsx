@@ -10,7 +10,7 @@ import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import Steps from 'rc-steps'
 import React from 'react'
-import { TEAL, TEAL_LIGHT, TEAL_SEMI_DARK, TEAL_LIGHT_LIGHT } from 'styles/colors'
+import { TEAL, TEAL_LIGHT, TEAL_LIGHT_LIGHT, TEAL_SEMI_DARK } from 'styles/colors'
 import { isEmpty } from 'utils/isEmpty'
 
 const StepsWrapper = styled.div`
@@ -27,6 +27,9 @@ const StepsWrapper = styled.div`
   .rc-steps-item-process > .rc-steps-item-icon {
     background-color: ${TEAL};
     border-color: ${TEAL_SEMI_DARK};
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `
 
