@@ -1,6 +1,7 @@
 import { Button } from 'components/atoms/Button'
 import { FormWrapper } from 'components/atoms/ContentWrappers'
 import { FlexCenterWrapper } from 'components/atoms/FlexWrapper'
+import { ProfileNode } from 'lib/apollo_graphql/mutations/updateProfile'
 import { CFPFormStage } from 'lib/stores/CFPStore'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
@@ -8,62 +9,108 @@ import { StoresType } from 'pages/_app'
 import React from 'react'
 import { TEAL } from 'styles/colors'
 
+/* tslint:disable:react-a11y-required  */
+
+type Input = {
+  title: string;
+  isRequired: boolean;
+  value: string | null;
+}
+
+type Profile = {
+  [index: string]: Input;
+}
+
 type State = {
-  [index: string]: {
-    title: string;
-    isRequired: boolean;
-    value: string;
-  };
+  profile: Profile;
 }
 
 @inject('stores')
 @observer
 export default class ProfileForm extends React.Component<{stores: StoresType}, State> {
-  state = {
-    email:  {
-      title: '이메일',
-      isRequired: true,
-      value: ''
-    },
-    nameKo: {
-      title: '한글 이름',
-      isRequired: true,
-      value: ''
-    },
-    nameEn:  {
-      title: '영문 이름',
-      isRequired: true,
-      value: ''
-    },
-    phone:  {
-      title: '소속',
-      isRequired: false,
-      value: ''
-    },
-    organization:  {
-      title: '연락 가능한 전화번호',
-      isRequired: false,
-      value: ''
-    },
+  state: State = {
+    profile: {
+      email:  {
+        title: '이메일',
+        isRequired: true,
+        value: ''
+      },
+      nameKo: {
+        title: '한글 이름',
+        isRequired: true,
+        value: ''
+      },
+      nameEn:  {
+        title: '영문 이름',
+        isRequired: true,
+        value: ''
+      },
+      phone:  {
+        title: '소속',
+        isRequired: false,
+        value: ''
+      },
+      organization:  {
+        title: '연락 가능한 전화번호',
+        isRequired: false,
+        value: ''
+      },
+    }
   }
 
   async componentDidMount() {
     await this.props.stores.profileStore.retrieveMe()
     const { profile } = toJS(this.props.stores.profileStore)
+    const {
+      email,
+      nameKo,
+      nameEn,
+      phone,
+      organization
+    } = profile as ProfileNode
 
     this.setState({
-      email: profile.email,
-      nameKo: profile.nameKo,
-      nameEn: profile.nameEn,
-      phone: profile.phone,
-      organization: profile.organization,
+      profile: {
+        email: {
+          ...this.state.profile.email,
+          value: email || '',
+        },
+        nameKo: {
+          ...this.state.profile.nameKo,
+          value: nameKo || '',
+        },
+        nameEn: {
+          ...this.state.profile.nameEn,
+          value: nameEn || '',
+        },
+        phone: {
+          ...this.state.profile.phone,
+          value: phone || '',
+        },
+        organization: {
+          ...this.state.profile.organization,
+          value: organization || '',
+        },
+      }
     })
+    console.log(this.state)
+    // Object.keys(this.state.profile).forEach(console.log)
   }
 
   isFormValid () {
-    return this.state.nameEn.value.length > 1 &&
-      this.state.nameKo.value.length > 0 &&
-      this.state.email.value.length > 5
+    return this.state.profile.nameEn.value!.length > 1 &&
+      this.state.profile.nameKo.value!.length > 0 &&
+      this.state.profile.email.value!.length > 5
+  }
+
+  getProfileValues = () => {
+    return {
+      email: this.state.profile.email.value,
+      nameKo: this.state.profile.nameKo.value,
+      nameEn: this.state.profile.nameEn.value,
+      phone: this.state.profile.phone.value,
+      organization: this.state.profile.organization.value,
+    }
   }
 
   render () {
@@ -73,24 +120,34 @@ export default class ProfileForm extends React.Component<{stores: StoresType}, S
       <FormWrapper>
         <form onSubmit={(e) => {
           e.preventDefault()
-          stores.profileStore.updateProfile(this.state)
+          stores.profileStore.updateProfile(this.getProfileValues() as ProfileNode)
           stores.cfpStore.setCurrentStage(CFPFormStage.stage2)
         }}>
-          {Object.keys(this.state).map((inputKey) =>
-          <React.Fragment key={inputKey}>
-            <label>
-              {this.state[inputKey].title}
+          {Object.keys(this.state.profile).map(inputKey => {
+            const profileInput = this.state.profile[inputKey]
+
+            return <React.Fragment key={inputKey}>
+              <label htmlFor={profileInput.title}>
+                {profileInput.title}
+              </label>
               <input
                 type='text'
-                value={this.state[inputKey].value}
-                onChange={e => this.setState({ [inputKey]: e.target.value })}
-                required={this.state[inputKey].isRequired}
-                aria-required={this.state[inputKey].isRequired}
+                id={profileInput.title}
+                value={profileInput.value || ''}
+                onChange={e => this.setState({
+                  profile: {
+                    ...this.state.profile,
+                    [inputKey]: {
+                      ...profileInput,
+                      value: e.target.value
+                    }
+                  }
+                })}
+                required={!!profileInput.isRequired}
+                aria-required={!!profileInput.isRequired}
               />
-            </label>
-            <br/>
-          </React.Fragment>
-          )}
+            </React.Fragment>
+          })}
           <p>
             발표자 정보로 등록한 내용들은 프로필로 저장되며, 내 프로필 페이지에서 수정할 수 있습니다.
             프로필은 추후 프로그램 페이지에서 사용됩니다.

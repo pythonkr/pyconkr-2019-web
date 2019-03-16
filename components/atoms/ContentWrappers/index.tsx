@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
-import { TEAL, HEADING_LIGHT_BLACK, DEFAULT_TEXT_BLACK, TEAL_LIGHT, TEAL_SEMI_DARK, TEAL_LIGHT_LIGHT } from 'styles/colors'
+import { DEFAULT_TEXT_BLACK, HEADING_LIGHT_BLACK, TEAL, TEAL_LIGHT, TEAL_LIGHT_LIGHT, TEAL_SEMI_DARK } from 'styles/colors'
 import { contentWidth, contentWidthPadding, mobileWidth } from 'styles/layout'
-import { CORAL } from 'styles/colors'
 
 /**
  * classnames
@@ -282,6 +281,8 @@ ${Ol} > & {
 }
 `
 
+/********************************* Form ***********************************/
+
 export const FormWrapper = styled.div`
 background: ${TEAL_LIGHT_LIGHT};
 padding: 35px 41px 60px 51px;
@@ -307,7 +308,6 @@ input[type=file] {
     padding: 17px 31px;
     outline: none;
 }
-
 
 input[type=text], input[type=tel], textarea {
     width: 100%;
