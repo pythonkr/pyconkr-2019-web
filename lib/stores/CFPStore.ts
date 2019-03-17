@@ -2,6 +2,7 @@ import { client } from 'lib/apollo_graphql/client';
 import { createOrUpdatePresentationProposal } from 'lib/apollo_graphql/mutations/createOrUpdatePresentationProposal';
 import { CategoryType, getCategories } from 'lib/apollo_graphql/queries/getCategories';
 import { DifficultyType, getDifficulties } from 'lib/apollo_graphql/queries/getDifficulties';
+import { PresentationProposalType } from 'lib/apollo_graphql/queries/getMyPresentationProposal';
 import { getMyPresentationProposal } from 'lib/apollo_graphql/queries/getMyPresentationProposal';
 import { action, configure, observable } from 'mobx';
 
@@ -19,7 +20,7 @@ export class CFPStore {
     @observable currentStage: CFPFormStage = CFPFormStage.stage1
     @observable categories: CategoryType[] = []
     @observable difficulties: DifficultyType[] = []
-    @observable presentation: PresentationType
+    @observable proposal: PresentationProposalType
 
     @action
     setCurrentStage(stage: CFPFormStage) {
@@ -39,9 +40,9 @@ export class CFPStore {
     }
 
     @action
-    async retriveMyPresentation() {
+    async retriveMyProposal() {
       const response = await getMyPresentationProposal(client)({})
-      this.presentation = response.data.myPresentation
+      this.proposal = response.data.myPresentationProposal
     }
 
     @action
@@ -52,8 +53,8 @@ export class CFPStore {
       const response = await createOrUpdatePresentationProposal(client)({
         data: presentation
       })
-      this.presentation = {
-        ...response.data.createOrUpdatePresentationProposal.presentation
+      this.proposal = {
+        ...response.data.createOrUpdatePresentationProposal.proposal
       }
     }
 

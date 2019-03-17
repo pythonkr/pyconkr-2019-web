@@ -35,9 +35,10 @@ export class ProfileStore {
     const response = await updateAgreement(client)({
       ...agreements
     })
-    if (response.updateAgreement.isActive) {
+    if (response.data.updateAgreement.isAgreedAll) {
       await this.retrieveMe()
-    }
+    } 
+    return response.data.updateAgreement
   }
 
   @action

@@ -25,6 +25,21 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
     comment: ''
   }
 
+  async componentDidMount() {
+    const { proposal } = this.props.stores.cfpStore
+    if( !proposal ) {
+     return
+    }
+    this.setState({
+      detailDesc : proposal.detailDesc,
+      isPresentedBefore : proposal.isPresentedBefore,
+      placePresentedBefore : proposal.placePresentedBefore,
+      backgroundDesc : proposal.backgroundDesc,
+      presentedSlideUrlBefore : proposal.presentedSlideUrlBefore,
+      comment : proposal.comment
+    })
+  }
+
   render () {
     const { stores } = this.props
 

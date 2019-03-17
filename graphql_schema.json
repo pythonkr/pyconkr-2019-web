@@ -2164,7 +2164,7 @@
             "deprecationReason": null
           },
           {
-            "name": "isAgreedAll",
+            "name": "isAgreed",
             "description": null,
             "args": [],
             "type": {

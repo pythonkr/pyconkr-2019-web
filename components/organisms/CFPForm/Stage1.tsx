@@ -61,7 +61,6 @@ export default class ProfileForm extends React.Component<{stores: StoresType}, S
   }
 
   async componentDidMount() {
-    await this.props.stores.profileStore.retrieveMe()
     const { profile } = toJS(this.props.stores.profileStore)
     const {
       email,

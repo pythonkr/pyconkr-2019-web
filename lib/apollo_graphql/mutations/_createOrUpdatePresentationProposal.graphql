@@ -10,6 +10,7 @@ mutation createOrUpdatePresentationProposal($data: PresentationProposalInput!) {
             placePresentedBefore
             presentedSlideUrlBefore
             comment
+            isAgreed
             submitted
             category {
                 id
@@ -26,6 +27,6 @@ mutation createOrUpdatePresentationProposal($data: PresentationProposalInput!) {
                 nameEn
             }
         }
-        isAgreedAll
+        isAgreed
     }
 }

@@ -7,6 +7,7 @@ import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
+import Router from "next/router";
 import { paths } from 'routes/paths'
 import { CORAL_LIGHT, TEAL, HEADING_LIGHT_BLACK } from 'styles/colors'
 import { StoresType } from '../_app'
@@ -38,8 +39,11 @@ class Logout extends React.Component<{
           <form
             onSubmit={e => {
               e.preventDefault()
-              stores.profileStore.updateAgreement(this.state).then(() => {
-                alert('asdf')
+              stores.profileStore.updateAgreement(this.state).then((result) => {
+                if(result.isAgreed){
+                  Router.push(paths.home);
+                }
+
               })
             }}
           >

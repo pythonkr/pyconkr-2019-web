@@ -29,6 +29,21 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
     language: LanguageNode.KOREAN,
   }
 
+  async componentDidMount() {
+    const { proposal } = this.props.stores.cfpStore
+    if( !proposal ) {
+     return
+    }
+    this.setState({
+      name : proposal.name,
+      categoryId : proposal.category.id,
+      difficultyId : proposal.difficulty.id,
+      backgroundDesc : proposal.backgroundDesc,
+      duration : proposal.duration,
+      language : proposal.language
+    })
+  }
+
   render () {
     const { stores } = this.props
 

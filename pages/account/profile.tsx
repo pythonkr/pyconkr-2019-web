@@ -55,6 +55,31 @@ class Profile extends React.Component<{
     })
   }
 
+  async submit(e) {
+    e.preventDefault()
+    const { stores } = this.props
+    stores.profileStore
+      .updateProfile({
+        nameKo: this.state.profile.nameKo,
+        nameEn: this.state.profile.nameEn,
+        bioKo: this.state.profile.bioKo,
+        bioEn: this.state.profile.bioEn,
+        phone: this.state.profile.phone,
+        email: this.state.profile.email,
+        organization: this.state.profile.organization,
+        nationality: this.state.profile.nationality
+      })
+      .then((profile: any) => {
+        // window.alert(intl.get('account.profile.alter1').d('프로필이 수정되었습니다.'))
+        window.alert('프로필이 수정되었습니다.')
+        this.setState({
+          profile: {
+            ...profile
+          }
+        })
+      })
+  }
+
   render() {
     const { stores } = this.props
 
@@ -101,26 +126,7 @@ class Profile extends React.Component<{
           </IntlText></label>
           <form
             onSubmit={e => {
-              e.preventDefault()
-              stores.profileStore
-                .updateProfile({
-                  nameKo: this.state.profile.nameKo,
-                  nameEn: this.state.profile.nameEn,
-                  bioKo: this.state.profile.bioKo,
-                  bioEn: this.state.profile.bioEn,
-                  phone: this.state.profile.phone,
-                  email: this.state.profile.email,
-                  organization: this.state.profile.organization,
-                  nationality: this.state.profile.nationality
-                })
-                .then((profile: any) => {
-                  window.alert(intl.get('account.profile.alter1').d('프로필이 수정되었습니다.'))
-                  this.setState({
-                    profile: {
-                      ...profile
-                    }
-                  })
-                })
+              this.submit(e)
             }}
           >
             <label><IntlText intlKey='account.profile.item2'>

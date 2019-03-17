@@ -20,6 +20,20 @@ export default class CFPFormStage4 extends React.Component<{stores: StoresType},
     isEtcAgreed: false,
   }
 
+  async componentDidMount() {
+    const { proposal } = this.props.stores.cfpStore
+    if( !proposal ) {
+     return
+    }
+    if (proposal.isAgreed){
+      this.setState({
+        isCocAgreed : true,
+        isContentsAgreed : true,
+        isEtcAgreed : true,
+      })
+    }
+  }
+
   render () {
     const { stores } = this.props
 
