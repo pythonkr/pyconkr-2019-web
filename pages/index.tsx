@@ -398,7 +398,7 @@ class Index extends React.Component<{ stores: StoresType }> {
                 <Button
                   primary={false}
                   intlKey='gnb.contribute.proposingATalk'
-                  to={paths.contribute.cfpDetailedGuide}
+                  to={paths.contribute.proposingATalk}
                   fontSize={14}
                 >
                   발표안 제안하기

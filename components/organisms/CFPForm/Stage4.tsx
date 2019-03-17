@@ -72,11 +72,12 @@ export default class CFPFormStage4 extends React.Component<{stores: StoresType},
             </ul>
             <input
               type='checkbox'
+              id='coc-agreed'
               aria-checked={this.state.isCocAgreed}
               checked={this.state.isCocAgreed}
               onChange={() => this.setState({ isCocAgreed: !this.state.isCocAgreed })}
             />
-            <label><IntlText intlKey='asdfasdf'>
+            <label htmlFor='coc-agreed'><IntlText intlKey='asdfasdf'>
               위 내용을 확인 하였으며 파이콘 한국 CoC를 준수할 것을 약속합니다.
             </IntlText></label>
           </fieldset>
