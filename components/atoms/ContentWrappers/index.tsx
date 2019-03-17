@@ -284,7 +284,7 @@ ${Ol} > & {
 /********************************* Form ***********************************/
 
 export const FormWrapper = styled.div`
-background: ${TEAL_LIGHT_LIGHT};
+background: ${(props) => props.color ? props.color : TEAL_LIGHT_LIGHT};
 padding: 35px 41px 60px 51px;
 @media (max-width: ${mobileWidth}) {
   padding: 35px 15px 60px;

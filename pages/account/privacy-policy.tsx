@@ -1,11 +1,9 @@
 import { H1, H2, Li, Ol, Paragraph, Section, Ul } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
-import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
 import React from 'react'
-import { contributionMenu } from 'routes/paths'
 
 export default class ProposingATalk extends React.Component {
   render() {
@@ -14,7 +12,6 @@ export default class ProposingATalk extends React.Component {
         header={<Header title='개인정보 처리 방침 :: 파이콘 한국 2019' />}
         footer={<Footer />}
       >
-        <LocalNavigation list={contributionMenu.submenu} />
         <H1><IntlText intlKey='contribute.overview.title'>
           개인정보 처리 방침
         </IntlText></H1>
