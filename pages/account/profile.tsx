@@ -234,7 +234,7 @@ class Profile extends React.Component<{
               }
             />
             <label><IntlText intlKey='account.profile.item9'>
-              영문소개
+              영문 소개
             </IntlText></label>
             <textarea
               value={this.state.profile.bioEn}
@@ -250,6 +250,7 @@ class Profile extends React.Component<{
             <FlexCenterWrapper>
               <Button
                 type='submit'
+                tag='button'
                 intlKey='account.profile.button2'
                 color={TEAL}
                 style={{ marginTop: '20px' }}
