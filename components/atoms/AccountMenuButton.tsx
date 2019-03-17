@@ -17,9 +17,6 @@ class AccountMenuButton extends React.Component<any> {
   render() {
     const { stores } = this.props
 
-    console.log(stores.authStore.isInitialized)
-    console.log(stores.authStore.loggedIn)
-
     if (
       !stores ||
       !stores.authStore ||

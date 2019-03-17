@@ -8,11 +8,13 @@ import ProfileStore, { ProfileStore as ProfileStoreType } from 'lib/stores/Profi
 import SponsorStore, { SponsorStore as SponsorStoreType } from 'lib/stores/SponsorStore'
 import { LOCALE_KEY_KR, URL_LOCALE_KEY } from 'locales/constants'
 import { Provider } from 'mobx-react'
+import NProgress from 'next-nprogress/component'
 import App, { Container } from 'next/app'
 import 'rc-steps/assets/iconfont.css'
 import 'rc-steps/assets/index.css'
 import intl from 'react-intl-universal'
 import { paths } from 'routes/paths'
+import { CORAL } from 'styles/colors'
 import { commonCSS } from 'styles/common'
 import { fontCSS } from 'styles/font'
 
@@ -109,6 +111,12 @@ class MyApp extends App {
 
     return (
       <Container>
+        <NProgress
+          color={CORAL}
+          options={{ trickleSpeed: 50 }}
+          showAfterMs={300}
+          spinner={false}
+        />
         <Provider stores={this.stores}>
           <Component {...pageProps} />
         </Provider>

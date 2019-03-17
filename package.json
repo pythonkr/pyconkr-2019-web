@@ -36,6 +36,7 @@
     "mobx-react": "^5.4.3",
     "mobx-state-tree": "^3.10.2",
     "next": "^7.0.2",
+    "next-nprogress": "^1.4.0",
     "next-plugin-graphql": "^0.0.2",
     "next-routes": "^1.4.2",
     "node-fetch": "^1.7.2",
