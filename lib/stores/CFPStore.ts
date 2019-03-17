@@ -1,10 +1,9 @@
-import { client } from 'lib/apollo_graphql/client';
-import { createOrUpdatePresentationProposal } from 'lib/apollo_graphql/mutations/createOrUpdatePresentationProposal';
-import { CategoryType, getCategories } from 'lib/apollo_graphql/queries/getCategories';
-import { DifficultyType, getDifficulties } from 'lib/apollo_graphql/queries/getDifficulties';
-import { PresentationProposalType } from 'lib/apollo_graphql/queries/getMyPresentationProposal';
-import { getMyPresentationProposal } from 'lib/apollo_graphql/queries/getMyPresentationProposal';
-import { action, configure, observable } from 'mobx';
+import { client } from 'lib/apollo_graphql/client'
+import { createOrUpdatePresentationProposal } from 'lib/apollo_graphql/mutations/createOrUpdatePresentationProposal'
+import { CategoryType, getCategories } from 'lib/apollo_graphql/queries/getCategories'
+import { DifficultyType } from 'lib/apollo_graphql/queries/getDifficulties'
+import { getMyPresentationProposal, PresentationProposalType } from 'lib/apollo_graphql/queries/getMyPresentationProposal'
+import { action, configure, observable } from 'mobx'
 
 configure({ enforceActions: 'always' })
 
@@ -20,7 +19,7 @@ export class CFPStore {
     @observable currentStage: CFPFormStage = CFPFormStage.stage1
     @observable categories: CategoryType[] = []
     @observable difficulties: DifficultyType[] = []
-    @observable proposal: PresentationProposalType
+    @observable proposal: PresentationProposalType | null = null
 
     @action
     setCurrentStage(stage: CFPFormStage) {
@@ -31,12 +30,6 @@ export class CFPStore {
     async retrieveCategories() {
       const response = await getCategories(client)({})
       this.categories = response.data.categories
-    }
-
-    @action
-    async retrieveDifficulties() {
-      const response = await getDifficulties(client)({})
-      this.difficulties = response.data.difficulties
     }
 
     @action

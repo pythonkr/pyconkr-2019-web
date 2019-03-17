@@ -37,24 +37,6 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
     isFormInitialized: false
   }
 
-  async componentDidMount() {
-    try {
-      const { stores } = this.props
-      if (!stores) {
-        return
-      }
-      
-      if (stores.authStore.loggedIn){
-        await this.props.stores.profileStore.retrieveMe()
-        await this.props.stores.cfpStore.retriveMyProposal()
-      }
-    } finally {
-      this.setState({
-        isFormInitialized: true,
-      })
-    }
-  }
-
   render() {
     const { authStore } = this.props.stores
 
@@ -104,7 +86,7 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
         </Section>
         <Section>
           <H2><IntlText intlKey='contribute.talkProposal.application.title'>제안서 작성</IntlText></H2>
-          {this.state.isFormInitialized
+          {this.props.stores.authStore.isInitialized
             ? authStore.loggedIn
               ? <CFPForm />
               : <FormNeedsLogin />

@@ -13,6 +13,7 @@ import React from 'react'
 import intl from 'react-intl-universal'
 import { TEAL, TEAL_LIGHT, TEAL_LIGHT_LIGHT, TEAL_SEMI_DARK } from 'styles/colors'
 import { isEmpty } from 'utils/isEmpty'
+import { Loading } from 'components/atoms/Loading';
 
 const StepsWrapper = styled.div`
   padding: 49px 30px 40px;
@@ -37,18 +38,38 @@ const StepsWrapper = styled.div`
 @inject('stores')
 @observer
 export default class CFPForm extends React.Component<{ stores: StoresType }> {
+  state = {
+    isFormInitialized: false
+  }
+
   async componentDidMount() {
     const { cfpStore } = this.props.stores
     cfpStore.retrieveCategories()
-    cfpStore.retrieveDifficulties()
+    cfpStore.retriveMyProposal()
+    this.setState({
+      isFormInitialized: true
+    })
   }
 
   render() {
     const { stores } = this.props
     const { profile } = toJS(this.props.stores.profileStore)
-    const { currentStage, categories, difficulties } = toJS(stores.cfpStore)
+    const { currentStage, categories, proposal } = toJS(stores.cfpStore)
 
-    if (isEmpty(profile) || isEmpty(categories) || isEmpty(difficulties)) {
+    if (!stores.profileStore.isInitialized || !this.state.isFormInitialized) {
+      return <Loading width={50} height={50}/>
+    }
+
+    // profile is not agreed -> show greement alert
+    if (!stores.profileStore.isAgreed) {
+      return <div>으아 로그인 인증을 하라구 </div>
+    }
+
+   if (proposal) {
+     console.log(proposal)
+   }
+
+    if (isEmpty(profile) || isEmpty(categories)) {
       return (
         <div>
           Oops something wrong. Click to refresh form.
