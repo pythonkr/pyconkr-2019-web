@@ -6,6 +6,7 @@ import { CFPFormStage } from 'lib/stores/CFPStore'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import React from 'react'
+import intl from 'react-intl-universal'
 
 interface State {
   nameKo: string,
@@ -96,7 +97,9 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
           />
           <div role='group'>
             <fieldset>
-              <legend>세션 길이</legend>
+              <legend><IntlText intlKey='contribute.talkProposal.application.stages.stages2.item4'>
+                세션 길이
+              </IntlText></legend>
               <p>
                 <input
                   type='radio'
@@ -106,7 +109,11 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
                   checked={this.state.duration === DurationNode.SHORT}
                   onChange={() => this.setState({ duration: DurationNode.SHORT })}
                 />
-                <label htmlFor={DurationNode.SHORT}>25분</label>
+                <label htmlFor={DurationNode.SHORT}>
+                  <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item4'>
+                    25분
+                  </IntlText>
+                </label>
               </p>
               <p>
                 <input
@@ -117,11 +124,19 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
                   checked={this.state.duration === DurationNode.LONG}
                   onChange={() => this.setState({ duration: DurationNode.LONG })}
                 />
-                <label htmlFor={DurationNode.LONG}>45분</label>
+                <label htmlFor={DurationNode.LONG}>
+                  <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item4'>
+                    45분
+                  </IntlText>
+                </label>
               </p>
             </fieldset>
             <fieldset>
-              <legend>언어</legend>
+              <legend>
+                <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item4'>
+                  언어
+                </IntlText>
+              </legend>
               <p>
                 <input
                   type='radio'
@@ -131,7 +146,11 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
                   checked={this.state.language === LanguageNode.KOREAN}
                   onChange={() => this.setState({ language: LanguageNode.KOREAN })}
                 />
-                <label htmlFor={LanguageNode.KOREAN}>한국어</label>
+                <label htmlFor={LanguageNode.KOREAN}>
+                  <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item4'>
+                    한국어
+                  </IntlText>
+                </label>
               </p>
               <p>
                 <input
@@ -142,7 +161,11 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
                   checked={this.state.language === LanguageNode.ENGLISH}
                   onChange={() => this.setState({ language: LanguageNode.ENGLISH })}
                 />
-                <label htmlFor={LanguageNode.ENGLISH}>영어</label>
+                <label htmlFor={LanguageNode.ENGLISH}>
+                  <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item4'>
+                    영어
+                  </IntlText>
+                </label>
               </p>
             </fieldset>
           </div>
@@ -152,7 +175,7 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
             }}
             onSave={() => {
               stores.cfpStore.createOrUpdatePresentation(this.state).then(() => {
-                alert('저장이 완료되었습니다')
+                alert(intl.get('asdfsadf').d('저장이 완료되었습니다'))
               })
             }}
           />
