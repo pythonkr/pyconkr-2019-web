@@ -1,6 +1,6 @@
 import { Button } from 'components/atoms/Button'
 import { AgreementFieldset, FormWrapper } from 'components/atoms/ContentWrappers'
-import { FlexCenterWrapper, FlexSpaceBetweenWrapper } from 'components/atoms/FlexWrapper'
+import { FlexSpaceBetweenWrapper } from 'components/atoms/FlexWrapper'
 import { IntlText } from 'components/atoms/IntlText'
 import { CFPFormStage } from 'lib/stores/CFPStore'
 import { inject, observer } from 'mobx-react'
@@ -35,7 +35,7 @@ export default class CFPFormStage4 extends React.Component<{stores: StoresType; 
         isEtcAgreed : true,
       })
     }
-    window.scrollTo(0, this.props.scrollRef.offsetTop)
+    this.props.scrollRef && window.scrollTo(0, this.props.scrollRef.offsetTop)
   }
 
   render () {

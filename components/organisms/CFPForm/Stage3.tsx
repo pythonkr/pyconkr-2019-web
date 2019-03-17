@@ -38,7 +38,7 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType; 
       comment: proposal.comment
     })
 
-    window.scrollTo(0, this.props.scrollRef.offsetTop)
+    this.props.scrollRef && window.scrollTo(0, this.props.scrollRef.offsetTop)
   }
 
   render () {

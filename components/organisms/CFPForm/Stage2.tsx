@@ -45,7 +45,7 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType; 
       language: proposal.language
     })
 
-    window.scrollTo(0, this.props.scrollRef.offsetTop)
+    this.props.scrollRef && window.scrollTo(0, this.props.scrollRef.offsetTop)
   }
 
   render () {
