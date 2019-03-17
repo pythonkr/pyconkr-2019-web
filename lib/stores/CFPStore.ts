@@ -53,7 +53,7 @@ export class CFPStore {
         data: presentation
       })
       this.presentation = {
-        ...response.data.createOrUpdatePresentation.presentation
+        ...response.data.createOrUpdatePresentationProposal.presentation
       }
     }
 

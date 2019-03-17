@@ -18,6 +18,7 @@ export interface getMyPresentationProposal_myPresentationProposal_owner {
 
 export interface getMyPresentationProposal_myPresentationProposal_category {
   __typename: "CategoryNode";
+  id: string;
   name: string;
   nameKo: string | null;
   nameEn: string | null;
@@ -27,6 +28,7 @@ export interface getMyPresentationProposal_myPresentationProposal_category {
 
 export interface getMyPresentationProposal_myPresentationProposal_difficulty {
   __typename: "DifficultyNode";
+  id: string;
   name: string;
   nameKo: string | null;
   nameEn: string | null;

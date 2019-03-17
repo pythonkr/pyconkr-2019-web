@@ -25,8 +25,8 @@ export enum OauthTypeNode {
 
 export interface PresentationProposalInput {
   name?: string | null;
-  categoryId?: number | null;
-  difficultyId?: number | null;
+  categoryId?: string | null;
+  difficultyId?: string | null;
   backgroundDesc?: string | null;
   language?: LanguageNode | null;
   duration?: DurationNode | null;
@@ -39,7 +39,6 @@ export interface PresentationProposalInput {
   isCocAgreed?: boolean | null;
   isContentsAgreed?: boolean | null;
   isEtcAgreed?: boolean | null;
-  isProposalAgreed?: boolean | null;
 }
 
 export interface ProfileInput {

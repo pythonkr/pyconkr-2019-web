@@ -5,10 +5,28 @@
 import { PresentationProposalInput, LanguageNode, DurationNode } from "./globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: CreateOrUpdatePresentationProposal
+// GraphQL mutation operation: createOrUpdatePresentationProposal
 // ====================================================
 
-export interface CreateOrUpdatePresentationProposal_createOrUpdatePresentationProposal_proposal {
+export interface createOrUpdatePresentationProposal_createOrUpdatePresentationProposal_proposal_category {
+  __typename: "CategoryNode";
+  id: string;
+  name: string;
+  nameKo: string | null;
+  nameEn: string | null;
+  slug: string;
+  visible: boolean;
+}
+
+export interface createOrUpdatePresentationProposal_createOrUpdatePresentationProposal_proposal_difficulty {
+  __typename: "DifficultyNode";
+  id: string;
+  name: string;
+  nameKo: string | null;
+  nameEn: string | null;
+}
+
+export interface createOrUpdatePresentationProposal_createOrUpdatePresentationProposal_proposal {
   __typename: "PresentationProposalNode";
   name: string | null;
   backgroundDesc: string | null;
@@ -20,18 +38,20 @@ export interface CreateOrUpdatePresentationProposal_createOrUpdatePresentationPr
   presentedSlideUrlBefore: string;
   comment: string;
   submitted: boolean;
+  category: createOrUpdatePresentationProposal_createOrUpdatePresentationProposal_proposal_category | null;
+  difficulty: createOrUpdatePresentationProposal_createOrUpdatePresentationProposal_proposal_difficulty | null;
 }
 
-export interface CreateOrUpdatePresentationProposal_createOrUpdatePresentationProposal {
+export interface createOrUpdatePresentationProposal_createOrUpdatePresentationProposal {
   __typename: "CreateOrUpdatePresentationProposal";
-  proposal: CreateOrUpdatePresentationProposal_createOrUpdatePresentationProposal_proposal | null;
-  success: boolean | null;
+  proposal: createOrUpdatePresentationProposal_createOrUpdatePresentationProposal_proposal | null;
+  isAgreedAll: boolean | null;
 }
 
-export interface CreateOrUpdatePresentationProposal {
-  createOrUpdatePresentationProposal: CreateOrUpdatePresentationProposal_createOrUpdatePresentationProposal | null;
+export interface createOrUpdatePresentationProposal {
+  createOrUpdatePresentationProposal: createOrUpdatePresentationProposal_createOrUpdatePresentationProposal | null;
 }
 
-export interface CreateOrUpdatePresentationProposalVariables {
+export interface createOrUpdatePresentationProposalVariables {
   data: PresentationProposalInput;
 }

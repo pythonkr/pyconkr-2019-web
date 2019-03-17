@@ -1,6 +1,6 @@
-mutation UpdateProfile($profileInput: ProfileInput!) {
-    updateProfile(profileInput: $profileInput) {
-        profile {
+mutation UpdateProfile($data: ProfileInput!) {
+    updateProfile(data: $data) {
+        profile { 
             id
             oauthType
             name       

@@ -1,6 +1,6 @@
 mutation UpdateAgreement($isPrivacyPolicy: Boolean, $isTermsOfService: Boolean) {
     updateAgreement(isPrivacyPolicy: $isPrivacyPolicy, isTermsOfService: $isTermsOfService) {
-        agreed
+        isAgreedAll
         user {
             username
             isStaff

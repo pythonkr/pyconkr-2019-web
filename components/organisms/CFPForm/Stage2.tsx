@@ -9,7 +9,7 @@ import React from 'react'
 import intl from 'react-intl-universal'
 
 interface State {
-  nameKo: string,
+  name: string,
   categoryId: string,
   difficultyId: string,
   backgroundDesc: string,
@@ -21,9 +21,9 @@ interface State {
 @observer
 export default class CFPFormStage2 extends React.Component<{stores: StoresType}, State> {
   state = {
-    nameKo: '',
-    categoryId: '',
-    difficultyId: '',
+    name: '',
+    categoryId: '1',
+    difficultyId: '1',
     backgroundDesc: '',
     duration: DurationNode.SHORT,
     language: LanguageNode.KOREAN,
@@ -43,8 +43,8 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
           <label><IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>주제</IntlText></label>
           <input
             type='text'
-            value={this.state.nameKo}
-            onChange={e => this.setState({ nameKo: e.target.value })}
+            value={this.state.name}
+            onChange={e => this.setState({ name: e.target.value })}
             aria-required={true}
             required
           />

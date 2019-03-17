@@ -62,7 +62,7 @@ export class ProfileStore {
     }
 
     return updateProfile(client)({
-      profileInput: profile
+      data: profile
     }).then(response => {
       this.setProfile(response.data.updateProfile.profile)
 

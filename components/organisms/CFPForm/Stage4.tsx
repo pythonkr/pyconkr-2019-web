@@ -6,18 +6,18 @@ import { StoresType } from 'pages/_app'
 import React from 'react'
 
 interface State {
-  cocConsent: boolean,
-  presentationEthicsConsent: boolean,
-  sharingConsent: boolean,
+  isCocAgreed: boolean,
+  isContentsAgreed: boolean,
+  isEtcAgreed: boolean,
 }
 
 @inject('stores')
 @observer
 export default class CFPFormStage4 extends React.Component<{stores: StoresType}, State> {
   state = {
-    cocConsent: false,
-    presentationEthicsConsent: false,
-    sharingConsent: false,
+    isCocAgreed: false,
+    isContentsAgreed: false,
+    isEtcAgreed: false,
   }
 
   render () {
@@ -58,9 +58,9 @@ export default class CFPFormStage4 extends React.Component<{stores: StoresType},
             </ul>
             <input
               type='checkbox'
-              aria-checked={this.state.cocConsent}
-              checked={this.state.cocConsent}
-              onChange={() => this.setState({ cocConsent: !this.state.cocConsent })}
+              aria-checked={this.state.isCocAgreed}
+              checked={this.state.isCocAgreed}
+              onChange={() => this.setState({ isCocAgreed: !this.state.isCocAgreed })}
             />
             <label><IntlText intlKey='asdfasdf'>
               위 내용을 확인 하였으며 파이콘 한국 CoC를 준수할 것을 약속합니다.
@@ -90,9 +90,9 @@ export default class CFPFormStage4 extends React.Component<{stores: StoresType},
             </ul>
             <input
               type='checkbox'
-              aria-checked={this.state.cocConsent}
-              checked={this.state.cocConsent}
-              onChange={() => this.setState({ cocConsent: !this.state.cocConsent })}
+              aria-checked={this.state.isContentsAgreed}
+              checked={this.state.isContentsAgreed}
+              onChange={() => this.setState({ isContentsAgreed: !this.state.isContentsAgreed })}
             />
             <label><IntlText intlKey='asdfasdf'>
               위 내용을 확인하였으며 이를 준수하지 않았을 경우 본인에게 책임이 있으며
@@ -118,9 +118,9 @@ export default class CFPFormStage4 extends React.Component<{stores: StoresType},
             </ul>
             <input
               type='checkbox'
-              aria-checked={this.state.cocConsent}
-              checked={this.state.cocConsent}
-              onChange={() => this.setState({ cocConsent: !this.state.cocConsent })}
+              aria-checked={this.state.isEtcAgreed}
+              checked={this.state.isEtcAgreed}
+              onChange={() => this.setState({ isEtcAgreed: !this.state.isEtcAgreed })}
             />
             <label><IntlText intlKey='asdfasdf'>
               위 내용을 충분히 숙지하였습니다.

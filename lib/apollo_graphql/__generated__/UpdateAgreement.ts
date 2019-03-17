@@ -46,7 +46,7 @@ export interface UpdateAgreement_updateAgreement_user {
 
 export interface UpdateAgreement_updateAgreement {
   __typename: "UpdateAgreement";
-  agreed: boolean | null;
+  isAgreedAll: boolean | null;
   user: UpdateAgreement_updateAgreement_user | null;
 }
 

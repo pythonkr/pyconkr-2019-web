@@ -1,4 +1,4 @@
-query getMyPresentationProposal{
+query getMyPresentationProposal {
     myPresentationProposal {
         name
         owner {
@@ -9,6 +9,7 @@ query getMyPresentationProposal{
         language
         duration
         category {
+            id
             name
             nameKo
             nameEn
@@ -16,6 +17,7 @@ query getMyPresentationProposal{
             visible
         }
         difficulty {
+            id
             name
             nameKo
             nameEn

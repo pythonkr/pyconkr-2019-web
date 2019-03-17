@@ -1250,18 +1250,6 @@
             "deprecationReason": null
           },
           {
-            "name": "proposalAgreedAt",
-            "description": "",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "createdAt",
             "description": "",
             "args": [],
@@ -1745,7 +1733,7 @@
             "description": null,
             "args": [
               {
-                "name": "profileInput",
+                "name": "data",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
@@ -2018,7 +2006,7 @@
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "ID",
               "ofType": null
             },
             "defaultValue": null
@@ -2028,7 +2016,7 @@
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "ID",
               "ofType": null
             },
             "defaultValue": null
@@ -2152,16 +2140,6 @@
               "ofType": null
             },
             "defaultValue": null
-          },
-          {
-            "name": "isProposalAgreed",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -2186,7 +2164,7 @@
             "deprecationReason": null
           },
           {
-            "name": "success",
+            "name": "isAgreedAll",
             "description": null,
             "args": [],
             "type": {
@@ -2408,7 +2386,7 @@
         "description": null,
         "fields": [
           {
-            "name": "agreed",
+            "name": "isAgreedAll",
             "description": null,
             "args": [],
             "type": {

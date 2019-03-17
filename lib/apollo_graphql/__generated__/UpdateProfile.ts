@@ -36,5 +36,5 @@ export interface UpdateProfile {
 }
 
 export interface UpdateProfileVariables {
-  profileInput: ProfileInput;
+  data: ProfileInput;
 }

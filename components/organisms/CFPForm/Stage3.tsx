@@ -18,11 +18,11 @@ interface State {
 @observer
 export default class CFPFormStage3 extends React.Component<{stores: StoresType}, State> {
   state = {
-    desc: '',
+    detailDesc: '',
     isPresentedBefore: false,
     placePresentedBefore: '',
     presentedSlideUrlBefore: '',
-    question: ''
+    comment: ''
   }
 
   render () {
@@ -44,8 +44,8 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
           </IntlText></p>
           <input
             type='text'
-            value={this.state.desc}
-            onChange={e => this.setState({ desc: e.target.value })}
+            value={this.state.detailDesc}
+            onChange={e => this.setState({ detailDesc: e.target.value })}
             aria-required={true}
             required
           />
@@ -98,8 +98,8 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
           </IntlText></p>
           <input
             type='text'
-            value={this.state.question}
-            onChange={e => this.setState({ question: e.target.value })}
+            value={this.state.comment}
+            onChange={e => this.setState({ comment: e.target.value })}
           />
           <StageButtonGroup
             onPrev={() => {

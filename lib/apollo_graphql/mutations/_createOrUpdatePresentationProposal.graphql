@@ -1,17 +1,31 @@
-mutation CreateOrUpdatePresentationProposal($data: PresentationProposalInput!) {
+mutation createOrUpdatePresentationProposal($data: PresentationProposalInput!) {
     createOrUpdatePresentationProposal(data: $data) {
         proposal {
-          name
-          backgroundDesc
-          detailDesc
-          language
-          duration
-          isPresentedBefore
-          placePresentedBefore
-          presentedSlideUrlBefore
-          comment
-          submitted
+            name
+            backgroundDesc
+            detailDesc
+            language
+            duration
+            isPresentedBefore
+            placePresentedBefore
+            presentedSlideUrlBefore
+            comment
+            submitted
+            category {
+                id
+                name
+                nameKo
+                nameEn
+                slug
+                visible
+            }
+            difficulty {
+                id
+                name
+                nameKo
+                nameEn
+            }
         }
-        success
+        isAgreedAll
     }
 }
