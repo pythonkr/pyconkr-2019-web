@@ -1,4 +1,3 @@
-import intl from 'react-intl-universal'
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import React, { PropsWithChildren } from 'react'
@@ -15,7 +14,7 @@ export interface ActionButtonProps {
   onClick: VoidFunction,
 }
 
-interface Props {
+export interface NoticeBarProps {
   text: string,
   textIntlKey?: string,
   subText?: string,
@@ -118,7 +117,7 @@ const ActionButton: React.SFC<ActionButtonProps> = ({
   onClick
 }) => <button onClick={onClick}>{text}</button>
 
-export const NoticeBar: React.SFC<PropsWithChildren<Props & StyledNoticeBarProps>>  = ({
+export const NoticeBar: React.SFC<PropsWithChildren<NoticeBarProps & StyledNoticeBarProps>>  = ({
   color,
   borderColor,
   textColor,

@@ -36,18 +36,6 @@ const statusBarColors  = {
     text: WHITE,
     textLink: WHITE,
   },
-  // alert: {
-  //   bg: ALERT_YELLOW,
-  //   border: ALERT_YELLOW_SEMI_DARK,
-  //   text: ALERT_YELLOW_DARK,
-  //   textLink: ALERT_BLUE_DARK,
-  // },
-  // idleInform: {
-  //   bg: ALERT_BLUE,
-  //   border: ALERT_BLUE_DARK,
-  //   text: WHITE,
-  //   textLink: WHITE,
-  // },
 }
 
 const getStatusBarType = (openDate: DateDTO, closeDate?: DateDTO): StatusBarType => {

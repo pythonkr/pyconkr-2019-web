@@ -1,7 +1,6 @@
-import intl from 'react-intl-universal'
+import { AlertBar } from 'components/atoms/AlertBar'
 import { ContentTableWrapper, H1, H2, Li, Paragraph, ScheduleTable, Section, TBody, Td, Tr, Ul } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
-import { NoticeBar } from 'components/atoms/NoticeBar'
 import { StatusBar } from 'components/atoms/StatusBar'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
@@ -10,7 +9,7 @@ import PageTemplate from 'components/templates/PageTemplate'
 import { callForSponsors } from 'dates'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
-import { ALERT_BLUE_DARK, ALERT_YELLOW, ALERT_YELLOW_DARK, ALERT_YELLOW_SEMI_DARK } from 'styles/colors'
+import intl from 'react-intl-universal'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 import { StoresType } from '../_app'
 
@@ -71,9 +70,11 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
                     </Td>
                     <Td>
                       {
-                        date ? 
-                        formatDateInWordsWithWeekdayAndTime(date)
-                        : (desc ? intl.get(desc.intlKey).d(desc.default): '-') 
+                        date
+                          ? formatDateInWordsWithWeekdayAndTime(date)
+                          : desc
+                            ? intl.get(desc.intlKey).d(desc.default)
+                            : '-'
                       }
                     </Td>
                   </Tr>
@@ -86,9 +87,8 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
           <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
           <Paragraph>
             <a href='mailto: sponsor@pycon.kr'>sponsor@pycon.kr</a><br />
-            {
-              intl.get('sponsor.prospectus.contactDescription').d('이메일로 문의 주시면 상세한 후원사 안내 문서를 보내드립니다.')
-            }
+            {intl.get('sponsor.prospectus.contactDescription')
+              .d('이메일로 문의 주시면 상세한 후원사 안내 문서를 보내드립니다.')}
           </Paragraph>
         </Section>
         <Section>
@@ -97,13 +97,9 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
             개최지와 여건에 따라 등급별 지원 내용은 다소 달라질 수 있습니다. <br />
             또한, 후원사에 의해 제공되는 세션 및 튜토리얼, 증정품은 준비위원회와 사전 협의가 필요합니다.
           </IntlText></Paragraph>
-          <NoticeBar
-            color={ALERT_YELLOW}
-            borderColor={ALERT_YELLOW_SEMI_DARK}
-            textColor={ALERT_YELLOW_DARK}
-            textLinkColor={ALERT_BLUE_DARK}
-            text={intl.get('sponsor.prospectus.boothDesc').d('스폰서 부스는 8월 17-18일(토-일) 이틀 동안 진행하는 컨퍼런스에서만 운영됩니다.')}
-          />
+          <AlertBar text={intl.get('sponsor.prospectus.boothDesc')
+            .d('스폰서 부스는 8월 17-18일(토-일) 이틀 동안 진행하는 컨퍼런스에서만 운영됩니다.')
+          }/>
           <SponsorPackageTables />
           <Ul>
             <Li>{ intl.get('sponsor.prospectus.packages.desc1').d('후원금은 VAT 별도 금액입니다.') }</Li>
