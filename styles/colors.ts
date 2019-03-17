@@ -3,7 +3,7 @@ export const TEAL_SEMI_DARK = '#077477'
 export const TEAL_DARK = '#044748'
 export const TEAL_LIGHT = '#e6f3f3'
 export const TEAL_LIGHT_LIGHT = '#eef7f7'
-export const CORAL_LIGHT = 'rgba(249, 88, 88, 0.1)'
+export const CORAL_LIGHT = '#fff3f3'
 export const CORAL = '#F95858'
 export const CORAL_DARK = '#d24343'
 
