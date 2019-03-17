@@ -39,7 +39,7 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
             stores.cfpStore.setCurrentStage(CFPFormStage.stage3)
           })
         }}>
-          <label><IntlText intlKey='asdfasdf'>주제</IntlText></label>
+          <label><IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>주제</IntlText></label>
           <input
             type='text'
             value={this.state.nameKo}
@@ -47,7 +47,7 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
             aria-required={true}
             required
           />
-          <label><IntlText intlKey='asdfasdf'>세션 카테고리</IntlText></label>
+          <label><IntlText intlKey='contribute.talkProposal.application.stages.stages2.item2'>세션 카테고리</IntlText></label>
           {/* tslint:disable-next-line:react-a11y-no-onchange */}
           <select
             value={this.state.categoryId}
@@ -67,7 +67,7 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
             }
           </select>
           <fieldset>
-            <legend><IntlText intlKey='asdfasdf'>세션 난이도</IntlText></legend>
+            <legend><IntlText intlKey='contribute.talkProposal.application.stages.stages2.item3'>세션 난이도</IntlText></legend>
             {
               stores.cfpStore.difficulties.map(difficulty =>
                 <p key={difficulty.id}>
@@ -84,7 +84,7 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
               )
             }
           </fieldset>
-          <label><IntlText intlKey='asdfasdf'>
+          <label><IntlText intlKey='contribute.talkProposal.application.stages.stages2.item4'>
             세션을 이해하는 데에 필요한 선수 지식
           </IntlText></label>
           <input
