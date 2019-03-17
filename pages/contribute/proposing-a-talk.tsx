@@ -38,12 +38,16 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
   }
 
   async componentDidMount() {
-    if (this.props.stores) {
+    const { stores } = this.props
+    if (!stores) {
+      return
+    }
+    this.setState({
+      isFormInitialized: true,
+    })
+    if (stores.authStore.loggedIn){
       await this.props.stores.profileStore.retrieveMe()
       await this.props.stores.cfpStore.retriveMyProposal()
-      this.setState({
-        isFormInitialized: true,
-      })
     }
   }
 
