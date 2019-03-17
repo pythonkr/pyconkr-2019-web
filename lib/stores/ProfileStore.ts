@@ -39,6 +39,7 @@ export class ProfileStore {
     if (response.data.updateAgreement.isAgreedAll) {
       await this.retrieveMe()
     }
+
     return response.data.updateAgreement
   }
 

@@ -1,17 +1,17 @@
 import { Button } from 'components/atoms/Button'
-import { FormWrapper, H1, Paragraph, Ul, Li } from 'components/atoms/ContentWrappers'
+import { FormWrapper, H1, Li, Ul } from 'components/atoms/ContentWrappers'
 import { FlexCenterWrapper } from 'components/atoms/FlexWrapper'
 import { IntlText } from 'components/atoms/IntlText'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
+import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
+import Router from 'next/router'
 import React from 'react'
-import Router from "next/router";
 import { paths } from 'routes/paths'
-import { CORAL_LIGHT, TEAL, HEADING_LIGHT_BLACK } from 'styles/colors'
+import { HEADING_LIGHT_BLACK, TEAL } from 'styles/colors'
 import { StoresType } from '../_app'
-import { toJS } from 'mobx';
 
 @inject('stores')
 @observer
@@ -40,10 +40,9 @@ class Logout extends React.Component<{
             onSubmit={e => {
               e.preventDefault()
               stores.profileStore.updateAgreement(this.state).then((result) => {
-                if(result.isAgreed){
-                  Router.push(paths.home);
+                if (result.isAgreedAll) {
+                  Router.push(paths.home)
                 }
-
               })
             }}
           >
