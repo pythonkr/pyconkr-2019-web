@@ -5,10 +5,10 @@ import { IntlText } from 'components/atoms/IntlText'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
-import intl from 'intl'
 import { inject, observer } from 'mobx-react'
 import { RouterProps, withRouter } from 'next/router'
 import React from 'react'
+import intl from 'react-intl-universal'
 import { paths } from 'routes/paths'
 import { TEAL } from 'styles/colors'
 import { StoresType } from '../_app'
@@ -47,7 +47,9 @@ class Profile extends React.Component<{
 
       return
     }
+
     await stores.profileStore.retrieveMe()
+
     this.setState({
       profile: {
         ...stores.profileStore.profile
@@ -70,8 +72,7 @@ class Profile extends React.Component<{
         nationality: this.state.profile.nationality
       })
       .then((profile: any) => {
-        // window.alert(intl.get('account.profile.alter1').d('프로필이 수정되었습니다.'))
-        window.alert('프로필이 수정되었습니다.')
+        window.alert(intl.get('account.profile.alter1').d('프로필이 수정되었습니다.'))
         this.setState({
           profile: {
             ...profile
@@ -84,7 +85,10 @@ class Profile extends React.Component<{
     const { stores } = this.props
 
     return (
-      <PageTemplate header={<Header title='프로필' />} footer={<Footer />}>
+      <PageTemplate
+        header={<Header title='프로필 :: 파이콘 한국 2019' />}
+        footer={<Footer />}
+      >
         <H1>
           <IntlText intlKey='account.profile.header'>프로필</IntlText>
         </H1>
@@ -101,7 +105,10 @@ class Profile extends React.Component<{
                 : this.state.profile.avatarUrl
             }
           />
-          <label htmlFor='upload' className='file-upload__label'><IntlText intlKey='account.profile.button1'>
+          <label
+            htmlFor='upload'
+            className='file-upload__label'
+          ><IntlText intlKey='account.profile.button1'>
             업로드
             <input
               id='upload'
@@ -260,6 +267,7 @@ class Profile extends React.Component<{
                 intlKey='account.profile.button2'
                 color={TEAL}
                 style={{ marginTop: '20px' }}
+                disabled={}
               >
                 프로필 업데이트
               </Button>
