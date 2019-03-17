@@ -94,26 +94,31 @@ export default class CFPForm extends React.Component<{ stores: StoresType }> {
       <PaddingWrapper ref={ref => this.formWrapperRef = ref}>
         <StepsWrapper>
           <Steps current={currentStage} labelPlacement='vertical'>
-            {steps.map(step => <Steps.Step title={step} />)}
+            {steps.map(step => <Steps.Step title={step} key={step} />)}
           </Steps>
         </StepsWrapper>
-        {currentStage === CFPFormStage.stage1 && <Stage1 stores={stores} />}
+        {currentStage === CFPFormStage.stage1 &&
+          <Stage1
+            stores={stores}
+            scrollRef={this.formWrapperRef!}
+          />
+        }
         {currentStage === CFPFormStage.stage2 &&
           <Stage2
             stores={stores}
-            scrollRef={this.formWrapperRef}
+            scrollRef={this.formWrapperRef!}
           />
         }
         {currentStage === CFPFormStage.stage3 &&
           <Stage3
             stores={stores}
-            scrollRef={this.formWrapperRef}
+            scrollRef={this.formWrapperRef!}
           />
         }
         {currentStage === CFPFormStage.stage4 &&
           <Stage4
             stores={stores}
-            scrollRef={this.formWrapperRef}
+            scrollRef={this.formWrapperRef!}
           />
         }
         {currentStage === CFPFormStage.completed && (

@@ -8,7 +8,7 @@ type Props = {
 }
 
 export const StageButtonGroup: React.SFC<Props> = ({ onPrev, onSave }) => {
-  return <FlexSpaceBetweenWrapper style={{ marginTop: 80 }}>
+  return <FlexSpaceBetweenWrapper style={{ marginTop: 60 }}>
     <Button
       tag='button'
       type='button'

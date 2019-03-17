@@ -1,4 +1,4 @@
-import { FormWrapper } from 'components/atoms/ContentWrappers'
+import { FormWrapper, SelectWrapper } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
 import { StageButtonGroup } from 'components/organisms/CFPForm/StageButtonGroup'
 import { DurationNode, LanguageNode } from 'lib/apollo_graphql/__generated__/globalTypes'
@@ -59,7 +59,11 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType; 
             stores.cfpStore.setCurrentStage(CFPFormStage.stage3)
           })
         }}>
-          <label><IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>주제</IntlText></label>
+          <label className='required'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+              주제
+            </IntlText>
+          </label>
           <input
             type='text'
             value={this.state.name}
@@ -67,27 +71,37 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType; 
             aria-required={true}
             required
           />
-          <label><IntlText intlKey='contribute.talkProposal.application.stages.stages2.item2'>세션 카테고리</IntlText></label>
-          {/* tslint:disable-next-line:react-a11y-no-onchange */}
-          <select
-            value={this.state.categoryId}
-            onBlur={e => this.setState({ categoryId: e.target.value })}
-            onChange={e => this.setState({ categoryId: e.target.value })}
-            aria-required={true}
-            required
-          >
-            {
-              stores.cfpStore.categories.map(category =>
-                <option
-                  key={category.id}
-                  aria-selected={this.state.categoryId === 'category.id' }
-                  value={category.id}
-                >{category.name}</option>
-              )
-            }
-          </select>
+          <label className='required'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item2'>
+              세션 카테고리
+            </IntlText>
+          </label>
+          <SelectWrapper>
+            {/* tslint:disable-next-line:react-a11y-no-onchange */}
+            <select
+              value={this.state.categoryId}
+              onBlur={e => this.setState({ categoryId: e.target.value })}
+              onChange={e => this.setState({ categoryId: e.target.value })}
+              aria-required={true}
+              required
+            >
+              {
+                stores.cfpStore.categories.map(category =>
+                  <option
+                    key={category.id}
+                    aria-selected={this.state.categoryId === 'category.id' }
+                    value={category.id}
+                  >{category.name}</option>
+                )
+              }
+            </select>
+          </SelectWrapper>
           <fieldset>
-            <legend><IntlText intlKey='contribute.talkProposal.application.stages.stages2.item3'>세션 난이도</IntlText></legend>
+            <legend className='required'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item3'>
+                세션 난이도
+              </IntlText>
+            </legend>
             {
               stores.cfpStore.difficulties.map(difficulty =>
                 <p key={difficulty.id}>
@@ -104,9 +118,11 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType; 
               )
             }
           </fieldset>
-          <label><IntlText intlKey='contribute.talkProposal.application.stages.stages2.item4'>
-            세션을 이해하는 데에 필요한 선수 지식
-          </IntlText></label>
+          <label className='required'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item4'>
+              세션을 이해하는 데에 필요한 선수 지식
+            </IntlText>
+          </label>
           <input
             type='text'
             value={this.state.backgroundDesc}
@@ -116,9 +132,11 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType; 
           />
           <div role='group'>
             <fieldset>
-              <legend><IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.header'>
-                세션 길이
-              </IntlText></legend>
+              <legend className='required'>
+                <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.header'>
+                  세션 길이
+                </IntlText>
+              </legend>
               <p>
                 <input
                   type='radio'
@@ -151,7 +169,7 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType; 
               </p>
             </fieldset>
             <fieldset>
-              <legend>
+              <legend className='required'>
                 <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item6.header'>
                   언어
                 </IntlText>

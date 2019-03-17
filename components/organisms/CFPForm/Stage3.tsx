@@ -5,6 +5,9 @@ import { CFPFormStage } from 'lib/stores/CFPStore'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import React from 'react'
+import { DEFAULT_TEXT_BLACK } from 'styles/colors'
+
+/* tslint:disable:react-a11y-required  */
 
 interface State {
   detailDesc: string,
@@ -48,27 +51,43 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType; 
       <FormWrapper>
         <form onSubmit={(e) => {
           e.preventDefault()
+          if (this.state.detailDesc.length > 5000) {
+            window.alert(`제안 내용이 5000자를 넘습니다.\n전체 내용은 별도 문서 링크로 남겨주시고 개요를 적어주세요.`)
+
+            return
+          }
           stores.cfpStore.createOrUpdatePresentation(this.state).then(() => {
             stores.cfpStore.setCurrentStage(CFPFormStage.stage4)
           })
         }}>
-          <label><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item1.sub1'>
-            제안의 상세한 내용
-          </IntlText></label>
+          <label className='required'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages3.item1.sub1'>
+              제안의 상세한 내용
+            </IntlText>
+          </label>
           <p><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item1.desc1'>
-            내용이 많을 경우, 외부 문서 링크를 적어주시기 바랍니다.
+            내용이 많을 경우, 개요와 함께 외부 문서 링크를 적어주시기 바랍니다.
           </IntlText></p>
           <textarea
             value={this.state.detailDesc}
             onChange={e => this.setState({ detailDesc: e.target.value })}
             aria-required={true}
-            style={{ height: 400 }}
+            style={{ height: 400, marginBottom: 5 }}
             required
           />
+          <span style={{
+            display: 'block',
+            marginBottom: 40,
+            textAlign: 'right',
+            fontSize: 14,
+            color: this.state.detailDesc.length >= 5000 ? 'red' : DEFAULT_TEXT_BLACK
+          }}>{this.state.detailDesc.length} / 5000(최대)</span>
           <fieldset>
-            <legend><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item2.header'>
-              이미 다른 곳에서 발표한 내용인가요?
-            </IntlText></legend>
+            <legend className='required'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages3.item2.header'>
+                이미 다른 곳에서 발표한 내용인가요?
+              </IntlText>
+            </legend>
             <p>
               <input
                 type='radio'
@@ -96,21 +115,31 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType; 
               </IntlText></label>
             </p>
           </fieldset>
-          <label><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item3'>
-            발표한 행사
-          </IntlText></label>
+          <label className={this.state.isPresentedBefore ? 'required' : undefined}>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages3.item3'>
+              발표한 행사
+            </IntlText>
+          </label>
           <input
             type='text'
             value={this.state.placePresentedBefore}
             onChange={e => this.setState({ placePresentedBefore: e.target.value })}
+            disabled={!this.state.isPresentedBefore}
+            required={this.state.isPresentedBefore}
+            aria-required={this.state.isPresentedBefore}
           />
-          <label><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item4'>
-            발표 자료 링크
-          </IntlText></label>
+          <label className={this.state.isPresentedBefore ? 'required' : undefined}>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages3.item4'>
+              발표 자료 링크
+            </IntlText>
+          </label>
           <input
-            type='text'
+            type='url'
             value={this.state.presentedSlideUrlBefore}
             onChange={e => this.setState({ presentedSlideUrlBefore: e.target.value })}
+            disabled={!this.state.isPresentedBefore}
+            required={this.state.isPresentedBefore}
+            aria-required={this.state.isPresentedBefore}
           />
           <label><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item5.header'>
             참고 및 질문 사항

@@ -2,6 +2,8 @@ import styled from '@emotion/styled'
 import { DEFAULT_TEXT_BLACK, HEADING_LIGHT_BLACK, TEAL, TEAL_LIGHT, TEAL_LIGHT_LIGHT, TEAL_SEMI_DARK } from 'styles/colors'
 import { contentWidth, contentWidthPadding, mobileWidth } from 'styles/layout'
 
+/* tslint:disable:max-line-length */
+
 /**
  * classnames
  */
@@ -284,6 +286,24 @@ ${Ol} > & {
 /********************************* Form ***********************************/
 
 export const AgreementFieldset = styled.fieldset``
+export const SelectWrapper = styled.div`
+position: relative;
+
+&::after {
+  content: '';
+  position: absolute;
+  right: 16px;
+  top: 22px;
+  width: 20px;
+  height: 20px;
+  height: 20px;
+  width: 20px;
+  margin: -4px;
+  margin-left: 20px;
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCIgd2lkdGg9IjQ4IiBoZWlnaHQ9IjQ4IiB2aWV3Qm94PSIwIDAgNDggNDgiPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuY2xzLTEgewogICAgICAgIGZpbGw6ICNhYWFmYjM7CiAgICAgICAgZmlsbC1ydWxlOiBldmVub2RkOwogICAgICB9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICA8ZyBpZD0iYXJ0Ym9hcmQtMSI+CiAgICA8cGF0aCBkPSJNNDEuMzgwLDIxLjUyNCBMMjUuNzIwLDM3LjIxOCBDMjUuNjc1LDM3LjI3MyAyNS42NTUsMzcuMzQwIDI1LjYwMywzNy4zOTEgQzI1LjE4OCwzNy44MDIgMjQuNjQyLDM3Ljk5OSAyNC4wOTgsMzcuOTkwIEMyMy41NTYsMzcuOTk1IDIzLjAxMywzNy43OTIgMjIuNjAwLDM3LjM3OCBDMjIuNTU3LDM3LjMzNSAyMi41NDMsMzcuMjc5IDIyLjUwNSwzNy4yMzUgTDYuNTUyLDIxLjQ1NCBDNS43NDAsMjAuNjUxIDUuNzQwLDE5LjM0OSA2LjU1MiwxOC41NDYgQzcuMzY0LDE3Ljc0MyA4LjY4MCwxNy43NDMgOS40OTIsMTguNTQ2IEwyNC4wNTUsMzIuOTUyIEwzOC40MjAsMTguNTU3IEMzOS4yMzcsMTcuNzM3IDQwLjU2MywxNy43MzcgNDEuMzgwLDE4LjU1NyBDNDIuMTk4LDE5LjM3NiA0Mi4xOTgsMjAuNzA1IDQxLjM4MCwyMS41MjQgWiIgY2xhc3M9ImNscy0xIi8+CiAgPC9nPgo8L3N2Zz4=") no-repeat;
+  background-size: 100%;
+}
+`
 
 export const FormWrapper = styled.div`
 background: ${(props) => props.color ? props.color : TEAL_LIGHT_LIGHT};
@@ -311,6 +331,15 @@ label {
   font-weight: 700;
 }
 
+.required {
+  &:after {
+    display: inline-block;
+    content: '*';
+    color: red;
+    padding-left: 5px;
+  }
+}
+
 input[type=file] {
     margin-bottom: 39px;
     padding: 17px 31px;
@@ -319,11 +348,12 @@ input[type=file] {
 
 input[type=text],
 input[type=tel],
+input[type=url],
 textarea,
 select {
     width: 100%;
     height: 58px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     padding: 17px 21px;
     border-radius: 4px;
     border: solid 1px #ced3d6;
@@ -350,17 +380,6 @@ textarea {
 select {
   appearance: none;
   padding: 0 21px;
-  position: relative;
-
-  &::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 10px;
-    height: 10px;
-    background: red;
-  }
 }
 
 .file-upload__label {
@@ -417,7 +436,7 @@ input[type="checkbox"] {
 
 fieldset {
   width: 50%;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 
   legend {
     display: block;
