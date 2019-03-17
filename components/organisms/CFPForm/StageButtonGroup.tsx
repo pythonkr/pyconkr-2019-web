@@ -12,7 +12,7 @@ export const StageButtonGroup: React.SFC<Props> = ({ onPrev, onSave }) => {
     <Button
       tag='button'
       type='button'
-      intlKey='adsfasdfa'
+      intlKey='contribute.talkProposal.application.stages.stages2.button1'
       color={TEAL}
       width={120}
       primary={false}
@@ -22,7 +22,7 @@ export const StageButtonGroup: React.SFC<Props> = ({ onPrev, onSave }) => {
       <Button
         tag='button'
         type='button'
-        intlKey='adsfasdfa'
+        intlKey='contribute.talkProposal.application.stages.stages2.button2'
         color={TEAL}
         width={120}
         primary={false}
@@ -31,7 +31,7 @@ export const StageButtonGroup: React.SFC<Props> = ({ onPrev, onSave }) => {
       <Button
         tag='button'
         type='submit'
-        intlKey='adsfasdfa'
+        intlKey='contribute.talkProposal.application.stages.stages2.button3'
         color={TEAL}
         width={120}
         style={{ marginLeft: 10 }}

@@ -303,11 +303,11 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
               청중에게 들려주고 싶고 흥미로운 주제를 선정해보세요.
             </IntlText></Paragraph>
             <Ul>
-              <Li><a target='_blank' href='https://www.pycon.kr/2018/'>PyCon Korea 2018</a></Li>
-              <Li><a target='_blank' href='https://www.pycon.kr/2017/'>PyCon APAC 2017</a></Li>
-              <Li><a target='_blank' href='https://www.pycon.kr/2016/'>PyCon Korea 2016</a></Li>
-              <Li><a target='_blank' href='https://www.pycon.kr/2015/'>PyCon Korea 2015</a></Li>
-              <Li><a target='_blank' href='https://www.pycon.kr/2014/'>PyCon Korea 2014</a></Li>
+              <Li><a target='_blank' href='https://archive.pycon.kr/2018/'>PyCon Korea 2018</a></Li>
+              <Li><a target='_blank' href='https://archive.pycon.kr/2017/'>PyCon APAC 2017</a></Li>
+              <Li><a target='_blank' href='https://archive.pycon.kr/2016/'>PyCon Korea 2016</a></Li>
+              <Li><a target='_blank' href='https://archive.pycon.kr/2015/'>PyCon Korea 2015</a></Li>
+              <Li><a target='_blank' href='https://archive.pycon.kr/2014/'>PyCon Korea 2014</a></Li>
               <Li>
                 <a target='_blank' href='http://www.pycon.org/'>
                   { intl.get('contribute.cfpGuide.selectTopic.viewOtherPycon').d('각국 파이콘 행사 보기 👉') }
