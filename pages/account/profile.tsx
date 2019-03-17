@@ -57,6 +57,10 @@ class Profile extends React.Component<{
     })
   }
 
+  hasSthToSubmit() {
+    return JSON.stringify(this.state.profile) !== JSON.stringify(this.props.stores.profileStore.profile)
+  }
+
   async submit(e) {
     e.preventDefault()
     const { stores } = this.props
@@ -267,7 +271,7 @@ class Profile extends React.Component<{
                 intlKey='account.profile.button2'
                 color={TEAL}
                 style={{ marginTop: '20px' }}
-                disabled={}
+                disabled={!this.hasSthToSubmit()}
               >
                 프로필 업데이트
               </Button>
