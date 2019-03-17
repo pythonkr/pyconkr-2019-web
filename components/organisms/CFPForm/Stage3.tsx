@@ -36,10 +36,10 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
             stores.cfpStore.setCurrentStage(CFPFormStage.stage4)
           })
         }}>
-          <label><IntlText intlKey='asdfasdf'>
+          <label><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item1.sub1'>
             제안의 상세한 내용
           </IntlText></label>
-          <p><IntlText intlKey='asdfasdf'>
+          <p><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item1.desc1'>
             내용이 많을 경우, 외부 문서 링크를 적어주시기 바랍니다.
           </IntlText></p>
           <input
@@ -50,10 +50,10 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
             required
           />
           <fieldset>
-            <legend><IntlText intlKey='asdfasdf'>
+            <legend><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item2.header'>
               이미 다른 곳에서 발표한 내용인가요?
             </IntlText></legend>
-            <label><IntlText intlKey='asdfasdf'>
+            <label><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item2.button1'>
               예
             </IntlText></label>
             <input
@@ -63,7 +63,7 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
               checked={this.state.isPresentedBefore === true}
               onChange={() => this.setState({ isPresentedBefore: true })}
             />
-            <label><IntlText intlKey='asdfasdf'>
+            <label><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item2.button2'>
               아니오
             </IntlText></label>
             <input
@@ -74,7 +74,7 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
               onChange={() => this.setState({ isPresentedBefore: false })}
             />
           </fieldset>
-          <label><IntlText intlKey='asdfasdf'>
+          <label><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item3'>
             발표한 행사
           </IntlText></label>
           <input
@@ -82,7 +82,7 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
             value={this.state.placePresentedBefore}
             onChange={e => this.setState({ placePresentedBefore: e.target.value })}
           />
-          <label><IntlText intlKey='asdfasdf'>
+          <label><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item4'>
             발표 자료 링크
           </IntlText></label>
           <input
@@ -90,10 +90,10 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
             value={this.state.presentedSlideUrlBefore}
             onChange={e => this.setState({ presentedSlideUrlBefore: e.target.value })}
           />
-          <label><IntlText intlKey='asdfasdf'>
+          <label><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item5.header'>
             참고 및 질문 사항
           </IntlText></label>
-          <p><IntlText intlKey='asdfasdf'>
+          <p><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item5.desc1'>
             검토자에게 알리고 싶은 내용을 자유롭게 적어주세요.
           </IntlText></p>
           <input
