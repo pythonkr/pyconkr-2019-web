@@ -36,7 +36,7 @@ export type NormalMenu = {
   title: string;
   intlKey: string;
   link: string;
-  permission: 'public' | 'user' | 'staff';
+  permission?: 'public' | 'user' | 'staff';
 }
 
 export type WithSubMenu = {
@@ -44,7 +44,7 @@ export type WithSubMenu = {
   intlKey: string;
   basePath: string;
   submenu: NormalMenu[];
-  permission: 'anonymous' | 'user' | 'staff';
+  permission?: 'anonymous' | 'user' | 'staff';
 }
 
 export type GNBMenu = NormalMenu | WithSubMenu
@@ -102,7 +102,6 @@ export const contributionMenu: WithSubMenu = {
       title: '발표안 제안하기',
       intlKey: 'gnb.contribute.proposingATalk',
       link: paths.contribute.proposingATalk,
-      permission: 'user'
     }
   ]
 }
@@ -153,7 +152,6 @@ export const loginMenu: NormalMenu = {
   title: '로그인',
   intlKey: 'gnb.info.login',
   link: paths.account.login,
-  permission: 'anonymous'
 }
 
 export const globalNavigationMenu: GNBMenu[] = [
@@ -162,5 +160,4 @@ export const globalNavigationMenu: GNBMenu[] = [
   contributionMenu,
   sponsorMenu,
   accountMenu,
-  loginMenu
 ]

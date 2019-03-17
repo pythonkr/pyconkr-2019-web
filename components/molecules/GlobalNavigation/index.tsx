@@ -4,10 +4,9 @@ import NavMenuSubLink from 'components/atoms/NavMenuSubLink'
 import { PyConKRLogo } from 'components/atoms/SVG'
 import Link from 'next/link'
 import { withRouter } from 'next/router'
-import { inject, observer } from 'mobx-react'
 import React from 'react'
 import intl from 'react-intl-universal'
-import { paths, globalNavigationMenu, GNBMenu } from 'routes/paths'
+import { globalNavigationMenu } from 'routes/paths'
 import { CORAL, CORAL_LIGHT } from 'styles/colors'
 import { mobileWidth, navigationPadding } from 'styles/layout'
 
@@ -220,29 +219,10 @@ const SubmenuItemLink = styled(NavMenuSubLink)`
   padding: 20px 0;
 }`
 
-@inject('stores')
-@withRouter
-@observer
 class Navigation extends React.Component<any> {
   state = {
     isMenuOpened: false,
     openedSubmenu: null,
-  }
-  hasPermission = (permission: string) => {
-    if (!permission){
-      return true
-    }
-    const {stores} = this.props
-    if (permission === 'anonymous'){
-      return !stores.authStore.logined
-    }
-
-    // TODO: STAFF인지 USER인지 구분 필요(지금은 로그인만으로 합니다.)
-    // 차후 참가자 확인 기능 등을 위해서는 권한 구분이 필요합니다.
-    if (permission === 'user'){
-      return stores.authStore.logined
-    }
-    return false
   }
 
   toggleSubmenu = (menuKey: string) => {
@@ -254,7 +234,6 @@ class Navigation extends React.Component<any> {
   }
 
   render() {
-    const {stores, router} = this.props
     return (
       <NavWrapper>
         <ul>
@@ -286,9 +265,9 @@ class Navigation extends React.Component<any> {
         </HamburgerButtonLabel>
         <NavMenuList>
           {
-            globalNavigationMenu.map(({ title, intlKey, link, basePath, permission, submenu }) =>
-              submenu 
-                ? this.hasPermission(permission) && <NavItem key={intlKey}>
+            globalNavigationMenu.map(({ title, intlKey, link, basePath, submenu }) =>
+              submenu
+                ? <NavItem key={intlKey}>
                   <SubmenuButtonCheckbox
                     type='checkbox'
                     id={intlKey}
@@ -302,24 +281,25 @@ class Navigation extends React.Component<any> {
                   </SubmenuButtonLabel>
                   <Caret />
                   <SubmenuList>
+                    {/* tslint:disable-next-line:no-shadowed-variable */}
                     {submenu.map(({ title, intlKey, link }) =>
                       <SubmenuItem key={intlKey}><SubmenuItemLink
                         to={link}
                         intlKey={intlKey}
-                        name={title }
+                        name={title}
                         currentPath={this.props.router.pathname}
                       /></SubmenuItem>
                     )}
                   </SubmenuList>
                 </NavItem>
-                : this.hasPermission(permission) && <NavItem key={intlKey}>
-                    <NavLink
-                      to={link}
-                      intlKey={intlKey}
-                      name={title}
-                      currentPath={this.props.router.pathname}
-                      basePath={link}
-                    />
+                : <NavItem key={intlKey}>
+                  <NavLink
+                    to={link}
+                    intlKey={intlKey}
+                    name={title}
+                    currentPath={this.props.router.pathname}
+                    basePath={link}
+                  />
                 </NavItem>
             )
           }
@@ -329,4 +309,4 @@ class Navigation extends React.Component<any> {
   }
 }
 
-export default Navigation
+export default withRouter(Navigation)
