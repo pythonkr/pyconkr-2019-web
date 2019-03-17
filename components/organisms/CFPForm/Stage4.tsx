@@ -1,9 +1,12 @@
-import { FormWrapper } from 'components/atoms/ContentWrappers'
+import { Button } from 'components/atoms/Button'
+import { AgreementFieldset, FormWrapper } from 'components/atoms/ContentWrappers'
+import { FlexCenterWrapper, FlexSpaceBetweenWrapper } from 'components/atoms/FlexWrapper'
 import { IntlText } from 'components/atoms/IntlText'
 import { CFPFormStage } from 'lib/stores/CFPStore'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import React from 'react'
+import { TEAL } from 'styles/colors'
 
 interface State {
   isCocAgreed: boolean,
@@ -13,7 +16,7 @@ interface State {
 
 @inject('stores')
 @observer
-export default class CFPFormStage4 extends React.Component<{stores: StoresType}, State> {
+export default class CFPFormStage4 extends React.Component<{stores: StoresType; scrollRef: HTMLDivElement}, State> {
   state = {
     isCocAgreed: false,
     isContentsAgreed: false,
@@ -22,16 +25,17 @@ export default class CFPFormStage4 extends React.Component<{stores: StoresType},
 
   async componentDidMount() {
     const { proposal } = this.props.stores.cfpStore
-    if( !proposal ) {
+    if (!proposal) {
      return
     }
-    if (proposal.isAgreed){
+    if (proposal.isAgreed) {
       this.setState({
         isCocAgreed : true,
         isContentsAgreed : true,
         isEtcAgreed : true,
       })
     }
+    window.scrollTo(0, this.props.scrollRef.offsetTop)
   }
 
   render () {
@@ -47,7 +51,7 @@ export default class CFPFormStage4 extends React.Component<{stores: StoresType},
             stores.cfpStore.setCurrentStage(CFPFormStage.completed)
           })
         }}>
-          <fieldset>
+          <AgreementFieldset>
             <legend><IntlText intlKey='asdfasdf'>
               파이콘 한국 행동 강령
             </IntlText></legend>
@@ -80,8 +84,9 @@ export default class CFPFormStage4 extends React.Component<{stores: StoresType},
             <label htmlFor='coc-agreed'><IntlText intlKey='asdfasdf'>
               위 내용을 확인 하였으며 파이콘 한국 CoC를 준수할 것을 약속합니다.
             </IntlText></label>
-          </fieldset>
-          <fieldset>
+          </AgreementFieldset>
+          <hr />
+          <AgreementFieldset>
             <legend><IntlText intlKey='asdfasdf'>
               발표 윤리
             </IntlText></legend>
@@ -105,16 +110,18 @@ export default class CFPFormStage4 extends React.Component<{stores: StoresType},
             </ul>
             <input
               type='checkbox'
+              id='ethics-agreed'
               aria-checked={this.state.isContentsAgreed}
               checked={this.state.isContentsAgreed}
               onChange={() => this.setState({ isContentsAgreed: !this.state.isContentsAgreed })}
             />
-            <label><IntlText intlKey='asdfasdf'>
+            <label htmlFor='ethics-agreed'><IntlText intlKey='asdfasdf'>
               위 내용을 확인하였으며 이를 준수하지 않았을 경우 본인에게 책임이 있으며
               위반된 사항이 발견될 경우 발표자 선정이 취소될 수 있음에 동의합니다.
             </IntlText></label>
-          </fieldset>
-          <fieldset>
+          </AgreementFieldset>
+          <hr />
+          <AgreementFieldset>
             <legend><IntlText intlKey='asdfasdf'>
               발표 공유
             </IntlText></legend>
@@ -127,21 +134,45 @@ export default class CFPFormStage4 extends React.Component<{stores: StoresType},
                 회사 기밀, 저작권 등 민감한 부분이 포함된 경우 공개용 버전의 슬라이드를 준비해주시기 바랍니다.
               </IntlText></li>
               <li><IntlText intlKey='asdfasdf'>
-                만약 발표 영상을 공개하지 않아야한다면 파이콘 한국 준비위원회에 별도로 연락을 해주시기 바랍니다.
+                만약 발표 영상을 공개하지 않아야 한다면 파이콘 한국 준비위원회에 별도로 연락을 해주시기 바랍니다.
                 (program@pycon.kr)
               </IntlText></li>
             </ul>
             <input
               type='checkbox'
+              id='sharing-agreed'
               aria-checked={this.state.isEtcAgreed}
               checked={this.state.isEtcAgreed}
               onChange={() => this.setState({ isEtcAgreed: !this.state.isEtcAgreed })}
             />
-            <label><IntlText intlKey='asdfasdf'>
+            <label htmlFor='sharing-agreed'><IntlText intlKey='asdfasdf'>
               위 내용을 충분히 숙지하였습니다.
             </IntlText></label>
-          </fieldset>
-          <button type='submit'>발표안 제출하기</button>
+          </AgreementFieldset>
+          <FlexSpaceBetweenWrapper style={{ marginTop: 80 }}>
+            <Button
+              tag='button'
+              type='button'
+              intlKey='adsfasdfa'
+              color={TEAL}
+              width={120}
+              primary={false}
+              onClick={() => {
+                stores.cfpStore.setCurrentStage(CFPFormStage.stage3)
+              }}
+            >이전</Button>
+            <Button
+              tag='button'
+              intlKey='asdlfkaslkfdj'
+              type='submit'
+              width={300}
+              disabled={
+                !this.state.isCocAgreed ||
+                !this.state.isContentsAgreed ||
+                !this.state.isEtcAgreed
+              }
+            >발표안 제출하기</Button>
+          </FlexSpaceBetweenWrapper>
         </form>
       </FormWrapper>
     )

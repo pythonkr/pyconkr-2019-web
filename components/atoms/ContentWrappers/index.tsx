@@ -283,6 +283,8 @@ ${Ol} > & {
 
 /********************************* Form ***********************************/
 
+export const AgreementFieldset = styled.fieldset``
+
 export const FormWrapper = styled.div`
 background: ${(props) => props.color ? props.color : TEAL_LIGHT_LIGHT};
 padding: 35px 41px 60px 51px;
@@ -293,6 +295,11 @@ padding: 35px 41px 60px 51px;
 p {
   font-size: 14px;
   line-height: 1.8;
+  color: ${HEADING_LIGHT_BLACK};
+}
+
+label + p {
+  margin-bottom: 8px;
 }
 
 label {
@@ -301,6 +308,7 @@ label {
   font-size: 14px;
   line-height: 29px;
   color: ${HEADING_LIGHT_BLACK};
+  font-weight: 700;
 }
 
 input[type=file] {
@@ -336,6 +344,7 @@ select {
 
 textarea {
   height: 141px;
+  resize: vertical;
 }
 
 select {
@@ -398,6 +407,7 @@ input[type="checkbox"] {
     display: inline-block;
     font-size: 17px;
     line-height: 20px;
+    font-weight: 400;
     color: ${DEFAULT_TEXT_BLACK};
     cursor: pointer;
     padding: 10px;
@@ -414,7 +424,62 @@ fieldset {
     padding: 7px 0;
     font-size: 14px;
     line-height: 29px;
+    font-weight: 700;
     color: ${HEADING_LIGHT_BLACK};
+  }
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background: #e1e4e6;
+  width: 100%;
+  margin: 50px auto 50px;
+}
+
+${AgreementFieldset} {
+  width: 100%;
+
+  p {
+    color: ${HEADING_LIGHT_BLACK};
+    font-size: 16px;
+    line-height: 30px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
+  input[type="checkbox"] {
+    margin: 18px 0 8px;
+  }
+
+  input[type="checkbox"] + label {
+    width: 95%;
+    line-height: 1.8;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  ul {
+    margin-bottom: 16px;
+  }
+
+  li {
+    line-height: 30px;
+    color: ${HEADING_LIGHT_BLACK};
+    margin: 9px 0;
+    padding-left: 40px;
+    position: relative;
+
+    &:before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background-color: ${TEAL};
+      position: absolute;
+      left: 22px;
+      top: 14px;
+      border-radius: 50%;
+    }
   }
 }
 `

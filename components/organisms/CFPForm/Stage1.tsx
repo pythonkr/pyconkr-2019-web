@@ -151,14 +151,13 @@ export default class ProfileForm extends React.Component<{stores: StoresType}, S
             발표자 정보로 등록한 내용들은 프로필로 저장되며, 내 프로필 페이지에서 수정할 수 있습니다.
             프로필은 추후 프로그램 페이지에서 사용됩니다.
           </IntlText></p>
-          <FlexCenterWrapper>
+          <FlexCenterWrapper style={{ marginTop: 80 }}>
             <Button
               type='submit'
               tag='button'
               intlKey='contribute.talkProposal.application.stages.stages1.button'
               color={TEAL}
               width={300}
-              style={{ marginTop: 80 }}
               disabled={!this.isFormValid()}
             >
               프로필 저장하고 계속하기

@@ -21,7 +21,7 @@ const schedule = [{
   title: '후원사 모집 마감',
   intlKey: 'sponsor.prospectus.schedule.deadline',
   desc: {
-    default: '마감 시까지',
+    defaultText: '마감 시까지',
     intlKey: 'common.status.untilSelected'
   }
 }]
@@ -73,7 +73,7 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
                         date
                           ? formatDateInWordsWithWeekdayAndTime(date)
                           : desc
-                            ? intl.get(desc.intlKey).d(desc.default)
+                            ? intl.get(desc.intlKey).d(desc.defaultText)
                             : '-'
                       }
                     </Td>

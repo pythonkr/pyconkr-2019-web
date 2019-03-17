@@ -1,7 +1,7 @@
 import { client } from 'lib/apollo_graphql/client'
 import { createOrUpdatePresentationProposal } from 'lib/apollo_graphql/mutations/createOrUpdatePresentationProposal'
 import { CategoryType, getCategories } from 'lib/apollo_graphql/queries/getCategories'
-import { DifficultyType } from 'lib/apollo_graphql/queries/getDifficulties'
+import { DifficultyType, getDifficulties } from 'lib/apollo_graphql/queries/getDifficulties'
 import { getMyPresentationProposal, PresentationProposalType } from 'lib/apollo_graphql/queries/getMyPresentationProposal'
 import { action, configure, observable } from 'mobx'
 
@@ -24,6 +24,12 @@ export class CFPStore {
     @action
     setCurrentStage(stage: CFPFormStage) {
       this.currentStage = stage
+    }
+
+    @action
+    async retrieveDifficulties() {
+      const response = await getDifficulties(client)({})
+      this.difficulties = response.data.difficulties
     }
 
     @action

@@ -7,16 +7,16 @@ import { StoresType } from 'pages/_app'
 import React from 'react'
 
 interface State {
-  desc: string,
+  detailDesc: string,
   isPresentedBefore: boolean | null,
   placePresentedBefore: string,
   presentedSlideUrlBefore: string,
-  question: string
+  comment: string
 }
 
 @inject('stores')
 @observer
-export default class CFPFormStage3 extends React.Component<{stores: StoresType}, State> {
+export default class CFPFormStage3 extends React.Component<{stores: StoresType; scrollRef: HTMLDivElement}, State> {
   state = {
     detailDesc: '',
     isPresentedBefore: false,
@@ -27,17 +27,18 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
 
   async componentDidMount() {
     const { proposal } = this.props.stores.cfpStore
-    if( !proposal ) {
+    if (!proposal) {
      return
     }
     this.setState({
-      detailDesc : proposal.detailDesc,
-      isPresentedBefore : proposal.isPresentedBefore,
-      placePresentedBefore : proposal.placePresentedBefore,
-      backgroundDesc : proposal.backgroundDesc,
-      presentedSlideUrlBefore : proposal.presentedSlideUrlBefore,
-      comment : proposal.comment
+      detailDesc: proposal.detailDesc,
+      isPresentedBefore: proposal.isPresentedBefore,
+      placePresentedBefore: proposal.placePresentedBefore,
+      presentedSlideUrlBefore: proposal.presentedSlideUrlBefore,
+      comment: proposal.comment
     })
+
+    window.scrollTo(0, this.props.scrollRef.offsetTop)
   }
 
   render () {
@@ -57,37 +58,43 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
           <p><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item1.desc1'>
             내용이 많을 경우, 외부 문서 링크를 적어주시기 바랍니다.
           </IntlText></p>
-          <input
-            type='text'
+          <textarea
             value={this.state.detailDesc}
             onChange={e => this.setState({ detailDesc: e.target.value })}
             aria-required={true}
+            style={{ height: 400 }}
             required
           />
           <fieldset>
             <legend><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item2.header'>
               이미 다른 곳에서 발표한 내용인가요?
             </IntlText></legend>
-            <input
-              type='radio'
-              value={'true'}
-              aria-checked={this.state.isPresentedBefore === true}
-              checked={this.state.isPresentedBefore === true}
-              onChange={() => this.setState({ isPresentedBefore: true })}
-            />
-            <label><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item2.button1'>
-              예
-            </IntlText></label>
-            <input
-              type='radio'
-              value={'false'}
-              aria-checked={this.state.isPresentedBefore === false}
-              checked={this.state.isPresentedBefore === false}
-              onChange={() => this.setState({ isPresentedBefore: false })}
-            />
-            <label><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item2.button2'>
-              아니오
-            </IntlText></label>
+            <p>
+              <input
+                type='radio'
+                value={'true'}
+                id='isPresentedBefore-true'
+                aria-checked={this.state.isPresentedBefore === true}
+                checked={this.state.isPresentedBefore === true}
+                onChange={() => this.setState({ isPresentedBefore: true })}
+              />
+              <label htmlFor='isPresentedBefore-true'><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item2.button1'>
+                예
+              </IntlText></label>
+            </p>
+            <p>
+              <input
+                type='radio'
+                value={'false'}
+                id='isPresentedBefore-false'
+                aria-checked={this.state.isPresentedBefore === false}
+                checked={this.state.isPresentedBefore === false}
+                onChange={() => this.setState({ isPresentedBefore: false })}
+              />
+              <label htmlFor='isPresentedBefore-false'><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item2.button2'>
+                아니오
+              </IntlText></label>
+            </p>
           </fieldset>
           <label><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item3'>
             발표한 행사

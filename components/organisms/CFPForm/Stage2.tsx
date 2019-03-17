@@ -9,17 +9,17 @@ import React from 'react'
 import intl from 'react-intl-universal'
 
 interface State {
-  name: string,
+  name: string | null,
   categoryId: string,
   difficultyId: string,
-  backgroundDesc: string,
+  backgroundDesc: string | null,
   duration: DurationNode | null,
   language: LanguageNode | null,
 }
 
 @inject('stores')
 @observer
-export default class CFPFormStage2 extends React.Component<{stores: StoresType}, State> {
+export default class CFPFormStage2 extends React.Component<{stores: StoresType; scrollRef: HTMLDivElement}, State> {
   state = {
     name: '',
     categoryId: '1',
@@ -31,17 +31,21 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
 
   async componentDidMount() {
     const { proposal } = this.props.stores.cfpStore
-    if( !proposal ) {
+
+    if (!proposal) {
      return
     }
+
     this.setState({
-      name : proposal.name,
-      categoryId : proposal.category.id,
-      difficultyId : proposal.difficulty.id,
-      backgroundDesc : proposal.backgroundDesc,
-      duration : proposal.duration,
-      language : proposal.language
+      name: proposal.name,
+      categoryId: proposal.category!.id,
+      difficultyId: proposal.difficulty!.id,
+      backgroundDesc: proposal.backgroundDesc,
+      duration: proposal.duration,
+      language: proposal.language
     })
+
+    window.scrollTo(0, this.props.scrollRef.offsetTop)
   }
 
   render () {

@@ -9,25 +9,37 @@ import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
 import { talkProposal } from 'dates'
-import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
 import { contributionMenu, paths } from 'routes/paths'
+import { DateDTO } from 'types/common'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 import { StoresType } from '../_app'
 
-const schedule = [{
+export type IntlTextType = {
+  intlKey: string;
+  defaultText: string;
+}
+
+export type Schedule = {
+  title: string;
+  intlKey: string;
+  date: DateDTO;
+  desc?: IntlTextType;
+}
+
+const schedule: Schedule[] = [{
   title: '발표안 제안 오픈',
   intlKey: 'contribute.talkProposal.schedule.open',
-  date: talkProposal.open
+  date: talkProposal.open,
 }, {
   title: '발표안 제안 마감',
   intlKey: 'contribute.talkProposal.schedule.close',
-  date: talkProposal.close
+  date: talkProposal.close,
 }, {
   title: '최종 발표자 확정',
   intlKey: 'contribute.talkProposal.schedule.announcement',
-  date: talkProposal.announcement
+  date: talkProposal.announcement,
 }]
 
 @inject('stores')
@@ -57,7 +69,8 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
           closeDate={talkProposal.close}
         />
         <Paragraph><IntlText intlKey='contribute.talkProposal.description1'>
-          파이썬에 대한 학술적 또는 상업적 프로젝트, 케이스 스터디 등 다양한 파이썬 관련 발표를 아래와 같은 일정으로 모집합니다.
+          파이썬에 대한 학술적 또는 상업적 프로젝트, 케이스 스터디 등
+          다양한 파이썬 관련 발표를 아래와 같은 일정으로 모집합니다.
           자세한 내용은 발표안 작성 가이드를 참고해주세요.
         </IntlText></Paragraph>
         <Section>
@@ -67,10 +80,12 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
               <TBody>
                 {schedule.map(({ title, date, desc, intlKey }) =>
                   <Tr key={title}>
-                    <Td className={isBold}><IntlText intlKey={intlKey}>{title}</IntlText></Td>
+                    <Td className={isBold}>
+                      <IntlText intlKey={intlKey}>{title}</IntlText>
+                    </Td>
                     <Td>
                       {desc
-                          ? <IntlText intlKey={desc.intlKey}>{desc.default}</IntlText>
+                          ? <IntlText intlKey={desc.intlKey}>{desc.defaultText}</IntlText>
                           : formatDateInWordsWithWeekdayAndTime(date!)
                       }
                     </Td>

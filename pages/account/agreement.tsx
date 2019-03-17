@@ -29,7 +29,7 @@ class Logout extends React.Component<{
 
     return (
       <PageTemplate
-        header={<Header title='파이콘 한국 2019' />}
+        header={<Header title='가입하기 :: 파이콘 한국 2019' />}
         footer={<Footer />}
       >
         <H1>

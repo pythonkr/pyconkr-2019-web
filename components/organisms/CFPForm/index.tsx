@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { PaddingWrapper } from 'components/atoms/FormNeedsLogin'
+import { Loading } from 'components/atoms/Loading'
 import Stage1 from 'components/organisms/CFPForm/Stage1'
 import Stage2 from 'components/organisms/CFPForm/Stage2'
 import Stage3 from 'components/organisms/CFPForm/Stage3'
@@ -13,7 +14,6 @@ import React from 'react'
 import intl from 'react-intl-universal'
 import { TEAL, TEAL_LIGHT, TEAL_LIGHT_LIGHT, TEAL_SEMI_DARK } from 'styles/colors'
 import { isEmpty } from 'utils/isEmpty'
-import { Loading } from 'components/atoms/Loading';
 
 const StepsWrapper = styled.div`
   padding: 49px 30px 40px;
@@ -38,6 +38,7 @@ const StepsWrapper = styled.div`
 @inject('stores')
 @observer
 export default class CFPForm extends React.Component<{ stores: StoresType }> {
+  formWrapperRef: HTMLDivElement | null = null
   state = {
     isFormInitialized: false
   }
@@ -46,6 +47,7 @@ export default class CFPForm extends React.Component<{ stores: StoresType }> {
     const { cfpStore } = this.props.stores
     cfpStore.retrieveCategories()
     cfpStore.retriveMyProposal()
+    cfpStore.retrieveDifficulties()
     this.setState({
       isFormInitialized: true
     })
@@ -54,7 +56,7 @@ export default class CFPForm extends React.Component<{ stores: StoresType }> {
   render() {
     const { stores } = this.props
     const { profile } = toJS(this.props.stores.profileStore)
-    const { currentStage, categories, proposal } = toJS(stores.cfpStore)
+    const { currentStage, categories, proposal, difficulties } = toJS(stores.cfpStore)
 
     if (!stores.profileStore.isInitialized || !this.state.isFormInitialized) {
       return <Loading width={50} height={50}/>
@@ -65,11 +67,11 @@ export default class CFPForm extends React.Component<{ stores: StoresType }> {
       return <div>으아 로그인 인증을 하라구 </div>
     }
 
-   if (proposal) {
-     console.log(proposal)
-   }
+    if (proposal && proposal.submitted) {
+      return <div>제출을 완료했답니다. 꺄르르</div>
+    }
 
-    if (isEmpty(profile) || isEmpty(categories)) {
+    if (isEmpty(profile) || isEmpty(categories) || isEmpty(difficulties)) {
       return (
         <div>
           Oops something wrong. Click to refresh form.
@@ -89,16 +91,31 @@ export default class CFPForm extends React.Component<{ stores: StoresType }> {
     ]
 
     return (
-      <PaddingWrapper>
+      <PaddingWrapper ref={ref => this.formWrapperRef = ref}>
         <StepsWrapper>
           <Steps current={currentStage} labelPlacement='vertical'>
             {steps.map(step => <Steps.Step title={step} />)}
           </Steps>
         </StepsWrapper>
         {currentStage === CFPFormStage.stage1 && <Stage1 stores={stores} />}
-        {currentStage === CFPFormStage.stage2 && <Stage2 stores={stores} />}
-        {currentStage === CFPFormStage.stage3 && <Stage3 stores={stores} />}
-        {currentStage === CFPFormStage.stage4 && <Stage4 stores={stores} />}
+        {currentStage === CFPFormStage.stage2 &&
+          <Stage2
+            stores={stores}
+            scrollRef={this.formWrapperRef}
+          />
+        }
+        {currentStage === CFPFormStage.stage3 &&
+          <Stage3
+            stores={stores}
+            scrollRef={this.formWrapperRef}
+          />
+        }
+        {currentStage === CFPFormStage.stage4 &&
+          <Stage4
+            stores={stores}
+            scrollRef={this.formWrapperRef}
+          />
+        }
         {currentStage === CFPFormStage.completed && (
           <div>발표안을 제출했습니다! 호호호</div>
         )}

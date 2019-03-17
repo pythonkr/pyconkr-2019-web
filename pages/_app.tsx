@@ -59,6 +59,7 @@ class MyApp extends App {
     intl.init({
       currentLocale,
       locales: {
+        // tslint:disable-next-line:non-literal-require
         [currentLocale]: require(`locales/${currentLocale}`)
       },
       warningHandler: intlWarningHandler
