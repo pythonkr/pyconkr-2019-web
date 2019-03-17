@@ -130,11 +130,11 @@ export const accountMenu: WithSubMenu = {
   basePath: paths.account.base,
   permission: 'user',
   submenu: [
-    // {
-    //   title: "제안 및 신청 내역",
-    //   intlKey: "gnb.info.history",
-    //   link: paths.account.contribution
-    // },
+    {
+      title: '제안 및 신청 내역',
+      intlKey: 'gnb.info.history',
+      link: paths.account.contribution
+    },
     {
       title: '프로필',
       intlKey: 'gnb.info.profile',

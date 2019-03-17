@@ -72,8 +72,9 @@ class Login extends React.Component<{ stores: StoresType; router: any }> {
   async componentDidMount() {
     const { stores } = this.props
     stores.authStore.syncToken()
+
     if (stores.authStore.loggedIn) {
-      Router.replace(paths.home)
+      Router.replace(this.props.router!.query.redirect_url)
 
       return
     }
