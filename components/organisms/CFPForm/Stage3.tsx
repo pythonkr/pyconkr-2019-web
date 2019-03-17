@@ -68,9 +68,6 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
             <legend><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item2.header'>
               이미 다른 곳에서 발표한 내용인가요?
             </IntlText></legend>
-            <label><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item2.button1'>
-              예
-            </IntlText></label>
             <input
               type='radio'
               value={'true'}
@@ -78,8 +75,8 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
               checked={this.state.isPresentedBefore === true}
               onChange={() => this.setState({ isPresentedBefore: true })}
             />
-            <label><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item2.button2'>
-              아니오
+            <label><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item2.button1'>
+              예
             </IntlText></label>
             <input
               type='radio'
@@ -88,6 +85,9 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
               checked={this.state.isPresentedBefore === false}
               onChange={() => this.setState({ isPresentedBefore: false })}
             />
+            <label><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item2.button2'>
+              아니오
+            </IntlText></label>
           </fieldset>
           <label><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item3'>
             발표한 행사
