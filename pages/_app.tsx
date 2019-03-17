@@ -12,6 +12,7 @@ import App, { Container } from 'next/app'
 import 'rc-steps/assets/iconfont.css'
 import 'rc-steps/assets/index.css'
 import intl from 'react-intl-universal'
+import { paths } from 'routes/paths'
 import { commonCSS } from 'styles/common'
 import { fontCSS } from 'styles/font'
 
@@ -79,13 +80,27 @@ class MyApp extends App {
       .then(() => {
         document && document.body.classList.add('font-loaded')
       })
-    this.retrieveProfileIfTokenExists()
+
+    this.handleOAuth()
   }
 
-  async retrieveProfileIfTokenExists() {
-    this.stores.authStore.syncToken()
-    if (this.stores.authStore.logined) {
-      this.stores.profileStore.retrieveMe()
+  async handleOAuth() {
+    const { state, code } = this.props.router.query! as any
+
+    if (!code) {
+      this.stores.authStore.syncToken()
+
+      if (this.stores.authStore.loggedIn) {
+        this.stores.profileStore.retrieveMe()
+      }
+
+      return
+    }
+
+    await this.stores.authStore.login(state, code)
+
+    if (!this.stores.profileStore.isAgreed) {
+      this.props.router.push(paths.account.agreement)
     }
   }
 

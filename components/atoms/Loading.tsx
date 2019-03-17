@@ -28,10 +28,13 @@ const StyledLoading = styled.div`
   width: ${(props: Props) => props.width}px;
   height: ${props => props.height}px;
   transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+  transform: scale(${
+    props => props.width ? props.width / 160 : 1
+  });
   div {
     position: absolute;
     animation: ${spinnerKeyframes} 1s linear infinite;
-    width:  160px;
+    width: 160px;
     height: 160px;
     top: 20px;
     left: 20px;
