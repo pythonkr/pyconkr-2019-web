@@ -59,7 +59,7 @@ class Contribution extends React.Component<{
   render() {
 
     return <PageTemplate
-      header={<Header title='프로필 :: 파이콘 한국 2019' />}
+      header={<Header title='제안 및 신청 내역 :: 파이콘 한국 2019' />}
       footer={<Footer />}
     >
       <H1>
