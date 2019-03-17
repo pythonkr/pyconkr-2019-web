@@ -1,25 +1,25 @@
-import styled from "@emotion/styled";
-import { H1 } from "components/atoms/ContentWrappers";
-import { IntlText } from "components/atoms/IntlText";
-import { NaverLogo } from "components/atoms/SVG";
-import Footer from "components/organisms/Footer";
-import Header from "components/organisms/Header";
-import PageTemplate from "components/templates/PageTemplate";
-import { clientIdEnum } from "lib/stores/AuthStore";
-import { inject, observer } from "mobx-react";
-import Router from "next/router";
-import React from "react";
-import intl from "react-intl-universal";
-import { paths } from "routes/paths";
-import { FACEBOOK_BLUE, NAVER_GREEN } from "styles/colors";
-import { StoresType } from "../_app";
+import styled from '@emotion/styled'
+import { H1 } from 'components/atoms/ContentWrappers'
+import { IntlText } from 'components/atoms/IntlText'
+import { NaverLogo } from 'components/atoms/SVG'
+import Footer from 'components/organisms/Footer'
+import Header from 'components/organisms/Header'
+import PageTemplate from 'components/templates/PageTemplate'
+import { clientIdEnum } from 'lib/stores/AuthStore'
+import { inject, observer } from 'mobx-react'
+import Router from 'next/router'
+import React from 'react'
+import intl from 'react-intl-universal'
+import { paths } from 'routes/paths'
+import { FACEBOOK_BLUE, NAVER_GREEN } from 'styles/colors'
+import { StoresType } from '../_app'
 
 const LoginButtonsWrapper = styled.div`
   width: 700px;
   background-color: #fbfbfb;
   padding: 90px 137px 105px;
   margin-top: -70px;
-`;
+`
 const MainButton = styled.button`
   width: 428px;
   height: 70px;
@@ -31,27 +31,27 @@ const MainButton = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-`;
+`
 const SubButton = styled.button`
   width: 428px;
   height: 54px;
   border-radius: 4px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07);
   border: solid 1px #ced3d6;
-  background-color: ${props => props.color || "#ffffff"};
+  background-color: ${props => props.color || '#ffffff'};
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 15px;
   cursor: pointer;
-`;
+`
 const ButtonText = styled.span`
   display: block;
   margin-left: 12px;
   font-size: 15px;
   text-align: center;
-  color: ${props => props.color || "#4d5256"};
-`;
+  color: ${props => props.color || '#4d5256'};
+`
 const Hr = styled.hr`
   margin: 52px 0 37px;
   position: relative;
@@ -63,75 +63,75 @@ const Hr = styled.hr`
     width: 100px;
     height: 16px;
   }
-`;
+`
 
-@inject("stores")
+@inject('stores')
 @observer
 class Login extends React.Component<{ stores: StoresType }> {
   async componentDidMount() {
-    const { stores } = this.props;
-    stores.authStore.syncToken();
-    if (stores.authStore.logined) {
-      Router.replace(paths.home);
+    const { stores } = this.props
+    stores.authStore.syncToken()
+    if (stores.authStore.loggedIn) {
+      Router.replace(paths.home)
 
-      return;
+      return
     }
   }
 
   handleGitHubLogin() {
-    const authorize_url = "https://github.com/login/oauth/authorize";
-    const client_id = clientIdEnum.github;
-    const state = "github";
-    const redirect_uri = encodeURIComponent(`${location.origin}/`);
-    const scope = encodeURIComponent("user:email");
-    const url = `${authorize_url}?state=${state}&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}`;
-    window.location.href = url;
+    const authorize_url = 'https://github.com/login/oauth/authorize'
+    const client_id = clientIdEnum.github
+    const state = 'github'
+    const redirect_uri = encodeURIComponent(`${location.origin}/`)
+    const scope = encodeURIComponent('user:email')
+    const url = `${authorize_url}?state=${state}&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}`
+    window.location.href = url
   }
 
   handleGoogleLogin() {
-    const authorize_url = "https://accounts.google.com/o/oauth2/v2/auth";
-    const client_id = clientIdEnum.google;
-    const state = "google";
-    const redirect_uri = encodeURIComponent(`${location.origin}/`);
-    const scope = encodeURIComponent("profile email");
-    const url = `${authorize_url}?include_granted_scopes=true&state=${state}&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=code`;
-    window.location.href = url;
+    const authorize_url = 'https://accounts.google.com/o/oauth2/v2/auth'
+    const client_id = clientIdEnum.google
+    const state = 'google'
+    const redirect_uri = encodeURIComponent(`${location.origin}/`)
+    const scope = encodeURIComponent('profile email')
+    const url = `${authorize_url}?include_granted_scopes=true&state=${state}&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=code`
+    window.location.href = url
   }
 
   handleFacebookLogin() {
-    const authorize_url = "https://www.facebook.com/v3.2/dialog/oauth";
-    const client_id = clientIdEnum.facebook;
-    const state = "facebook";
-    const redirect_uri = encodeURIComponent(`${location.origin}/`);
-    const scope = encodeURIComponent("email");
-    const url = `${authorize_url}?include_granted_scopes=true&state=${state}&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=code`;
-    window.location.href = url;
+    const authorize_url = 'https://www.facebook.com/v3.2/dialog/oauth'
+    const client_id = clientIdEnum.facebook
+    const state = 'facebook'
+    const redirect_uri = encodeURIComponent(`${location.origin}/`)
+    const scope = encodeURIComponent('email')
+    const url = `${authorize_url}?include_granted_scopes=true&state=${state}&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=code`
+    window.location.href = url
   }
 
   handleNaverLogin() {
-    const authorize_url = "https://nid.naver.com/oauth2.0/authorize";
-    const client_id = clientIdEnum.naver;
-    const state = "naver";
-    const redirect_uri = encodeURIComponent(`${location.origin}/`);
-    const url = `${authorize_url}?include_granted_scopes=true&state=${state}&client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code`;
-    window.location.href = url;
+    const authorize_url = 'https://nid.naver.com/oauth2.0/authorize'
+    const client_id = clientIdEnum.naver
+    const state = 'naver'
+    const redirect_uri = encodeURIComponent(`${location.origin}/`)
+    const url = `${authorize_url}?include_granted_scopes=true&state=${state}&client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code`
+    window.location.href = url
   }
 
   render() {
     return (
       <PageTemplate
-        header={<Header title="파이콘 한국 2019" />}
+        header={<Header title='파이콘 한국 2019' />}
         footer={<Footer />}
       >
         <H1>
-          <IntlText intlKey="homeTitle">로그인</IntlText>
+          <IntlText intlKey='homeTitle'>로그인</IntlText>
         </H1>
         <LoginButtonsWrapper>
           <MainButton onClick={this.handleGitHubLogin}>
-            <ButtonText color="white">
+            <ButtonText color='white'>
               {intl
-                .get("account.login.githubButton")
-                .defaultMessage("GitHub 계정으로 로그인")}
+                .get('account.login.githubButton')
+                .defaultMessage('GitHub 계정으로 로그인')}
             </ButtonText>
           </MainButton>
           <Hr />
@@ -143,10 +143,10 @@ class Login extends React.Component<{ stores: StoresType }> {
             }</ButtonText>
           </SubButton> */}
           <SubButton color={FACEBOOK_BLUE} onClick={this.handleFacebookLogin}>
-            <ButtonText color="white">
+            <ButtonText color='white'>
               {intl
-                .get("account.login.facebookButton")
-                .defaultMessage("Facebook 계정으로 로그인")}
+                .get('account.login.facebookButton')
+                .defaultMessage('Facebook 계정으로 로그인')}
             </ButtonText>
           </SubButton>
           {/* <SubButton onClick={this.handleNaverLogin}>
@@ -162,8 +162,8 @@ class Login extends React.Component<{ stores: StoresType }> {
           </SubButton> */}
         </LoginButtonsWrapper>
       </PageTemplate>
-    );
+    )
   }
 }
 
-export default Login;
+export default Login

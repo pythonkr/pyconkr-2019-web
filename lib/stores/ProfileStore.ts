@@ -1,4 +1,3 @@
-import { getMe_me_profile } from 'lib/apollo_graphql/__generated__/getMe'
 import { client } from 'lib/apollo_graphql/client'
 import { updateAgreement } from 'lib/apollo_graphql/mutations/updateAgreement'
 import { ProfileNode, updateProfile } from 'lib/apollo_graphql/mutations/updateProfile'
@@ -10,6 +9,7 @@ configure({ enforceActions: 'always' })
 
 export class ProfileStore {
   // 약관에 동의했는지 여부를 저장합니다.
+  @observable isInitialized = false
   @observable isAgreed = false
   @observable isStaff = false
   @observable isSuperuser = false
@@ -25,6 +25,7 @@ export class ProfileStore {
       this.isStaff = response.data.me.isStaff || false
       this.isSuperuser = response.data.me.isSuperuser || false
       this.isAgreed = response.data.me.isAgreed || false
+      this.isInitialized = true
     }
 
     return response.data.me
@@ -37,7 +38,7 @@ export class ProfileStore {
     })
     if (response.data.updateAgreement.isAgreedAll) {
       await this.retrieveMe()
-    } 
+    }
     return response.data.updateAgreement
   }
 
