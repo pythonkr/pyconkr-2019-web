@@ -97,7 +97,7 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
           />
           <div role='group'>
             <fieldset>
-              <legend><IntlText intlKey='contribute.talkProposal.application.stages.stages2.item4'>
+              <legend><IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.header'>
                 세션 길이
               </IntlText></legend>
               <p>
@@ -110,7 +110,7 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
                   onChange={() => this.setState({ duration: DurationNode.SHORT })}
                 />
                 <label htmlFor={DurationNode.SHORT}>
-                  <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item4'>
+                  <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.sub1'>
                     25분
                   </IntlText>
                 </label>
@@ -125,7 +125,7 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
                   onChange={() => this.setState({ duration: DurationNode.LONG })}
                 />
                 <label htmlFor={DurationNode.LONG}>
-                  <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item4'>
+                  <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.sub2'>
                     45분
                   </IntlText>
                 </label>
@@ -133,7 +133,7 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
             </fieldset>
             <fieldset>
               <legend>
-                <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item4'>
+                <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item6.header'>
                   언어
                 </IntlText>
               </legend>
@@ -147,7 +147,7 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
                   onChange={() => this.setState({ language: LanguageNode.KOREAN })}
                 />
                 <label htmlFor={LanguageNode.KOREAN}>
-                  <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item4'>
+                  <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item6.sub1'>
                     한국어
                   </IntlText>
                 </label>
@@ -162,7 +162,7 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
                   onChange={() => this.setState({ language: LanguageNode.ENGLISH })}
                 />
                 <label htmlFor={LanguageNode.ENGLISH}>
-                  <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item4'>
+                  <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item6.sub2'>
                     영어
                   </IntlText>
                 </label>
@@ -175,7 +175,7 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType},
             }}
             onSave={() => {
               stores.cfpStore.createOrUpdatePresentation(this.state).then(() => {
-                alert(intl.get('asdfsadf').d('저장이 완료되었습니다'))
+                alert(intl.get('contribute.talkProposal.application.stages.stages2.alert').d('저장이 완료되었습니다'))
               })
             }}
           />
