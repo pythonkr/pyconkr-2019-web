@@ -14,6 +14,8 @@ import React from 'react'
 import intl from 'react-intl-universal'
 import { TEAL, TEAL_LIGHT, TEAL_LIGHT_LIGHT, TEAL_SEMI_DARK } from 'styles/colors'
 import { isEmpty } from 'utils/isEmpty'
+import { FormNeedAuthAgreement } from 'components/atoms/FormNeedAuthAgreement';
+import { FormSubmitted } from 'components/atoms/FormSubmitted';
 
 const StepsWrapper = styled.div`
   padding: 49px 30px 40px;
@@ -33,42 +35,47 @@ const StepsWrapper = styled.div`
     justify-content: center;
     align-items: center;
   }
+  .rc-steps-item-finish > .rc-steps-item-icon {
+    display:inline-block;
+    position: relative;
+
+    &:after{
+      content: '✔︎';
+      display: block;
+      color: ${TEAL_LIGHT};
+      position: absolute;
+      top: -2px;
+      left: 6px;
+    }
+  }
 `
 
 @inject('stores')
 @observer
 export default class CFPForm extends React.Component<{ stores: StoresType }> {
   formWrapperRef: HTMLDivElement | null = null
-  state = {
-    isFormInitialized: false
-  }
 
   async componentDidMount() {
     const { cfpStore } = this.props.stores
-    cfpStore.retrieveCategories()
-    cfpStore.retriveMyProposal()
-    cfpStore.retrieveDifficulties()
-    this.setState({
-      isFormInitialized: true
-    })
+    cfpStore.initialize()
   }
 
   render() {
     const { stores } = this.props
     const { profile } = toJS(this.props.stores.profileStore)
-    const { currentStage, categories, proposal, difficulties } = toJS(stores.cfpStore)
+    const { currentStage, categories, proposal, difficulties, isInitialized } = toJS(stores.cfpStore)
 
-    if (!stores.profileStore.isInitialized || !this.state.isFormInitialized) {
+    if (!stores.profileStore.isInitialized || !isInitialized) {
       return <Loading width={50} height={50}/>
     }
 
     // profile is not agreed -> show greement alert
     if (!stores.profileStore.isAgreed) {
-      return <div>으아 로그인 인증을 하라구 </div>
+      return <FormNeedAuthAgreement />
     }
 
     if (proposal && proposal.submitted) {
-      return <div>제출을 완료했답니다. 꺄르르</div>
+      return <FormSubmitted />
     }
 
     if (isEmpty(profile) || isEmpty(categories) || isEmpty(difficulties)) {
@@ -121,9 +128,10 @@ export default class CFPForm extends React.Component<{ stores: StoresType }> {
             scrollRef={this.formWrapperRef!}
           />
         }
-        {currentStage === CFPFormStage.completed && (
-          <div>발표안을 제출했습니다! 호호호</div>
-        )}
+        {currentStage === CFPFormStage.completed &&
+          <div>발표안을 잘 제출했습니다. 호호호 지금 막 제출한 거여</div>
+        }
+
       </PaddingWrapper>
     )
   }

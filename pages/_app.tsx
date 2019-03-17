@@ -17,6 +17,7 @@ import { paths } from 'routes/paths'
 import { CORAL } from 'styles/colors'
 import { commonCSS } from 'styles/common'
 import { fontCSS } from 'styles/font'
+import Router from 'next/router';
 
 global.Intl = IntlPolyfill
 require('intl/locale-data/jsonp/ko.js')
@@ -103,7 +104,7 @@ class MyApp extends App {
     await this.stores.authStore.login(state, code)
 
     if (!this.stores.profileStore.isAgreed) {
-      this.props.router.push(paths.account.agreement)
+      this.props.router.push(`${paths.account.agreement}?redirect_url=${Router.asPath}`)
     }
   }
 

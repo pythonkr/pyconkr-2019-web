@@ -30,7 +30,7 @@ class AccountMenuButton extends React.Component<any> {
     if (!stores.authStore.loggedIn) {
       return <NavItem key={loginMenu.intlKey}>
         <NavLink
-          to={loginMenu.link}
+          to={`${loginMenu.link}?redirect_url=${this.props.router.route}`}
           intlKey={loginMenu.intlKey}
           name={loginMenu.title}
           currentPath={this.props.router.pathname}

@@ -7,16 +7,17 @@ import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
-import Router from 'next/router'
+import Router, { withRouter } from 'next/router'
 import React from 'react'
 import { paths } from 'routes/paths'
 import { HEADING_LIGHT_BLACK, TEAL } from 'styles/colors'
 import { StoresType } from '../_app'
 
 @inject('stores')
+@withRouter
 @observer
 class Logout extends React.Component<{
-  stores: StoresType;
+  stores: StoresType; router: any;
 }> {
   state = {
     isTermsOfService: false,
@@ -26,6 +27,7 @@ class Logout extends React.Component<{
   render() {
     const { stores } = this.props
     const { profile } = toJS(stores.profileStore)
+    const redirectUrl = this.props.router!.query.redirect_url
 
     return (
       <PageTemplate
@@ -41,7 +43,7 @@ class Logout extends React.Component<{
               e.preventDefault()
               stores.profileStore.updateAgreement(this.state).then((result) => {
                 if (result.isAgreedAll) {
-                  Router.push(paths.home)
+                  Router.push(redirectUrl)
                 }
               })
             }}

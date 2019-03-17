@@ -18,6 +18,7 @@ export class ProfileStore {
   @action
   async retrieveMe() {
     const response = await getMe(client)({})
+
     if (response.data.me) {
       this.profile = {
         ...response.data.me.profile

@@ -307,7 +307,7 @@ position: relative;
 
 export const FormWrapper = styled.div`
 background: ${(props) => props.color ? props.color : TEAL_LIGHT_LIGHT};
-padding: 35px 41px 60px 51px;
+padding: 44px 41px 60px 51px;
 @media (max-width: ${mobileWidth}) {
   padding: 35px 15px 60px;
 }
@@ -332,11 +332,15 @@ label {
 }
 
 .required {
+  position: relative;
+
   &:after {
-    display: inline-block;
-    content: '*';
+    position: absolute;
+    content: '✦';
     color: red;
     padding-left: 5px;
+    font-size: 10px;
+    top: 6px;
   }
 }
 

@@ -16,6 +16,7 @@ export enum CFPFormStage {
 }
 
 export class CFPStore {
+    @observable isInitialized: boolean = false
     @observable currentStage: CFPFormStage = CFPFormStage.stage1
     @observable categories: CategoryType[] = []
     @observable difficulties: DifficultyType[] = []
@@ -24,6 +25,14 @@ export class CFPStore {
     @action
     setCurrentStage(stage: CFPFormStage) {
       this.currentStage = stage
+    }
+
+    @action
+    async initialize() {
+      this.retrieveDifficulties()
+      this.retrieveCategories()
+      this.retriveMyProposal()
+      this.isInitialized = true
     }
 
     @action

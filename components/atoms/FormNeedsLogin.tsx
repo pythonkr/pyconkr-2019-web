@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { Button } from 'components/atoms/Button'
 import { paths } from 'routes/paths'
 import { TEAL } from 'styles/colors'
+import Router from 'next/router';
 
 export const PaddingWrapper = styled.div`
 padding: 10px 0;
@@ -33,7 +34,7 @@ export const FormNeedsLogin: React.SFC = () => (<PaddingWrapper>
     </StyledNeedLoginDesc>
     <Button
       intlKey='gnb.account.login'
-      to={paths.account.login}
+      to={`${paths.account.login}?redirect_url=${Router.route}`}
       fontSize={14}
       color={TEAL}
     >

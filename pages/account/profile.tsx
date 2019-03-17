@@ -6,7 +6,7 @@ import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
 import { inject, observer } from 'mobx-react'
-import { RouterProps, withRouter } from 'next/router'
+import Router, { RouterProps, withRouter } from 'next/router'
 import React from 'react'
 import intl from 'react-intl-universal'
 import { paths } from 'routes/paths'
@@ -43,7 +43,7 @@ class Profile extends React.Component<{
     const { stores, router } = this.props
 
     if (!stores.authStore.loggedIn) {
-      router.replace(paths.account.login)
+      router.replace(`${paths.account.login}?redirect_url=${Router.route}`)
 
       return
     }
