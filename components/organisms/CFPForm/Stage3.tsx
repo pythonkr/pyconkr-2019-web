@@ -1,12 +1,10 @@
 import { FormWrapper } from 'components/atoms/ContentWrappers'
+import { IntlText } from 'components/atoms/IntlText'
+import { StageButtonGroup } from 'components/organisms/CFPForm/StageButtonGroup'
 import { CFPFormStage } from 'lib/stores/CFPStore'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import React from 'react'
-import { IntlText } from 'components/atoms/IntlText';
-import { Button } from 'components/atoms/Button';
-import { FlexSpaceBetweenWrapper } from 'components/atoms/FlexWrapper';
-import { TEAL } from 'styles/colors';
 
 interface State {
   desc: string,
@@ -103,42 +101,16 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType},
             value={this.state.question}
             onChange={e => this.setState({ question: e.target.value })}
           />
-          <FlexSpaceBetweenWrapper style={{ marginTop: 80 }}>
-            <Button
-              tag='button'
-              type='button'
-              intlKey='adsfasdfa'
-              color={TEAL}
-              width={120}
-              primary={false}
-              onClick={() => {
-                stores.cfpStore.setCurrentStage(CFPFormStage.stage2)
-              }}
-            >이전</Button>
-            <div>
-              <Button
-                tag='button'
-                type='button'
-                intlKey='adsfasdfa'
-                color={TEAL}
-                width={120}
-                primary={false}
-                onClick={() => {
-                  stores.cfpStore.createOrUpdatePresentation(this.state).then(() => {
-                    alert('저장이 완료되었습니다')
-                  })
-                }}
-              >임시 저장</Button>
-              <Button
-                tag='button'
-                type='submit'
-                intlKey='adsfasdfa'
-                color={TEAL}
-                width={120}
-                style={{ marginLeft: 10 }}
-              >다음</Button>
-            </div>
-          </FlexSpaceBetweenWrapper>
+          <StageButtonGroup
+            onPrev={() => {
+              stores.cfpStore.setCurrentStage(CFPFormStage.stage2)
+            }}
+            onSave={() => {
+              stores.cfpStore.createOrUpdatePresentation(this.state).then(() => {
+                alert('저장이 완료되었습니다')
+              })
+            }}
+          />
         </form>
       </FormWrapper>
     )

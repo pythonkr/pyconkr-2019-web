@@ -44,13 +44,16 @@ export default class CFPFormStage4 extends React.Component<{stores: StoresType},
             </IntlText></p>
             <ul>
               <li><IntlText intlKey='asdfasdf'>
-                파이콘 한국 참여자는 성별, 성적 지향, 장애, 외모, 신체사이즈, 인종, 종교 등 다양한 개인의 환경에 의해 차별받지 않아야 합니다.
+                파이콘 한국 참여자는 성별, 성적 지향, 장애, 외모, 신체사이즈, 인종, 종교 등
+                다양한 개인의 환경에 의해 차별받지 않아야 합니다.
               </IntlText></li>
               <li><IntlText intlKey='asdfasdf'>
-                발표자료가 CoC를 심각하게 위반했다고 판단되는 경우 수정을 요청할 수 있으며 이에 응하지 않을 경우 발표가 취소될 수 있습니다.
+                발표자료가 CoC를 심각하게 위반했다고 판단되는 경우 수정을 요청할 수 있으며
+                이에 응하지 않을 경우 발표가 취소될 수 있습니다.
               </IntlText></li>
               <li><IntlText intlKey='asdfasdf'>
-                CoC의 내용은 수시로 업데이트 될 수 있으며 내용이 업데이트되는 경우 준비위원회에서 재동의를 요구할 수 있습니다.
+                CoC의 내용은 수시로 업데이트 될 수 있으며 내용이 업데이트되는 경우
+                준비위원회에서 재동의를 요구할 수 있습니다.
               </IntlText></li>
             </ul>
             <input
@@ -109,7 +112,8 @@ export default class CFPFormStage4 extends React.Component<{stores: StoresType},
                 회사 기밀, 저작권 등 민감한 부분이 포함된 경우 공개용 버전의 슬라이드를 준비해주시기 바랍니다.
               </IntlText></li>
               <li><IntlText intlKey='asdfasdf'>
-                만약 발표 영상을 공개하지 않아야한다면 파이콘 한국 준비위원회에 별도로 연락을 해주시기 바랍니다. (program@pycon.kr)
+                만약 발표 영상을 공개하지 않아야한다면 파이콘 한국 준비위원회에 별도로 연락을 해주시기 바랍니다.
+                (program@pycon.kr)
               </IntlText></li>
             </ul>
             <input
