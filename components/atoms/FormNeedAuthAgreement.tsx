@@ -1,9 +1,9 @@
 
 import styled from '@emotion/styled'
 import { Button } from 'components/atoms/Button'
+import Router from 'next/router'
 import { paths } from 'routes/paths'
 import { TEAL } from 'styles/colors'
-import Router from 'next/router';
 
 export const PaddingWrapper = styled.div`
 padding: 10px 0;

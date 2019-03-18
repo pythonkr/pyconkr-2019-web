@@ -52,7 +52,8 @@ const StyledNoticeBar = styled.p`
 
   ${StyledNoticeBarContent} {
     a {
-      color: ${({ textLinkColor }) => textLinkColor};
+      color: rgba(0, 79, 255, 0.75);
+      border-bottom: none;
     }
   }
 

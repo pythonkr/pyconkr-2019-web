@@ -57,7 +57,7 @@ const _LocalNavigation: React.SFC<Props> = ({ router, list }) => (
     <NavList>
       {list.map(({ title, link, intlKey }) =>
         <NavItem key={title}>
-          <Link href={link}>
+          <Link href={link} prefetch>
             <NavLinkA>
               <NavSpan
                 isActive={router.pathname === link ||

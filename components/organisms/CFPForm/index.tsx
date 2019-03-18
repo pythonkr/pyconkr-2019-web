@@ -16,6 +16,9 @@ import React from 'react'
 import intl from 'react-intl-universal'
 import { TEAL, TEAL_LIGHT, TEAL_LIGHT_LIGHT, TEAL_SEMI_DARK } from 'styles/colors'
 import { isEmpty } from 'utils/isEmpty'
+import { isFuture } from 'date-fns';
+import { talkProposal } from 'dates';
+import { NotOpenYet } from 'components/atoms/NotOpenYet';
 
 const StepsWrapper = styled.div`
   padding: 49px 30px 40px;
@@ -67,6 +70,10 @@ export default class CFPForm extends React.Component<{ stores: StoresType }> {
 
     if (!stores.profileStore.isInitialized || !isInitialized) {
       return <Loading width={50} height={50}/>
+    }
+
+    if (isFuture(talkProposal.open)) {
+      return <NotOpenYet />
     }
 
     if (!stores.profileStore.isAgreed) {

@@ -321,7 +321,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
                 파이콘 한국 2019에서는 아래와 같이 여러 가지 분야(카테고리)의 발표를 모집하고 있습니다.
               </IntlText></Paragraph>
               {this.props.stores.cfpStore.categories.reverse().map(category =>
-                <Li>{category.name}</Li>
+                <Li key={category.name}>{category.name}</Li>
               )}
             </>}
             <Paragraph><IntlText intlKey='contribute.cfpGuide.selectTopic.description'>

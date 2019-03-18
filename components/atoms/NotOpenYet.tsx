@@ -1,14 +1,12 @@
 
 import styled from '@emotion/styled'
 import { Button } from 'components/atoms/Button'
-import Router from 'next/router'
 import { paths } from 'routes/paths'
 import { TEAL } from 'styles/colors'
 
 export const PaddingWrapper = styled.div`
 padding: 10px 0;
 `
-
 const StyledFormWrapper = styled.div`
   padding: 60px 0;
   background-color: #fcfcfc;
@@ -26,19 +24,19 @@ text-align: center;
 margin-bottom: 30px;
 `
 
-export const FormNeedsLogin: React.SFC = () => (<PaddingWrapper>
+export const NotOpenYet: React.SFC = () => (<PaddingWrapper>
   <StyledFormWrapper>
-    <StyledNeedLoginTitle>로그인이 필요합니다.</StyledNeedLoginTitle>
+    <StyledNeedLoginTitle>아직 발표안 제안 모집이 시작되지 않았습니다.</StyledNeedLoginTitle>
     <StyledNeedLoginDesc>
-      파이콘 한국 계정으로 로그인해주세요.
+      조금만 더 기다려주세요 :)
     </StyledNeedLoginDesc>
     <Button
       intlKey='gnb.account.login'
-      to={`${paths.account.login}?redirect_url=${Router.route}`}
+      to={paths.contribute.cfpDetailedGuide}
       fontSize={14}
       color={TEAL}
     >
-      로그인
+      발표안 작성 가이드 보러 가기
     </Button>
   </StyledFormWrapper>
 </PaddingWrapper>)
