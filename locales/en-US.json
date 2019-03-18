@@ -88,6 +88,11 @@
       "alert1": "The profile has been updated"
     }
   },
+  "login": {
+    "title": "Login",
+    "githubButton": "Login with Github Account",
+    "facebookButton": "Login with Facebook Account"
+  },
   "home": {
     "sprintDescription": "Sprints are intensive development session on an open source project of your choice, in a team environment. It's a time to come together with colleagues, old and new, to share what you've learned and apply it to an open source project. Is this your first time joining in Sprints? No problem! It will be the time that you learn directly from the open source contributors. Sprint sessions are not just limited to the projects using Python, all languages are welcome!",
     "tutorialDescription": "Tutorials are educational programs for beginners, or challengers for new era. Tutorial mentors and tutors will guide you to easy way of learning. We recommend tutorials for beginner programmers or Python strangers.",
