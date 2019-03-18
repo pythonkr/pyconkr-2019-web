@@ -38,8 +38,8 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType; 
 
     this.setState({
       name: proposal.name,
-      categoryId: proposal.category!.id,
-      difficultyId: proposal.difficulty!.id,
+      categoryId: proposal.category? proposal.category!.id : '1',
+      difficultyId: proposal.difficulty? proposal.difficulty!.id : '1',
       backgroundDesc: proposal.backgroundDesc,
       duration: proposal.duration,
       language: proposal.language
