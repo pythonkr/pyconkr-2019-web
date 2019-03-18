@@ -15,13 +15,14 @@ import { FACEBOOK_BLUE, NAVER_GREEN } from 'styles/colors'
 import { StoresType } from '../_app'
 
 const LoginButtonsWrapper = styled.div`
-  width: 700px;
+  width: 100%;
+  max-width: 700px;
   background-color: #fbfbfb;
-  padding: 90px 137px 105px;
-  margin-top: -70px;
+  padding: 40px 40px;
+
 `
 const MainButton = styled.button`
-  width: 428px;
+  width: 100%;
   height: 70px;
   border-radius: 4px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07);
@@ -33,7 +34,7 @@ const MainButton = styled.button`
   cursor: pointer;
 `
 const SubButton = styled.button`
-  width: 428px;
+  width: 100%;
   height: 54px;
   border-radius: 4px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07);
