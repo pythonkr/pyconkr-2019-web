@@ -43,7 +43,11 @@ class Logout extends React.Component<{
               e.preventDefault()
               stores.profileStore.updateAgreement(this.state).then((result) => {
                 if (result.isAgreedAll) {
-                  Router.push(redirectUrl)
+                  if(redirectUrl) {
+                    Router.push(redirectUrl)
+                  } else {
+                    Router.push(paths.home)
+                  }
                 }
               })
             }}
