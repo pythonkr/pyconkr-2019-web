@@ -26,7 +26,8 @@ interface StyledNoticeBarProps {
   color: string,
   borderColor: string,
   textColor: string,
-  textLinkColor: string
+  textLinkColor: string,
+  style: any
 }
 
 const StyledNoticeBarContent = styled.span`
@@ -127,12 +128,14 @@ export const NoticeBar: React.SFC<PropsWithChildren<NoticeBarProps & StyledNotic
   subText,
   link,
   actionButton,
+  style
 }) => {
   return <StyledNoticeBar
     color={color}
     borderColor={borderColor}
     textColor={textColor}
     textLinkColor={textLinkColor}
+    style={style}
   >
     <StyledNoticeBarContent>{text}</StyledNoticeBarContent>
     {!!subText && <SubText>{subText}</SubText>}

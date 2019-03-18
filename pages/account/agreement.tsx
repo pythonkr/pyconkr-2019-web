@@ -55,6 +55,13 @@ class Logout extends React.Component<{
               <Li>연결한 소셜 계정: { profile.oauthType }</Li>
               <Li>이메일: { profile.email }</Li>
             </Ul>
+            <p style={{ fontSize: 18, fontWeight: 700, color: HEADING_LIGHT_BLACK, marginTop: 50 }}>
+              계정 인증 시 다음 공개 정보(Public Data)를 함께 저장합니다.
+            </p>
+            <Ul>
+              <Li>소셜 계정 아이디</Li>
+              <Li>프로필 이미지</Li>
+            </Ul>
             <p style={{ fontSize: 18, fontWeight: 700, color: HEADING_LIGHT_BLACK, marginTop: 50, marginBottom: 20 }}>
               약관 동의를 통해 가입 절차를 완료해주세요.
             </p>

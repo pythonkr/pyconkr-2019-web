@@ -10,6 +10,7 @@ import { LOCALE_KEY_KR, URL_LOCALE_KEY } from 'locales/constants'
 import { Provider } from 'mobx-react'
 import NProgress from 'next-nprogress/component'
 import App, { Container } from 'next/app'
+import Router from 'next/router'
 import 'rc-steps/assets/iconfont.css'
 import 'rc-steps/assets/index.css'
 import intl from 'react-intl-universal'
@@ -17,7 +18,8 @@ import { paths } from 'routes/paths'
 import { CORAL } from 'styles/colors'
 import { commonCSS } from 'styles/common'
 import { fontCSS } from 'styles/font'
-import Router from 'next/router';
+import Link from 'next/link';
+import { AlertBar } from 'components/atoms/AlertBar';
 
 global.Intl = IntlPolyfill
 require('intl/locale-data/jsonp/ko.js')
@@ -119,6 +121,15 @@ class MyApp extends App {
           showAfterMs={300}
           spinner={false}
         />
+        {this.stores.authStore.loggedIn && !this.stores.profileStore.isAgreed && <AlertBar
+          text='회원 가입이 완료되지 않았습니다. 약관을 확인하고 회원 가입을 완료해주세요.'
+          link={{
+            title: '완료하러 가기',
+            to: paths.account.agreement,
+            outlink: false
+          }}
+          style={{ margin: 0 }}
+        />}
         <Provider stores={this.stores}>
           <Component {...pageProps} />
         </Provider>
