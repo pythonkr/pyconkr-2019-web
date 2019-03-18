@@ -1,5 +1,7 @@
 import styled from '@emotion/styled'
+import { FormNeedAuthAgreement } from 'components/atoms/FormNeedAuthAgreement'
 import { PaddingWrapper } from 'components/atoms/FormNeedsLogin'
+import { FormSubmitted } from 'components/atoms/FormSubmitted'
 import { Loading } from 'components/atoms/Loading'
 import Stage1 from 'components/organisms/CFPForm/Stage1'
 import Stage2 from 'components/organisms/CFPForm/Stage2'
@@ -14,8 +16,6 @@ import React from 'react'
 import intl from 'react-intl-universal'
 import { TEAL, TEAL_LIGHT, TEAL_LIGHT_LIGHT, TEAL_SEMI_DARK } from 'styles/colors'
 import { isEmpty } from 'utils/isEmpty'
-import { FormNeedAuthAgreement } from 'components/atoms/FormNeedAuthAgreement';
-import { FormSubmitted } from 'components/atoms/FormSubmitted';
 
 const StepsWrapper = styled.div`
   padding: 49px 30px 40px;
@@ -57,7 +57,7 @@ export default class CFPForm extends React.Component<{ stores: StoresType }> {
 
   async componentDidMount() {
     const { cfpStore } = this.props.stores
-    cfpStore.initialize()
+    if (!cfpStore.isInitialized) cfpStore.initialize()
   }
 
   render() {
@@ -69,7 +69,6 @@ export default class CFPForm extends React.Component<{ stores: StoresType }> {
       return <Loading width={50} height={50}/>
     }
 
-    // profile is not agreed -> show greement alert
     if (!stores.profileStore.isAgreed) {
       return <FormNeedAuthAgreement />
     }
@@ -131,7 +130,6 @@ export default class CFPForm extends React.Component<{ stores: StoresType }> {
         {currentStage === CFPFormStage.completed &&
           <div>발표안을 잘 제출했습니다. 호호호 지금 막 제출한 거여</div>
         }
-
       </PaddingWrapper>
     )
   }

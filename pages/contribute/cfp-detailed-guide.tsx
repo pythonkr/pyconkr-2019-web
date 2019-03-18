@@ -15,7 +15,8 @@ import { inject, observer } from 'mobx-react'
 import { IntlTextType } from 'pages/contribute/proposing-a-talk'
 import React from 'react'
 import intl from 'react-intl-universal'
-import { contributionMenu } from 'routes/paths'
+import { contributionMenu, paths } from 'routes/paths'
+import { isEmpty } from 'utils/isEmpty'
 import { StoresType } from '../_app'
 
 export type IndexPagePropsType = {
@@ -54,9 +55,6 @@ const outline = [{
 }, {
   id: 'contribute.cfpGuide.selectTopic.title',
   title: '주제 선정'
-// }, {
-//   id: 'contribute.detail.notice.title',
-//   title: '내 주제에 맞는 카테고리 선택하기'
 }, {
   id: 'contribute.cfpGuide.proposalType.title',
   title: '좋은 제안과 나쁜 제안',
@@ -84,7 +82,7 @@ const outline = [{
 
 const cfpFormTable = [{
   title: {
-    defaultText: '발표 제목',
+    defaultText: '주제',
     intlKey: 'contribute.cfpGuide.beforeProposal.information.item.title.title'
   }
 }, {
@@ -93,13 +91,8 @@ const cfpFormTable = [{
     intlKey: 'contribute.cfpGuide.beforeProposal.information.item.category.title'
   },
   desc: {
-    defaultText: '제안 페이지에서 카테고리를 확인할 수 있습니다.',
+    defaultText: <a href='#contribute.cfpGuide.selectTopic.title'>카테고리 목록 보기</a>,
     intlKey: 'contribute.cfpGuide.beforeProposal.information.item.category.desc'
-  }
-}, {
-  title: {
-    defaultText: '상세한 발표 내용',
-    intlKey: 'contribute.cfpGuide.beforeProposal.information.item.detail.title'
   }
 }, {
   title: {
@@ -108,6 +101,15 @@ const cfpFormTable = [{
   },
   desc: {
     defaultText: '초보 / 중급 / 고급',
+    intlKey: 'contribute.cfpGuide.beforeProposal.information.item.audience.desc'
+  }
+}, {
+  title: {
+    defaultText: '필요한 선수 지식',
+    intlKey: 'contribute.cfpGuide.beforeProposal.information.item.audience.title'
+  },
+  desc: {
+    defaultText: '예) 파이썬으로 웹서비스를 만들어본 경험이 있으면 발표를 듣는데 도움이 됩니다',
     intlKey: 'contribute.cfpGuide.beforeProposal.information.item.audience.desc'
   }
 }, {
@@ -127,6 +129,11 @@ const cfpFormTable = [{
   desc: {
     defaultText: '한국어 / 영어',
     intlKey: 'contribute.cfpGuide.beforeProposal.information.item.language.desc'
+  }
+}, {
+  title: {
+    defaultText: '상세한 발표 내용',
+    intlKey: 'contribute.cfpGuide.beforeProposal.information.item.detail.title'
   }
 }, {
   title: {
@@ -159,6 +166,11 @@ const getDescStr = (desc: IntlTextType) => {
 @inject('stores')
 @observer
 export default class CFPDetailedGuide extends React.Component<{ stores: StoresType }> {
+  async componentDidMount() {
+    const { cfpStore } = this.props.stores
+    if (!cfpStore.isInitialized) cfpStore.initialize()
+  }
+
   render() {
     return (
       <PageTemplate
@@ -173,7 +185,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           <StatusBar
             title='발표안 모집'
             actionText='제안'
-            // link={paths.contribute.proposingATalk}
+            link={paths.contribute.proposingATalk}
             openDate={talkProposal.open}
             closeDate={talkProposal.close}
           />
@@ -203,9 +215,13 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
               </IntlText>
             </H3>
             <Paragraph><IntlText intlKey='contribute.cfpGuide.notice.pays.content'>
-              PyCon은 커뮤니티의 자발적인 도움으로 치러지는 행사입니다.
+              파이콘은 커뮤니티의 자발적인 도움으로 치러지는 행사입니다.
               발표자를 위한 물질적인 혜택(강연료, 무료 티켓 등)을 제공해드릴 수 없는 점 양해 부탁드립니다.
-              이와 관련하여 파이콘의 철학인 ‘Everybody Pays’에 대한 내용을 담고 있는 글을 참고해주세요.
+              이와 관련하여 <a
+              href='http://blog.pycon.kr/2017/06/14/everybody-pays/'
+              target='_blank'
+              rel='noreferrer'
+            >파이콘의 철학인 ‘Everybody Pays’에 대한 내용을 담고 있는 글</a>을 참고해주세요.
             </IntlText></Paragraph>
             <H3 id='contribute.cfpGuide.notice.vote.title'>
               <IntlText intlKey='contribute.cfpGuide.notice.vote.title'>
@@ -300,10 +316,18 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
                 주제 선정
               </IntlText>
             </H2>
+            {!isEmpty(this.props.stores.cfpStore.categories) && <>
+              <Paragraph><IntlText intlKey='contribute.cfpGuide.selectTopic.description'>
+                파이콘 한국 2019에서는 아래와 같이 여러 가지 분야(카테고리)의 발표를 모집하고 있습니다.
+              </IntlText></Paragraph>
+              {this.props.stores.cfpStore.categories.reverse().map(category =>
+                <Li>{category.name}</Li>
+              )}
+            </>}
             <Paragraph><IntlText intlKey='contribute.cfpGuide.selectTopic.description'>
-              가장 좋은 방법은 기존에 진행된 PyCon 행사에서 수락된 발표 주제들을 둘러보는 것이 좋습니다.
-              발표 주제뿐만 아니라 발표 슬라이드를 참고하는 것도 도움이 될 것입니다.
-              청중에게 들려주고 싶고 흥미로운 주제를 선정해보세요.
+              어떤 주제를 선정할지 감이 안 잡힌다면
+              기존에 진행된 파이콘 행사에서 발표된 주제들을 둘러보세요.
+              발표 주제뿐만 아니라 발표 슬라이드도 참고해서 청중에게 들려주고 싶고 흥미로운 주제를 선정해보세요.
             </IntlText></Paragraph>
             <Ul>
               <Li><a target='_blank' href='https://archive.pycon.kr/2018/' rel='noreferrer'>

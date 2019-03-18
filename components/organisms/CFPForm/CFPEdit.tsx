@@ -3,12 +3,11 @@ import { FormWrapper, SelectWrapper } from 'components/atoms/ContentWrappers'
 import { FlexSpaceBetweenWrapper } from 'components/atoms/FlexWrapper'
 import { IntlText } from 'components/atoms/IntlText'
 import { DurationNode, LanguageNode } from 'lib/apollo_graphql/__generated__/globalTypes'
-import { CFPFormStage } from 'lib/stores/CFPStore'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import React from 'react'
-import { DEFAULT_TEXT_BLACK, TEAL } from 'styles/colors'
 import intl from 'react-intl-universal'
+import { DEFAULT_TEXT_BLACK, TEAL } from 'styles/colors'
 
 /* tslint:disable:react-a11y-required  */
 
@@ -74,6 +73,7 @@ export default class CFPEdit extends React.Component<{stores: StoresType; onCanc
           e.preventDefault()
           if (this.state.detailDesc.length > 5000) {
             window.alert(`제안 내용이 5000자를 넘습니다.\n전체 내용은 별도 문서 링크로 남겨주시고 개요를 적어주세요.`)
+
             return
           }
           stores.cfpStore.createOrUpdatePresentation({
