@@ -98,11 +98,6 @@ const cfpFormTable = [{
   }
 }, {
   title: {
-    defaultText: '간략한 설명',
-    intlKey: 'contribute.cfpGuide.beforeProposal.information.item.summary.title'
-  }
-}, {
-  title: {
     defaultText: '상세한 발표 내용',
     intlKey: 'contribute.cfpGuide.beforeProposal.information.item.detail.title'
   }
