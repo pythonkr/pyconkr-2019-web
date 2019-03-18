@@ -1,9 +1,10 @@
 import { NoticeBar } from 'components/atoms/NoticeBar'
-import { differenceInCalendarDays, isFuture, isPast } from 'date-fns'
+import { differenceInCalendarDays, differenceInMinutes, distanceInWords, isFuture, isPast } from 'date-fns'
 import { RouterProps, withRouter } from 'next/router'
 import React from 'react'
 import { BG_GRAY, BG_GRAY_DARK, CORAL, CORAL_DARK, CORAL_LIGHT, WHITE } from 'styles/colors'
 import { DateDTO } from 'types/common'
+import { diffInWords, diffInWordsToNow } from 'utils/formatDate'
 
 type StatusBarType = 'scheduled' | 'ongoing' | 'closed'
 export type ActionText = '신청' | '제안' | '추천'
@@ -48,7 +49,7 @@ const getStatusBarType = (openDate: DateDTO, closeDate?: DateDTO): StatusBarType
 const getText = (barType: StatusBarType, title: string, dateDiff: number) => {
   switch (barType) {
     case 'scheduled':
-      return `${title}은 ${-dateDiff}일 후에 시작될 예정입니다.`
+      return `${title}은 ${dateDiff > 0 ? `${-dateDiff}일 후에` : '오늘'} 시작될 예정입니다.`
     case 'ongoing':
       return `${title}이 진행 중입니다!`
     case 'closed':
@@ -77,7 +78,9 @@ const _StatusBar: React.SFC<Props>  = ({
     text={getText(barType, title, dateDiff)}
     subText={pathname === link
       ? barType === 'scheduled'
-        ? `D${dateDiff}`
+        ? dateDiff > 0
+          ? `D${dateDiff}`
+          : `${diffInWordsToNow(openDate)} 남음`
         : barType === 'ongoing' && closeDate
           ? `모집 마감 D${differenceInCalendarDays(new Date(), closeDate)}`
           : !closeDate
