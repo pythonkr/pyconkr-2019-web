@@ -131,13 +131,13 @@ class Login extends React.Component<{ stores: StoresType; router: any }> {
         footer={<Footer />}
       >
         <H1>
-          <IntlText intlKey='homeTitle'>로그인</IntlText>
+          <IntlText intlKey='login.title'>로그인</IntlText>
         </H1>
         <LoginButtonsWrapper>
           <MainButton onClick={this.handleGitHubLogin}>
             <ButtonText color='white'>
               {intl
-                .get('account.login.githubButton')
+                .get('login.githubButton')
                 .defaultMessage('GitHub 계정으로 로그인')}
             </ButtonText>
           </MainButton>
@@ -152,7 +152,7 @@ class Login extends React.Component<{ stores: StoresType; router: any }> {
           <SubButton color={FACEBOOK_BLUE} onClick={this.handleFacebookLogin}>
             <ButtonText color='white'>
               {intl
-                .get('account.login.facebookButton')
+                .get('login.facebookButton')
                 .defaultMessage('Facebook 계정으로 로그인')}
             </ButtonText>
           </SubButton>
