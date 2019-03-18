@@ -417,6 +417,7 @@
     "flickerLink": "Flicker",
     "youtubeLink": "Youtube",
     "poweredBy": "Powered by Django and next.js",
-    "hostedOn": "Hosted on Naver D2"
+    "hostedOn": "Hosted on Naver D2",
+    "issueTrackerBy": "Collaboration tools are supported by Dooray!"
   }
 }
