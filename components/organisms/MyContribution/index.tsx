@@ -67,10 +67,10 @@ class MyContribution extends React.Component<{
           })} />
           : <Ul>
             <Li>주제: {proposal.name}</Li>
-            <Li>카테고리: {proposal.category!.nameKo}</Li>
+            <Li>카테고리: {proposal.category? proposal.category!.name : ''}</Li>
             <Li>세션 길이: {proposal.duration === DurationNode.LONG ? '45분' : '25분'}</Li>
             <Li>언어: {proposal.language === LanguageNode.ENGLISH ? 'English' : '한국어'}</Li>
-            <Li>난이도: {proposal.difficulty!.nameKo}</Li>
+            <Li>난이도: {proposal.difficulty? proposal.difficulty!.name: ''}</Li>
             <Li>제안의 상세한 내용: {
               marksy({ createElement: React.createElement })(
                 proposal.detailDesc
