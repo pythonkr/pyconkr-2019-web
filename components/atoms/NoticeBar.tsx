@@ -1,4 +1,3 @@
-import intl from 'react-intl-universal'
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import React, { PropsWithChildren } from 'react'
@@ -15,7 +14,7 @@ export interface ActionButtonProps {
   onClick: VoidFunction,
 }
 
-interface Props {
+export interface NoticeBarProps {
   text: string,
   textIntlKey?: string,
   subText?: string,
@@ -27,7 +26,8 @@ interface StyledNoticeBarProps {
   color: string,
   borderColor: string,
   textColor: string,
-  textLinkColor: string
+  textLinkColor: string,
+  style: any
 }
 
 const StyledNoticeBarContent = styled.span`
@@ -53,7 +53,8 @@ const StyledNoticeBar = styled.p`
 
   ${StyledNoticeBarContent} {
     a {
-      color: ${({ textLinkColor }) => textLinkColor};
+      color: rgba(0, 79, 255, 0.75);
+      border-bottom: none;
     }
   }
 
@@ -118,7 +119,7 @@ const ActionButton: React.SFC<ActionButtonProps> = ({
   onClick
 }) => <button onClick={onClick}>{text}</button>
 
-export const NoticeBar: React.SFC<PropsWithChildren<Props & StyledNoticeBarProps>>  = ({
+export const NoticeBar: React.SFC<PropsWithChildren<NoticeBarProps & StyledNoticeBarProps>>  = ({
   color,
   borderColor,
   textColor,
@@ -127,12 +128,14 @@ export const NoticeBar: React.SFC<PropsWithChildren<Props & StyledNoticeBarProps
   subText,
   link,
   actionButton,
+  style
 }) => {
   return <StyledNoticeBar
     color={color}
     borderColor={borderColor}
     textColor={textColor}
     textLinkColor={textLinkColor}
+    style={style}
   >
     <StyledNoticeBarContent>{text}</StyledNoticeBarContent>
     {!!subText && <SubText>{subText}</SubText>}

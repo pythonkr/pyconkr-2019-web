@@ -1,184 +1,223 @@
+import { FormWrapper, SelectWrapper } from 'components/atoms/ContentWrappers'
+import { IntlText } from 'components/atoms/IntlText'
+import { StageButtonGroup } from 'components/organisms/CFPForm/StageButtonGroup'
+import { DurationNode, LanguageNode } from 'lib/apollo_graphql/__generated__/globalTypes'
 import { CFPFormStage } from 'lib/stores/CFPStore'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import React from 'react'
-
-export enum SessionLength {
-  short = 25,
-  long = 45
-}
-
-export enum SessionLanguage {
-  ko = 'korean',
-  en = 'english'
-}
-
-export enum LevelOfDifficulty {
-  beginner = 'beginner',
-  intermediate = 'intermediate',
-  advanced = 'advanced',
-}
+import intl from 'react-intl-universal'
 
 interface State {
-  sessionTitle: string,
-  sessionTitleEn: string,
-  category: string,
-  briefDescription: string,
-  briefDescriptionEn: string,
-  sessionLength: SessionLength | null,
-  language: SessionLanguage | null,
-  levelOfDifficulty: LevelOfDifficulty | null,
+  name: string | null,
+  categoryId: string,
+  difficultyId: string,
+  backgroundDesc: string | null,
+  duration: DurationNode | null,
+  language: LanguageNode | null,
 }
 
 @inject('stores')
 @observer
-export default class CFPFormStage2 extends React.Component<{stores: StoresType}, State> {
+export default class CFPFormStage2 extends React.Component<{stores: StoresType; scrollRef: HTMLDivElement}, State> {
   state = {
-    sessionTitle: '',
-    sessionTitleEn: '',
-    category: '',
-    briefDescription: '',
-    briefDescriptionEn: '',
-    sessionLength: null,
-    language: null,
-    levelOfDifficulty: null,
+    name: '',
+    categoryId: '1',
+    difficultyId: '1',
+    backgroundDesc: '',
+    duration: DurationNode.SHORT,
+    language: LanguageNode.KOREAN,
+  }
+
+  async componentDidMount() {
+    const { proposal } = this.props.stores.cfpStore
+
+    if (!proposal) {
+     return
+    }
+
+    this.setState({
+      name: proposal.name,
+      categoryId: proposal.category!.id,
+      difficultyId: proposal.difficulty!.id,
+      backgroundDesc: proposal.backgroundDesc,
+      duration: proposal.duration,
+      language: proposal.language
+    })
+
+    this.props.scrollRef && window.scrollTo(0, this.props.scrollRef.offsetTop)
   }
 
   render () {
     const { stores } = this.props
 
     return (
-      <form onSubmit={() => {
-        stores.cfpStore.setCurrentStage(CFPFormStage.stage3)
-      }}>
-        <label>세션 제목</label>
-        <input
-          type='readonly'
-          value={this.state.sessionTitle}
-          onChange={e => this.setState({ sessionTitle: e.target.value })}
-          aria-required={true}
-          required
-        />
-        <label>영문 제목</label>
-        <input
-          type='text'
-          value={this.state.sessionTitleEn}
-          onChange={e => this.setState({ sessionTitleEn: e.target.value })}
-          required
-          aria-required={true}
-        />
-        <label>세션 카테고리</label>
-        <select
-          value={this.state.category}
-          onBlur={e => this.setState({ category: e.target.value })}
-          aria-required={true}
-          required
-        >
-          <option
-            aria-selected={this.state.category === 'grapefruit'}
-            value='grapefruit'
-          >Grapefruit</option>
-          <option
-            aria-selected={this.state.category === 'grapefruit'}
-            value='lime'
-          >Lime</option>
-          <option
-            selected
-            aria-selected={this.state.category === 'grapefruit'}
-            value='coconut'
-          >Coconut</option>
-          <option
-            aria-selected={this.state.category === 'grapefruit'}
-            value='mango'
-          >Mango</option>
-        </select>
-        <label>간략한 설명</label>
-        <input
-          type='text'
-          value={this.state.briefDescription}
-          onChange={e => this.setState({ briefDescription: e.target.value })}
-          aria-required={true}
-          required
-        />
-        <label>간략한 설명 - 영문</label>
-        <input
-          type='text'
-          value={this.state.briefDescriptionEn}
-          onChange={e => this.setState({ briefDescriptionEn: e.target.value })}
-          aria-required={true}
-          required
-        />
-        <fieldset>
-          <legend>세션 길이</legend>
-          <label>25분</label>
+      <FormWrapper>
+        <form onSubmit={(e) => {
+          e.preventDefault()
+          stores.cfpStore.createOrUpdatePresentation(this.state).then(() => {
+            stores.cfpStore.setCurrentStage(CFPFormStage.stage3)
+          })
+        }}>
+          <label className='required'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+              주제
+            </IntlText>
+          </label>
           <input
-            type='radio'
-            value={SessionLength.short}
-            aria-checked={this.state.sessionLength === SessionLength.short}
-            checked={this.state.sessionLength === SessionLength.short}
-            onChange={() => this.setState({ sessionLength: SessionLength.short })}
+            type='text'
+            value={this.state.name}
+            onChange={e => this.setState({ name: e.target.value })}
+            aria-required={true}
+            required
           />
-          <label>45분</label>
+          <label className='required'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item2'>
+              세션 카테고리
+            </IntlText>
+          </label>
+          <SelectWrapper>
+            {/* tslint:disable-next-line:react-a11y-no-onchange */}
+            <select
+              value={this.state.categoryId}
+              onBlur={e => this.setState({ categoryId: e.target.value })}
+              onChange={e => this.setState({ categoryId: e.target.value })}
+              aria-required={true}
+              required
+            >
+              {
+                stores.cfpStore.categories.map(category =>
+                  <option
+                    key={category.id}
+                    aria-selected={this.state.categoryId === 'category.id' }
+                    value={category.id}
+                  >{category.name}</option>
+                )
+              }
+            </select>
+          </SelectWrapper>
+          <fieldset>
+            <legend className='required'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item3'>
+                세션 난이도
+              </IntlText>
+            </legend>
+            {
+              stores.cfpStore.difficulties.map(difficulty =>
+                <p key={difficulty.id}>
+                  <input
+                    type='radio'
+                    id={difficulty.name}
+                    value={difficulty.id}
+                    aria-checked={this.state.difficultyId === difficulty.id}
+                    checked={this.state.difficultyId === difficulty.id}
+                    onChange={() => this.setState({ difficultyId: difficulty.id })}>
+                  </input>
+                  <label htmlFor={difficulty.name}>{difficulty.name}</label>
+                </p>
+              )
+            }
+          </fieldset>
+          <label className='required'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item4'>
+              세션을 이해하는 데에 필요한 선수 지식
+            </IntlText>
+          </label>
           <input
-            type='radio'
-            value={SessionLength.long}
-            aria-checked={this.state.sessionLength === SessionLength.long}
-            checked={this.state.sessionLength === SessionLength.long}
-            onChange={() => this.setState({ sessionLength: SessionLength.long })}
+            type='text'
+            value={this.state.backgroundDesc}
+            onChange={e => this.setState({ backgroundDesc: e.target.value })}
+            aria-required={true}
+            required
           />
-        </fieldset>
-        <fieldset>
-          <legend>언어</legend>
-          <label>한국어</label>
-          <input
-            type='radio'
-            value={SessionLanguage.ko}
-            aria-checked={this.state.language === SessionLanguage.ko}
-            checked={this.state.language === SessionLanguage.ko}
-            onChange={() => this.setState({ language: SessionLanguage.ko })}
+          <div role='group'>
+            <fieldset>
+              <legend className='required'>
+                <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.header'>
+                  세션 길이
+                </IntlText>
+              </legend>
+              <p>
+                <input
+                  type='radio'
+                  id={DurationNode.SHORT}
+                  value={DurationNode.SHORT}
+                  aria-checked={this.state.duration === DurationNode.SHORT}
+                  checked={this.state.duration === DurationNode.SHORT}
+                  onChange={() => this.setState({ duration: DurationNode.SHORT })}
+                />
+                <label htmlFor={DurationNode.SHORT}>
+                  <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.sub1'>
+                    25분
+                  </IntlText>
+                </label>
+              </p>
+              <p>
+                <input
+                  type='radio'
+                  id={DurationNode.LONG}
+                  value={DurationNode.LONG}
+                  aria-checked={this.state.duration === DurationNode.LONG}
+                  checked={this.state.duration === DurationNode.LONG}
+                  onChange={() => this.setState({ duration: DurationNode.LONG })}
+                />
+                <label htmlFor={DurationNode.LONG}>
+                  <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.sub2'>
+                    45분
+                  </IntlText>
+                </label>
+              </p>
+            </fieldset>
+            <fieldset>
+              <legend className='required'>
+                <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item6.header'>
+                  언어
+                </IntlText>
+              </legend>
+              <p>
+                <input
+                  type='radio'
+                  id={LanguageNode.KOREAN}
+                  value={LanguageNode.KOREAN}
+                  aria-checked={this.state.language === LanguageNode.KOREAN}
+                  checked={this.state.language === LanguageNode.KOREAN}
+                  onChange={() => this.setState({ language: LanguageNode.KOREAN })}
+                />
+                <label htmlFor={LanguageNode.KOREAN}>
+                  <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item6.sub1'>
+                    한국어
+                  </IntlText>
+                </label>
+              </p>
+              <p>
+                <input
+                  type='radio'
+                  id={LanguageNode.ENGLISH}
+                  value={LanguageNode.ENGLISH}
+                  aria-checked={this.state.language === LanguageNode.ENGLISH}
+                  checked={this.state.language === LanguageNode.ENGLISH}
+                  onChange={() => this.setState({ language: LanguageNode.ENGLISH })}
+                />
+                <label htmlFor={LanguageNode.ENGLISH}>
+                  <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item6.sub2'>
+                    영어
+                  </IntlText>
+                </label>
+              </p>
+            </fieldset>
+          </div>
+          <StageButtonGroup
+            onPrev={() => {
+              stores.cfpStore.setCurrentStage(CFPFormStage.stage1)
+            }}
+            onSave={() => {
+              stores.cfpStore.createOrUpdatePresentation(this.state).then(() => {
+                alert(intl.get('contribute.talkProposal.application.stages.stages2.alert').d('저장이 완료되었습니다'))
+              })
+            }}
           />
-          <label>영어</label>
-          <input
-            type='radio'
-            value={SessionLanguage.en}
-            aria-checked={this.state.language === SessionLanguage.en}
-            checked={this.state.language === SessionLanguage.en}
-            onChange={() => this.setState({ language: SessionLanguage.en })}
-          />
-        </fieldset>
-        <fieldset>
-          <legend>세션 난이도</legend>
-          <label>초보</label>
-          <input
-            type='radio'
-            value={LevelOfDifficulty.beginner}
-            aria-checked={this.state.levelOfDifficulty === LevelOfDifficulty.beginner}
-            checked={this.state.levelOfDifficulty === LevelOfDifficulty.beginner}
-            onChange={() => this.setState({ levelOfDifficulty: LevelOfDifficulty.beginner })}
-          />
-          <label>중급</label>
-          <input
-            type='radio'
-            value={LevelOfDifficulty.intermediate}
-            aria-checked={this.state.levelOfDifficulty === LevelOfDifficulty.intermediate}
-            checked={this.state.levelOfDifficulty === LevelOfDifficulty.intermediate}
-            onChange={() => this.setState({ levelOfDifficulty: LevelOfDifficulty.intermediate })}
-          />
-          <label>고급</label>
-          <input
-            type='radio'
-            value={LevelOfDifficulty.advanced}
-            aria-checked={this.state.levelOfDifficulty === LevelOfDifficulty.advanced}
-            checked={this.state.levelOfDifficulty === LevelOfDifficulty.advanced}
-            onChange={() => this.setState({ levelOfDifficulty: LevelOfDifficulty.advanced })}
-          />
-        </fieldset>
-        <button type='button' onClick={() => {
-          stores.cfpStore.setCurrentStage(CFPFormStage.stage1)
-        }}>이전</button>
-        <button type='button'>임시 저장</button>
-        <button type='submit'>다음</button>
-      </form>
+        </form>
+      </FormWrapper>
     )
   }
 }

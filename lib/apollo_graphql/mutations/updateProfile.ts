@@ -1,6 +1,6 @@
 import {
   UpdateProfile,
-  UpdateProfile_updateProfile,
+  UpdateProfile_updateProfile_profile as ProfileNode,
   UpdateProfileVariables,
 } from 'lib/apollo_graphql/__generated__/UpdateProfile'
 import {
@@ -19,5 +19,5 @@ export const updateProfile = sendMutation(
 )
 
 export {
-  UpdateProfile_updateProfile,
+  ProfileNode,
 }

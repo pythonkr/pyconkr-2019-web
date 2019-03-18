@@ -1,4 +1,4 @@
-import { differenceInMilliseconds } from 'date-fns'
+import { differenceInMilliseconds, distanceInWordsToNow } from 'date-fns'
 import format from 'date-fns/format'
 import en from 'date-fns/locale/en'
 import ko from 'date-fns/locale/ko'
@@ -24,3 +24,11 @@ export const formatDateInWordsWithTime = formatDate('MMMM Do HH:mm')
 export const formatDateInWordsWithWeekdayAndTime = formatDate('MMMM Do [(]dd[)] HH:mm')
 
 export const timeDiffToNow = (openDate: DateDTO) => differenceInMilliseconds(new Date(), openDate)
+
+export const diffInWordsToNow = (date: DateDTO) => {
+  const localeKey = intl.getInitOptions().currentLocale!
+
+  return distanceInWordsToNow(date, {
+    locale: locales[localeKey]
+  })
+}

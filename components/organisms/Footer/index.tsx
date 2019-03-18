@@ -53,13 +53,15 @@ const Footer = () => (<>
   <FooterWrapper>
     <WideContentWidthWrapper>
       <ul style={{ padding: '0 10px' }}>
-        <li>{ intl.get('fixedFooter.sponsor').defaultMessage('후원') } sponsor@pycon.kr</li>
-        <li>{ intl.get('fixedFooter.program').defaultMessage('프로그램') } program@pycon.kr</li>
-        <li>{ intl.get('fixedFooter.other').defaultMessage('기타 문의') } support@pycon.kr</li>
+        <li>{ intl.get('fixedFooter.sponsor').defaultMessage('후원') } <a href='mailto:sponsor@pycon.kr'>sponsor@pycon.kr</a> </li>
+        <li>{ intl.get('fixedFooter.program').defaultMessage('프로그램') } <a href='mailto:program@pycon.kr'>program@pycon.kr</a> </li>
+        <li>{ intl.get('fixedFooter.other').defaultMessage('기타 문의') } <a href='mailto:support@pycon.kr'>support@pycon.kr</a> </li>
       </ul>
       <p style={{ padding: '0 10px' }}>
         { intl.get('fixedFooter.poweredBy').defaultMessage('파이썬 웹 프레임워크 Django와 Next.js로 만들었습니다.') } <br/>
-        { intl.get('fixedFooter.hostedOn').defaultMessage('홈페이지 호스팅은 Naver D2의 지원을 받고 있습니다.') }
+        { intl.get('fixedFooter.hostedOn').defaultMessage('홈페이지 호스팅은 Naver D2의 지원을 받고 있습니다.') } <br/>
+        { intl.get('fixedFooter.issueTrackerBy').defaultMessage('협업 도구는 Dooray!의 지원을 받고 있습니다.') }
+        
       </p>
       <MobileSNSFooterListWrapper>
         <SNSLinkList color='black' />

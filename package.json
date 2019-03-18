@@ -14,6 +14,8 @@
     "@emotion/core": "^10.0.7",
     "@emotion/styled": "^10.0.7",
     "@types/fontfaceobserver": "^0.0.6",
+    "@types/ramda": "^0.26.3",
+    "@zeit/next-css": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
     "apollo": "^2.5.1",
     "apollo-boost": "^0.1.27",
@@ -30,14 +32,18 @@
     "graphql-tag": "^2.10.1",
     "http": "^0.0.0",
     "intl": "^1.2.5",
+    "marksy": "^6.1.0",
     "mobx": "^5.9.0",
     "mobx-react": "^5.4.3",
     "mobx-state-tree": "^3.10.2",
     "next": "^7.0.2",
+    "next-nprogress": "^1.4.0",
     "next-plugin-graphql": "^0.0.2",
     "next-routes": "^1.4.2",
     "node-fetch": "^1.7.2",
     "qs": "^6.6.0",
+    "ramda": "^0.26.1",
+    "rc-steps": "^3.3.1",
     "react": "^16.7.0",
     "react-apollo": "^2.4.1",
     "react-dom": "^16.7.0",
@@ -62,7 +68,7 @@
     "tslint-config-prettier": "^1.17.0",
     "tslint-eslint-rules": "^5.4.0",
     "tslint-microsoft-contrib": "^6.0.0",
-    "typescript-tslint-plugin": "^0.3.1",
-    "typescript": "^3.2.2"
+    "typescript": "^3.2.2",
+    "typescript-tslint-plugin": "^0.3.1"
   }
 }

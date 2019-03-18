@@ -1,44 +1,69 @@
+import { client } from 'lib/apollo_graphql/client'
+import { createOrUpdatePresentationProposal } from 'lib/apollo_graphql/mutations/createOrUpdatePresentationProposal'
+import { CategoryType, getCategories } from 'lib/apollo_graphql/queries/getCategories'
+import { DifficultyType, getDifficulties } from 'lib/apollo_graphql/queries/getDifficulties'
+import { getMyPresentationProposal, PresentationProposalType } from 'lib/apollo_graphql/queries/getMyPresentationProposal'
 import { action, configure, observable } from 'mobx'
-import { getCategories, CategoryType } from 'lib/apollo_graphql/queries/getCategories'
-import { getDifficulties, DifficultyType } from 'lib/apollo_graphql/queries/getDifficulties'
-import { client } from 'lib/apollo_graphql/client';
 
 configure({ enforceActions: 'always' })
 
 export enum CFPFormStage {
-  stage1 = 1,
-  stage2 = 2,
-  stage3 = 3,
-  stage4 = 4,
-  completed = 5
+  stage1 = 0,
+  stage2 = 1,
+  stage3 = 2,
+  stage4 = 3,
+  completed = 4
 }
 
 export class CFPStore {
-    @observable currentStage: CFPFormStage = CFPFormStage.stage1;
+    @observable isInitialized: boolean = false
+    @observable currentStage: CFPFormStage = CFPFormStage.stage1
     @observable categories: CategoryType[] = []
-    @observable difficulties: DifficultyType[] = [] 
-    
+    @observable difficulties: DifficultyType[] = []
+    @observable proposal: PresentationProposalType | null = null
+
     @action
     setCurrentStage(stage: CFPFormStage) {
       this.currentStage = stage
     }
 
     @action
-    async retrieveCategories() {
-      var response = await getCategories(client)({})
-      this.categories = {
-        ...response.data.categories
-      }
-      console.log(this.categories)
+    async initialize() {
+      this.retrieveDifficulties()
+      this.retrieveCategories()
+      this.retriveMyProposal()
+      this.isInitialized = true
     }
 
     @action
     async retrieveDifficulties() {
-      var response = await getDifficulties(client)({})
-      this.difficulties = {
-        ...response.data.difficulties
+      const response = await getDifficulties(client)({})
+      this.difficulties = response.data.difficulties
+    }
+
+    @action
+    async retrieveCategories() {
+      const response = await getCategories(client)({})
+      this.categories = response.data.categories
+    }
+
+    @action
+    async retriveMyProposal() {
+      const response = await getMyPresentationProposal(client)({})
+      this.proposal = response.data.myPresentationProposal
+    }
+
+    @action
+    async createOrUpdatePresentation(presentation: any) {
+      if (presentation && presentation.hasOwnProperty('__typename')) {
+        delete presentation.__typename
       }
-      console.log(response)
+      const response = await createOrUpdatePresentationProposal(client)({
+        data: presentation
+      })
+      this.proposal = {
+        ...response.data.createOrUpdatePresentationProposal.proposal
+      }
     }
 
 }

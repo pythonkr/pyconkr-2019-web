@@ -8,10 +8,18 @@ import ProfileStore, { ProfileStore as ProfileStoreType } from 'lib/stores/Profi
 import SponsorStore, { SponsorStore as SponsorStoreType } from 'lib/stores/SponsorStore'
 import { LOCALE_KEY_KR, URL_LOCALE_KEY } from 'locales/constants'
 import { Provider } from 'mobx-react'
+import NProgress from 'next-nprogress/component'
 import App, { Container } from 'next/app'
+import Router from 'next/router'
+import 'rc-steps/assets/iconfont.css'
+import 'rc-steps/assets/index.css'
 import intl from 'react-intl-universal'
+import { paths } from 'routes/paths'
+import { CORAL } from 'styles/colors'
 import { commonCSS } from 'styles/common'
 import { fontCSS } from 'styles/font'
+import Link from 'next/link';
+import { AlertBar } from 'components/atoms/AlertBar';
 
 global.Intl = IntlPolyfill
 require('intl/locale-data/jsonp/ko.js')
@@ -54,6 +62,7 @@ class MyApp extends App {
     intl.init({
       currentLocale,
       locales: {
+        // tslint:disable-next-line:non-literal-require
         [currentLocale]: require(`locales/${currentLocale}`)
       },
       warningHandler: intlWarningHandler
@@ -71,27 +80,56 @@ class MyApp extends App {
     return { pageProps, isServer }
   }
 
-componentDidMount() {
+  componentDidMount() {
     const spoqaHanSans = new FontFaceObserver('Spoqa Han Sans')
     spoqaHanSans.load()
       .then(() => {
         document && document.body.classList.add('font-loaded')
       })
-    this.retrieveProfileIfTokenExists()
+
+    this.handleOAuth()
   }
 
-async retrieveProfileIfTokenExists() {
-    this.stores.authStore.syncToken()
-    if (this.stores.authStore.logined) {
-      this.stores.profileStore.retrieveProfile()
+  async handleOAuth() {
+    const { state, code } = this.props.router.query! as any
+
+    if (!code) {
+      this.stores.authStore.syncToken()
+
+      if (this.stores.authStore.loggedIn) {
+        this.stores.profileStore.retrieveMe()
+      }
+
+      return
+    }
+
+    await this.stores.authStore.login(state, code)
+
+    if (!this.stores.profileStore.isAgreed) {
+      this.props.router.push(`${paths.account.agreement}?redirect_url=${Router.asPath}`)
     }
   }
 
-render() {
+  render() {
     const { Component, pageProps } = this.props
 
     return (
       <Container>
+        <NProgress
+          color={CORAL}
+          options={{ trickleSpeed: 50 }}
+          showAfterMs={300}
+          spinner={false}
+        />
+        {this.stores.authStore.loggedIn && !this.stores.profileStore.isAgreed && <AlertBar
+          text='회원 가입이 완료되지 않았습니다. 약관을 확인하고 회원 가입을 완료해주세요.'
+          link={{
+            title: '완료하러 가기',
+            to: paths.account.agreement,
+            outlink: false
+          }}
+          style={{ margin: 0 }}
+        />}
         <Provider stores={this.stores}>
           <Component {...pageProps} />
         </Provider>

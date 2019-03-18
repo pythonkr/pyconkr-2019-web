@@ -1,0 +1,27 @@
+mutation UpdateAgreement($isPrivacyPolicy: Boolean, $isTermsOfService: Boolean) {
+    updateAgreement(isPrivacyPolicy: $isPrivacyPolicy, isTermsOfService: $isTermsOfService) {
+        isAgreedAll
+        user {
+            username
+            isStaff
+            isSuperuser
+            isAgreed
+            profile { 
+                id
+                oauthType
+                name       
+                nameKo
+                nameEn
+                bio
+                bioKo
+                bioEn
+                email
+                phone
+                organization
+                nationality
+                image
+                avatarUrl
+            }
+        }
+    }
+}

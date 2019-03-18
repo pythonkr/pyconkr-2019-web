@@ -31,7 +31,7 @@ const schedule = [{
   title: '키노트 연사 추천 마감',
   intlKey: 'contribute.recommendKeynoteSpeaker.schedule.deadline',
   desc: {
-    default: '마감 시까지',
+    defaultText: '마감 시까지',
     intlKey: 'common.status.untilSelected'
   }
 }]
@@ -82,7 +82,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
                     <Td>
                       {
                         desc ?
-                        intl.get(desc.intlKey).d(desc.default)
+                        <IntlText intlKey={desc.intlKey}>{desc.defaultText}</IntlText>
                         : formatDateInWordsWithWeekdayAndTime(date!)
                       }
                     </Td>
@@ -94,7 +94,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
         </Section>
         <Section>
           <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
-          <Paragraph>program@pycon.kr</Paragraph>
+          <Paragraph><a href='mailto:program@pycon.kr'>program@pycon.kr</a></Paragraph>
         </Section>
       </PageTemplate>
     )

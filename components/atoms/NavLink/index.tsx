@@ -38,7 +38,7 @@ export type NavLinkPropsType = {
 
 const NavLink = ({ currentPath, to, intlKey, name, basePath }: NavLinkPropsType) => {
   return (
-    <Link href={to}>
+    <Link href={to} prefetch>
       <NavLinkA>
         <Span
           isActive={currentPath === to ||
