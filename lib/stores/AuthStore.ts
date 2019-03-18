@@ -32,7 +32,7 @@ export class AuthStore {
   @observable accessToken?: string | null = null
 
   @action
-  async login(oAuthType: keyof typeof clientIdEnum, code: string) {
+  async login(oAuthType: keyof typeof clientIdEnum, code: string, redirect_url: string) {
     if (!oAuthType || !code) {
       return
     }
@@ -44,7 +44,7 @@ export class AuthStore {
       clientId: this.clientId,
       oauthType: this.oAuthType,
       code,
-      redirectUri: location.origin + '/'
+      redirectUri: redirect_url
     })
     const accessToken = response.data.oAuthTokenAuth.token
     this.setAccessToken(accessToken)
