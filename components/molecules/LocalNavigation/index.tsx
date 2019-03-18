@@ -19,6 +19,10 @@ const NavList = styled.ul`
 text-align: center;
 white-space: nowrap;
 overflow-x: auto;
+ @media (max-width: ${mobileWidth}) {
+    white-space: unset;
+    text-align: left;
+  }
 `
 const NavItem = styled.li`
   display: inline-block;
@@ -39,6 +43,9 @@ const NavSpan = styled.span`
   color: ${TEAL};
   font-weight: ${(props: { isActive: boolean }) => props.isActive ? '700' : 'normal'};
   border-bottom: ${(props: { isActive: boolean }) => props.isActive ? `solid 2px ${CORAL}` : 'none'};
+  @media (max-width: ${mobileWidth}) {
+    padding-bottom: 4px;
+  }
 `
 
 type LNBItem = {
