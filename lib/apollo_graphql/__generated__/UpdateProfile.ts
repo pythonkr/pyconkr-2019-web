@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { ProfileInput } from "./globalTypes";
+import { ProfileInput, OauthTypeNode } from "./globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: UpdateProfile
@@ -10,14 +10,20 @@ import { ProfileInput } from "./globalTypes";
 
 export interface UpdateProfile_updateProfile_profile {
   __typename: "ProfileNode";
+  id: string;
+  oauthType: OauthTypeNode | null;
+  name: string;
   nameKo: string | null;
   nameEn: string | null;
+  bio: string;
   bioKo: string | null;
   bioEn: string | null;
-  phone: string;
   email: string;
+  phone: string;
   organization: string;
   nationality: string;
+  image: any | null;
+  avatarUrl: string;
 }
 
 export interface UpdateProfile_updateProfile {
@@ -30,5 +36,5 @@ export interface UpdateProfile {
 }
 
 export interface UpdateProfileVariables {
-  profileInput: ProfileInput;
+  data: ProfileInput;
 }

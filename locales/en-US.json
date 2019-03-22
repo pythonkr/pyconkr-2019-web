@@ -24,7 +24,6 @@
       }
     }
   },
-
   "common": {
     "contact": "Contact",
     "schedule": "Schedule",
@@ -69,8 +68,30 @@
       "logout": "Logout",
       "root": "My Info",
       "history": "Proposal/Sponsor History",
-      "profile": "Profile"
+      "profile": "My Profile"
     }
+  },
+  "account": {
+    "profile": {
+      "header": "Profile",
+      "item1": "Profile Picture",
+      "button1": "Upload",
+      "item2": "Email",
+      "item3": "Name in Korean",
+      "item4": "Name in English",
+      "item5": "Phone Number",
+      "item6": "Affiliation",
+      "item7": "Nationality",
+      "item8": "Bio in Korean",
+      "item9": "Bio in English",
+      "button2": "Update Profile",
+      "alert1": "The profile has been updated"
+    }
+  },
+  "login": {
+    "title": "Login",
+    "githubButton": "Login with Github Account",
+    "facebookButton": "Login with Facebook Account"
   },
   "home": {
     "sprintDescription": "Sprints are intensive development session on an open source project of your choice, in a team environment. It's a time to come together with colleagues, old and new, to share what you've learned and apply it to an open source project. Is this your first time joining in Sprints? No problem! It will be the time that you learn directly from the open source contributors. Sprint sessions are not just limited to the projects using Python, all languages are welcome!",
@@ -79,7 +100,7 @@
     "sponsor": {
       "title": "Looking for sponsors for PyCon Korea 2019",
       "description1": "Thanks to all the sponsors who supported the importance of open source and Python community, we could organize an event that more programmers can attend by providing many speech sessions, side programs, video recordings and financial aid.",
-      "description2": "We are currently looking for the officinal sponsors for PyCon Korea 2019 who are interested in supporting the growth of Python community. ",
+      "description2": "We are currently looking for the official sponsors for PyCon Korea 2019 who are interested in supporting the growth of Python community. ",
       "prospectus": "Schedule & Prospectus"
     },
     "pyconKoreaTitle": "About PyCon Korea",
@@ -95,7 +116,7 @@
   "contribute": {
     "overview": {
       "title": "Various ways to contribute to PyCon Korea",
-      "intro": "You can contribute to PyCon Korea in various ways including keynote, speeker, tutorial, sprint, volunteer and lightning talk. We will recruit each item with the following schedule.",
+      "intro": "You can contribute to PyCon Korea in various ways including keynote, speaker, tutorial, sprint, volunteer and lightning talk. We will recruit each item with the following schedule.",
       "table": {
         "keynote": "Recommending Keynote Speaker",
         "talk":"Proposing a Talk",
@@ -110,18 +131,17 @@
       "title": "Recommending Keynote Speaker",
       "description1": "We are looking for PyCon Korea 2019 Keynote Speaker to be the Polaris of Pythonistas.",
       "description2": "If you know someone who is actively using Python for life/work/hobbies, please do not hesitate to recommend it.",
-      "recommendButton": "Recommentation Form",
+      "recommendButton": "Recommendation Form",
       "schedule": {
         "open": "Recommendation Open",
         "deadline": "Recommendation Deadline"
       }
-
     },
     "cfpGuide": {
       "title": "How to submit proposal",
       "intro": "This page has written to provide detailed information for speakers of PyCon Korea. Below information and suggestion will guide your presentation to be more informative and persuasive to audience in PyCon Korea.",
       "notice": {
-        "title": "Guide for Speeker",
+        "title": "Guide for Speakers",
         "record": {
           "title": "Session recording",
           "content": "All session of PyCon Korea will be recorded and open to public after conference. Please consider this before you submit your proposal."
@@ -175,7 +195,7 @@
               "desc": "Beginner/Intermediate/Experienced"
             },
             "timeslot": {
-              "title": "Prefer time slot",
+              "title": "Preferable time slot",
               "desc": "25min/40min"
             },
             "language": {
@@ -187,13 +207,13 @@
               "desc": "Only PyCon Korea Organizer can view this section, so feel free to write in any form"
             }
           },
-          "conclusion": "Only title, summary, details, target audience, time slot, and language will open to early bird holders during preference vote."
+          "conclusion": "Only title, summary, details, target audience, time slot, and language will be disclosed to early bird holders during preference vote."
         },
-        "conclusion": "Do you feel a little bit pressured with all these criteria? Don't worry! Real guidance is now here. We'll help you with detail information to work on your proposal."
+        "conclusion": "Do you feel a little bit overwhelmed with all these criteria? Don't worry! Real guidance is now here. We'll help you with detailed information about how to work on your proposal."
       },
       "selectTopic": {
-        "title": "Select topic",
-        "description": "The best way to select topic is to review topics from previous PyCon event. Not only look for topic, but also get the reference from presentation slides will help you start. Choose interesting topic for audience!",
+        "title": "Select a topic",
+        "description": "The best way to select a topic is to review topics from previous PyCon event. Not only look for topic, but also get the reference from presentation slides will help you start. Choose interesting topic for audience!",
         "viewOtherPycon": "See PyCon in other countries 👉",
         "conclusion": "Once you decide your topic, now you can start thinking about what should be on your proposal in detailed level. Check below information for help."
       },
@@ -218,7 +238,7 @@
         "desc1": "A good presentation delivers right information to specific target audience with certain Python level.",
         "desc1-1": "It’s not a good to talk about solve performance issue to release GIL within C code block which is generated by Cython to beginner level audience.",
         "desc1-2": "Other cases, basic introduction of Cython or GIL is too easy for expert level audience.",
-        "desc2": "Just like an example above, some cases are easier to select audience than others. but, not all cases are this easy! For those who needs little more guide line on target audience selection, we have few things to tell you.",
+        "desc2": "Just like an example above, some cases are easier to select audience than others. but, not all cases are this easy! For those who needs a little more guideline on target audience selection, we have a few things to tell you.",
         "beginner": {
           "title":"Beginner",
           "desc1": "None or little bit of knowledge about Python. They have basic syntax and control flow knowledge but don’t have much of knowledge or experience in standard library and programming in general.",
@@ -234,8 +254,74 @@
           "desc1": "Expert level users are familiar with python programming and general concept of programming. A difference between intermediate and expert is the knowledge and experience of specific field they are in and higher level of programming knowledge.",
           "desc2": "For expert level users, optimization, internals of library, or Python internal is recommended."
         }
-
-
+      }
+    },
+    "talkProposal": {
+      "description1": "We are recruiting a variety of Python-related presentations, such as academic or commercial projects for Python, case studies. Please refer to the Guide for Speakers for more information.",
+      "schedule": {
+        "open": "CFP Open",
+        "close": "CFP Close",
+        "announcement": "Speaker Confirmation"
+      },
+      "application": {
+        "title": "Apply for CFP",
+        "stages": {
+          "stages1": {
+            "header": "Save a profile",
+            "item1": "E-mail",
+            "item2": "Name in Korean",
+            "item3": "Name in English",
+            "item4": "Affiliation",
+            "item5": "Phone Number",
+            "desc1": "The information registered as a speaker profile will be saved in profile and can be edited in My Profile page. The profile will be used in Progam page later.",
+            "button": "Save the profile and Continue"
+          },
+          "stages2": {
+            "header": "Basic information",
+            "item1": "Topic",
+            "item2": "Session Category",
+            "item3": "Session Difficulty",
+            "item4": "Prerequisities to understand the session",
+            "item5": {
+              "header": "Session Length",
+              "sub1": "25 mins",
+              "sub2": "40 mins"
+            },
+            "item6": {
+              "header": "Language",
+              "sub1": "In Korean",
+              "sub2": "In English"
+            },
+            "button1": "Previous",
+            "button2": "Save draft",
+            "button3": "Next",
+            "alert": "Save Completed"
+          },
+          "stages3": {
+            "header": "Detailed information",
+            "item1": {
+            "sub1": "Contents of CFP in detail",
+            "desc1": "In case it's accessive, please provide an external link."
+            },
+            "item2":{
+              "header": "Have you presented the material in other events?",
+              "button1": "Yes, I have",
+              "button2": "No, I haven't"
+            },
+            "item3": "A conference you presented the material",
+            "item4": "External link to your presentation material",
+            "item5": {
+              "header": "Comments and Enquiries",
+              "desc1": "Feel free to write comments to reviewers"
+            }
+          },
+          "stages4": "CoC and Ethics",
+          "stages5": {
+            "header": "Submit CFP",
+            "desc1": "You can check and edit your CFP at Proposal and Application page",
+            "button1": "View Proposal and Application"
+          }
+        }
       }
     }
   },
@@ -289,7 +375,7 @@
         "logo": {
           "header": "Logo placement",
           "attendeePass": "Attendee pass",
-          "website": "WebSite", 
+          "website": "WebSite",
           "hangingBanner": "Hanging banner",
           "standingBanner": "Standing banner",
           "webSite": "WebSite"
@@ -323,7 +409,22 @@
     "long5": "If a participant engages in behavior that violates this code of conduct, the conference organizers may take any action they deem appropriate, including warning the offender or expulsion from the conference with no refund.",
     "license": "License",
     "licenseDesc": "This Code of Conduct was forked from the example policy from the Geek Feminism wiki, created by the Ada Initiative and other volunteers. which is under a Creative Commons Zero license. <a href=\"https://github.com/pythonkr/pycon-code-of-conduct\">github link</a>"
-    
+  },
+  "agreement": {
+    "title": "Complete the registeration process",
+    "desc1": "You have successfully authorized the following account.",
+    "socialService": "Social Service",
+    "email": "email",
+    "desc2": "When you authorize your account, we save the following public information",
+    "socialAccount": "Social Account ID",
+    "profileImage": "Profile Image",
+    "desc3": "Please complete the registeration process by agreeing to the terms.",
+    "agreeTermsOfService": "Agree terms of service",
+    "viewTermsOfService": "View terms of service",
+    "agreePrivacyProtectionPolicy": "Agree privacy protection policy",
+    "viewPrivacyProtectionPolicy": "View Privacy Protection Policy",
+    "finishRegisteration": "Submit"
+
   },
   "fixedFooter": {
     "coc": "Code of Conduct",
@@ -337,6 +438,33 @@
     "flickerLink": "Flicker",
     "youtubeLink": "Youtube",
     "poweredBy": "Powered by Django and next.js",
-    "hostedOn": "Hosted on Naver D2"
+    "hostedOn": "Hosted on Naver D2",
+    "issueTrackerBy": "Collaboration tools are supported by Dooray!"
+  },
+  "privacyPolicy": {
+    "heading": "Privacy Protection Policy",
+    "title0": "What is Privacy Protection Policy?",
+    "paragraph0": "'Privacy Protection Policy' means the guidelines that Python User Group Korea (hereinafter referred to as 'Company') must comply with in order to safeguard the valuable personal information of all users and to use contents and services with peace of mind.",
+    "title1": "Items and Purpose of Collecting Personal Information",
+    "paragraph1-1": "Membership - Collect emails and names as essential for providing content such as sign-up confirmation, identity verification, event guide, and ticket payment within the service.",
+    "paragraph1-2": "Speaker Suggestion - Information such as e-mail, name, English name, phone number, and affiliation are required in order to confirm the identity of the person. It will be used as a guide on web-site/event for participants.",
+    "paragraph1-3": "Personal information that you provide may be modified at any time and personal information will not be provided or used separately from third parties without the consent of the user and we will pay close attention when sharing contents containing personal information.  The user included in each case must submit required data as requested for each item in order to subscribe the service or suggest the speaker the service can be subscribed or suggested, and when the information is submitted, the user is considered to have consented to the collection of personal information.",
+    "title2": "Automatic Collection of Personal Information - Cookies",
+    "paragraph2": "We use cookies to provide convenient services such as personalized content and automatic sign-in to each user. Cookies do not store any personally identifiable information, and you have the option of installing cookies. If you do not want to, you can allow all cookies by setting options in your web browser, check each time a cookie is saved, or refuse to save all cookies. However, if you refuse to install cookies, it may be difficult to provide custom content.",
+    "title3": "Measures to Ensure the Security of Personal Information",
+    "paragraph3-1": "We manage the person in charge of personal information to the minimum. The person in charge carries out necessary measures for access control and controls the unauthorized access from outside using the intrusion prevention system.",
+    "paragraph3-2": "In order to prevent leakage and damage of personal information by hacking or computer virus, security program is installed, periodically renewed / checked, technically and physically monitored and blocked.",
+    "title4": "Measures to Ensure the Security of Personal Information",
+    "paragraph4-1": "All personal information entered by the user will be destroyed without delay in 2 years from the end of the event in that year. Similarly, if a user wants to leave and directly contacts the company, all personal information will be destroyed as well. Information in the form of an electronic file is safely deleted so that it can not be recovered, and destroyed by crushing or incineration in the case of printed matter.",
+    "paragraph4-2": "However, information required to be preserved pursuant to relevant laws and regulations will be retained for a certain period of time.",
+    "paragraph4-3": "Records on the collection, processing, and use of credit information: 3 Years",
+    "paragraph4-4": "Records of consumer complaints or disputes: 3 Years",
+    "paragraph4-5": "Record of payment and goods supply: 5 Years",
+    "title5": "Privacy Officer",
+    "paragraph5-1": "We are responsible for the handling of personal information, and we have designated the person responsible for personal information protection as follows in order to handle complaints and damage remedies related to personal information processing. You can contact the person in charge of personal information protection directly about personal information protection inquiries, complaints handling and damage relief.",
+    "paragraph5-2": "Privacy Officer: Kwonhan Bae",
+    "paragraph5-3": "Contact:",
+    "title6": "Change of Personal Information Processing Policy",
+    "paragraph6": "If the above privacy policy changes, we will post the change and the changed privacy policy will take effect seven days after the date of posting. However, we will notify you at least 30 days in advance of any significant change in your rights, such as the items of personal information you collect."
   }
 }

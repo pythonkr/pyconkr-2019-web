@@ -1,6 +1,8 @@
+import styled from '@emotion/styled'
 import { Button } from 'components/atoms/Button'
-import { H1, H2, isBold, Paragraph, Section, TableWithBg, TBody, Td, Tr, ContentTableWrapper } from 'components/atoms/ContentWrappers'
+import { ContentTableWrapper, H1, H2, isBold, Paragraph, Section, TableWithBg, TBody, Td, Tr } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
+import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
@@ -9,13 +11,11 @@ import { keynoteRecommendation, lightningTalk, sprintProposal, talkProposal, tut
 import { inject, observer } from 'mobx-react'
 import React from 'react'
 import intl from 'react-intl-universal'
-import { paths, contributionMenu } from 'routes/paths'
+import { contributionMenu, paths } from 'routes/paths'
+import { mobileWidth } from 'styles/layout'
 import { DateDTO } from 'types/common'
 import { formatDateInWords } from 'utils/formatDate'
 import { StoresType } from '../_app'
-import { LocalNavigation } from 'components/molecules/LocalNavigation';
-import styled from '@emotion/styled'
-import { mobileWidth } from 'styles/layout'
 
 export type IndexPagePropsType = {
   stores: StoresType;

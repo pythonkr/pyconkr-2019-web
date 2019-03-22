@@ -64,6 +64,18 @@ color: white;
 font-size: 14px;
 `
 
+
+const MobileLanguageButton = styled.button`
+text-align: right;
+cursor: pointer;
+color: white;
+font-size: 14px;
+display: none;
+@media (max-width: ${mobileWidth}) {
+  display: inline-block;
+}
+`
+
 const Footer: React.SFC<any> =  ({ router: { query: { lang: currentLocale }}}) => {
   return (
     <FixedFooterWrapper>
@@ -74,6 +86,19 @@ const Footer: React.SFC<any> =  ({ router: { query: { lang: currentLocale }}}) =
               {intl.get('fixedFooter.coc').defaultMessage('파이콘 한국 성명서(CoC)')}
             </span></FixedFooterLinkA>
           </Link>
+          <MobileLanguageButton
+            onClick={() => {
+              window.location.assign(
+                `${window.location.pathname}?${URL_LOCALE_KEY}=${
+                    currentLocale === LOCALE_KEY_EN
+                      ? LOCALE_KEY_KR
+                      : LOCALE_KEY_EN
+                }`)
+          }}>
+            {currentLocale === LOCALE_KEY_EN
+              ? localeMap[LOCALE_KEY_KR]
+              : localeMap[LOCALE_KEY_EN]}
+        </MobileLanguageButton>
         </FixedFooterItem>
       </ul>
       <RightPane>

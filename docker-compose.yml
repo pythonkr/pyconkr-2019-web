@@ -1,6 +1,7 @@
 version: "3"
 services:
   frontend:
+    restart: always
     build:
       context: .
       args:

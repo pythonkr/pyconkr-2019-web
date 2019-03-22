@@ -4,7 +4,7 @@ export const paths = {
     base: '/help',
     faq: '/help/faq',
     notice: '/help/notice',
-    venue: '/help/venue',
+    venue: '/help/venue'
   },
   contribute: {
     base: '/contribute',
@@ -23,8 +23,12 @@ export const paths = {
   account: {
     base: '/account',
     login: '/account/login',
+    logout: '/account/logout',
     profile: '/account/profile',
+    agreement: '/account/agreement',
     contribution: '/account/contribution',
+    termsOfService: '/account/terms-of-service',
+    privacyPolicy: '/account/privacy-policy',
   }
 }
 
@@ -32,6 +36,7 @@ export type NormalMenu = {
   title: string;
   intlKey: string;
   link: string;
+  permission?: 'public' | 'user' | 'staff';
 }
 
 export type WithSubMenu = {
@@ -39,6 +44,7 @@ export type WithSubMenu = {
   intlKey: string;
   basePath: string;
   submenu: NormalMenu[];
+  permission?: 'anonymous' | 'user' | 'staff';
 }
 
 export type GNBMenu = NormalMenu | WithSubMenu
@@ -46,7 +52,7 @@ export type GNBMenu = NormalMenu | WithSubMenu
 export const homeMenu: NormalMenu = {
   title: '홈',
   intlKey: 'gnb.home',
-  link: paths.home,
+  link: paths.home
 }
 
 export const helpMenu: WithSubMenu = {
@@ -57,7 +63,7 @@ export const helpMenu: WithSubMenu = {
     {
       title: '자주 묻는 질문',
       intlKey: 'gnb.help.faq',
-      link: paths.help.faq,
+      link: paths.help.faq
     },
     {
       title: '알림',
@@ -67,11 +73,10 @@ export const helpMenu: WithSubMenu = {
     {
       title: '장소',
       intlKey: 'gnb.help.venue',
-      link: paths.help.venue,
-    },
+      link: paths.help.venue
+    }
   ]
 }
-
 
 export const contributionMenu: WithSubMenu = {
   title: '공헌하기',
@@ -81,7 +86,7 @@ export const contributionMenu: WithSubMenu = {
     {
       title: '공헌 안내',
       intlKey: 'gnb.contribute.overview',
-      link: paths.contribute.overview,
+      link: paths.contribute.overview
     },
     {
       title: '키노트 연사 추천하기',
@@ -91,13 +96,13 @@ export const contributionMenu: WithSubMenu = {
     {
       title: '발표안 작성 가이드',
       intlKey: 'gnb.contribute.cfpDetailedGuide',
-      link: paths.contribute.cfpDetailedGuide,
+      link: paths.contribute.cfpDetailedGuide
     },
-    // {
-    //   title: '발표안 제안하기',
-    //   intlKey: 'gnb.contribute.proposingATalk',
-    //   link: paths.contribute.proposingATalk,
-    // },
+    {
+      title: '발표안 제안하기',
+      intlKey: 'gnb.contribute.proposingATalk',
+      link: paths.contribute.proposingATalk,
+    }
   ]
 }
 
@@ -109,41 +114,38 @@ export const sponsorMenu: WithSubMenu = {
     {
       title: '후원사 안내',
       intlKey: 'gnb.sponsor.prospectus',
-      link: paths.sponsor.prospectus,
-    },
+      link: paths.sponsor.prospectus
+    }
     // {
     //   title: '후원사 신청',
     //   intlKey: 'gnb.sponsor.applicationForm',
     //   link: paths.sponsor.applicationForm,
     // },
-  ],
+  ]
 }
 
 export const accountMenu: WithSubMenu = {
   title: '내 정보',
   intlKey: 'gnb.info.root',
   basePath: paths.account.base,
+  permission: 'user',
   submenu: [
     {
       title: '제안 및 신청 내역',
       intlKey: 'gnb.info.history',
-      link: paths.account.contribution,
+      link: paths.account.contribution
     },
     {
       title: '프로필',
       intlKey: 'gnb.info.profile',
-      link: paths.account.profile,
+      link: paths.account.profile
     },
-    // 로그아웃
-    // stores.authStore.logined ?
-    // <button onClick={() => {
-    //   stores.authStore.logout()
-    //   Router.replace(paths.home)
-    // }}>
-    //   {intl.get('gnb.info.logout')
-    //     .defaultMessage('로그아웃')}
-    // </button>
-  ],
+    {
+      title: '로그아웃',
+      intlKey: 'gnb.info.logout',
+      link: paths.account.logout
+    }
+  ]
 }
 
 export const loginMenu: NormalMenu = {
@@ -157,5 +159,4 @@ export const globalNavigationMenu: GNBMenu[] = [
   // helpMenu,
   contributionMenu,
   sponsorMenu,
-  // accountMenu
 ]

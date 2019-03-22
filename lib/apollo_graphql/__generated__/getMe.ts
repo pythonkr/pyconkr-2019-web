@@ -5,10 +5,10 @@
 import { OauthTypeNode } from "./globalTypes";
 
 // ====================================================
-// GraphQL query operation: getProfile
+// GraphQL query operation: getMe
 // ====================================================
 
-export interface getProfile_profile {
+export interface getMe_me_profile {
   __typename: "ProfileNode";
   id: string;
   oauthType: OauthTypeNode | null;
@@ -26,6 +26,24 @@ export interface getProfile_profile {
   avatarUrl: string;
 }
 
-export interface getProfile {
-  profile: getProfile_profile | null;
+export interface getMe_me {
+  __typename: "UserNode";
+  /**
+   * 150자 이하 문자, 숫자 그리고 @/./+/-/_만 가능합니다.
+   */
+  username: string;
+  /**
+   * 사용자가 관리사이트에 로그인이 가능한지를 나타냅니다.
+   */
+  isStaff: boolean;
+  /**
+   * 해당 사용자에게 모든 권한을 허가합니다.
+   */
+  isSuperuser: boolean;
+  isAgreed: boolean | null;
+  profile: getMe_me_profile | null;
+}
+
+export interface getMe {
+  me: getMe_me | null;
 }

@@ -1,5 +1,6 @@
 query getCategories {
   categories {
+    id
     name
     nameKo
     nameEn

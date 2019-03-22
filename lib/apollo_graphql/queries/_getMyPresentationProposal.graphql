@@ -1,0 +1,34 @@
+query getMyPresentationProposal {
+    myPresentationProposal {
+        name
+        owner {
+            username
+        }
+        backgroundDesc
+        detailDesc
+        language
+        duration
+        category {
+            id
+            name
+            nameKo
+            nameEn
+            slug
+            visible
+        }
+        difficulty {
+            id
+            name
+            nameKo
+            nameEn
+        }
+        isPresentedBefore
+        placePresentedBefore
+        presentedSlideUrlBefore
+        comment
+        isAgreed
+        recordable
+        submitted
+        accepted
+    }
+}

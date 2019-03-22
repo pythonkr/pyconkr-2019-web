@@ -8,6 +8,7 @@
 
 export interface getDifficulties_difficulties {
   __typename: "DifficultyNode";
+  id: string;
   name: string;
   nameKo: string | null;
   nameEn: string | null;

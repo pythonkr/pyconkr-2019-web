@@ -1,57 +1,66 @@
-import { H1, H2, Paragraph, Section } from 'components/atoms/ContentWrappers'
+import { AlertBar } from 'components/atoms/AlertBar'
+import { ContentTableWrapper, H1, H2, isBold, Paragraph, ScheduleTable, Section, TBody, Td, Tr } from 'components/atoms/ContentWrappers'
+import { FormNeedsLogin } from 'components/atoms/FormNeedsLogin'
 import { IntlText } from 'components/atoms/IntlText'
+import { Loading } from 'components/atoms/Loading'
 import { StatusBar } from 'components/atoms/StatusBar'
-import Stage1 from 'components/organisms/CFPForm/Stage1'
-import Stage2 from 'components/organisms/CFPForm/Stage2'
-import Stage3 from 'components/organisms/CFPForm/Stage3'
-import Stage4 from 'components/organisms/CFPForm/Stage4'
+import { LocalNavigation } from 'components/molecules/LocalNavigation'
+import CFPForm from 'components/organisms/CFPForm'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
+import { isPast } from 'date-fns'
 import { talkProposal } from 'dates'
-import { CFPFormStage } from 'lib/stores/CFPStore'
-import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
-import Router from 'next/router'
+import Link from 'next/link'
 import React from 'react'
-import { paths } from 'routes/paths'
+import { contributionMenu, paths } from 'routes/paths'
+import { DateDTO } from 'types/common'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 import { StoresType } from '../_app'
 
-const schedule = [{
+export type IntlTextType = {
+  intlKey: string;
+  defaultText: string;
+}
+
+export type Schedule = {
+  title: string;
+  intlKey: string;
+  date: DateDTO;
+  desc?: IntlTextType;
+}
+
+const schedule: Schedule[] = [{
   title: '발표안 제안 오픈',
-  date: talkProposal.open
+  intlKey: 'contribute.talkProposal.schedule.open',
+  date: talkProposal.open,
 }, {
   title: '발표안 제안 마감',
-  date: talkProposal.close
+  intlKey: 'contribute.talkProposal.schedule.close',
+  date: talkProposal.close,
 }, {
   title: '최종 발표자 확정',
-  date: talkProposal.announcement
+  intlKey: 'contribute.talkProposal.schedule.announcement',
+  date: talkProposal.announcement,
 }]
 
 @inject('stores')
 @observer
 export default class ProposingATalk extends React.Component<{ stores: StoresType }> {
-  async componentDidMount() {
-    const {authStore, cfpStore} = this.props.stores
-    if (!authStore.logined) {
-      Router.replace(paths.account.login)
-
-      return
-    }
-    cfpStore.retrieveCategories()
-    cfpStore.retrieveDifficulties()
+  state = {
+    isFormInitialized: false
   }
 
   render() {
-    const { stores } = this.props
-    const { currentStage } = toJS(stores.cfpStore)
+    const { authStore } = this.props.stores
 
     return (
       <PageTemplate
         header={<Header title='발표안 제안하기 :: 파이콘 한국 2019' />}
         footer={<Footer />}
       >
+        <LocalNavigation list={contributionMenu.submenu} />
         <H1><IntlText intlKey='contribute.overview.title'>
           발표안 제안하기
         </IntlText></H1>
@@ -62,38 +71,47 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
           openDate={talkProposal.open}
           closeDate={talkProposal.close}
         />
-        <Paragraph><IntlText intlKey='asdfasdfasdf'>
-          파이썬에 대한 학술적 또는 상업적 프로젝트, 케이스 스터디 등 다양한 파이썬 관련 발표를 아래와 같은 일정으로 모집합니다.
+        <Paragraph><IntlText intlKey='contribute.talkProposal.description1'>
+          파이썬에 대한 학술적 또는 상업적 프로젝트, 케이스 스터디 등
+          다양한 파이썬 관련 발표를 아래와 같은 일정으로 모집합니다.
           자세한 내용은 발표안 작성 가이드를 참고해주세요.
         </IntlText></Paragraph>
         <Section>
-          <H2><IntlText intlKey='aaa'>세부 일정</IntlText></H2>
-          <table style={{ width: '518px' }}>
-            <tbody>
-              {schedule.map(({ title, date }) =>
-                <tr key={title}>
-                  <td className='bold'>{title}</td>
-                  <td>
-                    {formatDateInWordsWithWeekdayAndTime(date)}
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+          <H2><IntlText intlKey='common.schedule'>일정</IntlText></H2>
+          <ContentTableWrapper>
+            <ScheduleTable>
+              <TBody>
+                {schedule.map(({ title, date, desc, intlKey }) =>
+                  <Tr key={title}>
+                    <Td className={isBold}>
+                      <IntlText intlKey={intlKey}>{title}</IntlText>
+                    </Td>
+                    <Td>
+                      {desc
+                          ? <IntlText intlKey={desc.intlKey}>{desc.defaultText}</IntlText>
+                          : formatDateInWordsWithWeekdayAndTime(date!)
+                      }
+                    </Td>
+                  </Tr>
+                )}
+              </TBody>
+            </ScheduleTable>
+          </ContentTableWrapper>
         </Section>
         <Section>
-          <H2><IntlText intlKey='bbb'>문의</IntlText></H2>
+          <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
           <Paragraph><IntlText intlKey='asdfasdfasdf'>program@pycon.kr</IntlText></Paragraph>
         </Section>
         <Section>
-          <H2><IntlText intlKey='ccc'>제안서 작성</IntlText></H2>
-          {(currentStage === CFPFormStage.stage1) && <Stage1 stores={stores} />}
-          {(currentStage === CFPFormStage.stage2) && <Stage2 stores={stores} />}
-          {(currentStage === CFPFormStage.stage3) && <Stage3 stores={stores} />}
-          {(currentStage === CFPFormStage.stage4) && <Stage4 stores={stores} />}
-          {(currentStage === CFPFormStage.completed) && <div>
-            발표안을 제출했습니다! 호호호
-            </div>}
+          <H2><IntlText intlKey='contribute.talkProposal.application.title'>제안서 작성</IntlText></H2>
+          {isPast(talkProposal.open) && <AlertBar text={
+          <>제안서를 작성하시기 전에 <Link href={paths.contribute.cfpDetailedGuide}>발표안 작성 가이드</Link>를 꼭 읽어주세요.</>}/>}
+          {this.props.stores.authStore.isInitialized
+            ? authStore.loggedIn
+              ? <CFPForm />
+              : <FormNeedsLogin />
+            : <Loading width={50} height={50}/>
+          }
         </Section>
       </PageTemplate>
     )
