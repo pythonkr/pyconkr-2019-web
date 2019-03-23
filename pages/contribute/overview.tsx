@@ -102,7 +102,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
   render() {
     return (
       <PageTemplate
-        header={<Header title='공헌 안내 :: 파이콘 한국 2019' />}
+        header={<Header title='공헌 안내 :: 파이콘 한국 2019' intlKey='contribute.overview.pageTitle' />}
         footer={<Footer />}
       >
         <LocalNavigation list={contributionMenu.submenu} />

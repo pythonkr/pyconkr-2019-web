@@ -99,7 +99,7 @@ const ScheduleSection = styled.section`
   ul {
     display: flex;
     justify-content: space-between;
-    align-items: top;
+    align-items: flex-start;
     flex-direction: row;
     @media (max-width: 920px) {
       display: block;
@@ -287,7 +287,7 @@ class Index extends React.Component<{ stores: StoresType }> {
   render() {
     return (
       <>
-        <Header title='파이콘 한국 2019' />
+        <Header title='파이콘 한국 2019' intlKey='constant.pyconKorea.name'/>
         <BannerSection>
           <MainBannerSvgWrapper>
             <MainBannerSvg color='white' />

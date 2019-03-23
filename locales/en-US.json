@@ -73,6 +73,7 @@
   },
   "account": {
     "profile": {
+      "pageTitle": "Profile :: PyCon Korea 2019",
       "header": "Profile",
       "item1": "Profile Picture",
       "button1": "Upload",
@@ -92,6 +93,11 @@
     "title": "Login",
     "githubButton": "Login with Github Account",
     "facebookButton": "Login with Facebook Account"
+  },
+  "contribution": {
+    "pageTitle": "Proposal/Sponsor History :: PyCon Korea 2019",
+    "title": "Proposal/Sponsor History",
+    "paragraph": "It is the contents which you submitted or applied to PyCon Korea 2019."
   },
   "home": {
     "sprintDescription": "Sprints are intensive development session on an open source project of your choice, in a team environment. It's a time to come together with colleagues, old and new, to share what you've learned and apply it to an open source project. Is this your first time joining in Sprints? No problem! It will be the time that you learn directly from the open source contributors. Sprint sessions are not just limited to the projects using Python, all languages are welcome!",
@@ -115,6 +121,7 @@
   },
   "contribute": {
     "overview": {
+      "pageTitle": "About contribution :: PyCon Korea 2019",
       "title": "Various ways to contribute to PyCon Korea",
       "intro": "You can contribute to PyCon Korea in various ways including keynote, speaker, tutorial, sprint, volunteer and lightning talk. We will recruit each item with the following schedule.",
       "table": {
@@ -128,6 +135,7 @@
       }
     },
     "recommendKeynoteSpeaker": {
+      "pageTitle": "Recommending Keynote Speaker :: PyCon Korea 2019",
       "title": "Recommending Keynote Speaker",
       "description1": "We are looking for PyCon Korea 2019 Keynote Speaker to be the Polaris of Pythonistas.",
       "description2": "If you know someone who is actively using Python for life/work/hobbies, please do not hesitate to recommend it.",
@@ -138,6 +146,7 @@
       }
     },
     "cfpGuide": {
+      "pageTitle": "How to submit proposal :: PyCon Korea 2019",
       "title": "How to submit proposal",
       "intro": "This page has written to provide detailed information for speakers of PyCon Korea. Below information and suggestion will guide your presentation to be more informative and persuasive to audience in PyCon Korea.",
       "notice": {
@@ -257,6 +266,8 @@
       }
     },
     "talkProposal": {
+      "pageTitle": "Proposing a talk :: PyCon Korea 2019",
+      "title": "Proposing a talk",
       "description1": "We are recruiting a variety of Python-related presentations, such as academic or commercial projects for Python, case studies. Please refer to the Guide for Speakers for more information.",
       "schedule": {
         "open": "CFP Open",
@@ -327,6 +338,7 @@
   },
   "sponsor": {
     "prospectus": {
+      "pageTitle": "Sponsor Prospectus :: PyCon Korea 2019",
       "title": "Sponsor Prospectus",
       "description1": "So, sponsoring this event is the most honest way to show the direction and attitude of the sponsor or individual to the open source community and Python users. In addition, we will support you in various media, sponsor tutorial, sponsor session and booth composition, and you can use it as a place to recruit excellent developers.",
       "schedule": {
@@ -391,6 +403,7 @@
     }
   },
   "coc": {
+    "pageTitle": "Code Of Conduct :: PyCon Korea 2019",
     "title": "Code Of Conduct",
     "notice": "The PyCon Korea CoC will be updated in May 2019.",
     "desc1": "PyCon Korea(henceforth referred as PyCon) is a non-profit community conference intended for networking and collaborating in the developer community.",
@@ -410,6 +423,22 @@
     "license": "License",
     "licenseDesc": "This Code of Conduct was forked from the example policy from the Geek Feminism wiki, created by the Ada Initiative and other volunteers. which is under a Creative Commons Zero license. <a href=\"https://github.com/pythonkr/pycon-code-of-conduct\">github link</a>"
   },
+  "agreement": {
+    "title": "Complete the registeration process",
+    "desc1": "You have successfully authorized the following account.",
+    "socialService": "Social Service",
+    "email": "email",
+    "desc2": "When you authorize your account, we save the following public information",
+    "socialAccount": "Social Account ID",
+    "profileImage": "Profile Image",
+    "desc3": "Please complete the registeration process by agreeing to the terms.",
+    "agreeTermsOfService": "Agree terms of service",
+    "viewTermsOfService": "View terms of service",
+    "agreePrivacyProtectionPolicy": "Agree privacy protection policy",
+    "viewPrivacyProtectionPolicy": "View Privacy Protection Policy",
+    "finishRegisteration": "Submit"
+
+  },
   "fixedFooter": {
     "coc": "Code of Conduct",
     "sponsor": "Sponsor",
@@ -424,5 +453,77 @@
     "poweredBy": "Powered by Django and next.js",
     "hostedOn": "Hosted on Naver D2",
     "issueTrackerBy": "Collaboration tools are supported by Dooray!"
+  },
+  "termOfService": {
+    "pageTitle": "Term of Service :: PyCon Korea 2019",
+    "heading": "Term of Service",
+    "title0": "Purpose",
+    "paragraph0": "This \"Terms of Service\" (hereinafter referred as \"this agreement\"), the service which is provided by Python User Group Korea (hereinafter referred as the \"company\") and other services associated with it (hereinafter collectively referred as \"this service\") establishes all the statements that users must comply with when using this service as well as the relationship of rights and obligations between the users and the company. Users of this service must read the full text of this Terms of Service before accepting this agreement.",
+    "title1": "Agreement and modification of Terms of Services",
+    "paragraph1-1": "This agreement is published on notice page of this service and applied to all users who agreed on this agreement.",
+    "paragraph1-2": "The company can modify this agreement as long as it does not violate the related regulations. In case of modification of the agreement, the company should notice the updates 14 days in advance.",
+    "paragraph1-3":  "When there’s no neglection from the day of notification of modification and after 7 days of its application, it will be considered as the user agreed on the new agreement. If the user does not agree the new agreement, the user can opt out from the service.",
+    "title2": "Establishment of Contract",
+    "paragraph2": "When the user becomes a member of the service via sign-up, it is considered that the user agreed on the agreement and related policies and the contract will be established.",
+    "paragraph2-1": "If the user falls under any of the following, the user may not be accept for the \"Service\".",
+    "paragraph2-1-1": "When there’s false information in the contents of the application",
+    "paragraph2-1-2": "When the external usage of the service violates the agreement",
+    "paragraph2-2": "The statement of acceptance of the \"Service\" shall include information on the user's ability to confirm and sell the purchase application and to cancel the cancellation of the application for purchase.",
+    "title3": "Privacy",
+    "paragraph3": "The service collects the minimal private information to provide services for the user. To protect the privacy and resolve disputes, the company follows the privacy protection policy established internally.",
+    "title4": "Discontinuance of Service",
+    "paragraph4-1": "The \"Company\" can modify or discontinue the whole or part of the service in case of change of business, abandonment of the business, M&A, or technical issues.",
+    "paragraph4-2": "In case of the modification or discontinuance of the service, the contents, reasons, and date should be noticed 7 days in advance of its modification or discontinuance in a manner that the user can recognize it, such as on notice board.",
+    "title5": "Membership Withdrawal and Eligibility",
+    "paragraph5-1": "The member can request for withdrawal of the membership to the service at any time and the service should treat it within 7 days of its acceptance.",
+    "paragraph5-2": "When the member falls under the following category, the “Service” can restrict or discontinue the membership.",
+    "paragraph5-2-1": "If there’s false information in the contents of the membership application form",
+    "paragraph5-2-2": "If the member threatens the order, such as interfering with the use of another person's \"service\" or stealing the information",
+    "paragraph5-2-3": "If the member uses the “Service” for actions that violate the regulations or the agreement",
+    "title6": "Refund",
+    "paragraph6": "The \"Service\" should notice the reason in case that requested service cannot be provided and take action required to refund within 7 days.",
+    "title7": "User’s Duties and Responsibilities",
+    "paragraph7-1": "If the Company believes that the member is using the service in a form that is contrary to the Terms, the Company shall take such action as deemed appropriate by the Company. However, the Company has no obligation to prevent or correct such violations.",
+    "paragraph7-2": "If, for any reason, the User receives a claim from a third party and the Company incurs any or all damages directly or indirectly (including attorneys' fees), the User shall immediately compensate at the request of the Company.",
+    "paragraph7-2-1": "Registration of false contents when applying or changing",
+    "paragraph7-2-2": "Stealing others’ information",
+    "paragraph7-2-3": "The modification of contents written in the \"Service\"",
+    "paragraph7-2-4": "Publication of information other than information provided by the \"Service\"",
+    "paragraph7-2-5": "Infringement of intellectual property rights such as \"Service\" or other third party's copyright",
+    "paragraph7-2-6": "Damage of honor of the \"Service\" or other people or interference of the work",
+    "paragraph7-2-7": "Publication of sensual or violence messages, videos, or in any form on the \"Service\"",
+    "title8": "The Use of Intellectual Property",
+    "paragraph8-1": "The copyrights and other intellectual property rights of the work created and distributed by the company belong to the company.",
+    "paragraph8-2": "The user may not use the information to which the intellectual property right belongs to \"Service\" among the information obtained by using \"Service\" for commercial purposes by copying, transmitting, publishing, distributing, broadcasting or other methods without prior consent of \"Service\" should not be used.",
+    "paragraph8-3": "In the usage of materials which the user has its intellectual property, the “Service” should give a notice to the user.",
+    "title9": "Resolution of Disputes",
+    "paragraph9-1": "The laws of the Republic of Korea apply to electronic commerce lawsuits filed between the “Service” and users.",
+    "paragraph9-2": "Any dispute arising between the “Service” and the user shall be brought to the jurisdiction of the Seoul Central District Court."
+  },
+  "privacyPolicy": {
+    "heading": "Privacy Protection Policy",
+    "title0": "What is Privacy Protection Policy?",
+    "paragraph0": "'Privacy Protection Policy' means the guidelines that Python User Group Korea (hereinafter referred to as 'Company') must comply with in order to safeguard the valuable personal information of all users and to use contents and services with peace of mind.",
+    "title1": "Items and Purpose of Collecting Personal Information",
+    "paragraph1-1": "Membership - Collect emails and names as essential for providing content such as sign-up confirmation, identity verification, event guide, and ticket payment within the service.",
+    "paragraph1-2": "Speaker Suggestion - Information such as e-mail, name, English name, phone number, and affiliation are required in order to confirm the identity of the person. It will be used as a guide on web-site/event for participants.",
+    "paragraph1-3": "Personal information that you provide may be modified at any time and personal information will not be provided or used separately from third parties without the consent of the user and we will pay close attention when sharing contents containing personal information.  The user included in each case must submit required data as requested for each item in order to subscribe the service or suggest the speaker the service can be subscribed or suggested, and when the information is submitted, the user is considered to have consented to the collection of personal information.",
+    "title2": "Automatic Collection of Personal Information - Cookies",
+    "paragraph2": "We use cookies to provide convenient services such as personalized content and automatic sign-in to each user. Cookies do not store any personally identifiable information, and you have the option of installing cookies. If you do not want to, you can allow all cookies by setting options in your web browser, check each time a cookie is saved, or refuse to save all cookies. However, if you refuse to install cookies, it may be difficult to provide custom content.",
+    "title3": "Measures to Ensure the Security of Personal Information",
+    "paragraph3-1": "We manage the person in charge of personal information to the minimum. The person in charge carries out necessary measures for access control and controls the unauthorized access from outside using the intrusion prevention system.",
+    "paragraph3-2": "In order to prevent leakage and damage of personal information by hacking or computer virus, security program is installed, periodically renewed / checked, technically and physically monitored and blocked.",
+    "title4": "Measures to Ensure the Security of Personal Information",
+    "paragraph4-1": "All personal information entered by the user will be destroyed without delay in 2 years from the end of the event in that year. Similarly, if a user wants to leave and directly contacts the company, all personal information will be destroyed as well. Information in the form of an electronic file is safely deleted so that it can not be recovered, and destroyed by crushing or incineration in the case of printed matter.",
+    "paragraph4-2": "However, information required to be preserved pursuant to relevant laws and regulations will be retained for a certain period of time.",
+    "paragraph4-3": "Records on the collection, processing, and use of credit information: 3 Years",
+    "paragraph4-4": "Records of consumer complaints or disputes: 3 Years",
+    "paragraph4-5": "Record of payment and goods supply: 5 Years",
+    "title5": "Privacy Officer",
+    "paragraph5-1": "We are responsible for the handling of personal information, and we have designated the person responsible for personal information protection as follows in order to handle complaints and damage remedies related to personal information processing. You can contact the person in charge of personal information protection directly about personal information protection inquiries, complaints handling and damage relief.",
+    "paragraph5-2": "Privacy Officer: Kwonhan Bae",
+    "paragraph5-3": "Contact:",
+    "title6": "Change of Personal Information Processing Policy",
+    "paragraph6": "If the above privacy policy changes, we will post the change and the changed privacy policy will take effect seven days after the date of posting. However, we will notify you at least 30 days in advance of any significant change in your rights, such as the items of personal information you collect."
   }
 }

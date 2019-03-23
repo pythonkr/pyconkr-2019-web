@@ -35,7 +35,7 @@ class Logout extends React.Component<{
         footer={<Footer />}
       >
         <H1>
-          <IntlText intlKey='homeTitle'>파이콘 한국 가입하기</IntlText>
+          <IntlText intlKey='agreement.title'>파이콘 한국 가입하기</IntlText>
         </H1>
         <FormWrapper style={{ marginBottom: 100 }}>
           <form
@@ -53,21 +53,21 @@ class Logout extends React.Component<{
             }}
           >
             <p style={{ fontSize: 18, fontWeight: 700, color: HEADING_LIGHT_BLACK, marginTop: 20 }}>
-              다음 계정에서 성공적으로 인증받았습니다.
+              <IntlText intlKey='agreement.desc1'>다음 계정에서 성공적으로 인증받았습니다.</IntlText>
             </p>
             <Ul>
-              <Li>연결한 소셜 계정: { profile.oauthType }</Li>
-              <Li>이메일: { profile.email }</Li>
+              <Li><IntlText intlKey='agreement.socialService'>연결한 소셜 계정</IntlText>: { profile.oauthType }</Li>
+              <Li><IntlText intlKey='agreement.email'>이메일</IntlText>: { profile.email }</Li>
             </Ul>
             <p style={{ fontSize: 18, fontWeight: 700, color: HEADING_LIGHT_BLACK, marginTop: 50 }}>
-              계정 인증 시 다음 공개 정보(Public Data)를 함께 저장합니다.
+              <IntlText intlKey='agreement.desc2'>계정 인증 시 다음 공개 정보(Public Data)를 함께 저장합니다.</IntlText>
             </p>
             <Ul>
-              <Li>소셜 계정 아이디</Li>
-              <Li>프로필 이미지</Li>
+              <Li><IntlText intlKey='agreement.socialAccount'>소셜 계정 아이디</IntlText></Li>
+              <Li><IntlText intlKey='agreement.profileImage'>프로필 이미지</IntlText></Li>
             </Ul>
             <p style={{ fontSize: 18, fontWeight: 700, color: HEADING_LIGHT_BLACK, marginTop: 50, marginBottom: 20 }}>
-              약관 동의를 통해 가입 절차를 완료해주세요.
+              <IntlText intlKey='agreement.desc3'>약관 동의를 통해 가입 절차를 완료해주세요.</IntlText>
             </p>
             <p style={{ position: 'relative'}}>
               <input
@@ -82,13 +82,13 @@ class Logout extends React.Component<{
                 }
               />
               <label htmlFor='terms-consent'>
-                이용 약관에 동의합니다.
+                <IntlText intlKey='agreement.agreeTermsOfService'>이용 약관에 동의합니다.</IntlText>
                 <a
                   style={{ position: 'absolute', right: 0 }}
                   href={paths.account.termsOfService}
                   target='_blank'
                   rel='noreferrer'
-                >이용 약관 보기</a>
+                ><IntlText intlKey='agreement.viewTermsOfService'>이용 약관 보기</IntlText></a>
               </label>
             </p>
             <p style={{ position: 'relative'}}>
@@ -104,18 +104,18 @@ class Logout extends React.Component<{
                 }
               />
               <label htmlFor='privacy-consent'>
-                개인정보 처리 방침에 동의합니다.
+                <IntlText intlKey='agreement.agreePrivacyProtectionPolicy'>개인정보 처리 방침에 동의합니다.</IntlText>
                 <a
                   style={{ position: 'absolute', right: 0 }}
                   href={paths.account.privacyPolicy}
                   target='_blank'
                   rel='noreferrer'
-                >개인정보 처리 방침 보기</a>
+                ><IntlText intlKey='agreement.viewPrivacyProtectionPolicy'>개인정보 처리 방침 보기</IntlText></a>
               </label>
             </p>
             <FlexCenterWrapper>
               <Button
-                intlKey='ㅁㄴㅇㄹㅁㄴㅇㄹ'
+                intlKey='agreement.finishRegisteration'
                 tag='button'
                 color={TEAL}
                 size='big'

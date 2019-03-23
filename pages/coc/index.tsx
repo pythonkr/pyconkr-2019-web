@@ -16,7 +16,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
   render() {
     return (
       <PageTemplate
-        header={<Header title='파이콘 성명서 :: 파이콘 한국 2019' />}
+        header={<Header title='파이콘 성명서 :: 파이콘 한국 2019' intlKey='coc.pageTitle'/>}
         footer={<Footer />}
       >
         <H1><IntlText intlKey='coc.title'>

@@ -59,13 +59,13 @@ class Contribution extends React.Component<{
   render() {
 
     return <PageTemplate
-      header={<Header title='제안 및 신청 내역 :: 파이콘 한국 2019' />}
+      header={<Header title='제안 및 신청 내역 :: 파이콘 한국 2019' intlKey='contribution.pageTitle'/>}
       footer={<Footer />}
     >
       <H1>
-        <IntlText intlKey='account.profile.header'>제안 및 신청 내역</IntlText>
+        <IntlText intlKey='contribution.title'>제안 및 신청 내역</IntlText>
       </H1>
-      <Paragraph>파이콘 한국 2019에 제안 또는 신청한 내역입니다.</Paragraph>
+      <Paragraph intlKey='contribution.paragraph'>파이콘 한국 2019에 제안 또는 신청한 내역입니다.</Paragraph>
       <MyContribution />
     </PageTemplate>
   }

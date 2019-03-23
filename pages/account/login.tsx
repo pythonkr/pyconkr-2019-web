@@ -10,7 +10,6 @@ import { inject, observer } from 'mobx-react'
 import Router, { withRouter } from 'next/router'
 import React from 'react'
 import intl from 'react-intl-universal'
-import { paths } from 'routes/paths'
 import { FACEBOOK_BLUE, NAVER_GREEN } from 'styles/colors'
 import { StoresType } from '../_app'
 
@@ -18,11 +17,15 @@ const LoginButtonsWrapper = styled.div`
   width: 100%;
   max-width: 700px;
   background-color: #fbfbfb;
-  padding: 40px 40px;
-
+  padding: 92px 0 105px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `
 const MainButton = styled.button`
   width: 100%;
+  max-width: 428px;
   height: 70px;
   border-radius: 4px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07);
@@ -35,6 +38,7 @@ const MainButton = styled.button`
 `
 const SubButton = styled.button`
   width: 100%;
+  max-width: 428px;
   height: 54px;
   border-radius: 4px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07);
@@ -54,16 +58,20 @@ const ButtonText = styled.span`
   color: ${props => props.color || '#4d5256'};
 `
 const Hr = styled.hr`
+  width: 100%;
+  max-width: 428px;
   margin: 52px 0 37px;
   position: relative;
-  &:after {
-    content: "";
-    position: absolute;
-    top: -5px;
-    display: block;
-    width: 100px;
-    height: 16px;
-  }
+  border-bottom: solid 1px #979797;
+  border-top: 0;
+  // &:after {
+  //   content: "";
+  //   position: absolute;
+  //   top: -5px;
+  //   display: block;
+  //   width: 100px;
+  //   height: 16px;
+  // }
 `
 
 @inject('stores')

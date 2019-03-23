@@ -5,16 +5,18 @@ import intl from 'react-intl-universal'
 
 export type PropsType = {
   title: string;
+  intlKey?: string | null;
 }
 
 class Header extends React.Component<PropsType> {
   render() {
     const { title } = this.props
-
+    const intlKey = this.props.intlKey? this.props.intlKey : 'constant.pyconKorea.name'
     return (
       <>
         <Head>
-          <title>{title}</title>
+          <title>{intl.get(intlKey).d(title)}</title>
+          {/* <title>{title}</title> */}
           <meta charSet='utf-8' />
           <meta
             property='og:site_name'

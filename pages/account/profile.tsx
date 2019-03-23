@@ -90,7 +90,7 @@ class Profile extends React.Component<{
 
     return (
       <PageTemplate
-        header={<Header title='프로필 :: 파이콘 한국 2019' />}
+        header={<Header title='프로필 :: 파이콘 한국 2019' intlKey='account.profile.pageTitle' />}
         footer={<Footer />}
       >
         <H1>
