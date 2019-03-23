@@ -57,11 +57,11 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
 
     return (
       <PageTemplate
-        header={<Header title='발표안 제안하기 :: 파이콘 한국 2019' />}
+        header={<Header title='발표안 제안하기 :: 파이콘 한국 2019' intlKey='contribute.talkProposal.pageTitle'/>}
         footer={<Footer />}
       >
         <LocalNavigation list={contributionMenu.submenu} />
-        <H1><IntlText intlKey='contribute.overview.title'>
+        <H1><IntlText intlKey='contribute.talkProposal.title'>
           발표안 제안하기
         </IntlText></H1>
         <StatusBar

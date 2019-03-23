@@ -287,7 +287,7 @@ class Index extends React.Component<{ stores: StoresType }> {
   render() {
     return (
       <>
-        <Header title='파이콘 한국 2019' />
+        <Header title='파이콘 한국 2019' intlKey='constant.pyconKorea.name'/>
         <BannerSection>
           <MainBannerSvgWrapper>
             <MainBannerSvg color='white' />

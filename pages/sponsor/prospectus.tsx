@@ -32,7 +32,7 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
   render() {
     return (
       <PageTemplate
-        header={<Header title='후원사 안내 :: 파이콘 한국 2019' />}
+        header={<Header title='후원사 안내 :: 파이콘 한국 2019' intlKey='sponsor.prospectus.pageTitle'/>}
         footer={<Footer />}
       >
         {/* <LocalNavigation list={sponsorMenu} /> */}

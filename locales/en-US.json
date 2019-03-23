@@ -73,6 +73,7 @@
   },
   "account": {
     "profile": {
+      "pageTitle": "Profile :: PyCon Korea 2019",
       "header": "Profile",
       "item1": "Profile Picture",
       "button1": "Upload",
@@ -92,6 +93,11 @@
     "title": "Login",
     "githubButton": "Login with Github Account",
     "facebookButton": "Login with Facebook Account"
+  },
+  "contribution": {
+    "pageTitle": "Proposal/Sponsor History :: PyCon Korea 2019",
+    "title": "Proposal/Sponsor History",
+    "paragraph": "It is the contents which you submitted or applied to PyCon Korea 2019."
   },
   "home": {
     "sprintDescription": "Sprints are intensive development session on an open source project of your choice, in a team environment. It's a time to come together with colleagues, old and new, to share what you've learned and apply it to an open source project. Is this your first time joining in Sprints? No problem! It will be the time that you learn directly from the open source contributors. Sprint sessions are not just limited to the projects using Python, all languages are welcome!",
@@ -115,6 +121,7 @@
   },
   "contribute": {
     "overview": {
+      "pageTitle": "About contribution :: PyCon Korea 2019",
       "title": "Various ways to contribute to PyCon Korea",
       "intro": "You can contribute to PyCon Korea in various ways including keynote, speaker, tutorial, sprint, volunteer and lightning talk. We will recruit each item with the following schedule.",
       "table": {
@@ -128,6 +135,7 @@
       }
     },
     "recommendKeynoteSpeaker": {
+      "pageTitle": "Recommending Keynote Speaker :: PyCon Korea 2019",
       "title": "Recommending Keynote Speaker",
       "description1": "We are looking for PyCon Korea 2019 Keynote Speaker to be the Polaris of Pythonistas.",
       "description2": "If you know someone who is actively using Python for life/work/hobbies, please do not hesitate to recommend it.",
@@ -138,6 +146,7 @@
       }
     },
     "cfpGuide": {
+      "pageTitle": "How to submit proposal :: PyCon Korea 2019",
       "title": "How to submit proposal",
       "intro": "This page has written to provide detailed information for speakers of PyCon Korea. Below information and suggestion will guide your presentation to be more informative and persuasive to audience in PyCon Korea.",
       "notice": {
@@ -257,6 +266,8 @@
       }
     },
     "talkProposal": {
+      "pageTitle": "Proposing a talk :: PyCon Korea 2019",
+      "title": "Proposing a talk",
       "description1": "We are recruiting a variety of Python-related presentations, such as academic or commercial projects for Python, case studies. Please refer to the Guide for Speakers for more information.",
       "schedule": {
         "open": "CFP Open",
@@ -327,6 +338,7 @@
   },
   "sponsor": {
     "prospectus": {
+      "pageTitle": "Sponsor Prospectus :: PyCon Korea 2019",
       "title": "Sponsor Prospectus",
       "description1": "So, sponsoring this event is the most honest way to show the direction and attitude of the sponsor or individual to the open source community and Python users. In addition, we will support you in various media, sponsor tutorial, sponsor session and booth composition, and you can use it as a place to recruit excellent developers.",
       "schedule": {
@@ -391,6 +403,7 @@
     }
   },
   "coc": {
+    "pageTitle": "Code Of Conduct :: PyCon Korea 2019",
     "title": "Code Of Conduct",
     "notice": "The PyCon Korea CoC will be updated in May 2019.",
     "desc1": "PyCon Korea(henceforth referred as PyCon) is a non-profit community conference intended for networking and collaborating in the developer community.",
