@@ -86,9 +86,7 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
         <Section>
           <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
           <Paragraph>
-            <a href='mailto: sponsor@pycon.kr'>sponsor@pycon.kr</a><br />
-            {intl.get('sponsor.prospectus.contactDescription')
-              .d('이메일로 문의 주시면 상세한 후원사 안내 문서를 보내드립니다.')}
+            <a href='mailto: sponsor@pycon.kr'>sponsor@pycon.kr</a>
           </Paragraph>
         </Section>
         <Section>
