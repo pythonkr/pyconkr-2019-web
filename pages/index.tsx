@@ -287,9 +287,9 @@ class Index extends React.Component<{ stores: StoresType }> {
   async componentDidMount() {
     if (location.search.indexOf('event=aprilfool') === -1) {
       if (location.search.indexOf('lang=en-US') === -1) {
-        location.href = 'https://2019.jsconfkorea.com/en/?event=aprilfool';
-      } else {
         location.href = 'https://2019.jsconfkorea.com/?event=aprilfool';
+      } else {
+        location.href = 'https://2019.jsconfkorea.com/en/?event=aprilfool';
       }
     }
   }
