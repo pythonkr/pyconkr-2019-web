@@ -47,7 +47,7 @@ export const SponsorPackageTables = () => <>
           <Td>{ intl.get('common.unit.krw', { number: '8,000,000' }).d('8,000,000 원') }</Td>
         </Tr>
         <Tr>
-          <Th>{ intl.get('sponsor.prospectus.packages.availability.header').d('구좌') }</Th>
+          <Th>{ intl.get('sponsor.prospectus.packages.availability.header').d('스폰서 수') }</Th>
           <Td>1</Td>
           <Td>2</Td>
           <Td>2</Td>
@@ -133,7 +133,7 @@ export const SponsorPackageTables = () => <>
           <Td></Td>
         </Tr>
         <Tr>
-        <Th>{ intl.get('sponsor.prospectus.packages.availability.header').d('구좌') }</Th>
+        <Th>{ intl.get('sponsor.prospectus.packages.availability.header').d('스폰서 수') }</Th>
           <Td>10</Td>
           <Td>4</Td>
           <Td>{ intl.get('sponsor.prospectus.packages.availability.unlimited').d('제한 없음') }</Td>
