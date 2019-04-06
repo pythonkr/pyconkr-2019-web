@@ -52,6 +52,7 @@ export default class CFPFormStage2 extends React.Component<{ stores: StoresType;
     nameKo: '',
     managerName: '',
     managerContact: '',
+    levelId: '1',
     subContact: '',
     email: '',
     gradeId: '',
@@ -204,19 +205,19 @@ export default class CFPFormStage2 extends React.Component<{ stores: StoresType;
           <SelectWrapper>
             {/* tslint:disable-next-line:react-a11y-no-onchange */}
             <select
-              value={this.state.level}
-              onBlur={e => this.setState({ categoryId: e.target.value })}
-              onChange={e => this.setState({ categoryId: e.target.value })}
+              value={this.state.levelId}
+              onBlur={e => this.setState({ levelId: e.target.value })}
+              onChange={e => this.setState({ levelId: e.target.value })}
               aria-required={true}
               required
             >
               {
-                stores.cfpStore.categories.map(category =>
+                stores.sponsorStore.sponsorLevels.map(level =>
                   <option
-                    key={category.id}
-                    aria-selected={this.state.categoryId === 'category.id'}
-                    value={category.id}
-                  >{category.name}</option>
+                    key={level.id}
+                    aria-selected={this.state.levelId === 'level.id'}
+                    value={level.id}
+                  >{level.name}</option>
                 )
               }
             </select>

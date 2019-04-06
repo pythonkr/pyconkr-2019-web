@@ -1,0 +1,19 @@
+query getSponsorLevels {
+    sponsorLevels {
+        id
+        name
+        nameKo
+        nameEn
+        visible
+        price
+        limit
+        ticketCount
+        presentationCount
+        boothInfo
+        programGuide
+        canProvideGoods
+        openLunch
+        logoLocations
+        canRecruit
+    }
+}

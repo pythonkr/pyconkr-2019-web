@@ -56,7 +56,7 @@ export default class ApplicationForm extends React.Component<{ stores: StoresTyp
         header={<Header title='후원사 신청하기 :: 파이콘 한국 2019' />}
         footer={<Footer />}
       >
-        <LocalNavigation list={sponsorMenu.submenu} />
+        {/* <LocalNavigation list={sponsorMenu.submenu} /> */}
 
         <H1><IntlText intlKey='sponsor.prospectus.title'>
           후원사 신청하기
