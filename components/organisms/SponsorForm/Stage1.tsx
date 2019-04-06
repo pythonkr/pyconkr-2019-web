@@ -195,7 +195,7 @@ export default class SponsorFormStage1 extends React.Component<{
               }
               onClick={e => {
                 e.preventDefault()
-                toNextStage()
+                this.props.toNextStage()
               }}
             >정말로 다 읽었습니다 🙆‍♀️</Button>
           </FlexCenterWrapper>
