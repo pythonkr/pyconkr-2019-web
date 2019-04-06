@@ -68,13 +68,6 @@ export const SponsorPackageTables = () => <>
           <Td>{ intl.get('common.unit.ea', { number: '2' }).d('2칸') }</Td>
         </Tr>
         <Tr>
-          <Th>{ intl.get('sponsor.prospectus.packages.ost.header').d('후원사 명의 OST 방') }</Th>
-          <Td>{ intl.get('sponsor.prospectus.packages.ost.space', {number: '100'}).d('100명 공간') }</Td>
-          <Td>{ intl.get('sponsor.prospectus.packages.ost.space', {number: '24'}).d('24명 공간') }</Td>
-          <Td>-</Td>
-          <Td>{ intl.get('sponsor.prospectus.packages.ost.space', {number: '12'}).d('12명 공간') }</Td>
-        </Tr>
-        <Tr>
           <Th>{ intl.get('sponsor.prospectus.packages.session.header').d('후원사 세션') }</Th>
           <Td>{ intl.get('common.unit.ea', { number: '2' }).d('2세션') }</Td>
           <Td>{ intl.get('common.unit.ea', { number: '1' }).d('1세션') }</Td>
