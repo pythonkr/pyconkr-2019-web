@@ -15,7 +15,8 @@ app.prepare()
     createServer((req: any, res: any) => {
       const parsedUrl = parse(req.url, true)
       if (!parsedUrl.query.lang && req.headers['accept-language']) {
-        parsedUrl.query.lang = req.headers['accept-language'].split(',')[0]
+        const acceptLang = req.headers['accept-language'].split(',')[0]
+        parsedUrl.query.lang = acceptLang === 'ko-KR' ? 'ko-KR' : 'en-US'
       }
       handle(req, res, parsedUrl)
     })
