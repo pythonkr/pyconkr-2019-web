@@ -14,7 +14,7 @@ app.prepare()
   .then(() => {
     createServer((req: any, res: any) => {
       const parsedUrl = parse(req.url, true)
-      if (!parsedUrl.query.lang) {
+      if (!parsedUrl.query.lang && req.headers['accept-language']) {
         parsedUrl.query.lang = req.headers['accept-language'].split(',')[0]
       }
       handle(req, res, parsedUrl)
