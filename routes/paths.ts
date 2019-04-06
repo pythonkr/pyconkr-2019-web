@@ -115,12 +115,12 @@ export const sponsorMenu: WithSubMenu = {
       title: '후원사 안내',
       intlKey: 'gnb.sponsor.prospectus',
       link: paths.sponsor.prospectus
+    },
+    {
+      title: '후원사 신청',
+      intlKey: 'gnb.sponsor.applicationForm',
+      link: paths.sponsor.applicationForm,
     }
-    // {
-    //   title: '후원사 신청',
-    //   intlKey: 'gnb.sponsor.applicationForm',
-    //   link: paths.sponsor.applicationForm,
-    // },
   ]
 }
 
