@@ -1,5 +1,13 @@
 import styled from '@emotion/styled'
-import { DEFAULT_TEXT_BLACK, HEADING_LIGHT_BLACK, TEAL, TEAL_LIGHT, TEAL_LIGHT_LIGHT, TEAL_SEMI_DARK } from 'styles/colors'
+import {
+  DEFAULT_TEXT_BLACK,
+  FORM_LABEL_GRAY,
+  HEADING_LIGHT_BLACK,
+  TEAL,
+  TEAL_LIGHT,
+  TEAL_LIGHT_LIGHT,
+  TEAL_SEMI_DARK
+} from 'styles/colors'
 import { contentWidth, contentWidthPadding, mobileWidth } from 'styles/layout'
 
 /* tslint:disable:max-line-length */
@@ -331,6 +339,15 @@ label {
   font-weight: 700;
 }
 
+form label {
+  display: block;
+  padding: 7px 0;
+  font-size: 14px;
+  line-height: 29px;
+  color: ${FORM_LABEL_GRAY};
+  font-weight: 500;
+}
+
 .required {
   position: relative;
 
@@ -460,6 +477,11 @@ hr {
   margin: 50px auto 50px;
 }
 
+hr.margin-20 {
+  margin: 20px auto 20px;
+}
+
+
 ${AgreementFieldset} {
   width: 100%;
 
@@ -505,4 +527,13 @@ ${AgreementFieldset} {
     }
   }
 }
+
+.full {
+    width: 100%;
+}
+
+.half {
+    width: 50%;
+}
+
 `
