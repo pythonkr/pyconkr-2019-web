@@ -1,0 +1,6 @@
+mutation UploadLogoVector($file: Upload!) {
+    uploadLogoVector(file: $file) {
+        success
+        image
+    }
+}

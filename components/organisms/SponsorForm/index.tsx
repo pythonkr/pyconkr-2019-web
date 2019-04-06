@@ -60,8 +60,8 @@ export default class CFPForm extends React.Component<{ stores: StoresType }> {
   }
 
   async componentDidMount() {
-    const { cfpStore } = this.props.stores
-    if (!cfpStore.isInitialized) cfpStore.initialize()
+    const { sponsorStore } = this.props.stores
+    if (!sponsorStore.isInitialized) sponsorStore.initialize()
   }
 
   render() {

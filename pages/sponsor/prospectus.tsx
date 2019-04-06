@@ -6,8 +6,10 @@ import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import { SponsorPackageTables } from 'components/organisms/SponsorPackageTables'
 import PageTemplate from 'components/templates/PageTemplate'
+import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import { callForSponsors } from 'dates'
 import { inject, observer } from 'mobx-react'
+import { paths } from 'routes/paths'
 import React from 'react'
 import intl from 'react-intl-universal'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
@@ -22,7 +24,7 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
         header={<Header title='후원사 안내 :: 파이콘 한국 2019' intlKey='sponsor.prospectus.pageTitle'/>}
         footer={<Footer />}
       >
-        <LocalNavigation list={sponsorMenu} />
+        {/* <LocalNavigation list={sponsorMenu} /> */}
 
         <H1><IntlText intlKey='sponsor.prospectus.title'>
           후원사 안내

@@ -1,0 +1,5 @@
+mutation UploadBusinessRegistrationFile($file: Upload!) {
+    uploadBusinessRegistrationFile(file: $file) {
+        success
+    }
+}
