@@ -7,7 +7,7 @@ import {
   createMutationDefinition,
   sendMutation,
 } from './__base__'
-import * as _uploadLogoVector from './UploadLogoVector.graphql'
+import * as _uploadLogoVector from './_uploadLogoVector.graphql'
 
 export const uploadLogoVectorMutationDefinition = createMutationDefinition<
   UploadLogoVector,
