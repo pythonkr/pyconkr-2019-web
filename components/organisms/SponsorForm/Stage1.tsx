@@ -220,7 +220,7 @@ export default class SponsorFormStage1 extends React.Component<{
                 </ul>
               </li>
               <li><IntlText intlKey='asdfasdf'>
-              파이콘 한국에 후원한 이후 취소하는 경우 위약금 규정은 다음과 같습니다.
+              파이콘 한국 2019에 후원을 취소하는 경우에 위약금 규정은 다음과 같습니다.
               </IntlText>
                 <ul>
                   <li><IntlText intlKey='asdfasdf'>
@@ -235,7 +235,7 @@ export default class SponsorFormStage1 extends React.Component<{
                   <li><IntlText intlKey='asdfasdf'>
                   </IntlText></li>  
                   <li><IntlText intlKey='asdfasdf'>
-                  사단법인 파이썬사용자모임의 귀책사유로 행사가 취소되거나 후원 계약을 해제하는 경우 기간에 무관하게 후원사가 사단법인 파이썬사용자모임에 지급한 금액 전액을 환불해드립니다. 
+                  파이콘 한국의 귀책사유로 행사가 취소되거나 후원 계약을 해제하는 경우 기간에 무관하게 후원사가 파이콘 한국에 지급한 금액 전액을 환불해드립니다. 
                   </IntlText></li>
                 </ul>
               </li>
