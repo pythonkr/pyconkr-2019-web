@@ -2080,7 +2080,7 @@
             "description": null,
             "args": [
               {
-                "name": "sponsorInput",
+                "name": "data",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",

@@ -1,8 +1,7 @@
 import { FormWrapper, SelectWrapper } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
 import { StageButtonGroup } from 'components/organisms/CFPForm/StageButtonGroup'
-import { DurationNode, LanguageNode } from 'lib/apollo_graphql/__generated__/globalTypes'
-import { CFPFormStage } from 'lib/stores/CFPStore'
+import { SponsorFormStage } from 'lib/stores/SponsorStore'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import React from 'react'
@@ -11,15 +10,10 @@ import styled from "@emotion/styled";
 import { FORM_LABEL_GRAY } from "../../../styles/colors";
 import { mobileWidth } from "../../../styles/layout";
 import { toJS } from "mobx";
+import { SponsorNode } from 'lib/apollo_graphql/mutations/createOrUpdateSponsor';
 
 interface State {
-  NameEn: string | null,
-  NameKo: string | null,
-  managerName: string | null,
-  managerContact: string | null,
-  subContact: string | null,
-  email: string | null,
-  gradeId: string,
+  proposal: SponsorNode|null
 }
 
 const FormHalfBox = styled.div`
@@ -48,33 +42,39 @@ margin-bottom: 5px;
 @observer
 export default class CFPFormStage2 extends React.Component<{ stores: StoresType; scrollRef: HTMLDivElement }, State> {
   state = {
-    nameEn: '',
-    nameKo: '',
-    managerName: '',
-    managerContact: '',
-    levelId: '1',
-    subContact: '',
-    email: '',
-    gradeId: '',
+    proposal :{
+      nameEn: '',
+      nameKo: '',
+      levelId: '1',
+      descEn: '',
+      descKo: '',
+      managerName: '',
+      managerPhone: '',
+      managerSecondaryPhone: '',
+      maangerEmail: '',
+      businessRegistrationNumber: '',
+      businessRegistrationFile: '',
+      contractProcessRequired: false,
+      url: '',
+      logoImage: '',
+      logoVector: '',
+      submitted: false,
+      accepted: false
+    }
   }
 
   async componentDidMount() {
-    const { sponsor } = this.props.stores.sponsorStore
+    const { proposal } = this.props.stores.sponsorStore
 
-    if (!sponsor) {
+    if (!proposal) {
       return
     }
 
     this.setState({
-      nameEn: '',
-      nameKo: '',
-      managerName: '',
-      managerContact: '',
-      subContact: '',
-      gradeId: '',
-      email: ''
+      proposal: {
+        ...proposal
+      }
     })
-
     this.props.scrollRef && window.scrollTo(0, this.props.scrollRef.offsetTop)
   }
 
@@ -86,8 +86,8 @@ export default class CFPFormStage2 extends React.Component<{ stores: StoresType;
       <FormWrapper>
         <form onSubmit={(e) => {
           e.preventDefault()
-          stores.cfpStore.createOrUpdatePresentation(this.state).then(() => {
-            stores.cfpStore.setCurrentStage(CFPFormStage.stage3)
+          stores.sponsorStore.createOrUpdateSponsor(this.state.proposal).then(() => {
+            stores.sponsorStore.setCurrentStage(SponsorFormStage.stage3)
           })
         }}>
           <FormHalfBox>
@@ -245,9 +245,20 @@ export default class CFPFormStage2 extends React.Component<{ stores: StoresType;
               </IntlText>
             </label>
             <input
+              id='businessRegistrationFileUpload'
+              name='business-registration-file-upload'
               type='file'
-              value={this.state.subContact}
-              onChange={e => this.setState({ name: e.target.value })}
+              onChange={({ target: { validity, files } }) => {
+                if (!validity.valid || !files) {
+                  return
+                }
+                stores.sponsorStore.uploadBusinessRegistrationFile(files[0]).then((fileUrl) => {
+                  this.setState(state => { 
+                    state.proposal.businessRegistrationFile = fileUrl 
+                    return state
+                  })
+                })
+              }}
               aria-required={true}
               required
             />
@@ -263,13 +274,16 @@ export default class CFPFormStage2 extends React.Component<{ stores: StoresType;
               <p>
                 <input
                   type='radio'
-                  id={DurationNode.SHORT}
-                  value={DurationNode.SHORT}
-                  aria-checked={this.state.duration === DurationNode.SHORT}
-                  checked={this.state.duration === DurationNode.SHORT}
-                  onChange={() => this.setState({ duration: DurationNode.SHORT })}
+                  id='contractProcessRequiredTrue'
+                  value='true'
+                  aria-checked={this.state.proposal.contractProcessRequired}
+                  checked={this.state.proposal.contractProcessRequired}
+                  onChange={() => this.setState(state => { 
+                    state.proposal.contractProcessRequired = true 
+                    return state
+                  })}
                 />
-                <label htmlFor={DurationNode.SHORT}>
+                <label htmlFor='contractProcessRequiredTrue'>
                   <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.sub1'>
                     예
                   </IntlText>
@@ -283,13 +297,16 @@ export default class CFPFormStage2 extends React.Component<{ stores: StoresType;
               <p>
                 <input
                   type='radio'
-                  id={DurationNode.LONG}
-                  value={DurationNode.LONG}
-                  aria-checked={this.state.duration === DurationNode.LONG}
-                  checked={this.state.duration === DurationNode.LONG}
-                  onChange={() => this.setState({ duration: DurationNode.LONG })}
+                  id='contractProcessRequiredFalse'
+                  value='false'
+                  aria-checked={!this.state.proposal.contractProcessRequired}
+                  checked={!this.state.proposal.contractProcessRequired}
+                  onChange={() => this.setState(state => { 
+                    state.proposal.contractProcessRequired = false
+                    return state
+                  })}
                 />
-                <label htmlFor={DurationNode.LONG}>
+                <label htmlFor='contractProcessRequiredFalse'>
                   <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.sub2'>
                     아니오
                   </IntlText>
@@ -372,10 +389,10 @@ export default class CFPFormStage2 extends React.Component<{ stores: StoresType;
 
           <StageButtonGroup
             onPrev={() => {
-              stores.cfpStore.setCurrentStage(CFPFormStage.stage1)
+              stores.sponsorStore.setCurrentStage(SponsorFormStage.stage1)
             }}
             onSave={() => {
-              stores.cfpStore.createOrUpdatePresentation(this.state).then(() => {
+              stores.sponsorStore.createOrUpdateSponsor(this.state.proposal).then(() => {
                 alert(intl.get('contribute.talkProposal.application.stages.stages2.alert').d('저장이 완료되었습니다'))
               })
             }}

@@ -1,5 +1,5 @@
 import {
-  getSponsorLevels as getSponsorLevelsType,
+  getSponsorLevels as SponsorLevelsType,
   getSponsorLevels_sponsorLevels as SponsorLevelType,
 } from 'lib/apollo_graphql/__generated__/getSponsorLevels'
 import {
@@ -9,7 +9,7 @@ import {
 import * as _getSponsorLevels from './_getSponsorLevels.graphql'
 
 export const getSponsorLevelsQueryDefinition = createQueryDefinition<
-SponsorLevelType,
+SponsorLevelsType,
   {}
 >(_getSponsorLevels)
 
@@ -19,4 +19,5 @@ export const getSponsorLevels = sendQuery(
 
 export {
   SponsorLevelType,
+  SponsorLevelsType
 }
