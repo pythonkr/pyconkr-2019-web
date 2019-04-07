@@ -386,7 +386,6 @@ export default class CFPFormStage2 extends React.Component<{ stores: StoresType;
             type='file'
             // value={this.state.proposal.logoImage}
             aria-required={true}
-            required
             onChange={({ target: { validity, files } }) => {
               if (!validity.valid || !files) {
                 return
