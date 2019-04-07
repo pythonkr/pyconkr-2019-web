@@ -88,7 +88,10 @@ export default class CFPFormStage2 extends React.Component<{ stores: StoresType;
       <FormWrapper>
         <form onSubmit={(e) => {
           e.preventDefault()
-          stores.sponsorStore.createOrUpdateSponsor(this.state.proposal).then(() => {
+          stores.sponsorStore.createOrUpdateSponsor({
+            ...this.state.proposal,
+            submitted: true
+          }).then(() => {
             stores.sponsorStore.setCurrentStage(SponsorFormStage.stage3)
           })
         }}>
