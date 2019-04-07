@@ -1,20 +1,16 @@
+import styled from '@emotion/styled'
 import { FormWrapper, SelectWrapper } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
 import { StageButtonGroup } from 'components/organisms/CFPForm/StageButtonGroup'
-import { SponsorFormStage } from 'lib/stores/SponsorStore'
+import { SponsorFormStage } from 'lib/stores/Sponsor/SponsorStore'
+import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import React from 'react'
 import intl from 'react-intl-universal'
-import styled from "@emotion/styled";
-import { FORM_LABEL_GRAY } from "../../../styles/colors";
-import { mobileWidth } from "../../../styles/layout";
-import { toJS } from "mobx";
-import { SponsorNode } from 'lib/apollo_graphql/mutations/createOrUpdateSponsor';
-
-interface State {
-  proposal: SponsorNode|null
-}
+import { DEFAULT_TEXT_BLACK } from 'styles/colors'
+import { FORM_LABEL_GRAY } from '../../../styles/colors'
+import { mobileWidth } from '../../../styles/layout'
 
 const FormHalfBox = styled.div`
 display: inline-block;
@@ -38,105 +34,61 @@ line-height: 1.8;
 margin-bottom: 5px;
 }`
 
+export type PropsType = {
+  stores: StoresType;
+  scrollRef: HTMLDivElement;
+  toNextStage(): void;
+  toPrevStage(): void;
+}
+
 @inject('stores')
 @observer
-export default class CFPFormStage2 extends React.Component<{ 
-  stores: StoresType; 
-  scrollRef: HTMLDivElement;
-  toNextStage: Function;
-  toPrevStage: Function;
-}, State> {
+export default class CFPFormStage2 extends React.Component<PropsType> {
   state = {
-    proposal: {},
-    levelId: '1',
-    businessRegistrationFile: '',
-    logoImage: '',
-    logoVector: '',
-    submitted: false,
+    levelId: '1'
   }
 
   async componentDidMount() {
     await this.props.stores.sponsorStore.initialize()
-    const { proposal } = this.props.stores.sponsorStore
-    if (!proposal) {
-      return
-    }
-    
-    this.setState({
-      proposal: {
-        nameKo: proposal['nameKo'],
-        nameEn: proposal['nameEn'],
-        descKo: proposal['descKo'],
-        descEn: proposal['descEn'],
-        managerName: proposal['managerName'],
-        managerPhone: proposal['managerPhone'],
-        managerSecondaryPhone: proposal['managerSecondaryPhone'],
-        managerEmail: proposal['managerEmail'],
-        businessRegistrationNumber: proposal['businessRegistrationNumber'],
-        contractProcessRequired: proposal['contractProcessRequired'],
-        url: proposal['url'],
-      },
-      levelId: proposal['levelId'],
-      businessRegistrationFile: proposal['businessRegistrationFile'],
-      logoImage: proposal['logoImage'],
-      logoVector: proposal['logoVector'],
-      submitted: proposal['submitted']
-    })
-    // this.props.scrollRef && window.scrollTo(0, this.props.scrollRef.offsetTop)
   }
 
   render() {
-    const { stores } = this.props
-    const { profile } = toJS(stores.profileStore)
+    const { stores, toNextStage, toPrevStage } = this.props
+    const { profileStore, sponsorStore } = stores
+    const { profile } = toJS(profileStore)
+    const { proposal } = sponsorStore
 
     return (
       <FormWrapper>
-        <form onSubmit={(e) => {
+        <form onSubmit={async (e) => {
           e.preventDefault()
-          stores.sponsorStore.createOrUpdateSponsor({
-            ...this.state.proposal,
-            submitted: true
-          }).then(() => {
-            this.props.toNextStage()
-          })
+          await stores.sponsorStore.createOrUpdateSponsor(true)
+          toNextStage()
         }}>
           <FormHalfBox>
             <label className='required'>
-              <IntlText intlKey='xxx'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
                 후원사 이름(영문)
               </IntlText>
             </label>
             <input
               type='text'
-              value={this.state.proposal.nameEn}
-              onChange={e => {
-                this.setState({ 
-                proposal: {
-                  ...this.state.proposal,
-                  nameEn: e.target.value 
-                }
-              })
-            }}
+              value={proposal.nameEn || ''}
+              onChange={e => proposal.setNameEng(e.target.value)}
               aria-required={true}
               required
             />
           </FormHalfBox>
-
           <FormHalfBox>
             <label className='required'>
-              <IntlText intlKey='xxx'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
                 후원사 이름(국문)
               </IntlText>
             </label>
             <input
               type='text'
-              value={this.state.proposal.nameKo}
-              onChange={e => this.setState({ 
-                proposal: {
-                  ...this.state.proposal,
-                  nameKo: e.target.value 
-                }
-              })}
+              value={proposal.nameKo || ''}
+              onChange={e => proposal.setNameKor(e.target.value)}
               aria-required={true}
               required
             />
@@ -144,9 +96,8 @@ export default class CFPFormStage2 extends React.Component<{
 
           <SectionTitle>연락 정보</SectionTitle>
           <hr className='margin-20' />
-
           <label className='required'>
-            <IntlText intlKey='xxx'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
               담당자 파이콘 계정 이메일
             </IntlText>
           </label>
@@ -155,22 +106,16 @@ export default class CFPFormStage2 extends React.Component<{
             value={profile.email}
             disabled
           />
-
           <FormHalfBox>
             <label className='required'>
-              <IntlText intlKey='xxx'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
                 담당자 이름
               </IntlText>
             </label>
             <input
               type='text'
-              value={this.state.proposal.managerName}
-              onChange={e => this.setState({ 
-                proposal: {
-                  ...this.state.proposal,
-                  managerName: e.target.value 
-                }
-              })}
+              value={proposal.managerName}
+              onChange={e => proposal.setManagerName(e.target.value)}
               aria-required={true}
               required
             />
@@ -178,19 +123,14 @@ export default class CFPFormStage2 extends React.Component<{
 
           <FormHalfBox>
             <label className='required'>
-              <IntlText intlKey='xxx'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
                 담당자 연락처
               </IntlText>
             </label>
             <input
               type='text'
-              value={this.state.proposal.managerPhone}
-              onChange={e => this.setState({ 
-                proposal: {
-                  ...this.state.proposal,
-                  managerPhone: e.target.value 
-                }
-              })}
+              value={proposal.managerPhone}
+              onChange={e => proposal.setManagerPhone(e.target.value)}
               aria-required={true}
               required
             />
@@ -198,19 +138,14 @@ export default class CFPFormStage2 extends React.Component<{
 
           <FormHalfBox>
             <label className='required'>
-              <IntlText intlKey='xxx'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
                 업무용 공식 이메일
               </IntlText>
             </label>
             <input
               type='text'
-              value={this.state.proposal.managerEmail}
-              onChange={e => this.setState({ 
-                proposal: {
-                  ...this.state.proposal,
-                  managerEmail: e.target.value 
-                }
-              })}
+              value={proposal.managerEmail}
+              onChange={e => proposal.setManagerEmail(e.target.value)}
               aria-required={true}
               required
             />
@@ -218,19 +153,14 @@ export default class CFPFormStage2 extends React.Component<{
 
           <FormHalfBox>
             <label className='required'>
-              <IntlText intlKey='xxx'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
                 보조 연락처
               </IntlText>
             </label>
             <input
               type='text'
-              value={this.state.proposal.managerSecondaryPhone}
-              onChange={e => this.setState({ 
-                proposal: {
-                  ...this.state.proposal,
-                  managerSecondaryPhone: e.target.value 
-                }
-              })}
+              value={proposal.managerSecondaryPhone}
+              onChange={e => proposal.setManagerSecondaryPhone(e.target.value)}
               aria-required={true}
               required
             />
@@ -273,21 +203,16 @@ export default class CFPFormStage2 extends React.Component<{
             </label>
             <input
               type='text'
-              value={this.state.proposal.businessRegistrationNumber}
-              onChange={e => this.setState({ 
-                proposal: {
-                  ...this.state.proposal,
-                  businessRegistrationNumber: e.target.value 
-                }
-              })}
+              value={proposal.businessRegistrationNumber}
+              onChange={e => proposal.setBusinessRegistrationNumber(e.target.value)}
               aria-required={true}
               required
             />
           </FormHalfBox>
 
           <FormHalfBox>
-            <label 
-            htmlFor='business_upload'
+            <label
+              htmlFor='business_upload'
               className='required'
               >
               <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
@@ -302,11 +227,7 @@ export default class CFPFormStage2 extends React.Component<{
                 if (!validity.valid || !files) {
                   return
                 }
-                stores.sponsorStore.uploadBusinessRegistrationFile(files[0]).then((fileUrl) => {
-                  this.setState({
-                    businessRegistrationFile: fileUrl
-                  })
-                })
+                sponsorStore.uploadBusinessRegistrationFile(files[0])
               }}
               aria-required={true}
               required
@@ -325,16 +246,28 @@ export default class CFPFormStage2 extends React.Component<{
                   type='radio'
                   id='contractProcessRequiredTrue'
                   value='true'
-                  aria-checked={this.state.proposal.contractProcessRequired}
-                  checked={this.state.proposal.contractProcessRequired}
-                  onChange={() => this.setState(state => { 
-                    state.proposal.contractProcessRequired = true 
-                    return state
-                  })}
+                  aria-checked={proposal.contractProcessRequired}
+                  checked={proposal.contractProcessRequired}
+                  onChange={() => proposal.setContractProcessRequired(true)}
                 />
                 <label htmlFor='contractProcessRequiredTrue'>
                   <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.sub1'>
                     예
+                  </IntlText>
+                </label>
+              </p>
+              <p>
+                <input
+                  type='radio'
+                  id='contractProcessRequiredFalse'
+                  value='false'
+                  aria-checked={!proposal.contractProcessRequired}
+                  checked={!proposal.contractProcessRequired}
+                  onChange={() => proposal.setContractProcessRequired(false)}
+                />
+                <label htmlFor='contractProcessRequiredFalse'>
+                  <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.sub2'>
+                    아니오
                   </IntlText>
                 </label>
                 <InputDesc>
@@ -342,24 +275,6 @@ export default class CFPFormStage2 extends React.Component<{
                   계약 과정이 아닌 패키지 선택 등의 다른 사항은 후원사 신청 이전에 메일로 문의해주세요.<br />
                   sponsor@pycon.kr
                 </InputDesc>
-              </p>
-              <p>
-                <input
-                  type='radio'
-                  id='contractProcessRequiredFalse'
-                  value='false'
-                  aria-checked={!this.state.proposal.contractProcessRequired}
-                  checked={!this.state.proposal.contractProcessRequired}
-                  onChange={() => this.setState(state => { 
-                    state.proposal.contractProcessRequired = false
-                    return state
-                  })}
-                />
-                <label htmlFor='contractProcessRequiredFalse'>
-                  <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.sub2'>
-                    아니오
-                  </IntlText>
-                </label>
               </p>
             </fieldset>
           </div>
@@ -374,13 +289,8 @@ export default class CFPFormStage2 extends React.Component<{
           </label>
           <input
             type='text'
-            value={this.state.proposal.url}
-            onChange={e => this.setState({ 
-              proposal: {
-                ...this.state.proposal,
-                url: e.target.value 
-              }
-            })}
+            value={proposal.url || ''}
+            onChange={e => proposal.setUrl(e.target.value)}
             aria-required={true}
             required
           />
@@ -399,10 +309,7 @@ export default class CFPFormStage2 extends React.Component<{
                 return
               }
               stores.sponsorStore.uploadLogoImage(files[0]).then((imageUrl) => {
-                this.setState(state => { 
-                  state.logoImage = imageUrl 
-                  return state
-                })
+                proposal.setLogoImage(imageUrl)
               })
             }}
           />
@@ -422,10 +329,7 @@ export default class CFPFormStage2 extends React.Component<{
                 return
               }
               stores.sponsorStore.uploadLogoVector(files[0]).then((imageUrl) => {
-                this.setState(state => { 
-                  state.logoVector = imageUrl 
-                  return state
-                })
+                proposal.setLogoVector(imageUrl)
               })
             }}
           />
@@ -439,16 +343,20 @@ export default class CFPFormStage2 extends React.Component<{
             파이콘 홈페이지 후원사 상세페이지에 기재될 내용입니다.<br/>
             추후 추가 또는 수정 가능합니다.
           </InputDesc>
-          <input
-            type='text'
-            value={this.state.proposal.descKo}
-            onChange={e => this.setState({ 
-              proposal: {
-                ...this.state.proposal,
-                descKo: e.target.value 
-              }
-            })}
+          <textarea
+            value={proposal.descKo}
+            onChange={e => proposal.setDescKo(e.target.value)}
+            aria-required={true}
+            style={{ height: 400, marginBottom: 5 }}
+            required
           />
+          <span style={{
+            display: 'block',
+            marginBottom: 40,
+            textAlign: 'right',
+            fontSize: 14,
+            color: (proposal.descKo && proposal.descKo.length >= 5000) ? 'red' : DEFAULT_TEXT_BLACK
+          }}>{(proposal.descKo && proposal.descKo.length) || '0'} / 5000(최대)</span>
 
           <label>
             <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
@@ -459,25 +367,28 @@ export default class CFPFormStage2 extends React.Component<{
             파이콘 홈페이지 후원사 상세페이지에 기재될 내용입니다.<br/>
             추후 추가 또는 수정 가능합니다.
           </InputDesc>
-          <input
-            type='text'
-            value={this.state.proposal.descEn}
-            onChange={e => this.setState({ 
-              proposal: {
-                ...this.state.proposal,
-                descEn: e.target.value 
-              }
-            })}
+          <textarea
+            value={proposal.descEn}
+            onChange={e => proposal.setDescEn(e.target.value)}
+            aria-required={true}
+            style={{ height: 400, marginBottom: 5 }}
+            required
           />
+          <span style={{
+            display: 'block',
+            marginBottom: 40,
+            textAlign: 'right',
+            fontSize: 14,
+            color: (proposal.descEn && proposal.descEn.length >= 5000) ? 'red' : DEFAULT_TEXT_BLACK
+          }}>{(proposal.descEn && proposal.descEn.length) || '0'} / 5000(최대)</span>
 
           <StageButtonGroup
             onPrev={() => {
-              this.props.toPrevStage()
+              toPrevStage()
             }}
-            onSave={() => {
-              stores.sponsorStore.createOrUpdateSponsor(this.state.proposal).then(() => {
-                alert(intl.get('contribute.talkProposal.application.stages.stages2.alert').d('저장이 완료되었습니다'))
-              })
+            onSave={async () => {
+              await stores.sponsorStore.createOrUpdateSponsor(false)
+              alert(intl.get('contribute.talkProposal.application.stages.stages2.alert').d('저장이 완료되었습니다'))
             }}
           />
         </form>

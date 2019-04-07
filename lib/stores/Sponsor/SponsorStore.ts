@@ -1,13 +1,15 @@
 import { client } from 'lib/apollo_graphql/client'
-import { configure, observable, action } from 'mobx'
-import { SponsorLevelType, getSponsorLevels } from 'lib/apollo_graphql/queries/getSponsorLevels'
-import { createOrUpdateSponsor, SponsorNode } from 'lib/apollo_graphql/mutations/createOrUpdateSponsor';
+import { createOrUpdateSponsor } from 'lib/apollo_graphql/mutations/createOrUpdateSponsor'
 import { uploadBusinessRegistrationFile as uploadSponsorBusinessRegistrationFile } from 'lib/apollo_graphql/mutations/uploadBusinessRegistrationFile'
 import { uploadLogoImage as uploadSponsorLogoImage } from 'lib/apollo_graphql/mutations/uploadLogoImage'
 import { uploadLogoVector as uploadSponsorLogoVector } from 'lib/apollo_graphql/mutations/uploadLogoVector'
-import { getMySponsor } from 'lib/apollo_graphql/queries/getMySponsor';
+import { getMySponsor } from 'lib/apollo_graphql/queries/getMySponsor'
+import { getSponsorLevels, SponsorLevelType } from 'lib/apollo_graphql/queries/getSponsorLevels'
+import { action, configure, observable } from 'mobx'
+import { SponsorNode } from './SponsorNode'
+import * as _ from 'lodash'
 
-configure({ enforceActions: 'always' })
+configure({ enforceActions: 'observed' })
 
 export enum SponsorFormStage {
     stage1 = 0,
@@ -18,42 +20,48 @@ export enum SponsorFormStage {
 export class SponsorStore {
     @observable isInitialized: boolean = false
     @observable sponsorLevels: SponsorLevelType[] = []
-    @observable proposal: SponsorNode | null = null
+    @observable proposal: SponsorNode
+    @observable currentStage: SponsorFormStage = SponsorFormStage.stage1
+
+    constructor() {
+        this.proposal = new SponsorNode()
+    }
 
     @action
     async initialize() {
         await this.retrieveSponsorLevels()
-        await this.retrieveMySponsorProposal()
+        // await this.retrieveMySponsorProposal()
         this.isInitialized = true
     }
 
     @action
     async retrieveSponsorLevels() {
         const response = await getSponsorLevels(client)({})
-        if (response.data.sponsorLevels){
+        if (response.data.sponsorLevels) {
             this.sponsorLevels = response.data.sponsorLevels
         }
     }
 
     @action
     async retrieveMySponsorProposal() {
-        const {data} = await getMySponsor(client)({})
+        const { data } = await getMySponsor(client)({})
         this.proposal = data.mySponsor
     }
 
     @action
-    async createOrUpdateSponsor(sponsor: any) {
-        if (sponsor && sponsor.hasOwnProperty('__typename')) {
-            delete sponsor.__typename
-        }
-        
-        const response = await createOrUpdateSponsor(client)({
-            data: sponsor
-        })
-        this.proposal = {
-            ...response.data.createOrUpdateSponsor.sponsor
-        }
+    async createOrUpdateSponsor(submitted: boolean) {
+        const excludeKeys = ['id', 'accepted', 'creator', 'paidAt', 'businessRegistrationFile', 'logoImage', 'logoVector', 'name', 'desc']
+        this.proposal.setSumitted(submitted)
+        const sponsor = _.omit(this.proposal, excludeKeys)
 
+        // FIXME: 아래 코드 의도를 잘 모르겠습니다.. @이종서
+        if('level' in sponsor){
+            if(sponsor.level)
+                sponsor.levelId = sponsor.level.id
+            delete sponsor['level']
+        }
+        const { data } = await createOrUpdateSponsor(client)({ data: sponsor })
+        this.proposal = data.createOrUpdateSponsor.sponsor
     }
 
     @action
@@ -62,10 +70,8 @@ export class SponsorStore {
             file
         })
         const fileUrl = response.data.uploadBusinessRegistrationFile.file
-        this.proposal = {
-            ...this.proposal,
-            businessRegistrationFile: fileUrl
-        }
+        this.proposal.setBusinessRegistrationFile(fileUrl)
+
         return fileUrl
     }
 
@@ -75,10 +81,8 @@ export class SponsorStore {
             file
         })
         const fileUrl = response.data.uploadLogoImage.image
-        this.proposal = {
-            ...this.proposal,
-            logoImage: fileUrl
-        }
+        this.proposal.setLogoImage(fileUrl)
+
         return fileUrl
     }
 
@@ -88,10 +92,8 @@ export class SponsorStore {
             file
         })
         const fileUrl = response.data.uploadLogoVector.image
-        this.proposal = {
-            ...this.proposal,
-            logoVector: fileUrl
-        }
+        this.proposal.setLogoVector(fileUrl)
+
         return fileUrl
     }
 }
