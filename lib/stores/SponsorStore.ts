@@ -5,6 +5,7 @@ import { createOrUpdateSponsor, SponsorNode } from 'lib/apollo_graphql/mutations
 import { uploadBusinessRegistrationFile as uploadSponsorBusinessRegistrationFile } from 'lib/apollo_graphql/mutations/uploadBusinessRegistrationFile'
 import { uploadLogoImage as uploadSponsorLogoImage } from 'lib/apollo_graphql/mutations/uploadLogoImage'
 import { uploadLogoVector as uploadSponsorLogoVector } from 'lib/apollo_graphql/mutations/uploadLogoVector'
+import { getMySponsor } from 'lib/apollo_graphql/queries/getMySponsor';
 
 configure({ enforceActions: 'always' })
 
@@ -22,7 +23,8 @@ export class SponsorStore {
 
     @action
     async initialize() {
-        this.retrieveSponsorLevels()
+        await this.retrieveSponsorLevels()
+        await this.retrieveMySponsorProposal()
         this.isInitialized = true
     }
 
@@ -40,10 +42,17 @@ export class SponsorStore {
     }
 
     @action
+    async retrieveMySponsorProposal() {
+        const {data} = await getMySponsor(client)({})
+        this.proposal = data.mySponsor
+    }
+
+    @action
     async createOrUpdateSponsor(sponsor: any) {
         if (sponsor && sponsor.hasOwnProperty('__typename')) {
             delete sponsor.__typename
         }
+        
         const response = await createOrUpdateSponsor(client)({
             data: sponsor
         })
