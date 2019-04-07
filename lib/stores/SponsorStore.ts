@@ -12,25 +12,19 @@ configure({ enforceActions: 'always' })
 export enum SponsorFormStage {
     stage1 = 0,
     stage2 = 1,
-    stage3 = 2,
+    completed = 2,
 }
 
 export class SponsorStore {
     @observable isInitialized: boolean = false
     @observable sponsorLevels: SponsorLevelType[] = []
     @observable proposal: SponsorNode | null = null
-    @observable currentStage: SponsorFormStage = SponsorFormStage.stage1
 
     @action
     async initialize() {
         await this.retrieveSponsorLevels()
         await this.retrieveMySponsorProposal()
         this.isInitialized = true
-    }
-
-    @action
-    setCurrentStage(stage: SponsorFormStage) {
-      this.currentStage = stage
     }
 
     @action
