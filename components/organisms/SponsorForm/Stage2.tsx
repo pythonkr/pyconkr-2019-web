@@ -40,7 +40,12 @@ margin-bottom: 5px;
 
 @inject('stores')
 @observer
-export default class CFPFormStage2 extends React.Component<{ stores: StoresType; scrollRef: HTMLDivElement }, State> {
+export default class CFPFormStage2 extends React.Component<{ 
+  stores: StoresType; 
+  scrollRef: HTMLDivElement;
+  toNextStage: Function;
+  toPrevStage: Function;
+}, State> {
   state = {
     proposal: {},
     levelId: '1',
@@ -92,7 +97,7 @@ export default class CFPFormStage2 extends React.Component<{ stores: StoresType;
             ...this.state.proposal,
             submitted: true
           }).then(() => {
-            stores.sponsorStore.setCurrentStage(SponsorFormStage.stage3)
+            this.props.toNextStage()
           })
         }}>
           <FormHalfBox>
@@ -467,7 +472,7 @@ export default class CFPFormStage2 extends React.Component<{ stores: StoresType;
 
           <StageButtonGroup
             onPrev={() => {
-              stores.sponsorStore.setCurrentStage(SponsorFormStage.stage1)
+              this.props.toPrevStage()
             }}
             onSave={() => {
               stores.sponsorStore.createOrUpdateSponsor(this.state.proposal).then(() => {

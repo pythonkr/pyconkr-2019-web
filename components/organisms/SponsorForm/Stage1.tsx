@@ -220,15 +220,21 @@ export default class SponsorFormStage1 extends React.Component<{
                 </ul>
               </li>
               <li><IntlText intlKey='asdfasdf'>
-              파이콘 한국 후원 환불 규정은 다음과 같습니다.
+              파이콘 한국에 후원한 이후 취소하는 경우 위약금 규정은 다음과 같습니다.
               </IntlText>
                 <ul>
                   <li><IntlText intlKey='asdfasdf'>
-                  N일 전: N%
+                  ~5/31: 위약금 0%
                   </IntlText></li>
                   <li><IntlText intlKey='asdfasdf'>
-                  N주 전: N%
+                  ~6/30: 위약금 50%
                   </IntlText></li>
+                  <li><IntlText intlKey='asdfasdf'>
+                  ~7/31: 위약금 80%
+                  </IntlText></li>  
+                  <li><IntlText intlKey='asdfasdf'>
+                  8/1~: 위약금 100%
+                  </IntlText></li>  
                   <li><IntlText intlKey='asdfasdf'>
                   ※  파이콘 한국 준비위원회의 요청으로 후원이 취소될 경우: 시점에 관계 없이 100%
 (단, 후원금액 이외에 후원을 위해 별도로 사용하신 금액에 대해서는 배상하지 않습니다.)

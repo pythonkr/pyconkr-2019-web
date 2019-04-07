@@ -4,9 +4,6 @@ import { PaddingWrapper } from 'components/atoms/FormNeedsLogin'
 import { FormSubmitted } from 'components/atoms/FormSubmitted'
 import { Loading } from 'components/atoms/Loading'
 import { NotOpenYet } from 'components/atoms/NotOpenYet'
-import { isFuture } from 'date-fns'
-import { talkProposal } from 'dates'
-import { CFPFormStage } from 'lib/stores/CFPStore'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
@@ -15,6 +12,7 @@ import React from 'react'
 import intl from 'react-intl-universal'
 import { TEAL, TEAL_LIGHT, TEAL_LIGHT_LIGHT, TEAL_SEMI_DARK } from 'styles/colors'
 import { isEmpty } from 'utils/isEmpty'
+import { SponsorFormStage } from 'lib/stores/SponsorStore'
 import Stage1 from './Stage1'
 import Stage2 from './Stage2'
 
@@ -67,7 +65,7 @@ export default class CFPForm extends React.Component<{ stores: StoresType }> {
   render() {
     const { stores } = this.props
     const { profile } = toJS(this.props.stores.profileStore)
-    // const { currentStage, categories, proposal, difficulties, isInitialized } = toJS(stores.cfpStore)
+    const { proposal } = toJS(stores.sponsorStore)
 
     if (!stores.profileStore.isInitialized) {
       return <Loading width={50} height={50}/>
@@ -81,9 +79,9 @@ export default class CFPForm extends React.Component<{ stores: StoresType }> {
       return <FormNeedAuthAgreement />
     }
 
-    // if (proposal && proposal.submitted) {
-    //   return <FormSubmitted />
-    // }
+    if (proposal && proposal.submitted) {
+      return <FormSubmitted />
+    }
 
     if (isEmpty(profile)) {
       return (
@@ -109,20 +107,22 @@ export default class CFPForm extends React.Component<{ stores: StoresType }> {
             {steps.map(step => <Steps.Step title={step} key={step} />)}
           </Steps>
         </StepsWrapper>
-        {this.state.currentStage === 0 &&
+        {this.state.currentStage === SponsorFormStage.stage1 &&
           <Stage1
             stores={stores}
             scrollRef={this.formWrapperRef!}
-            toNextStage={() => this.setState({ currentStage: 1 })}
+            toNextStage={() => this.setState({ currentStage: SponsorFormStage.stage2 })}
           />
         }
-        {this.state.currentStage === 1 &&
+        {this.state.currentStage === SponsorFormStage.stage2 &&
           <Stage2
             stores={stores}
             scrollRef={this.formWrapperRef!}
+            toPrevStage={() => this.setState({ currentStage: SponsorFormStage.stage1 })}
+            toNextStage={() => this.setState({ currentStage: SponsorFormStage.completed })}
           />
         }
-        {this.state.currentStage === 2 &&
+        {this.state.currentStage === SponsorFormStage.completed &&
           <div>후원사 신청서를 제출했습니다.</div>
         }
       </PaddingWrapper>
