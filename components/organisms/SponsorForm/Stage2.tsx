@@ -45,6 +45,9 @@ export default class CFPFormStage2 extends React.Component<{ stores: StoresType;
     proposal: {},
     levelId: '1',
     businessRegistrationFile: '',
+    logoImage: '',
+    logoVector: '',
+    submitted: false,
   }
 
   async componentDidMount() {
@@ -292,9 +295,8 @@ export default class CFPFormStage2 extends React.Component<{ stores: StoresType;
                   return
                 }
                 stores.sponsorStore.uploadBusinessRegistrationFile(files[0]).then((fileUrl) => {
-                  this.setState(state => { 
-                    state.proposal.businessRegistrationFile = fileUrl 
-                    return state
+                  this.setState({
+                    businessRegistrationFile: fileUrl
                   })
                 })
               }}
@@ -391,7 +393,7 @@ export default class CFPFormStage2 extends React.Component<{ stores: StoresType;
               }
               stores.sponsorStore.uploadLogoImage(files[0]).then((imageUrl) => {
                 this.setState(state => { 
-                  state.proposal.logoImage = imageUrl 
+                  state.logoImage = imageUrl 
                   return state
                 })
               })
@@ -414,7 +416,7 @@ export default class CFPFormStage2 extends React.Component<{ stores: StoresType;
               }
               stores.sponsorStore.uploadLogoVector(files[0]).then((imageUrl) => {
                 this.setState(state => { 
-                  state.proposal.logoVector = imageUrl 
+                  state.logoVector = imageUrl 
                   return state
                 })
               })
