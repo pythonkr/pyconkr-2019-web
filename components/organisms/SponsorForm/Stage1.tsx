@@ -195,7 +195,7 @@ export default class SponsorFormStage1 extends React.Component<{
           <hr />
           <AgreementFieldset>
             <legend><IntlText intlKey='asdfasdf'>
-              입금 및 환불 규정
+              입금 및 위약금 규정
             </IntlText></legend>
             <ul>
               <li><IntlText intlKey='asdfasdf'>
