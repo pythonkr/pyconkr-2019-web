@@ -9,6 +9,7 @@
 export interface UploadBusinessRegistrationFile_uploadBusinessRegistrationFile {
   __typename: "UploadBusinessRegistrationFile";
   success: boolean | null;
+  file: any | null;
 }
 
 export interface UploadBusinessRegistrationFile {

@@ -239,13 +239,16 @@ export default class CFPFormStage2 extends React.Component<{ stores: StoresType;
           </FormHalfBox>
 
           <FormHalfBox>
-            <label className='required'>
+            <label 
+            htmlFor='business_upload'
+              className='required'
+              >
               <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
                 사업자 등록증
               </IntlText>
             </label>
             <input
-              id='businessRegistrationFileUpload'
+              id='business_upload'
               name='business-registration-file-upload'
               type='file'
               onChange={({ target: { validity, files } }) => {
@@ -338,15 +341,24 @@ export default class CFPFormStage2 extends React.Component<{ stores: StoresType;
           </label>
           <input
             type='file'
-            value={this.state.name}
-            onChange={e => this.setState({ name: e.target.value })}
             aria-required={true}
             required
+            onChange={({ target: { validity, files } }) => {
+              if (!validity.valid || !files) {
+                return
+              }
+              stores.sponsorStore.uploadLogoImage(files[0]).then((imageUrl) => {
+                this.setState(state => { 
+                  state.proposal.logoImage = imageUrl 
+                  return state
+                })
+              })
+            }}
           />
 
            <label className='required'>
             <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
-              후원사 로고
+              후원사 로고(Vector)
             </IntlText>
           </label>
           <input
@@ -355,6 +367,17 @@ export default class CFPFormStage2 extends React.Component<{ stores: StoresType;
             onChange={e => this.setState({ name: e.target.value })}
             aria-required={true}
             required
+            onChange={({ target: { validity, files } }) => {
+              if (!validity.valid || !files) {
+                return
+              }
+              stores.sponsorStore.uploadLogoVector(files[0]).then((imageUrl) => {
+                this.setState(state => { 
+                  state.proposal.logoVector = imageUrl 
+                  return state
+                })
+              })
+            }}
           />
 
           <label>
