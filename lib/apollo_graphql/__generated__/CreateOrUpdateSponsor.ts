@@ -141,5 +141,5 @@ export interface CreateOrUpdateSponsor {
 }
 
 export interface CreateOrUpdateSponsorVariables {
-  sponsorInput: SponsorInput;
+  data: SponsorInput;
 }

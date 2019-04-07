@@ -1,5 +1,5 @@
-mutation CreateOrUpdateSponsor($sponsorInput: SponsorInput!) {
-    createOrUpdateSponsor(sponsorInput: $sponsorInput) {
+mutation CreateOrUpdateSponsor($data: SponsorInput!) {
+    createOrUpdateSponsor(data: $data) {
         sponsor {
             id
             creator {
