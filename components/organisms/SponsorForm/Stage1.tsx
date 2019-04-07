@@ -224,20 +224,18 @@ export default class SponsorFormStage1 extends React.Component<{
               </IntlText>
                 <ul>
                   <li><IntlText intlKey='asdfasdf'>
-                  ~5/31: 위약금 0%
+                  2019. 6. 1. ~ 2019. 6. 30. : 후원금액의 50%
                   </IntlText></li>
                   <li><IntlText intlKey='asdfasdf'>
-                  ~6/30: 위약금 50%
+                  2019. 7. 1. ~ 2019. 7. 31. : 후원금액의 80%
                   </IntlText></li>
                   <li><IntlText intlKey='asdfasdf'>
-                  ~7/31: 위약금 80%
+                  2019. 8. 1. ~ 2019. 8. 13. : 후원금액의 100% 
                   </IntlText></li>  
                   <li><IntlText intlKey='asdfasdf'>
-                  8/1~: 위약금 100%
                   </IntlText></li>  
                   <li><IntlText intlKey='asdfasdf'>
-                  ※  파이콘 한국 준비위원회의 요청으로 후원이 취소될 경우: 시점에 관계 없이 100%
-(단, 후원금액 이외에 후원을 위해 별도로 사용하신 금액에 대해서는 배상하지 않습니다.)
+                  사단법인 파이썬사용자모임의 귀책사유로 행사가 취소되거나 후원 계약을 해제하는 경우 기간에 무관하게 후원사가 사단법인 파이썬사용자모임에 지급한 금액 전액을 환불해드립니다. 
                   </IntlText></li>
                 </ul>
               </li>
