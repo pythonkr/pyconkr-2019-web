@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { FormNeedAuthAgreement } from 'components/atoms/FormNeedAuthAgreement'
 import { PaddingWrapper } from 'components/atoms/FormNeedsLogin'
-import { FormSubmitted } from 'components/atoms/FormSubmitted'
+import { SponsorFormSubmitted } from 'components/atoms/SponsorFormSubmitted'
 import { Loading } from 'components/atoms/Loading'
 import { NotOpenYet } from 'components/atoms/NotOpenYet'
 import { toJS } from 'mobx'
@@ -51,7 +51,7 @@ const StepsWrapper = styled.div`
 
 @inject('stores')
 @observer
-export default class CFPForm extends React.Component<{ stores: StoresType }> {
+export default class SponsorForm extends React.Component<{ stores: StoresType }> {
   formWrapperRef: HTMLDivElement | null = null
   state = {
     currentStage: 0
@@ -80,7 +80,7 @@ export default class CFPForm extends React.Component<{ stores: StoresType }> {
     }
 
     if (proposal && proposal.submitted) {
-      return <FormSubmitted />
+      return <SponsorFormSubmitted />
     }
 
     if (isEmpty(profile)) {

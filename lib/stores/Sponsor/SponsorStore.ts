@@ -30,7 +30,7 @@ export class SponsorStore {
     @action
     async initialize() {
         await this.retrieveSponsorLevels()
-        // await this.retrieveMySponsorProposal()
+        await this.retrieveMySponsorProposal()
         this.isInitialized = true
     }
 
@@ -45,12 +45,12 @@ export class SponsorStore {
     @action
     async retrieveMySponsorProposal() {
         const { data } = await getMySponsor(client)({})
-        this.proposal = data.mySponsor
+        this.proposal = new SponsorNode(data.mySponsor)
     }
 
     @action
     async createOrUpdateSponsor(submitted: boolean) {
-        const excludeKeys = ['id', 'accepted', 'creator', 'paidAt', 'businessRegistrationFile', 'logoImage', 'logoVector', 'name', 'desc']
+        const excludeKeys = ['__typename', 'id', 'accepted', 'creator', 'paidAt', 'businessRegistrationFile', 'logoImage', 'logoVector', 'name', 'desc']
         this.proposal.setSumitted(submitted)
         const sponsor = _.omit(this.proposal, excludeKeys)
 
@@ -61,7 +61,7 @@ export class SponsorStore {
             delete sponsor['level']
         }
         const { data } = await createOrUpdateSponsor(client)({ data: sponsor })
-        this.proposal = data.createOrUpdateSponsor.sponsor
+        this.proposal = new SponsorNode(data.createOrUpdateSponsor.sponsor)
     }
 
     @action
