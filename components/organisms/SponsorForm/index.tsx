@@ -12,7 +12,7 @@ import React from 'react'
 import intl from 'react-intl-universal'
 import { TEAL, TEAL_LIGHT, TEAL_LIGHT_LIGHT, TEAL_SEMI_DARK } from 'styles/colors'
 import { isEmpty } from 'utils/isEmpty'
-import { SponsorFormStage } from 'lib/stores/SponsorStore'
+import { SponsorFormStage } from 'lib/stores/Sponsor/SponsorStore'
 import Stage1 from './Stage1'
 import Stage2 from './Stage2'
 
