@@ -50,6 +50,14 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
 
   async componentDidMount() {
     await this.props.stores.sponsorStore.initialize()
+    this.props.scrollRef && window.scrollTo(0, this.props.scrollRef.offsetTop)
+  }
+
+  getFilename(url) {
+    if (url) {
+      return url.substring(url.lastIndexOf('/') + 1);
+    }
+    return '';
   }
 
   render() {
@@ -219,19 +227,25 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
                 사업자 등록증
               </IntlText>
             </label>
-            <input
-              id='business_upload'
-              name='business-registration-file-upload'
-              type='file'
-              onChange={({ target: { validity, files } }) => {
-                if (!validity.valid || !files) {
-                  return
-                }
-                sponsorStore.uploadBusinessRegistrationFile(files[0])
-              }}
-              aria-required={true}
-              required
-            />
+            <InputDesc><a href={proposal.businessRegistrationFile}>{this.getFilename(proposal.businessRegistrationFile)}</a></InputDesc>
+            <label
+              htmlFor='business_upload'
+              className='file-upload__label'
+            ><IntlText intlKey='account.profile.button1'>
+              업로드
+              <input
+                id='business_upload'
+                className='file-upload__input'
+                name='business-registration-file-upload'
+                type='file'
+                onChange={({ target: { validity, files } }) => {
+                  if (!validity.valid || !files) {
+                    return
+                  }
+                  sponsorStore.uploadBusinessRegistrationFile(files[0])
+                }}
+              />
+            </IntlText></label>
           </FormHalfBox>
 
           <div role='group'>
@@ -297,43 +311,63 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
 
           <label className='required'>
             <IntlText intlKey='xxx'>
-              후원사 로고
+              후원사 로고(Image)
             </IntlText>
           </label>
-          <input
-            type='file'
-            // value={this.state.proposal.logoImage}
-            aria-required={true}
-            onChange={({ target: { validity, files } }) => {
-              if (!validity.valid || !files) {
-                return
-              }
-              stores.sponsorStore.uploadLogoImage(files[0]).then((imageUrl) => {
-                proposal.setLogoImage(imageUrl)
-              })
-            }}
-          />
-
+          <InputDesc><a href={proposal.logoImage}>{this.getFilename(proposal.logoImage)}</a></InputDesc>
+          
+          <label
+              htmlFor='logo_image_upload'
+              className='file-upload__label'
+            ><IntlText intlKey='account.profile.button1'>
+            업로드
+            <input
+              id='logo_image_upload'
+              className='file-upload__input'
+              name='logo-image-upload'
+              type='file'
+              onChange={({ target: { validity, files } }) => {
+                if (!validity.valid || !files) {
+                  return
+                }
+                stores.sponsorStore.uploadLogoImage(files[0]).then((imageUrl) => {
+                  proposal.setLogoImage(imageUrl)
+                })
+              }}
+            />
+          </IntlText></label>
+          <InputDesc>
+          .JPG, .PNG 등 이미지 파일
+          </InputDesc>
            <label className='required'>
             <IntlText intlKey='xxx'>
               후원사 로고(Vector)
             </IntlText>
           </label>
-          <input
-            type='file'
-            // value={this.state.proposal.logoVector}
-            aria-required={true}
-            required
-            onChange={({ target: { validity, files } }) => {
-              if (!validity.valid || !files) {
-                return
-              }
-              stores.sponsorStore.uploadLogoVector(files[0]).then((imageUrl) => {
-                proposal.setLogoVector(imageUrl)
-              })
-            }}
-          />
-
+          <InputDesc><a href={proposal.logoVector}>{this.getFilename(proposal.logoVector)}</a></InputDesc>
+          <label
+              htmlFor='logo_vector_upload'
+              className='file-upload__label'
+            ><IntlText intlKey='account.profile.button1'>
+            업로드
+            <input
+              id='logo_vector_upload'
+              className='file-upload__input'
+              name='logo-vector-upload'
+              type='file'
+              onChange={({ target: { validity, files } }) => {
+                if (!validity.valid || !files) {
+                  return
+                }
+                stores.sponsorStore.uploadLogoVector(files[0]).then((imageUrl) => {
+                  proposal.setLogoVector(imageUrl)
+                })
+              }}
+            />
+          </IntlText></label>
+          <InputDesc>
+          .SVG, .AI 등 벡터 파일
+          </InputDesc>
           <label>
             <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
               후원사 소개(국문)
