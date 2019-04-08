@@ -1,3 +1,4 @@
+import { AlertBar } from 'components/atoms/AlertBar';
 import { injectGlobal } from 'emotion'
 import emotionReset from 'emotion-reset'
 import FontFaceObserver from 'fontfaceobserver'
@@ -5,11 +6,12 @@ import IntlPolyfill from 'intl'
 import AuthStore, { AuthStore as AuthStoreType } from 'lib/stores/AuthStore'
 import CFPStore, { CFPStore as CFPStoreType } from 'lib/stores/CFPStore'
 import ProfileStore, { ProfileStore as ProfileStoreType } from 'lib/stores/ProfileStore'
-import SponsorStore, { SponsorStore as SponsorStoreType } from 'lib/stores/SponsorStore'
+import SponsorStore, { SponsorStore as SponsorStoreType } from 'lib/stores/Sponsor/SponsorStore'
 import { LOCALE_KEY_KR, URL_LOCALE_KEY } from 'locales/constants'
 import { Provider } from 'mobx-react'
 import NProgress from 'next-nprogress/component'
 import App, { Container } from 'next/app'
+import Link from 'next/link';
 import Router from 'next/router'
 import 'rc-steps/assets/iconfont.css'
 import 'rc-steps/assets/index.css'
@@ -18,8 +20,6 @@ import { paths } from 'routes/paths'
 import { CORAL } from 'styles/colors'
 import { commonCSS } from 'styles/common'
 import { fontCSS } from 'styles/font'
-import Link from 'next/link';
-import { AlertBar } from 'components/atoms/AlertBar';
 
 global.Intl = IntlPolyfill
 require('intl/locale-data/jsonp/ko.js')
