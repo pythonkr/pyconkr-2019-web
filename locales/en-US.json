@@ -33,6 +33,12 @@
       "krw": "{number} KRW",
       "minimumKrw": "Minimum {number} KRW"
     },
+    "is": "is",
+    "goTo": "Go to",
+    "detailedSchedule": "Detailed schedule",
+    "pastSchedule": "Past Schedule",
+    "apply": "apply",
+    "recommend": "recommend",
     "status": {
       "onProgress": "On Progress",
       "preparing": "Preparing",
@@ -61,7 +67,7 @@
     "sponsor": {
       "root": "Sponsor",
       "prospectus": "Sponsor Prospectus",
-      "applicationForm": "Application Form"
+      "invitation": "Sponsor Invitation"
     },
     "info": {
       "login": "Login",
@@ -371,6 +377,9 @@
     }
   },
   "sponsor": {
+    "event": {
+      "invitation": "Sponsor Invitation"
+    },
     "prospectus": {
       "pageTitle": "Sponsor Prospectus :: PyCon Korea 2019",
       "title": "Sponsor Prospectus",

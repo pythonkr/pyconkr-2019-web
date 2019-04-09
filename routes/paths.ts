@@ -119,7 +119,7 @@ export const sponsorMenu: WithSubMenu = {
     },
     {
       title: '후원사 신청',
-      intlKey: 'gnb.sponsor.applicationForm',
+      intlKey: 'gnb.sponsor.invitation',
       link: paths.sponsor.applicationForm,
     }
   ]

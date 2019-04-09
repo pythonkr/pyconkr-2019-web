@@ -58,12 +58,12 @@ export default class ApplicationForm extends React.Component<{ stores: StoresTyp
       >
         {/* <LocalNavigation list={sponsorMenu.submenu} /> */}
 
-        <H1><IntlText intlKey='sponsor.prospectus.title'>
+        <H1><IntlText intlKey='sponsor.event.invitation'>
           후원사 신청하기
         </IntlText></H1>
         <StatusBar
-          title='후원사 모집'
-          actionText='신청'
+          titleIntlKey='sponsor.event.invitation'
+          actionIntlKey='common.apply'
           link={paths.sponsor.applicationForm}
           openDate={callForSponsors.open}
         />

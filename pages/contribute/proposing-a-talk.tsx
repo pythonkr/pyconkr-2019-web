@@ -65,8 +65,8 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
           발표안 제안하기
         </IntlText></H1>
         <StatusBar
-          title='발표안 모집'
-          actionText='제안'
+          titleIntlKey='contribute.talkProposal.title'
+          actionIntlKey='common.apply'
           link={paths.contribute.proposingATalk}
           openDate={talkProposal.open}
           closeDate={talkProposal.close}
