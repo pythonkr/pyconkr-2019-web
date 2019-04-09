@@ -64,13 +64,13 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
     const { stores, toNextStage, toPrevStage } = this.props
     const { profileStore, sponsorStore } = stores
     const { profile } = toJS(profileStore)
-    const { proposal } = sponsorStore
+    const { sponsorLevels, proposal, proposalLevelId } = sponsorStore
 
     return (
       <FormWrapper>
         <form onSubmit={async (e) => {
           e.preventDefault()
-          await stores.sponsorStore.createOrUpdateSponsor(true)
+          await sponsorStore.createOrUpdateSponsor(true)
           toNextStage()
         }}>
           <FormHalfBox>
@@ -151,7 +151,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
               </IntlText>
             </label>
             <input
-              type='text'
+              type='email'
               value={proposal.managerEmail}
               onChange={e => proposal.setManagerEmail(e.target.value)}
               aria-required={true}
@@ -185,17 +185,17 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
           <SelectWrapper>
             {/* tslint:disable-next-line:react-a11y-no-onchange */}
             <select
-              value={this.state.levelId}
-              onBlur={e => this.setState({ levelId: e.target.value })}
-              onChange={e => this.setState({ levelId: e.target.value })}
+              value={proposalLevelId}
+              onBlur={e => sponsorStore.setProposalLevelId(e.target.value)}
+              onChange={e => sponsorStore.setProposalLevelId(e.target.value)}
               aria-required={true}
               required
             >
               {
-                stores.sponsorStore.sponsorLevels.map(level =>
+                sponsorLevels.map(level =>
                   <option
                     key={level.id}
-                    aria-selected={this.state.levelId === 'level.id'}
+                    aria-selected={proposalLevelId === level.id}
                     value={level.id}
                   >{level.name}</option>
                 )
@@ -244,6 +244,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
                   }
                   sponsorStore.uploadBusinessRegistrationFile(files[0])
                 }}
+                required={proposal.businessRegistrationFile === ''}
               />
             </IntlText></label>
           </FormHalfBox>
@@ -330,16 +331,17 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
                 if (!validity.valid || !files) {
                   return
                 }
-                stores.sponsorStore.uploadLogoImage(files[0]).then((imageUrl) => {
+                sponsorStore.uploadLogoImage(files[0]).then((imageUrl) => {
                   proposal.setLogoImage(imageUrl)
                 })
               }}
+              required={proposal.logoImage === ''}
             />
           </IntlText></label>
           <InputDesc>
           .JPG, .PNG 등 이미지 파일
           </InputDesc>
-           <label className='required'>
+           <label>
             <IntlText intlKey='xxx'>
               후원사 로고(Vector)
             </IntlText>
@@ -382,7 +384,6 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             onChange={e => proposal.setDescKo(e.target.value)}
             aria-required={true}
             style={{ height: 400, marginBottom: 5 }}
-            required
           />
           <span style={{
             display: 'block',
@@ -406,7 +407,6 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             onChange={e => proposal.setDescEn(e.target.value)}
             aria-required={true}
             style={{ height: 400, marginBottom: 5 }}
-            required
           />
           <span style={{
             display: 'block',

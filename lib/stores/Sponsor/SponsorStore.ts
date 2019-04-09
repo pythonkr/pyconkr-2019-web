@@ -21,6 +21,7 @@ export class SponsorStore {
     @observable isInitialized: boolean = false
     @observable sponsorLevels: SponsorLevelType[] = []
     @observable proposal: SponsorNode
+    @observable proposalLevelId: string = '1'
     @observable currentStage: SponsorFormStage = SponsorFormStage.stage1
 
     constructor() {
@@ -50,19 +51,20 @@ export class SponsorStore {
 
     @action
     async createOrUpdateSponsor(submitted: boolean) {
-        const excludeKeys = ['__typename', 'id', 'accepted', 'creator', 'paidAt', 'businessRegistrationFile', 'logoImage', 'logoVector', 'name', 'desc']
+        const excludeKeys = ['__typename', 'id', 'accepted', 'level', 'creator',
+            'paidAt', 'businessRegistrationFile', 'logoImage', 'logoVector', 'name', 'desc']
         this.proposal.setSumitted(submitted)
         const sponsor = _.omit(this.proposal, excludeKeys)
-
-        // FIXME: 아래 코드 의도를 잘 모르겠습니다.. @이종서
-        if('level' in sponsor){
-            if(sponsor.level)
-                sponsor.levelId = sponsor.level.id
-            delete sponsor['level']
-        }
+        sponsor.levelId = this.proposalLevelId
+        
 
         const { data } = await createOrUpdateSponsor(client)({ data: sponsor })
         set(this.proposal, data.createOrUpdateSponsor.sponsor as { [key: string]: any })
+    }
+
+    @action
+    setProposalLevelId(levelId: string) {
+        this.proposalLevelId = levelId
     }
 
     @action
