@@ -33,6 +33,7 @@
       "krw": "{number} KRW",
       "minimumKrw": "Minimum {number} KRW"
     },
+    "alert": "Please be sure to read the guide before creating a proposal.",
     "is": "is",
     "goTo": "Go to",
     "detailedSchedule": "Detailed schedule",
@@ -96,6 +97,10 @@
     }
   },
   "login": {
+    "needToLogin": {
+      "title": "Login is required",
+      "desc": "Please sign in with your PyCon.KR account."
+    },
     "title": "Login",
     "githubButton": "Login with Github Account",
     "facebookButton": "Login with Facebook Account"
