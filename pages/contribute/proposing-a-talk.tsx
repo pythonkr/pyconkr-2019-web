@@ -12,7 +12,6 @@ import PageTemplate from 'components/templates/PageTemplate'
 import { isPast } from 'date-fns'
 import { talkProposal } from 'dates'
 import { inject, observer } from 'mobx-react'
-import Link from 'next/link'
 import React from 'react'
 import { contributionMenu, paths } from 'routes/paths'
 import { DateDTO } from 'types/common'
@@ -105,7 +104,11 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
         <Section>
           <H2><IntlText intlKey='contribute.talkProposal.application.title'>제안서 작성</IntlText></H2>
           {isPast(talkProposal.open) && <AlertBar text={
-          <>제안서를 작성하시기 전에 <Link href={paths.contribute.cfpDetailedGuide}>발표안 작성 가이드</Link>를 꼭 읽어주세요.</>}/>}
+            <>
+              <a href={paths.contribute.cfpDetailedGuide}>
+                📙<IntlText intlKey='common.alert'>제안서를 작성하시기 전에 발표안 작성 가이드를 꼭 읽어주세요.</IntlText>
+              </a>
+            </>}/>}
           {this.props.stores.authStore.isInitialized
             ? authStore.loggedIn
               ? <CFPForm />
