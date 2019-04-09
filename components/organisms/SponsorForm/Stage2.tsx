@@ -8,7 +8,7 @@ import { StoresType } from 'pages/_app'
 import React from 'react'
 import intl from 'react-intl-universal'
 import { DEFAULT_TEXT_BLACK } from 'styles/colors'
-import { FORM_LABEL_GRAY } from '../../../styles/colors'
+import { FORM_LABEL_GRAY, ALERT_BLUE_DARK } from '../../../styles/colors'
 import { mobileWidth } from '../../../styles/layout'
 
 const FormHalfBox = styled.div`
@@ -32,6 +32,13 @@ font-size: 12px;
 line-height: 1.8;
 margin-bottom: 5px;
 }`
+
+const FileName = styled.div`
+color: ${ALERT_BLUE_DARK};
+font-size: 12px;
+line-height: 1.8;
+margin-bottom: 5px;
+`
 
 export type PropsType = {
   stores: StoresType;
@@ -203,50 +210,46 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             </select>
           </SelectWrapper>
 
-          <FormHalfBox>
-            <label className='required'>
-              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
-                사업자 등록번호
-              </IntlText>
-            </label>
-            <input
-              type='text'
-              value={proposal.businessRegistrationNumber}
-              onChange={e => proposal.setBusinessRegistrationNumber(e.target.value)}
-              aria-required={true}
-              required
-            />
-          </FormHalfBox>
+          <label className='required'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+              사업자 등록번호
+            </IntlText>
+          </label>
+          <input
+            type='text'
+            value={proposal.businessRegistrationNumber}
+            onChange={e => proposal.setBusinessRegistrationNumber(e.target.value)}
+            aria-required={true}
+            required
+          />
 
-          <FormHalfBox>
-            <label
-              htmlFor='business_upload'
-              className='required'
-              >
-              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
-                사업자 등록증
-              </IntlText>
-            </label>
-            <InputDesc><a href={proposal.businessRegistrationFile}>{this.getFilename(proposal.businessRegistrationFile)}</a></InputDesc>
-            <label
-              htmlFor='business_upload'
-              className='file-upload__label'
-            ><IntlText intlKey='account.profile.button1'>
-              업로드
-              <input
-                id='business_upload'
-                className='file-upload__input'
-                name='business-registration-file-upload'
-                type='file'
-                onChange={({ target: { validity, files } }) => {
-                  if (!validity.valid || !files) {
-                    return
-                  }
-                  sponsorStore.uploadBusinessRegistrationFile(files[0])
-                }}
-              />
-            </IntlText></label>
-          </FormHalfBox>
+          <label htmlFor='business_upload' className='required'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+              사업자 등록증
+            </IntlText>
+          </label>
+          <FileName>
+            <a href={proposal.businessRegistrationFile}>
+              {this.getFilename(proposal.businessRegistrationFile)}</a>
+          </FileName>
+          <label
+            htmlFor='business_upload'
+            className='file-upload__label'>
+            <IntlText intlKey='account.profile.button1'>
+            업로드
+            <input
+              id='business_upload'
+              className='file-upload__input'
+              name='business-registration-file-upload'
+              type='file'
+              onChange={({ target: { validity, files } }) => {
+                if (!validity.valid || !files) {
+                  return
+                }
+                sponsorStore.uploadBusinessRegistrationFile(files[0])
+              }}
+            />
+          </IntlText></label>
 
           <div role='group'>
             <fieldset className='full'>
@@ -314,7 +317,10 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
               후원사 로고(Image)
             </IntlText>
           </label>
-          <InputDesc><a href={proposal.logoImage}>{this.getFilename(proposal.logoImage)}</a></InputDesc>
+          <InputDesc>
+          .JPG, .PNG 등 이미지 파일
+          </InputDesc>
+          <FileName><a href={proposal.logoImage}>{this.getFilename(proposal.logoImage)}</a></FileName>
 
           <label
               htmlFor='logo_image_upload'
@@ -336,15 +342,16 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
               }}
             />
           </IntlText></label>
-          <InputDesc>
-          .JPG, .PNG 등 이미지 파일
-          </InputDesc>
+
            <label className='required'>
             <IntlText intlKey='xxx'>
               후원사 로고(Vector)
             </IntlText>
           </label>
-          <InputDesc><a href={proposal.logoVector}>{this.getFilename(proposal.logoVector)}</a></InputDesc>
+          <InputDesc>
+          .SVG, .AI 등 벡터 파일
+          </InputDesc>
+          <FileName><a href={proposal.logoVector}>{this.getFilename(proposal.logoVector)}</a></FileName>
           <label
               htmlFor='logo_vector_upload'
               className='file-upload__label'
@@ -365,9 +372,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
               }}
             />
           </IntlText></label>
-          <InputDesc>
-          .SVG, .AI 등 벡터 파일
-          </InputDesc>
+
           <label>
             <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
               후원사 소개(국문)

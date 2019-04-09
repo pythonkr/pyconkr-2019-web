@@ -15,6 +15,7 @@ import { isEmpty } from 'utils/isEmpty'
 import { SponsorFormStage } from 'lib/stores/Sponsor/SponsorStore'
 import Stage1 from './Stage1'
 import Stage2 from './Stage2'
+import { mobileWidth } from 'styles/layout'
 
 const StepsWrapper = styled.div`
   padding: 49px 30px 40px;
@@ -46,6 +47,10 @@ const StepsWrapper = styled.div`
       top: -2px;
       left: 6px;
     }
+  }
+
+ @media (max-width: ${mobileWidth}) {
+    overflow-x: auto;
   }
 `
 
