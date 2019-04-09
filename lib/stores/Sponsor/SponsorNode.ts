@@ -28,10 +28,6 @@ export class SponsorNode {
     @observable submitted: boolean = false
     @observable accepted: boolean = false
 
-    constructor(data: Partial<SponsorNode>) {
-        Object.assign(this, data);
-    }
-    
     @action
     setNameKor(newNameKor: string) {
         this.nameKo = newNameKor
