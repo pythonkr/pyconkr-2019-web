@@ -387,6 +387,8 @@
     "event": {
       "invitation": "Sponsor Invitation"
     },
+    "submitted": "Sponsorship application has been submitted.",
+    "submittedDesc": "Proposals submitted can be viewed and modified in the proposal and application history. We will inform you about the method and procedure of donation payment after review of the PyCon Korea Preparatory Committee.",
     "prospectus": {
       "pageTitle": "Sponsor Prospectus :: PyCon Korea 2019",
       "title": "Sponsor Prospectus",
