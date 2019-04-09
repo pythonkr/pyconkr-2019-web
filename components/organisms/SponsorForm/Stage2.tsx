@@ -2,7 +2,6 @@ import styled from '@emotion/styled'
 import { FormWrapper, SelectWrapper } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
 import { StageButtonGroup } from 'components/organisms/CFPForm/StageButtonGroup'
-import { SponsorFormStage } from 'lib/stores/Sponsor/SponsorStore'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
@@ -53,11 +52,12 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
     this.props.scrollRef && window.scrollTo(0, this.props.scrollRef.offsetTop)
   }
 
-  getFilename(url) {
+  getFilename(url: string) {
     if (url) {
-      return url.substring(url.lastIndexOf('/') + 1);
+      return url.substring(url.lastIndexOf('/') + 1)
     }
-    return '';
+
+    return ''
   }
 
   render() {
@@ -315,7 +315,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             </IntlText>
           </label>
           <InputDesc><a href={proposal.logoImage}>{this.getFilename(proposal.logoImage)}</a></InputDesc>
-          
+
           <label
               htmlFor='logo_image_upload'
               className='file-upload__label'
