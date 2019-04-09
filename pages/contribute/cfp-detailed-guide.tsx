@@ -183,8 +183,8 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
             발표안 작성 가이드
             </IntlText></H1>
           <StatusBar
-            title='발표안 모집'
-            actionText='제안'
+            titleIntlKey='contribute.talkProposal.title'
+            actionIntlKey='common.apply'
             link={paths.contribute.proposingATalk}
             openDate={talkProposal.open}
             closeDate={talkProposal.close}

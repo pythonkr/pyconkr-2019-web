@@ -2,20 +2,19 @@ import { NoticeBar } from 'components/atoms/NoticeBar'
 import { differenceInCalendarDays, isFuture, isPast } from 'date-fns'
 import { RouterProps, withRouter } from 'next/router'
 import React from 'react'
+import intl from 'react-intl-universal'
 import { BG_GRAY, BG_GRAY_DARK, CORAL, CORAL_DARK, CORAL_LIGHT, WHITE } from 'styles/colors'
 import { DateDTO } from 'types/common'
-import { diffInWordsToNow } from 'utils/formatDate'
 
 type StatusBarType = 'scheduled' | 'ongoing' | 'closed'
-export type ActionText = '신청' | '제안' | '추천'
 
 interface Props {
   router: RouterProps,
-  title: string,
+  titleIntlKey: string,
   openDate: DateDTO,
   closeDate?: DateDTO,
   link: string,
-  actionText: ActionText
+  actionIntlKey: string
 }
 
 const statusBarColors  = {
@@ -46,68 +45,74 @@ const getStatusBarType = (openDate: DateDTO, closeDate?: DateDTO): StatusBarType
   return 'ongoing'
 }
 
-const getText = (barType: StatusBarType, title: string, dateDiff: number) => {
-  switch (barType) {
-    case 'scheduled':
-      return `${title}은 ${dateDiff < 0 ? `${-dateDiff}일 후에` : '오늘'} 시작될 예정입니다.`
-    case 'ongoing':
-      return `${title}이 진행 중입니다!`
-    case 'closed':
-      return `${title}이 마감되었습니다.`
-    default:
-      return `${title}이 진행 중입니다!`
+const getStatusText = (openDate?: DateDTO, closeDate?: DateDTO, titleIntlKey?: string, link?: string) => {
+  if (!openDate || !link) return '-'
+
+  let statusMessage = intl.get('common.status.onProgress').d('진행 중입니다.')
+  if (isFuture(openDate) && link) {
+    const diff = differenceInCalendarDays(new Date(), openDate)
+
+    statusMessage = diff < 7
+      ? intl.get('common.status.openBefore', { diff }).d(`시작까지 D${diff}!`)
+      : intl.get('common.status.preparing').d('준비 중입니다.')
+  }
+
+  if (closeDate && isPast(closeDate)) {
+    statusMessage = intl.get('common.status.closed').d('마감되었습니다.')
+  }
+
+  if (closeDate) {
+    const diff = differenceInCalendarDays(new Date(), closeDate)
+    statusMessage = `${statusMessage} (${intl.get('common.status.closeAfter', { diff }).d(`마감까지 D${diff}`)})`
+  }
+
+  return titleIntlKey ? `${intl.get(titleIntlKey)} ${intl.get('common.is')} ${statusMessage}` : statusMessage
+}
+
+const getLink = (link?: string, pathname?: string, barType?: string, actionIntlKey?: string) => {
+  if (!link || pathname === link) return undefined
+
+  if (barType === 'ongoing') {
+    return {
+      title: actionIntlKey ? `${intl.get('common.goTo')} ${intl.get(actionIntlKey)}` :
+        `${intl.get('common.goTo')} ${intl.get('common.apply')}`,
+      to: link,
+      outlink: false,
+    }
+  }
+
+  if (barType === 'scheduled') {
+    return {
+      title: `${intl.get('common.detailedSchedule')}`,
+      to: link,
+      outlink: false,
+    }
+  }
+
+  return {
+    title: `${intl.get('common.pastSchedule')}`,
+    to: link,
+    outlink: false,
   }
 }
 
 const _StatusBar: React.SFC<Props>  = ({
   router: { pathname },
-  title,
+  titleIntlKey,
   openDate,
   closeDate,
   link,
-  actionText
+  actionIntlKey
 }) => {
   const barType: StatusBarType = getStatusBarType(openDate, closeDate)
-  const dateDiff = differenceInCalendarDays(new Date(), openDate)
 
   return <NoticeBar
     color={statusBarColors[barType].bg}
     borderColor={statusBarColors[barType].border}
     textColor={statusBarColors[barType].text}
     textLinkColor={statusBarColors[barType].textLink}
-    text={getText(barType, title, dateDiff)}
-    subText={pathname === link
-      ? barType === 'scheduled'
-        ? dateDiff > 0
-          ? `D${dateDiff}`
-          : `${diffInWordsToNow(openDate)} 남음`
-        : barType === 'ongoing' && closeDate
-          ? `모집 마감 D${differenceInCalendarDays(new Date(), closeDate)}`
-          : !closeDate
-            ? '~마감 시까지'
-            : undefined
-      : undefined
-    }
-    link={link && pathname !== link
-      ? barType === 'ongoing'
-        ? {
-          title: `${actionText}하러 가기`,
-          to: link,
-          outlink: false,
-        }
-        : barType === 'scheduled'
-          ? {
-            title: `상세 일정 보기`,
-            to: link,
-            outlink: false,
-          }
-          : {
-            title: `지난 일정 보기`,
-            to: link,
-            outlink: false,
-          }
-      : undefined
-    }
+    text={getStatusText(openDate, closeDate, titleIntlKey, link)}
+    link={getLink(link, pathname, barType, actionIntlKey)}
   />
 }
 

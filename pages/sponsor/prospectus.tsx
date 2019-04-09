@@ -30,8 +30,8 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
           후원사 안내
         </IntlText></H1>
         <StatusBar
-          title='후원사 모집'
-          actionText='신청'
+          titleIntlKey='sponsor.event.invitation'
+          actionIntlKey='common.apply'
           link={paths.sponsor.applicationForm}
           openDate={callForSponsors.open}
         />

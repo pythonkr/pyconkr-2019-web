@@ -51,8 +51,8 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           키노트 연사 추천하기
         </IntlText></H1>
         <StatusBar
-          title='키노트 연사 추천'
-          actionText='추천'
+          titleIntlKey='contribute.recommendKeynoteSpeaker.title'
+          actionIntlKey='common.recommend'
           link={paths.contribute.recommendingAKeynoteSpeaker}
           openDate={keynoteRecommendation.open}
         />

@@ -17,7 +17,6 @@ export interface ActionButtonProps {
 export interface NoticeBarProps {
   text: string,
   textIntlKey?: string,
-  subText?: string,
   link?: LinkProps,
   actionButton?: ActionButtonProps
 }
@@ -27,7 +26,7 @@ interface StyledNoticeBarProps {
   borderColor: string,
   textColor: string,
   textLinkColor: string,
-  style: any
+  style?: any
 }
 
 const StyledNoticeBarContent = styled.span`
@@ -93,15 +92,6 @@ const StyledNoticeBar = styled.p`
   }
 `
 
-const SubText = styled.span`
-@media (max-width: ${mobileWidth}) {
-  display: block;
-  line-height: 1.4;
-  width: 100%;
-  padding-top: 5px;
-}
-`
-
 const NoticeBarLink: React.SFC<LinkProps> = ({
   title,
   to,
@@ -125,7 +115,6 @@ export const NoticeBar: React.SFC<PropsWithChildren<NoticeBarProps & StyledNotic
   textColor,
   textLinkColor,
   text,
-  subText,
   link,
   actionButton,
   style
@@ -138,7 +127,6 @@ export const NoticeBar: React.SFC<PropsWithChildren<NoticeBarProps & StyledNotic
     style={style}
   >
     <StyledNoticeBarContent>{text}</StyledNoticeBarContent>
-    {!!subText && <SubText>{subText}</SubText>}
     {!!link && <NoticeBarLink {...link} />}
     {!!actionButton && <ActionButton {...actionButton} />}
   </StyledNoticeBar>
