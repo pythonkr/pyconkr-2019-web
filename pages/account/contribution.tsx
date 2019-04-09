@@ -1,22 +1,15 @@
 
-import { Button } from 'components/atoms/Button'
-import { FormWrapper, H1, Paragraph, Section } from 'components/atoms/ContentWrappers'
-import { FlexCenterWrapper } from 'components/atoms/FlexWrapper'
+import { H1, Paragraph } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
+import MyContribution from 'components/organisms/MyContribution'
 import PageTemplate from 'components/templates/PageTemplate'
 import { inject, observer } from 'mobx-react'
 import Router, { RouterProps, withRouter } from 'next/router'
 import React from 'react'
-import intl from 'react-intl-universal'
 import { paths } from 'routes/paths'
-import { TEAL } from 'styles/colors'
 import { StoresType } from '../_app'
-import { Loading } from 'components/atoms/Loading';
-import { Empty } from 'components/atoms/Empty';
-import MyContribution from 'components/organisms/MyContribution';
-
 
 @inject('stores')
 @withRouter
@@ -51,23 +44,24 @@ class Contribution extends React.Component<{
       return
     }
 
-    if (!stores.cfpStore.isInitialized) {
-      await stores.cfpStore.initialize()
-    }
+    if (!stores.cfpStore.isInitialized) await stores.cfpStore.initialize()
+    if (!stores.sponsorStore.isInitialized) await stores.sponsorStore.initialize()
   }
 
   render() {
 
-    return <PageTemplate
-      header={<Header title='제안 및 신청 내역 :: 파이콘 한국 2019' intlKey='contribution.pageTitle'/>}
-      footer={<Footer />}
-    >
-      <H1>
-        <IntlText intlKey='contribution.title'>제안 및 신청 내역</IntlText>
-      </H1>
-      <Paragraph intlKey='contribution.paragraph'>파이콘 한국 2019에 제안 또는 신청한 내역입니다.</Paragraph>
-      <MyContribution />
-    </PageTemplate>
+    return (
+      <PageTemplate
+        header={<Header title='제안 및 신청 내역 :: 파이콘 한국 2019' intlKey='contribution.pageTitle'/>}
+        footer={<Footer />}
+      >
+        <H1>
+          <IntlText intlKey='contribution.title'>제안 및 신청 내역</IntlText>
+        </H1>
+        <Paragraph intlKey='contribution.paragraph'>파이콘 한국 2019에 제안 또는 신청한 내역입니다.</Paragraph>
+        <MyContribution />
+      </PageTemplate>
+    )
   }
 }
 

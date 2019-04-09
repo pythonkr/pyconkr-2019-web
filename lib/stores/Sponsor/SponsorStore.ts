@@ -5,7 +5,7 @@ import { uploadLogoImage as uploadSponsorLogoImage } from 'lib/apollo_graphql/mu
 import { uploadLogoVector as uploadSponsorLogoVector } from 'lib/apollo_graphql/mutations/uploadLogoVector'
 import { getMySponsor } from 'lib/apollo_graphql/queries/getMySponsor'
 import { getSponsorLevels, SponsorLevelType } from 'lib/apollo_graphql/queries/getSponsorLevels'
-import { action, configure, observable, set } from 'mobx'
+import { action, configure, observable, set, values, toJS } from 'mobx'
 import { SponsorNode } from './SponsorNode'
 import * as _ from 'lodash'
 
@@ -60,8 +60,9 @@ export class SponsorStore {
                 sponsor.levelId = sponsor.level.id
             delete sponsor['level']
         }
+
         const { data } = await createOrUpdateSponsor(client)({ data: sponsor })
-        this.proposal = new SponsorNode(data.createOrUpdateSponsor.sponsor)
+        set(this.proposal, data.createOrUpdateSponsor.sponsor as { [key: string]: any })
     }
 
     @action

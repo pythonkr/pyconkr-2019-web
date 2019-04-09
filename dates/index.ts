@@ -34,4 +34,5 @@ export const lightningTalk = {
 
 export const callForSponsors = {
   open: `2019-04-08T${defaultOpenTime}${timeZone}`,
+  close: `2019-07-10T${defaultCloseTime}${timeZone}`,
 }
