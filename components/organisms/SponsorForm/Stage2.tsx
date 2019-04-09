@@ -365,6 +365,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
                   proposal.setLogoVector(imageUrl)
                 })
               }}
+              required={proposal.logoVector === ''}
             />
           </IntlText></label>
           <InputDesc>
