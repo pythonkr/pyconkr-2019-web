@@ -74,7 +74,7 @@ export default class SponsorFormStage1 extends React.Component<{
           <hr />
           <AgreementFieldset>
             <legend><IntlText intlKey='asdfasdf'>
-            파이콘 한국 행동강령
+            파이콘 한국 행동 강령
             </IntlText></legend>
             <p><IntlText intlKey='asdfasdf'>
               파이콘 한국은 다양한 사람들이 만나서 교류하는 곳입니다. 커뮤니티의 모든 참여자들이 신체적, 정신적 위협을 느끼지 않고 서로 존중받고 환영받는 경험을 하기 바랍니다. 이를 위해 후원사를 포함한 모든 참가자들은 파이콘 한국 행동 강령(CoC)을 준수해야 합니다. 
