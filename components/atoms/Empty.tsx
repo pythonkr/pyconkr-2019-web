@@ -1,6 +1,7 @@
 
 import styled from '@emotion/styled'
 import { Button } from 'components/atoms/Button'
+import { IntlText } from 'components/atoms/IntlText'
 import { paths } from 'routes/paths'
 import { TEAL } from 'styles/colors'
 
@@ -27,12 +28,18 @@ margin-bottom: 30px;
 
 export const Empty: React.SFC = () => (<PaddingWrapper>
   <StyledFormWrapper>
-    <StyledNeedLoginTitle>제안 및 신청 내역이 없습니다.</StyledNeedLoginTitle>
+    <StyledNeedLoginTitle>
+      <IntlText intlKey='contribution.emptyAlert'>
+        제안 및 신청 내역이 없습니다.
+      </IntlText>
+    </StyledNeedLoginTitle>
     <StyledNeedLoginDesc>
-      공헌 안내 페이지에서 모집 중인 프로그램을 살펴보세요.
+      <IntlText intlKey='contribution.emptyDescription'>
+        공헌 안내 페이지에서 모집 중인 프로그램을 살펴보세요.
+      </IntlText>
     </StyledNeedLoginDesc>
     <Button
-      intlKey='gnb.account.login'
+      intlKey='gnb.contribute.overview'
       to={paths.contribute.overview}
       fontSize={14}
       color={TEAL}

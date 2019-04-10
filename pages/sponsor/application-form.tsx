@@ -2,7 +2,7 @@ import { AlertBar } from 'components/atoms/AlertBar'
 import { FormNeedsLogin } from 'components/atoms/FormNeedsLogin'
 import { Loading } from 'components/atoms/Loading'
 import { StatusBar } from 'components/atoms/StatusBar'
-import { LocalNavigation } from 'components/molecules/LocalNavigation'
+import { IntlText } from '../../components/atoms/IntlText'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import SponsorForm from 'components/organisms/SponsorForm'
@@ -11,20 +11,15 @@ import { isPast } from 'date-fns'
 import { callForSponsors } from 'dates'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
-import Link from 'next/link'
 import { StoresType } from 'pages/_app'
 import React from 'react'
 import intl from 'react-intl-universal'
-import { TEAL } from 'styles/colors'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
-import {Button} from '../../components/atoms/Button'
 import {
-  ContentTableWrapper, H1, H2, Li, Paragraph, ScheduleTable,
-  Section, TBody, Td, Tr, Ul
+  ContentTableWrapper, H1, H2, Paragraph, ScheduleTable,
+  Section, TBody, Td, Tr
 } from '../../components/atoms/ContentWrappers'
-import {FlexCenterWrapper} from '../../components/atoms/FlexWrapper'
-import {IntlText} from '../../components/atoms/IntlText'
-import {paths, sponsorMenu} from '../../routes/paths'
+import {paths} from '../../routes/paths'
 
 export type IndexPagePropsType = {
   stores: StoresType;
@@ -58,12 +53,12 @@ export default class ApplicationForm extends React.Component<{ stores: StoresTyp
       >
         {/* <LocalNavigation list={sponsorMenu.submenu} /> */}
 
-        <H1><IntlText intlKey='sponsor.prospectus.title'>
+        <H1><IntlText intlKey='sponsor.event.invitation'>
           후원사 신청하기
         </IntlText></H1>
         <StatusBar
-          title='후원사 모집'
-          actionText='신청'
+          titleIntlKey='sponsor.event.invitation'
+          actionIntlKey='common.apply'
           link={paths.sponsor.applicationForm}
           openDate={callForSponsors.open}
         />
@@ -101,7 +96,11 @@ export default class ApplicationForm extends React.Component<{ stores: StoresTyp
         <Section>
           <H2><IntlText intlKey='contribute.talkProposal.application.title'>신청서 작성</IntlText></H2>
           {isPast(callForSponsors.open) && <AlertBar text={
-          <>제안서를 작성하시기 전에 <Link href={paths.sponsor.prospectus}>후원사 모집 안내</Link>를 꼭 읽어주세요.</>}/>}
+          <>
+            <a href={paths.sponsor.prospectus}>
+                📙<IntlText intlKey='common.alert'>제안서를 작성하시기 전에 후원사 모집 안내를 꼭 읽어주세요.</IntlText>
+              </a>
+          </>}/>}
           {this.props.stores.authStore.isInitialized
             ? authStore.loggedIn
               ? <SponsorForm />

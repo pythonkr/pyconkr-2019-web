@@ -503,6 +503,10 @@ ${AgreementFieldset} {
     line-height: 1.8;
     font-weight: 700;
     font-size: 16px;
+    
+    @media (max-width: ${mobileWidth}) {
+      width: 90%;
+    }
   }
 
   ul {

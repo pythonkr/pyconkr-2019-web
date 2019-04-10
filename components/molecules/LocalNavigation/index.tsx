@@ -18,10 +18,10 @@ const NavWrapper = styled.nav`
 const NavList = styled.ul`
 text-align: center;
 white-space: nowrap;
-overflow-x: auto;
  @media (max-width: ${mobileWidth}) {
     white-space: unset;
     text-align: left;
+    overflow-x: auto;
   }
 `
 const NavItem = styled.li`

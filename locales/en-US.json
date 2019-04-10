@@ -33,6 +33,13 @@
       "krw": "{number} KRW",
       "minimumKrw": "Minimum {number} KRW"
     },
+    "alert": "Please be sure to read the guide before creating a proposal.",
+    "is": "is",
+    "goTo": "Go to",
+    "detailedSchedule": "Detailed schedule",
+    "pastSchedule": "Past Schedule",
+    "apply": "apply",
+    "recommend": "recommend",
     "status": {
       "onProgress": "On Progress",
       "preparing": "Preparing",
@@ -61,7 +68,7 @@
     "sponsor": {
       "root": "Sponsor",
       "prospectus": "Sponsor Prospectus",
-      "applicationForm": "Application Form"
+      "invitation": "Sponsor Invitation"
     },
     "info": {
       "login": "Login",
@@ -90,6 +97,10 @@
     }
   },
   "login": {
+    "needToLogin": {
+      "title": "Login is required",
+      "desc": "Please sign in with your PyCon.KR account."
+    },
     "title": "Login",
     "githubButton": "Login with Github Account",
     "facebookButton": "Login with Facebook Account"
@@ -97,7 +108,9 @@
   "contribution": {
     "pageTitle": "Proposal/Sponsor History :: PyCon Korea 2019",
     "title": "Proposal/Sponsor History",
-    "paragraph": "It is the contents which you submitted or applied to PyCon Korea 2019."
+    "paragraph": "It is the contents which you submitted or applied to PyCon Korea 2019.",
+    "emptyAlert": "There are no proposals and application details.",
+    "emptyDescription": "Take a look at the program you are recruiting from the contribution page."
   },
   "home": {
     "sprintDescription": "Sprints are intensive development session on an open source project of your choice, in a team environment. It's a time to come together with colleagues, old and new, to share what you've learned and apply it to an open source project. Is this your first time joining in Sprints? No problem! It will be the time that you learn directly from the open source contributors. Sprint sessions are not just limited to the projects using Python, all languages are welcome!",
@@ -371,6 +384,11 @@
     }
   },
   "sponsor": {
+    "event": {
+      "invitation": "Sponsor Invitation"
+    },
+    "submitted": "Sponsorship application has been submitted.",
+    "submittedDesc": "Proposals submitted can be viewed and modified in the proposal and application history. We will inform you about the method and procedure of donation payment after review of the PyCon Korea Preparatory Committee.",
     "prospectus": {
       "pageTitle": "Sponsor Prospectus :: PyCon Korea 2019",
       "title": "Sponsor Prospectus",

@@ -8,7 +8,7 @@ import { StoresType } from 'pages/_app'
 import React from 'react'
 import intl from 'react-intl-universal'
 import { DEFAULT_TEXT_BLACK } from 'styles/colors'
-import { FORM_LABEL_GRAY } from '../../../styles/colors'
+import { FORM_LABEL_GRAY, ALERT_BLUE_DARK } from '../../../styles/colors'
 import { mobileWidth } from '../../../styles/layout'
 
 const FormHalfBox = styled.div`
@@ -32,6 +32,13 @@ font-size: 12px;
 line-height: 1.8;
 margin-bottom: 5px;
 }`
+
+const FileName = styled.div`
+color: ${ALERT_BLUE_DARK};
+font-size: 12px;
+line-height: 1.8;
+margin-bottom: 5px;
+`
 
 export type PropsType = {
   stores: StoresType;
@@ -217,7 +224,6 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
               required
             />
           </FormHalfBox>
-
           <FormHalfBox>
             <label
               htmlFor='business_upload'
@@ -315,7 +321,10 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
               후원사 로고(Image)
             </IntlText>
           </label>
-          <InputDesc><a href={proposal.logoImage}>{this.getFilename(proposal.logoImage)}</a></InputDesc>
+          <InputDesc>
+          .JPG, .PNG 등 이미지 파일
+          </InputDesc>
+          <FileName><a href={proposal.logoImage}>{this.getFilename(proposal.logoImage)}</a></FileName>
 
           <label
               htmlFor='logo_image_upload'
@@ -341,12 +350,15 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
           <InputDesc>
           .JPG, .PNG 등 이미지 파일
           </InputDesc>
-           <label>
+           <label className='required'>
             <IntlText intlKey='xxx'>
               후원사 로고(Vector)
             </IntlText>
           </label>
-          <InputDesc><a href={proposal.logoVector}>{this.getFilename(proposal.logoVector)}</a></InputDesc>
+          <InputDesc>
+          .SVG, .AI 등 벡터 파일
+          </InputDesc>
+          <FileName><a href={proposal.logoVector}>{this.getFilename(proposal.logoVector)}</a></FileName>
           <label
               htmlFor='logo_vector_upload'
               className='file-upload__label'
@@ -368,9 +380,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
               required={proposal.logoVector === ''}
             />
           </IntlText></label>
-          <InputDesc>
-          .SVG, .AI 등 벡터 파일
-          </InputDesc>
+
           <label>
             <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
               후원사 소개(국문)
