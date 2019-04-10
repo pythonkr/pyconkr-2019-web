@@ -1,14 +1,13 @@
 import styled from '@emotion/styled'
+import { Button } from 'components/atoms/Button'
 import { FormWrapper, SelectWrapper } from 'components/atoms/ContentWrappers'
+import { FlexSpaceBetweenWrapper } from 'components/atoms/FlexWrapper'
 import { IntlText } from 'components/atoms/IntlText'
-import { StageButtonGroup } from 'components/organisms/CFPForm/StageButtonGroup'
-import { toJS } from 'mobx'
-import { inject, observer } from 'mobx-react'
-import { StoresType } from 'pages/_app'
+import { SponsorStore } from 'lib/stores/Sponsor/SponsorStore'
+import { observer } from 'mobx-react'
 import React from 'react'
-import intl from 'react-intl-universal'
-import { DEFAULT_TEXT_BLACK } from 'styles/colors'
-import { FORM_LABEL_GRAY, ALERT_BLUE_DARK } from '../../../styles/colors'
+import { DEFAULT_TEXT_BLACK, TEAL } from 'styles/colors'
+import { FORM_LABEL_GRAY } from '../../../styles/colors'
 import { mobileWidth } from '../../../styles/layout'
 
 const FormHalfBox = styled.div`
@@ -33,30 +32,16 @@ line-height: 1.8;
 margin-bottom: 5px;
 }`
 
-const FileName = styled.div`
-color: ${ALERT_BLUE_DARK};
-font-size: 12px;
-line-height: 1.8;
-margin-bottom: 5px;
-`
-
-export type PropsType = {
-  stores: StoresType;
-  scrollRef: HTMLDivElement;
-  toNextStage(): void;
-  toPrevStage(): void;
+type PropsType = {
+  sponsorStore: SponsorStore;
+  onCancel(): void;
 }
 
-@inject('stores')
 @observer
-export default class CFPFormStage2 extends React.Component<PropsType> {
+export default class CFPEdit extends React.Component<PropsType> {
+
   state = {
     levelId: '1'
-  }
-
-  async componentDidMount() {
-    await this.props.stores.sponsorStore.initialize()
-    this.props.scrollRef && window.scrollTo(0, this.props.scrollRef.offsetTop)
   }
 
   getFilename(url: string) {
@@ -66,19 +51,15 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
 
     return ''
   }
-
-  render() {
-    const { stores, toNextStage, toPrevStage } = this.props
-    const { profileStore, sponsorStore } = stores
-    const { profile } = toJS(profileStore)
-    const { sponsorLevels, proposal, proposalLevelId } = sponsorStore
+  render () {
+    const { sponsorStore } = this.props
+    const { proposal } = sponsorStore
 
     return (
       <FormWrapper>
         <form onSubmit={async (e) => {
           e.preventDefault()
           await sponsorStore.createOrUpdateSponsor(true)
-          toNextStage()
         }}>
           <FormHalfBox>
             <label className='required'>
@@ -111,16 +92,6 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
 
           <SectionTitle>연락 정보</SectionTitle>
           <hr className='margin-20' />
-          <label className='required'>
-            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
-              담당자 파이콘 계정 이메일
-            </IntlText>
-          </label>
-          <input
-            type='text'
-            value={profile.email}
-            disabled
-          />
           <FormHalfBox>
             <label className='required'>
               <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
@@ -158,7 +129,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
               </IntlText>
             </label>
             <input
-              type='email'
+              type='text'
               value={proposal.managerEmail}
               onChange={e => proposal.setManagerEmail(e.target.value)}
               aria-required={true}
@@ -192,17 +163,17 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
           <SelectWrapper>
             {/* tslint:disable-next-line:react-a11y-no-onchange */}
             <select
-              value={proposalLevelId}
-              onBlur={e => sponsorStore.setProposalLevelId(e.target.value)}
-              onChange={e => sponsorStore.setProposalLevelId(e.target.value)}
+              value={this.state.levelId}
+              onBlur={e => this.setState({ levelId: e.target.value })}
+              onChange={e => this.setState({ levelId: e.target.value })}
               aria-required={true}
               required
             >
               {
-                sponsorLevels.map(level =>
+                sponsorStore.sponsorLevels.map(level =>
                   <option
                     key={level.id}
-                    aria-selected={proposalLevelId === level.id}
+                    aria-selected={this.state.levelId === 'level.id'}
                     value={level.id}
                   >{level.name}</option>
                 )
@@ -224,6 +195,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
               required
             />
           </FormHalfBox>
+
           <FormHalfBox>
             <label
               htmlFor='business_upload'
@@ -250,7 +222,6 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
                   }
                   sponsorStore.uploadBusinessRegistrationFile(files[0])
                 }}
-                required={proposal.businessRegistrationFile === ''}
               />
             </IntlText></label>
           </FormHalfBox>
@@ -321,10 +292,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
               후원사 로고(Image)
             </IntlText>
           </label>
-          <InputDesc>
-          .JPG, .PNG 등 이미지 파일
-          </InputDesc>
-          <FileName><a href={proposal.logoImage}>{this.getFilename(proposal.logoImage)}</a></FileName>
+          <InputDesc><a href={proposal.logoImage}>{this.getFilename(proposal.logoImage)}</a></InputDesc>
 
           <label
               htmlFor='logo_image_upload'
@@ -340,11 +308,10 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
                 if (!validity.valid || !files) {
                   return
                 }
-                sponsorStore.uploadLogoImage(files[0]).then((imageUrl) => {
+                sponsorStore.uploadLogoImage(files[0]).then((imageUrl: string) => {
                   proposal.setLogoImage(imageUrl)
                 })
               }}
-              required={proposal.logoImage === ''}
             />
           </IntlText></label>
           <InputDesc>
@@ -355,10 +322,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
               후원사 로고(Vector)
             </IntlText>
           </label>
-          <InputDesc>
-          .SVG, .AI 등 벡터 파일
-          </InputDesc>
-          <FileName><a href={proposal.logoVector}>{this.getFilename(proposal.logoVector)}</a></FileName>
+          <InputDesc><a href={proposal.logoVector}>{this.getFilename(proposal.logoVector)}</a></InputDesc>
           <label
               htmlFor='logo_vector_upload'
               className='file-upload__label'
@@ -373,14 +337,15 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
                 if (!validity.valid || !files) {
                   return
                 }
-                stores.sponsorStore.uploadLogoVector(files[0]).then((imageUrl) => {
+                sponsorStore.uploadLogoVector(files[0]).then((imageUrl: string) => {
                   proposal.setLogoVector(imageUrl)
                 })
               }}
-              required={proposal.logoVector === ''}
             />
           </IntlText></label>
-
+          <InputDesc>
+          .SVG, .AI 등 벡터 파일
+          </InputDesc>
           <label>
             <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
               후원사 소개(국문)
@@ -395,6 +360,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             onChange={e => proposal.setDescKo(e.target.value)}
             aria-required={true}
             style={{ height: 400, marginBottom: 5 }}
+            required
           />
           <span style={{
             display: 'block',
@@ -418,6 +384,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             onChange={e => proposal.setDescEn(e.target.value)}
             aria-required={true}
             style={{ height: 400, marginBottom: 5 }}
+            required
           />
           <span style={{
             display: 'block',
@@ -427,15 +394,23 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             color: (proposal.descEn && proposal.descEn.length >= 5000) ? 'red' : DEFAULT_TEXT_BLACK
           }}>{(proposal.descEn && proposal.descEn.length) || '0'} / 5000(최대)</span>
 
-          <StageButtonGroup
-            onPrev={() => {
-              toPrevStage()
-            }}
-            onSave={async () => {
-              await stores.sponsorStore.createOrUpdateSponsor(false)
-              alert(intl.get('contribute.talkProposal.application.stages.stages2.alert').d('저장이 완료되었습니다'))
-            }}
-          />
+          <FlexSpaceBetweenWrapper style={{ marginTop: 80 }}>
+            <Button
+              tag='button'
+              type='button'
+              intlKey='adsfasdfa'
+              color={TEAL}
+              width={120}
+              primary={false}
+              onClick={this.props.onCancel}
+            >취소</Button>
+            <Button
+              tag='button'
+              intlKey='asdlfkaslkfdj'
+              type='submit'
+              width={300}
+            >스폰서 제안 수정 제출하기</Button>
+          </FlexSpaceBetweenWrapper>
         </form>
       </FormWrapper>
     )

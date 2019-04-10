@@ -5,7 +5,7 @@ import { uploadLogoImage as uploadSponsorLogoImage } from 'lib/apollo_graphql/mu
 import { uploadLogoVector as uploadSponsorLogoVector } from 'lib/apollo_graphql/mutations/uploadLogoVector'
 import { getMySponsor } from 'lib/apollo_graphql/queries/getMySponsor'
 import { getSponsorLevels, SponsorLevelType } from 'lib/apollo_graphql/queries/getSponsorLevels'
-import { action, configure, observable, set } from 'mobx'
+import { action, configure, observable, set, values, toJS } from 'mobx'
 import { SponsorNode } from './SponsorNode'
 import * as _ from 'lodash'
 
@@ -21,6 +21,7 @@ export class SponsorStore {
     @observable isInitialized: boolean = false
     @observable sponsorLevels: SponsorLevelType[] = []
     @observable proposal: SponsorNode
+    @observable proposalLevelId: string = '1'
     @observable currentStage: SponsorFormStage = SponsorFormStage.stage1
 
     constructor() {
@@ -50,18 +51,20 @@ export class SponsorStore {
 
     @action
     async createOrUpdateSponsor(submitted: boolean) {
-        const excludeKeys = ['__typename', 'id', 'accepted', 'creator', 'paidAt', 'businessRegistrationFile', 'logoImage', 'logoVector', 'name', 'desc']
+        const excludeKeys = ['__typename', 'id', 'accepted', 'level', 'creator',
+            'paidAt', 'businessRegistrationFile', 'logoImage', 'logoVector', 'name', 'desc']
         this.proposal.setSumitted(submitted)
         const sponsor = _.omit(this.proposal, excludeKeys)
+        sponsor.levelId = this.proposalLevelId
+        
 
-        // FIXME: 아래 코드 의도를 잘 모르겠습니다.. @이종서
-        if('level' in sponsor){
-            if(sponsor.level)
-                sponsor.levelId = sponsor.level.id
-            delete sponsor['level']
-        }
         const { data } = await createOrUpdateSponsor(client)({ data: sponsor })
-        this.proposal = new SponsorNode(data.createOrUpdateSponsor.sponsor)
+        set(this.proposal, data.createOrUpdateSponsor.sponsor as { [key: string]: any })
+    }
+
+    @action
+    setProposalLevelId(levelId: string) {
+        this.proposalLevelId = levelId
     }
 
     @action

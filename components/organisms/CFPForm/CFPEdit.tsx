@@ -3,7 +3,7 @@ import { FormWrapper, SelectWrapper } from 'components/atoms/ContentWrappers'
 import { FlexSpaceBetweenWrapper } from 'components/atoms/FlexWrapper'
 import { IntlText } from 'components/atoms/IntlText'
 import { DurationNode, LanguageNode } from 'lib/apollo_graphql/__generated__/globalTypes'
-import { inject, observer } from 'mobx-react'
+import { observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import React from 'react'
 import intl from 'react-intl-universal'
@@ -25,9 +25,8 @@ interface State {
   comment: string
 }
 
-@inject('stores')
 @observer
-export default class CFPEdit extends React.Component<{stores: StoresType; onCancel: VoidFunction}, State> {
+export default class CFPEdit extends React.Component<{stores: StoresType; onCancel(): void }, State> {
   state = {
     name: '',
     categoryId: '1',
@@ -43,7 +42,8 @@ export default class CFPEdit extends React.Component<{stores: StoresType; onCanc
   }
 
   async componentDidMount() {
-    const { proposal } = this.props.stores.cfpStore
+    const { stores } = this.props
+    const { proposal } = stores.cfpStore
 
     if (!proposal) {
       return

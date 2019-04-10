@@ -2,9 +2,12 @@ import { Button } from 'components/atoms/Button'
 import { Li, Ol, Ul } from 'components/atoms/ContentWrappers'
 import { Empty } from 'components/atoms/Empty'
 import { Loading } from 'components/atoms/Loading'
-import { isFuture, isPast } from 'date-fns'
-import { talkProposal } from 'dates'
+import CFPEdit from 'components/organisms/CFPForm/CFPEdit'
+import CFSEdit from 'components/organisms/SponsorForm/CFSEdit'
+import { isFuture } from 'date-fns'
+import { callForSponsors, talkProposal } from 'dates'
 import { DurationNode, LanguageNode } from 'lib/apollo_graphql/__generated__/globalTypes'
+import _ from 'lodash'
 import marksy from 'marksy'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
@@ -13,80 +16,139 @@ import { StoresType } from 'pages/_app'
 import React from 'react'
 import { paths } from 'routes/paths'
 import { TEAL } from 'styles/colors'
-import CFPEdit from 'components/organisms/CFPForm/CFPEdit';
+
+type PropsType = {
+  stores: StoresType;
+  router: RouterProps;
+}
+
+enum storeTypesEnum {
+  CFP = 'cfpStore',
+  CFS = 'sponsorStore'
+
+}
 
 @inject('stores')
 @withRouter
 @observer
-class MyContribution extends React.Component<{
-  stores: StoresType;
-  router: RouterProps;
-}> {
+class MyContribution extends React.Component<PropsType> {
   state = {
-    edit: false
+    cfpEdit: false,
+    cfsEdit: false
+  }
+
+  onCFSEdit = () => this.setState({ cfsEdit: true })
+  onCFPEdit = () => this.setState({ cfpEdit: true })
+  onCancelCFPEdit = () => this.setState({ cfpEdit: false })
+  onCancelCFSEdit = () => this.setState({ cfsEdit: false })
+
+  renderEditButton(storeType: storeTypesEnum) {
+    const { stores } = this.props
+    const proposal = stores && stores[storeType] && stores[storeType].proposal
+    const isSumitted = proposal && proposal.submitted
+    const onEdit = storeType === storeTypesEnum.CFP
+      ? this.onCFPEdit
+      : this.onCFSEdit
+    const linkPath = storeType === storeTypesEnum.CFP
+      ? paths.contribute.proposingATalk
+      : paths.sponsor.applicationForm
+
+    return (
+      isSumitted
+        ? <Button
+            intlKey='asdfsd'
+            tag='button'
+            color={TEAL}
+            primary={false}
+            size='small'
+            style={{ marginBottom: 20 }}
+            onClick={onEdit}
+          >수정 제출하기</Button>
+        : <Button
+            intlKey='asdfsd'
+            to={linkPath}
+            color={TEAL}
+            primary={false}
+            size='small'
+            style={{ marginBottom: 20 }}
+          >이어서 작성하러 가기</Button>
+    )
   }
 
   render() {
     const { stores } = this.props
-    const { proposal } = toJS(stores.cfpStore)
+    const { sponsorStore, cfpStore } = stores
+    const { cfsEdit, cfpEdit } = this.state
+    const { proposal: cfpProposal } = toJS(cfpStore)
+    const { proposal: sponsorProposal } = toJS(sponsorStore)
 
-    if (!stores.cfpStore.isInitialized) {
+    if (!stores.cfpStore.isInitialized || !stores.sponsorStore.isInitialized) {
       return <Loading width={50} height={50}/>
     }
 
-    if (proposal === null) {
+    if (_.isNil(cfpProposal) && _.isNil(sponsorProposal)) {
       return <Empty />
     }
 
-    return <Ol>
-      <Li>발표안 제안: <span style={{ fontWeight: 700 }}>{proposal.submitted ? '제출 완료됨.' : '임시 저장됨.'}</span><br />
-        {isFuture(talkProposal.close)
-          ? proposal.submitted
-            ? <Button
-              intlKey='asdfsd'
-              tag='button'
-              color={TEAL}
-              primary={false}
-              size='small'
-              style={{ marginBottom: 20 }}
-              onClick={() => this.setState({ edit: true })}
-            >수정 제출하기</Button>
-            : <Button
-              intlKey='asdfsd'
-              link={paths.contribute.proposingATalk}
-              color={TEAL}
-              primary={false}
-              size='small'
-              style={{ marginBottom: 20 }}
-            >이어서 작성하러 가기</Button>
-          : '제출 기한이 마감되었습니다.'
+    const isCFPClosed = isFuture(talkProposal.close)
+    const isCFSClosed = isFuture(callForSponsors.close)
+
+    return (
+      <Ol>
+        {cfpProposal &&
+          <Li>
+            발표안 제안: <span style={{ fontWeight: 700 }}>{cfpProposal.submitted ? '제출 완료됨.' : '임시 저장됨.'}</span><br />
+            {isCFPClosed
+                ? this.renderEditButton(storeTypesEnum.CFP)
+                : '제출 기한이 마감되었습니다.'
+              }
+              {cfpEdit
+                ? <CFPEdit
+                    stores={stores}
+                    onCancel={this.onCancelCFPEdit}
+                  />
+                : <Ul>
+                    <Li>주제: {cfpProposal.name}</Li>
+                    <Li>카테고리: {cfpProposal.category ? cfpProposal.category!.name : ''}</Li>
+                    <Li>세션 길이: {cfpProposal.duration === DurationNode.LONG ? '45분' : '25분'}</Li>
+                    <Li>언어: {cfpProposal.language === LanguageNode.ENGLISH ? 'English' : '한국어'}</Li>
+                    <Li>난이도: {cfpProposal.difficulty ? cfpProposal.difficulty!.name : ''}</Li>
+                    <Li>제안의 상세한 내용: {
+                      marksy({ createElement: React.createElement })(
+                        cfpProposal.detailDesc
+                      ).tree
+                    }</Li>
+                    <Li>이미 다른 곳에 발표한 내용인가요?: {cfpProposal.isPresentedBefore ? '예' : '아니오'}</Li>
+                    <Li>발표한 행사: {cfpProposal.placePresentedBefore || '-'}</Li>
+                    <Li>발표 자료 링크: {cfpProposal.presentedSlideUrlBefore
+                      ? <a href={cfpProposal.presentedSlideUrlBefore}>{cfpProposal.presentedSlideUrlBefore}</a>
+                      : '-'
+                    }</Li>
+                    <Li>참고 및 질문 사항: {cfpProposal.comment  || '-'}</Li>
+                </Ul>
+              }
+          </Li>
         }
-        {this.state.edit
-          ? <CFPEdit onCancel={() => this.setState({
-            edit: false
-          })} />
-          : <Ul>
-            <Li>주제: {proposal.name}</Li>
-            <Li>카테고리: {proposal.category? proposal.category!.name : ''}</Li>
-            <Li>세션 길이: {proposal.duration === DurationNode.LONG ? '45분' : '25분'}</Li>
-            <Li>언어: {proposal.language === LanguageNode.ENGLISH ? 'English' : '한국어'}</Li>
-            <Li>난이도: {proposal.difficulty? proposal.difficulty!.name: ''}</Li>
-            <Li>제안의 상세한 내용: {
-              marksy({ createElement: React.createElement })(
-                proposal.detailDesc
-              ).tree
-            }</Li>
-            <Li>이미 다른 곳에 발표한 내용인가요?: {proposal.isPresentedBefore ? '예' : '아니오'}</Li>
-            <Li>발표한 행사: {proposal.placePresentedBefore || '-'}</Li>
-            <Li>발표 자료 링크: {proposal.presentedSlideUrlBefore
-              ? <a href={proposal.presentedSlideUrlBefore}>{proposal.presentedSlideUrlBefore}</a>
-              : '-'
-            }</Li>
-            <Li>참고 및 질문 사항: {proposal.comment  || '-'}</Li>
-          </Ul>
+        {sponsorProposal &&
+          <Li>
+            스폰서 제안: <span style={{ fontWeight: 700 }}>{sponsorProposal.submitted ? '제출 완료됨.' : '임시 저장됨.'}</span><br />
+            {isCFSClosed
+                ? this.renderEditButton(storeTypesEnum.CFS)
+                : '제출 기한이 마감되었습니다.'
+              }
+              {cfsEdit
+                ? <CFSEdit
+                    sponsorStore={sponsorStore}
+                    onCancel={this.onCancelCFSEdit}
+                  />
+                : <Ul>
+                    <Li>주제: {sponsorProposal.nameKo}</Li>
+                </Ul>
+              }
+          </Li>
         }
-      </Li>
-    </Ol>
+      </Ol>
+    )
   }
 }
 
