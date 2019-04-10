@@ -107,20 +107,20 @@ export default class CFPEdit extends React.Component<PropsType> {
             />
           </FormHalfBox>
 
-          <FormHalfBox>
-            <label className='required'>
-              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
-                담당자 연락처
-              </IntlText>
-            </label>
-            <input
-              type='text'
-              value={proposal.managerPhone}
-              onChange={e => proposal.setManagerPhone(e.target.value)}
-              aria-required={true}
-              required
-            />
-          </FormHalfBox>
+          {/*<FormHalfBox>*/}
+          {/*  <label className='required'>*/}
+          {/*    <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>*/}
+          {/*      담당자 연락처*/}
+          {/*    </IntlText>*/}
+          {/*  </label>*/}
+          {/*  <input*/}
+          {/*    type='text'*/}
+          {/*    value={proposal.managerPhone}*/}
+          {/*    onChange={e => proposal.setManagerPhone(e.target.value)}*/}
+          {/*    aria-required={true}*/}
+          {/*    required*/}
+          {/*  />*/}
+          {/*</FormHalfBox>*/}
 
           <FormHalfBox>
             <label className='required'>
@@ -137,20 +137,20 @@ export default class CFPEdit extends React.Component<PropsType> {
             />
           </FormHalfBox>
 
-          <FormHalfBox>
-            <label className='required'>
-              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
-                보조 연락처
-              </IntlText>
-            </label>
-            <input
-              type='text'
-              value={proposal.managerSecondaryPhone}
-              onChange={e => proposal.setManagerSecondaryPhone(e.target.value)}
-              aria-required={true}
-              required
-            />
-          </FormHalfBox>
+          {/*<FormHalfBox>*/}
+          {/*  <label className='required'>*/}
+          {/*    <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>*/}
+          {/*      보조 연락처*/}
+          {/*    </IntlText>*/}
+          {/*  </label>*/}
+          {/*  <input*/}
+          {/*    type='text'*/}
+          {/*    value={proposal.managerSecondaryPhone}*/}
+          {/*    onChange={e => proposal.setManagerSecondaryPhone(e.target.value)}*/}
+          {/*    aria-required={true}*/}
+          {/*    required*/}
+          {/*  />*/}
+          {/*</FormHalfBox>*/}
 
           <SectionTitle>후원 정보</SectionTitle>
           <hr className='margin-20' />
