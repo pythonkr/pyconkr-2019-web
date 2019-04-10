@@ -136,20 +136,20 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             />
           </FormHalfBox>
 
-          <FormHalfBox>
-            <label className='required'>
-              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
-                담당자 연락처
-              </IntlText>
-            </label>
-            <input
-              type='text'
-              value={proposal.managerPhone}
-              onChange={e => proposal.setManagerPhone(e.target.value)}
-              aria-required={true}
-              required
-            />
-          </FormHalfBox>
+          {/*<FormHalfBox>*/}
+          {/*  <label className='required'>*/}
+          {/*    <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>*/}
+          {/*      담당자 연락처*/}
+          {/*    </IntlText>*/}
+          {/*  </label>*/}
+          {/*  <input*/}
+          {/*    type='text'*/}
+          {/*    value={proposal.managerPhone}*/}
+          {/*    onChange={e => proposal.setManagerPhone(e.target.value)}*/}
+          {/*    aria-required={true}*/}
+          {/*    required*/}
+          {/*  />*/}
+          {/*</FormHalfBox>*/}
 
           <FormHalfBox>
             <label className='required'>
@@ -166,20 +166,20 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             />
           </FormHalfBox>
 
-          <FormHalfBox>
-            <label className='required'>
-              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
-                보조 연락처
-              </IntlText>
-            </label>
-            <input
-              type='text'
-              value={proposal.managerSecondaryPhone}
-              onChange={e => proposal.setManagerSecondaryPhone(e.target.value)}
-              aria-required={true}
-              required
-            />
-          </FormHalfBox>
+          {/*<FormHalfBox>*/}
+          {/*  <label className='required'>*/}
+          {/*    <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>*/}
+          {/*      보조 연락처*/}
+          {/*    </IntlText>*/}
+          {/*  </label>*/}
+          {/*  <input*/}
+          {/*    type='text'*/}
+          {/*    value={proposal.managerSecondaryPhone}*/}
+          {/*    onChange={e => proposal.setManagerSecondaryPhone(e.target.value)}*/}
+          {/*    aria-required={true}*/}
+          {/*    required*/}
+          {/*  />*/}
+          {/*</FormHalfBox>*/}
 
           <SectionTitle>후원 정보</SectionTitle>
           <hr className='margin-20' />
@@ -255,50 +255,50 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             </IntlText></label>
           </FormHalfBox>
 
-          <div role='group'>
-            <fieldset className='full'>
-              <label className='required'>
-                <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.header'>
-                  회사에서 준비한 별도의 계약 과정이 필요한가요?
-                </IntlText>
-              </label>
-              <p>
-                <input
-                  type='radio'
-                  id='contractProcessRequiredTrue'
-                  value='true'
-                  aria-checked={proposal.contractProcessRequired}
-                  checked={proposal.contractProcessRequired}
-                  onChange={() => proposal.setContractProcessRequired(true)}
-                />
-                <label htmlFor='contractProcessRequiredTrue'>
-                  <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.sub1'>
-                    예
-                  </IntlText>
-                </label>
-              </p>
-              <p>
-                <input
-                  type='radio'
-                  id='contractProcessRequiredFalse'
-                  value='false'
-                  aria-checked={!proposal.contractProcessRequired}
-                  checked={!proposal.contractProcessRequired}
-                  onChange={() => proposal.setContractProcessRequired(false)}
-                />
-                <label htmlFor='contractProcessRequiredFalse'>
-                  <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.sub2'>
-                    아니오
-                  </IntlText>
-                </label>
-                <InputDesc>
-                  별도의 계약 과정이 필요한 경우, 담당자가 메일로 안내드립니다.<br />
-                  계약 과정이 아닌 패키지 선택 등의 다른 사항은 후원사 신청 이전에 메일로 문의해주세요.<br />
-                  sponsor@pycon.kr
-                </InputDesc>
-              </p>
-            </fieldset>
-          </div>
+          {/*<div role='group'>*/}
+          {/*  <fieldset className='full'>*/}
+          {/*    <label className='required'>*/}
+          {/*      <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.header'>*/}
+          {/*        회사에서 준비한 별도의 계약 과정이 필요한가요?*/}
+          {/*      </IntlText>*/}
+          {/*    </label>*/}
+          {/*    <p>*/}
+          {/*      <input*/}
+          {/*        type='radio'*/}
+          {/*        id='contractProcessRequiredTrue'*/}
+          {/*        value='true'*/}
+          {/*        aria-checked={proposal.contractProcessRequired}*/}
+          {/*        checked={proposal.contractProcessRequired}*/}
+          {/*        onChange={() => proposal.setContractProcessRequired(true)}*/}
+          {/*      />*/}
+          {/*      <label htmlFor='contractProcessRequiredTrue'>*/}
+          {/*        <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.sub1'>*/}
+          {/*          예*/}
+          {/*        </IntlText>*/}
+          {/*      </label>*/}
+          {/*    </p>*/}
+          {/*    <p>*/}
+          {/*      <input*/}
+          {/*        type='radio'*/}
+          {/*        id='contractProcessRequiredFalse'*/}
+          {/*        value='false'*/}
+          {/*        aria-checked={!proposal.contractProcessRequired}*/}
+          {/*        checked={!proposal.contractProcessRequired}*/}
+          {/*        onChange={() => proposal.setContractProcessRequired(false)}*/}
+          {/*      />*/}
+          {/*      <label htmlFor='contractProcessRequiredFalse'>*/}
+          {/*        <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.sub2'>*/}
+          {/*          아니오*/}
+          {/*        </IntlText>*/}
+          {/*      </label>*/}
+          {/*      <InputDesc>*/}
+          {/*        별도의 계약 과정이 필요한 경우, 담당자가 메일로 안내드립니다.<br />*/}
+          {/*        계약 과정이 아닌 패키지 선택 등의 다른 사항은 후원사 신청 이전에 메일로 문의해주세요.<br />*/}
+          {/*        sponsor@pycon.kr*/}
+          {/*      </InputDesc>*/}
+          {/*    </p>*/}
+          {/*  </fieldset>*/}
+          {/*</div>*/}
 
           <SectionTitle>후원사 소개 정보</SectionTitle>
           <hr className='margin-20' />
