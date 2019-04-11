@@ -47,10 +47,11 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
           또한, 다양한 매체로의 홍보, 후원사 튜토리얼, 후원사 세션과 부스 구성 등을 지원해드리며,
           이를 우수한 개발자 모집의 장으로 활용하실 수 있습니다.
         </IntlText></Paragraph>
-        <Section>
-          <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
+         <Section>
+          <H2><IntlText intlKey='common.guideTitle'>후원사 가이드</IntlText></H2>
           <Paragraph>
-            <a href='mailto: sponsor@pycon.kr'>sponsor@pycon.kr</a>
+            <a href='https://pythonkr.github.io/sponsor-guide/'>파이콘 한국 2019 후원사 가이드</a> 에서 상세 내용을 확인할 수 있습니다.<br>
+            후원 고려시 꼭 가이드를 읽어봐주시기를 부탁드립니다. 각 혜택별 상세 내용 등에 안내해드리고 있습니다.
           </Paragraph>
         </Section>
         <Section>
@@ -72,6 +73,12 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
             <Li>{ intl.get('sponsor.prospectus.packages.desc6').d('출판사 후원의 경우, 파이썬 관련 도서 출판 기록이 필요합니다.') }</Li>
             <Li>{ intl.get('sponsor.prospectus.packages.desc7').d('미디어 후원의 경우, 언론 보도 및 홍보 이력이 필요합니다.') }</Li>
           </Ul>
+        </Section>
+        <Section>
+          <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
+          <Paragraph>
+            <a href='mailto: sponsor@pycon.kr'>sponsor@pycon.kr</a>
+          </Paragraph>
         </Section>
       </PageTemplate>
     )
