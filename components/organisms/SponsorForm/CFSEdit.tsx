@@ -9,6 +9,7 @@ import React from 'react'
 import { DEFAULT_TEXT_BLACK, TEAL } from 'styles/colors'
 import { FORM_LABEL_GRAY } from '../../../styles/colors'
 import { mobileWidth } from '../../../styles/layout'
+import intl from "react-intl-universal";
 
 const FormHalfBox = styled.div`
 display: inline-block;
@@ -60,6 +61,8 @@ export default class CFPEdit extends React.Component<PropsType> {
         <form onSubmit={async (e) => {
           e.preventDefault()
           await sponsorStore.createOrUpdateSponsor(true)
+          alert(intl.get('contribute.talkProposal.application.stages.stages2.alert').d('저장이 완료되었습니다'))
+          this.props.onCancel()
         }}>
           <FormHalfBox>
             <label className='required'>
