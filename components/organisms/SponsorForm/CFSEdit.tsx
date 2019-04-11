@@ -226,7 +226,7 @@ export default class CFPEdit extends React.Component<PropsType> {
             </IntlText></label>
           </FormHalfBox>
 
-          <div role='group'>
+          {/* <div role='group'>
             <fieldset className='full'>
               <label className='required'>
                 <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.header'>
@@ -269,7 +269,7 @@ export default class CFPEdit extends React.Component<PropsType> {
                 </InputDesc>
               </p>
             </fieldset>
-          </div>
+          </div> */}
 
           <SectionTitle>후원사 소개 정보</SectionTitle>
           <hr className='margin-20' />

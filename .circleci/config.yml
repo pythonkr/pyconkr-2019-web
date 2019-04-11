@@ -47,7 +47,7 @@ jobs:
           command: |
             sudo pip install fabric
             fab -H ${DEPLOY_USER}@${DEPLOY_HOST} -p -e deploy-dev --sha1 $CIRCLE_SHA1
-            sleep 80
+            sleep 100
             curl -Lf ${URL_ROOT}/
       
   deploy-prod:
@@ -62,7 +62,7 @@ jobs:
           command: |
             sudo pip install fabric
             fab -H ${DEPLOY_USER}@${DEPLOY_HOST} -p -e deploy-master --sha1 $CIRCLE_SHA1
-            sleep 80
+            sleep 100
             curl -Lf ${URL_ROOT}/
 
 workflows:
