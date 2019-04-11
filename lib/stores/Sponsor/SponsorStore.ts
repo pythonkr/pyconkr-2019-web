@@ -21,7 +21,7 @@ export class SponsorStore {
     @observable isInitialized: boolean = false
     @observable sponsorLevels: SponsorLevelType[] = []
     @observable proposal: SponsorNode
-    @observable proposalLevelId: string = '1'
+    @observable proposalLevel: SponsorLevelType
     @observable currentStage: SponsorFormStage = SponsorFormStage.stage1
 
     constructor() {
@@ -40,13 +40,16 @@ export class SponsorStore {
         const response = await getSponsorLevels(client)({})
         if (response.data.sponsorLevels) {
             this.sponsorLevels = response.data.sponsorLevels
+            this.proposalLevel = {
+                ...this.sponsorLevels[0]
+            }
         }
     }
 
     @action
     async retrieveMySponsorProposal() {
         const { data } = await getMySponsor(client)({})
-        set(this.proposal, data.mySponsor as { [key: string]: any })
+        this.setProposal(data.mySponsor)
     }
 
     @action
@@ -55,16 +58,40 @@ export class SponsorStore {
             'paidAt', 'businessRegistrationFile', 'logoImage', 'logoVector', 'name', 'desc']
         this.proposal.setSumitted(submitted)
         const sponsor = _.omit(this.proposal, excludeKeys)
-        sponsor.levelId = this.proposalLevelId
+        sponsor.levelId = this.proposalLevel.id
         
 
         const { data } = await createOrUpdateSponsor(client)({ data: sponsor })
-        set(this.proposal, data.createOrUpdateSponsor.sponsor as { [key: string]: any })
+        this.setProposal(data.createOrUpdateSponsor.sponsor)
     }
 
     @action
-    setProposalLevelId(levelId: string) {
-        this.proposalLevelId = levelId
+    setProposalLevelById(levelId: string) {
+        for(var i in this.sponsorLevels){
+            const level = this.sponsorLevels[i]
+            if(level.id == levelId){
+                set(this.proposalLevel, level as { [key: string]: any})
+                return
+            }
+        }
+    }
+
+    @action
+    setProposal(proposal: any){
+        set(this.proposal, proposal as { [key: string]: any })
+        if(proposal && proposal.level){
+            set(this.proposalLevel, proposal.level as { [key: string]: any})
+        }
+    }
+
+    @action
+    async getProposalLevel() {
+        if(!this.sponsorLevels){
+            await this.retrieveSponsorLevels()
+        }  
+        var level = this.sponsorLevels.filter((value) => value.id === this.proposalLevelId);
+        console.log(level)
+        return level
     }
 
     @action

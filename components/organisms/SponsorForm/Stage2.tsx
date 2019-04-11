@@ -1,5 +1,7 @@
 import styled from '@emotion/styled'
-import { FormWrapper, SelectWrapper } from 'components/atoms/ContentWrappers'
+import { FormWrapper, SelectWrapper, ContentTableWrapper, Table, THead, TBody, Td, Tr } from 'components/atoms/ContentWrappers'
+// import { ContentTableWrapper, H1, H2, isBold, Paragraph, ScheduleTable, Section, TBody, Td, Tr } from 'components/atoms/ContentWrappers'
+// import { ContentTableWrapper, H1, H2, isBold, Paragraph, ScheduleTable, Section, TBody, Td, Tr } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
 import { StageButtonGroup } from 'components/organisms/CFPForm/StageButtonGroup'
 import { toJS } from 'mobx'
@@ -67,11 +69,16 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
     return ''
   }
 
+  numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  }
+
+
   render() {
     const { stores, toNextStage, toPrevStage } = this.props
     const { profileStore, sponsorStore } = stores
     const { profile } = toJS(profileStore)
-    const { sponsorLevels, proposal, proposalLevelId } = sponsorStore
+    const { sponsorLevels, proposal, proposalLevel } = sponsorStore
 
     return (
       <FormWrapper>
@@ -192,9 +199,9 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
           <SelectWrapper>
             {/* tslint:disable-next-line:react-a11y-no-onchange */}
             <select
-              value={proposalLevelId}
-              onBlur={e => sponsorStore.setProposalLevelId(e.target.value)}
-              onChange={e => sponsorStore.setProposalLevelId(e.target.value)}
+              value={proposalLevel.id}
+              onBlur={e => sponsorStore.setProposalLevelById(e.target.value)}
+              onChange={e => sponsorStore.setProposalLevelById(e.target.value)}
               aria-required={true}
               required
             >
@@ -202,14 +209,50 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
                 sponsorLevels.map(level =>
                   <option
                     key={level.id}
-                    aria-selected={proposalLevelId === level.id}
+                    aria-selected={proposalLevel.id === level.id}
                     value={level.id}
                   >{level.name}</option>
                 )
               }
             </select>
           </SelectWrapper>
-
+          
+          <ContentTableWrapper>
+            <Table>
+              <colgroup>
+                <col width='15%'/>
+                <col width='35%'/>
+                <col width='15%'/>
+                <col width='35%'/>
+              </colgroup>
+              <TBody>
+                <Tr>
+                  <Td>후원금</Td>
+                  <Td>{this.numberWithCommas(proposalLevel.price)} 원</Td>
+                  <Td>발표세션</Td>
+                  <Td>{proposalLevel.presentationCount ? proposalLevel.presentationCount + '세션' : '❌'}</Td>
+                </Tr>
+                <Tr>
+                  <Td>티켓 지원</Td>
+                  <Td>{proposalLevel.ticketCount} 매</Td>
+                  <Td>부스</Td>
+                  <Td>{proposalLevel.boothInfo ? proposalLevel.boothInfo : '❌'}</Td>
+                </Tr>
+                <Tr>
+                  <Td>채용 공고</Td>
+                  <Td>{proposalLevel.canRecruit ?  '✅' : '❌'}</Td>
+                  <Td>증정품 지급</Td>
+                  <Td>{proposalLevel.canProvideGoods ?  '✅' : '❌'}</Td>
+                </Tr>
+                <Tr>
+                  <Td>열린점심</Td>
+                  <Td>{proposalLevel.openLunch ? proposalLevel.openLunch : '❌'}</Td>
+                  <Td>로고 노출 위치</Td>
+                  <Td>{proposalLevel.logoLocations}</Td>
+                </Tr>
+              </TBody>
+            </Table>
+          </ContentTableWrapper>
           <FormHalfBox>
             <label className='required'>
               <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
