@@ -18,7 +18,8 @@ export const paths = {
   sponsor: {
     base: '/sponsor',
     prospectus: '/sponsor/prospectus',
-    applicationForm: '/sponsor/application-form'
+    applicationForm: '/sponsor/application-form',
+    termsOfService: '/sponsor/terms-of-service',
   },
   account: {
     base: '/account',
@@ -115,12 +116,12 @@ export const sponsorMenu: WithSubMenu = {
       title: '후원사 안내',
       intlKey: 'gnb.sponsor.prospectus',
       link: paths.sponsor.prospectus
+    },
+    {
+      title: '후원사 신청',
+      intlKey: 'gnb.sponsor.invitation',
+      link: paths.sponsor.applicationForm,
     }
-    // {
-    //   title: '후원사 신청',
-    //   intlKey: 'gnb.sponsor.applicationForm',
-    //   link: paths.sponsor.applicationForm,
-    // },
   ]
 }
 

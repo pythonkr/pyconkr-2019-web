@@ -33,6 +33,13 @@
       "krw": "{number} KRW",
       "minimumKrw": "Minimum {number} KRW"
     },
+    "alert": "Please be sure to read the guide before creating a proposal.",
+    "is": "is",
+    "goTo": "Go to",
+    "detailedSchedule": "Detailed schedule",
+    "pastSchedule": "Past Schedule",
+    "apply": "apply",
+    "recommend": "recommend",
     "status": {
       "onProgress": "On Progress",
       "preparing": "Preparing",
@@ -61,7 +68,7 @@
     "sponsor": {
       "root": "Sponsor",
       "prospectus": "Sponsor Prospectus",
-      "applicationForm": "Application Form"
+      "invitation": "Sponsor Invitation"
     },
     "info": {
       "login": "Login",
@@ -90,6 +97,10 @@
     }
   },
   "login": {
+    "needToLogin": {
+      "title": "Login is required",
+      "desc": "Please sign in with your PyCon.KR account."
+    },
     "title": "Login",
     "githubButton": "Login with Github Account",
     "facebookButton": "Login with Facebook Account"
@@ -97,7 +108,9 @@
   "contribution": {
     "pageTitle": "Proposal/Sponsor History :: PyCon Korea 2019",
     "title": "Proposal/Sponsor History",
-    "paragraph": "It is the contents which you submitted or applied to PyCon Korea 2019."
+    "paragraph": "It is the contents which you submitted or applied to PyCon Korea 2019.",
+    "emptyAlert": "There are no proposals and application details.",
+    "emptyDescription": "Take a look at the program you are recruiting from the contribution page."
   },
   "home": {
     "sprintDescription": "Sprints are intensive development session on an open source project of your choice, in a team environment. It's a time to come together with colleagues, old and new, to share what you've learned and apply it to an open source project. Is this your first time joining in Sprints? No problem! It will be the time that you learn directly from the open source contributors. Sprint sessions are not just limited to the projects using Python, all languages are welcome!",
@@ -277,6 +290,13 @@
       "application": {
         "title": "Apply for CFP",
         "stages": {
+          "common": {
+            "button": {
+              "previous": "Previous",
+              "saveDraft": "Save draft",
+              "next": "Next"
+            }
+          },
           "stages1": {
             "header": "Save a profile",
             "item1": "E-mail",
@@ -326,7 +346,34 @@
               "desc1": "Feel free to write comments to reviewers"
             }
           },
-          "stages4": "CoC and Ethics",
+          "stages4": {
+            "header": "CoC and Ethics",
+            "item1": {
+              "header": "PyCon Korea Code Of Conduct",
+              "desc1": "PyCon Korea is where various people meet and interact. We want all participants in the community to feel respected and welcomed without feeling physical and mental threats. To this end, all participants, including speaker, must follow the PyCon Korea Code of Conduct (CoC).",
+              "desc1-1": "PyCon Korea participants should not be discriminated against by various personal circumstances such as gender, sexual orientation, disability, physical appearance, body size, race, or religion.",
+              "desc1-2": "If the presentation could seriously violate the CoC, we may ask you to correct the presentation. If you do not respond to the our request, the presentation can be canceled.",
+              "desc1-3": "The contents of the CoC may be updated from time to time. If the content is updated, the PyCon Korea Preparation Organizers may ask for agreement of CoC again",
+              "agree": "I have confirmed the above contents and promise to follow the PyCon Korea CoC."
+            },
+            "item2": {
+              "header": "Presentation Ethics",
+              "desc1": "All presentation are made based on mutual trust and respect. Therefore, all presentation should follow the following presentation ethics.",
+              "desc1-1": "If you use or refer someone else's creations, you must comply with the rights of the original copyright holder.",
+              "desc1-2": "If your presentation contains sensitive content, such as content related to your company's business, you must obtain the consent of your organization.",
+              "desc1-3": "You must make the same presentation as your suggestion.",
+              "desc1-4": "Do not use intentional manipulated or falsified data.",
+              "agree": "I have confirmed the above contents. I also agree that I will be responsible if I fail to comply, and that the selection of the presenter may be canceled if found to be violated."
+            },
+            "item3": {
+              "header": "Sharing presentation",
+              "desc1": "PyCon Korea is aiming at a community that shares technology experiences and grows together. Therefore, all slides and movie of presentations are released for sharing knowledge.",
+              "desc1-1": "If your slides has sensitive information such as company confidentiality or copyright, please prepare a public version of the slide.",
+              "desc1-2": "If you do not want to release your presentation, please contact the PyCon Korea Organizer(program@pycon.kr).",
+              "agree": "I have confirmed the above contents."
+            },
+            "proposeButton": "Propose presentation"
+          },
           "stages5": {
             "header": "Submit CFP",
             "desc1": "You can check and edit your CFP at Proposal and Application page",
@@ -337,6 +384,11 @@
     }
   },
   "sponsor": {
+    "event": {
+      "invitation": "Sponsor Invitation"
+    },
+    "submitted": "Sponsorship application has been submitted.",
+    "submittedDesc": "Proposals submitted can be viewed and modified in the proposal and application history. We will inform you about the method and procedure of donation payment after review of the PyCon Korea Preparatory Committee.",
     "prospectus": {
       "pageTitle": "Sponsor Prospectus :: PyCon Korea 2019",
       "title": "Sponsor Prospectus",
@@ -373,6 +425,9 @@
           "header": "Booth",
           "table": "Table (2nd floor robby)"
         },
+        "openlunch": {
+          "header": "Open Lunch"
+        },
         "ost": {
           "header": "OST room name for sponsor",
           "space": "Space for {number} people"
@@ -382,6 +437,9 @@
         },
         "goods": {
           "header" : "Goods can be included in eco bag"
+        },
+        "recruitment": {
+          "header" : "Recruitment advertisement"
         },
         "logo": {
           "header": "Logo placement",

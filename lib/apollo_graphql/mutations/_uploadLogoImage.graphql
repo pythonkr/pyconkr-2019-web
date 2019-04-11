@@ -1,0 +1,6 @@
+mutation UploadLogoImage($file: Upload!) {
+    uploadLogoImage(file: $file) {
+        success
+        image
+    }
+}

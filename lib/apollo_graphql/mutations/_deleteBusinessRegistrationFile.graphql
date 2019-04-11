@@ -1,0 +1,5 @@
+mutation DeleteBusinessRegistrationFile($sponsorId: ID!) {
+    deleteBusinessRegistrationFile(sponsorId: $sponsorId) {
+        success
+    }
+}

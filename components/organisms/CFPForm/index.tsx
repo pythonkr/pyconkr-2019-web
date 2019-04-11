@@ -18,7 +18,8 @@ import { TEAL, TEAL_LIGHT, TEAL_LIGHT_LIGHT, TEAL_SEMI_DARK } from 'styles/color
 import { isEmpty } from 'utils/isEmpty'
 import { isFuture } from 'date-fns';
 import { talkProposal } from 'dates';
-import { NotOpenYet } from 'components/atoms/NotOpenYet';
+import { NotOpenYet } from 'components/atoms/NotOpenYet'
+import { mobileWidth } from 'styles/layout'
 
 const StepsWrapper = styled.div`
   padding: 49px 30px 40px;
@@ -50,6 +51,10 @@ const StepsWrapper = styled.div`
       top: -2px;
       left: 6px;
     }
+  }
+
+  @media (max-width: ${mobileWidth}) {
+    overflow-x: auto;
   }
 `
 

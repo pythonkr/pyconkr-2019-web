@@ -4,6 +4,8 @@ import { Button } from 'components/atoms/Button'
 import Router from 'next/router'
 import { paths } from 'routes/paths'
 import { TEAL } from 'styles/colors'
+import { IntlText } from "./IntlText";
+import React from "react";
 
 export const PaddingWrapper = styled.div`
 padding: 10px 0;
@@ -28,12 +30,18 @@ margin-bottom: 30px;
 
 export const FormNeedsLogin: React.SFC = () => (<PaddingWrapper>
   <StyledFormWrapper>
-    <StyledNeedLoginTitle>로그인이 필요합니다.</StyledNeedLoginTitle>
+    <StyledNeedLoginTitle>
+      <IntlText intlKey='login.needToLogin.title'>
+        로그인이 필요합니다.
+      </IntlText>
+      </StyledNeedLoginTitle>
     <StyledNeedLoginDesc>
-      파이콘 한국 계정으로 로그인해주세요.
+      <IntlText intlKey='login.needToLogin.desc'>
+        파이콘 한국 계정으로 로그인해주세요.
+      </IntlText>
     </StyledNeedLoginDesc>
     <Button
-      intlKey='gnb.account.login'
+      intlKey='login.title'
       to={`${paths.account.login}?redirect_url=${Router.route}`}
       fontSize={14}
       color={TEAL}

@@ -14,7 +14,7 @@ export const StageButtonGroup: React.SFC<Props> = ({ onPrev, onSave }) => {
       type='button'
       intlKey='contribute.talkProposal.application.stages.stages2.button1'
       color={TEAL}
-      width={120}
+      width={80}
       primary={false}
       onClick={onPrev}
     >이전</Button>
@@ -24,7 +24,7 @@ export const StageButtonGroup: React.SFC<Props> = ({ onPrev, onSave }) => {
         type='button'
         intlKey='contribute.talkProposal.application.stages.stages2.button2'
         color={TEAL}
-        width={120}
+        width={80}
         primary={false}
         onClick={onSave}
       >임시 저장</Button>
@@ -33,7 +33,7 @@ export const StageButtonGroup: React.SFC<Props> = ({ onPrev, onSave }) => {
         type='submit'
         intlKey='contribute.talkProposal.application.stages.stages2.button3'
         color={TEAL}
-        width={120}
+        width={80}
         style={{ marginLeft: 10 }}
       >다음</Button>
     </div>

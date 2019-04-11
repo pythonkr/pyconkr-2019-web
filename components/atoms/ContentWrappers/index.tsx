@@ -1,5 +1,13 @@
 import styled from '@emotion/styled'
-import { DEFAULT_TEXT_BLACK, HEADING_LIGHT_BLACK, TEAL, TEAL_LIGHT, TEAL_LIGHT_LIGHT, TEAL_SEMI_DARK } from 'styles/colors'
+import {
+  DEFAULT_TEXT_BLACK,
+  FORM_LABEL_GRAY,
+  HEADING_LIGHT_BLACK,
+  TEAL,
+  TEAL_LIGHT,
+  TEAL_LIGHT_LIGHT,
+  TEAL_SEMI_DARK
+} from 'styles/colors'
 import { contentWidth, contentWidthPadding, mobileWidth } from 'styles/layout'
 
 /* tslint:disable:max-line-length */
@@ -191,7 +199,7 @@ export const Td = styled.td`
   line-height: 24px;
   color: ${DEFAULT_TEXT_BLACK};
   padding: 14px 0.5em 14px 0;
-
+  white-space: pre-wrap;
   @media (max-width: ${mobileWidth}) {
     font-size: 13px;
     line-height: 1.4em;
@@ -331,6 +339,15 @@ label {
   font-weight: 700;
 }
 
+form label {
+  display: block;
+  padding: 7px 0;
+  font-size: 14px;
+  line-height: 29px;
+  color: ${FORM_LABEL_GRAY};
+  font-weight: 500;
+}
+
 .required {
   position: relative;
 
@@ -351,6 +368,7 @@ input[type=file] {
 }
 
 input[type=text],
+input[type=email],
 input[type=tel],
 input[type=url],
 textarea,
@@ -460,6 +478,11 @@ hr {
   margin: 50px auto 50px;
 }
 
+hr.margin-20 {
+  margin: 20px auto 20px;
+}
+
+
 ${AgreementFieldset} {
   width: 100%;
 
@@ -480,6 +503,10 @@ ${AgreementFieldset} {
     line-height: 1.8;
     font-weight: 700;
     font-size: 16px;
+    
+    @media (max-width: ${mobileWidth}) {
+      width: 90%;
+    }
   }
 
   ul {
@@ -505,4 +532,13 @@ ${AgreementFieldset} {
     }
   }
 }
+
+.full {
+    width: 100%;
+}
+
+.half {
+    width: 50%;
+}
+
 `

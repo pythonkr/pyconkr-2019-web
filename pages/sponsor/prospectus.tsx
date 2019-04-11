@@ -6,25 +6,14 @@ import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import { SponsorPackageTables } from 'components/organisms/SponsorPackageTables'
 import PageTemplate from 'components/templates/PageTemplate'
+import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import { callForSponsors } from 'dates'
 import { inject, observer } from 'mobx-react'
+import { paths } from 'routes/paths'
 import React from 'react'
 import intl from 'react-intl-universal'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 import { StoresType } from '../_app'
-
-const schedule = [{
-  title: '후원사 모집 오픈',
-  intlKey: 'sponsor.prospectus.schedule.open',
-  date: callForSponsors.open
-}, {
-  title: '후원사 모집 마감',
-  intlKey: 'sponsor.prospectus.schedule.deadline',
-  desc: {
-    defaultText: '마감 시까지',
-    intlKey: 'common.status.untilSelected'
-  }
-}]
 
 @inject('stores')
 @observer
@@ -41,9 +30,9 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
           후원사 안내
         </IntlText></H1>
         <StatusBar
-          title='후원사 모집'
-          actionText='신청'
-          // link={paths.sponsor.applicationForm}
+          titleIntlKey='sponsor.event.invitation'
+          actionIntlKey='common.apply'
+          link={paths.sponsor.applicationForm}
           openDate={callForSponsors.open}
         />
         <Paragraph><IntlText intlKey='home.differenceWithOthers.description'>
@@ -58,31 +47,6 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
           또한, 다양한 매체로의 홍보, 후원사 튜토리얼, 후원사 세션과 부스 구성 등을 지원해드리며,
           이를 우수한 개발자 모집의 장으로 활용하실 수 있습니다.
         </IntlText></Paragraph>
-        <Section>
-          <H2><IntlText intlKey='common.schedule'>세부 일정</IntlText></H2>
-          <ContentTableWrapper>
-            <ScheduleTable>
-              <TBody>
-                {schedule.map(({ title, intlKey, date, desc }) =>
-                  <Tr key={title}>
-                    <Td className='bold'>
-                      { intl.get(intlKey).d(title)}
-                    </Td>
-                    <Td>
-                      {
-                        date
-                          ? formatDateInWordsWithWeekdayAndTime(date)
-                          : desc
-                            ? intl.get(desc.intlKey).d(desc.defaultText)
-                            : '-'
-                      }
-                    </Td>
-                  </Tr>
-                )}
-              </TBody>
-            </ScheduleTable>
-          </ContentTableWrapper>
-        </Section>
         <Section>
           <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
           <Paragraph>
