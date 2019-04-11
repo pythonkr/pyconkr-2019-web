@@ -68,6 +68,13 @@ export const SponsorPackageTables = () => <>
           <Td>{ intl.get('common.unit.ea', { number: '2' }).d('2칸') }</Td>
         </Tr>
         <Tr>
+          <Th>{ intl.get('sponsor.prospectus.packages.openlunch.header').d('열린점심') }</Th>
+          <Td>20명 / 2일 (210호)</Td>
+          <Td>30명 / 1일 (209A호)</Td>
+          <Td>20명 / 1일 (209B호)</Td>
+          <Td>20명 / 1일 (201-203호)</Td>
+        </Tr>
+        <Tr>
           <Th>{ intl.get('sponsor.prospectus.packages.session.header').d('후원사 세션') }</Th>
           <Td>{ intl.get('common.unit.ea', { number: '2' }).d('2세션') }</Td>
           <Td>{ intl.get('common.unit.ea', { number: '1' }).d('1세션') }</Td>
@@ -76,6 +83,13 @@ export const SponsorPackageTables = () => <>
         </Tr>
         <Tr>
           <Th>{ intl.get('sponsor.prospectus.packages.goods.header').d('증정품 지급') }</Th>
+          <Td>✅</Td>
+          <Td>✅</Td>
+          <Td>✅</Td>
+          <Td>✅</Td>
+        </Tr>
+        <Tr>
+          <Th>{ intl.get('sponsor.prospectus.packages.recruitment.header').d('채용 공고') }</Th>
           <Td>✅</Td>
           <Td>✅</Td>
           <Td>✅</Td>
@@ -145,6 +159,18 @@ export const SponsorPackageTables = () => <>
           <Td>-</Td>
           <Td>{ intl.get('sponsor.prospectus.packages.booth.table').d('2층 로비 테이블') }</Td>
           <Td></Td>
+        </Tr>
+        <Tr>
+          <Th>{ intl.get('sponsor.prospectus.packages.openlunch.header').d('열린점심') }</Th>
+          <Td>10명 / 1일 (201-203호)</Td>
+          <Td>-</Td>
+          <Td>-</Td>
+        </Tr>
+        <Tr>
+          <Th>{ intl.get('sponsor.prospectus.packages.recruitment.header').d('채용 공고') }</Th>
+          <Td>✅</Td>
+          <Td>✅</Td>
+          <Td>✅</Td>
         </Tr>
         <Tr className={`${isSmall} ${verticalAlignTop}`}>
           <Th>{ intl.get('sponsor.prospectus.packages.logo.header').d('로고 노출 위치') }</Th>

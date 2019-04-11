@@ -425,6 +425,9 @@
           "header": "Booth",
           "table": "Table (2nd floor robby)"
         },
+        "openlunch": {
+          "header": "Open Lunch"
+        },
         "ost": {
           "header": "OST room name for sponsor",
           "space": "Space for {number} people"
@@ -434,6 +437,9 @@
         },
         "goods": {
           "header" : "Goods can be included in eco bag"
+        },
+        "recruitment": {
+          "header" : "Recruitment advertisement"
         },
         "logo": {
           "header": "Logo placement",
