@@ -57,7 +57,8 @@ class Contribution extends React.Component<{
         <H1>
           <IntlText intlKey='contribution.title'>제안 및 신청 내역</IntlText>
         </H1>
-        <Paragraph intlKey='contribution.paragraph'>파이콘 한국 2019에 제안 또는 신청한 내역입니다.</Paragraph>
+        <Paragraph intlKey='contribution.paragraph'>파이콘 한국 2019 에 제안 또는 신청한 내역입니다.<br/>
+        파이콘 한국 준비위원회 내부 검토 이후 최종 확정 등의 절차 관련 내용은 메일로 다시 안내드리도록 하겠습니다.</Paragraph>
         <MyContribution />
       </PageTemplate>
     )

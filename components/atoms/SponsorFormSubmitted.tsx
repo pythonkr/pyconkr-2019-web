@@ -21,9 +21,14 @@ text-align: center;
 margin-bottom: 20px;
 `
 const StyledNeedLoginDesc = styled.p`
-font-size: 14px;
+font-size: 16px;
+line-height: 22px;
 text-align: center;
 margin-bottom: 30px;
+
+strong {
+font-weight: bold;
+}
 `
 
 export const SponsorFormSubmitted: React.SFC = () => (<PaddingWrapper>
@@ -35,8 +40,9 @@ export const SponsorFormSubmitted: React.SFC = () => (<PaddingWrapper>
     </StyledNeedLoginTitle>
     <StyledNeedLoginDesc>
        <IntlText intlKey='sponsor.submittedDesc'>
-        제출한 제안서는 제안 및 신청 내역에서 확인 및 수정하실 수 있습니다.<br/>
-        파이콘 한국 준비위원회 검토 이후 후원금 입금 방법과 절차를 안내드리도록 하겠습니다.
+         제출한 제안서는 제안 및 신청 내역에서 확인 및 수정하실 수 있습니다.<br/><br/>
+         <strong>아직 스폰서로 확정된 상태는 아니며</strong>, 파이콘 한국 준비위원회 검토 이후<br/>
+         후원금 입금 방법과 절차 등의 내용은 메일로 다시 안내드리도록 하겠습니다.
       </IntlText>
     </StyledNeedLoginDesc>
     <Button

@@ -131,7 +131,7 @@ class MyContribution extends React.Component<PropsType> {
         }
         {sponsorProposal &&
           <Li>
-            스폰서 제안: <span style={{ fontWeight: 700 }}>{sponsorProposal.submitted ? '제출 완료됨.' : '임시 저장됨.'}</span><br />
+            스폰서 제안: <span style={{ fontWeight: 700 }}>{sponsorProposal.submitted ? '제출 완료됨. (스폰싱 미확정)' : '임시 저장됨.'}</span><br />
             {isCFSClosed
                 ? this.renderEditButton(storeTypesEnum.CFS)
                 : '제출 기한이 마감되었습니다.'
