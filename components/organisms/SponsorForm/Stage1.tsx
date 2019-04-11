@@ -65,7 +65,12 @@ export default class SponsorFormStage1 extends React.Component<{
             환불 규정
             </IntlText></legend>
             <ul>
-              <li>행동 강령 위반 등 후원사의 귀책사유로 계약이 해지 되는 경우 위원회는 위약금을 청구할 수 있습니다. 위약금은 남아있는 행사 기간에 따라 달라지며 금액은 하단에 있는 계약서 내용을 따릅니다.</li>
+              <li>행동 강령 위반 등 후원사의 귀책사유로 계약이 해지 되는 경우 위원회는 위약금을 청구할 수 있습니다. 위약금은 남아있는 행사 기간에 따라 달라지며 금액은 <a
+                  href={paths.sponsor.termsOfService}
+                  target='_blank'
+                  rel='noreferrer'
+                >약관</a>의 내용을 따릅니다.
+              </li>
             </ul>
             <input
                 type='checkbox'
