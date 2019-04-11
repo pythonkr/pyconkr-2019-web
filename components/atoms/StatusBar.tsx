@@ -55,6 +55,8 @@ const getStatusText = (openDate?: DateDTO, closeDate?: DateDTO, titleIntlKey?: s
     statusMessage = diff < 7
       ? intl.get('common.status.openBefore', { diff }).d(`시작까지 D${diff}!`)
       : intl.get('common.status.preparing').d('준비 중입니다.')
+
+    statusMessage = diff === 0 ? intl.get('common.status.openBefore', { diff }).d(`오늘 중 오픈!`) : statusMessage
   }
 
   if (closeDate && isPast(closeDate)) {
