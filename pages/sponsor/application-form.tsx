@@ -87,10 +87,11 @@ export default class ApplicationForm extends React.Component<{ stores: StoresTyp
             </ScheduleTable>
           </ContentTableWrapper>
         </Section>
-        <Section>
-          <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
+         <Section>
+          <H2><IntlText intlKey='common.guideTitle'>후원사 가이드</IntlText></H2>
           <Paragraph>
-            <a href='mailto: sponsor@pycon.kr'>sponsor@pycon.kr</a>
+            <a href='https://pythonkr.github.io/sponsor-guide/'>파이콘 한국 2019 후원사 가이드</a> 에서 상세 내용을 확인할 수 있습니다.<br/>
+            후원 고려시 꼭 가이드를 읽어봐주시기를 부탁드립니다. 각 혜택별 상세 내용 등에 안내해드리고 있습니다.
           </Paragraph>
         </Section>
         <Section>
@@ -107,6 +108,12 @@ export default class ApplicationForm extends React.Component<{ stores: StoresTyp
               : <FormNeedsLogin />
             : <Loading width={50} height={50}/>
           }
+        </Section>
+         <Section>
+          <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
+          <Paragraph>
+            <a href='mailto: sponsor@pycon.kr'>sponsor@pycon.kr</a>
+          </Paragraph>
         </Section>
       </PageTemplate>
     )
