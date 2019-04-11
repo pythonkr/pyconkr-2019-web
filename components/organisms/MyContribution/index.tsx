@@ -142,7 +142,8 @@ class MyContribution extends React.Component<PropsType> {
                     onCancel={this.onCancelCFSEdit}
                   />
                 : <Ul>
-                    <Li>주제: {sponsorProposal.nameKo}</Li>
+                    <Li>후원사 이름: {sponsorProposal.nameKo}</Li>
+                    <Li>담당자 이름: {sponsorProposal.managerName}</Li>
                 </Ul>
               }
           </Li>
