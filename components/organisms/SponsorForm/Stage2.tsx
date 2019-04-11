@@ -293,7 +293,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
                   }
                   sponsorStore.uploadBusinessRegistrationFile(files[0])
                 }}
-                required={proposal.businessRegistrationFile === ''}
+                required={!proposal.businessRegistrationFile}
               />
             </IntlText></label>
           </FormHalfBox>
@@ -387,7 +387,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
                   proposal.setLogoImage(imageUrl)
                 })
               }}
-              required={proposal.logoImage === ''}
+              required={!proposal.logoImage}
             />
           </IntlText></label>
           <InputDesc>
@@ -420,11 +420,11 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
                   proposal.setLogoVector(imageUrl)
                 })
               }}
-              required={proposal.logoVector === ''}
+              required={!proposal.logoVector}
             />
           </IntlText></label>
 
-          <label>
+          <label className='required'>
             <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
               후원사 소개(국문)
             </IntlText>
@@ -438,6 +438,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             onChange={e => proposal.setDescKo(e.target.value)}
             aria-required={true}
             style={{ height: 400, marginBottom: 5 }}
+            required
           />
           <span style={{
             display: 'block',
@@ -447,7 +448,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             color: (proposal.descKo && proposal.descKo.length >= 5000) ? 'red' : DEFAULT_TEXT_BLACK
           }}>{(proposal.descKo && proposal.descKo.length) || '0'} / 5000(최대)</span>
 
-          <label>
+          <label className='required'>
             <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
               후원사 소개(영문)
             </IntlText>
@@ -461,6 +462,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             onChange={e => proposal.setDescEn(e.target.value)}
             aria-required={true}
             style={{ height: 400, marginBottom: 5 }}
+            required
           />
           <span style={{
             display: 'block',
