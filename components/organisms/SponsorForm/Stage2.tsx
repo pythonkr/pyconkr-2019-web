@@ -52,10 +52,6 @@ export type PropsType = {
 @inject('stores')
 @observer
 export default class CFPFormStage2 extends React.Component<PropsType> {
-  state = {
-    levelId: '1'
-  }
-
   async componentDidMount() {
     await this.props.stores.sponsorStore.initialize()
     this.props.scrollRef && window.scrollTo(0, this.props.scrollRef.offsetTop)
