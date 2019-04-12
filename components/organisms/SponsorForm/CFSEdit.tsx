@@ -40,11 +40,6 @@ type PropsType = {
 
 @observer
 export default class CFPEdit extends React.Component<PropsType> {
-
-  state = {
-    levelId: '1'
-  }
-
   getFilename(url: string) {
     if (url) {
       return url.substring(url.lastIndexOf('/') + 1)
@@ -54,7 +49,7 @@ export default class CFPEdit extends React.Component<PropsType> {
   }
   render () {
     const { sponsorStore } = this.props
-    const { proposal } = sponsorStore
+    const { sponsorLevels, proposal, proposalLevel } = sponsorStore
 
     return (
       <FormWrapper>
@@ -166,17 +161,17 @@ export default class CFPEdit extends React.Component<PropsType> {
           <SelectWrapper>
             {/* tslint:disable-next-line:react-a11y-no-onchange */}
             <select
-              value={this.state.levelId}
-              onBlur={e => this.setState({ levelId: e.target.value })}
-              onChange={e => this.setState({ levelId: e.target.value })}
+              value={proposalLevel.id}
+              onBlur={e => sponsorStore.setProposalLevelById(e.target.value)}
+              onChange={e => sponsorStore.setProposalLevelById(e.target.value)}
               aria-required={true}
               required
             >
               {
-                sponsorStore.sponsorLevels.map(level =>
+                sponsorLevels.map(level =>
                   <option
                     key={level.id}
-                    aria-selected={this.state.levelId === 'level.id'}
+                    aria-selected={proposalLevel.id === level.id}
                     value={level.id}
                   >{level.name}</option>
                 )
