@@ -40,11 +40,6 @@ type PropsType = {
 
 @observer
 export default class CFPEdit extends React.Component<PropsType> {
-
-  state = {
-    levelId: '1'
-  }
-
   getFilename(url: string) {
     if (url) {
       return url.substring(url.lastIndexOf('/') + 1)
