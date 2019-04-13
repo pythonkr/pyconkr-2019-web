@@ -47,31 +47,31 @@ class MyContribution extends React.Component<PropsType> {
     const proposal = stores && stores[storeType] && stores[storeType].proposal
     const isSumitted = proposal && proposal.submitted
     const onEdit = storeType === storeTypesEnum.CFP
-      ? this.onCFPEdit
-      : this.onCFSEdit
+        ? this.onCFPEdit
+        : this.onCFSEdit
     const linkPath = storeType === storeTypesEnum.CFP
-      ? paths.contribute.proposingATalk
-      : paths.sponsor.applicationForm
+        ? paths.contribute.proposingATalk
+        : paths.sponsor.applicationForm
 
     return (
-      isSumitted
-        ? <Button
-            intlKey='asdfsd'
-            tag='button'
-            color={TEAL}
-            primary={false}
-            size='small'
-            style={{ marginBottom: 20 }}
-            onClick={onEdit}
-          >수정 제출하기</Button>
-        : <Button
-            intlKey='asdfsd'
-            to={linkPath}
-            color={TEAL}
-            primary={false}
-            size='small'
-            style={{ marginBottom: 20 }}
-          >이어서 작성하러 가기</Button>
+        isSumitted
+            ? <Button
+                intlKey='asdfsd'
+                tag='button'
+                color={TEAL}
+                primary={false}
+                size='small'
+                style={{ marginBottom: 10, marginTop: 10, width: '100%', height: 30 }}
+                onClick={onEdit}
+            >수정 제출하기</Button>
+            : <Button
+                intlKey='asdfsd'
+                to={linkPath}
+                color={TEAL}
+                primary={false}
+                size='small'
+                style={{ marginBottom: 10, marginTop: 10, width: '100%', height: 30 }}
+            >이어서 작성하러 가기</Button>
     )
   }
 
@@ -93,62 +93,67 @@ class MyContribution extends React.Component<PropsType> {
     const isCFPClosed = isFuture(talkProposal.close)
     const isCFSClosed = isFuture(callForSponsors.close)
 
+    console.log(sponsorProposal.paidAt)
+    // sponsorProposal.paidAt = '2019-04-13 20:47:42';
+    console.log(sponsorProposal.accepted);
+    console.log(sponsorProposal.submitted);
+
     return (
-      <Ol>
-        {cfpProposal &&
+        <Ol>
+          {cfpProposal &&
           <Li>
-            발표안 제안: <span style={{ fontWeight: 700 }}>{cfpProposal.submitted ? '제출 완료됨.' : '임시 저장됨.'}</span><br />
+            발표안 제안: <span style={{ fontWeight: 700 }}>{cfpProposal.submitted ? '제출 완료' : '임시 저장'}</span><br />
             {isCFPClosed
                 ? this.renderEditButton(storeTypesEnum.CFP)
                 : '제출 기한이 마감되었습니다.'
-              }
-              {cfpEdit
+            }
+            {cfpEdit
                 ? <CFPEdit
                     stores={stores}
                     onCancel={this.onCancelCFPEdit}
-                  />
+                />
                 : <Ul>
-                    <Li>주제: {cfpProposal.name}</Li>
-                    <Li>카테고리: {cfpProposal.category ? cfpProposal.category!.name : ''}</Li>
-                    <Li>세션 길이: {cfpProposal.duration === DurationNode.LONG ? '45분' : '25분'}</Li>
-                    <Li>언어: {cfpProposal.language === LanguageNode.ENGLISH ? 'English' : '한국어'}</Li>
-                    <Li>난이도: {cfpProposal.difficulty ? cfpProposal.difficulty!.name : ''}</Li>
-                    <Li>제안의 상세한 내용: {
-                      marksy({ createElement: React.createElement })(
+                  <Li>주제: {cfpProposal.name}</Li>
+                  <Li>카테고리: {cfpProposal.category ? cfpProposal.category!.name : ''}</Li>
+                  <Li>세션 길이: {cfpProposal.duration === DurationNode.LONG ? '45분' : '25분'}</Li>
+                  <Li>언어: {cfpProposal.language === LanguageNode.ENGLISH ? 'English' : '한국어'}</Li>
+                  <Li>난이도: {cfpProposal.difficulty ? cfpProposal.difficulty!.name : ''}</Li>
+                  <Li>제안의 상세한 내용: {
+                    marksy({ createElement: React.createElement })(
                         cfpProposal.detailDesc
-                      ).tree
-                    }</Li>
-                    <Li>이미 다른 곳에 발표한 내용인가요?: {cfpProposal.isPresentedBefore ? '예' : '아니오'}</Li>
-                    <Li>발표한 행사: {cfpProposal.placePresentedBefore || '-'}</Li>
-                    <Li>발표 자료 링크: {cfpProposal.presentedSlideUrlBefore
+                    ).tree
+                  }</Li>
+                  <Li>이미 다른 곳에 발표한 내용인가요?: {cfpProposal.isPresentedBefore ? '예' : '아니오'}</Li>
+                  <Li>발표한 행사: {cfpProposal.placePresentedBefore || '-'}</Li>
+                  <Li>발표 자료 링크: {cfpProposal.presentedSlideUrlBefore
                       ? <a href={cfpProposal.presentedSlideUrlBefore}>{cfpProposal.presentedSlideUrlBefore}</a>
                       : '-'
-                    }</Li>
-                    <Li>참고 및 질문 사항: {cfpProposal.comment  || '-'}</Li>
+                  }</Li>
+                  <Li>참고 및 질문 사항: {cfpProposal.comment  || '-'}</Li>
                 </Ul>
-              }
+            }
           </Li>
-        }
-        {sponsorProposal &&
+          }
+          {sponsorProposal &&
           <Li>
-            스폰서 제안: <span style={{ fontWeight: 700 }}>{sponsorProposal.submitted ? '제출 완료됨. (스폰싱 미확정)' : '임시 저장됨.'}</span><br />
+            스폰서 제안: <span style={{ fontWeight: 700 }}>{sponsorProposal.submitted ? (sponsorProposal.paidAt ? '제출 완료 (스폰싱 확정)' : '제출 완료 (스폰싱 미확정)') : '임시 저장'}</span><br />
             {isCFSClosed
                 ? this.renderEditButton(storeTypesEnum.CFS)
                 : '제출 기한이 마감되었습니다.'
-              }
-              {cfsEdit
+            }
+            {cfsEdit
                 ? <CFSEdit
                     sponsorStore={sponsorStore}
                     onCancel={this.onCancelCFSEdit}
-                  />
+                />
                 : <Ul>
-                    <Li>후원사 이름: {sponsorProposal.nameKo}</Li>
-                    <Li>담당자 이름: {sponsorProposal.managerName}</Li>
+                  <Li>후원사 이름: {sponsorProposal.nameKo}</Li>
+                  <Li>담당자 이름: {sponsorProposal.managerName}</Li>
                 </Ul>
-              }
+            }
           </Li>
-        }
-      </Ol>
+          }
+        </Ol>
     )
   }
 }

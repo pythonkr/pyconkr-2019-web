@@ -51,6 +51,7 @@ const StepsWrapper = styled.div`
 
  @media (max-width: ${mobileWidth}) {
     overflow-x: auto;
+    padding: 49px 10px 40px;
   }
 `
 

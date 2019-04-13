@@ -99,7 +99,7 @@ export default class ApplicationForm extends React.Component<{ stores: StoresTyp
             </Paragraph>
             <Paragraph>
               <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 후원사 신청 시 여러 후원 등급에 중복 신청도 가능한가요?</strong>
-              A. 아니요, 중복 신청은 불가능합니다. 후원사 선정은 선착순으로 이루어 지기 때문에 후원하고자 하시는 등급에 빠르게 신청하시는 걸 추천드립니다.
+              A. 아니요, 중복 신청은 불가능합니다. 후원사 선정은 입금순으로 이루어 지기 때문에 후원하고자 하시는 등급에 빠르게 신청하시는 걸 추천드립니다.
               해당 후원 등급의 잔여 후원사 수가 궁금하신 경우에는 <a href='mailto: sponsor@pycon.kr'>sponsor@pycon.kr</a> 로 문의주시면 최대한 빨리 답변드리겠습니다.
             </Paragraph>
             <Paragraph>
@@ -115,7 +115,7 @@ export default class ApplicationForm extends React.Component<{ stores: StoresTyp
           <Section>
             <H2><IntlText intlKey='common.guideTitle'>후원사 가이드</IntlText></H2>
             <Paragraph>
-              <a href='https://pythonkr.github.io/sponsor-guide/'>파이콘 한국 2019 후원사 가이드</a> 에서 상세 내용을 확인할 수 있습니다.<br/>
+              <a target='_blank' rel='noreferrer' href='https://pythonkr.github.io/sponsor-guide/'>파이콘 한국 2019 후원사 가이드</a> 에서 상세 내용을 확인할 수 있습니다.<br/>
               후원 고려시 꼭 가이드를 읽어봐주시기를 부탁드립니다. 각 혜택별 상세 내용 등에 안내해드리고 있습니다.
             </Paragraph>
           </Section>
