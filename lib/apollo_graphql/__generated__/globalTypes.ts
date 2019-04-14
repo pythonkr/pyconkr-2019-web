@@ -68,6 +68,7 @@ export interface SponsorInput {
   url?: string | null;
   descKo?: string | null;
   descEn?: string | null;
+  submitted?: boolean | null;
 }
 
 //==============================================================

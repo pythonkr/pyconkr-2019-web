@@ -1,7 +1,5 @@
 import styled from '@emotion/styled'
-import { FormWrapper, SelectWrapper, ContentTableWrapper, Table, THead, TBody, Td, Tr } from 'components/atoms/ContentWrappers'
-// import { ContentTableWrapper, H1, H2, isBold, Paragraph, ScheduleTable, Section, TBody, Td, Tr } from 'components/atoms/ContentWrappers'
-// import { ContentTableWrapper, H1, H2, isBold, Paragraph, ScheduleTable, Section, TBody, Td, Tr } from 'components/atoms/ContentWrappers'
+import { FormWrapper, SelectWrapper, ContentTableWrapper, Table, TBody, Td, Tr } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
 import { StageButtonGroup } from 'components/organisms/CFPForm/StageButtonGroup'
 import { toJS } from 'mobx'
@@ -61,11 +59,10 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
     if (url) {
       return url.substring(url.lastIndexOf('/') + 1)
     }
-
     return ''
   }
 
-  numberWithCommas(x) {
+  numberWithCommas(x: string) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
   }
 
@@ -81,6 +78,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
         <form onSubmit={async (e) => {
           e.preventDefault()
           await sponsorStore.createOrUpdateSponsor(true)
+          alert(intl.get('contribute.talkProposal.application.stages.stages2.alert').d('저장이 완료되었습니다'))
           toNextStage()
         }}>
           <FormHalfBox>
@@ -207,7 +205,8 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
                     key={level.id}
                     aria-selected={proposalLevel.id === level.id}
                     value={level.id}
-                  >{level.name}</option>
+                    disabled={level.currentRemainingNumber === 0}
+                    >{ level.limit<100 ? `${level.name} (잔여: ${level.currentRemainingNumber}/${level.limit})` : level.name}</option>
                 )
               }
             </select>

@@ -12,10 +12,12 @@ import React from 'react'
 import intl from 'react-intl-universal'
 import { TEAL, TEAL_LIGHT, TEAL_LIGHT_LIGHT, TEAL_SEMI_DARK } from 'styles/colors'
 import { isEmpty } from 'utils/isEmpty'
+import { isFuture, isPast } from 'date-fns';
 import { SponsorFormStage } from 'lib/stores/Sponsor/SponsorStore'
 import Stage1 from './Stage1'
 import Stage2 from './Stage2'
 import { mobileWidth } from 'styles/layout'
+import { SponsorFormClose } from 'components/atoms/SponsorFormClose';
 
 const StepsWrapper = styled.div`
   padding: 49px 30px 40px;
@@ -72,17 +74,22 @@ export default class SponsorForm extends React.Component<{ stores: StoresType }>
     const { stores } = this.props
     const { profile } = toJS(this.props.stores.profileStore)
     const { proposal } = toJS(stores.sponsorStore)
+    const { sponsorProposalStartAt,  sponsorProposalFinishAt} = stores.scheduleStore.schedule
 
     if (!stores.profileStore.isInitialized) {
       return <Loading width={50} height={50}/>
     }
 
-    // if (isFuture(callForSponsors.open)) {
-    //   return <NotOpenYet />
-    // }
+    if (isFuture(sponsorProposalStartAt)) {
+      return <NotOpenYet />
+    }
 
     if (!stores.profileStore.isAgreed) {
       return <FormNeedAuthAgreement />
+    }
+
+    if(isPast(sponsorProposalFinishAt)){
+      return <SponsorFormClose />
     }
 
     if (proposal && proposal.submitted) {

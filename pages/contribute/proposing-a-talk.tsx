@@ -10,7 +10,6 @@ import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
 import { isPast } from 'date-fns'
-import { talkProposal } from 'dates'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
 import { contributionMenu, paths } from 'routes/paths'
@@ -30,20 +29,6 @@ export type Schedule = {
   desc?: IntlTextType;
 }
 
-const schedule: Schedule[] = [{
-  title: '발표안 제안 오픈',
-  intlKey: 'contribute.talkProposal.schedule.open',
-  date: talkProposal.open,
-}, {
-  title: '발표안 제안 마감',
-  intlKey: 'contribute.talkProposal.schedule.close',
-  date: talkProposal.close,
-}, {
-  title: '최종 발표자 확정',
-  intlKey: 'contribute.talkProposal.schedule.announcement',
-  date: talkProposal.announcement,
-}]
-
 @inject('stores')
 @observer
 export default class ProposingATalk extends React.Component<{ stores: StoresType }> {
@@ -52,7 +37,23 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
   }
 
   render() {
-    const { authStore } = this.props.stores
+    const { authStore, scheduleStore } = this.props.stores
+    const { presentationProposalStartAt,  presentationProposalFinishAt, presentationAnnounceAt } = scheduleStore.schedule
+
+    const schedule: Schedule[] = [{
+      title: '발표안 제안 오픈',
+      intlKey: 'contribute.talkProposal.schedule.open',
+      date: presentationProposalStartAt,
+    }, {
+      title: '발표안 제안 마감',
+      intlKey: 'contribute.talkProposal.schedule.close',
+      date: presentationProposalFinishAt,
+    }, {
+      title: '최종 발표자 확정',
+      intlKey: 'contribute.talkProposal.schedule.announcement',
+      date: presentationAnnounceAt,
+    }]
+    
 
     return (
       <PageTemplate
@@ -67,8 +68,8 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
           titleIntlKey='contribute.talkProposal.title'
           actionIntlKey='common.apply'
           link={paths.contribute.proposingATalk}
-          openDate={talkProposal.open}
-          closeDate={talkProposal.close}
+          openDate={presentationProposalStartAt}
+          closeDate={presentationProposalFinishAt}
         />
         <Paragraph><IntlText intlKey='contribute.talkProposal.description1'>
           파이썬에 대한 학술적 또는 상업적 프로젝트, 케이스 스터디 등
@@ -103,7 +104,7 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
         </Section>
         <Section>
           <H2><IntlText intlKey='contribute.talkProposal.application.title'>제안서 작성</IntlText></H2>
-          {isPast(talkProposal.open) && <AlertBar text={
+          {isPast(presentationProposalStartAt) && <AlertBar text={
             <>
               <a href={paths.contribute.cfpDetailedGuide}>
                 📙<IntlText intlKey='common.alert'>제안서를 작성하시기 전에 발표안 작성 가이드를 꼭 읽어주세요.</IntlText>
