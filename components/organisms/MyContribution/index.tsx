@@ -5,7 +5,6 @@ import { Loading } from 'components/atoms/Loading'
 import CFPEdit from 'components/organisms/CFPForm/CFPEdit'
 import CFSEdit from 'components/organisms/SponsorForm/CFSEdit'
 import { isFuture } from 'date-fns'
-import { callForSponsors, talkProposal } from 'dates'
 import { DurationNode, LanguageNode } from 'lib/apollo_graphql/__generated__/globalTypes'
 import _ from 'lodash'
 import marksy from 'marksy'
@@ -77,21 +76,22 @@ class MyContribution extends React.Component<PropsType> {
 
   render() {
     const { stores } = this.props
-    const { sponsorStore, cfpStore } = stores
+    const { sponsorStore, cfpStore, scheduleStore } = stores
     const { cfsEdit, cfpEdit } = this.state
     const { proposal: cfpProposal } = toJS(cfpStore)
     const { proposal: sponsorProposal } = toJS(sponsorStore)
-
+    const { presentationProposalFinishAt, sponsorProposalFinishAt } = scheduleStore.schedule
+    
     if (!stores.cfpStore.isInitialized || !stores.sponsorStore.isInitialized) {
       return <Loading width={50} height={50}/>
     }
 
-    if (_.isNil(cfpProposal) && _.isNil(sponsorProposal)) {
+    if (_.isNil(presentationProposalFinishAt) && _.isNil(sponsorProposal)) {
       return <Empty />
     }
 
-    const isCFPClosed = isFuture(talkProposal.close)
-    const isCFSClosed = isFuture(callForSponsors.close)
+    const isCFPClosed = isFuture(presentationProposalFinishAt)
+    const isCFSClosed = isFuture(sponsorProposalFinishAt)
 
     console.log(sponsorProposal.paidAt)
     // sponsorProposal.paidAt = '2019-04-13 20:47:42';

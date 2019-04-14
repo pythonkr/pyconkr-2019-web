@@ -10,7 +10,6 @@ import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
-import { keynoteRecommendation } from 'dates'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
 import intl from 'react-intl-universal'
@@ -23,23 +22,24 @@ export type IndexPagePropsType = {
   stores: StoresType;
 }
 
-const schedule = [{
-  title: '키노트 연사 추천 오픈',
-  intlKey: 'contribute.recommendKeynoteSpeaker.schedule.open',
-  date: keynoteRecommendation.open
-}, {
-  title: '키노트 연사 추천 마감',
-  intlKey: 'contribute.recommendKeynoteSpeaker.schedule.deadline',
-  desc: {
-    defaultText: '마감 시까지',
-    intlKey: 'common.status.untilSelected'
-  }
-}]
-
 @inject('stores')
 @observer
 export default class CFPDetailedGuide extends React.Component<{ stores: StoresType }> {
   render() {
+    const { keynoteRecommendationStartAt } = this.props.stores.scheduleStore.schedule
+    const schedule = [{
+      title: '키노트 연사 추천 오픈',
+      intlKey: 'contribute.recommendKeynoteSpeaker.schedule.open',
+      date: keynoteRecommendationStartAt
+    }, {
+      title: '키노트 연사 추천 마감',
+      intlKey: 'contribute.recommendKeynoteSpeaker.schedule.deadline',
+      desc: {
+        defaultText: '마감 시까지',
+        intlKey: 'common.status.untilSelected'
+      }
+    }]
+    
     return (
       <PageTemplate
         header={<Header title='키노트 연사 추천하기 :: 파이콘 한국 2019' intlKey='contribute.recommendKeynoteSpeaker.pageTitle' />}
@@ -54,7 +54,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           titleIntlKey='contribute.recommendKeynoteSpeaker.title'
           actionIntlKey='common.recommend'
           link={paths.contribute.recommendingAKeynoteSpeaker}
-          openDate={keynoteRecommendation.open}
+          openDate={keynoteRecommendationStartAt}
         />
         <Paragraph><IntlText intlKey='contribute.recommendKeynoteSpeaker.description1'>
           파이써니스타들의 북극성이 되어주실 파이콘 한국 2019 키노트 연사를 찾고 있습니다.

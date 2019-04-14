@@ -7,7 +7,6 @@ import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
 import { differenceInCalendarDays, isFuture, isPast } from 'date-fns'
-import { keynoteRecommendation, lightningTalk, sprintProposal, talkProposal, tutorialProposal, volunteer } from 'dates'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
 import intl from 'react-intl-universal'
@@ -21,42 +20,6 @@ export type IndexPagePropsType = {
   stores: StoresType;
 }
 
-const contributions = [{
-  title: '키노트 발표자 추천',
-  intlKey: 'contribute.overview.table.keynote',
-  openDate: keynoteRecommendation.open,
-  link: paths.contribute.recommendingAKeynoteSpeaker,
-}, {
-  title: '발표안 제안',
-  intlKey: 'contribute.overview.table.talk',
-  openDate: talkProposal.open,
-  closeDate: talkProposal.close,
-  link: paths.contribute.cfpDetailedGuide
-}, {
-  title: '튜토리얼 제안',
-  intlKey: 'contribute.overview.table.tutorial',
-  openDate: tutorialProposal.open,
-  closeDate: tutorialProposal.close,
-  // link: paths.contribute.proposingATutorial
-}, {
-  title: '스프린트 제안',
-  intlKey: 'contribute.overview.table.sprint',
-  openDate: sprintProposal.open,
-  // link: paths.contribute.proposingASprint
-}, {
-  title: '자원봉사자 모집',
-  intlKey: 'contribute.overview.table.volunteer',
-  openDate: volunteer.open,
-  closeDate: volunteer.close,
-}, {
-  title: '라이트닝 토크 신청',
-  intlKey: 'contribute.overview.table.lightingtalk',
-  openDate: lightningTalk.open,
-  dateDescription: {
-    default: '컨퍼런스 당일',
-    intlKey: 'common.status.conferenceDays'
-  }
-}]
 
 const getContributionClass = (openDate?: DateDTO, closeDate?: DateDTO) => {
   if (!openDate || isFuture(openDate)) return ''
@@ -100,6 +63,46 @@ const ShowDetailButton = styled(Button)`
 @observer
 export default class CFPDetailedGuide extends React.Component<{ stores: StoresType }> {
   render() {
+    const { schedule } = this.props.stores.scheduleStore
+
+    const contributions = [{
+      title: '키노트 발표자 추천',
+      intlKey: 'contribute.overview.table.keynote',
+      openDate: schedule.keynoteRecommendationStartAt,
+      link: paths.contribute.recommendingAKeynoteSpeaker,
+    }, {
+      title: '발표안 제안',
+      intlKey: 'contribute.overview.table.talk',
+      openDate: schedule.presentationProposalStartAt,
+      closeDate: schedule.presentationProposalFinishAt,
+      link: paths.contribute.cfpDetailedGuide
+    }, {
+      title: '튜토리얼 제안',
+      intlKey: 'contribute.overview.table.tutorial',
+      openDate: schedule.tutorialProposalStartAt,
+      closeDate: schedule.tutorialProposalFinishAt,
+      // link: paths.contribute.proposingATutorial
+    }, {
+      title: '스프린트 제안',
+      intlKey: 'contribute.overview.table.sprint',
+      openDate: schedule.sprintProposalStartAt,
+      // link: paths.contribute.proposingASprint
+    }, {
+      title: '자원봉사자 모집',
+      intlKey: 'contribute.overview.table.volunteer',
+      openDate: schedule.volunteerRecruitingStartAt,
+      closeDate: schedule.volunteerRecruitingFinishAt,
+    }, {
+      title: '라이트닝 토크 신청',
+      intlKey: 'contribute.overview.table.lightingtalk',
+      openDate: schedule.lightningTalkProposalStartAt,
+      closeDate: schedule.lightningTalkProposalFinishAt,
+      dateDescription: {
+        default: '컨퍼런스 당일',
+        intlKey: 'common.status.conferenceDays'
+      }
+    }]
+
     return (
       <PageTemplate
         header={<Header title='공헌 안내 :: 파이콘 한국 2019' intlKey='contribute.overview.pageTitle' />}

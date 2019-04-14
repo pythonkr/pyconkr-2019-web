@@ -7,7 +7,6 @@ import Header from 'components/organisms/Header'
 import { SponsorPackageTables } from 'components/organisms/SponsorPackageTables'
 import PageTemplate from 'components/templates/PageTemplate'
 import { LocalNavigation } from 'components/molecules/LocalNavigation'
-import { callForSponsors } from 'dates'
 import { inject, observer } from 'mobx-react'
 import { paths } from 'routes/paths'
 import React from 'react'
@@ -19,6 +18,7 @@ import { StoresType } from '../_app'
 @observer
 export default class Prospectus extends React.Component<{ stores: StoresType }> {
   render() {
+    const { sponsorProposalStartAt,  sponsorProposalFinishAt} = this.props.stores.scheduleStore.schedule
     return (
         <PageTemplate
             header={<Header title='후원사 안내 :: 파이콘 한국 2019' intlKey='sponsor.prospectus.pageTitle'/>}
@@ -33,7 +33,8 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
               titleIntlKey='sponsor.event.invitation'
               actionIntlKey='common.apply'
               link={paths.sponsor.applicationForm}
-              openDate={callForSponsors.open}
+              openDate={sponsorProposalStartAt}
+              closeDate={sponsorProposalFinishAt}
           />
           <Paragraph><IntlText intlKey='home.differenceWithOthers.description'>
             파이콘은 커뮤니티 주관으로 이뤄지는 비영리 개발자 대상 행사로,

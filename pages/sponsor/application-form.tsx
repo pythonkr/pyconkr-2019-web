@@ -8,7 +8,6 @@ import Header from 'components/organisms/Header'
 import SponsorForm from 'components/organisms/SponsorForm'
 import PageTemplate from 'components/templates/PageTemplate'
 import { isPast } from 'date-fns'
-import { callForSponsors } from 'dates'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
@@ -25,26 +24,24 @@ export type IndexPagePropsType = {
   stores: StoresType;
 }
 
-const schedule = [{
-  title: '후원사 모집 오픈',
-  intlKey: 'sponsor.prospectus.schedule.open',
-  date: callForSponsors.open
-}, {
-  title: '후원사 모집 마감',
-  intlKey: 'sponsor.prospectus.schedule.deadline',
-  desc: {
-    defaultText: '마감 시까지',
-    intlKey: 'common.status.untilSelected'
-  }
-}]
-
 @inject('stores')
 @observer
 export default class ApplicationForm extends React.Component<{ stores: StoresType }> {
   render() {
     const { stores } = this.props
     const { authStore } = this.props.stores
-    const { sponsors } = toJS(stores.sponsorStore)
+    const { sponsorProposalStartAt,  sponsorProposalFinishAt} = stores.scheduleStore.schedule
+
+    const schedule = [{
+      title: '후원사 모집 오픈',
+      intlKey: 'sponsor.prospectus.schedule.open',
+      date: sponsorProposalStartAt
+    }, {
+      title: '후원사 모집 마감',
+      intlKey: 'sponsor.prospectus.schedule.deadline',
+      date: sponsorProposalFinishAt
+    }]
+    
 
     return (
         <PageTemplate
@@ -60,7 +57,8 @@ export default class ApplicationForm extends React.Component<{ stores: StoresTyp
               titleIntlKey='sponsor.event.invitation'
               actionIntlKey='common.apply'
               link={paths.sponsor.applicationForm}
-              openDate={callForSponsors.open}
+              openDate={sponsorProposalStartAt}
+              closeDate={sponsorProposalFinishAt}
           />
           <Section>
             <H2><IntlText intlKey='common.schedule'>세부 일정</IntlText></H2>
@@ -121,7 +119,7 @@ export default class ApplicationForm extends React.Component<{ stores: StoresTyp
           </Section>
           <Section>
             <H2><IntlText intlKey='contribute.talkProposal.application.title'>신청서 작성</IntlText></H2>
-            {isPast(callForSponsors.open) && <AlertBar text={
+            {isPast(sponsorProposalStartAt) && <AlertBar text={
               <>
                 <a href={paths.sponsor.prospectus}>
                   📙<IntlText intlKey='common.alert'>제안서를 작성하시기 전에 후원사 모집 안내를 꼭 읽어주세요.</IntlText>
