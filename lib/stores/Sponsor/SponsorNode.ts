@@ -1,27 +1,29 @@
 import { CreateOrUpdateSponsor_createOrUpdateSponsor_sponsor_creator as SponsorCreator } from 'lib/apollo_graphql/__generated__/CreateOrUpdateSponsor'
+import { getMySponsor_mySponsor as SponsorNodeType } from 'lib/apollo_graphql/__generated__/getMySponsor'
 import { SponsorLevelType } from 'lib/apollo_graphql/queries/getSponsorLevels'
 import { action, configure, observable } from 'mobx'
 
 configure({ enforceActions: 'observed' })
 
-export class SponsorNode {
+export class SponsorNode implements SponsorNodeType {
+    __typename: 'SponsorNode' = 'SponsorNode'
     @observable id: string = ''
-    @observable creator?: SponsorCreator
+    @observable creator: SponsorCreator | null = null
     @observable name: string = ''
     @observable nameKo: string = ''
     @observable nameEn: string = ''
-    @observable level?: SponsorLevelType | null
+    @observable level: SponsorLevelType | null = null
     @observable desc: string = ''
     @observable descKo: string = ''
     @observable descEn: string = ''
-    @observable managerName?: string
-    @observable managerPhone?: string
-    @observable managerSecondaryPhone?: string
-    @observable managerEmail?: string
-    @observable businessRegistrationNumber?: string
-    @observable businessRegistrationFile?: any | null
+    @observable managerName: string = ''
+    @observable managerPhone: string = ''
+    @observable managerSecondaryPhone: string = ''
+    @observable managerEmail: string = ''
+    @observable businessRegistrationNumber: string = ''
+    @observable businessRegistrationFile: any | null
     @observable contractProcessRequired: boolean = false
-    @observable url?: string | null
+    @observable url: string | null = null
     @observable logoImage: any | null
     @observable logoVector: any | null
     @observable paidAt: any | null

@@ -75,7 +75,7 @@ const Hr = styled.hr`
 `
 
 @inject('stores')
-@withRouter
+@(withRouter as any)
 @observer
 class Login extends React.Component<{ stores: StoresType; router: any }> {
   async componentDidMount() {
