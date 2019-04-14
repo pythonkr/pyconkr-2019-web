@@ -1,5 +1,5 @@
-query getPyconKorea {
-    pyconKorea {
+query getSchedule {
+    schedule {
         name
         nameKo
         nameEn

@@ -130,12 +130,12 @@
             "deprecationReason": null
           },
           {
-            "name": "pyconKorea",
+            "name": "schedule",
             "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "PyconKoreaNode",
+              "name": "ScheduleNode",
               "ofType": null
             },
             "isDeprecated": false,
@@ -1839,7 +1839,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "PyconKoreaNode",
+        "name": "ScheduleNode",
         "description": "\n        Schedules of Python Korea.\n        ",
         "fields": [
           {

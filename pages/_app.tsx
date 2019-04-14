@@ -3,10 +3,12 @@ import { injectGlobal } from 'emotion'
 import emotionReset from 'emotion-reset'
 import FontFaceObserver from 'fontfaceobserver'
 import IntlPolyfill from 'intl'
+import ScheduleStore, { ScheduleStore as ScheduleStoreType } from 'lib/stores/Schedule/ScheduleStore'
 import AuthStore, { AuthStore as AuthStoreType } from 'lib/stores/AuthStore'
 import CFPStore, { CFPStore as CFPStoreType } from 'lib/stores/CFPStore'
 import ProfileStore, { ProfileStore as ProfileStoreType } from 'lib/stores/ProfileStore'
 import SponsorStore, { SponsorStore as SponsorStoreType } from 'lib/stores/Sponsor/SponsorStore'
+
 import { LOCALE_KEY_KR, URL_LOCALE_KEY } from 'locales/constants'
 import { Provider } from 'mobx-react'
 import NProgress from 'next-nprogress/component'
@@ -39,6 +41,7 @@ injectGlobal`
 `
 
 export type StoresType = {
+  scheduleStore: ScheduleStoreType;
   authStore: AuthStoreType;
   profileStore: ProfileStoreType;
   sponsorStore: SponsorStoreType;
@@ -51,6 +54,7 @@ class MyApp extends App {
   constructor(props: any) {
     super(props)
     this.stores = {
+      scheduleStore: ScheduleStore,
       authStore: AuthStore,
       profileStore: ProfileStore,
       sponsorStore: SponsorStore,
@@ -86,8 +90,12 @@ class MyApp extends App {
       .then(() => {
         document && document.body.classList.add('font-loaded')
       })
-
+    this.initializeSchedule()
     this.handleOAuth()
+  }
+
+  initializeSchedule() {
+    this.stores.scheduleStore.initialize()
   }
 
   async handleOAuth() {
@@ -99,7 +107,6 @@ class MyApp extends App {
       if (this.stores.authStore.loggedIn) {
         this.stores.profileStore.retrieveMe()
       }
-
       return
     }
     const redirect_url = `${location.origin}${this.props.router.route}`
