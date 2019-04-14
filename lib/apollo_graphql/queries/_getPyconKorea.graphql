@@ -1,0 +1,65 @@
+query getPyconKorea {
+    pyconKorea {
+        name
+        nameKo
+        nameEn
+        conferenceStartAt
+        conferenceFinishAt
+        tutorialStartAt
+        tutorialFinishAt
+        sprintStartAt
+        sprintFinishAt
+    
+        keynoteRecommendationStartAt
+        keynoteRecommendationFinishAt
+        keynoteRecommendationAnnounceAt
+    
+        presentationProposalStartAt
+        presentationProposalFinishAt
+        presentationReviewStartAt
+        presentationReviewFinishAt
+        presentationAnnounceAt
+    
+        tutorialProposalStartAt
+        tutorialProposalFinishAt
+        tutorialProposalAnnounceAt
+        tutorialTicketStartAt
+        tutorialTicketFinishAt
+    
+        sprintProposalStartAt
+        sprintProposalFinishAt
+        sprintProposalAnnounceAt
+        sprintTicketStartAt
+        sprintTicketFinishAt
+    
+        sponsorProposalStartAt
+        sponsorProposalFinishAt
+    
+        volunteerRecruitingStartAt
+        volunteerRecruitingFinishAt
+        volunteerAnnounceAt
+    
+        lightningTalkProposalStartAt
+        lightningTalkProposalFinishAt
+        lightningTalkAnnounceAt
+    
+        earlybirdTicketStartAt
+        earlybirdTicketFinishAt
+    
+        financialAidStartAt
+        financialAidFinishAt
+        financialAidAnnounceAt
+    
+        patronTicketStartAt
+        patronTicketFinishAt
+    
+        conferenceTicketStartAt
+        conferenceTicketFinishAt
+    
+        babycareTicketStartAt
+        babycareTicketFinishAt
+    
+        youngcoderTicketStartAt
+        youngcoderTicketFinishAt
+    }
+}

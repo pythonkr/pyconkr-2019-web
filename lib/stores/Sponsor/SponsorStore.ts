@@ -41,9 +41,20 @@ export class SponsorStore {
         if (response.data.sponsorLevels) {
             this.sponsorLevels = response.data.sponsorLevels
             this.proposalLevel = {
-                ...this.sponsorLevels[0]
+                ...this.getAvailableLevel()
             }
         }
+    }
+
+    @action
+    getAvailableLevel(){
+        for(const i in this.sponsorLevels){
+            const sponsor = this.sponsorLevels[i]
+            if(sponsor.currentRemainingNumber){
+                return sponsor
+            }
+        }
+        return {}
     }
 
     @action
