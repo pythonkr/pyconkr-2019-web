@@ -46,6 +46,7 @@ class Contribution extends React.Component<{
 
     if (!stores.cfpStore.isInitialized) await stores.cfpStore.initialize()
     if (!stores.sponsorStore.isInitialized) await stores.sponsorStore.initialize()
+    if (!stores.scheduleStore.isInitialized) await stores.scheduleStore.initialize()
   }
 
   render() {

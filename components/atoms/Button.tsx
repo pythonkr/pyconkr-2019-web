@@ -138,7 +138,7 @@ export const Button: React.SFC<Props>  = ({
   tag = 'a',
   to,
   outlink = false,
-  onClick = null,
+  onClick = () => { /* */ },
   intlKey,
   children,
   ...props

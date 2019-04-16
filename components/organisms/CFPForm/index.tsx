@@ -64,15 +64,18 @@ export default class CFPForm extends React.Component<{ stores: StoresType }> {
   formWrapperRef: HTMLDivElement | null = null
 
   async componentDidMount() {
-    const { cfpStore } = this.props.stores
+    const { stores } = this.props
+    const { cfpStore, scheduleStore } = stores
     if (!cfpStore.isInitialized) cfpStore.initialize()
+    if (!scheduleStore.isInitialized) scheduleStore.initialize()
   }
 
   render() {
     const { stores } = this.props
-    const { profile } = toJS(this.props.stores.profileStore)
-    const { currentStage, categories, proposal, difficulties, isInitialized } = toJS(stores.cfpStore)
-    const { presentationProposalStartAt,  presentationProposalFinishAt} = stores.scheduleStore.schedule
+    const { profileStore, cfpStore, scheduleStore } = stores
+    const { profile } = toJS(profileStore)
+    const { currentStage, categories, proposal, difficulties, isInitialized } = toJS(cfpStore)
+    const { presentationProposalStartAt,  presentationProposalFinishAt} = scheduleStore.schedule
 
     if (!stores.profileStore.isInitialized || !isInitialized) {
       return <Loading width={50} height={50}/>
