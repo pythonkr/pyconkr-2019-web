@@ -2,7 +2,7 @@ import { FormWrapper, SelectWrapper } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
 import { StageButtonGroup } from 'components/organisms/CFPForm/StageButtonGroup'
 import { DurationNode, LanguageNode } from 'lib/apollo_graphql/__generated__/globalTypes'
-import { CFPFormStage } from 'lib/stores/CFPStore'
+import { CFPFormStage } from 'lib/stores/CFP/CFPStore'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import React from 'react'
@@ -38,8 +38,8 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType; 
 
     this.setState({
       name: proposal.name,
-      categoryId: proposal.category? proposal.category!.id : '1',
-      difficultyId: proposal.difficulty? proposal.difficulty!.id : '1',
+      categoryId: proposal.category ? proposal.category.id : '1',
+      difficultyId: proposal.difficulty ? proposal.difficulty.id : '1',
       backgroundDesc: proposal.backgroundDesc,
       duration: proposal.duration,
       language: proposal.language

@@ -30,6 +30,10 @@ export const paths = {
     contribution: '/account/contribution',
     termsOfService: '/account/terms-of-service',
     privacyPolicy: '/account/privacy-policy',
+    editproposal: {
+      cfp: '/account/editproposal/cfp',
+      cfs: '/account/editproposal/cfs'
+    }
   }
 }
 

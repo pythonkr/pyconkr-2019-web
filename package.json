@@ -8,7 +8,10 @@
     "start": "NODE_ENV=production ts-node server.ts",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "graphql:codegen": "lib/apollo_graphql/apollo_codegen.sh",
-    "graphql:clean": "rm -rf lib/apollo_graphql/__generated__ graphql_schema.json"
+    "graphql:clean": "rm -rf lib/apollo_graphql/__generated__ lib/apollo_graphql/graphql_schema.json"
+  },
+  "resolutions": {
+    "graphql": "^14.1.1"
   },
   "dependencies": {
     "@emotion/core": "^10.0.7",
@@ -19,7 +22,7 @@
     "@types/ramda": "^0.26.3",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
-    "apollo": "^2.5.1",
+    "apollo": "^2.8.3",
     "apollo-boost": "^0.1.27",
     "apollo-link-context": "^1.0.14",
     "apollo-upload-client": "^10.0.0",

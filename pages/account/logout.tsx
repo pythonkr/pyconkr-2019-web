@@ -10,7 +10,7 @@ import { paths } from 'routes/paths'
 import { StoresType } from '../_app'
 
 @inject('stores')
-@withRouter
+@(withRouter as any)
 @observer
 class Logout extends React.Component<{ stores: StoresType, router: RouterProps }> {
   componentWillMount() {

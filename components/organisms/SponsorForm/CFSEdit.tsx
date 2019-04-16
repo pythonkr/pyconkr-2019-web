@@ -6,10 +6,10 @@ import { IntlText } from 'components/atoms/IntlText'
 import { SponsorStore } from 'lib/stores/Sponsor/SponsorStore'
 import { observer } from 'mobx-react'
 import React from 'react'
+import intl from 'react-intl-universal'
 import { DEFAULT_TEXT_BLACK, TEAL } from 'styles/colors'
 import { FORM_LABEL_GRAY } from '../../../styles/colors'
 import { mobileWidth } from '../../../styles/layout'
-import intl from "react-intl-universal";
 
 const FormHalfBox = styled.div`
 display: inline-block;
@@ -35,7 +35,6 @@ margin-bottom: 5px;
 
 type PropsType = {
   sponsorStore: SponsorStore;
-  onCancel(): void;
 }
 
 @observer
@@ -61,7 +60,6 @@ export default class CFPEdit extends React.Component<PropsType> {
           e.preventDefault()
           await sponsorStore.createOrUpdateSponsor(true)
           alert(intl.get('contribute.talkProposal.application.stages.stages2.alert').d('저장이 완료되었습니다'))
-          this.props.onCancel()
         }}>
           <FormHalfBox>
             <label className='required'>
@@ -432,16 +430,7 @@ export default class CFPEdit extends React.Component<PropsType> {
             color: (proposal.descEn && proposal.descEn.length >= 5000) ? 'red' : DEFAULT_TEXT_BLACK
           }}>{(proposal.descEn && proposal.descEn.length) || '0'} / 5000(최대)</span>
 
-          <FlexSpaceBetweenWrapper style={{ marginTop: 80 }}>
-            <Button
-              tag='button'
-              type='button'
-              intlKey='adsfasdfa'
-              color={TEAL}
-              width={120}
-              primary={false}
-              onClick={this.props.onCancel}
-            >취소</Button>
+          <FlexSpaceBetweenWrapper style={{ justifyContent: 'center', marginTop: 80 }}>
             <Button
               tag='button'
               intlKey='asdlfkaslkfdj'

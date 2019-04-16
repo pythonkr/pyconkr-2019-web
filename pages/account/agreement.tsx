@@ -14,7 +14,7 @@ import { HEADING_LIGHT_BLACK, TEAL } from 'styles/colors'
 import { StoresType } from '../_app'
 
 @inject('stores')
-@withRouter
+@(withRouter as any)
 @observer
 class Logout extends React.Component<{
   stores: StoresType; router: any;

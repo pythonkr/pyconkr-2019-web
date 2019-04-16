@@ -5,9 +5,9 @@ import { uploadLogoImage as uploadSponsorLogoImage } from 'lib/apollo_graphql/mu
 import { uploadLogoVector as uploadSponsorLogoVector } from 'lib/apollo_graphql/mutations/uploadLogoVector'
 import { getMySponsor } from 'lib/apollo_graphql/queries/getMySponsor'
 import { getSponsorLevels, SponsorLevelType } from 'lib/apollo_graphql/queries/getSponsorLevels'
-import { action, configure, observable, set, values, toJS } from 'mobx'
-import { SponsorNode } from './SponsorNode'
 import * as _ from 'lodash'
+import { action, configure, observable, set } from 'mobx'
+import { SponsorNode } from './SponsorNode'
 
 configure({ enforceActions: 'observed' })
 
@@ -29,6 +29,23 @@ export class SponsorStore {
     }
 
     @action
+    setProposal(proposal: any) {
+        set(this.proposal, proposal as { [key: string]: any })
+        if (proposal && proposal.level) {
+            set(this.proposalLevel, proposal.level as { [key: string]: any})
+        }
+    }
+
+    @action
+    async getProposalLevel() {
+        if (!this.sponsorLevels) {
+            await this.retrieveSponsorLevels()
+        }
+
+        return this.sponsorLevels.filter((value) => value.id === this.proposalLevelId)
+    }
+
+    @action
     async initialize() {
         await this.retrieveSponsorLevels()
         await this.retrieveMySponsorProposal()
@@ -39,7 +56,7 @@ export class SponsorStore {
     async retrieveSponsorLevels() {
         const response = await getSponsorLevels(client)({})
         if (response.data.sponsorLevels) {
-            this.sponsorLevels = response.data.sponsorLevels
+            this.sponsorLevels = response.data.sponsorLevels as SponsorLevelType[]
             this.proposalLevel = {
                 ...this.getAvailableLevel()
             }
@@ -65,44 +82,28 @@ export class SponsorStore {
 
     @action
     async createOrUpdateSponsor(submitted: boolean) {
-        const excludeKeys = ['__typename', 'id', 'accepted', 'level', 'creator',
-            'paidAt', 'businessRegistrationFile', 'logoImage', 'logoVector', 'name', 'desc']
+        const excludeKeys = [
+            '__typename', 'id', 'accepted', 'level', 'creator',
+            'paidAt', 'businessRegistrationFile', 'logoImage',
+            'logoVector', 'name', 'desc'
+        ]
         this.proposal.setSumitted(submitted)
         const sponsor = _.omit(this.proposal, excludeKeys)
         sponsor.levelId = this.proposalLevel.id
-        
-
         const { data } = await createOrUpdateSponsor(client)({ data: sponsor })
         this.setProposal(data.createOrUpdateSponsor.sponsor)
     }
 
     @action
     setProposalLevelById(levelId: string) {
-        for(var i in this.sponsorLevels){
-            const level = this.sponsorLevels[i]
-            if(level.id == levelId){
+        this.sponsorLevels.forEach(sponsorLevel => {
+            const level = sponsorLevel
+            if (level.id === levelId) {
                 set(this.proposalLevel, level as { [key: string]: any})
+
                 return
             }
-        }
-    }
-
-    @action
-    setProposal(proposal: any){
-        set(this.proposal, proposal as { [key: string]: any })
-        if(proposal && proposal.level){
-            set(this.proposalLevel, proposal.level as { [key: string]: any})
-        }
-    }
-
-    @action
-    async getProposalLevel() {
-        if(!this.sponsorLevels){
-            await this.retrieveSponsorLevels()
-        }  
-        var level = this.sponsorLevels.filter((value) => value.id === this.proposalLevelId);
-        console.log(level)
-        return level
+        })
     }
 
     @action

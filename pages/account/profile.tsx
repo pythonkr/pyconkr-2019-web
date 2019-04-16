@@ -16,7 +16,7 @@ import { StoresType } from '../_app'
 // TODO:: disabled 속성 분리 + 파일 업로드 CSS 관리
 
 @inject('stores')
-@withRouter
+@(withRouter as any)
 @observer
 class Profile extends React.Component<{
   stores: StoresType;

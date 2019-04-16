@@ -75,7 +75,7 @@ color: ${TEAL};
 }
 `
 
-export const Paragraph = styled.p`
+export const Paragraph: any = styled.p`
 font-size: 17px;
 line-height: 33px;
 margin: 20px 0;
@@ -503,7 +503,7 @@ ${AgreementFieldset} {
     line-height: 1.8;
     font-weight: 700;
     font-size: 16px;
-    
+
     @media (max-width: ${mobileWidth}) {
       width: 90%;
     }
