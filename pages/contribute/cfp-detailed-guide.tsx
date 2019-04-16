@@ -165,13 +165,10 @@ const getDescStr = (desc: IntlTextType) => {
 @inject('stores')
 @observer
 export default class CFPDetailedGuide extends React.Component<{ stores: StoresType }> {
-  async componentDidMount() {
-    const { cfpStore } = this.props.stores
-    if (!cfpStore.isInitialized) cfpStore.initialize()
-  }
-
   render() {
-    const { presentationProposalStartAt,  presentationProposalFinishAt} = this.props.stores.scheduleStore.schedule
+    const { stores } = this.props
+    const { presentationProposalStartAt,  presentationProposalFinishAt} = stores.scheduleStore.schedule
+
     return (
       <PageTemplate
         header={<Header title='발표안 작성 가이드 :: 파이콘 한국 2019' intlKey='contribute.cfpGuide.pageTitle'/>}
@@ -320,7 +317,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
               <Paragraph><IntlText intlKey='contribute.cfpGuide.selectTopic.description'>
                 파이콘 한국 2019에서는 아래와 같이 여러 가지 분야(카테고리)의 발표를 모집하고 있습니다.
               </IntlText></Paragraph>
-              {this.props.stores.cfpStore.categories.reverse().map(category =>
+              {this.props.stores.cfpStore.categories.slice().reverse().map(category =>
                 <Li key={category.name}>{category.name}</Li>
               )}
             </>}

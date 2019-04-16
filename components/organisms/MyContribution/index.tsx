@@ -16,9 +16,14 @@ class MyContribution extends React.Component<PropsType> {
   // tslint:disable-next-line: member-ordering
   contributions: Contribution[] = []
 
-  componentDidMount() {
+  render() {
     const { stores } = this.props
-    const { schedule } = stores.scheduleStore
+    const { sponsorStore, cfpStore, scheduleStore } = stores
+    const { schedule } = scheduleStore
+
+    if (!cfpStore.isInitialized || !sponsorStore.isInitialized) {
+      return <Loading width={50} height={50}/>
+    }
 
     this.contributions = [{
       title: '발표안 제안',
@@ -58,15 +63,6 @@ class MyContribution extends React.Component<PropsType> {
         intlKey: 'common.status.conferenceDays'
       }
     }]
-  }
-
-  render() {
-    const { stores } = this.props
-    const { sponsorStore, cfpStore } = stores
-
-    if (!cfpStore.isInitialized || !sponsorStore.isInitialized) {
-      return <Loading width={50} height={50}/>
-    }
 
     return (
       <>

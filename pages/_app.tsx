@@ -3,10 +3,10 @@ import { injectGlobal } from 'emotion'
 import emotionReset from 'emotion-reset'
 import FontFaceObserver from 'fontfaceobserver'
 import IntlPolyfill from 'intl'
-import ScheduleStore, { ScheduleStore as ScheduleStoreType } from 'lib/stores/Schedule/ScheduleStore'
 import AuthStore, { AuthStore as AuthStoreType } from 'lib/stores/AuthStore'
 import CFPStore, { CFPStore as CFPStoreType } from 'lib/stores/CFP/CFPStore'
 import ProfileStore, { ProfileStore as ProfileStoreType } from 'lib/stores/ProfileStore'
+import ScheduleStore, { ScheduleStore as ScheduleStoreType } from 'lib/stores/Schedule/ScheduleStore'
 import SponsorStore, { SponsorStore as SponsorStoreType } from 'lib/stores/Sponsor/SponsorStore'
 
 import { LOCALE_KEY_KR, URL_LOCALE_KEY } from 'locales/constants'
@@ -99,24 +99,27 @@ class MyApp extends App {
 
   async handleOAuth() {
     const { state, code } = this.props.router.query! as any
-
+    const { authStore, profileStore } = this.stores
     if (!code) {
-      this.stores.authStore.syncToken()
+      authStore.syncToken()
 
-      if (this.stores.authStore.loggedIn) {
-        this.stores.profileStore.retrieveMe()
+      if (authStore.loggedIn) {
+        await profileStore.retrieveMe()
       }
+
       return
     }
+
     const redirect_url = `${location.origin}${this.props.router.route}`
-    await this.stores.authStore.login(state, code, redirect_url)
-    if (!this.stores.profileStore.isAgreed) {
+    await authStore.login(state, code, redirect_url)
+    if (!profileStore.isAgreed) {
       this.props.router.push(`${paths.account.agreement}?redirect_url=${Router.asPath}`)
     }
   }
 
   render() {
     const { Component, pageProps } = this.props
+    const { authStore, profileStore } = this.stores
 
     return (
       <Container>
@@ -126,15 +129,17 @@ class MyApp extends App {
           showAfterMs={300}
           spinner={false}
         />
-        {this.stores.authStore.loggedIn && !this.stores.profileStore.isAgreed && <AlertBar
-          text='회원 가입이 완료되지 않았습니다. 약관을 확인하고 회원 가입을 완료해주세요.'
-          link={{
-            title: '완료하러 가기',
-            to: paths.account.agreement,
-            outlink: false
-          }}
-          style={{ margin: 0 }}
-        />}
+        {authStore.loggedIn && !profileStore.isAgreed && (
+          <AlertBar
+            text='회원 가입이 완료되지 않았습니다. 약관을 확인하고 회원 가입을 완료해주세요.'
+            link={{
+              title: '완료하러 가기',
+              to: paths.account.agreement,
+              outlink: false
+            }}
+            style={{ margin: 0 }}
+          />
+        )}
         <Provider stores={this.stores}>
           <Component {...pageProps} />
         </Provider>

@@ -16,6 +16,7 @@ width: 50px;
 font-size: 10px;
 height: 50px;
 padding: 10px;
+text-align: center;
 }
 `
 type PropsType = {
@@ -102,7 +103,7 @@ export default class ContributionTableRow extends React.Component<PropsType> {
         const { link, editLink, isProposalSubmitted } = this.props
         const buttonTitle = this.getShowDetailButtonTitle()
         const isProposalExist = !_.isNil(isProposalSubmitted)
-        console.log(link)
+
         if (isProposalExist) {
             return (
                 <ShowDetailButton
