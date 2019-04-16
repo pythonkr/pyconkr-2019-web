@@ -286,7 +286,18 @@
       "schedule": {
         "open": "CFP Open",
         "close": "CFP Close",
+        "reviewStart": "CFP Review Start",
+        "reviewFinish": "CFP Review Finish",
         "announcement": "Speaker Confirmation"
+      },
+      "process": {
+        "title": "Selection procedure",
+        "desc": "The procedure of selecting an talk is as follows. Information related to this can be found on the PyCon Korea website or e-mail.",
+        "item1": "After the CFP deadline, the PyCon Korea Preparation Organizer reviews the proposed talk.",
+        "item1-1": "If we need more information, we would request it.",
+        "item2": "Begin reviewing CFP",
+        "item3": "After reviewing CFP, the final speaker will be confirmed.",
+        "item3-1": "Regardless of the result, we will send an result e-mail to all of you."
       },
       "application": {
         "title": "Apply for CFP",
