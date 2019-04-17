@@ -113,7 +113,7 @@ class MyApp extends App {
     const redirect_url = `${location.origin}${this.props.router.route}`
     await authStore.login(state, code, redirect_url)
     if (!profileStore.isAgreed) {
-      this.props.router.push(`${paths.account.agreement}?redirect_url=${Router.asPath}`)
+      this.props.router.push(`${paths.account.agreement}?redirect_url=${Router.route}`)
     }
   }
 
