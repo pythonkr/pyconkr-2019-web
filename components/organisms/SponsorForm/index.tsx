@@ -1,9 +1,12 @@
 import styled from '@emotion/styled'
 import { FormNeedAuthAgreement } from 'components/atoms/FormNeedAuthAgreement'
 import { PaddingWrapper } from 'components/atoms/FormNeedsLogin'
-import { SponsorFormSubmitted } from 'components/atoms/SponsorFormSubmitted'
 import { Loading } from 'components/atoms/Loading'
 import { NotOpenYet } from 'components/atoms/NotOpenYet'
+import { SponsorFormClose } from 'components/atoms/SponsorFormClose'
+import { SponsorFormSubmitted } from 'components/atoms/SponsorFormSubmitted'
+import { isFuture, isPast } from 'date-fns'
+import { SponsorFormStage } from 'lib/stores/Sponsor/SponsorStore'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
@@ -11,11 +14,10 @@ import Steps from 'rc-steps'
 import React from 'react'
 import intl from 'react-intl-universal'
 import { TEAL, TEAL_LIGHT, TEAL_LIGHT_LIGHT, TEAL_SEMI_DARK } from 'styles/colors'
+import { mobileWidth } from 'styles/layout'
 import { isEmpty } from 'utils/isEmpty'
-import { SponsorFormStage } from 'lib/stores/Sponsor/SponsorStore'
 import Stage1 from './Stage1'
 import Stage2 from './Stage2'
-import { mobileWidth } from 'styles/layout'
 
 const StepsWrapper = styled.div`
   padding: 49px 30px 40px;
@@ -51,6 +53,7 @@ const StepsWrapper = styled.div`
 
  @media (max-width: ${mobileWidth}) {
     overflow-x: auto;
+    padding: 49px 10px 40px;
   }
 `
 
@@ -69,19 +72,25 @@ export default class SponsorForm extends React.Component<{ stores: StoresType }>
 
   render() {
     const { stores } = this.props
-    const { profile } = toJS(this.props.stores.profileStore)
-    const { proposal } = toJS(stores.sponsorStore)
+    const { profileStore, sponsorStore } = stores
+    const { profile } = toJS(profileStore)
+    const { proposal } = toJS(sponsorStore)
+    const { sponsorProposalStartAt,  sponsorProposalFinishAt} = stores.scheduleStore.schedule
 
-    if (!stores.profileStore.isInitialized) {
+    if (!profileStore.isInitialized) {
       return <Loading width={50} height={50}/>
     }
 
-    // if (isFuture(callForSponsors.open)) {
-    //   return <NotOpenYet />
-    // }
+    if (isFuture(sponsorProposalStartAt)) {
+      return <NotOpenYet />
+    }
 
-    if (!stores.profileStore.isAgreed) {
+    if (!profileStore.isAgreed) {
       return <FormNeedAuthAgreement />
+    }
+
+    if (isPast(sponsorProposalFinishAt)) {
+      return <SponsorFormClose />
     }
 
     if (proposal && proposal.submitted) {

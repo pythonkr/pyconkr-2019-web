@@ -8,7 +8,6 @@ import Header from 'components/organisms/Header'
 import SponsorForm from 'components/organisms/SponsorForm'
 import PageTemplate from 'components/templates/PageTemplate'
 import { isPast } from 'date-fns'
-import { callForSponsors } from 'dates'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
@@ -25,26 +24,24 @@ export type IndexPagePropsType = {
   stores: StoresType;
 }
 
-const schedule = [{
-  title: '후원사 모집 오픈',
-  intlKey: 'sponsor.prospectus.schedule.open',
-  date: callForSponsors.open
-}, {
-  title: '후원사 모집 마감',
-  intlKey: 'sponsor.prospectus.schedule.deadline',
-  desc: {
-    defaultText: '마감 시까지',
-    intlKey: 'common.status.untilSelected'
-  }
-}]
-
 @inject('stores')
 @observer
 export default class ApplicationForm extends React.Component<{ stores: StoresType }> {
   render() {
     const { stores } = this.props
     const { authStore } = this.props.stores
-    const { sponsors } = toJS(stores.sponsorStore)
+    const { sponsorProposalStartAt,  sponsorProposalFinishAt} = stores.scheduleStore.schedule
+
+    const schedule = [{
+      title: '후원사 모집 오픈',
+      intlKey: 'sponsor.prospectus.schedule.open',
+      date: sponsorProposalStartAt
+    }, {
+      title: '후원사 모집 마감',
+      intlKey: 'sponsor.prospectus.schedule.deadline',
+      date: sponsorProposalFinishAt
+    }]
+    
 
     return (
         <PageTemplate
@@ -60,7 +57,8 @@ export default class ApplicationForm extends React.Component<{ stores: StoresTyp
               titleIntlKey='sponsor.event.invitation'
               actionIntlKey='common.apply'
               link={paths.sponsor.applicationForm}
-              openDate={callForSponsors.open}
+              openDate={sponsorProposalStartAt}
+              closeDate={sponsorProposalFinishAt}
           />
           <Section>
             <H2><IntlText intlKey='common.schedule'>세부 일정</IntlText></H2>
@@ -99,7 +97,7 @@ export default class ApplicationForm extends React.Component<{ stores: StoresTyp
             </Paragraph>
             <Paragraph>
               <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 후원사 신청 시 여러 후원 등급에 중복 신청도 가능한가요?</strong>
-              A. 아니요, 중복 신청은 불가능합니다. 후원사 선정은 선착순으로 이루어 지기 때문에 후원하고자 하시는 등급에 빠르게 신청하시는 걸 추천드립니다.
+              A. 아니요, 중복 신청은 불가능합니다. 후원사 선정은 입금순으로 이루어 지기 때문에 후원하고자 하시는 등급에 빠르게 신청하시는 걸 추천드립니다.
               해당 후원 등급의 잔여 후원사 수가 궁금하신 경우에는 <a href='mailto: sponsor@pycon.kr'>sponsor@pycon.kr</a> 로 문의주시면 최대한 빨리 답변드리겠습니다.
             </Paragraph>
             <Paragraph>
@@ -115,13 +113,13 @@ export default class ApplicationForm extends React.Component<{ stores: StoresTyp
           <Section>
             <H2><IntlText intlKey='common.guideTitle'>후원사 가이드</IntlText></H2>
             <Paragraph>
-              <a href='https://pythonkr.github.io/sponsor-guide/'>파이콘 한국 2019 후원사 가이드</a> 에서 상세 내용을 확인할 수 있습니다.<br/>
+              <a target='_blank' rel='noreferrer' href='https://pythonkr.github.io/sponsor-guide/'>파이콘 한국 2019 후원사 가이드</a> 에서 상세 내용을 확인할 수 있습니다.<br/>
               후원 고려시 꼭 가이드를 읽어봐주시기를 부탁드립니다. 각 혜택별 상세 내용 등에 안내해드리고 있습니다.
             </Paragraph>
           </Section>
           <Section>
             <H2><IntlText intlKey='contribute.talkProposal.application.title'>신청서 작성</IntlText></H2>
-            {isPast(callForSponsors.open) && <AlertBar text={
+            {isPast(sponsorProposalStartAt) && <AlertBar text={
               <>
                 <a href={paths.sponsor.prospectus}>
                   📙<IntlText intlKey='common.alert'>제안서를 작성하시기 전에 후원사 모집 안내를 꼭 읽어주세요.</IntlText>

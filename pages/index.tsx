@@ -6,8 +6,6 @@ import { MainBannerSvg, MainBannerSvgCompact } from 'components/atoms/SVG'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import { inject, observer } from 'mobx-react'
-import Router from 'next/router'
-import { parse } from 'qs'
 import React from 'react'
 import { paths } from 'routes/paths'
 import { BG_GRAY, CORAL, HEADING_LIGHT_BLACK, TEAL } from 'styles/colors'
@@ -410,7 +408,7 @@ class Index extends React.Component<{ stores: StoresType }> {
         <SponserSection>
           <ContentWidthWrapper>
             <SponsorComingSoonBadge>
-              <span>✦</span> Coming Soon <span>✦</span>
+              {/*<span>✦</span> Coming Soon <span>✦</span>*/}
             </SponsorComingSoonBadge>
             <h2>
               <IntlText intlKey='home.sponsor.title'>

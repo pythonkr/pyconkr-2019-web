@@ -3,85 +3,49 @@ import { FormWrapper, SelectWrapper } from 'components/atoms/ContentWrappers'
 import { FlexSpaceBetweenWrapper } from 'components/atoms/FlexWrapper'
 import { IntlText } from 'components/atoms/IntlText'
 import { DurationNode, LanguageNode } from 'lib/apollo_graphql/__generated__/globalTypes'
+import { CFPStore } from 'lib/stores/CFP/CFPStore'
 import { observer } from 'mobx-react'
-import { StoresType } from 'pages/_app'
 import React from 'react'
 import intl from 'react-intl-universal'
-import { DEFAULT_TEXT_BLACK, TEAL } from 'styles/colors'
+import { DEFAULT_TEXT_BLACK } from 'styles/colors'
 
-/* tslint:disable:react-a11y-required  */
-
-interface State {
-  name: string | null,
-  categoryId: string,
-  difficultyId: string,
-  backgroundDesc: string | null,
-  duration: DurationNode | null,
-  language: LanguageNode | null,
-  detailDesc: string,
-  isPresentedBefore: boolean | null,
-  placePresentedBefore: string,
-  presentedSlideUrlBefore: string,
-  comment: string
+type PropsType = {
+  cfpStore: CFPStore;
 }
 
 @observer
-export default class CFPEdit extends React.Component<{stores: StoresType; onCancel(): void }, State> {
-  state = {
-    name: '',
-    categoryId: '1',
-    difficultyId: '1',
-    backgroundDesc: '',
-    duration: DurationNode.SHORT,
-    language: LanguageNode.KOREAN,
-    detailDesc: '',
-    isPresentedBefore: false,
-    placePresentedBefore: '',
-    presentedSlideUrlBefore: '',
-    comment: ''
+export default class CFPEdit extends React.Component<PropsType> {
+  constructor(props: PropsType) {
+    super(props)
+    this.onSubmitCFPEdit = this.onSubmitCFPEdit.bind(this)
   }
 
-  async componentDidMount() {
-    const { stores } = this.props
-    const { proposal } = stores.cfpStore
+  validateSubmit() {
+    const { cfpStore } = this.props
+    const { proposal } = cfpStore
+    if (proposal.detailDesc.length > 5000) {
+      window.alert(`제안 내용이 5000자를 넘습니다.\n전체 내용은 별도 문서 링크로 남겨주시고 개요를 적어주세요.`)
 
-    if (!proposal) {
       return
     }
+  }
 
-    this.setState({
-      name: proposal.name,
-      categoryId: proposal.category!.id,
-      difficultyId: proposal.difficulty!.id,
-      backgroundDesc: proposal.backgroundDesc,
-      duration: proposal.duration,
-      language: proposal.language,
-      detailDesc: proposal.detailDesc,
-      isPresentedBefore: proposal.isPresentedBefore,
-      placePresentedBefore: proposal.placePresentedBefore,
-      presentedSlideUrlBefore: proposal.presentedSlideUrlBefore,
-      comment: proposal.comment
-    })
+  async onSubmitCFPEdit (e: React.FormEvent<HTMLFormElement>): Promise<void> {
+    e.preventDefault()
+    const { cfpStore } = this.props
+    this.validateSubmit()
+    await cfpStore.createOrUpdatePresentationEdit()
+    alert(intl.get('contribute.talkProposal.application.stages.stages2.alert').d('저장이 완료되었습니다'))
   }
 
   render () {
-    const { stores } = this.props
+    const { cfpStore } = this.props
+    const { proposal } = cfpStore
+    if (!proposal) return null
 
     return (
       <FormWrapper>
-        <form onSubmit={(e) => {
-          e.preventDefault()
-          if (this.state.detailDesc.length > 5000) {
-            window.alert(`제안 내용이 5000자를 넘습니다.\n전체 내용은 별도 문서 링크로 남겨주시고 개요를 적어주세요.`)
-
-            return
-          }
-          stores.cfpStore.createOrUpdatePresentation({
-            ...this.state
-          }).then(() => {
-            alert(intl.get('contribute.talkProposal.application.stages.stages2.alert').d('저장이 완료되었습니다'))
-          })
-        }}>
+        <form onSubmit={this.onSubmitCFPEdit}>
           <label className='required'>
             <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
               주제
@@ -89,8 +53,8 @@ export default class CFPEdit extends React.Component<{stores: StoresType; onCanc
           </label>
           <input
             type='text'
-            value={this.state.name}
-            onChange={e => this.setState({ name: e.target.value })}
+            value={proposal.name}
+            onChange={e => proposal.setName(e.target.value)}
             aria-required={true}
             required
           />
@@ -102,21 +66,19 @@ export default class CFPEdit extends React.Component<{stores: StoresType; onCanc
           <SelectWrapper>
             {/* tslint:disable-next-line:react-a11y-no-onchange */}
             <select
-              value={this.state.categoryId}
-              onBlur={e => this.setState({ categoryId: e.target.value })}
-              onChange={e => this.setState({ categoryId: e.target.value })}
+              value={proposal.categoryId}
+              onBlur={e => proposal.setCategoryId(e.target.value)}
+              onChange={e => proposal.setCategoryId(e.target.value)}
               aria-required={true}
               required
             >
-              {
-                stores.cfpStore.categories.map(category =>
+              {cfpStore.categories.map(category =>
                   <option
                     key={category.id}
-                    aria-selected={this.state.categoryId === 'category.id' }
+                    aria-selected={proposal.categoryId === 'category.id' }
                     value={category.id}
                   >{category.name}</option>
-                )
-              }
+              )}
             </select>
           </SelectWrapper>
           <fieldset>
@@ -125,21 +87,19 @@ export default class CFPEdit extends React.Component<{stores: StoresType; onCanc
                 세션 난이도
               </IntlText>
             </legend>
-            {
-              stores.cfpStore.difficulties.map(difficulty =>
+            {cfpStore.difficulties.map(difficulty =>
                 <p key={difficulty.id}>
                   <input
                     type='radio'
                     id={difficulty.name}
                     value={difficulty.id}
-                    aria-checked={this.state.difficultyId === difficulty.id}
-                    checked={this.state.difficultyId === difficulty.id}
-                    onChange={() => this.setState({ difficultyId: difficulty.id })}>
+                    aria-checked={proposal.difficultyId === difficulty.id}
+                    checked={proposal.difficultyId === difficulty.id}
+                    onChange={() => proposal.setDifficultyId(difficulty.id)}>
                   </input>
                   <label htmlFor={difficulty.name}>{difficulty.name}</label>
                 </p>
-              )
-            }
+            )}
           </fieldset>
           <label className='required'>
             <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item4'>
@@ -148,8 +108,8 @@ export default class CFPEdit extends React.Component<{stores: StoresType; onCanc
           </label>
           <input
             type='text'
-            value={this.state.backgroundDesc}
-            onChange={e => this.setState({ backgroundDesc: e.target.value })}
+            value={proposal.backgroundDesc}
+            onChange={e => proposal.setBackgroundDesc(e.target.value)}
             aria-required={true}
             required
           />
@@ -165,9 +125,9 @@ export default class CFPEdit extends React.Component<{stores: StoresType; onCanc
                   type='radio'
                   id={DurationNode.SHORT}
                   value={DurationNode.SHORT}
-                  aria-checked={this.state.duration === DurationNode.SHORT}
-                  checked={this.state.duration === DurationNode.SHORT}
-                  onChange={() => this.setState({ duration: DurationNode.SHORT })}
+                  aria-checked={proposal.duration === DurationNode.SHORT}
+                  checked={proposal.duration === DurationNode.SHORT}
+                  onChange={() => proposal.setDuration(DurationNode.SHORT)}
                 />
                 <label htmlFor={DurationNode.SHORT}>
                   <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.sub1'>
@@ -180,9 +140,9 @@ export default class CFPEdit extends React.Component<{stores: StoresType; onCanc
                   type='radio'
                   id={DurationNode.LONG}
                   value={DurationNode.LONG}
-                  aria-checked={this.state.duration === DurationNode.LONG}
-                  checked={this.state.duration === DurationNode.LONG}
-                  onChange={() => this.setState({ duration: DurationNode.LONG })}
+                  aria-checked={proposal.duration === DurationNode.LONG}
+                  checked={proposal.duration === DurationNode.LONG}
+                  onChange={() => proposal.setDuration(DurationNode.LONG)}
                 />
                 <label htmlFor={DurationNode.LONG}>
                   <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.sub2'>
@@ -202,9 +162,9 @@ export default class CFPEdit extends React.Component<{stores: StoresType; onCanc
                   type='radio'
                   id={LanguageNode.KOREAN}
                   value={LanguageNode.KOREAN}
-                  aria-checked={this.state.language === LanguageNode.KOREAN}
-                  checked={this.state.language === LanguageNode.KOREAN}
-                  onChange={() => this.setState({ language: LanguageNode.KOREAN })}
+                  aria-checked={proposal.language === LanguageNode.KOREAN}
+                  checked={proposal.language === LanguageNode.KOREAN}
+                  onChange={() => proposal.setLanguage(LanguageNode.KOREAN)}
                 />
                 <label htmlFor={LanguageNode.KOREAN}>
                   <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item6.sub1'>
@@ -217,9 +177,9 @@ export default class CFPEdit extends React.Component<{stores: StoresType; onCanc
                   type='radio'
                   id={LanguageNode.ENGLISH}
                   value={LanguageNode.ENGLISH}
-                  aria-checked={this.state.language === LanguageNode.ENGLISH}
-                  checked={this.state.language === LanguageNode.ENGLISH}
-                  onChange={() => this.setState({ language: LanguageNode.ENGLISH })}
+                  aria-checked={proposal.language === LanguageNode.ENGLISH}
+                  checked={proposal.language === LanguageNode.ENGLISH}
+                  onChange={() => proposal.setLanguage(LanguageNode.ENGLISH)}
                 />
                 <label htmlFor={LanguageNode.ENGLISH}>
                   <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item6.sub2'>
@@ -238,8 +198,8 @@ export default class CFPEdit extends React.Component<{stores: StoresType; onCanc
             내용이 많을 경우, 개요와 함께 외부 문서 링크를 적어주시기 바랍니다.
           </IntlText></p>
           <textarea
-            value={this.state.detailDesc}
-            onChange={e => this.setState({ detailDesc: e.target.value })}
+            value={proposal.detailDesc}
+            onChange={e => proposal.setDetailDesc(e.target.value)}
             aria-required={true}
             style={{ height: 400, marginBottom: 5 }}
             required
@@ -249,8 +209,8 @@ export default class CFPEdit extends React.Component<{stores: StoresType; onCanc
             marginBottom: 40,
             textAlign: 'right',
             fontSize: 14,
-            color: this.state.detailDesc.length >= 5000 ? 'red' : DEFAULT_TEXT_BLACK
-          }}>{this.state.detailDesc.length} / 5000(최대)</span>
+            color: proposal.detailDesc.length >= 5000 ? 'red' : DEFAULT_TEXT_BLACK
+          }}>{proposal.detailDesc.length} / 5000(최대)</span>
           <fieldset>
             <legend className='required'>
               <IntlText intlKey='contribute.talkProposal.application.stages.stages3.item2.header'>
@@ -262,9 +222,9 @@ export default class CFPEdit extends React.Component<{stores: StoresType; onCanc
                 type='radio'
                 value={'true'}
                 id='isPresentedBefore-true'
-                aria-checked={this.state.isPresentedBefore === true}
-                checked={this.state.isPresentedBefore === true}
-                onChange={() => this.setState({ isPresentedBefore: true })}
+                aria-checked={proposal.isPresentedBefore === true}
+                checked={proposal.isPresentedBefore === true}
+                onChange={() => proposal.setIsPresentationBefore(true)}
               />
               <label htmlFor='isPresentedBefore-true'><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item2.button1'>
                 예
@@ -275,40 +235,42 @@ export default class CFPEdit extends React.Component<{stores: StoresType; onCanc
                 type='radio'
                 value={'false'}
                 id='isPresentedBefore-false'
-                aria-checked={this.state.isPresentedBefore === false}
-                checked={this.state.isPresentedBefore === false}
-                onChange={() => this.setState({ isPresentedBefore: false })}
+                aria-checked={proposal.isPresentedBefore === false}
+                checked={proposal.isPresentedBefore === false}
+                onChange={() => proposal.setIsPresentationBefore(false)}
               />
               <label htmlFor='isPresentedBefore-false'><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item2.button2'>
                 아니오
               </IntlText></label>
             </p>
           </fieldset>
-          <label className={this.state.isPresentedBefore ? 'required' : undefined}>
+          <label className={proposal.isPresentedBefore ? 'required' : undefined}>
             <IntlText intlKey='contribute.talkProposal.application.stages.stages3.item3'>
               발표한 행사
             </IntlText>
           </label>
+          {/*tslint:disable-next-line: react-a11y-required*/}
           <input
             type='text'
-            value={this.state.placePresentedBefore}
-            onChange={e => this.setState({ placePresentedBefore: e.target.value })}
-            disabled={!this.state.isPresentedBefore}
-            required={this.state.isPresentedBefore}
-            aria-required={this.state.isPresentedBefore}
+            value={proposal.placePresentedBefore}
+            onChange={e => proposal.setPlacePresentedBefore(e.target.value)}
+            disabled={!proposal.isPresentedBefore}
+            required={proposal.isPresentedBefore}
+            aria-required={proposal.isPresentedBefore}
           />
-          <label className={this.state.isPresentedBefore ? 'required' : undefined}>
+          <label className={proposal.isPresentedBefore ? 'required' : undefined}>
             <IntlText intlKey='contribute.talkProposal.application.stages.stages3.item4'>
               발표 자료 링크
             </IntlText>
           </label>
+           {/*tslint:disable-next-line: react-a11y-required*/}
           <input
             type='url'
-            value={this.state.presentedSlideUrlBefore}
-            onChange={e => this.setState({ presentedSlideUrlBefore: e.target.value })}
-            disabled={!this.state.isPresentedBefore}
-            required={this.state.isPresentedBefore}
-            aria-required={this.state.isPresentedBefore}
+            value={proposal.presentedSlideUrlBefore}
+            onChange={e => proposal.setPresentedSlideUrlBefore(e.target.value)}
+            disabled={!proposal.isPresentedBefore}
+            required={proposal.isPresentedBefore}
+            aria-required={proposal.isPresentedBefore}
           />
           <label><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item5.header'>
             참고 및 질문 사항
@@ -318,19 +280,10 @@ export default class CFPEdit extends React.Component<{stores: StoresType; onCanc
           </IntlText></p>
           <input
             type='text'
-            value={this.state.comment}
-            onChange={e => this.setState({ comment: e.target.value })}
+            value={proposal.comment}
+            onChange={e => proposal.setComment(e.target.value)}
           />
-          <FlexSpaceBetweenWrapper style={{ marginTop: 80 }}>
-            <Button
-              tag='button'
-              type='button'
-              intlKey='adsfasdfa'
-              color={TEAL}
-              width={120}
-              primary={false}
-              onClick={this.props.onCancel}
-            >취소</Button>
+          <FlexSpaceBetweenWrapper style={{ justifyContent: 'center', marginTop: 80 }}>
             <Button
               tag='button'
               intlKey='asdlfkaslkfdj'

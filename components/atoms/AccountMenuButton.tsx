@@ -11,7 +11,7 @@ import intl from 'react-intl-universal'
 import { accountMenu, loginMenu } from 'routes/paths'
 
 @inject('stores')
-@withRouter
+@(withRouter as any)
 @observer
 class AccountMenuButton extends React.Component<any> {
   render() {

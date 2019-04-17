@@ -3,11 +3,14 @@ import { FormNeedAuthAgreement } from 'components/atoms/FormNeedAuthAgreement'
 import { PaddingWrapper } from 'components/atoms/FormNeedsLogin'
 import { FormSubmitted } from 'components/atoms/FormSubmitted'
 import { Loading } from 'components/atoms/Loading'
+import { NotOpenYet } from 'components/atoms/NotOpenYet'
+import { PresentationFormClose } from 'components/atoms/PresentationFormClose'
 import Stage1 from 'components/organisms/CFPForm/Stage1'
 import Stage2 from 'components/organisms/CFPForm/Stage2'
 import Stage3 from 'components/organisms/CFPForm/Stage3'
 import Stage4 from 'components/organisms/CFPForm/Stage4'
-import { CFPFormStage } from 'lib/stores/CFPStore'
+import { isFuture, isPast } from 'date-fns'
+import { CFPFormStage } from 'lib/stores/CFP/CFPStore'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
@@ -15,11 +18,8 @@ import Steps from 'rc-steps'
 import React from 'react'
 import intl from 'react-intl-universal'
 import { TEAL, TEAL_LIGHT, TEAL_LIGHT_LIGHT, TEAL_SEMI_DARK } from 'styles/colors'
-import { isEmpty } from 'utils/isEmpty'
-import { isFuture } from 'date-fns';
-import { talkProposal } from 'dates';
-import { NotOpenYet } from 'components/atoms/NotOpenYet'
 import { mobileWidth } from 'styles/layout'
+import { isEmpty } from 'utils/isEmpty'
 
 const StepsWrapper = styled.div`
   padding: 49px 30px 40px;
@@ -64,25 +64,33 @@ export default class CFPForm extends React.Component<{ stores: StoresType }> {
   formWrapperRef: HTMLDivElement | null = null
 
   async componentDidMount() {
-    const { cfpStore } = this.props.stores
+    const { stores } = this.props
+    const { cfpStore, scheduleStore } = stores
     if (!cfpStore.isInitialized) cfpStore.initialize()
+    if (!scheduleStore.isInitialized) scheduleStore.initialize()
   }
 
   render() {
     const { stores } = this.props
-    const { profile } = toJS(this.props.stores.profileStore)
-    const { currentStage, categories, proposal, difficulties, isInitialized } = toJS(stores.cfpStore)
+    const { profileStore, cfpStore, scheduleStore } = stores
+    const { profile } = toJS(profileStore)
+    const { currentStage, categories, proposal, difficulties, isInitialized } = toJS(cfpStore)
+    const { presentationProposalStartAt,  presentationProposalFinishAt} = scheduleStore.schedule
 
     if (!stores.profileStore.isInitialized || !isInitialized) {
       return <Loading width={50} height={50}/>
     }
 
-    if (isFuture(talkProposal.open)) {
+    if (isFuture(presentationProposalStartAt)) {
       return <NotOpenYet />
     }
 
     if (!stores.profileStore.isAgreed) {
       return <FormNeedAuthAgreement />
+    }
+
+    if (isPast(presentationProposalFinishAt)) {
+      return <PresentationFormClose />
     }
 
     if (proposal && proposal.submitted) {

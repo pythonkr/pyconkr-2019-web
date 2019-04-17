@@ -8,34 +8,35 @@ type Props = {
 }
 
 export const StageButtonGroup: React.SFC<Props> = ({ onPrev, onSave }) => {
-  return <FlexSpaceBetweenWrapper style={{ marginTop: 60 }}>
-    <Button
-      tag='button'
-      type='button'
-      intlKey='contribute.talkProposal.application.stages.stages2.button1'
-      color={TEAL}
-      width={80}
-      primary={false}
-      onClick={onPrev}
-    >이전</Button>
-    <div>
+  return (
+    <FlexSpaceBetweenWrapper style={{ marginTop: 60 }}>
       <Button
         tag='button'
         type='button'
-        intlKey='contribute.talkProposal.application.stages.stages2.button2'
+        intlKey='contribute.talkProposal.application.stages.stages2.button1'
         color={TEAL}
         width={80}
         primary={false}
-        onClick={onSave}
-      >임시 저장</Button>
-      <Button
-        tag='button'
-        type='submit'
-        intlKey='contribute.talkProposal.application.stages.stages2.button3'
-        color={TEAL}
-        width={80}
-        style={{ marginLeft: 10 }}
-      >다음</Button>
-    </div>
-  </FlexSpaceBetweenWrapper>
-}
+        onClick={onPrev}
+      >이전</Button>
+      <FlexSpaceBetweenWrapper>
+        <Button
+          tag='button'
+          type='button'
+          intlKey='contribute.talkProposal.application.stages.stages2.button2'
+          color={TEAL}
+          width={80}
+          primary={false}
+          onClick={onSave}
+        >임시 저장</Button>
+        <Button
+          tag='button'
+          type='submit'
+          intlKey='contribute.talkProposal.application.stages.stages2.button3'
+          color={TEAL}
+          width={80}
+          style={{ marginLeft: 10 }}
+        >다음</Button>
+      </FlexSpaceBetweenWrapper>
+    </FlexSpaceBetweenWrapper>
+  )}

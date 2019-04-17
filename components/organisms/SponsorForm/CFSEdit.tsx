@@ -1,15 +1,15 @@
 import styled from '@emotion/styled'
 import { Button } from 'components/atoms/Button'
-import { FormWrapper, SelectWrapper } from 'components/atoms/ContentWrappers'
+import { FormWrapper, SelectWrapper, ContentTableWrapper, Table, TBody, Td, Tr } from 'components/atoms/ContentWrappers'
 import { FlexSpaceBetweenWrapper } from 'components/atoms/FlexWrapper'
 import { IntlText } from 'components/atoms/IntlText'
 import { SponsorStore } from 'lib/stores/Sponsor/SponsorStore'
 import { observer } from 'mobx-react'
 import React from 'react'
+import intl from 'react-intl-universal'
 import { DEFAULT_TEXT_BLACK, TEAL } from 'styles/colors'
 import { FORM_LABEL_GRAY } from '../../../styles/colors'
 import { mobileWidth } from '../../../styles/layout'
-import intl from "react-intl-universal";
 
 const FormHalfBox = styled.div`
 display: inline-block;
@@ -35,7 +35,6 @@ margin-bottom: 5px;
 
 type PropsType = {
   sponsorStore: SponsorStore;
-  onCancel(): void;
 }
 
 @observer
@@ -44,9 +43,13 @@ export default class CFPEdit extends React.Component<PropsType> {
     if (url) {
       return url.substring(url.lastIndexOf('/') + 1)
     }
-
     return ''
   }
+
+  numberWithCommas(x: string) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  }
+
   render () {
     const { sponsorStore } = this.props
     const { sponsorLevels, proposal, proposalLevel } = sponsorStore
@@ -57,7 +60,6 @@ export default class CFPEdit extends React.Component<PropsType> {
           e.preventDefault()
           await sponsorStore.createOrUpdateSponsor(true)
           alert(intl.get('contribute.talkProposal.application.stages.stages2.alert').d('저장이 완료되었습니다'))
-          this.props.onCancel()
         }}>
           <FormHalfBox>
             <label className='required'>
@@ -173,12 +175,48 @@ export default class CFPEdit extends React.Component<PropsType> {
                     key={level.id}
                     aria-selected={proposalLevel.id === level.id}
                     value={level.id}
-                  >{level.name}</option>
+                    disabled={level.currentRemainingNumber === 0}
+                    >{ level.limit<100 ? `${level.name} (잔여: ${level.currentRemainingNumber}/${level.limit})` : level.name}</option>
                 )
               }
             </select>
           </SelectWrapper>
-
+          <ContentTableWrapper>
+            <Table>
+              <colgroup>
+                <col width='15%'/>
+                <col width='35%'/>
+                <col width='15%'/>
+                <col width='35%'/>
+              </colgroup>
+              <TBody>
+                <Tr>
+                  <Td>후원금</Td>
+                  <Td>{this.numberWithCommas(proposalLevel.price)} 원</Td>
+                  <Td>발표세션</Td>
+                  <Td>{proposalLevel.presentationCount ? proposalLevel.presentationCount + '세션' : '❌'}</Td>
+                </Tr>
+                <Tr>
+                  <Td>티켓 지원</Td>
+                  <Td>{proposalLevel.ticketCount} 매</Td>
+                  <Td>부스</Td>
+                  <Td>{proposalLevel.boothInfo ? proposalLevel.boothInfo : '❌'}</Td>
+                </Tr>
+                <Tr>
+                  <Td>채용 공고</Td>
+                  <Td>{proposalLevel.canRecruit ?  '✅' : '❌'}</Td>
+                  <Td>증정품 지급</Td>
+                  <Td>{proposalLevel.canProvideGoods ?  '✅' : '❌'}</Td>
+                </Tr>
+                <Tr>
+                  <Td>열린점심</Td>
+                  <Td>{proposalLevel.openLunch ? proposalLevel.openLunch : '❌'}</Td>
+                  <Td>로고 노출 위치</Td>
+                  <Td>{proposalLevel.logoLocations}</Td>
+                </Tr>
+              </TBody>
+            </Table>
+          </ContentTableWrapper>
           <FormHalfBox>
             <label className='required'>
               <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
@@ -392,16 +430,7 @@ export default class CFPEdit extends React.Component<PropsType> {
             color: (proposal.descEn && proposal.descEn.length >= 5000) ? 'red' : DEFAULT_TEXT_BLACK
           }}>{(proposal.descEn && proposal.descEn.length) || '0'} / 5000(최대)</span>
 
-          <FlexSpaceBetweenWrapper style={{ marginTop: 80 }}>
-            <Button
-              tag='button'
-              type='button'
-              intlKey='adsfasdfa'
-              color={TEAL}
-              width={120}
-              primary={false}
-              onClick={this.props.onCancel}
-            >취소</Button>
+          <FlexSpaceBetweenWrapper style={{ justifyContent: 'center', marginTop: 80 }}>
             <Button
               tag='button'
               intlKey='asdlfkaslkfdj'

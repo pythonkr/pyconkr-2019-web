@@ -10,7 +10,6 @@ import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
-import { talkProposal } from 'dates'
 import { inject, observer } from 'mobx-react'
 import { IntlTextType } from 'pages/contribute/proposing-a-talk'
 import React from 'react'
@@ -166,12 +165,10 @@ const getDescStr = (desc: IntlTextType) => {
 @inject('stores')
 @observer
 export default class CFPDetailedGuide extends React.Component<{ stores: StoresType }> {
-  async componentDidMount() {
-    const { cfpStore } = this.props.stores
-    if (!cfpStore.isInitialized) cfpStore.initialize()
-  }
-
   render() {
+    const { stores } = this.props
+    const { presentationProposalStartAt,  presentationProposalFinishAt} = stores.scheduleStore.schedule
+
     return (
       <PageTemplate
         header={<Header title='발표안 작성 가이드 :: 파이콘 한국 2019' intlKey='contribute.cfpGuide.pageTitle'/>}
@@ -186,8 +183,8 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
             titleIntlKey='contribute.talkProposal.title'
             actionIntlKey='common.apply'
             link={paths.contribute.proposingATalk}
-            openDate={talkProposal.open}
-            closeDate={talkProposal.close}
+            openDate={presentationProposalStartAt}
+            closeDate={presentationProposalFinishAt}
           />
           <Paragraph><IntlText intlKey='contribute.cfpGuide.intro'>
             본 글은 파이콘 한국의 발표자로 지원해주신 분들에게 보다 상세한 도움을 드리고자 준비하였습니다.
@@ -320,7 +317,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
               <Paragraph><IntlText intlKey='contribute.cfpGuide.selectTopic.description'>
                 파이콘 한국 2019에서는 아래와 같이 여러 가지 분야(카테고리)의 발표를 모집하고 있습니다.
               </IntlText></Paragraph>
-              {this.props.stores.cfpStore.categories.reverse().map(category =>
+              {this.props.stores.cfpStore.categories.slice().reverse().map(category =>
                 <Li key={category.name}>{category.name}</Li>
               )}
             </>}

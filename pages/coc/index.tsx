@@ -110,7 +110,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           <H2><IntlText intlKey='coc.license'>라이센스</IntlText></H2>
           <Paragraph><IntlText intlKey='coc.licenseDesc'>
             이 성명서는 Ada Initiative와 다른 자원봉사자들에 의해 작성된 Geek Feminism wiki의 정책 예시를 기본으로 하여 작성되었습니다.
-            원문은 Creative Commons Zero 라이센스를 따르고 있습니다. <a href="https://github.com/pythonkr/pycon-code-of-conduct">깃허브 링크</a>
+            원문은 Creative Commons Zero 라이센스를 따르고 있습니다. <a target='_blank' rel='noreferrer' href="https://github.com/pythonkr/pycon-code-of-conduct">깃허브 링크</a>
           </IntlText></Paragraph>
         </Section>
       </PageTemplate>

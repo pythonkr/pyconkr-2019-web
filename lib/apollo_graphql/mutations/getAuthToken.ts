@@ -1,8 +1,8 @@
 import {
-    oAuthTokenAuth as getAuthTokenType,
-    oAuthTokenAuth_oAuthTokenAuth as AuthTokenType,
-    oAuthTokenAuthVariables as getAuthVariablesType,
-  } from 'lib/apollo_graphql/__generated__/oAuthTokenAuth'
+    getAuthToken as getAuthTokenType,
+    getAuthToken_oAuthTokenAuth as AuthTokenType,
+    getAuthTokenVariables as getAuthVariablesType,
+  } from 'lib/apollo_graphql/__generated__/getAuthToken'
 import {
     createMutationDefinition,
     sendMutation,

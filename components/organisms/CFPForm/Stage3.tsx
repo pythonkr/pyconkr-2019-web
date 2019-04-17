@@ -1,7 +1,7 @@
 import { FormWrapper } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
 import { StageButtonGroup } from 'components/organisms/CFPForm/StageButtonGroup'
-import { CFPFormStage } from 'lib/stores/CFPStore'
+import { CFPFormStage } from 'lib/stores/CFP/CFPStore'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import React from 'react'

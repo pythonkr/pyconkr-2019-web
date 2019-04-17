@@ -12,6 +12,9 @@ const locales: { [index: string]: object } = {
 }
 
 export const formatDate = (formatTemplate: string) => (date: DateDTO) => {
+  if (!date) {
+    return '-'
+  }
   const localeKey = intl.getInitOptions().currentLocale!
 
   return format(date, formatTemplate, {

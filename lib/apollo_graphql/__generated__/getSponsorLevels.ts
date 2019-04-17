@@ -50,6 +50,7 @@ export interface getSponsorLevels_sponsorLevels {
    * 후원사 채용 공고를 할 수 있는지 여부
    */
   canRecruit: boolean;
+  currentRemainingNumber: number | null;
 }
 
 export interface getSponsorLevels {
