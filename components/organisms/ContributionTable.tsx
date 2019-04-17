@@ -20,12 +20,12 @@ export type Contribution = {
     link?: string;
     editLink?: string;
     dateDescription?: DateDescription;
+    isMyContribution?: boolean;
 }
 
 type PropsType = {
     contributions: Contribution[];
     stores: StoresType;
-    isMyContribution?: boolean;
 }
 export default class ContributionTable extends React.Component<PropsType> {
     getProposalList () {
@@ -42,7 +42,7 @@ export default class ContributionTable extends React.Component<PropsType> {
     }
 
     renderContributionTableRow () {
-        const { contributions, isMyContribution } = this.props
+        const { contributions } = this.props
         const proposals = this.getProposalList()
 
         return (
@@ -61,7 +61,7 @@ export default class ContributionTable extends React.Component<PropsType> {
                     link={contribution.link || ''}
                     editLink={contribution.editLink || ''}
                     dateDescription={contribution.dateDescription}
-                    isMyContribution={isMyContribution}
+                    isMyContribution={contribution.isMyContribution}
                     isProposalSubmitted={_.isNil(isSumitted) ? undefined : isSumitted}
                     isSponsorPaid={isSponsorPaid}
                  />

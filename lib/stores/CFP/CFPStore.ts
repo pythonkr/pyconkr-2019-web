@@ -23,6 +23,7 @@ export class CFPStore {
     @observable categories: CategoryType[] = []
     @observable difficulties: DifficultyType[] = []
     @observable proposal: PresentationProposal
+    @observable isProposalInitialized: boolean = false
 
     constructor() {
       this.proposal = new PresentationProposal()
@@ -36,6 +37,10 @@ export class CFPStore {
     @action
     setProposal(proposal: any) {
         set(this.proposal, proposal as { [key: string]: any })
+        debugger;
+        this.isProposalInitialized = proposal !== null
+        alert(proposal !== null)
+        debugger;
     }
 
     @action

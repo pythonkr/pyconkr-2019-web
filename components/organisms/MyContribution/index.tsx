@@ -31,14 +31,16 @@ class MyContribution extends React.Component<PropsType> {
       openDate: schedule.presentationProposalStartAt,
       closeDate: schedule.presentationProposalFinishAt,
       link: paths.contribute.proposingATalk,
-      editLink: paths.account.editproposal.cfp
+      editLink: paths.account.editproposal.cfp,
+      isMyContribution: cfpStore.isProposalInitialized
     }, {
       title: '스폰서 제안',
       intlKey: 'contribute.overview.table.talk',
       openDate: schedule.sponsorProposalStartAt,
       closeDate: schedule.sponsorProposalFinishAt,
       link: paths.sponsor.applicationForm,
-      editLink: paths.account.editproposal.cfs
+      editLink: paths.account.editproposal.cfs,
+      isMyContribution: sponsorStore.isProposalInitialized
     }, {
       title: '튜토리얼 제안',
       intlKey: 'contribute.overview.table.tutorial',

@@ -21,6 +21,7 @@ export class SponsorStore {
     @observable isInitialized: boolean = false
     @observable sponsorLevels: SponsorLevelType[] = []
     @observable proposal: SponsorNode
+    @observable isProposalInitialized: boolean = false
     @observable proposalLevel: SponsorLevelType
     @observable currentStage: SponsorFormStage = SponsorFormStage.stage1
 
@@ -31,6 +32,7 @@ export class SponsorStore {
     @action
     setProposal(proposal: any) {
         set(this.proposal, proposal as { [key: string]: any })
+        this.isProposalInitialized = proposal !== null
         if (proposal && proposal.level) {
             set(this.proposalLevel, proposal.level as { [key: string]: any})
         }
@@ -64,7 +66,7 @@ export class SponsorStore {
     }
 
     @action
-    getAvailableLevel(){
+    getAvailableLevel() {
         for(const i in this.sponsorLevels){
             const sponsor = this.sponsorLevels[i]
             if(sponsor.currentRemainingNumber){
