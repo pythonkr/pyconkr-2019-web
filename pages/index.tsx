@@ -408,7 +408,7 @@ class Index extends React.Component<{ stores: StoresType }> {
         <SponserSection>
           <ContentWidthWrapper>
             <SponsorComingSoonBadge>
-              <span>✦</span> Coming Soon <span>✦</span>
+              {/*<span>✦</span> Coming Soon <span>✦</span>*/}
             </SponsorComingSoonBadge>
             <h2>
               <IntlText intlKey='home.sponsor.title'>

@@ -39,7 +39,7 @@ export class CFPStore {
         set(this.proposal, proposal as { [key: string]: any })
         debugger;
         this.isProposalInitialized = proposal !== null
-        alert(proposal !== null)
+        // alert(proposal !== null)
         debugger;
     }
 
