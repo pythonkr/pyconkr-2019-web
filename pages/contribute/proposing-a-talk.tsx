@@ -120,7 +120,7 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
               </Ul>
             </Li>
             <Li><IntlText intlKey='contribute.talkProposal.process.item2'>발표안 리뷰를 시작합니다.</IntlText></Li>
-            <Li><IntlText intlKey='contribute.talkProposal.process.item3'>발표안 리뷰가 완료된 이후에 최종 발표자 확정됩니다.</IntlText>
+            <Li><IntlText intlKey='contribute.talkProposal.process.item3'>발표안 리뷰가 완료된 이후에 최종 발표자가 확정됩니다.</IntlText>
               <Ul>
                 <Li><IntlText intlKey='contribute.talkProposal.process.item3-1'>결과와 관계 없이 모든 분들께 결과 메일을 발송할 예정입니다</IntlText></Li>
               </Ul>
