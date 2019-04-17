@@ -114,13 +114,13 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
             발표안 제안 이후 선정 절차는 아래와 같으며, 관련 안내는 파이콘 홈페이지 또는 이메일로 진행됩니다.
           </IntlText></Paragraph>
           <Ol>
-            <Li><IntlText intlKey='contribute.talkProposal.process.item1'>발표안 제안 기간 마감 이후 파이콘 한국 준비위원회에서 제안된 내용에 대해 확인 및 검토</IntlText>
+            <Li><IntlText intlKey='contribute.talkProposal.process.item1'>발표안 제안 기간 마감 이후, 준비위원회에서 제안된 내용을 검토합니다.</IntlText>
               <Ul>
-                <Li><IntlText intlKey='contribute.talkProposal.process.item1-1'>추가 정보가 필요한 경우 별도의 요청이 있을 수 있습니다</IntlText></Li>
+                <Li><IntlText intlKey='contribute.talkProposal.process.item1-1'>추가 정보가 필요한 경우 별도의 요청이 있을 수 있습니다.</IntlText></Li>
               </Ul>
             </Li>
-            <Li><IntlText intlKey='contribute.talkProposal.process.item2'>발표안 리뷰 시작</IntlText></Li>
-            <Li><IntlText intlKey='contribute.talkProposal.process.item3'>발표안 리뷰 완료 이후 최종 발표자 확정</IntlText>
+            <Li><IntlText intlKey='contribute.talkProposal.process.item2'>발표안 리뷰를 시작합니다.</IntlText></Li>
+            <Li><IntlText intlKey='contribute.talkProposal.process.item3'>발표안 리뷰가 완료된 이후에 최종 발표자 확정됩니다.</IntlText>
               <Ul>
                 <Li><IntlText intlKey='contribute.talkProposal.process.item3-1'>결과와 관계 없이 모든 분들께 결과 메일을 발송할 예정입니다</IntlText></Li>
               </Ul>
