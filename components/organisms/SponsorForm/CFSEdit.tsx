@@ -216,8 +216,10 @@ export default class CFPEdit extends React.Component<PropsType> {
             <label
               htmlFor='business_upload'
               className='file-upload__label'
-            ><IntlText intlKey='common.uploadTitle'>
+            >
+              <IntlText intlKey='common.uploadTitle'>
               업로드
+              </IntlText>
               <input
                 id='business_upload'
                 className='file-upload__input'
@@ -230,7 +232,7 @@ export default class CFPEdit extends React.Component<PropsType> {
                   sponsorStore.uploadBusinessRegistrationFile(files[0])
                 }}
               />
-            </IntlText></label>
+            </label>
           </FormHalfBox>
 
           <SectionTitle>후원사 소개 정보</SectionTitle>
@@ -259,8 +261,10 @@ export default class CFPEdit extends React.Component<PropsType> {
           <label
               htmlFor='logo_image_upload'
               className='file-upload__label'
-            ><IntlText intlKey='common.uploadTitle'>
+            >
+            <IntlText intlKey='common.uploadTitle'>
             업로드
+            </IntlText>
             <input
               id='logo_image_upload'
               className='file-upload__input'
@@ -275,7 +279,7 @@ export default class CFPEdit extends React.Component<PropsType> {
                 })
               }}
             />
-          </IntlText></label>
+          </label>
           <InputDesc>
           .JPG, .PNG 등 이미지 파일
           </InputDesc>
@@ -288,8 +292,10 @@ export default class CFPEdit extends React.Component<PropsType> {
           <label
               htmlFor='logo_vector_upload'
               className='file-upload__label'
-            ><IntlText intlKey='common.uploadTitle'>
+            >
+            <IntlText intlKey='common.uploadTitle'>
             업로드
+            </IntlText>
             <input
               id='logo_vector_upload'
               className='file-upload__input'
@@ -304,7 +310,7 @@ export default class CFPEdit extends React.Component<PropsType> {
                 })
               }}
             />
-          </IntlText></label>
+          </label>
           <InputDesc>
           .SVG, .AI 등 벡터 파일
           </InputDesc>
