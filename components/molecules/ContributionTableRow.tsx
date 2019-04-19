@@ -76,7 +76,7 @@ export default class ContributionTableRow extends React.Component<PropsType> {
             if (closeDate && differenceInCalendarDays(new Date(), closeDate) < 7) {
                 const leftDday = differenceInCalendarDays(new Date(), closeDate)
 
-                return intl.get('common.status.closeAfter', { leftDday }).d(`마감 D${leftDday}`)
+                return intl.get('common.status.closeAfter', { leftDday }).d(`마감 D-${leftDday}`)
             }
 
             return intl.get('common.status.onProgress').d('모집 중')

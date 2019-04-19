@@ -75,7 +75,7 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
             </Paragraph>
           </Section>
           <Section>
-            <H2><IntlText intlKey='common.guideTitle'>후원사 가이드</IntlText></H2>
+            <H2><IntlText intlKey='sponsor.guideTitle'>후원사 가이드</IntlText></H2>
             <Paragraph>
               <a target='_blank' rel='noreferrer' href='https://pythonkr.github.io/sponsor-guide/'>파이콘 한국 2019 후원사 가이드</a> 에서 상세 내용을 확인할 수 있습니다.<br/>
               후원 고려시 꼭 가이드를 읽어봐주시기를 부탁드립니다. 각 혜택별 상세 내용 등에 안내해드리고 있습니다.

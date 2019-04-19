@@ -249,21 +249,21 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             >
               <IntlText intlKey='common.uploadTitle'>
               업로드
-                <input
-                  id='business_upload'
-                  className='file-upload__input'
-                  name='business-registration-file-upload'
-                  type='file'
-                  onChange={({ target: { validity, files } }) => {
-                    if (!validity.valid || !files) {
-                      return
-                    }
-                    sponsorStore.uploadBusinessRegistrationFile(files[0])
-                  }}
-                  required={!proposal.businessRegistrationFile}
-                  aria-required='true'
-                />
-            </IntlText>
+              </IntlText>
+              <input
+                id='business_upload'
+                className='file-upload__input'
+                name='business-registration-file-upload'
+                type='file'
+                onChange={({ target: { validity, files } }) => {
+                  if (!validity.valid || !files) {
+                    return
+                  }
+                  sponsorStore.uploadBusinessRegistrationFile(files[0])
+                }}
+                required={!proposal.businessRegistrationFile}
+                aria-required='true'
+              />
             </label>
           </FormHalfBox>
 
@@ -299,7 +299,8 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
           >
             <IntlText intlKey='common.uploadTitle'>
               업로드
-              <input
+            </IntlText>
+            <input
                 id='logo_image_upload'
                 className='file-upload__input'
                 name='logo-image-upload'
@@ -315,7 +316,6 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
                 required={!proposal.logoImage}
                 aria-required='true'
               />
-            </IntlText>
           </label>
           <InputDesc>
           .JPG, .PNG 등 이미지 파일
@@ -335,23 +335,23 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
           >
             <IntlText intlKey='common.uploadTitle'>
               업로드
-              <input
-                id='logo_vector_upload'
-                className='file-upload__input'
-                name='logo-vector-upload'
-                type='file'
-                onChange={({ target: { validity, files } }) => {
-                  if (!validity.valid || !files) {
-                    return
-                  }
-                  stores.sponsorStore.uploadLogoVector(files[0]).then((imageUrl) => {
-                    proposal.setLogoVector(imageUrl)
-                  })
-                }}
-                required={!proposal.logoVector}
-                aria-required='true'
-              />
             </IntlText>
+            <input
+              id='logo_vector_upload'
+              className='file-upload__input'
+              name='logo-vector-upload'
+              type='file'
+              onChange={({ target: { validity, files } }) => {
+                if (!validity.valid || !files) {
+                  return
+                }
+                stores.sponsorStore.uploadLogoVector(files[0]).then((imageUrl) => {
+                  proposal.setLogoVector(imageUrl)
+                })
+              }}
+              required={!proposal.logoVector}
+              aria-required='true'
+            />
           </label>
 
           <label className='required'>
