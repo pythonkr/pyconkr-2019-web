@@ -49,7 +49,8 @@
       "closed": "Closed",
       "untilSelected": "Until Selected",
       "conferenceDays": "Conference Days"
-    }
+    },
+    "uploadTitle": "Upload"
   },
   "gnb": {
     "home": "Home",
@@ -410,6 +411,7 @@
         "deadline": "Sponsor Invitation Deadline"
       },
       "guideTitle": "Sponsorship Guide",
+      "faqTitle": "Sponsor FAQ",
       "packageTitle": "Sponsorship Packages",
       "packageDesc": "Sponsorship packages may vary by venue and circumstances. And sessions, tutorials and bag inserts provided by sponsors should be served after consultation with PyCon Korea Organizers.",
       "boothDesc": "The sponsor booth will only be available at conferences that will be held between August 17 (Sat) and 18 (Sun).",
@@ -595,5 +597,8 @@
     "paragraph5-3": "Contact:",
     "title6": "Change of Personal Information Processing Policy",
     "paragraph6": "If the above privacy policy changes, we will post the change and the changed privacy policy will take effect seven days after the date of posting. However, we will notify you at least 30 days in advance of any significant change in your rights, such as the items of personal information you collect."
+  },
+  "proposal": {
+    "sponsorLogoImageLabel": "Upload Logo"
   }
 }
