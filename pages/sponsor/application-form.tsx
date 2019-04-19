@@ -2,13 +2,11 @@ import { AlertBar } from 'components/atoms/AlertBar'
 import { FormNeedsLogin } from 'components/atoms/FormNeedsLogin'
 import { Loading } from 'components/atoms/Loading'
 import { StatusBar } from 'components/atoms/StatusBar'
-import { IntlText } from '../../components/atoms/IntlText'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import SponsorForm from 'components/organisms/SponsorForm'
 import PageTemplate from 'components/templates/PageTemplate'
 import { isPast } from 'date-fns'
-import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import React from 'react'
@@ -18,6 +16,7 @@ import {
   ContentTableWrapper, H1, H2, Paragraph, ScheduleTable,
   Section, TBody, Td, Tr
 } from '../../components/atoms/ContentWrappers'
+import { IntlText } from '../../components/atoms/IntlText'
 import {paths} from '../../routes/paths'
 
 export type IndexPagePropsType = {
@@ -41,7 +40,6 @@ export default class ApplicationForm extends React.Component<{ stores: StoresTyp
       intlKey: 'sponsor.prospectus.schedule.deadline',
       date: sponsorProposalFinishAt
     }]
-    
 
     return (
         <PageTemplate
@@ -86,7 +84,7 @@ export default class ApplicationForm extends React.Component<{ stores: StoresTyp
             </ContentTableWrapper>
           </Section>
           <Section>
-            <H2><IntlText intlKey='common.guideTitle'>후원사 FAQ</IntlText></H2>
+            <H2><IntlText intlKey='sponsor.prospectus.faqTitle'>후원사 FAQ</IntlText></H2>
             <Paragraph>
               <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 후원 비용은 어디에 쓰이나요?</strong>
               A. 행사 운영비로 사용되게 됩니다. 장소대여비, 부스 운영비, 각종 프로그램 진행비, 해외 스피커 항공료및 호텔, 스피커와 운영팀 식사, 비디오녹화, 기념티셔츠 및 책자 제작 등 입니다.

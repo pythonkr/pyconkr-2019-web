@@ -112,7 +112,7 @@ class Profile extends React.Component<{
           <label
             htmlFor='upload'
             className='file-upload__label'
-          ><IntlText intlKey='account.profile.button1'>
+          ><IntlText intlKey='common.uploadTitle'>
             업로드
             <input
               id='upload'

@@ -2,15 +2,15 @@ import { AlertBar } from 'components/atoms/AlertBar'
 import { ContentTableWrapper, H1, H2, Li, Paragraph, ScheduleTable, Section, TBody, Td, Tr, Ul } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
 import { StatusBar } from 'components/atoms/StatusBar'
+import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import { SponsorPackageTables } from 'components/organisms/SponsorPackageTables'
 import PageTemplate from 'components/templates/PageTemplate'
-import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import { inject, observer } from 'mobx-react'
-import { paths } from 'routes/paths'
 import React from 'react'
 import intl from 'react-intl-universal'
+import { paths } from 'routes/paths'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 import { StoresType } from '../_app'
 
@@ -19,6 +19,7 @@ import { StoresType } from '../_app'
 export default class Prospectus extends React.Component<{ stores: StoresType }> {
   render() {
     const { sponsorProposalStartAt,  sponsorProposalFinishAt} = this.props.stores.scheduleStore.schedule
+
     return (
         <PageTemplate
             header={<Header title='후원사 안내 :: 파이콘 한국 2019' intlKey='sponsor.prospectus.pageTitle'/>}
@@ -49,7 +50,7 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
             이를 우수한 개발자 모집의 장으로 활용하실 수 있습니다.
           </IntlText></Paragraph>
           <Section>
-            <H2><IntlText intlKey='common.guideTitle'>후원사 FAQ</IntlText></H2>
+            <H2><IntlText intlKey='sponsor.prospectus.faqTitle'>후원사 FAQ</IntlText></H2>
             <Paragraph>
               <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 후원 비용은 어디에 쓰이나요?</strong>
               A. 행사 운영비로 사용되게 됩니다. 장소대여비, 부스 운영비, 각종 프로그램 진행비, 해외 스피커 항공료및 호텔, 스피커와 운영팀 식사, 비디오녹화, 기념티셔츠 및 책자 제작 등 입니다.
