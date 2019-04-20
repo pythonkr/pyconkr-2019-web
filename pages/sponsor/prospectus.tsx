@@ -1,8 +1,7 @@
 import { AlertBar } from 'components/atoms/AlertBar'
-import { ContentTableWrapper, H1, H2, Li, Paragraph, ScheduleTable, Section, TBody, Td, Tr, Ul } from 'components/atoms/ContentWrappers'
+import { H1, H2, Li, Paragraph, Section, Ul } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
 import { StatusBar } from 'components/atoms/StatusBar'
-import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import { SponsorPackageTables } from 'components/organisms/SponsorPackageTables'
@@ -11,7 +10,6 @@ import { inject, observer } from 'mobx-react'
 import React from 'react'
 import intl from 'react-intl-universal'
 import { paths } from 'routes/paths'
-import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 import { StoresType } from '../_app'
 
 @inject('stores')

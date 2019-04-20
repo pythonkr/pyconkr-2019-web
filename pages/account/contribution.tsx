@@ -9,6 +9,7 @@ import { inject, observer } from 'mobx-react'
 import Router, { RouterProps, withRouter } from 'next/router'
 import React from 'react'
 import { paths } from 'routes/paths'
+import { withNamespaces } from '../../i18n'
 import { StoresType } from '../_app'
 
 @inject('stores')
@@ -18,21 +19,11 @@ class Contribution extends React.Component<{
   stores: StoresType;
   router: RouterProps;
 }> {
-  state = {
-    profile: {
-      email: '',
-      oauthType: '',
-      nameKo: '',
-      nameEn: '',
-      phone: '',
-      organization: '',
-      nationality: '',
-      bioKo: '',
-      bioEn: '',
-      image: '',
-      avatarUrl: ''
-    },
-    profileFile: null
+
+  static async getInitialProps() {
+    return {
+      namespacesRequired: ['account'],
+    }
   }
 
   async componentDidMount() {
@@ -50,7 +41,7 @@ class Contribution extends React.Component<{
   }
 
   render() {
-    const { stores } = this.props
+    const { stores, t } = this.props
 
     return (
       <PageTemplate
@@ -58,7 +49,8 @@ class Contribution extends React.Component<{
         footer={<Footer />}
       >
         <H1>
-          <IntlText intlKey='contribution.title'>제안 및 신청 내역</IntlText>
+          {t('contribution.title')}
+          {/* <IntlText intlKey='contribution.title'>제안 및 신청 내역</IntlText> */}
         </H1>
         <Paragraph intlKey='contribution.paragraph'>
           파이콘 한국 2019 에 제안 또는 신청한 내역입니다.<br/>
@@ -70,4 +62,4 @@ class Contribution extends React.Component<{
   }
 }
 
-export default Contribution
+export default withNamespaces('account')(Contribution)

@@ -22,6 +22,8 @@ import { CORAL } from 'styles/colors'
 import { commonCSS } from 'styles/common'
 import { fontCSS } from 'styles/font'
 
+import { appWithTranslation } from '../i18n'
+
 global.Intl = IntlPolyfill
 require('intl/locale-data/jsonp/ko.js')
 
@@ -150,4 +152,4 @@ class MyApp extends App {
   }
 }
 
-export default MyApp
+export default appWithTranslation(MyApp)

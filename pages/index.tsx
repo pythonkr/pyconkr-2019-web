@@ -282,6 +282,13 @@ const IntroduceSection = styled.section`
 @inject('stores')
 @observer
 class Index extends React.Component<{ stores: StoresType }> {
+
+  static async getInitialProps() {
+    return {
+      namespacesRequired: ['account'],
+    }
+  }
+
   render() {
     return (
       <>
