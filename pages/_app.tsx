@@ -25,6 +25,11 @@ import { fontCSS } from 'styles/font'
 global.Intl = IntlPolyfill
 require('intl/locale-data/jsonp/ko.js')
 
+const locales = {
+  'ko-KR': require('locales/ko-KR'),
+  'en-US': require('locales/en-US')
+}
+
 const intlWarningHandler = (message: string) => {
   if (message.includes('react-intl-universal key') &&
     message.includes(`not defined in ${LOCALE_KEY_KR}`)) {
@@ -64,10 +69,7 @@ class MyApp extends App {
     const currentLocale = query![URL_LOCALE_KEY] as string || LOCALE_KEY_KR
     intl.init({
       currentLocale,
-      locales: {
-        // tslint:disable-next-line:non-literal-require
-        [currentLocale]: require(`locales/${currentLocale}`)
-      },
+      locales,
       warningHandler: intlWarningHandler
     })
   }

@@ -43,9 +43,9 @@
     "status": {
       "onProgress": "On Progress",
       "preparing": "Preparing",
-      "openBefore": "Open D{diff}",
+      "openBefore": "Open D-{diff}",
       "openToday": "Open Soon Today",
-      "closeAfter": "Close D{diff}",
+      "closeAfter": "Close D-{diff}",
       "closed": "Closed",
       "untilSelected": "Until Selected",
       "conferenceDays": "Conference Days"
