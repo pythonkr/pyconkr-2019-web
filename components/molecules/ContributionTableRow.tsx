@@ -41,6 +41,7 @@ export default class ContributionTableRow extends React.Component<PropsType> {
         const isContributionAvailable = openDate && link
         const isBeforeOpening = openDate && isFuture(openDate) && link
         const isFinished = closeDate && isPast(closeDate)
+        const now = new Date()
 
         if (!isContributionAvailable) return '-'
 
@@ -63,20 +64,20 @@ export default class ContributionTableRow extends React.Component<PropsType> {
             return '미제출'
         } else {
             if (isBeforeOpening) {
-                const leftdDay = openDate && differenceInCalendarDays(new Date(), openDate)
-                const isBefore7days = leftdDay && leftdDay < 7
+                const daysDifference = openDate && differenceInCalendarDays(openDate, now)
+                const isBefore7days = daysDifference && daysDifference < 7
 
                 return isBefore7days
-                    ? intl.get('common.status.openBefore', { leftdDay }).d(`모집 시작 D${leftdDay}`)
+                    ? intl.get('common.status.openBefore', { diff: daysDifference }).d(`모집 시작 D-${daysDifference}`)
                     : intl.get('common.status.preparing').d('준비 중')
             }
 
             if (isFinished) return intl.get('common.status.closed').d('마감')
 
-            if (closeDate && differenceInCalendarDays(new Date(), closeDate) < 7) {
-                const leftDday = differenceInCalendarDays(new Date(), closeDate)
+            if (closeDate && differenceInCalendarDays(closeDate, now) < 7) {
+                const daysDifference = differenceInCalendarDays(closeDate, now)
 
-                return intl.get('common.status.closeAfter', { leftDday }).d(`마감 D-${leftDday}`)
+                return intl.get('common.status.closeAfter', { diff: daysDifference }).d(`마감 D-${ daysDifference}`)
             }
 
             return intl.get('common.status.onProgress').d('모집 중')

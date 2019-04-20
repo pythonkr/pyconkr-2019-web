@@ -24,7 +24,7 @@
         "ignoreDefinitionFiles": true,
         "suppressWhileTypeErrorsPresent": false,
         "mockTypeScriptVersion": false
-      },
+      }
     ]
   }
 }

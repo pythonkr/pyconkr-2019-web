@@ -50,7 +50,7 @@ const getStatusText = (openDate?: DateDTO, closeDate?: DateDTO, titleIntlKey?: s
 
   let statusMessage = intl.get('common.status.onProgress').d('진행 중입니다.')
   if (isFuture(openDate) && link) {
-    const diff = differenceInCalendarDays(new Date(), openDate)
+    const diff = differenceInCalendarDays(openDate, new Date())
 
     statusMessage = diff < 7
       ? intl.get('common.status.openBefore', { diff }).d(`시작까지 D${diff}!`)
@@ -64,7 +64,7 @@ const getStatusText = (openDate?: DateDTO, closeDate?: DateDTO, titleIntlKey?: s
   }
 
   if (closeDate) {
-    const diff = differenceInCalendarDays(new Date(), closeDate)
+    const diff = differenceInCalendarDays(closeDate, new Date())
     statusMessage = `${statusMessage} (${intl.get('common.status.closeAfter', { diff }).d(`마감까지 D${diff}`)})`
   }
 
