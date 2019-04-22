@@ -1,5 +1,6 @@
+{/* tslint:disable react-a11y-role-supports-aria-props */}
 import styled from '@emotion/styled'
-import { FormWrapper, SelectWrapper, ContentTableWrapper, Table, TBody, Td, Tr } from 'components/atoms/ContentWrappers'
+import { ContentTableWrapper, FormWrapper, SelectWrapper, Table, TBody, Td, Tr } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
 import { StageButtonGroup } from 'components/organisms/CFPForm/StageButtonGroup'
 import { toJS } from 'mobx'
@@ -8,7 +9,7 @@ import { StoresType } from 'pages/_app'
 import React from 'react'
 import intl from 'react-intl-universal'
 import { DEFAULT_TEXT_BLACK } from 'styles/colors'
-import { FORM_LABEL_GRAY, ALERT_BLUE_DARK } from '../../../styles/colors'
+import { ALERT_BLUE_DARK, FORM_LABEL_GRAY } from '../../../styles/colors'
 import { mobileWidth } from '../../../styles/layout'
 
 const FormHalfBox = styled.div`
@@ -59,13 +60,13 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
     if (url) {
       return url.substring(url.lastIndexOf('/') + 1)
     }
+
     return ''
   }
 
   numberWithCommas(x: string) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
-
 
   render() {
     const { stores, toNextStage, toPrevStage } = this.props
@@ -83,7 +84,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
         }}>
           <FormHalfBox>
             <label className='required'>
-              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.nameKorean'>
                 후원사 이름(영문)
               </IntlText>
             </label>
@@ -97,7 +98,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
           </FormHalfBox>
           <FormHalfBox>
             <label className='required'>
-              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.nameEnglish'>
                 후원사 이름(국문)
               </IntlText>
             </label>
@@ -110,10 +111,12 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             />
           </FormHalfBox>
 
-          <SectionTitle>연락 정보</SectionTitle>
+          <SectionTitle>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.primaryContactInformation'>연락 정보</IntlText>
+          </SectionTitle>
           <hr className='margin-20' />
           <label className='required'>
-            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.primaryContactPersonEmail'>
               담당자 파이콘 계정 이메일
             </IntlText>
           </label>
@@ -124,7 +127,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
           />
           <FormHalfBox>
             <label className='required'>
-              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.primaryContactPersonName'>
                 담당자 이름
               </IntlText>
             </label>
@@ -137,24 +140,9 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             />
           </FormHalfBox>
 
-          {/*<FormHalfBox>*/}
-          {/*  <label className='required'>*/}
-          {/*    <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>*/}
-          {/*      담당자 연락처*/}
-          {/*    </IntlText>*/}
-          {/*  </label>*/}
-          {/*  <input*/}
-          {/*    type='text'*/}
-          {/*    value={proposal.managerPhone}*/}
-          {/*    onChange={e => proposal.setManagerPhone(e.target.value)}*/}
-          {/*    aria-required={true}*/}
-          {/*    required*/}
-          {/*  />*/}
-          {/*</FormHalfBox>*/}
-
           <FormHalfBox>
             <label className='required'>
-              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.businessEmail'>
                 업무용 공식 이메일
               </IntlText>
             </label>
@@ -167,26 +155,15 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             />
           </FormHalfBox>
 
-          {/*<FormHalfBox>*/}
-          {/*  <label className='required'>*/}
-          {/*    <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>*/}
-          {/*      보조 연락처*/}
-          {/*    </IntlText>*/}
-          {/*  </label>*/}
-          {/*  <input*/}
-          {/*    type='text'*/}
-          {/*    value={proposal.managerSecondaryPhone}*/}
-          {/*    onChange={e => proposal.setManagerSecondaryPhone(e.target.value)}*/}
-          {/*    aria-required={true}*/}
-          {/*    required*/}
-          {/*  />*/}
-          {/*</FormHalfBox>*/}
-
-          <SectionTitle>후원 정보</SectionTitle>
+          <SectionTitle>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.sponsorshipIntroduction'>
+              후원 정보
+            </IntlText>
+          </SectionTitle>
           <hr className='margin-20' />
 
           <label className='required'>
-            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item2'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.sponsorshipLevel'>
               후원 등급
             </IntlText>
           </label>
@@ -206,12 +183,12 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
                     aria-selected={proposalLevel.id === level.id}
                     value={level.id}
                     disabled={level.currentRemainingNumber === 0}
-                    >{ level.limit<100 ? `${level.name} (잔여: ${level.currentRemainingNumber}/${level.limit})` : level.name}</option>
+                    >{ level.limit < 100 ? `${level.name} (잔여: ${level.currentRemainingNumber}/${level.limit})` : level.name}</option>
                 )
               }
             </select>
           </SelectWrapper>
-          
+
           <ContentTableWrapper>
             <Table>
               <colgroup>
@@ -250,7 +227,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
           </ContentTableWrapper>
           <FormHalfBox>
             <label className='required'>
-              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.registrationNumber'>
                 사업자 등록번호
               </IntlText>
             </label>
@@ -267,7 +244,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
               htmlFor='business_upload'
               className='required'
               >
-              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.registrationCertificateFile'>
                 사업자 등록증
               </IntlText>
             </label>
@@ -275,8 +252,10 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             <label
               htmlFor='business_upload'
               className='file-upload__label'
-            ><IntlText intlKey='account.profile.button1'>
+            >
+              <IntlText intlKey='common.uploadTitle'>
               업로드
+              </IntlText>
               <input
                 id='business_upload'
                 className='file-upload__input'
@@ -289,60 +268,20 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
                   sponsorStore.uploadBusinessRegistrationFile(files[0])
                 }}
                 required={!proposal.businessRegistrationFile}
+                aria-required='true'
               />
-            </IntlText></label>
+            </label>
           </FormHalfBox>
 
-          {/*<div role='group'>*/}
-          {/*  <fieldset className='full'>*/}
-          {/*    <label className='required'>*/}
-          {/*      <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.header'>*/}
-          {/*        회사에서 준비한 별도의 계약 과정이 필요한가요?*/}
-          {/*      </IntlText>*/}
-          {/*    </label>*/}
-          {/*    <p>*/}
-          {/*      <input*/}
-          {/*        type='radio'*/}
-          {/*        id='contractProcessRequiredTrue'*/}
-          {/*        value='true'*/}
-          {/*        aria-checked={proposal.contractProcessRequired}*/}
-          {/*        checked={proposal.contractProcessRequired}*/}
-          {/*        onChange={() => proposal.setContractProcessRequired(true)}*/}
-          {/*      />*/}
-          {/*      <label htmlFor='contractProcessRequiredTrue'>*/}
-          {/*        <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.sub1'>*/}
-          {/*          예*/}
-          {/*        </IntlText>*/}
-          {/*      </label>*/}
-          {/*    </p>*/}
-          {/*    <p>*/}
-          {/*      <input*/}
-          {/*        type='radio'*/}
-          {/*        id='contractProcessRequiredFalse'*/}
-          {/*        value='false'*/}
-          {/*        aria-checked={!proposal.contractProcessRequired}*/}
-          {/*        checked={!proposal.contractProcessRequired}*/}
-          {/*        onChange={() => proposal.setContractProcessRequired(false)}*/}
-          {/*      />*/}
-          {/*      <label htmlFor='contractProcessRequiredFalse'>*/}
-          {/*        <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.sub2'>*/}
-          {/*          아니오*/}
-          {/*        </IntlText>*/}
-          {/*      </label>*/}
-          {/*      <InputDesc>*/}
-          {/*        별도의 계약 과정이 필요한 경우, 담당자가 메일로 안내드립니다.<br />*/}
-          {/*        계약 과정이 아닌 패키지 선택 등의 다른 사항은 후원사 신청 이전에 메일로 문의해주세요.<br />*/}
-          {/*        sponsor@pycon.kr*/}
-          {/*      </InputDesc>*/}
-          {/*    </p>*/}
-          {/*  </fieldset>*/}
-          {/*</div>*/}
-
-          <SectionTitle>후원사 소개 정보</SectionTitle>
+          <SectionTitle>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.businessIntroduction'>
+              후원사 소개 정보
+            </IntlText>
+          </SectionTitle>
           <hr className='margin-20' />
 
           <label className='required'>
-            <IntlText intlKey='xxx'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.website'>
               후원사 또는 서비스 웹사이트
             </IntlText>
           </label>
@@ -355,53 +294,59 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
           />
 
           <label className='required'>
-            <IntlText intlKey='xxx'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.imageLogoFile'>
               후원사 로고(Image)
             </IntlText>
           </label>
           <InputDesc>
-          .JPG, .PNG 등 이미지 파일
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.imageFile'>
+              .JPG, .PNG 등 이미지 파일
+            </IntlText>
           </InputDesc>
           <FileName><a href={proposal.logoImage}>{this.getFilename(proposal.logoImage)}</a></FileName>
 
           <label
-              htmlFor='logo_image_upload'
-              className='file-upload__label'
-            ><IntlText intlKey='account.profile.button1'>
-            업로드
+            htmlFor='logo_image_upload'
+            className='file-upload__label'
+          >
+            <IntlText intlKey='common.uploadTitle'>
+              업로드
+            </IntlText>
             <input
-              id='logo_image_upload'
-              className='file-upload__input'
-              name='logo-image-upload'
-              type='file'
-              onChange={({ target: { validity, files } }) => {
-                if (!validity.valid || !files) {
-                  return
-                }
-                sponsorStore.uploadLogoImage(files[0]).then((imageUrl) => {
-                  proposal.setLogoImage(imageUrl)
-                })
-              }}
-              required={!proposal.logoImage}
-            />
-          </IntlText></label>
-          <InputDesc>
-          .JPG, .PNG 등 이미지 파일
-          </InputDesc>
+                id='logo_image_upload'
+                className='file-upload__input'
+                name='logo-image-upload'
+                type='file'
+                onChange={({ target: { validity, files } }) => {
+                  if (!validity.valid || !files) {
+                    return
+                  }
+                  sponsorStore.uploadLogoImage(files[0]).then((imageUrl) => {
+                    proposal.setLogoImage(imageUrl)
+                  })
+                }}
+                required={!proposal.logoImage}
+                aria-required='true'
+              />
+          </label>
            <label className='required'>
-            <IntlText intlKey='xxx'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.vectorLogoFile'>
               후원사 로고(Vector)
             </IntlText>
           </label>
           <InputDesc>
-          .SVG, .AI 등 벡터 파일
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.vectorLogoFileGuide'>
+              .SVG, .AI 등 벡터 파일
+            </IntlText>
           </InputDesc>
           <FileName><a href={proposal.logoVector}>{this.getFilename(proposal.logoVector)}</a></FileName>
           <label
-              htmlFor='logo_vector_upload'
-              className='file-upload__label'
-            ><IntlText intlKey='account.profile.button1'>
-            업로드
+            htmlFor='logo_vector_upload'
+            className='file-upload__label'
+          >
+            <IntlText intlKey='common.uploadTitle'>
+              업로드
+            </IntlText>
             <input
               id='logo_vector_upload'
               className='file-upload__input'
@@ -416,17 +361,20 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
                 })
               }}
               required={!proposal.logoVector}
+              aria-required='true'
             />
-          </IntlText></label>
+          </label>
 
           <label className='required'>
-            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.introductionKorean'>
               후원사 소개(국문)
             </IntlText>
           </label>
           <InputDesc>
-            파이콘 홈페이지 후원사 상세페이지에 기재될 내용입니다.<br/>
-            추후 추가 또는 수정 가능합니다.
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.introductionGuide'>
+              파이콘 홈페이지 후원사 상세페이지에 기재될 내용입니다.<br/>
+              추후 추가 또는 수정 가능합니다.
+            </IntlText>
           </InputDesc>
           <textarea
             value={proposal.descKo}
@@ -441,16 +389,18 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             textAlign: 'right',
             fontSize: 14,
             color: (proposal.descKo && proposal.descKo.length >= 5000) ? 'red' : DEFAULT_TEXT_BLACK
-          }}>{(proposal.descKo && proposal.descKo.length) || '0'} / 5000(최대)</span>
+          }}>{(proposal.descKo && proposal.descKo.length) || '0'} / 5000(<IntlText intlKey='common.maximum'>최대</IntlText>)</span>
 
           <label className='required'>
-            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.introductionEnglish'>
               후원사 소개(영문)
             </IntlText>
           </label>
           <InputDesc>
-            파이콘 홈페이지 후원사 상세페이지에 기재될 내용입니다.<br/>
-            추후 추가 또는 수정 가능합니다.
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.introductionGuide'>
+              파이콘 홈페이지 후원사 상세페이지에 기재될 내용입니다.<br/>
+              추후 추가 또는 수정 가능합니다.
+            </IntlText>
           </InputDesc>
           <textarea
             value={proposal.descEn}
@@ -465,7 +415,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             textAlign: 'right',
             fontSize: 14,
             color: (proposal.descEn && proposal.descEn.length >= 5000) ? 'red' : DEFAULT_TEXT_BLACK
-          }}>{(proposal.descEn && proposal.descEn.length) || '0'} / 5000(최대)</span>
+          }}>{(proposal.descEn && proposal.descEn.length) || '0'} / 5000(<IntlText intlKey='common.maximum'>최대</IntlText>)</span>
 
           <StageButtonGroup
             onPrev={() => {
@@ -473,7 +423,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             }}
             onSave={async () => {
               await stores.sponsorStore.createOrUpdateSponsor(false)
-              alert(intl.get('contribute.talkProposal.application.stages.stages2.alert').d('저장이 완료되었습니다'))
+              alert(intl.get('contribute.talkProposal.application.stages.stages2.ale rt').d('저장이 완료되었습니다'))
             }}
           />
         </form>

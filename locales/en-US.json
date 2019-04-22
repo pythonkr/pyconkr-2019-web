@@ -26,6 +26,7 @@
   },
   "common": {
     "contact": "Contact",
+    "maximum": "Maximum",
     "schedule": "Schedule",
     "tableOfContents": "Table Of Contents",
     "unit": {
@@ -49,7 +50,8 @@
       "closed": "Closed",
       "untilSelected": "Until Selected",
       "conferenceDays": "Conference Days"
-    }
+    },
+    "uploadTitle": "Upload"
   },
   "gnb": {
     "home": "Home",
@@ -338,7 +340,26 @@
             "button1": "Previous",
             "button2": "Save draft",
             "button3": "Next",
-            "alert": "Save Completed"
+            "alert": "Save Completed",
+            "nameKorean":"Sponsor Name (Korean)",
+            "nameEnglish": "Sponsor Name (English)",
+            "imageLogoFile": "Sponsor logo (Image)",
+            "imageLogoFileGuide": ".JPG, .PNG",
+            "vectorLogoFile": "Sponsor logo (Vector)",
+            "vectorLogoFileGuide": ".SVG, .AI",
+            "primaryContactInformation": "Primary Contact Information",
+            "primaryContactPersonEmail": "Primary Contact Email for Pycon Account",
+            "primaryContactPersonName":"Primary Contact Person's Name",
+            "businessEmail": "Business Email",
+            "sponsorshipIntroduction": "Sponsorship Introduction Info.",
+            "sponsorshipLevel":"Sponsorship Level",
+            "registrationNumber": "Company Registration Number",
+            "registrationCertificateFile":"Business Registration Certificate",
+            "website":"Sponsor Official/Service Website",
+            "businessIntroduction": "Sponsor Business Introduction Info.",
+            "introductionKorean":"Sponsor Introduction (Korean)",
+            "introductionEnglish": "Sponsor Introduction (English)",
+            "introductionGuide":"These are the contents to be described on the details page on the Pycon Official Sponsor homepage. Details may be added or modified later."
           },
           "stages3": {
             "header": "Detailed information",
@@ -410,6 +431,7 @@
         "deadline": "Sponsor Invitation Deadline"
       },
       "guideTitle": "Sponsorship Guide",
+      "faqTitle": "Sponsor FAQ",
       "packageTitle": "Sponsorship Packages",
       "packageDesc": "Sponsorship packages may vary by venue and circumstances. And sessions, tutorials and bag inserts provided by sponsors should be served after consultation with PyCon Korea Organizers.",
       "boothDesc": "The sponsor booth will only be available at conferences that will be held between August 17 (Sat) and 18 (Sun).",
@@ -595,5 +617,8 @@
     "paragraph5-3": "Contact:",
     "title6": "Change of Personal Information Processing Policy",
     "paragraph6": "If the above privacy policy changes, we will post the change and the changed privacy policy will take effect seven days after the date of posting. However, we will notify you at least 30 days in advance of any significant change in your rights, such as the items of personal information you collect."
+  },
+  "proposal": {
+    "sponsorLogoImageLabel": "Upload Logo"
   }
 }
