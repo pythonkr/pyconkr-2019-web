@@ -299,7 +299,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             </IntlText>
           </label>
           <InputDesc>
-            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.imageFile'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.imageLogoFileGuide'>
               .JPG, .PNG 등 이미지 파일
             </IntlText>
           </InputDesc>
