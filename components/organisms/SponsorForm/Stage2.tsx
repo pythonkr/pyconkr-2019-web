@@ -84,7 +84,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
         }}>
           <FormHalfBox>
             <label className='required'>
-              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.nameKorean'>
                 후원사 이름(영문)
               </IntlText>
             </label>
@@ -98,7 +98,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
           </FormHalfBox>
           <FormHalfBox>
             <label className='required'>
-              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.nameEnglish'>
                 후원사 이름(국문)
               </IntlText>
             </label>
@@ -111,10 +111,12 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             />
           </FormHalfBox>
 
-          <SectionTitle>연락 정보</SectionTitle>
+          <SectionTitle>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.primaryContactInformation'>연락 정보</IntlText>
+          </SectionTitle>
           <hr className='margin-20' />
           <label className='required'>
-            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.primaryContactPersonEmail'>
               담당자 파이콘 계정 이메일
             </IntlText>
           </label>
@@ -125,7 +127,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
           />
           <FormHalfBox>
             <label className='required'>
-              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.primaryContactPersonName'>
                 담당자 이름
               </IntlText>
             </label>
@@ -140,7 +142,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
 
           <FormHalfBox>
             <label className='required'>
-              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.businessEmail'>
                 업무용 공식 이메일
               </IntlText>
             </label>
@@ -153,11 +155,15 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             />
           </FormHalfBox>
 
-          <SectionTitle>후원 정보</SectionTitle>
+          <SectionTitle>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.sponsorshipIntroduction'>
+              후원 정보
+            </IntlText>
+          </SectionTitle>
           <hr className='margin-20' />
 
           <label className='required'>
-            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item2'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.sponsorshipLevel'>
               후원 등급
             </IntlText>
           </label>
@@ -221,7 +227,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
           </ContentTableWrapper>
           <FormHalfBox>
             <label className='required'>
-              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.registrationNumber'>
                 사업자 등록번호
               </IntlText>
             </label>
@@ -238,7 +244,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
               htmlFor='business_upload'
               className='required'
               >
-              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages2.registrationCertificateFile'>
                 사업자 등록증
               </IntlText>
             </label>
@@ -267,11 +273,15 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             </label>
           </FormHalfBox>
 
-          <SectionTitle>후원사 소개 정보</SectionTitle>
+          <SectionTitle>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.businessIntroduction'>
+              후원사 소개 정보
+            </IntlText>
+          </SectionTitle>
           <hr className='margin-20' />
 
           <label className='required'>
-            <IntlText intlKey='xxx'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.website'>
               후원사 또는 서비스 웹사이트
             </IntlText>
           </label>
@@ -284,12 +294,14 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
           />
 
           <label className='required'>
-            <IntlText intlKey='xxx'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.imageLogoFile'>
               후원사 로고(Image)
             </IntlText>
           </label>
           <InputDesc>
-          .JPG, .PNG 등 이미지 파일
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.imageFile'>
+              .JPG, .PNG 등 이미지 파일
+            </IntlText>
           </InputDesc>
           <FileName><a href={proposal.logoImage}>{this.getFilename(proposal.logoImage)}</a></FileName>
 
@@ -317,16 +329,15 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
                 aria-required='true'
               />
           </label>
-          <InputDesc>
-          .JPG, .PNG 등 이미지 파일
-          </InputDesc>
            <label className='required'>
-            <IntlText intlKey='xxx'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.vectorLogoFile'>
               후원사 로고(Vector)
             </IntlText>
           </label>
           <InputDesc>
-          .SVG, .AI 등 벡터 파일
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.vectorLogoFileGuide'>
+              .SVG, .AI 등 벡터 파일
+            </IntlText>
           </InputDesc>
           <FileName><a href={proposal.logoVector}>{this.getFilename(proposal.logoVector)}</a></FileName>
           <label
@@ -355,13 +366,15 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
           </label>
 
           <label className='required'>
-            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.introductionKorean'>
               후원사 소개(국문)
             </IntlText>
           </label>
           <InputDesc>
-            파이콘 홈페이지 후원사 상세페이지에 기재될 내용입니다.<br/>
-            추후 추가 또는 수정 가능합니다.
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.introductionGuide'>
+              파이콘 홈페이지 후원사 상세페이지에 기재될 내용입니다.<br/>
+              추후 추가 또는 수정 가능합니다.
+            </IntlText>
           </InputDesc>
           <textarea
             value={proposal.descKo}
@@ -376,16 +389,18 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             textAlign: 'right',
             fontSize: 14,
             color: (proposal.descKo && proposal.descKo.length >= 5000) ? 'red' : DEFAULT_TEXT_BLACK
-          }}>{(proposal.descKo && proposal.descKo.length) || '0'} / 5000(최대)</span>
+          }}>{(proposal.descKo && proposal.descKo.length) || '0'} / 5000(<IntlText intlKey='common.maximum'>최대</IntlText>)</span>
 
           <label className='required'>
-            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.introductionEnglish'>
               후원사 소개(영문)
             </IntlText>
           </label>
           <InputDesc>
-            파이콘 홈페이지 후원사 상세페이지에 기재될 내용입니다.<br/>
-            추후 추가 또는 수정 가능합니다.
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.introductionGuide'>
+              파이콘 홈페이지 후원사 상세페이지에 기재될 내용입니다.<br/>
+              추후 추가 또는 수정 가능합니다.
+            </IntlText>
           </InputDesc>
           <textarea
             value={proposal.descEn}
@@ -400,7 +415,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
             textAlign: 'right',
             fontSize: 14,
             color: (proposal.descEn && proposal.descEn.length >= 5000) ? 'red' : DEFAULT_TEXT_BLACK
-          }}>{(proposal.descEn && proposal.descEn.length) || '0'} / 5000(최대)</span>
+          }}>{(proposal.descEn && proposal.descEn.length) || '0'} / 5000(<IntlText intlKey='common.maximum'>최대</IntlText>)</span>
 
           <StageButtonGroup
             onPrev={() => {
