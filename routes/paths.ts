@@ -13,7 +13,8 @@ export const paths = {
     cfpDetailedGuide: '/contribute/cfp-detailed-guide',
     proposingATalk: '/contribute/proposing-a-talk',
     proposingASprint: '/contribute/proposing-a-sprint',
-    proposingATutorial: '/contribute/proposing-a-tutorial'
+    proposingATutorial: '/contribute/proposing-a-tutorial',
+    proposalReview: '/contribute/proposal-review',
   },
   sponsor: {
     base: '/sponsor',
@@ -92,6 +93,11 @@ export const contributionMenu: WithSubMenu = {
       title: '공헌 안내',
       intlKey: 'gnb.contribute.overview',
       link: paths.contribute.overview
+    },
+     {
+      title: '발표 제안 리뷰하기',
+      intlKey: 'gnb.contribute.overview', // todo : update intlkey
+      link: paths.contribute.proposalReview
     },
     {
       title: '키노트 연사 추천하기',
