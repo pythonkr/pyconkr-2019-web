@@ -22,7 +22,8 @@ import { CORAL } from 'styles/colors'
 import { commonCSS } from 'styles/common'
 import { fontCSS } from 'styles/font'
 
-import { appWithTranslation } from '../i18n'
+import _ from 'lodash'
+import { appWithTranslation, i18n } from '../i18n'
 
 global.Intl = IntlPolyfill
 require('intl/locale-data/jsonp/ko.js')
@@ -69,11 +70,14 @@ class MyApp extends App {
 
     const { router: { query } } = this.props
     const currentLocale = query![URL_LOCALE_KEY] as string || LOCALE_KEY_KR
+
     intl.init({
       currentLocale,
       locales,
       warningHandler: intlWarningHandler
     })
+
+    i18n.changeLanguage(_.isEqual(LOCALE_KEY_KR, currentLocale) ? 'ko' : 'en')
   }
 
   static async getInitialProps({ Component, ctx }: any) {

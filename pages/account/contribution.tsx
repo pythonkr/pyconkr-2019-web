@@ -9,7 +9,6 @@ import { inject, observer } from 'mobx-react'
 import Router, { RouterProps, withRouter } from 'next/router'
 import React from 'react'
 import { paths } from 'routes/paths'
-import { withNamespaces } from '../../i18n'
 import { StoresType } from '../_app'
 
 @inject('stores')
@@ -41,7 +40,7 @@ class Contribution extends React.Component<{
   }
 
   render() {
-    const { stores, t } = this.props
+    const { stores } = this.props
 
     return (
       <PageTemplate
@@ -49,8 +48,7 @@ class Contribution extends React.Component<{
         footer={<Footer />}
       >
         <H1>
-          {t('contribution.title')}
-          {/* <IntlText intlKey='contribution.title'>제안 및 신청 내역</IntlText> */}
+          <IntlText intlKey='contribution.title'>제안 및 신청 내역</IntlText>
         </H1>
         <Paragraph intlKey='contribution.paragraph'>
           파이콘 한국 2019 에 제안 또는 신청한 내역입니다.<br/>
@@ -62,4 +60,4 @@ class Contribution extends React.Component<{
   }
 }
 
-export default withNamespaces('account')(Contribution)
+export default Contribution
