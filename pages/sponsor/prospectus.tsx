@@ -53,15 +53,16 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
             <H2><IntlText intlKey='sponsor.prospectus.faqTitle'>후원사 FAQ</IntlText></H2>
             <Paragraph>
               <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 후원 비용은 어디에 쓰이나요?</strong>
-              A. 행사 운영비로 사용되게 됩니다. 장소대여비, 부스 운영비, 각종 프로그램 진행비, 해외 스피커 항공료및 호텔, 스피커와 운영팀 식사, 비디오녹화, 기념티셔츠 및 책자 제작 등 입니다.
+              A. 행사 운영비로 사용되게 됩니다. 장소대여비, 부스 운영비, 각종 프로그램 진행비, 해외 스피커 항공료 및 호텔, 스피커와 운영팀 식사, 비디오녹화, 기념티셔츠 및 책자 제작에 사용됩니다.
             </Paragraph>
             <Paragraph>
               <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 세금계산서 발행이 가능한가요?</strong>
-              A. 네. 사단법인 파이썬사용자모임 명의로 세금계산서 발행이 가능합니다.
+              A. 네, 사단법인 파이썬사용자모임 명의로 세금계산서 발행이 가능합니다.
             </Paragraph>
             <Paragraph>
               <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 후원사 신청 시 여러 후원 등급에 중복 신청도 가능한가요?</strong>
-              A. 아니요, 중복 신청은 불가능합니다. 후원사 선정은 입금순으로 이루어 지기 때문에 후원하고자 하시는 등급에 빠르게 신청하시는 걸 추천드립니다.
+              A. 아니요, 중복 신청은 불가능합니다. 후원사 선정은 입금순으로 이루어지기 때문에 후원하고자 하시는 등급에 빠르게 신청하시는 걸 추천드립니다.
+              일부 후원 등급의 경우에는 후원사의 수가 정해져있기 때문에 조기 마감될 수 있습니다.
               해당 후원 등급의 잔여 후원사 수가 궁금하신 경우에는 <a href='mailto: sponsor@pycon.kr'>sponsor@pycon.kr</a> 로 문의주시면 최대한 빨리 답변드리겠습니다.
             </Paragraph>
             <Paragraph>
@@ -69,7 +70,7 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
               A. 후원사 선정 절차는 아래와 같으며, 대부분의 과정은 파이콘 홈페이지 또는 이메일로 진행됩니다.<br/>
               (1) 홈페이지로 후원사 신청 접수 및 접수 확인 이메일 발송<br/>
               (2) 파이콘 한국 준비위원회에서 접수된 내용에 대해 확인 및 검토 (누락된 내용 / 오기입된 내용이 없는지 확인합니다)<br/>
-              - 일부 정보가 누락되거나 추가 정보가 필요한 경우 파이콘 한국 준비위원회에서 별도의 요청이 있을 수 있습니다<br/>
+              - 일부 정보가 누락되거나 추가 정보가 필요한 경우 파이콘 한국 준비위원회에서 별도의 요청이 있을 수 있습니다.<br/>
               (3) 신청서에 이상이 없다면, 신청서에 적어주신 담당자 연락처로 입금 계좌 및 금액 안내<br/>
               (4) 해당 등급의 후원금의 입금이 확인되면, 후원사 등록 확정<br/>
             </Paragraph>
