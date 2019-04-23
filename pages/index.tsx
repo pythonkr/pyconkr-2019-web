@@ -356,7 +356,7 @@ class Index extends React.Component<{ stores: StoresType }> {
               <hr />
               <p>
                 <IntlText intlKey='home.tutorialDescription'>
-                  초보자들을 위해, 또는 새로운 것을 접하는 사람들을 위해
+                  초보자들 또는 새로운 것을 접하는 사람들을 위해
                   진행하는 교육 프로그램입니다.
                 </IntlText>
               </p>
@@ -380,7 +380,7 @@ class Index extends React.Component<{ stores: StoresType }> {
               <hr />
               <p>
                 <IntlText intlKey='home.conferenceDescription'>
-                  파이썬 사용 사례와 지식을 공유하는 50여개의 다양한 발표 세션이
+                  파이썬 사용 사례와 지식을 공유하는 50여 개의 다양한 발표 세션이
                   열립니다. 또 후원 기업 부스와 영코더, 라이트닝 토크, 열린 공간
                   등 다양한 이벤트를 통해 다양한 참가자와 교류할 수 있습니다.
                 </IntlText>
@@ -489,7 +489,7 @@ class Index extends React.Component<{ stores: StoresType }> {
               <IntlText intlKey='home.differenceWithOthers.description'>
                 파이콘 한국은 커뮤니티 주관으로 이뤄지는 비영리 개발자 대상
                 행사로, 타 기업 및 기관에서 개최하는 개발자 행사와는 성격이
-                다릅니다. 발표자와 튜토리얼 진행자를 포함하여, 자원 봉사자와
+                다릅니다. 발표자와 튜토리얼 진행자를 포함하여, 자원봉사자와
                 준비위원회 담당자 등 모든 인원이 금전적 이득 없이 순수히
                 오픈소스 프로그래밍 언어인 파이썬의 저변 확대와 커뮤니티
                 활성화를 위해 진행하는 행사입니다.
