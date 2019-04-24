@@ -18,21 +18,11 @@ class Contribution extends React.Component<{
   stores: StoresType;
   router: RouterProps;
 }> {
-  state = {
-    profile: {
-      email: '',
-      oauthType: '',
-      nameKo: '',
-      nameEn: '',
-      phone: '',
-      organization: '',
-      nationality: '',
-      bioKo: '',
-      bioEn: '',
-      image: '',
-      avatarUrl: ''
-    },
-    profileFile: null
+
+  static async getInitialProps() {
+    return {
+      namespacesRequired: ['account'],
+    }
   }
 
   async componentDidMount() {
