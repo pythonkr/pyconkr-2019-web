@@ -6166,6 +6166,11 @@ react-i18next@9.0.10:
     hoist-non-react-statics "3.2.1"
     html-parse-stringify2 "2.0.1"
 
+react-iamport@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/react-iamport/-/react-iamport-0.0.2.tgz#05ff608017e76484150ddaecc554eff56a933b1e"
+  integrity sha512-qjSBtY7vX/Ntx0bS2TChALOeFC5+Y7G2Y77/DzWArzIK3u9DHL8VcHrowjXGozCLDaue73yLLuNgP9eELHmu6A==
+
 react-intl-universal@^1.15.5:
   version "1.15.5"
   resolved "https://registry.yarnpkg.com/react-intl-universal/-/react-intl-universal-1.15.5.tgz#708b59cfea87f4f75cad36a98e6ff4f8a9777591"

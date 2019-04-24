@@ -58,6 +58,7 @@
     "react": "^16.7.0",
     "react-apollo": "^2.4.1",
     "react-dom": "^16.7.0",
+    "react-iamport": "^0.0.2",
     "react-intl": "^2.8.0",
     "react-intl-universal": "^1.15.5",
     "universal-cookie": "^3.0.7"
