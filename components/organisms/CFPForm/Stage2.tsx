@@ -215,6 +215,7 @@ export default class CFPFormStage2 extends React.Component<{stores: StoresType; 
                 alert(intl.get('contribute.talkProposal.application.stages.stages2.alert').d('저장이 완료되었습니다'))
               })
             }}
+            isSubmit={false}
           />
         </form>
       </FormWrapper>
