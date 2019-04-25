@@ -71,7 +71,6 @@ class MyContribution extends React.Component<PropsType> {
         <ContributionTable
           stores={stores}
           contributions={this.contributions}
-          isMyContribution
         />
       </>
     )

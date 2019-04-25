@@ -5,64 +5,78 @@ import {
   SubmenuItem, SubmenuItemLink, SubmenuList
 } from 'components/molecules/GlobalNavigation'
 import { inject, observer } from 'mobx-react'
-import { withRouter } from 'next/router'
+import { RouterProps, withRouter } from 'next/router'
+import { StoresType } from 'pages/_app'
 import React from 'react'
 import intl from 'react-intl-universal'
 import { accountMenu, loginMenu } from 'routes/paths'
 
+type PropsType = {
+  stores: StoresType;
+  router: RouterProps;
+  openedSubmenu: string | null;
+  toggleSubmenu(menuKey: string): void;
+}
+
 @inject('stores')
 @(withRouter as any)
 @observer
-class AccountMenuButton extends React.Component<any> {
+class AccountMenuButton extends React.Component<PropsType> {
   render() {
-    const { stores } = this.props
+    const { stores, toggleSubmenu, openedSubmenu, router } = this.props
+    const isAuthStoreInitilized = stores && stores.authStore && stores.authStore.isInitialized
+    const isLoggedIn = stores && stores.authStore && stores.authStore.loggedIn
 
-    if (
-      !stores ||
-      !stores.authStore ||
-      !stores.authStore.isInitialized
-    ) {
-      return <NavItem style={{ width: '84.75px' }}>
-        <Loading width={16} height={16} />
-      </NavItem>
+    if (!isAuthStoreInitilized) {
+      return (
+        <NavItem style={{ width: '84.75px' }}>
+          <Loading width={16} height={16} />
+        </NavItem>
+      )
     }
 
-    if (!stores.authStore.loggedIn) {
-      return <NavItem key={loginMenu.intlKey}>
-        <NavLink
-          to={`${loginMenu.link}?redirect_url=${this.props.router.route}`}
-          intlKey={loginMenu.intlKey}
-          name={loginMenu.title}
-          currentPath={this.props.router.pathname}
-          basePath={loginMenu.link}
+    if (!isLoggedIn) {
+      return (
+        <NavItem key={loginMenu.intlKey}>
+          <NavLink
+            to={`${loginMenu.link}?redirect_url=${router.route}`}
+            intlKey={loginMenu.intlKey}
+            name={loginMenu.title}
+            currentPath={router.pathname}
+            basePath={loginMenu.link}
+          />
+        </NavItem>
+      )
+    }
+
+    return (
+      <NavItem key={accountMenu.intlKey} >
+        <SubmenuButtonCheckbox
+          type='checkbox'
+          id={accountMenu.intlKey}
+          checked={openedSubmenu === accountMenu.intlKey}
+          onChange={() => toggleSubmenu(accountMenu.intlKey)}
         />
-      </NavItem>
-    }
-
-    return <NavItem key={accountMenu.intlKey}>
-      <SubmenuButtonCheckbox
-        type='checkbox'
-        id={accountMenu.intlKey}
-        checked={this.props.openedSubmenu === accountMenu.intlKey}
-        onChange={() => this.props.toggleSubmenu(accountMenu.intlKey)}
-      />
-      <SubmenuButtonLabel htmlFor={accountMenu.intlKey}>
-        <SubmenuButtonSpan isActive={this.props.router.pathname.startsWith(accountMenu.basePath)}>
-          {intl.get(accountMenu.intlKey).d(accountMenu.title)}
-        </SubmenuButtonSpan>
-      </SubmenuButtonLabel>
-      <Caret />
-      <SubmenuList>
-        {accountMenu.submenu.map(({ title, intlKey, link }) =>
-          <SubmenuItem key={intlKey}><SubmenuItemLink
-            to={link}
-            intlKey={intlKey}
-            name={title }
-            currentPath={this.props.router.pathname}
-          /></SubmenuItem>
-        )}
-      </SubmenuList>
-    </NavItem>
+        <SubmenuButtonLabel htmlFor={accountMenu.intlKey}>
+          <SubmenuButtonSpan isActive={router.pathname.startsWith(accountMenu.basePath)}>
+            {intl.get(accountMenu.intlKey).d(accountMenu.title)}
+          </SubmenuButtonSpan>
+        </SubmenuButtonLabel>
+        <Caret />
+        <SubmenuList>
+          {accountMenu.submenu.map(({ title, intlKey, link }) =>
+            <SubmenuItem key={intlKey}>
+              <SubmenuItemLink
+                to={link}
+                intlKey={intlKey}
+                name={title }
+                currentPath={router.pathname}
+              />
+            </SubmenuItem>
+          )}
+        </SubmenuList>
+      </NavItem >
+    )
   }
 }
 

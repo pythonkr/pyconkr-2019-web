@@ -30,6 +30,7 @@ export class AuthStore {
   @observable oAuthType?: keyof typeof clientIdEnum
   @observable clientId?: clientIdEnum
   @observable accessToken?: string | null = null
+  @observable language?: string | null = null
 
   @action
   async login(oAuthType: keyof typeof clientIdEnum, code: string, redirect_url: string) {
@@ -75,6 +76,11 @@ export class AuthStore {
   syncToken() {
     this.accessToken = localStorage.getItem(TOKEN_KEY)
     this.isInitialized = true
+  }
+
+  @action
+  setLanguage(language: string) {
+    this.language = language
   }
 }
 
