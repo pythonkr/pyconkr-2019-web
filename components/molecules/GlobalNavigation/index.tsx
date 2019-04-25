@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import AccountMenuButton from 'components/atoms/AccountMenuButton'
 import NavLink from 'components/atoms/NavLink'
 import NavMenuSubLink from 'components/atoms/NavMenuSubLink'
 import { PyConKRLogo } from 'components/atoms/SVG'
@@ -9,7 +10,6 @@ import intl from 'react-intl-universal'
 import { globalNavigationMenu } from 'routes/paths'
 import { CORAL, CORAL_LIGHT } from 'styles/colors'
 import { mobileWidth, navigationPadding } from 'styles/layout'
-import AccountMenuButton from 'components/atoms/AccountMenuButton';
 
 const NavWrapper = styled.nav`
   display: flex;
@@ -234,7 +234,18 @@ class Navigation extends React.Component<any> {
     })
   }
 
+  toggleHambugerCheckbox = () => {
+    const { isMenuOpened, openedSubmenu } = this.state
+    this.setState({
+      isMenuOpened: !isMenuOpened,
+      openedSubmenu: isMenuOpened ? false : openedSubmenu
+    })
+  }
+
   render() {
+    const { router } = this.props
+    const { isMenuOpened, openedSubmenu } = this.state
+
     return (
       <NavWrapper>
         <ul>
@@ -253,55 +264,50 @@ class Navigation extends React.Component<any> {
         <HamburgerCheckbox
           type='checkbox'
           id='menu-btn'
-          checked={this.state.isMenuOpened}
-          onChange={() => {
-            this.setState({
-              isMenuOpened: !this.state.isMenuOpened,
-              openedSubmenu: this.state.isMenuOpened ? false : this.state.openedSubmenu
-            })
-          }}
+          checked={isMenuOpened}
+          onChange={this.toggleHambugerCheckbox}
         />
         <HamburgerButtonLabel htmlFor='menu-btn'>
           <HamburgerButtonIcon />
         </HamburgerButtonLabel>
         <NavMenuList>
           {
-            globalNavigationMenu.map(({ title, intlKey, link, basePath, submenu }) =>
-              submenu
+            globalNavigationMenu.map(({ title, intlKey, link, basePath, submenu }) => submenu
                 ? <NavItem key={intlKey}>
-                  <SubmenuButtonCheckbox
-                    type='checkbox'
-                    id={intlKey}
-                    checked={this.state.openedSubmenu === intlKey}
-                    onChange={() => this.toggleSubmenu(intlKey)}
-                  />
-                  <SubmenuButtonLabel htmlFor={intlKey}>
-                    <SubmenuButtonSpan isActive={this.props.router.pathname.startsWith(basePath)}>
+                    <SubmenuButtonCheckbox
+                      type='checkbox'
+                      id={intlKey}
+                      checked={openedSubmenu === intlKey}
+                      onChange={() => this.toggleSubmenu(intlKey)}
+                    />
+                    <SubmenuButtonLabel htmlFor={intlKey}>
+                      <SubmenuButtonSpan isActive={router.pathname.startsWith(basePath)}>
                       {intl.get(intlKey).d(title)}
-                    </SubmenuButtonSpan>
-                  </SubmenuButtonLabel>
-                  <Caret />
-                  <SubmenuList>
-                    {/* tslint:disable-next-line:no-shadowed-variable */}
+                      </SubmenuButtonSpan>
+                    </SubmenuButtonLabel>
+                    <Caret />
+                    <SubmenuList>
                     {submenu.map(({ title, intlKey, link }) =>
-                      <SubmenuItem key={intlKey}><SubmenuItemLink
-                        to={link}
-                        intlKey={intlKey}
-                        name={title}
-                        currentPath={this.props.router.pathname}
-                      /></SubmenuItem>
+                      <SubmenuItem key={intlKey}>
+                        <SubmenuItemLink
+                          to={link}
+                          intlKey={intlKey}
+                          name={title}
+                          currentPath={router.pathname}
+                        />
+                      </SubmenuItem>
                     )}
-                  </SubmenuList>
-                </NavItem>
+                    </SubmenuList>
+                  </NavItem>
                 : <NavItem key={intlKey}>
-                  <NavLink
-                    to={link}
-                    intlKey={intlKey}
-                    name={title}
-                    currentPath={this.props.router.pathname}
-                    basePath={link}
-                  />
-                </NavItem>
+                    <NavLink
+                      to={link}
+                      intlKey={intlKey}
+                      name={title}
+                      currentPath={router.pathname}
+                      basePath={link}
+                    />
+                  </NavItem>
             )
           }
           <AccountMenuButton

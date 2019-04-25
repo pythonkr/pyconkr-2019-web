@@ -18,7 +18,7 @@ export class Prospectus extends React.Component<{ stores: StoresType; t: i18next
 
   static async getInitialProps() {
     return {
-      namespacesRequired: ['constant', 'home', 'common', 'sponsor'],
+      namespacesRequired: ['home', 'sponsor'],
     }
   }
 
@@ -114,4 +114,4 @@ export class Prospectus extends React.Component<{ stores: StoresType; t: i18next
   }
 }
 
-export default withNamespaces(['constant', 'home', 'common', 'sponsor'])(Prospectus)
+export default withNamespaces(['home', 'sponsor'])(Prospectus)

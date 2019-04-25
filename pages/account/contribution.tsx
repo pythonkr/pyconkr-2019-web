@@ -6,33 +6,28 @@ import Header from 'components/organisms/Header'
 import MyContribution from 'components/organisms/MyContribution'
 import PageTemplate from 'components/templates/PageTemplate'
 import { inject, observer } from 'mobx-react'
-import Router, { RouterProps, withRouter } from 'next/router'
+import { RouterProps, withRouter } from 'next/router'
 import React from 'react'
-import { paths } from 'routes/paths'
+import { withNamespaces } from '../../i18n'
 import { StoresType } from '../_app'
+
+type PropsType = {
+    stores: StoresType;
+    router: RouterProps;
+}
 
 @inject('stores')
 @(withRouter as any)
 @observer
-class Contribution extends React.Component<{
-  stores: StoresType;
-  router: RouterProps;
-}> {
+class Contribution extends React.Component<PropsType> {
 
   static async getInitialProps() {
     return {
       namespacesRequired: ['account'],
     }
   }
-
   async componentDidMount() {
-    const { stores, router } = this.props
-
-    if (!stores.authStore.loggedIn) {
-      router.replace(`${paths.account.login}?redirect_url=${Router.route}`)
-
-      return
-    }
+    const { stores } = this.props
 
     if (!stores.cfpStore.isInitialized) await stores.cfpStore.initialize()
     if (!stores.sponsorStore.isInitialized) await stores.sponsorStore.initialize()
@@ -60,4 +55,4 @@ class Contribution extends React.Component<{
   }
 }
 
-export default Contribution
+export default withNamespaces('account')(Contribution)

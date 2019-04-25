@@ -23,7 +23,7 @@ import { commonCSS } from 'styles/common'
 import { fontCSS } from 'styles/font'
 
 import _ from 'lodash'
-import { appWithTranslation, i18n } from '../i18n'
+import { appWithTranslation, i18n, withNamespaces } from '../i18n'
 
 global.Intl = IntlPolyfill
 require('intl/locale-data/jsonp/ko.js')
@@ -88,17 +88,17 @@ class MyApp extends App {
     }
     const isServer = !!ctx.req
 
-    return { pageProps, isServer }
+    return { pageProps, isServer, namespacesRequired: ['common', 'constant'] }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const spoqaHanSans = new FontFaceObserver('Spoqa Han Sans')
     spoqaHanSans.load()
       .then(() => {
         document && document.body.classList.add('font-loaded')
       })
     this.initializeSchedule()
-    this.handleOAuth()
+    await this.handleOAuth()
   }
 
   initializeSchedule() {
@@ -106,19 +106,25 @@ class MyApp extends App {
   }
 
   async handleOAuth() {
-    const { state, code } = this.props.router.query! as any
+    const { router } = this.props
+    const { state, code } = router.query! as any
     const { authStore, profileStore } = this.stores
+    const redirect_url = `${location.origin}${this.props.router.route}`
+
     if (!code) {
       authStore.syncToken()
 
       if (authStore.loggedIn) {
         await profileStore.retrieveMe()
+        if (profileStore.isAgreed && router.asPath) {
+          router.push(router.asPath)
+          authStore.setLanguage((router.query as any).lang)
+        }
       }
 
       return
     }
 
-    const redirect_url = `${location.origin}${this.props.router.route}`
     await authStore.login(state, code, redirect_url)
     if (!profileStore.isAgreed) {
       this.props.router.push(`${paths.account.agreement}?redirect_url=${Router.route}`)
@@ -128,6 +134,8 @@ class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props
     const { authStore, profileStore } = this.stores
+    const isLoggedIn = authStore.loggedIn
+    const isTermsAgreed = profileStore.isAgreed
 
     return (
       <Container>
@@ -137,7 +145,7 @@ class MyApp extends App {
           showAfterMs={300}
           spinner={false}
         />
-        {authStore.loggedIn && !profileStore.isAgreed && (
+        {isLoggedIn && !isTermsAgreed && (
           <AlertBar
             text='회원 가입이 완료되지 않았습니다. 약관을 확인하고 회원 가입을 완료해주세요.'
             link={{
@@ -156,4 +164,4 @@ class MyApp extends App {
   }
 }
 
-export default appWithTranslation(MyApp)
+export default appWithTranslation(withNamespaces(['common', 'constant'])(MyApp))
