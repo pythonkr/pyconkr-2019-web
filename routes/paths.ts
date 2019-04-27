@@ -16,6 +16,15 @@ export const paths = {
     proposingATutorial: '/contribute/proposing-a-tutorial',
     proposalReview: '/contribute/proposal-review',
   },
+  ticket: {
+    base: '/ticket',
+    overview: '/ticket/overview',
+    conference: '/ticket/conference',
+    tutorial: '/ticket/tutorial',
+    sprint: '/ticket/sprint',
+    youngcoder: '/ticket/youngcoder',
+    child_care: '/ticket/child_care',
+  },
   sponsor: {
     base: '/sponsor',
     prospectus: '/sponsor/prospectus',
@@ -122,6 +131,44 @@ export const contributionMenu: WithSubMenu = {
   ]
 }
 
+export const ticketMenu: WithSubMenu = {
+  title: '티켓',
+  intlKey: 'gnb.ticket.root',
+  basePath: paths.ticket.base,
+  submenu: [
+    {
+      title: '티켓 종류',
+      intlKey: 'gnb.ticket.overview',
+      link: paths.ticket.overview
+    },
+    {
+      title: '컨퍼런스',
+      intlKey: 'gnb.ticket.conference',
+      link: paths.ticket.conference
+    },
+    {
+      title: '튜토리얼',
+      intlKey: 'gnb.ticket.tutorial',
+      link: paths.ticket.tutorial
+    },
+    {
+      title: '스프린트',
+      intlKey: 'gnb.ticket.sprint',
+      link: paths.ticket.sprint
+    },
+    {
+      title: '영코더',
+      intlKey: 'gnb.ticket.youngcoder',
+      link: paths.ticket.youngcoder
+    },
+    {
+      title: '아이 돌봄',
+      intlKey: 'gnb.ticket.child_care',
+      link: paths.ticket.child_care
+    }
+  ]
+}
+
 export const sponsorMenu: WithSubMenu = {
   title: '후원',
   intlKey: 'gnb.sponsor.root',
@@ -175,4 +222,5 @@ export const globalNavigationMenu: GNBMenu[] = [
   // helpMenu,
   contributionMenu,
   sponsorMenu,
+  ticketMenu,
 ]
