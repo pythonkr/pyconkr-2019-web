@@ -18,6 +18,7 @@ import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 import { StoresType } from '../_app'
 
 import styled from '@emotion/styled'
+import { mobileWidth } from 'styles/layout'
 
 export type IntlTextType = {
   intlKey: string;
@@ -42,14 +43,18 @@ const TicketBox = styled.div`
   // border: 1px solid #999999;
 
   // SoldOut
-  border: solid 1px #ababab;
-  background-color: #f6f6f6;
+  // border: solid 1px #ababab;
+  // background-color: #f6f6f6;
   
   .description {
     flex: 2;
     display: flex;
     flex-direction: column;
     padding: 32px 0 20px 28px;
+
+    @media (max-width: ${mobileWidth}) {
+      display: block;
+    }
 
     h1 {
       font-size: 26px;
@@ -61,7 +66,7 @@ const TicketBox = styled.div`
       // color: #333;
 
       // SoldOut
-      color: #ababab;
+      // color: #ababab;
     }
 
     p:nth-of-type(1) {
@@ -73,17 +78,18 @@ const TicketBox = styled.div`
       // color: #333;
 
       // SoldOut
-      color: #ababab;
+      // color: #ababab;
     }
 
     p:nth-of-type(2) {
+      margin-top: auto;
       font-size: 15px;
       font-weight: bold;
+      line-height: 1.47;
       color: #f95858;
-      margin-top: auto;
 
       // SoldOut
-      color: #ababab;
+      // color: #ababab;
     }
   }
 
@@ -101,7 +107,18 @@ const TicketBox = styled.div`
       color: #333333;
 
       // SoldOut
-      color: #ababab;
+      // color: #ababab;
+    
+      input[type=tel] {
+        width: 157px;
+        height: 54px;
+        border-radius: 4px;
+        border: solid 1px #ced3d6;
+        background-color: #ffffff;
+        padding-right: 12px;
+        font-size: 21px;
+        text-align: right;
+      }
     }
 
     button {
@@ -118,8 +135,42 @@ const TicketBox = styled.div`
       // opacity: 0.4;
 
       // SoldOut
-      background-color: #9e9e9e;
-      color: #FFF;
+      // background-color: #9e9e9e;
+      // color: #FFF;
+    }
+  }
+
+  @media (max-width: ${mobileWidth}) {
+    display: block;
+
+    .description {
+      display: block;
+      padding: 29px 28px;
+
+      h1 {
+        margin-bottom: 35px;
+      }
+
+      p:nth-of-type(1) {
+        margin-bottom: 43px;
+      }
+    }
+
+    .payment {
+      display: block;
+      padding: 45px 0 36px 0;
+      border-left: none;
+      border-top: 1px dashed #85c0c1;
+      text-align: center;
+
+      p {
+        text-align: center;
+      }
+
+      button {
+        width: 85%;
+        margin: 25px 0 0 0;
+      }
     }
   }
 `
@@ -207,7 +258,7 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
               <p>후원 티켓은 양도나 취소, 환불할 수 없습니다.</p>
             </div>
             <div class='payment'>
-              <p>₩ 50,000</p>
+              <p>₩ <input type='tel' placeholder='150000' min='150000' /></p>
               <button>구매하기</button>
             </div>
           </TicketBox>
