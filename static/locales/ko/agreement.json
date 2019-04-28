@@ -1,0 +1,15 @@
+{
+  "title": "가입하기 :: 파이콘 한국 2019",
+  "desc1": "다음 계정에서 성공적으로 인증받았습니다.",
+  "socialService": "연결한 소셜 계정",
+  "email": "이메일",
+  "desc2": "계정 인증 시 다음 공개 정보(Public Data)를 함께 저장합니다.",
+  "socialAccount": "소셜 계정 아이디",
+  "profileImage": "프로필 이미지",
+  "desc3": "약관 동의를 통해 가입 절차를 완료해주세요.",
+  "agreeTermsOfService": "이용 약관에 동의합니다.",
+  "viewTermsOfService": "이용 약관 보기",
+  "agreePrivacyProtectionPolicy": "개인정보 처리 방침에 동의합니다.",
+  "viewPrivacyProtectionPolicy": "개인정보 처리 방침 보기",
+  "finishRegisteration": "가입 완료하기"
+}
