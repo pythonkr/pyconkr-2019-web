@@ -223,7 +223,7 @@
           "businessIntroduction": "후원사 소개 정보",
           "introductionKorean": "후원사 소개(국문)",
           "introductionEnglish": "후원사 소개(영문)",
-          "introductionGuide": "파이콘 홈페이지 후원사 상세페이지에 기재될 내용입니다. 추후 추가 또는 수정 가능합니다."
+          "introductionGuide": "파이콘 홈페이지 후원사 상세페이지에 기재될 내용입니다.\n 추후 추가 또는 수정 가능합니다."
         },
         "stages3": {
           "header": "상세 발표 내용",
