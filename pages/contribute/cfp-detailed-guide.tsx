@@ -476,7 +476,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
               중급과 고급의 가장 큰 차이는 고급자용은 더 많은 해당 분야의 전문 지식을 요구한다는 점입니다.
             </IntlText></Paragraph>
             <Paragraph><IntlText intlKey='contribute.cfpGuide.difficulty.experienced.desc2'>
-              고급 레벨을 위한 발표 주제로는 최적화나 Tool의 내부 동작에 대한 내용, 또는 Python의 내부 구현에 대한 내용이 적당합니다.
+              고급 레벨을 위한 발표 주제로는 최적화나 Tool의 내부 동작에 대한 내용 또는 Python의 내부 구현에 대한 내용이 적당합니다.
             </IntlText></Paragraph>
           </Section>
         </DetailGuideWrapper>

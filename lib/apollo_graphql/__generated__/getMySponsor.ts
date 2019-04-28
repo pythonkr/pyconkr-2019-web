@@ -92,14 +92,6 @@ export interface getMySponsor_mySponsor {
    */
   managerName: string;
   /**
-   * 후원사 담당자의 연락처입니다.
-   */
-  managerPhone: string;
-  /**
-   * 후원사 담당자 외의 연락이 가능한 연락처입니다.
-   */
-  managerSecondaryPhone: string;
-  /**
    * 후원사 담당자의 이메일 주소입니다.
    */
   managerEmail: string;
@@ -108,10 +100,6 @@ export interface getMySponsor_mySponsor {
    */
   businessRegistrationNumber: string;
   businessRegistrationFile: any | null;
-  /**
-   * 후원을 위한 계약 절차가 필요한지 여부입니다
-   */
-  contractProcessRequired: boolean;
   /**
    * 후원사 홈페이지 주소입니다. 파이콘 홈페이지에 공개됩니다.
    */

@@ -37,10 +37,7 @@ export class CFPStore {
     @action
     setProposal(proposal: any) {
         set(this.proposal, proposal as { [key: string]: any })
-        debugger;
         this.isProposalInitialized = proposal !== null
-        // alert(proposal !== null)
-        debugger;
     }
 
     @action

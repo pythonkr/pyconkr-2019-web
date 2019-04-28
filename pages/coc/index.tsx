@@ -35,10 +35,10 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           </IntlText></Paragraph>
         <Paragraph><IntlText intlKey='coc.desc2'>
           우리는 이 행사에 참여하는 모든 파이썬 커뮤니티의 참여를 소중히 여기며, 모든 참석자분들이 즐겁고 만족스러운 시간을 보내시기를 바랍니다.
-          이를 위해 모든 참석자분들에게 행사 동안 공식적으로, 그리고 비공식적으로 모든 행사의 다른 참석자분들을 존중하고 서로 예의 있게 대해주실 것을 부탁드립니다.
+          이를 위해 모든 참석자분들에게 행사 동안 공식적으로 그리고 비공식적으로 모든 행사의 다른 참석자분들을 존중하고 서로 예의 있게 대해주실 것을 부탁드립니다.
           </IntlText> </Paragraph>
         <Paragraph><IntlText intlKey='coc.desc3'>
-          사안들을 명확하게 하기 위해 모든 참석자, 발표자, 전시 참여자, 운영자와 자원봉사자는 모든 파이콘 행사에서 아래의 성명서를 따르셔야 함을 알려드립니다.
+          사안들을 명확하게 하기 위해 모든 참석자, 발표자, 전시 참여자, 운영자와 자원봉사자는 모든 파이콘 행사에서 아래의 성명서를 따르셔야 함을 알려 드립니다.
           운영자들은 행사 기간 동안 성명서의 내용을 시행할 것입니다.
         </IntlText></Paragraph>
         {/* 목차  */}
