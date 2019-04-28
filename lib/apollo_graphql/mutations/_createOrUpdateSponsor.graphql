@@ -30,12 +30,9 @@ mutation CreateOrUpdateSponsor($data: SponsorInput!) {
             descKo
             descEn
             managerName
-            managerPhone
-            managerSecondaryPhone
             managerEmail
             businessRegistrationNumber
             businessRegistrationFile
-            contractProcessRequired
             url
             logoImage
             logoVector

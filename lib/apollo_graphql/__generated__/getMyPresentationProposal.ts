@@ -47,8 +47,6 @@ export interface getMyPresentationProposal_myPresentationProposal {
   isPresentedBefore: boolean;
   placePresentedBefore: string;
   presentedSlideUrlBefore: string;
-  comment: string;
-  isAgreed: boolean | null;
   recordable: boolean | null;
   submitted: boolean;
   accepted: boolean;

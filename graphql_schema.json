@@ -50,7 +50,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "SponsorNode",
+                "name": "PublicSponsorNode",
                 "ofType": null
               }
             },
@@ -421,7 +421,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "SponsorNode",
+                "name": "PublicSponsorNode",
                 "ofType": null
               }
             },
@@ -490,6 +490,147 @@
         "kind": "SCALAR",
         "name": "DateTime",
         "description": "The `DateTime` scalar type represents a DateTime\nvalue as specified by\n[iso8601](https://en.wikipedia.org/wiki/ISO_8601).",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PublicSponsorNode",
+        "description": "\n        Sponsors which spon python conference in Korea.\n        ",
+        "fields": [
+          {
+            "name": "name",
+            "description": "후원사 이름입니다. 서비스나 회사 이름이 될 수 있습니다.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "nameKo",
+            "description": "후원사 이름입니다. 서비스나 회사 이름이 될 수 있습니다.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "nameEn",
+            "description": "후원사 이름입니다. 서비스나 회사 이름이 될 수 있습니다.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "level",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "SponsorLevelNode",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "desc",
+            "description": "후원사 설명입니다. 이 설명은 홈페이지에 게시됩니다.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "descKo",
+            "description": "후원사 설명입니다. 이 설명은 홈페이지에 게시됩니다.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "descEn",
+            "description": "후원사 설명입니다. 이 설명은 홈페이지에 게시됩니다.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "url",
+            "description": "후원사 홈페이지 주소입니다. 파이콘 홈페이지에 공개됩니다.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "logoImage",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "ImageUrl",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "logoVector",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "ImageUrl",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "ImageUrl",
+        "description": "It is used to get image url for graphene queries.\ne.g)\nimage = graphene.Field(ImageUrl)\nto)\nimage: http://www.pycon.kr/media/profile/image.png",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -630,38 +771,6 @@
             "deprecationReason": null
           },
           {
-            "name": "managerPhone",
-            "description": "후원사 담당자의 연락처입니다.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "managerSecondaryPhone",
-            "description": "후원사 담당자 외의 연락이 가능한 연락처입니다.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "managerEmail",
             "description": "후원사 담당자의 이메일 주소입니다.",
             "args": [],
@@ -701,22 +810,6 @@
               "kind": "SCALAR",
               "name": "FileUrl",
               "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "contractProcessRequired",
-            "description": "후원을 위한 계약 절차가 필요한지 여부입니다",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -1214,16 +1307,6 @@
             "deprecationReason": null
           }
         ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "ImageUrl",
-        "description": "It is used to get image url for graphene queries.\ne.g)\nimage = graphene.Field(ImageUrl)\nto)\nimage: http://www.pycon.kr/media/profile/image.png",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -2938,26 +3021,6 @@
             "defaultValue": null
           },
           {
-            "name": "managerPhone",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "managerSecondaryPhone",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "managerEmail",
             "description": null,
             "type": {
@@ -2983,16 +3046,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "contractProcessRequired",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
               "ofType": null
             },
             "defaultValue": null

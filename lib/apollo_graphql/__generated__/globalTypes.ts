@@ -59,12 +59,9 @@ export interface SponsorInput {
   nameKo?: string | null;
   nameEn?: string | null;
   managerName?: string | null;
-  managerPhone?: string | null;
-  managerSecondaryPhone?: string | null;
   managerEmail?: string | null;
   levelId?: number | null;
   businessRegistrationNumber?: string | null;
-  contractProcessRequired?: boolean | null;
   url?: string | null;
   descKo?: string | null;
   descEn?: string | null;
