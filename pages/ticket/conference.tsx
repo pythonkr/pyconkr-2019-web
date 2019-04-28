@@ -93,7 +93,7 @@ const TicketBox = styled.div`
     }
     
     // STEP1-STEP2
-    display: none;
+    // display: none;
   }
 
   .information {
@@ -103,7 +103,7 @@ const TicketBox = styled.div`
     padding: 32px 0 20px 28px;
 
     // STEP1-STEP2
-    // display: none;
+    display: none;
 
     h1 {
       font-size: 26px;
@@ -192,7 +192,7 @@ const TicketBox = styled.div`
       // color: #FFF;
 
       // STEP1-STEP2
-      background: #f95858;
+      // background: #f95858;
     }
   }
 
@@ -212,7 +212,7 @@ const TicketBox = styled.div`
       }
 
       // STEP1-STEP2
-      display: none;
+      // display: none;
     }
 
     .information {
@@ -252,7 +252,7 @@ const TicketBox = styled.div`
         margin: 25px 0 0 0;
 
         // STEP1-STEP2
-        background: #f95858;
+        // background: #f95858;
       }
     }
   }
