@@ -104,7 +104,7 @@ const TicketBox = styled.div`
       text-align: right;
       font-size: 26px;
       font-weight: bold;
-      color: #333333;
+      color: #088487;
 
       // SoldOut
       // color: #ababab;

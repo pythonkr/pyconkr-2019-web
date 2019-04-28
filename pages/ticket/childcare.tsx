@@ -65,11 +65,11 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
 
     return (
       <PageTemplate
-        header={<Header title='컨퍼런스 티켓 :: 파이콘 한국 2019' intlKey='ticket.child_care.pageTitle'/>}
+        header={<Header title='컨퍼런스 티켓 :: 파이콘 한국 2019' intlKey='ticket.childcare.pageTitle'/>}
         footer={<Footer />}
       >
         <LocalNavigation list={ticketMenu.submenu} />
-        <H1><IntlText intlKey='ticket.child_care.title'>
+        <H1><IntlText intlKey='ticket.childcare.title'>
           아이 돌봄 티켓
         </IntlText></H1>
 

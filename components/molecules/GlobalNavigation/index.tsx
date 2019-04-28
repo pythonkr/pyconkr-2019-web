@@ -221,29 +221,33 @@ export const SubmenuItemLink = styled(NavMenuSubLink)`
 }`
 
 export const TicketsButtonWrapper = styled.div`
-  margin-left: auto;
-  vertical-align: middle;
-  display: flex;
-  align-items: center;
-  margin-right: 20px;
+  display: none;
+  @media (max-width: ${mobileWidth}) {
+    display: block;
+    margin-left: auto;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
 `
 
 export const TicketsButton = styled.input`
-  width: 122px;
-  height: 38px;
-  border: solid 1px #f95858;
-  background-color: #F95859;
-  font-size: 15px;
-  font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1;
-  letter-spacing: normal;
-  text-align: center;
-  color: #fff;
-
+  display: none;
   @media (max-width: ${mobileWidth}) {
+    display: block;
     width: 100px;
+    height: 38px;
+    border: solid 1px #f95858;
+    background-color: #F95859;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
   }
 `
 

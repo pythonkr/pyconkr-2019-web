@@ -1,8 +1,13 @@
 
 import { H1, Paragraph } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
+<<<<<<< HEAD
 import ContributionTableRow from 'components/molecules/ContributionTableRow'
 import DefaultTable, { Contribution } from 'components/organisms/ContributionTable'
+=======
+import { Loading } from 'components/atoms/Loading'
+import DefaultTable, { Contribution } from 'components/organisms/DefaultTable'
+>>>>>>> 결제 가능한 티켓 금액 데이터 글자 색상 css 업데이트.
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'

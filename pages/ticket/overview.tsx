@@ -1,64 +1,72 @@
 import { H1, H2, Paragraph, Section } from 'components/atoms/ContentWrappers'
-import { IntlText } from 'components/atoms/IntlText'
 import { LocalNavigation } from 'components/molecules/LocalNavigation'
-import ContributionTable, { Contribution } from 'components/organisms/ContributionTable'
+import DefaultTable, { Contribution } from 'components/organisms/DefaultTable'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
+import i18next from 'i18next'
 import _ from 'lodash'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
-import { ticketMenu, paths } from 'routes/paths'
+import { paths, ticketMenu } from 'routes/paths'
+import { withNamespaces } from '../../i18n'
 import { StoresType } from '../_app'
 
 export type PropsType = {
   stores: StoresType;
+  t: i18next.TFunction;
 }
 
 @inject('stores')
 @observer
-export default class CFPDetailedGuide extends React.Component<PropsType> {
+export class Ticket extends React.Component<PropsType> {
   tickets: Contribution[] = []
 
+  static async getInitialProps() {
+      return {
+          namespacesRequired: ['ticket'],
+      }
+  }
+
   render() {
-    const { stores } = this.props
+    const { stores, t } = this.props
     const { schedule } = stores.scheduleStore
 
     this.tickets = [{
       title: '컨퍼런스 얼리버드',
-      intlKey: 'contribute.overview.table.keynote',
+      intlKey: 'ticket:conference.earlybird.title',
       openDate: schedule.keynoteRecommendationStartAt,
       link: paths.contribute.recommendingAKeynoteSpeaker,
     }, {
       title: '컨퍼런스 개인 후원',
-      intlKey: 'contribute.overview.table.talk',
+      intlKey: 'ticket:conference.patron.title',
       openDate: schedule.presentationProposalStartAt,
       closeDate: schedule.presentationProposalFinishAt,
       link: paths.contribute.cfpDetailedGuide
     }, {
       title: '컨퍼런스 일반',
-      intlKey: 'contribute.overview.table.tutorial',
+      intlKey: 'ticket:conference.general.title',
       openDate: schedule.tutorialProposalStartAt,
       closeDate: schedule.tutorialProposalFinishAt,
       // link: paths.contribute.proposingATutorial
     }, {
       title: '튜토리얼',
-      intlKey: 'contribute.overview.table.sprint',
+      intlKey: 'ticket:tutorial.title',
       openDate: schedule.sprintProposalStartAt,
       // link: paths.contribute.proposingASprint
     }, {
       title: '스프린트',
-      intlKey: 'contribute.overview.table.volunteer',
+      intlKey: 'ticket:sprint.title',
       openDate: schedule.volunteerRecruitingStartAt,
       closeDate: schedule.volunteerRecruitingFinishAt,
     }, {
       title: '영코더',
-      intlKey: 'contribute.overview.table.volunteer',
+      intlKey: 'ticket:youngcoder.title',
       openDate: schedule.volunteerRecruitingStartAt,
       closeDate: schedule.volunteerRecruitingFinishAt,
     }, {
       title: '아이 돌봄',
-      intlKey: 'contribute.overview.table.volunteer',
+      intlKey: 'ticket:childcare.title',
       openDate: schedule.volunteerRecruitingStartAt,
       closeDate: schedule.volunteerRecruitingFinishAt,
     }]
@@ -69,21 +77,23 @@ export default class CFPDetailedGuide extends React.Component<PropsType> {
         footer={<Footer />}
       >
         <LocalNavigation list={ticketMenu.submenu} />
-        <H1><IntlText intlKey='ticket.overview.title'>
-          파이콘 한국 티켓 종류
-        </IntlText></H1>
-        <Paragraph><IntlText intlKey='ticket.overview.description'>
-          파이콘 한국에는 발표 세션을 포함한 이틀 간의 컨퍼런스, 튜토리얼, 영코더 등 다양한 행사가 있습니다.
-        </IntlText></Paragraph>
-        <ContributionTable
+        <H1>
+          {`${t('constant:pyconKorea.nameOnly')} ${t('ticket:overview.title')}`}
+        </H1>
+        <Paragraph>
+          {t('ticket:overview.description')}
+        </Paragraph>
+        <DefaultTable
           stores={stores}
-          contributions={this.tickets}
+          tickets={this.tickets}
         />
         <Section>
-          <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
+          <H2>{t('common:contact')}</H2>
           <Paragraph><a href='mailto:program@pycon.kr'>program@pycon.kr</a></Paragraph>
         </Section>
       </PageTemplate>
     )
   }
 }
+
+export default withNamespaces(['ticket'])(Ticket)
