@@ -91,6 +91,59 @@ const TicketBox = styled.div`
       // SoldOut
       // color: #ababab;
     }
+    
+    // STEP1-STEP2
+    display: none;
+  }
+
+  .information {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    padding: 32px 0 20px 28px;
+
+    // STEP1-STEP2
+    // display: none;
+
+    h1 {
+      font-size: 26px;
+      font-weight: bold;
+      color: #088487;
+      margin-bottom: 23px;
+    }
+
+    p.guide {
+      font-size: 14px;
+      color: #878d91;
+    }
+
+    select {
+      margin: 5px 0 29px 0;
+      width: 80%;
+      height: 54px;
+      border-radius: 4px;
+      box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.07);
+      border: solid 1px #ced3d6;
+      background-color: #f8fafb;
+      font-size: 14px;
+    }
+
+    p.terms {
+      font-size: 14px;
+      line-height: 1.29;
+      color: #4d5256;
+      margin-bottom: 35px;
+    }
+
+    button.back {
+      margin-top: auto;
+      margin-right: auto;
+      width: 86px;
+      height: 53px;
+      border: solid 1px #088487;
+      font-size: 18px;
+      color: #088487;
+    }
   }
 
   .payment {
@@ -137,6 +190,9 @@ const TicketBox = styled.div`
       // SoldOut
       // background-color: #9e9e9e;
       // color: #FFF;
+
+      // STEP1-STEP2
+      background: #f95858;
     }
   }
 
@@ -154,6 +210,30 @@ const TicketBox = styled.div`
       p:nth-of-type(1) {
         margin-bottom: 43px;
       }
+
+      // STEP1-STEP2
+      display: none;
+    }
+
+    .information {
+      display: block;
+      padding: 29px 28px;
+
+      h1 {
+        margin-bottom: 35px;
+      }
+
+      select {
+        width: 100%;
+      }
+
+      button.back {
+        background-color: #FFF;
+        width: 100%;
+      }
+
+      // STEP1-STEP2
+      // display: none;
     }
 
     .payment {
@@ -170,6 +250,9 @@ const TicketBox = styled.div`
       button {
         width: 85%;
         margin: 25px 0 0 0;
+
+        // STEP1-STEP2
+        background: #f95858;
       }
     }
   }
@@ -257,9 +340,20 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
               <p>파이콘 후원 티켓 판매 대금은 재정 지원 예산으로 사용됩니다.<br/>후원 금액은 15만원 이상 자율적으로 지정할수 있습니다.<br/>후원 금액에 상관없이 1장의 파이콘 한국 2019 티켓을 제공합니다.</p>
               <p>후원 티켓은 양도나 취소, 환불할 수 없습니다.</p>
             </div>
+            <div className='information'>
+              <h1>개인 후원 티켓</h1>
+              <p className='guide'>티셔츠 사이즈 *</p>
+              <select>
+                <option>XXL</option>
+              </select>
+              <p className='terms'>
+                <input type='checkbox' id='payment-terms' style={{ verticalAlign: 'top' }}/> <label for='payment-terms'>상품과 가격, 유의사항을 확인하였으며 구매에 동의합니다.</label>
+              </p>
+              <button className='back'>&lt; 뒤로</button>
+            </div>
             <div class='payment'>
               <p>₩ <input type='tel' placeholder='150000' min='150000' /></p>
-              <button>구매하기</button>
+              <button>결제하기</button>
             </div>
           </TicketBox>
         </Section>
