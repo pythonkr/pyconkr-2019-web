@@ -36,9 +36,6 @@ export interface PresentationProposalInput {
   placePresentedBefore?: string | null;
   presentedSlideUrlBefore?: string | null;
   comment?: string | null;
-  isCocAgreed?: boolean | null;
-  isContentsAgreed?: boolean | null;
-  isEtcAgreed?: boolean | null;
 }
 
 export interface ProfileInput {
