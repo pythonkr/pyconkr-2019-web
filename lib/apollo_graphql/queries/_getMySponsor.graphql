@@ -1,44 +1,42 @@
-mutation CreateOrUpdateSponsor($data: SponsorInput!) {
-    createOrUpdateSponsor(data: $data) {
-        sponsor {
-            id
-            creator {
-              profile {
-                name
-                nameKo
-                nameEn
-                email
-              }
-            }
+query getMySponsor {
+    mySponsor {
+        id
+        creator {
+          profile {
             name
             nameKo
             nameEn
-            level {
-                id
-                name
-                price
-                limit
-                ticketCount
-                presentationCount
-                boothInfo
-                programGuide
-                canProvideGoods
-                logoLocations
-                canRecruit
-            }
-            desc
-            descKo
-            descEn
-            managerName
-            managerEmail
-            businessRegistrationNumber
-            businessRegistrationFile
-            url
-            logoImage
-            logoVector
-            paidAt
-            submitted
-            accepted
+            email
+          }
         }
+        name
+        nameKo
+        nameEn
+        level {
+            id
+            name
+            price
+            limit
+            ticketCount
+            presentationCount
+            boothInfo
+            programGuide
+            canProvideGoods
+            logoLocations
+            canRecruit
+        }
+        desc
+        descKo
+        descEn
+        managerName
+        managerEmail
+        businessRegistrationNumber
+        businessRegistrationFile
+        url
+        logoImage
+        logoVector
+        paidAt
+        submitted
+        accepted
     }
 }
