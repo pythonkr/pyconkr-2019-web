@@ -8,6 +8,7 @@ import CFPStore, { CFPStore as CFPStoreType } from 'lib/stores/CFP/CFPStore'
 import ProfileStore, { ProfileStore as ProfileStoreType } from 'lib/stores/ProfileStore'
 import ScheduleStore, { ScheduleStore as ScheduleStoreType } from 'lib/stores/Schedule/ScheduleStore'
 import SponsorStore, { SponsorStore as SponsorStoreType } from 'lib/stores/Sponsor/SponsorStore'
+import ProposalReviewStore, { ProposalReviewStore as ProposalReviewStoreType } from 'lib/stores/ProposalReview/ProposalReviewStore'
 
 import { LOCALE_KEY_KR, URL_LOCALE_KEY } from 'locales/constants'
 import { Provider } from 'mobx-react'
@@ -55,6 +56,7 @@ export type StoresType = {
   profileStore: ProfileStoreType;
   sponsorStore: SponsorStoreType;
   cfpStore: CFPStoreType;
+  proposalReviewStore: ProposalReviewStoreType;
 }
 
 class MyApp extends App {
@@ -68,6 +70,7 @@ class MyApp extends App {
       profileStore: ProfileStore,
       sponsorStore: SponsorStore,
       cfpStore: CFPStore,
+      proposalReviewStore: ProposalReviewStore,
     }
 
     const { router: { query } } = this.props

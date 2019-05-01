@@ -13,6 +13,7 @@ import React from 'react'
 import { contributionMenu } from 'routes/paths'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 import { StoresType } from '../_app'
+import ProposalReviewForm from 'components/organisms/ProposalReviewForm';
 
 @inject('stores')
 @observer
@@ -66,7 +67,7 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
           <AlertBar text='파이콘 한국 행동강령에 위배되는 의견은 반영되지 않습니다. 주의해주세요.' />
           {this.props.stores.authStore.isInitialized
             ? authStore.loggedIn
-              ? <div>Review Form</div>
+              ? <ProposalReviewForm />
               : <FormNeedsLogin />
             : <Loading width={50} height={50}/>
           }
