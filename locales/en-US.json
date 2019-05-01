@@ -66,7 +66,8 @@
       "overview": "About Contribution",
       "cfpDetailedGuide": "How to submit proposal",
       "proposingATalk": "Proposing a talk",
-      "recommendKeynoteSpeaker": "Recommending Keynote"
+      "recommendKeynoteSpeaker": "Recommending Keynote",
+      "proposalReview": "Review Talk Proposals"
     },
     "sponsor": {
       "root": "Sponsor",
@@ -149,6 +150,9 @@
         "lightingtalk":"Proposing a Lightning Talk",
         "moreDetail": "More detail"
       }
+    },
+    "proposalReview": {
+      "title": "Review Presentation Proposals"
     },
     "recommendKeynoteSpeaker": {
       "pageTitle": "Recommending Keynote Speaker :: PyCon Korea 2019",
@@ -288,8 +292,8 @@
       "schedule": {
         "open": "CFP Open",
         "close": "CFP Close",
-        "reviewStart": "CFP Review Start",
-        "reviewFinish": "CFP Review Finish",
+        "reviewStart": "Talk Proposal Review Start",
+        "reviewFinish": "Talk Proposal Review Finish",
         "announcement": "Speaker Confirmation"
       },
       "process": {

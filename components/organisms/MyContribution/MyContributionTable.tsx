@@ -1,5 +1,6 @@
 import { ContentTableWrapper, TableWithBg, TBody } from 'components/atoms/ContentWrappers'
-import ContributionTableRow from 'components/molecules/ContributionTableRow'
+import ContributionTableRow from 'components/molecules/MyContributionTableRow'
+import { SponsorNode } from 'lib/stores/Sponsor/SponsorNode'
 import _ from 'lodash'
 import { toJS } from 'mobx'
 import { StoresType } from 'pages/_app'
@@ -26,7 +27,7 @@ type PropsType = {
     contributions: Contribution[];
     stores: StoresType;
 }
-export default class ContributionTable extends React.Component<PropsType> {
+export default class MyContributionTable extends React.Component<PropsType> {
     getProposalList () {
         const { stores } = this.props
         const proposals = []
@@ -42,9 +43,15 @@ export default class ContributionTable extends React.Component<PropsType> {
 
     renderContributionTableRow () {
         const { contributions } = this.props
+        const proposals = this.getProposalList()
+        console.log(contributions)
 
         return (
-            contributions.map((contribution) => {
+            contributions.map((contribution, index) => {
+                const proposal = proposals[index]
+                const isSumitted = proposal && proposal.submitted
+                const isSponsorPaid = proposal && (proposal as SponsorNode).paidAt
+
                 return (
                  <ContributionTableRow
                     key={contribution.title}
@@ -55,6 +62,9 @@ export default class ContributionTable extends React.Component<PropsType> {
                     link={contribution.link || ''}
                     editLink={contribution.editLink || ''}
                     dateDescription={contribution.dateDescription}
+                    isMyContribution={contribution.isMyContribution}
+                    isProposalSubmitted={_.isNil(isSumitted) ? undefined : isSumitted}
+                    isSponsorPaid={isSponsorPaid}
                  />
                 )
             })

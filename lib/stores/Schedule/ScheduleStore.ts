@@ -1,10 +1,9 @@
 import { client } from 'lib/apollo_graphql/client'
-import { action, configure, observable, set, values, toJS } from 'mobx'
-import { getSchedule } from 'lib/apollo_graphql/queries/getSchedule';
+import { getSchedule } from 'lib/apollo_graphql/queries/getSchedule'
+import { action, configure, observable, set, toJS, values } from 'mobx'
 import { ScheduleNode } from './ScheduleNode'
 
 configure({ enforceActions: 'observed' })
-
 
 export class ScheduleStore {
     @observable isInitialized: boolean = false
@@ -24,10 +23,10 @@ export class ScheduleStore {
     async retrieveSchedule() {
         const response = await getSchedule(client)({})
         if (response.data.schedule) {
-            set(this.schedule,response.data.schedule)
+            set(this.schedule, response.data.schedule)
         }
     }
-    
+
 }
 
 export default new ScheduleStore()

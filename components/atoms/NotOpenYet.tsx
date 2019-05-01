@@ -26,7 +26,7 @@ margin-bottom: 30px;
 
 export const NotOpenYet: React.SFC = () => (<PaddingWrapper>
   <StyledFormWrapper>
-    <StyledNeedLoginTitle>아직 발표안 제안 모집이 시작되지 않았습니다.</StyledNeedLoginTitle>
+    <StyledNeedLoginTitle>아직 발표 제안 모집이 시작되지 않았습니다.</StyledNeedLoginTitle>
     <StyledNeedLoginDesc>
       조금만 더 기다려주세요 :)
     </StyledNeedLoginDesc>

@@ -46,14 +46,14 @@ class CFP extends React.Component<{
 
     return (
       <PageTemplate
-        header={<Header title='발표안 제안 수정 :: 파이콘 한국 2019' intlKey='contribution.pageTitle'/>}
+        header={<Header title='발표 제안 수정 :: 파이콘 한국 2019' intlKey='contribution.pageTitle'/>}
         footer={<Footer />}
       >
         <H1>
-          <IntlText intlKey='contribution.title'>발표안 제안 수정</IntlText>
+          <IntlText intlKey='contribution.title'>발표 제안 수정</IntlText>
         </H1>
         <Paragraph intlKey='contribution.paragraph'>
-          파이콘 한국 2019 발표안 제안을 수정합니다.<br/>
+          파이콘 한국 2019 발표 제안을 수정합니다.<br/>
         </Paragraph>
         {!stores.cfpStore.isInitialized
           ? <Loading width={50} height={50}/>

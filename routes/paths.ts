@@ -95,8 +95,8 @@ export const contributionMenu: WithSubMenu = {
       link: paths.contribute.overview
     },
      {
-      title: '발표 제안 리뷰하기',
-      intlKey: 'gnb.contribute.overview', // todo : update intlkey
+      title: '발표 제안 검토하기',
+      intlKey: 'gnb.contribute.proposalReview',
       link: paths.contribute.proposalReview
     },
     {
@@ -110,7 +110,7 @@ export const contributionMenu: WithSubMenu = {
       link: paths.contribute.cfpDetailedGuide
     },
     {
-      title: '발표안 제안하기',
+      title: '발표 제안하기',
       intlKey: 'gnb.contribute.proposingATalk',
       link: paths.contribute.proposingATalk,
     }
