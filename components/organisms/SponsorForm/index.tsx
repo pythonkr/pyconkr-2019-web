@@ -13,10 +13,10 @@ import { StoresType } from 'pages/_app'
 import Steps from 'rc-steps'
 import React from 'react'
 import intl from 'react-intl-universal'
+import { paths } from 'routes/paths'
 import { isEmpty } from 'utils/isEmpty'
 import Stage1 from './Stage1'
 import Stage2 from './Stage2'
-import { paths } from 'routes/paths';
 
 @inject('stores')
 @observer

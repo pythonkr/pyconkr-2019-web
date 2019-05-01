@@ -27,6 +27,11 @@ export class ProposalReviewStore {
     // }
 
     @action
+    setCurrentStage(stage: ProposalReviewFormStage) {
+      this.currentStage = stage
+    }
+
+    @action
     setProposalsToReview(proposals: object[]) {
       this.proposalsToReview = proposals
     }
@@ -35,6 +40,11 @@ export class ProposalReviewStore {
     async retrieveProposalsToReview() {
         // const { data } = await getMySponsor(client)({})
         this.setProposalsToReview([])
+    }
+
+    @action
+    async selectCategoriesAndOthers() {
+        return Promise.resolve()
     }
 }
 

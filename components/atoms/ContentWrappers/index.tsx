@@ -491,7 +491,7 @@ input[type="checkbox"] {
 }
 
 fieldset {
-  width: 50%;
+  // width: 50%;
   margin-bottom: 40px;
 
   legend {

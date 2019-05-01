@@ -12,11 +12,11 @@ import { StoresType } from 'pages/_app'
 import Steps from 'rc-steps'
 import React from 'react'
 import intl from 'react-intl-universal'
+import { paths } from 'routes/paths'
 import { isEmpty } from 'utils/isEmpty'
 import Stage1 from './Stage1'
 import Stage2 from './Stage2'
 import Stage3 from './Stage3'
-import { paths } from 'routes/paths';
 
 @inject('stores')
 @observer
@@ -39,14 +39,14 @@ export default class ProposalReviewForm extends React.Component<{ stores: Stores
       return <Loading width={50} height={50}/>
     }
 
-    if (isFuture(presentationReviewStartAt)) {
-      return <NotOpenYet
-        title='아직 발표 제안 검토가 시작되지 않았습니다.'
-        buttonText='다른 공헌 방법 보기'
-        buttonIntlKey='asdfkljasldkfj'
-        link={paths.contribute.overview}
-      />
-    }
+    // if (isFuture(presentationReviewStartAt)) {
+    //   return <NotOpenYet
+    //     title='아직 발표 제안 검토가 시작되지 않았습니다.'
+    //     buttonText='다른 공헌 방법 보기'
+    //     buttonIntlKey='asdfkljasldkfj'
+    //     link={paths.contribute.overview}
+    //   />
+    // }
 
     if (!profileStore.isAgreed) {
       return <FormNeedAuthAgreement />
