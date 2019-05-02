@@ -400,14 +400,14 @@ class Index extends React.Component<{ stores: StoresType }> {
                 >
                   키노트 연사 추천하기
                 </Button>
-                <Button
+                {/* <Button
                   primary={false}
                   intlKey='gnb.contribute.proposingATalk'
                   to={paths.contribute.proposingATalk}
                   fontSize={14}
                 >
                   발표안 제안하기
-                </Button>
+                </Button> */}
               </ScheduleButtonsWrapper>
             </li>
           </ul>
