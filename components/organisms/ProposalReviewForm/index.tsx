@@ -5,22 +5,24 @@ import { NotOpenYet } from 'components/atoms/NotOpenYet'
 import { PresentationFormClose } from 'components/atoms/PresentationFormClose'
 import { StepsWrapper } from 'components/atoms/StepsWrapper'
 import { isFuture, isPast } from 'date-fns'
+import i18next from 'i18next'
 import { ProposalReviewFormStage } from 'lib/stores/ProposalReview/ProposalReviewStore'
 import { toJS } from 'mobx'
-import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import Steps from 'rc-steps'
 import React from 'react'
 import intl from 'react-intl-universal'
 import { paths } from 'routes/paths'
 import { isEmpty } from 'utils/isEmpty'
+import { withNamespaces } from '../../../i18n'
 import Stage1 from './Stage1'
 import Stage2 from './Stage2'
 import Stage3 from './Stage3'
 
-@inject('stores')
-@observer
-export default class ProposalReviewForm extends React.Component<{ stores: StoresType }> {
+export class ProposalReviewForm extends React.Component<{
+  stores: StoresType;
+  t: i18next.TFunction;
+}> {
   formWrapperRef: HTMLDivElement | null = null
 
   async componentDidMount() {
@@ -30,7 +32,8 @@ export default class ProposalReviewForm extends React.Component<{ stores: Stores
   }
 
   render() {
-    const { scheduleStore, profileStore, cfpStore, proposalReviewStore } = this.props.stores
+    const { stores, t } = this.props
+    const { scheduleStore, profileStore, cfpStore, proposalReviewStore } = stores
     const { presentationReviewStartAt,  presentationReviewFinishAt } = scheduleStore.schedule
     const { categories } = toJS(cfpStore)
     const { currentStage } = toJS(proposalReviewStore)
@@ -84,9 +87,9 @@ export default class ProposalReviewForm extends React.Component<{ stores: Stores
     }
 
     const steps = [
-      intl.get('contribute.talkProposal.application.stages.stages1.header').d('카테고리와 언어'),
-      intl.get('contribute.talkProposal.application.stages.stages2.header').d('제안서별 의견 남기기'),
-      intl.get('contribute.talkProposal.application.stages.stages3.header').d('제출'),
+      t('contribute:proposalReview.stages.stage1.header'),
+      t('contribute:proposalReview.stages.stage2.header'),
+      t('contribute:proposalReview.stages.stage3.header')
     ]
 
     return (
@@ -118,3 +121,5 @@ export default class ProposalReviewForm extends React.Component<{ stores: Stores
     )
   }
 }
+
+export default withNamespaces(['contribute'])(ProposalReviewForm)

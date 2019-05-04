@@ -1,29 +1,53 @@
 import { AlertBar } from 'components/atoms/AlertBar'
 import { H1, H2, Paragraph, Section } from 'components/atoms/ContentWrappers'
 import { FormNeedsLogin } from 'components/atoms/FormNeedsLogin'
-import { IntlText } from 'components/atoms/IntlText'
 import { Loading } from 'components/atoms/Loading'
 import { StatusBar } from 'components/atoms/StatusBar'
 import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
+import ProposalReviewForm from 'components/organisms/ProposalReviewForm'
 import PageTemplate from 'components/templates/PageTemplate'
+import i18next from 'i18next'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
 import { contributionMenu } from 'routes/paths'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
+import { withNamespaces } from '../../i18n'
 import { StoresType } from '../_app'
-import ProposalReviewForm from 'components/organisms/ProposalReviewForm';
+
+type PropsType = {
+  stores: StoresType;
+  t: i18next.TFunction;
+}
 
 @inject('stores')
 @observer
-export default class ProposingATalk extends React.Component<{ stores: StoresType }> {
-  state = {
-    // todo : implement here
+export class ProposalReview extends React.Component<PropsType> {
+
+  static async getInitialProps() {
+    return {
+      namespacesRequired: ['contribute'],
+    }
+  }
+
+  renderProposalReviewForm () {
+    const { stores, t } = this.props
+    const isAuthStoreInitialized = stores.authStore.isInitialized
+    const isLoggedIn = stores.authStore.loggedIn
+
+    if (!isAuthStoreInitialized) {
+      return <Loading width={50} height={50}/>
+    }
+
+    return isLoggedIn
+      ? <ProposalReviewForm stores={stores} />
+      : <FormNeedsLogin />
   }
 
   render() {
-    const { authStore, scheduleStore } = this.props.stores
+    const { stores, t } = this.props
+    const { scheduleStore } = stores
     const { presentationReviewStartAt, presentationReviewFinishAt } = scheduleStore.schedule
 
     return (
@@ -32,47 +56,38 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
         footer={<Footer />}
       >
         <LocalNavigation list={contributionMenu.submenu} />
-        <H1><IntlText intlKey='asdfasd'>
-          발표 제안 검토하기
-        </IntlText></H1>
+        <H1>{t('contribute:proposalReview.title')}</H1>
         <StatusBar
           titleIntlKey='contribute.proposalReview.title'
           actionIntlKey='common.apply'
           openDate={presentationReviewStartAt}
           closeDate={presentationReviewFinishAt}
         />
-         <Paragraph><IntlText intlKey='contribute.talkProposal.description1'>
-           누구나 파이콘 한국 2019에 제출된 발표 제안 내용들을 검토하고 의견을 남겨주실 수 있습니다.
-           여러분의 손으로 풍성한 파이콘 한국을 만들어주세요 :)
-        </IntlText></Paragraph>
+         <Paragraph>
+          {t('contribute:proposalReview.description')}
+         </Paragraph>
 
         <Section>
-          <H2><IntlText intlKey='common.schedule'>일정</IntlText></H2>
-          <Paragraph><IntlText intlKey='asldfkjasldkj'>
-            {`${formatDateInWordsWithWeekdayAndTime(presentationReviewStartAt)}
-            - ${formatDateInWordsWithWeekdayAndTime(presentationReviewFinishAt)}`}
-          </IntlText></Paragraph>
+          <H2>{t('common:schedule')}</H2>
+          <Paragraph>
+            {`${formatDateInWordsWithWeekdayAndTime(presentationReviewStartAt)} - ${formatDateInWordsWithWeekdayAndTime(presentationReviewFinishAt)}`}
+          </Paragraph>
         </Section>
 
         <Section>
-          <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
-          <Paragraph><IntlText intlKey='asdfasdfasdf'>program@pycon.kr</IntlText></Paragraph>
+          <H2>{t('common:contact')}</H2>
+          <Paragraph>program@pycon.kr</Paragraph>
         </Section>
 
         <Section>
-          <H2>
-            <IntlText intlKey='contribute.talkProposal.application.title'>검토 참여하기</IntlText>
-          </H2>
-          <AlertBar text='선택한 카테고리들에 속한 7개의 발표 제안을 검토합니다.' />
-          <AlertBar text='파이콘 한국 행동강령에 위배되는 의견은 반영되지 않습니다. 주의해주세요.' />
-          {this.props.stores.authStore.isInitialized
-            ? authStore.loggedIn
-              ? <ProposalReviewForm />
-              : <FormNeedsLogin />
-            : <Loading width={50} height={50}/>
-          }
+          <H2>{t('contribute:proposalReview.review.title')}</H2>
+          <AlertBar text={t('contribute:proposalReview.review.alert1')} />
+          <AlertBar text={t('contribute:proposalReview.review.alert2')} />
+          {this.renderProposalReviewForm()}
         </Section>
       </PageTemplate>
     )
   }
 }
+
+export default withNamespaces(['contribute'])(ProposalReview)
