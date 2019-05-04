@@ -8,6 +8,7 @@ import { isFuture, isPast } from 'date-fns'
 import i18next from 'i18next'
 import { ProposalReviewFormStage } from 'lib/stores/ProposalReview/ProposalReviewStore'
 import { toJS } from 'mobx'
+import { observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import Steps from 'rc-steps'
 import React from 'react'
@@ -19,6 +20,7 @@ import Stage1 from './Stage1'
 import Stage2 from './Stage2'
 import Stage3 from './Stage3'
 
+@observer
 export class ProposalReviewForm extends React.Component<{
   stores: StoresType;
   t: i18next.TFunction;
@@ -101,19 +103,20 @@ export class ProposalReviewForm extends React.Component<{
         </StepsWrapper>
         {currentStage === ProposalReviewFormStage.stage1 &&
           <Stage1
-            stores={this.props.stores}
+            stores={stores}
             scrollRef={this.formWrapperRef!}
+            t={t}
           />
         }
         {currentStage === ProposalReviewFormStage.stage2 &&
           <Stage2
-            stores={this.props.stores}
+            stores={stores}
             scrollRef={this.formWrapperRef!}
           />
         }
         {currentStage === ProposalReviewFormStage.stage3 &&
           <Stage3
-            stores={this.props.stores}
+            stores={stores}
             scrollRef={this.formWrapperRef!}
           />
         }

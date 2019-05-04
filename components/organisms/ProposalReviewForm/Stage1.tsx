@@ -2,11 +2,13 @@ import { Button } from 'components/atoms/Button'
 import { FormWrapper } from 'components/atoms/ContentWrappers'
 import { FlexCenterWrapper } from 'components/atoms/FlexWrapper'
 import { IntlText } from 'components/atoms/IntlText'
+import i18next from 'i18next';
 import { LanguageNode } from 'lib/apollo_graphql/__generated__/globalTypes'
 import { ProposalReviewFormStage } from 'lib/stores/ProposalReview/ProposalReviewStore'
-import { inject, observer } from 'mobx-react'
+import { observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import React from 'react'
+import { toast } from 'react-toastify'
 import { TEAL } from 'styles/colors'
 
 type State = {
@@ -14,9 +16,8 @@ type State = {
   language: LanguageNode;
 }
 
-@inject('stores')
 @observer
-export default class Stage1 extends React.Component<{stores: StoresType; scrollRef: HTMLDivElement}, State> {
+export default class Stage1 extends React.Component<{stores: StoresType; scrollRef: HTMLDivElement; t: i18next.TFunction}, State> {
   state: State = {
     categoryIds: [],
     language: LanguageNode.KOREAN
@@ -30,8 +31,31 @@ export default class Stage1 extends React.Component<{stores: StoresType; scrollR
     return this.state.categoryIds.length >= 2
   }
 
+  onChangeCategoryCheckBox = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { t } = this.props
+    const { categoryIds } = this.state
+    const categoryId = e.target.value
+    const isChecked = !!e.target.checked
+    const isExceedSelectionLimit = categoryIds.length > 6 && !!isChecked
+
+    if (isExceedSelectionLimit) {
+      toast.error(t('contribute:proposalReview.stages.stage1.exceededSelectionLimit'))
+
+      return
+    }
+
+    if (!isChecked) {
+      const newCategoryIds = categoryIds
+      newCategoryIds.splice(categoryIds.indexOf(categoryId), 1)
+      this.setState({ categoryIds: newCategoryIds })
+    } else {
+      this.setState({ categoryIds: [ ...categoryIds, categoryId] })
+    }
+  }
+
   render () {
     const { stores } = this.props
+    const { categoryIds } = this.state
 
     return (
       <FormWrapper>
@@ -48,18 +72,17 @@ export default class Stage1 extends React.Component<{stores: StoresType; scrollR
               </IntlText>
             </legend>
             {
-              this.props.stores.cfpStore.categories.map(category =>
+              categoryIds &&
+              stores &&
+              stores.cfpStore.categories.map(category =>
                 <p key={category.id}>
                   <input
                     type='checkbox'
                     id={category.name}
                     value={category.id}
-                    aria-checked={this.state.categoryIds.includes(category.id)}
-                    checked={this.state.categoryIds.includes(category.id)}
-                    onChange={() => this.setState({ categoryIds: [
-                      ...this.state.categoryIds,
-                      category.id
-                    ] })}>
+                    aria-checked={categoryIds.includes(category.id)}
+                    checked={categoryIds.includes(category.id)}
+                    onChange={this.onChangeCategoryCheckBox}>
                   </input>
                   <label htmlFor={category.name}>{category.name}</label>
                 </p>
