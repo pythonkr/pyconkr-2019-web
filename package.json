@@ -20,6 +20,7 @@
     "@types/fontfaceobserver": "^0.0.6",
     "@types/lodash": "^4.14.123",
     "@types/ramda": "^0.26.3",
+    "@types/react-toastify": "^4.0.2",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
     "apollo": "^2.8.3",
@@ -60,6 +61,7 @@
     "react-dom": "^16.7.0",
     "react-intl": "^2.8.0",
     "react-intl-universal": "^1.15.5",
+    "react-toastify": "^5.1.0",
     "universal-cookie": "^3.0.7"
   },
   "devDependencies": {

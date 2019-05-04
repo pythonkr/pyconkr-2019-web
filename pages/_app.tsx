@@ -23,6 +23,8 @@ import { commonCSS } from 'styles/common'
 import { fontCSS } from 'styles/font'
 
 import _ from 'lodash'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { appWithTranslation, i18n, withNamespaces } from '../i18n'
 
 global.Intl = IntlPolyfill
@@ -159,6 +161,15 @@ class MyApp extends App {
         <Provider stores={this.stores}>
           <Component {...pageProps} />
         </Provider>
+        <ToastContainer
+          position='top-center'
+          autoClose={5000}
+          hideProgressBar
+          closeOnClick
+          rtl={false}
+          draggable
+          pauseOnHover
+        />
       </Container>
     )
   }
