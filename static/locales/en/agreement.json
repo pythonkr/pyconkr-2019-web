@@ -1,0 +1,15 @@
+{
+  "title": "Complete the registeration process",
+  "desc1": "You have successfully authorized the following account.",
+  "socialService": "Social Service",
+  "email": "email",
+  "desc2": "When you authorize your account, we save the following public information",
+  "socialAccount": "Social Account ID",
+  "profileImage": "Profile Image",
+  "desc3": "Please complete the registeration process by agreeing to the terms.",
+  "agreeTermsOfService": "Agree terms of service",
+  "viewTermsOfService": "View terms of service",
+  "agreePrivacyProtectionPolicy": "Agree privacy protection policy",
+  "viewPrivacyProtectionPolicy": "View Privacy Protection Policy",
+  "finishRegisteration": "Submit"
+}

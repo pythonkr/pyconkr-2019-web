@@ -1,3 +1,29 @@
 {
-    "contact": "Contact"   
+  "contact": "Contact",
+  "maximum": "Maximum",
+  "schedule": "Schedule",
+  "tableOfContents": "Table Of Contents",
+  "unit": {
+    "ea": "{number} EA",
+    "krw": "{number} KRW",
+    "minimumKrw": "Minimum {number} KRW"
+  },
+  "alert": "Please be sure to read the guide before creating a proposal.",
+  "is": "is",
+  "goTo": "Go to",
+  "detailedSchedule": "Detailed schedule",
+  "pastSchedule": "Past Schedule",
+  "apply": "apply",
+  "recommend": "recommend",
+  "status": {
+    "onProgress": "On Progress",
+    "preparing": "Preparing",
+    "openBefore": "Open D-{diff}",
+    "openToday": "Open Soon Today",
+    "closeAfter": "Close D-{diff}",
+    "closed": "Closed",
+    "untilSelected": "Until Selected",
+    "conferenceDays": "Conference Days"
+  },
+  "uploadTitle": "Upload"
 }

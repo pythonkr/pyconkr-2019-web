@@ -1,20 +1,20 @@
 {
-    "sprintDescription": "관심있는 오픈소스 프로젝트를 같은 장소에 모여 집중적으로 배우고 개발하는 자리입니다. 새로운 동료를 만나고, 오픈소스에서 얻을 수 있는 경험과 지식을 나눌 수 있습니다.",
-    "tutorialDescription": "초보자들을 위해, 또는 새로운 것을 접하는 사람들을 위해 진행하는 교육 프로그램입니다.",
-    "conferenceDescription": "There are over 50 different presentation sessions that share knowledge and use of Python use cases. In addition, various events such as sponsored company booth, young coder, lightning talk, open space are available. You can participate in the event and interact with various participants.",
-    "sponsor": {
-        "title": "Looking for sponsors for PyCon Korea 2019",
-        "description1": "Thanks to all the sponsors who supported the importance of open source and Python community, we could organize an event that more programmers can attend by providing many speech sessions, side programs, video recordings and financial aid.",
-        "description2": "We are currently looking for the official sponsors for PyCon Korea 2019 who are interested in supporting the growth of Python community. ",
-        "prospectus": "Schedule & Prospectus"
-    },
-    "pyconKoreaTitle": "About PyCon Korea",
-    "pyconKoreaDescription": "PyCon is a non-commercial conference held by Python Programming Communities over the world. PyCon Korea has been successfully hold in several years with a group of volunteers called ‘PyCon Korea Preparation Organizers’, who support the local Korean Python community.",
-    "sloganDescription1": "The slogan of PyCon Korea 2019 is \"Connect the Pythonistas\".",
-    "sloganDescription2": "PyCon can be a place where Python users meet, or a place that connects with other languages or communities. In PyCon, you can meet someone who is researching deeply on one thing, another Pythonista from a different field, or a friend of yours.",
-    "sloganDescription3": "With PyCon, we want all the Pythonistas who are in different fields and heading to different directions to get together and become an awesome constellation. See you again at PyCon Korea 2019.",
-    "differenceWithOthers": {
-        "title": "파이콘은 다른 개발자 행사와 무엇이 다른가요?",
-        "description": "파이콘 한국은 커뮤니티 주관으로 이뤄지는 비영리 개발자 대상 행사로, 타 기업 및 기관에서 개최하는 개발자 행사와는 성격이 다릅니다. 발표자와 튜토리얼 진행자를 포함하여, 자원 봉사자와 준비위원회 담당자 등 모든 인원이 금전적 이득 없이 순수히 오픈소스 프로그래밍 언어인 파이썬의 저변 확대와 커뮤니티 활성화를 위해 진행하는 행사입니다."
-    }
-} 
+  "sprintDescription": "관심있는 오픈소스 프로젝트를 같은 장소에 모여 집중적으로 배우고 개발하는 자리입니다. 새로운 동료를 만나고, 오픈소스에서 얻을 수 있는 경험과 지식을 나눌 수 있습니다.",
+  "tutorialDescription": "초보자들 또는 새로운 것을 접하는 사람들을 위해 진행하는 교육 프로그램입니다.",
+  "conferenceDescription": "파이썬 사용 사례와 지식을 공유하는 50여 개의 다양한 발표 세션이 열립니다. 또 후원 기업 부스와 영코더, 라이트닝 토크, 열린 공간 등 다양한 이벤트를 통해 다양한 참가자와 교류할 수 있습니다.",
+  "sponsor": {
+    "title": "파이콘 한국 2019 후원사",
+    "description1": "파이콘 한국은 오픈소스 및 파이썬 커뮤니티의 중요성에 공감하는 후원사들의 감사한 지원 덕분에 비디오 녹화, 티켓 가격 지원 등 더 많은 개발자들이 참여할 수 있는 행사를 만들어 왔습니다.",
+    "description2": "파이콘 후원을 통해 파이썬 커뮤니티의 성장을 지원하고 파이콘 한국 2019의 공식 후원사로서의 특별한 가치를 갖는 데에 관심이 있는 후원사를 모십니다.",
+    "prospectus": "후원 안내 및 모집 일정 보기"
+  },
+  "pyconKoreaTitle": "파이콘 한국이란",
+  "pyconKoreaDescription": "파이콘은 세계 각국의 파이썬 프로그래밍 언어 커뮤니티에서 주관하는 비영리 컨퍼런스입니다. 한국에서는 처음으로 열린 파이콘 한국 2014를 시작으로 파이콘 한국 준비위원회는 건강한 국내 파이썬 생태계에 지속적인 보탬이 되고자, 커뮤니티 멤버들의 자발적인 봉사로 운영되고 있습니다.",
+  "sloganDescription1": "파이콘 한국 2019의 슬로건은 \"Connect the Pythonistas\"입니다.",
+  "sloganDescription2": "파이콘은 파이썬을 쓰는 이들의 만남의 장이 되기도, 또 다른 언어, 커뮤니티와의 접점이 되기도 합니다. 파이콘에서 당신은 한 분야를 아주 깊게 연구한 사람을 만날 수도, 완전히 다른 분야의 파이써니스타를 만날 수도, 친한 동료를 만날 수도 있을 것입니다.",
+  "sloganDescription3": "우리는 파이콘을 통해, 방향과 분야가 숱하게 흩어져 각기 다른 점으로 존재하는 파이써니스타들이 모여 아름다운 별자리가 되기를 바랍니다. 2019년에도 우리, 파이콘에서 만나요.",
+  "differenceWithOthers": {
+    "title": "파이콘은 다른 개발자 행사와 무엇이 다른가요?",
+    "description": "파이콘 한국은 커뮤니티 주관으로 이뤄지는 비영리 개발자 대상 행사로, 타 기업 및 기관에서 개최하는 개발자 행사와는 성격이 다릅니다. 발표자와 튜토리얼 진행자를 포함하여, 자원봉사자와 준비위원회 담당자 등 모든 인원이 금전적 이득 없이 순수히 오픈소스 프로그래밍 언어인 파이썬의 저변 확대와 커뮤니티 활성화를 위해 진행하는 행사입니다."
+  }
+}
