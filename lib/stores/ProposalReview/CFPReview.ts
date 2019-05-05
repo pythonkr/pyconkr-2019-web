@@ -13,7 +13,7 @@ export class CFPReview implements CFPReviewType {
     @observable updatedAt: any
 
     @action
-    setComment(newComment: string) {
+    setComment (newComment: string) {
         this.comment = newComment
     }
 }

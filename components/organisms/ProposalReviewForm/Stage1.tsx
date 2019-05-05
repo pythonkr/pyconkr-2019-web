@@ -1,7 +1,6 @@
 import { Button } from 'components/atoms/Button'
 import { FormWrapper } from 'components/atoms/ContentWrappers'
 import { FlexCenterWrapper } from 'components/atoms/FlexWrapper'
-import { IntlText } from 'components/atoms/IntlText'
 import i18next from 'i18next'
 import { LanguageNode } from 'lib/apollo_graphql/__generated__/globalTypes'
 import { ProposalReviewFormStage } from 'lib/stores/ProposalReview/ProposalReviewStore'
@@ -25,6 +24,10 @@ export default class Stage1 extends React.Component<{stores: StoresType; scrollR
 
   async componentDidMount() {
     this.props.scrollRef && window.scrollTo(0, this.props.scrollRef.offsetTop)
+    const { stores } = this.props
+    if (stores.proposalReviewStore.isReviewAssigned()) {
+      stores.proposalReviewStore.setCurrentStage(ProposalReviewFormStage.stage2)
+    }
   }
 
   isFormValid () {

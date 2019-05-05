@@ -96,6 +96,7 @@ export class ProposalReviewForm extends React.Component<{
           <Stage2
             stores={stores}
             scrollRef={this.formWrapperRef!}
+            t={t}
           />
         }
         {currentStage === ProposalReviewFormStage.stage3 &&

@@ -297,7 +297,9 @@
         "header": "제안서별 의견 남기기"
       },
       "stage3": {
-        "header": "제출"
+        "header": "제출",
+        "presentationName": "발표 제안 {{number}}: {{name}}",
+        "backgroundDesc": "필요한 배경지식: {{backgroundDesc}}"
       }
     }
   }
