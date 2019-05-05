@@ -11,7 +11,7 @@ export const submitCfpReviewsMutationDefinition = createMutationDefinition<
   submitCfpReviewsVariables
 >(_submitCfpReviews)
 
-export const AssignCfpReviews = sendMutation(
+export const SubmitCfpReviews = sendMutation(
   submitCfpReviewsMutationDefinition
 )
 

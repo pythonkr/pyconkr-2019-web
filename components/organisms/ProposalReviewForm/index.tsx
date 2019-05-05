@@ -26,9 +26,10 @@ export class ProposalReviewForm extends React.Component<{
   formWrapperRef: HTMLDivElement | null = null
 
   async componentDidMount() {
-    const { scheduleStore, cfpStore } = this.props.stores
+    const { scheduleStore, cfpStore, proposalReviewStore } = this.props.stores
     if (!scheduleStore.isInitialized) scheduleStore.initialize()
     if (!cfpStore.isInitialized) cfpStore.initialize()
+    if (!proposalReviewStore.isInitialized) proposalReviewStore.initialize()
   }
 
   render() {

@@ -1,5 +1,10 @@
+import { client } from 'lib/apollo_graphql/client'
 import { action, configure, observable } from 'mobx'
 import { PresentationProposal } from '../CFP/PresentationProposal';
+import { getAssignedCfpReviews, CFPReviewType } from 'lib/apollo_graphql/queries/getAssignedCfpReviews';
+import { AssignCfpReviews } from 'lib/apollo_graphql/mutations/assignCfpReviews';
+import { SubmitCfpReviews } from 'lib/apollo_graphql/mutations/submitCfpReviews';
+
 
 configure({ enforceActions: 'observed' })
 
@@ -16,9 +21,11 @@ export type Comment = {
 }
 
 export class ProposalReviewStore {
-    // @observable isInitialized: boolean = false
+    @observable isInitialized: boolean = false
     @observable currentStage: ProposalReviewFormStage = ProposalReviewFormStage.stage1
     @observable proposalsToReview: PresentationProposal[] = []
+    @observable assignedCfpReviews: CFPReviewType[] | null = []
+    @observable isCfpReviewSubmitted: boolean | null = false
     @observable comments: object[] = []
 
     constructor() {
@@ -38,21 +45,44 @@ export class ProposalReviewStore {
             }))
     }
 
-    // @action
-    // async initialize() {
-    //     await this.retrieveSponsorLevels()
-    //     await this.retrieveMySponsorProposal()
-    //     this.isInitialized = true
-    // }
+    @action
+    async initialize() {
+        if (this.isInitialized){
+            return
+        }
+        await this.retrieveAssignedCfpReviews()
+        // await this.retrieveMySponsorProposal()
+        this.isInitialized = true
+    }
 
     @action
     setCurrentStage(stage: ProposalReviewFormStage) {
       this.currentStage = stage
     }
 
+
     @action
-    setProposalsToReview(proposals: object[]) {
-      this.proposalsToReview = proposals
+    async retrieveAssignedCfpReviews() {
+        const { data } = await getAssignedCfpReviews(client)({})
+        this.isCfpReviewSubmitted = data.isCfpReviewSubmitted
+        if(data.assignedCfpReviews){
+            this.assignedCfpReviews = data.assignedCfpReviews
+        }
+    }
+
+    @action
+    async assignCfpReviews(categoryIds: []) {
+        const { data } = await AssignCfpReviews(client)({
+            categoryIds: categoryIds
+        })
+        this.assignedCfpReviews = data.assignCfpReviews.reviews
+    }
+
+    @action
+    async submitCfpReviews(reviews: []){
+        const { data } = await SubmitCfpReviews(client)({
+            reviews: reviews
+        })
     }
 
     @action

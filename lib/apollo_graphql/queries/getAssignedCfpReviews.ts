@@ -1,5 +1,6 @@
 import {
   getAssignedCfpReviews as getAssignedCfpReviewsType,
+  getAssignedCfpReviews_assignedCfpReviews as CFPReviewType
 } from 'lib/apollo_graphql/__generated__/getAssignedCfpReviews'
 import {
   createQueryDefinition,
@@ -16,3 +17,6 @@ export const getAssignedCfpReviews = sendQuery(
   getAssignedCfpReviewsQueryDefinition,
 )
 
+export {
+  CFPReviewType
+}
