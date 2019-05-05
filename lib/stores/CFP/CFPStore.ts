@@ -1,3 +1,4 @@
+import { getDifficulties_difficulties } from 'lib/apollo_graphql/__generated__/getDifficulties'
 import { client } from 'lib/apollo_graphql/client'
 import { CreateOrUpdatePresentationProposal } from 'lib/apollo_graphql/mutations/createOrUpdatePresentationProposal'
 import { CategoryType, getCategories } from 'lib/apollo_graphql/queries/getCategories'
@@ -51,12 +52,13 @@ export class CFPStore {
     @action
     async retrieveDifficulties() {
       const response = await getDifficulties(client)({})
-      this.difficulties = response.data.difficulties
+      this.difficulties = response.data.difficulties as getDifficulties_difficulties[]
     }
 
     @action
     async retrieveCategories() {
       const response = await getCategories(client)({})
+      // FIXME: 카테고리 타입이 없음.
       this.categories = response.data.categories
     }
 

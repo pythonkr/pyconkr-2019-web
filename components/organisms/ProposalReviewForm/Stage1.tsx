@@ -59,11 +59,10 @@ export default class Stage1 extends React.Component<{stores: StoresType; scrollR
 
     return (
       <FormWrapper>
-        <form onSubmit={(e) => {
+        <form onSubmit={async (e) => {
           e.preventDefault()
-          stores.proposalReviewStore.selectCategoriesAndOthers().then(() => {
-            stores.proposalReviewStore.setCurrentStage(ProposalReviewFormStage.stage2)
-          })
+          await stores.proposalReviewStore.assignCfpReviews(categoryIds)
+          stores.proposalReviewStore.setCurrentStage(ProposalReviewFormStage.stage2)
         }}>
           <fieldset>
             <legend className='required'>

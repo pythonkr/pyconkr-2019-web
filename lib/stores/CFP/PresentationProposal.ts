@@ -24,7 +24,7 @@ export class PresentationProposal implements PresentationProposalNode {
     @observable presentedSlideUrlBefore: string = ''
     @observable comment: string = ''
     @observable isAgreed: boolean | null = null
-    @observable recordable: boolean | null = null
+    @observable recordable: boolean = false
     @observable submitted: boolean = false
     @observable accepted: boolean = false
     @observable categoryId: string = (this.category && this.category.id) || '1'
