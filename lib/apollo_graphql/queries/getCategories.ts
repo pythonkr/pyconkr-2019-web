@@ -1,5 +1,4 @@
 import {
-  getCategories as getCategoriesType,
   getCategories_categories as CategoryType,
 } from 'lib/apollo_graphql/__generated__/getCategories'
 import {
