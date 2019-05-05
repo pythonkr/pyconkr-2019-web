@@ -55,5 +55,4 @@ export interface assignCfpReviews {
 
 export interface assignCfpReviewsVariables {
   categoryIds: (string | null)[];
-  languages: (LanguageNode | null)[];
 }

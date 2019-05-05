@@ -4439,20 +4439,6 @@
                   }
                 },
                 "defaultValue": null
-              },
-              {
-                "name": "languages",
-                "description": null,
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "ENUM",
-                    "name": "LanguageNode",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
               }
             ],
             "type": {
