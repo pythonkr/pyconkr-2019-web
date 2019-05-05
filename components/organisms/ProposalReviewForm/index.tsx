@@ -12,8 +12,6 @@ import { observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import Steps from 'rc-steps'
 import React from 'react'
-import intl from 'react-intl-universal'
-import { paths } from 'routes/paths'
 import { isEmpty } from 'utils/isEmpty'
 import { withNamespaces } from '../../../i18n'
 import Stage1 from './Stage1'
@@ -36,7 +34,7 @@ export class ProposalReviewForm extends React.Component<{
   render() {
     const { stores, t } = this.props
     const { scheduleStore, profileStore, cfpStore, proposalReviewStore } = stores
-    const { presentationReviewStartAt,  presentationReviewFinishAt } = scheduleStore.schedule
+    const { presentationReviewFinishAt } = scheduleStore.schedule
     const { categories } = toJS(cfpStore)
     const { currentStage } = toJS(proposalReviewStore)
 
