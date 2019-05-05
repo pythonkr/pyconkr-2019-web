@@ -289,8 +289,9 @@
     },
     "stages": {
       "stage1": {
-        "header": "카테고리와 언어",
-        "exceededSelectionLimit": "오픈리뷰 카테고리는 7개까지 선택 가능합니다."
+        "header": "카테고리",
+        "exceededSelectionLimit": "오픈리뷰 카테고리는 7개까지 선택 가능합니다.",
+        "selectCategoryTitle": "카테고리 선택"
       },
       "stage2": {
         "header": "제안서별 의견 남기기"
