@@ -1,11 +1,13 @@
 
 import styled from '@emotion/styled'
 import { Button } from 'components/atoms/Button'
+import { paths } from 'routes/paths'
 import { TEAL } from 'styles/colors'
 
 export const PaddingWrapper = styled.div`
 padding: 10px 0;
 `
+
 const StyledFormWrapper = styled.div`
   padding: 60px 0;
   background-color: #fcfcfc;
@@ -23,36 +25,11 @@ text-align: center;
 margin-bottom: 30px;
 `
 
-interface Props {
-  title: string,
-  desc?: string,
-  buttonText?: string,
-  buttonIntlKey?: string,
-  link?: string
-}
-
-export const NotOpenYet: React.SFC<Props> = ({
-  title,
-  desc = '조금만 더 기다려주세요 :)',
-  buttonText,
-  buttonIntlKey,
-  link
-}) => (<PaddingWrapper>
+export const ReviewFormSubmitted: React.SFC = () => (<PaddingWrapper>
   <StyledFormWrapper>
-    <StyledNeedLoginTitle>{title}</StyledNeedLoginTitle>
+    <StyledNeedLoginTitle>당신의 검토 의견이 제출되었습니다.</StyledNeedLoginTitle>
     <StyledNeedLoginDesc>
-      {desc}
+      여러분들의 의견은 파이콘 준비위원회가 제안서를 검토하는 데에 적극적으로 반영될 예정입니다. <br/>더 풍성한 파이콘 한국을 위한 기여에 감사드립니다 😍
     </StyledNeedLoginDesc>
-    {
-      buttonText &&
-      <Button
-        intlKey={buttonIntlKey}
-        to={link}
-        fontSize={14}
-        color={TEAL}
-      >
-        {buttonText}
-      </Button>
-    }
   </StyledFormWrapper>
 </PaddingWrapper>)

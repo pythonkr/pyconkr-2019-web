@@ -280,26 +280,26 @@
     }
   },
   "proposalReview": {
-    "title": "발표 제안 검토하기",
-    "description": "누구나 파이콘 한국 2019에 제출된 발표 제안 내용들을 검토하고 의견을 남겨주실 수 있습니다. 여러분의 손으로 풍성한 파이콘 한국을 만들어주세요 :)",
+    "title": "Review presentation proposals",
+    "description": "Anyone can review and comment on the presentation proposals submitted to PyCon Korea 2019. Make PyCon Korea 2018 with your hands :)",
     "review": {
-      "title": "검토 참여하기",
-      "alert1": "선택한 카테고리들에 속한 7개의 발표 제안을 검토합니다.",
-      "alert2": "파이콘 한국 행동강령에 위배되는 의견은 반영되지 않습니다. 주의해주세요."
+      "title": "Participate in the review",
+      "alert1": "Select the category you want to review and review the 7 proposals in selected categories",
+      "alert2": "Opinions that violate the PyCon Korea Code of Conduct are not reflected. Please be careful."
     },
     "stages": {
       "stage1": {
-        "header": "오픈리뷰란?",
-        "exceededSelectionLimit": "오픈리뷰 카테고리는 7개까지 선택 가능합니다.",
-        "selectCategoryTitle": "카테고리 선택"
+        "header": "Category",
+        "exceededSelectionLimit": "You can select up to 7 categories for Open Review.",
+        "selectCategoryTitle": "Select category"
       },
       "stage2": {
-        "header": "카테고리 선택"
+        "header": "Leave a comment for each proposal"
       },
       "stage3": {
-        "header": "제안 검토 및 제출",
-        "presentationName": "발표 제안 {{number}}: {{name}}",
-        "backgroundDesc": "필요한 배경지식: {{backgroundDesc}}"
+        "header": "Submit",
+        "presentationName": "Proposal {{number}}: {{name}}",
+        "backgroundDesc": "Background: {{backgroundDesc}}"
       }
     }
   }

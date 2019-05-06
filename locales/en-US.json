@@ -152,7 +152,8 @@
       }
     },
     "proposalReview": {
-      "title": "Review Presentation Proposals"
+      "title": "Review Presentation Proposals",
+      "notOpenYet": "Open review period have not started yet."
     },
     "recommendKeynoteSpeaker": {
       "pageTitle": "Recommending Keynote Speaker :: PyCon Korea 2019",

@@ -1,6 +1,7 @@
 import { Button } from 'components/atoms/Button'
 import { FormWrapper } from 'components/atoms/ContentWrappers'
 import { FlexCenterWrapper } from 'components/atoms/FlexWrapper'
+import i18next from 'i18next';
 import { ProposalReviewFormStage } from 'lib/stores/ProposalReview/ProposalReviewStore'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
@@ -11,9 +12,8 @@ type State = {
   // todo : implement here
 }
 
-@inject('stores')
 @observer
-export default class Stage1 extends React.Component<{stores: StoresType; scrollRef: HTMLDivElement}, State> {
+export default class Stage1 extends React.Component<{stores: StoresType; scrollRef: HTMLDivElement; t: i18next.TFunction}, State> {
   state: State = {
     // todo : implement here
   }
