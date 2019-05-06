@@ -86,6 +86,7 @@ export class ProposalReviewStore {
                 }
             })
             await SubmitCfpReviews(client)({ reviews })
+            await this.retrieveAssignedCfpReviews()
         } catch (err) {
             console.log(err)
         }

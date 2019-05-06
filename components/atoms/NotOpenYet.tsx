@@ -2,6 +2,7 @@
 import styled from '@emotion/styled'
 import { Button } from 'components/atoms/Button'
 import { TEAL } from 'styles/colors'
+import { IntlText } from 'components/atoms/IntlText'
 
 export const PaddingWrapper = styled.div`
 padding: 10px 0;
@@ -25,7 +26,9 @@ margin-bottom: 30px;
 
 interface Props {
   title: string,
+  titleIntlKey?: string,
   desc?: string,
+  descIntlKey?: string,
   buttonText?: string,
   buttonIntlKey?: string,
   link?: string
@@ -33,15 +36,19 @@ interface Props {
 
 export const NotOpenYet: React.SFC<Props> = ({
   title,
+  titleIntlKey,
   desc = '조금만 더 기다려주세요 :)',
+  descIntlKey = '조금만 더 기다려주세요 :)',
   buttonText,
   buttonIntlKey,
   link
 }) => (<PaddingWrapper>
   <StyledFormWrapper>
-    <StyledNeedLoginTitle>{title}</StyledNeedLoginTitle>
+    <StyledNeedLoginTitle>
+      <IntlText intlKey={titleIntlKey}>{title}</IntlText>
+    </StyledNeedLoginTitle>
     <StyledNeedLoginDesc>
-      {desc}
+      <IntlText intlKey={descIntlKey}>{desc}</IntlText>
     </StyledNeedLoginDesc>
     {
       buttonText &&

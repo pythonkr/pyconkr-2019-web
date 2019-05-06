@@ -48,7 +48,7 @@ export class ProposalReviewForm extends React.Component<{
     if (isFuture(presentationReviewStartAt)) {
       return <NotOpenYet
         title='아직 오픈 리뷰 기간이 시작되지 않았습니다.'
-        titleIntlKey='contribute.proposalReview.notOpenYet'
+        titleIntlKey='contribute.proposalReview.schedule.notOpenYet'
       />
     }
 
@@ -85,9 +85,7 @@ export class ProposalReviewForm extends React.Component<{
       )
     }
 
-    if (proposalReviewStore.isCfpReviewSubmitted){
-      return <ReviewFormSubmitted />
-    }
+    
 
     const steps = [
       t('contribute:proposalReview.stages.stage1.header'),
@@ -96,6 +94,8 @@ export class ProposalReviewForm extends React.Component<{
     ]
 
     return (
+      proposalReviewStore.isCfpReviewSubmitted ? <ReviewFormSubmitted />
+      :
       <PaddingWrapper ref={ref => this.formWrapperRef = ref}>
         <StepsWrapper>
           <Steps current={currentStage} labelPlacement='vertical'>
