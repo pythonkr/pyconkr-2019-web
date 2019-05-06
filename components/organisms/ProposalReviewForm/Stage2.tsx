@@ -52,8 +52,35 @@ export default class Stage2 extends React.Component<{stores: StoresType; scrollR
               onChange={e => review.setComment(e.target.value)}
               aria-required={true}
               style={{ height: 100, marginBottom: 10 }}
+              maxLength={1000}
+              minLength={20}
               required
             />
+            <div
+              style={{
+                textAlign: 'right',
+                display: 'flex',
+                justifyContent: 'space-between'
+              }}
+            >
+              {review.comment.length < 20 && (
+                <div
+                  style={{ color: 'red' }}
+                >
+                  리뷰는 최소 20자 이상 입력하셔야 합니다.
+                </div>
+              )}
+              <div
+                style={{ marginLeft: 'auto' }}
+              >
+                <span
+                  style={{ color: review.comment.length < 20 ? 'red ':'black' }}
+                >
+                  {review.comment.length}
+                </span>
+                /1000
+              </div>
+            </div>
           </fieldset>
         )
     })
