@@ -1,95 +1,38 @@
 import { Button } from 'components/atoms/Button'
 import { FormWrapper } from 'components/atoms/ContentWrappers'
 import { FlexCenterWrapper } from 'components/atoms/FlexWrapper'
-import i18next from 'i18next'
-import { LanguageNode } from 'lib/apollo_graphql/__generated__/globalTypes'
+import i18next from 'i18next';
 import { ProposalReviewFormStage } from 'lib/stores/ProposalReview/ProposalReviewStore'
-import { observer } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import React from 'react'
-import { toast } from 'react-toastify'
 import { TEAL } from 'styles/colors'
 
 type State = {
-  categoryIds: string[];
-  language: LanguageNode;
+  // todo : implement here
 }
 
 @observer
 export default class Stage1 extends React.Component<{stores: StoresType; scrollRef: HTMLDivElement; t: i18next.TFunction}, State> {
   state: State = {
-    categoryIds: [],
-    language: LanguageNode.KOREAN
+    // todo : implement here
   }
 
   async componentDidMount() {
-    this.props.scrollRef && window.scrollTo(0, this.props.scrollRef.offsetTop)
-    const { stores } = this.props
-    if (stores.proposalReviewStore.isReviewAssigned()) {
-      stores.proposalReviewStore.setCurrentStage(ProposalReviewFormStage.stage2)
-    }
-  }
-
-  isFormValid () {
-    return this.state.categoryIds.length >= 2
-  }
-
-  onChangeCategoryCheckBox = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { t } = this.props
-    const { categoryIds } = this.state
-    const categoryId = e.target.value
-    const isChecked = !!e.target.checked
-    const isExceedSelectionLimit = categoryIds.length > 6 && !!isChecked
-
-    if (isExceedSelectionLimit) {
-      toast.error(t('contribute:proposalReview.stages.stage1.exceededSelectionLimit'))
-
-      return
-    }
-
-    if (!isChecked) {
-      const newCategoryIds = categoryIds
-      newCategoryIds.splice(categoryIds.indexOf(categoryId), 1)
-      this.setState({ categoryIds: newCategoryIds })
-    } else {
-      this.setState({ categoryIds: [ ...categoryIds, categoryId] })
-    }
+    // todo : implement here
   }
 
   render () {
-    const { stores, t } = this.props
-    const { categoryIds } = this.state
+    const { stores } = this.props
 
     return (
       <FormWrapper>
         <form onSubmit={async (e) => {
           e.preventDefault()
-          await stores.proposalReviewStore.assignCfpReviews(categoryIds)
           stores.proposalReviewStore.setCurrentStage(ProposalReviewFormStage.stage2)
         }}>
-          <fieldset>
-            <legend className='required'>
-              {t('contribute:proposalReview.stages.stage1.selectCategoryTitle')}
-              <strong> ({categoryIds.length}/7)</strong>
-            </legend>
-            {
-              categoryIds &&
-              stores &&
-              stores.cfpStore.categories.map(category =>
-                <p key={category.id}>
-                  <input
-                    type='checkbox'
-                    id={category.name}
-                    value={category.id}
-                    aria-checked={categoryIds.includes(category.id)}
-                    checked={categoryIds.includes(category.id)}
-                    onChange={this.onChangeCategoryCheckBox}>
-                  </input>
-                  <label htmlFor={category.name}>{category.name}</label>
-                </p>
-              )
-            }
-          </fieldset>
+          <p>오픈 리뷰란 블라블라</p>
+
           <FlexCenterWrapper style={{ marginTop: 80 }}>
             <Button
               type='submit'
@@ -97,9 +40,8 @@ export default class Stage1 extends React.Component<{stores: StoresType; scrollR
               intlKey='contribute.talkProposal.application.stages.stages1.button'
               color={TEAL}
               width={300}
-              disabled={!this.isFormValid()}
             >
-              선택한 조건에 맞는 발표 제안 검토하기
+            시작하기!
             </Button>
         </FlexCenterWrapper>
         </form>

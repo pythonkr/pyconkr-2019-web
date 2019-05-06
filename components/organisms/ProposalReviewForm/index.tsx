@@ -1,9 +1,9 @@
+import { EventClose } from 'components/atoms/EventClose'
 import { FormNeedAuthAgreement } from 'components/atoms/FormNeedAuthAgreement'
 import { PaddingWrapper } from 'components/atoms/FormNeedsLogin'
 import { Loading } from 'components/atoms/Loading'
 import { ReviewFormSubmitted } from 'components/atoms/ReviewFormSubmitted'
 import { NotOpenYet } from 'components/atoms/NotOpenYet'
-import { EventClose } from 'components/atoms/EventClose'
 
 import { StepsWrapper } from 'components/atoms/StepsWrapper'
 import { isPast, isFuture } from 'date-fns'
@@ -120,6 +120,7 @@ export class ProposalReviewForm extends React.Component<{
           <Stage3
             stores={stores}
             scrollRef={this.formWrapperRef!}
+            t={t}
           />
         }
       </PaddingWrapper>
