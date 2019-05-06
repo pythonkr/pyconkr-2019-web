@@ -1,9 +1,12 @@
 import { FormNeedAuthAgreement } from 'components/atoms/FormNeedAuthAgreement'
 import { PaddingWrapper } from 'components/atoms/FormNeedsLogin'
 import { Loading } from 'components/atoms/Loading'
-import { PresentationFormClose } from 'components/atoms/PresentationFormClose'
+import { ReviewFormSubmitted } from 'components/atoms/ReviewFormSubmitted'
+import { NotOpenYet } from 'components/atoms/NotOpenYet'
+import { EventClose } from 'components/atoms/EventClose'
+
 import { StepsWrapper } from 'components/atoms/StepsWrapper'
-import { isPast } from 'date-fns'
+import { isPast, isFuture } from 'date-fns'
 import i18next from 'i18next'
 import { ProposalReviewFormStage } from 'lib/stores/ProposalReview/ProposalReviewStore'
 import { toJS } from 'mobx'
@@ -34,7 +37,7 @@ export class ProposalReviewForm extends React.Component<{
   render() {
     const { stores, t } = this.props
     const { scheduleStore, profileStore, cfpStore, proposalReviewStore } = stores
-    const { presentationReviewFinishAt } = scheduleStore.schedule
+    const { presentationReviewStartAt, presentationReviewFinishAt } = scheduleStore.schedule
     const { categories } = toJS(cfpStore)
     const { currentStage } = toJS(proposalReviewStore)
 
@@ -42,12 +45,21 @@ export class ProposalReviewForm extends React.Component<{
       return <Loading width={50} height={50}/>
     }
 
+    if (isFuture(presentationReviewStartAt)) {
+      return <NotOpenYet
+        title='아직 오픈 리뷰 기간이 시작되지 않았습니다.'
+      />
+    }
+
     if (!profileStore.isAgreed) {
       return <FormNeedAuthAgreement />
     }
 
     if (isPast(presentationReviewFinishAt)) {
-      return <PresentationFormClose />
+      return <EventClose 
+        title='오픈 리뷰 기간이 끝났습니다.'
+        desc='오픈 리뷰 의견을 수렴하여 파이콘 한국의 발표가 확정될 예정입니다.🙆‍'
+      />
     }
 
     if (isEmpty(categories)) {
@@ -70,6 +82,10 @@ export class ProposalReviewForm extends React.Component<{
           </button>
         </div>
       )
+    }
+
+    if (proposalReviewStore.isCfpReviewSubmitted){
+      return <ReviewFormSubmitted />
     }
 
     const steps = [

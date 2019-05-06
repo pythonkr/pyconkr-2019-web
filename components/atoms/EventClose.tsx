@@ -31,9 +31,9 @@ interface Props {
   link?: string
 }
 
-export const NotOpenYet: React.SFC<Props> = ({
+export const EventClose: React.SFC<Props> = ({
   title,
-  desc = '조금만 더 기다려주세요 :)',
+  desc,
   buttonText,
   buttonIntlKey,
   link
