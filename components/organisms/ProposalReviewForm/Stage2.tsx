@@ -27,6 +27,7 @@ export default class Stage2 extends React.Component<{stores: StoresType; scrollR
     const { stores, t } = this.props
     const { assignedCfpReviews } = stores.proposalReviewStore
 
+    // #TODO: 컴포넌트 분리
     return assignedCfpReviews && assignedCfpReviews.map((review, index) => {
         const { presentation } = review
         if (!presentation) {
@@ -34,7 +35,7 @@ export default class Stage2 extends React.Component<{stores: StoresType; scrollR
         }
 
         return (
-          <fieldset key={`${presentation.name}_${index}`}>
+          <fieldset key={`${presentation.name}_${index}`} style={{ minWidth: 0 }}>
             <legend className='required'>
               {t('contribute:proposalReview.stages.stage3.presentationName', { number: index + 1, name: presentation.name })}
             </legend>
@@ -44,16 +45,51 @@ export default class Stage2 extends React.Component<{stores: StoresType; scrollR
               {t('contribute:proposalReview.stages.stage3.backgroundDesc', { backgroundDesc: presentation.backgroundDesc })} /
               {presentation.duration}
             </p>
-            <p  style={{ marginBottom: 20 }}>
+            <pre style={{
+              marginBottom: '20px',
+              overflow: 'auto',
+              whiteSpace: 'pre-wrap',
+              width: '100%',
+              fontSize: '14px',
+              lineHeight: '1.8',
+              color: '#4a4a4a'
+            }}>
               {presentation.detailDesc}
-            </p>
+            </pre>
             <textarea
               value={review.comment}
               onChange={e => review.setComment(e.target.value)}
               aria-required={true}
               style={{ height: 100, marginBottom: 10 }}
+              maxLength={1000}
+              minLength={20}
               required
             />
+            <div
+              style={{
+                textAlign: 'right',
+                display: 'flex',
+                justifyContent: 'space-between'
+              }}
+            >
+              {review.comment.length < 20 && (
+                <div
+                  style={{ color: 'red' }}
+                >
+                  리뷰는 최소 20자 이상 입력하셔야 합니다.
+                </div>
+              )}
+              <div
+                style={{ marginLeft: 'auto' }}
+              >
+                <span
+                  style={{ color: review.comment.length < 20 ? 'red ' : 'black' }}
+                >
+                  {review.comment.length}
+                </span>
+                /1000
+              </div>
+            </div>
           </fieldset>
         )
     })
