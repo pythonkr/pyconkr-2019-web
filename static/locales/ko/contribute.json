@@ -289,15 +289,15 @@
     },
     "stages": {
       "stage1": {
-        "header": "카테고리",
+        "header": "오픈리뷰란?",
         "exceededSelectionLimit": "오픈리뷰 카테고리는 7개까지 선택 가능합니다.",
         "selectCategoryTitle": "카테고리 선택"
       },
       "stage2": {
-        "header": "제안서별 의견 남기기"
+        "header": "카테고리 선택"
       },
       "stage3": {
-        "header": "제출",
+        "header": "제안 검토 및 제출",
         "presentationName": "발표 제안 {{number}}: {{name}}",
         "backgroundDesc": "필요한 배경지식: {{backgroundDesc}}"
       }

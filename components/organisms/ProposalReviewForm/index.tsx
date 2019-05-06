@@ -46,9 +46,9 @@ export class ProposalReviewForm extends React.Component<{
       return <FormNeedAuthAgreement />
     }
 
-    if (isPast(presentationReviewFinishAt)) {
-      return <PresentationFormClose />
-    }
+    // if (isPast(presentationReviewFinishAt)) {
+    //   return <PresentationFormClose />
+    // }
 
     if (isEmpty(categories)) {
       return (
