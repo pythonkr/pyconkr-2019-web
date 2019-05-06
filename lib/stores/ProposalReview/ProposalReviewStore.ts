@@ -78,13 +78,17 @@ export class ProposalReviewStore {
 
     @action
     async submitCfpReviews() {
-        const reviews = this.assignedCfpReviews.map((review) => {
-            return {
-                id: review.id,
-                comment: review.comment
-            }
-        })
-        const response = await SubmitCfpReviews(client)({ reviews })
+        try {
+            const reviews = this.assignedCfpReviews.map((review) => {
+                return {
+                    id: review.id,
+                    comment: review.comment
+                }
+            })
+            await SubmitCfpReviews(client)({ reviews })
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     @action
