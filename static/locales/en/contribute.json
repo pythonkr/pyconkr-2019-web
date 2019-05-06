@@ -282,6 +282,9 @@
   "proposalReview": {
     "title": "Review presentation proposals",
     "description": "Anyone can review and comment on the presentation proposals submitted to PyCon Korea 2019. Make PyCon Korea 2018 with your hands :)",
+    "schedule": {
+      "notOpenYet": "The open review period has not yet begun."
+    },
     "review": {
       "title": "Participate in the review",
       "alert1": "Select the category you want to review and review the 7 proposals in selected categories",

@@ -48,6 +48,7 @@ export class ProposalReviewForm extends React.Component<{
     if (isFuture(presentationReviewStartAt)) {
       return <NotOpenYet
         title='아직 오픈 리뷰 기간이 시작되지 않았습니다.'
+        titleIntlKey='contribute.proposalReview.notOpenYet'
       />
     }
 
