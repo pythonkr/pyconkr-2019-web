@@ -94,7 +94,7 @@ export default class Stage2 extends React.Component<{stores: StoresType; scrollR
             <Button
               type='submit'
               tag='button'
-              intlKey='contribute.talkProposal.application.stages.stages1.button'
+              intlKey='contribute.proposalReview.reviewProposals'
               color={TEAL}
               width={300}
               disabled={!this.isFormValid()}
