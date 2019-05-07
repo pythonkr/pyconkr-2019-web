@@ -57,6 +57,7 @@ export class ProposalReviewStore {
     @action
     async retrieveAssignedCfpReviews() {
         const { data } = await getAssignedCfpReviews(client)({})
+        debugger
         this.isCfpReviewSubmitted = data.isCfpReviewSubmitted
         const cfpReviews = this.getAssignedCfpReviews(data.assignedCfpReviews as CFPReview[])
         this.assignedCfpReviews = [...cfpReviews]
@@ -86,7 +87,7 @@ export class ProposalReviewStore {
                 }
             })
             await SubmitCfpReviews(client)({ reviews })
-            await this.retrieveAssignedCfpReviews()
+            this.setIsCfpReviewSubmitted(true)
         } catch (err) {
             console.log(err)
         }
@@ -99,6 +100,11 @@ export class ProposalReviewStore {
         }
 
         return true
+    }
+
+    @action
+    setIsCfpReviewSubmitted (isCfpReviewSubmitted: boolean) {
+        this.isCfpReviewSubmitted = isCfpReviewSubmitted
     }
 }
 

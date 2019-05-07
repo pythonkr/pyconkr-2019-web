@@ -7,9 +7,10 @@ import { observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import React from 'react'
 import { TEAL } from 'styles/colors'
+import { withNamespaces } from '../../../i18n'
 
 @observer
-export default class Stage1 extends React.Component<{stores: StoresType; scrollRef: HTMLDivElement; t: i18next.TFunction}> {
+export class Stage1 extends React.Component<{stores: StoresType; scrollRef: HTMLDivElement; t: i18next.TFunction}> {
   render () {
     const { stores, t } = this.props
 
@@ -75,3 +76,6 @@ export default class Stage1 extends React.Component<{stores: StoresType; scrollR
     )
   }
 }
+
+
+export default withNamespaces(['contribute'])(Stage1)

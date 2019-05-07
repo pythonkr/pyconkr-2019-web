@@ -21,7 +21,7 @@ export default class Stage3 extends React.Component<{stores: StoresType; scrollR
     const { stores } = this.props
     const { assignedCfpReviews } = toJS(stores.proposalReviewStore)
 
-    return assignedCfpReviews.length >= 7 && assignedCfpReviews.every(review => review.comment.length > 20)
+    return assignedCfpReviews.every(review => review.comment.length > 20)
   }
 
   renderProposalsToReview = () => {

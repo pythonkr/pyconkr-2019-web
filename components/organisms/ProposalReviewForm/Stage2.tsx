@@ -9,6 +9,7 @@ import { StoresType } from 'pages/_app'
 import React from 'react'
 import { toast } from 'react-toastify'
 import { TEAL } from 'styles/colors'
+import { withNamespaces } from '../../../i18n'
 
 type State = {
   categoryIds: string[];
@@ -16,7 +17,7 @@ type State = {
 }
 
 @observer
-export default class Stage2 extends React.Component<{stores: StoresType; scrollRef: HTMLDivElement; t: i18next.TFunction}, State> {
+export class Stage2 extends React.Component<{stores: StoresType; scrollRef: HTMLDivElement; t: i18next.TFunction}, State> {
   state: State = {
     categoryIds: [],
     language: LanguageNode.KOREAN
@@ -107,3 +108,5 @@ export default class Stage2 extends React.Component<{stores: StoresType; scrollR
     )
   }
 }
+
+export default withNamespaces(['contribute'])(Stage2)
