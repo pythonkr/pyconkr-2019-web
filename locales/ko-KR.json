@@ -15,7 +15,10 @@
       "title": "키노트 연사 추천하기"
     },
     "talkProposal": {
-      "title": "발표안 제안하기"
+      "title": "발표 제안하기"
+    },
+    "proposalReview": {
+      "title": "발표 제안 검토하기"
     }
   },
 

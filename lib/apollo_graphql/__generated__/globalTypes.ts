@@ -52,6 +52,11 @@ export interface ProfileInput {
   signature?: string | null;
 }
 
+export interface ReviewInput {
+  id?: string | null;
+  comment?: string | null;
+}
+
 export interface SponsorInput {
   nameKo?: string | null;
   nameEn?: string | null;

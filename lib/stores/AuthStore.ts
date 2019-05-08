@@ -75,6 +75,7 @@ export class AuthStore {
   @action
   syncToken() {
     this.accessToken = localStorage.getItem(TOKEN_KEY)
+    // TODO: Check if token is valid
     this.isInitialized = true
   }
 

@@ -278,5 +278,49 @@
         }
       }
     }
+  },
+  "proposalReview": {
+    "title": "Review presentation proposals",
+    "description": "Anyone can review and comment on the presentation proposals submitted to PyCon Korea 2019. Make PyCon Korea 2018 with your hands :)",
+    "submitted": {
+      "title": "Your review comments have been submitted.",
+      "desc": "Your comments will be used to review the proposal by the PyCon Korea Organizer. <br/> Thank you for your contribution to the richer PyCon Korea.😍"
+    },
+    "schedule": {
+      "notOpenYet": "The open review period has not yet begun."
+    },
+    "review": {
+      "title": "Participate in the review",
+      "alert1": "Select the category you want to review and review the 7 proposals in selected categories",
+      "alert2": "Opinions that violate the PyCon Korea Code of Conduct are not reflected. Please be careful."
+    },
+    "stages": {
+      "stage1": {
+        "header": "Guide for Open Review",
+        "header1": "What is Open Review?",
+        "desc1": "Open Review is a review method that allows participants to review and comment on proposal submitted to PyCon Korea 2019. Any participant with a background in the categorized topics can read the proposal and submit review comments. Please leave your comments for the presentations that you want to meet in PyCon Korea 2019 :)",
+        "header2": "How are open review used?",
+        "desc2": "They will be used as a reference when reviewing the proposal.",
+        "header3": "Open Review Process",
+        "desc3-1": "1. Select two or more categories to review.",
+        "desc3-1-1": "Once you select categories, you can not change them.",
+        "desc3-2": "2. Any seven proposals in the selected categories will be assigned to review participants.",
+        "desc3-2-1": "Once assigned, the proposal will not be changed.",
+        "desc3-3": "3. Reviewers review selected proposals and write their comments.",
+        "desc3-4": "4. When you submit a reviews, the Open Review is complete.",
+        "button": "Start review👩‍💻👨‍💻",
+        "exceededSelectionLimit": "You can select up to 7 categories for Open Review.",
+        "selectCategoryTitle": "Select category"
+      },
+      "stage2": {
+        "header": "Select categories"
+      },
+      "stage3": {
+        "header": "Leave a comment for each proposal",
+        "presentationName": "Proposal {{number}}: {{name}}",
+        "backgroundDesc": "Background: {{backgroundDesc}}",
+        "button": "Submit review comments"
+      }
+    }
   }
 }
