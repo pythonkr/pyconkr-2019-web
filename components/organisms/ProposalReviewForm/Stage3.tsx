@@ -41,10 +41,10 @@ export default class Stage3 extends React.Component<{stores: StoresType; scrollR
               {t('contribute:proposalReview.stages.stage3.presentationName', { number: index + 1, name: presentation.name })}
             </legend>
             <p style={{ marginBottom: 5 }}>
-              {presentation.category && presentation.category.name} /
-              {presentation.difficulty && presentation.difficulty.name} /
-              {t('contribute:proposalReview.stages.stage3.backgroundDesc', { backgroundDesc: presentation.backgroundDesc })} /
-              {presentation.duration}
+              Category: {presentation.category && presentation.category.name} <br/>
+              Difficulty: {presentation.difficulty && presentation.difficulty.name} <br/>
+              Duration: {presentation.duration} <br/>
+              {t('contribute:proposalReview.stages.stage3.backgroundDesc', { backgroundDesc: presentation.backgroundDesc })} <br/>
             </p>
             <pre style={{
               marginBottom: '20px',
