@@ -76,7 +76,7 @@ export class ProposalReview extends React.Component<PropsType> {
 
         <Section>
           <H2>{t('common:contact')}</H2>
-          <Paragraph>program@pycon.kr</Paragraph>
+          <Paragraph><a href='mailto:program@pycon.kr'>program@pycon.kr</a></Paragraph>
         </Section>
 
         <Section>

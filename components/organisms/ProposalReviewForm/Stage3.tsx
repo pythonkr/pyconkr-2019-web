@@ -68,7 +68,7 @@ export default class Stage3 extends React.Component<{stores: StoresType; scrollR
             />
             <div
               style={{
-                textAlign: 'right',
+                // textAlign: 'right',
                 display: 'flex',
                 justifyContent: 'space-between'
               }}
