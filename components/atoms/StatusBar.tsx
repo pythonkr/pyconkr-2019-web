@@ -66,7 +66,7 @@ const getStatusText = (openDate?: DateDTO, closeDate?: DateDTO, titleIntlKey?: s
 
   if (closeDate && isPast(openDate) && isFuture(closeDate)) {
     const diff = differenceInCalendarDays(closeDate, new Date())
-    statusMessage = `${statusMessage} (${intl.get('common.status.closeAfter', { diff }).d(`마감까지 D${diff}`)})`
+    statusMessage = `${statusMessage} (${intl.get('common.status.closeAfter', { diff }).d(`마감까지 D-${diff}`)})`
   }
 
   return titleIntlKey ? `${intl.get(titleIntlKey)} ${intl.get('common.is')} ${statusMessage}` : statusMessage
