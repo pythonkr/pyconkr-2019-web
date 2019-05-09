@@ -34,7 +34,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
     }, {
       title: '키노트 연사 추천 마감',
       intlKey: 'contribute.recommendKeynoteSpeaker.schedule.deadline',
-      desc: keynoteRecommendationFinishAt
+      date: keynoteRecommendationFinishAt
     }]
 
     return (
