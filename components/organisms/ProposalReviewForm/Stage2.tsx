@@ -27,7 +27,7 @@ export class Stage2 extends React.Component<{stores: StoresType; scrollRef: HTML
     this.props.scrollRef && window.scrollTo(0, this.props.scrollRef.offsetTop)
     const { stores } = this.props
     if (stores.proposalReviewStore.isReviewAssigned()) {
-      stores.proposalReviewStore.setCurrentStage(ProposalReviewFormStage.stage2)
+      stores.proposalReviewStore.setCurrentStage(ProposalReviewFormStage.stage3)
     }
   }
 
