@@ -43,7 +43,7 @@ export default class Stage3 extends React.Component<{stores: StoresType; scrollR
             <p style={{ marginBottom: 5 }}>
               Category: {presentation.category && presentation.category.name} <br/>
               Difficulty: {presentation.difficulty && presentation.difficulty.name} <br/>
-              Duration: {presentation.duration} <br/>
+              Duration: {presentation.duration=='SHORT'?'25 mins':'40 mins'} <br/>
               {t('contribute:proposalReview.stages.stage3.backgroundDesc', { backgroundDesc: presentation.backgroundDesc })} <br/>
             </p>
             <pre style={{
