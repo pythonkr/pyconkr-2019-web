@@ -1,10 +1,10 @@
-import styled from '@emotion/styled'
 import { FormNeedAuthAgreement } from 'components/atoms/FormNeedAuthAgreement'
 import { PaddingWrapper } from 'components/atoms/FormNeedsLogin'
 import { FormSubmitted } from 'components/atoms/FormSubmitted'
 import { Loading } from 'components/atoms/Loading'
 import { NotOpenYet } from 'components/atoms/NotOpenYet'
 import { PresentationFormClose } from 'components/atoms/PresentationFormClose'
+import { StepsWrapper } from 'components/atoms/StepsWrapper'
 import Stage1 from 'components/organisms/CFPForm/Stage1'
 import Stage2 from 'components/organisms/CFPForm/Stage2'
 import Stage3 from 'components/organisms/CFPForm/Stage3'
@@ -17,46 +17,8 @@ import { StoresType } from 'pages/_app'
 import Steps from 'rc-steps'
 import React from 'react'
 import intl from 'react-intl-universal'
-import { TEAL, TEAL_LIGHT, TEAL_LIGHT_LIGHT, TEAL_SEMI_DARK } from 'styles/colors'
-import { mobileWidth } from 'styles/layout'
+import { paths } from 'routes/paths'
 import { isEmpty } from 'utils/isEmpty'
-
-const StepsWrapper = styled.div`
-  padding: 49px 30px 40px;
-  background-color: ${TEAL_LIGHT_LIGHT};
-  border-bottom: solid 1px #e1e4e6;
-  .rc-steps-item-icon {
-    border-color: ${TEAL_LIGHT};
-  }
-  .rc-steps-item-finish > .rc-steps-item-tail::after {
-    background-color: ${TEAL_SEMI_DARK};
-  }
-  .rc-steps-item-finish > .rc-steps-item-icon,
-  .rc-steps-item-process > .rc-steps-item-icon {
-    background-color: ${TEAL};
-    border-color: ${TEAL_SEMI_DARK};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .rc-steps-item-finish > .rc-steps-item-icon {
-    display:inline-block;
-    position: relative;
-
-    &:after{
-      content: '✔︎';
-      display: block;
-      color: ${TEAL_LIGHT};
-      position: absolute;
-      top: -2px;
-      left: 6px;
-    }
-  }
-
-  @media (max-width: ${mobileWidth}) {
-    overflow-x: auto;
-  }
-`
 
 @inject('stores')
 @observer
@@ -82,7 +44,12 @@ export default class CFPForm extends React.Component<{ stores: StoresType }> {
     }
 
     if (isFuture(presentationProposalStartAt)) {
-      return <NotOpenYet />
+      return <NotOpenYet
+        title='아직 발표 제안 모집이 시작되지 않았습니다.'
+        buttonText='발표안 작성 가이드 보러 가기'
+        buttonIntlKey='gnb.account.login'
+        link={paths.contribute.cfpDetailedGuide}
+      />
     }
 
     if (!stores.profileStore.isAgreed) {

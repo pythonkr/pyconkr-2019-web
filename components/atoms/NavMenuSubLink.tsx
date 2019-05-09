@@ -24,7 +24,13 @@ export type  NavMenuSubLinkPropsType = {
   currentPath: string;
 }
 
-const NavMenuSubLink = ({ to, intlKey, name, currentPath, ...props }: NavMenuSubLinkPropsType & ComponentProps<'a'>) => {
+const NavMenuSubLink = ({
+  to,
+  intlKey,
+  name,
+  currentPath,
+  ...props
+}: NavMenuSubLinkPropsType & ComponentProps<'a'>) => {
   return (
     <Link href={to} prefetch>
       <NavMenuSubLinkA {...props}>

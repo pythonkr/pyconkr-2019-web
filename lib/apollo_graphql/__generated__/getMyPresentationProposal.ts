@@ -38,7 +38,7 @@ export interface getMyPresentationProposal_myPresentationProposal {
   __typename: "PresentationProposalNode";
   name: string | null;
   owner: getMyPresentationProposal_myPresentationProposal_owner | null;
-  backgroundDesc: string | null;
+  backgroundDesc: string;
   detailDesc: string;
   language: LanguageNode | null;
   duration: DurationNode | null;
@@ -47,9 +47,7 @@ export interface getMyPresentationProposal_myPresentationProposal {
   isPresentedBefore: boolean;
   placePresentedBefore: string;
   presentedSlideUrlBefore: string;
-  comment: string;
-  isAgreed: boolean | null;
-  recordable: boolean | null;
+  recordable: boolean;
   submitted: boolean;
   accepted: boolean;
 }

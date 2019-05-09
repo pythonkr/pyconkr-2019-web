@@ -3,11 +3,20 @@ import { FlexSpaceBetweenWrapper } from 'components/atoms/FlexWrapper'
 import { TEAL } from 'styles/colors'
 
 type Props = {
-  onPrev: VoidFunction;
-  onSave: VoidFunction;
+  onPrev(): void;
+  onSave(): void;
+  isSubmit: boolean;
 }
 
-export const StageButtonGroup: React.SFC<Props> = ({ onPrev, onSave }) => {
+export const StageButtonGroup: React.SFC<Props> = ({ onPrev, onSave, isSubmit }) => {
+
+  const submitButtonItnlKey = !isSubmit
+    ? 'contribute.talkProposal.application.stages.stages2.button3'
+    : 'contribute.talkProposal.application.stages.stages2.button4'
+  const submitMessage = !isSubmit
+    ? '다음'
+    : '제출'
+
   return (
     <FlexSpaceBetweenWrapper style={{ marginTop: 60 }}>
       <Button
@@ -32,11 +41,11 @@ export const StageButtonGroup: React.SFC<Props> = ({ onPrev, onSave }) => {
         <Button
           tag='button'
           type='submit'
-          intlKey='contribute.talkProposal.application.stages.stages2.button3'
+          intlKey={submitButtonItnlKey}
           color={TEAL}
           width={80}
           style={{ marginLeft: 10 }}
-        >다음</Button>
+        >{submitMessage}</Button>
       </FlexSpaceBetweenWrapper>
     </FlexSpaceBetweenWrapper>
   )}

@@ -1,0 +1,15 @@
+{
+  "coc": "파이콘 한국 성명서(CoC)",
+  "sponsor": "후원",
+  "program": "프로그램",
+  "other": "기타 문의",
+  "blogLink": "블로그",
+  "twitterLink": "트위터",
+  "facebookLink": "페이스북",
+  "githubLink": "깃헙",
+  "flickerLink": "플리커",
+  "youtubeLink": "유튜브",
+  "poweredBy": "파이썬 웹 프레임워크 Django와 Next.js로 만들었습니다.",
+  "hostedOn": "홈페이지 호스팅은 Naver D2의 지원을 받고 있습니다.",
+  "issueTrackerBy": "협업 도구는 Dooray!의 지원을 받고 있습니다."
+}

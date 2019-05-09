@@ -425,6 +425,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
               await stores.sponsorStore.createOrUpdateSponsor(false)
               alert(intl.get('contribute.talkProposal.application.stages.stages2.ale rt').d('저장이 완료되었습니다'))
             }}
+            isSubmit={true}
           />
         </form>
       </FormWrapper>

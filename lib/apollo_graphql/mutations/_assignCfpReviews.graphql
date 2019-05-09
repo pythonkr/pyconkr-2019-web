@@ -1,0 +1,30 @@
+mutation assignCfpReviews($categoryIds: [ID]!) {
+    assignCfpReviews(categoryIds:$categoryIds) {
+        reviews{
+          id
+          presentation {
+            name
+            nameKo
+            nameEn
+            language
+            backgroundDesc
+            duration
+            category {
+              name
+              nameKo
+              nameEn
+            }
+            difficulty {
+              name
+              nameKo
+              nameEn
+            }
+            detailDesc
+          }
+          comment
+          createdAt
+          updatedAt
+          
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "DATE_IN_WORDS": "{dateDto, date, short}",
+    "pyconKorea": {
+        "name": "파이콘 한국 2019",
+        "nameOnly": "파이콘 한국",
+        "schedule": "2019.08.15(목)-18(일)",
+        "scheduleWithNameAndVenue": "파이콘 한국 2019:  8월 15일~18일(일), 코엑스 그랜드 볼룸",
+        "venue": "코엑스 그랜드볼룸, 서울",
+        "sprint": {
+            "name": "스프린트",
+            "schedule": "8월 15-16일",
+            "dayofweek": "목-금"
+        },
+        "tutorial": {
+            "name": "튜토리얼",
+            "schedule": "8월 16일",
+            "dayofweek": "금"
+        },
+        "conference": {
+            "name": "컨퍼런스",
+            "schedule": "8월 17-18일",
+            "dayofweek": "토-일"
+        }
+    }
+}

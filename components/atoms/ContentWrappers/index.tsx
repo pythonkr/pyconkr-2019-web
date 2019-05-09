@@ -108,6 +108,40 @@ ${H3} + & {
   margin-top: 12px;
 }
 `
+
+export const Paragraph2: any = styled.p`
+font-size: 17px;
+line-height: 33px;
+
+@media (max-width: ${mobileWidth}) {
+  font-size: 16px;
+  line-height: 1.9em;
+  ${H1} + & {
+    margin-top: 17px;
+  }
+
+  ${H2} + & {
+    margin-top: 17px;
+  }
+
+  ${H3} + & {
+    margin-top: 10px;
+  }
+}
+
+${H1} + & {
+  margin-top: 20px;
+}
+
+${H2} + & {
+  margin-top: 20px;
+}
+
+${H3} + & {
+  margin-top: 12px;
+}
+`
+
 export const ContentButtonWrapper = styled.div`
 padding-top: 50px;
 padding-bottom: 20px;
@@ -457,7 +491,7 @@ input[type="checkbox"] {
 }
 
 fieldset {
-  width: 50%;
+  // width: 50%;
   margin-bottom: 40px;
 
   legend {

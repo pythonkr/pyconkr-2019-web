@@ -24,7 +24,8 @@
         "ignoreDefinitionFiles": true,
         "suppressWhileTypeErrorsPresent": false,
         "mockTypeScriptVersion": false
-      },
+      }
     ]
-  }
+  },
+  "exclude": [".next", "server/**/*.*"]
 }

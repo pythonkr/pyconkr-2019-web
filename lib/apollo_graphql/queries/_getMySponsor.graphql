@@ -29,12 +29,9 @@ query getMySponsor {
         descKo
         descEn
         managerName
-        managerPhone
-        managerSecondaryPhone
         managerEmail
         businessRegistrationNumber
         businessRegistrationFile
-        contractProcessRequired
         url
         logoImage
         logoVector

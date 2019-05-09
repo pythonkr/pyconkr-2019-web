@@ -26,7 +26,7 @@ class MyContribution extends React.Component<PropsType> {
     }
 
     this.contributions = [{
-      title: '발표안 제안',
+      title: '발표 제안',
       intlKey: 'contribute.overview.table.talk',
       openDate: schedule.presentationProposalStartAt,
       closeDate: schedule.presentationProposalFinishAt,
@@ -71,7 +71,6 @@ class MyContribution extends React.Component<PropsType> {
         <ContributionTable
           stores={stores}
           contributions={this.contributions}
-          isMyContribution
         />
       </>
     )

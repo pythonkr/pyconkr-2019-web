@@ -2,7 +2,7 @@
 import styled from '@emotion/styled-base'
 import { Button } from 'components/atoms/Button'
 import { isBold, Td, Tr } from 'components/atoms/ContentWrappers'
-import { Contribution } from 'components/organisms/ContributionTable'
+import { Contribution } from 'components/organisms/MyContribution/MyContributionTable'
 import { differenceInCalendarDays, isFuture, isPast } from 'date-fns'
 import _ from 'lodash'
 import React from 'react'
@@ -37,86 +37,64 @@ export default class ContributionTableRow extends React.Component<PropsType> {
     }
 
     getContributionStatus () {
-        const { openDate, closeDate, link, isMyContribution, isProposalSubmitted, isSponsorPaid } = this.props
+        const { openDate, closeDate, link } = this.props
         const isContributionAvailable = openDate && link
         const isBeforeOpening = openDate && isFuture(openDate) && link
         const isFinished = closeDate && isPast(closeDate)
+        const now = new Date()
 
         if (!isContributionAvailable) return '-'
 
         // 제안 및 신청내역
-        if (isMyContribution) {
-            if (!_.isNil(isProposalSubmitted)) {
+        if (isBeforeOpening) {
+            const daysDifference = openDate && differenceInCalendarDays(openDate, now)
+            const isBefore7days = daysDifference && daysDifference < 7
 
-                let confirmMessageForSponsor = ''
-                if (!_.isUndefined(isSponsorPaid)) {
-                     confirmMessageForSponsor =  isSponsorPaid
-                        ? '(스폰싱 확정)'
-                        : '(스폰싱 미확정)'
-                }
-
-                return !isProposalSubmitted
-                    ? '임시 저장'
-                    : `제출완료 ${confirmMessageForSponsor}`
-            }
-
-            return '미제출'
-        } else {
-            if (isBeforeOpening) {
-                const leftdDay = openDate && differenceInCalendarDays(new Date(), openDate)
-                const isBefore7days = leftdDay && leftdDay < 7
-
-                return isBefore7days
-                    ? intl.get('common.status.openBefore', { leftdDay }).d(`모집 시작 D${leftdDay}`)
-                    : intl.get('common.status.preparing').d('준비 중')
-            }
-
-            if (isFinished) return intl.get('common.status.closed').d('마감')
-
-            if (closeDate && differenceInCalendarDays(new Date(), closeDate) < 7) {
-                const leftDday = differenceInCalendarDays(new Date(), closeDate)
-
-                return intl.get('common.status.closeAfter', { leftDday }).d(`마감 D-${leftDday}`)
-            }
-
-            return intl.get('common.status.onProgress').d('모집 중')
+            return isBefore7days
+                ? intl.get('common.status.openBefore', { diff: daysDifference }).d(`모집 시작 D-${daysDifference}`)
+                : intl.get('common.status.preparing').d('준비 중')
         }
+
+        if (isFinished) return intl.get('common.status.closed').d('마감')
+
+        if (closeDate && differenceInCalendarDays(closeDate, now) < 7) {
+            const daysDifference = differenceInCalendarDays(closeDate, now)
+
+            return intl.get('common.status.closeAfter', { diff: daysDifference }).d(`마감 D-${ daysDifference}`)
+        }
+
+        return intl.get('common.status.onProgress').d('모집 중')
     }
 
     getShowDetailButtonTitle() {
-        const { closeDate, isProposalSubmitted, isMyContribution } = this.props
+        const { openDate, closeDate } = this.props
+        const isFinished = closeDate && isPast(closeDate)
+        const isOngoing = openDate && isPast(openDate) && !isFinished
 
-        if (isMyContribution) {
-            const isFinished = closeDate && isPast(closeDate)
-            const isProposalExist = !_.isNil(isProposalSubmitted)
+        if (isFinished) return '마감'
 
-            if (isFinished) return '마감'
-            if (isProposalExist) return isProposalSubmitted ? '수정 제출하기' : '이어서 작성하기'
-
-            return '제안하기'
-        }
+        if (isOngoing) return '참여하기'
 
         return '자세히 보기'
     }
 
     renderShowDetailButton () {
-        const { link, editLink, isProposalSubmitted } = this.props
+        const { link } = this.props
         const buttonTitle = this.getShowDetailButtonTitle()
-        const isProposalExist = !_.isNil(isProposalSubmitted)
 
-        if (isProposalExist) {
-            return (
-                <ShowDetailButton
-                    size='small'
-                    height={27}
-                    intlKey='contribute.overview.table.moreDetail'
-                    to={isProposalSubmitted ? editLink : link}
-                    disabled={this.getContributionClass() === 'disabled'}
-                    primary={!!(this.getContributionClass() === 'active')}
-                >
-                    {buttonTitle}
-                </ShowDetailButton>
-            )
+        if (link) {
+          return (
+            <ShowDetailButton
+                size='small'
+                height={27}
+                intlKey='contribute.overview.table.moreDetail'
+                to={link}
+                disabled={this.getContributionClass() === 'disabled'}
+                primary={!!(this.getContributionClass() === 'active')}
+            >
+                {buttonTitle}
+            </ShowDetailButton>
+          )
         }
 
         return '-'

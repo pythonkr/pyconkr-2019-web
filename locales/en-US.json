@@ -44,9 +44,9 @@
     "status": {
       "onProgress": "On Progress",
       "preparing": "Preparing",
-      "openBefore": "Open D{diff}",
+      "openBefore": "Open D-{diff}",
       "openToday": "Open Soon Today",
-      "closeAfter": "Close D{diff}",
+      "closeAfter": "Close D-{diff}",
       "closed": "Closed",
       "untilSelected": "Until Selected",
       "conferenceDays": "Conference Days"
@@ -66,7 +66,8 @@
       "overview": "About Contribution",
       "cfpDetailedGuide": "How to submit proposal",
       "proposingATalk": "Proposing a talk",
-      "recommendKeynoteSpeaker": "Recommending Keynote"
+      "recommendKeynoteSpeaker": "Recommending Keynote",
+      "proposalReview": "Review Talk Proposals"
     },
     "sponsor": {
       "root": "Sponsor",
@@ -143,12 +144,20 @@
       "table": {
         "keynote": "Recommending Keynote Speaker",
         "talk":"Proposing a Talk",
+        "openReview":"Open Review",
+        "sponsor":"Sponsorship",
         "tutorial":"Proposing a Tutorial",
         "sprint": "Proposing a Sprint",
         "volunteer":"Recruiting Volunteer",
         "lightingtalk":"Proposing a Lightning Talk",
         "moreDetail": "More detail"
       }
+    },
+    "proposalReview": {
+      "title": "Review Presentation Proposals",
+      "notOpenYet": "Open review period have not started yet.",
+      "startReview": "Start review👩‍💻👨‍💻",
+      "reviewProposals": "Review proposals"
     },
     "recommendKeynoteSpeaker": {
       "pageTitle": "Recommending Keynote Speaker :: PyCon Korea 2019",
@@ -288,8 +297,8 @@
       "schedule": {
         "open": "CFP Open",
         "close": "CFP Close",
-        "reviewStart": "CFP Review Start",
-        "reviewFinish": "CFP Review Finish",
+        "reviewStart": "Talk Proposal Review Start",
+        "reviewFinish": "Talk Proposal Review Finish",
         "announcement": "Speaker Confirmation"
       },
       "process": {
@@ -340,6 +349,7 @@
             "button1": "Previous",
             "button2": "Save draft",
             "button3": "Next",
+            "button4": "Submit",
             "alert": "Save Completed",
             "nameKorean":"Sponsor Name (Korean)",
             "nameEnglish": "Sponsor Name (English)",

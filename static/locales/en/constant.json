@@ -1,0 +1,25 @@
+{
+  "DATE_IN_WORDS": "{dateDto, date, short}",
+  "pyconKorea": {
+    "name": "PyCon Korea 2019",
+    "nameOnly": "PyCon Korea",
+    "schedule": "2019.08.15(Thu)-18(Sun)",
+    "scheduleWithNameAndVenue": "PyCon Korea 2019: 8.15(Thu)-18(Sun), Coex Grand Ballroom",
+    "venue": "Coex Grand Ballroom, Seoul",
+    "sprint": {
+      "name": "Sprint",
+      "schedule": "August 15-16",
+      "dayofweek": "Thu-Fri"
+    },
+    "tutorial": {
+      "name": "Tutorial",
+      "schedule": "August 16",
+      "dayofweek": "Fri"
+    },
+    "conference": {
+      "name": "Conference",
+      "schedule": "August 17-18",
+      "dayofweek": "Sat-Sun"
+    }
+  }
+}
