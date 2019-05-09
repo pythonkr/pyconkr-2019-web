@@ -393,13 +393,13 @@ class Index extends React.Component<{ stores: StoresType }> {
                 </IntlText>
               </p>
               <ScheduleButtonsWrapper>
-                <Button
+                {/* <Button
                   intlKey='gnb.contribute.recommendKeynoteSpeaker'
                   to={paths.contribute.recommendingAKeynoteSpeaker}
                   fontSize={14}
                 >
                   키노트 연사 추천하기
-                </Button>
+                </Button> */}
                 {/* <Button
                   primary={false}
                   intlKey='gnb.contribute.proposingATalk'
@@ -408,6 +408,14 @@ class Index extends React.Component<{ stores: StoresType }> {
                 >
                   발표안 제안하기
                 </Button> */}
+                <Button
+                  primary={false}
+                  intlKey='gnb.contribute.proposalReview'
+                  to={paths.contribute.proposalReview}
+                  fontSize={14}
+                >
+                  발표 제안 검토하기
+                </Button>
               </ScheduleButtonsWrapper>
             </li>
           </ul>
@@ -440,10 +448,9 @@ class Index extends React.Component<{ stores: StoresType }> {
               <Button
                 intlKey='home.sponsor.prospectus'
                 to={paths.sponsor.prospectus}
-                primary={false}
                 size='big'
               >
-                후원 안내 및 모집 일정 보기
+                자세한 후원 안내 보기
               </Button>
             </div>
           </ContentWidthWrapper>
