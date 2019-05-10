@@ -58,7 +58,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           파이콘 한국 2019에서 튜토리얼을 진행해주실 분들의 제안을 기다리고 있습니다. 튜토리얼은 초보자들뿐 아니라 숙련자들도 포함하여 새로운 파이썬 기술을 접하는 사람들을 위해 진행하는 교육 프로그램입니다.
         </IntlText></Paragraph>
         <Paragraph><IntlText intlKey='contribute.tutorial.description2'>
-          튜토리얼에서는 2~3시간 동안 파이썬에 대한 새로운 기술이나 라이브러리를 참여자들에게 직접 알려줍니다. 참여자가 직접 컴퓨터를 가져와서 실습하며, 현장에서 질문하고 해결하는 만큼 발표 세션보다는 해당 기술에 대해 좀 더 깊게 소개할 수 있습니다.
+          튜토리얼에서는 2~3시간 동안 파이썬에 대한 새로운 기술이나 라이브러리를 참여자들에게 직접 알려줍니다. 참여자가 직접 컴퓨터를 가져와서 실습하며, 현장에서 질문하고 해결하는 만큼 발표 세션보다는 해당 기술에 대해 좀 더 깊게 소개할 수 있습니다. 진행하시는 분들과 보조 진행자 분들께는 소정의 금액을 지급해드립니다.
         </IntlText></Paragraph>
         <Paragraph><IntlText intlKey='contribute.tutorial.description3'>
           여러분들의 경험과 지식을 새로운 방법으로 공유할 수 있는 좋은 기회입니다. 교육에 관심이 있는 분들은 튜토리얼 진행자로 많이 지원해주시기 바랍니다.
@@ -134,6 +134,14 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           <Paragraph>
             <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 튜토리얼 참가 비용을 받나요?</strong>
             A. 네, 노쇼 방지를 위한 최소한의 금액을 받고 있습니다. 참고로 작년에는 5천원이었습니다.
+          </Paragraph>
+          <Paragraph>
+            <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 참가 비용은 어떻게 쓰이나요?</strong>
+            A. 참가 비용은 파이콘 한국에서 준비한 예산과 합쳐져 튜토리얼 진행자 분들의 수고비로 사용됩니다. 1 튜터, 1 튜토리얼 세션 당 20만원을 드립니다. 보조 진행자 분들께는 5만원이 지급되며, 모든 분들께 세금 신고를 위한 신분증을 요청드립니다.
+          </Paragraph>
+          <Paragraph>
+            <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 보조 진행자는 어떻게 선정하나요?</strong>
+            A. 튜토리얼 진행에 도움을 주시는 보조 진행자 분들은 메인 튜터가 직접 모집해주시면 됩니다. 필요한 보조 진행자의 인원은 세션의 주제와 진행 방식에 따라 달라질 수 있으므로 튜토리얼 제안을 받은 후 메일을 통해 협의하게 됩니다.
           </Paragraph>
           <Paragraph>
             <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 튜토리얼 참가자 신청은 언제 어떻게 받나요?</strong>
