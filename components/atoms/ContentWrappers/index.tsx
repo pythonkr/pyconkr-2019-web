@@ -72,6 +72,7 @@ margin: 34px 0 5px;
 color: ${TEAL};
 @media (max-width: ${mobileWidth}) {
   font-size: 18px;
+  margin: 10px 0 5px;
 }
 `
 
@@ -392,6 +393,10 @@ form label {
     padding-left: 5px;
     font-size: 10px;
     top: 6px;
+    
+    @media (max-width: ${mobileWidth}) {
+      position: unset;
+    }
   }
 }
 
