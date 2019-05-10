@@ -24,6 +24,7 @@ const StyledNeedLoginDesc = styled.p`
 font-size: 14px;
 text-align: center;
 margin-bottom: 30px;
+line-height: 20px;
 `
 
 export const ReviewFormSubmitted: React.SFC = () => (<PaddingWrapper>

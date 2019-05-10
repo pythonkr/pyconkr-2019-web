@@ -128,7 +128,7 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
         </Section>
         <Section>
           <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
-          <Paragraph><IntlText intlKey='asdfasdfasdf'>program@pycon.kr</IntlText></Paragraph>
+          <Paragraph><a href='mailto:program@pycon.kr'>program@pycon.kr</a></Paragraph>
         </Section>
         <Section>
           <H2><IntlText intlKey='contribute.talkProposal.application.title'>제안서 작성</IntlText></H2>
