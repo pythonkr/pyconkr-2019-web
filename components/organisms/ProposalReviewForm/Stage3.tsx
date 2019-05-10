@@ -36,7 +36,7 @@ export default class Stage3 extends React.Component<{ stores: StoresType; scroll
 
             return (
                 <fieldset key={`${presentation.name}_${index}`} style={{minWidth: 0}}>
-                    <H2 className='required'>
+                    <H2>
                         {t('contribute:proposalReview.stages.stage3.presentationName', {
                             number: index + 1,
                             name: presentation.name
