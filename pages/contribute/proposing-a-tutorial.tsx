@@ -137,7 +137,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           </Paragraph>
           <Paragraph>
             <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 참가 비용은 어떻게 쓰이나요?</strong>
-            A. 참가 비용은 파이콘 한국에서 준비한 예산과 합쳐져 튜토리얼 진행자 분들의 수고비로 사용됩니다. 1 튜터, 1 튜토리얼 세션 당 20만원을 드립니다. 보조 진행자 분들께는 5만원이 지급되며, 모든 분들께 세금 신고를 위한 신분증을 요청드립니다.
+            A. 참가 비용은 파이콘 한국에서 준비한 예산과 합쳐져 튜토리얼 진행자 분들의 수고비로 사용됩니다. 1 튜터, 1 튜토리얼 세션 당 20만원을 드립니다. 보조 진행자 분들께는 5만원이 지급되며, 모든 분들께 세금 신고를 위한 신분증을 요청드립니다. 기업 튜토리얼의 경우 세션 내용에 따라 별도로 협의를 거칩니다.
           </Paragraph>
           <Paragraph>
             <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 보조 진행자는 어떻게 선정하나요?</strong>
