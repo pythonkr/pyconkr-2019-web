@@ -26,19 +26,19 @@ export class Stage1 extends React.Component<{stores: StoresType; scrollRef: HTML
           <H3>
             {t('contribute:proposalReview.stages.stage1.header1')}
           </H3>
-          <Paragraph style={{ fontSize: '17px' }}>
+          <Paragraph>
             {t('contribute:proposalReview.stages.stage1.desc1')}
           </Paragraph>
           <H3>
             {t('contribute:proposalReview.stages.stage1.header2')}
           </H3>
-          <Paragraph style={{ fontSize: '17px' }}>
+          <Paragraph>
             {t('contribute:proposalReview.stages.stage1.desc2')}
           </Paragraph>
           <H3>
             {t('contribute:proposalReview.stages.stage1.header3')}
           </H3>
-          <Paragraph style={{ fontSize: '17px' }}>
+          <Paragraph>
             {t('contribute:proposalReview.stages.stage1.desc3-1')}
           </Paragraph>
           <Ul style={{ color: '#4a4a4a' }}>
@@ -46,7 +46,7 @@ export class Stage1 extends React.Component<{stores: StoresType; scrollRef: HTML
               {t('contribute:proposalReview.stages.stage1.desc3-1-1')}
             </Li>
           </Ul>
-          <Paragraph style={{ fontSize: '17px' }}>
+          <Paragraph>
             {t('contribute:proposalReview.stages.stage1.desc3-2')}
           </Paragraph>
           <Ul style={{ color: '#4a4a4a' }}>
@@ -54,10 +54,10 @@ export class Stage1 extends React.Component<{stores: StoresType; scrollRef: HTML
               {t('contribute:proposalReview.stages.stage1.desc3-2-1')}
             </Li>
           </Ul>
-          <Paragraph style={{ fontSize: '17px' }}>
+          <Paragraph>
             {t('contribute:proposalReview.stages.stage1.desc3-3')}
           </Paragraph>
-          <Paragraph style={{ fontSize: '17px' }}>
+          <Paragraph>
             {t('contribute:proposalReview.stages.stage1.desc3-4')}
           </Paragraph>
           <FlexCenterWrapper style={{ marginTop: 80 }}>

@@ -313,7 +313,7 @@
       "stage3": {
         "header": "제안 검토 및 제출",
         "presentationName": "발표 제안 {{number}}: {{name}}",
-        "backgroundDesc": "필요한 배경지식: {{backgroundDesc}}"
+        "backgroundDesc": "필요한 배경지식"
       }
     }
   }
