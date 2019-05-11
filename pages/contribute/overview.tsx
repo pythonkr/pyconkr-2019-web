@@ -29,6 +29,7 @@ export default class CFPDetailedGuide extends React.Component<PropsType> {
       title: '키노트 발표자 추천',
       intlKey: 'contribute.overview.table.keynote',
       openDate: schedule.keynoteRecommendationStartAt,
+      closeDate: schedule.keynoteRecommendationFinishAt,
       link: paths.contribute.recommendingAKeynoteSpeaker,
     }, {
       title: '발표 제안',
@@ -47,7 +48,7 @@ export default class CFPDetailedGuide extends React.Component<PropsType> {
       intlKey: 'contribute.overview.table.tutorial',
       openDate: schedule.tutorialProposalStartAt,
       closeDate: schedule.tutorialProposalFinishAt,
-      // link: paths.contribute.proposingATutorial
+      link: paths.contribute.proposingATutorial
     }, {
       title: '스프린트 제안',
       intlKey: 'contribute.overview.table.sprint',
