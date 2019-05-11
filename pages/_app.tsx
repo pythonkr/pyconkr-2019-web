@@ -102,12 +102,13 @@ class MyApp extends App {
       .then(() => {
         document && document.body.classList.add('font-loaded')
       })
-    this.initializeSchedule()
+    this.initializeStores()
     await this.handleOAuth()
   }
 
-  initializeSchedule() {
+  initializeStores() {
     this.stores.scheduleStore.initialize()
+    this.stores.sponsorStore.initialize()
   }
 
   async handleOAuth() {

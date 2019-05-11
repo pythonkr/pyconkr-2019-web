@@ -5,6 +5,8 @@ import { uploadLogoImage as uploadSponsorLogoImage } from 'lib/apollo_graphql/mu
 import { uploadLogoVector as uploadSponsorLogoVector } from 'lib/apollo_graphql/mutations/uploadLogoVector'
 import { getMySponsor } from 'lib/apollo_graphql/queries/getMySponsor'
 import { getSponsorLevels, SponsorLevelType } from 'lib/apollo_graphql/queries/getSponsorLevels'
+import { getSponsors, PublicSponsorNode } from 'lib/apollo_graphql/queries/getSponsors'
+
 import * as _ from 'lodash'
 import { action, configure, observable, set } from 'mobx'
 import { SponsorNode } from './SponsorNode'
@@ -21,6 +23,7 @@ export class SponsorStore {
     @observable isInitialized: boolean = false
     @observable sponsorLevels: SponsorLevelType[] = []
     @observable proposal: SponsorNode
+    @observable sponsors: PublicSponsorNode[] = []
     @observable isProposalInitialized: boolean = false
     @observable proposalLevel: SponsorLevelType
     @observable currentStage: SponsorFormStage = SponsorFormStage.stage1
@@ -51,6 +54,7 @@ export class SponsorStore {
     async initialize() {
         await this.retrieveSponsorLevels()
         await this.retrieveMySponsorProposal()
+        await this.retrieveSponsors()
         this.isInitialized = true
     }
 
@@ -80,6 +84,14 @@ export class SponsorStore {
     async retrieveMySponsorProposal() {
         const { data } = await getMySponsor(client)({})
         this.setProposal(data.mySponsor)
+    }
+
+    @action
+    async retrieveSponsors() {
+        const response = await getSponsors(client)({})
+        if (response.data.sponsors) {
+            this.sponsors = response.data.sponsors
+        }
     }
 
     @action
