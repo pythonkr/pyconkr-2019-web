@@ -40,6 +40,17 @@ module.exports = withCSS(withGraphQL(withTypescript({
       'utils': path.join(__dirname, 'utils'),
     }
     config.plugins.push(new webpack.DefinePlugin(env))
+    // https://github.com/zeit/next-plugins/issues/273
+    config.module.rules.push({
+      test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
+      use: {
+        loader: 'url-loader',
+        options: {
+          limit: 100000,
+          name: '[name].[ext]'
+        }
+      }
+    })   
     return config
   }
 })))
