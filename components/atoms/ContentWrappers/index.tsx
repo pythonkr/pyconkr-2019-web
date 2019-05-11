@@ -393,7 +393,7 @@ form label {
     padding-left: 5px;
     font-size: 10px;
     top: 6px;
-    
+
     @media (max-width: ${mobileWidth}) {
       position: unset;
     }

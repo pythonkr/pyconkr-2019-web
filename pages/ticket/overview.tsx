@@ -34,6 +34,7 @@ export class Ticket extends React.Component<PropsType> {
           this.tickets && this.tickets.map((ticket) => {
               return (
                   <TicketTableRow
+                      key={ticket.title}
                       ticket={ticket}
                   />
               )

@@ -222,5 +222,4 @@ export const globalNavigationMenu: GNBMenu[] = [
   // helpMenu,
   contributionMenu,
   sponsorMenu,
-  ticketMenu,
 ]

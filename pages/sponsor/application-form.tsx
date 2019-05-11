@@ -44,8 +44,6 @@ export default class ApplicationForm extends React.Component<{
             header={<Header title='후원사 신청하기 :: 파이콘 한국 2019' />}
             footer={<Footer />}
         >
-          {/* <LocalNavigation list={sponsorMenu.submenu} /> */}
-
           <H1><IntlText intlKey='sponsor.event.invitation'>
             후원사 신청하기
           </IntlText></H1>
