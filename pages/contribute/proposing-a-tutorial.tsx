@@ -58,7 +58,8 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           파이콘 한국 2019에서 튜토리얼을 진행해주실 분들의 제안을 기다리고 있습니다. 튜토리얼은 초보자들뿐 아니라 숙련자들도 포함하여 새로운 파이썬 기술을 접하는 사람들을 위해 진행하는 교육 프로그램입니다.
         </IntlText></Paragraph>
         <Paragraph><IntlText intlKey='contribute.tutorial.description2'>
-          튜토리얼에서는 2~3시간 동안 파이썬에 대한 새로운 기술이나 라이브러리를 참여자들에게 직접 알려줍니다. 참여자가 직접 컴퓨터를 가져와서 실습하며, 현장에서 질문하고 해결하는 만큼 발표 세션보다는 해당 기술에 대해 좀 더 깊게 소개할 수 있습니다. 진행하시는 분들과 보조 진행자 분들께는 소정의 금액을 지급해드립니다.
+          {/*튜토리얼에서는 2~4시간 동안 파이썬에 대한 새로운 기술이나 라이브러리를 참여자들에게 직접 알려줍니다. 참여자가 직접 컴퓨터를 가져와서 실습하며, 현장에서 질문하고 해결하는 만큼 발표 세션보다는 해당 기술에 대해 좀 더 깊게 소개할 수 있습니다. 진행하시는 분들과 보조 진행자 분들께는 소정의 금액을 지급해드립니다.*/}
+          튜토리얼에서는 파이썬에 대한 새로운 기술이나 라이브러리를 참여자들에게 직접 알려줍니다. 참여자가 직접 컴퓨터를 가져와서 실습하며, 현장에서 질문하고 해결하는 만큼 발표 세션보다는 해당 기술에 대해 좀 더 깊게 소개할 수 있습니다. 진행하시는 분들과 보조 진행자 분들께는 소정의 금액을 지급해드립니다.
         </IntlText></Paragraph>
         <Paragraph><IntlText intlKey='contribute.tutorial.description3'>
           여러분들의 경험과 지식을 새로운 방법으로 공유할 수 있는 좋은 기회입니다. 교육에 관심이 있는 분들은 튜토리얼 진행자로 많이 지원해주시기 바랍니다.
@@ -74,13 +75,13 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           <Paragraph style={{ marginTop: 5 }}><IntlText intlKey='contribute.tutorial.eventDate.venue'>
             코엑스 그랜드볼룸 2층
           </IntlText></Paragraph>
-          <ContentButtonWrapper>
-            <Button
-              intlKey='contribute.tutorial.proposeButton'
-              to='https://forms.gle/XXGMVASUNMqT3mDL8'
-              outlink
-            >튜토리얼 제안하기</Button>
-          </ContentButtonWrapper>
+          {/*<ContentButtonWrapper>*/}
+          {/*  <Button*/}
+          {/*    intlKey='contribute.tutorial.proposeButton'*/}
+          {/*    to='https://forms.gle/XXGMVASUNMqT3mDL8'*/}
+          {/*    outlink*/}
+          {/*  >튜토리얼 제안하기</Button>*/}
+          {/*</ContentButtonWrapper>*/}
         </Section>
         <Section>
           <H2><IntlText intlKey='common.schedule'>모집 일정</IntlText></H2>
@@ -107,7 +108,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           <H2>FAQ</H2>
           <Paragraph>
             <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 튜토리얼은 몇 시간 동안 진행하나요?</strong>
-            A. 2~4시간 안으로 프로그램에 적절한 시간 동안 진행해주시면 됩니다.
+            A. 최소 1시간, 최대 8시간까지 진행이 가능하며 프로그램 진행과 적절한 시간을 직접 결정하셔서 진행해주시면 됩니다.
           </Paragraph>
           <Paragraph>
             <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 꼭 파이썬과 관련된 내용이어야 하나요?</strong>
@@ -137,7 +138,8 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           </Paragraph>
           <Paragraph>
             <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 참가 비용은 어떻게 쓰이나요?</strong>
-            A. 참가 비용은 파이콘 한국에서 준비한 예산과 합쳐져 튜토리얼 진행자 분들의 수고비로 사용됩니다. 1 튜터, 1 튜토리얼 세션 당 20만원을 드립니다. 보조 진행자 분들께는 5만원이 지급되며, 모든 분들께 세금 신고를 위한 신분증을 요청드립니다. 기업 튜토리얼의 경우 세션 내용에 따라 별도로 협의를 거칩니다.
+            {/*A. 참가 비용은 파이콘 한국에서 준비한 예산과 합쳐져 튜토리얼 진행자 분들의 수고비로 사용됩니다. 1 튜터, 1 튜토리얼 세션 당 20만원을 드립니다. 보조 진행자 분들께는 5만원이 지급되며, 모든 분들께 세금 신고를 위한 신분증을 요청드립니다. 기업 튜토리얼의 경우 세션 내용에 따라 별도로 협의를 거칩니다.*/}
+            A. 참가 비용은 파이콘 한국에서 준비한 예산과 합쳐져 튜토리얼 진행자 분들의 수고비로 사용됩니다. 1 튜터, 1 튜토리얼 세션 당 (구체적인 내용은 제안 시작일 함께 공개됩니다) 지급되며 모든 분들께 세금 신고를 위한 신분증을 요청드립니다. 기업 튜토리얼의 경우 세션 내용에 따라 별도로 협의를 거칩니다.
           </Paragraph>
           <Paragraph>
             <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 보조 진행자는 어떻게 선정하나요?</strong>
@@ -147,13 +149,13 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
             <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 튜토리얼 참가자 신청은 언제 어떻게 받나요?</strong>
             A. 6월 말에 홈페이지 티켓 메뉴를 통해서 신청받을 예정입니다. 자세한 일정은 추후 공지할게요!
           </Paragraph>
-          <ContentButtonWrapper>
-            <Button
-              intlKey='contribute.tutorial.proposeButton'
-              to='https://forms.gle/XXGMVASUNMqT3mDL8'
-              outlink
-            >튜토리얼 제안하기</Button>
-          </ContentButtonWrapper>
+          {/*<ContentButtonWrapper>*/}
+          {/*  <Button*/}
+          {/*    intlKey='contribute.tutorial.proposeButton'*/}
+          {/*    to='https://forms.gle/XXGMVASUNMqT3mDL8'*/}
+          {/*    outlink*/}
+          {/*  >튜토리얼 제안하기</Button>*/}
+          {/*</ContentButtonWrapper>*/}
         </Section>
         <Section>
           <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
