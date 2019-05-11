@@ -23,6 +23,21 @@ export enum OauthTypeNode {
   NAVER = "NAVER",
 }
 
+export enum OptionDescTypeNode {
+  BOOL = "BOOL",
+  NUMBER = "NUMBER",
+  STRING = "STRING",
+}
+
+export enum TicketTypeNode {
+  BABY_CARE = "BABY_CARE",
+  CONFERENCE = "CONFERENCE",
+  HEALTH_CARE = "HEALTH_CARE",
+  SPRINT = "SPRINT",
+  TUTORIAL = "TUTORIAL",
+  YOUNG_CODER = "YOUNG_CODER",
+}
+
 export interface PresentationProposalInput {
   name?: string | null;
   categoryId?: string | null;

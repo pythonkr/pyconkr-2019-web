@@ -48,41 +48,44 @@ export class Ticket extends React.Component<PropsType> {
 
     this.tickets = [{
       title: '컨퍼런스 얼리버드',
-      intlKey: 'ticket:conference.earlybird.title',
+      intlKey: 'ticket:conference.earlybird.title', 
       openDate: schedule.keynoteRecommendationStartAt,
-      link: paths.contribute.recommendingAKeynoteSpeaker,
+      link: paths.ticket.conference,
     }, {
       title: '컨퍼런스 개인 후원',
       intlKey: 'ticket:conference.patron.title',
       openDate: schedule.presentationProposalStartAt,
       closeDate: schedule.presentationProposalFinishAt,
-      link: paths.contribute.cfpDetailedGuide
+      link: paths.ticket.conference
     }, {
       title: '컨퍼런스 일반',
       intlKey: 'ticket:conference.general.title',
       openDate: schedule.tutorialProposalStartAt,
       closeDate: schedule.tutorialProposalFinishAt,
-      // link: paths.contribute.proposingATutorial
+      link: paths.ticket.conference
     }, {
       title: '튜토리얼',
       intlKey: 'ticket:tutorial.title',
       openDate: schedule.sprintProposalStartAt,
-      // link: paths.contribute.proposingASprint
+      link: paths.ticket.tutorial
     }, {
       title: '스프린트',
       intlKey: 'ticket:sprint.title',
       openDate: schedule.volunteerRecruitingStartAt,
       closeDate: schedule.volunteerRecruitingFinishAt,
+      link: paths.ticket.sprint
     }, {
       title: '영코더',
       intlKey: 'ticket:youngcoder.title',
       openDate: schedule.volunteerRecruitingStartAt,
       closeDate: schedule.volunteerRecruitingFinishAt,
+      link: paths.ticket.youngcoder
     }, {
       title: '아이 돌봄',
       intlKey: 'ticket:childcare.title',
       openDate: schedule.volunteerRecruitingStartAt,
       closeDate: schedule.volunteerRecruitingFinishAt,
+      link: paths.ticket.childcare
     }]
 
     return (
