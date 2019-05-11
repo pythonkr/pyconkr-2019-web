@@ -1,5 +1,6 @@
 import { H1, H2, Paragraph, Section } from 'components/atoms/ContentWrappers'
 import { LocalNavigation } from 'components/molecules/LocalNavigation'
+import TicketTableRow from 'components/molecules/TicketTableRow'
 import DefaultTable, { Contribution } from 'components/organisms/DefaultTable'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
@@ -26,6 +27,18 @@ export class Ticket extends React.Component<PropsType> {
       return {
           namespacesRequired: ['ticket'],
       }
+  }
+
+  renderTicketsTablesRow = () => {
+      return (
+          this.tickets && this.tickets.map((ticket) => {
+              return (
+                  <TicketTableRow
+                      ticket={ticket}
+                  />
+              )
+          })
+      )
   }
 
   render() {
@@ -85,7 +98,7 @@ export class Ticket extends React.Component<PropsType> {
         </Paragraph>
         <DefaultTable
           stores={stores}
-          tickets={this.tickets}
+          renderTableRow={this.renderTicketsTablesRow}
         />
         <Section>
           <H2>{t('common:contact')}</H2>

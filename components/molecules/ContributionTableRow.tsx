@@ -20,11 +20,7 @@ text-align: center;
 }
 `
 
-type PropsType = {
-    isProposalSubmitted?: boolean;
-    isMyContribution?: boolean;
-    isSponsorPaid?: boolean;
-} & Contribution
+type PropsType = Contribution
 
 export default class ContributionTableRow extends React.Component<PropsType> {
 
