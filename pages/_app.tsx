@@ -6,9 +6,9 @@ import IntlPolyfill from 'intl'
 import AuthStore, { AuthStore as AuthStoreType } from 'lib/stores/AuthStore'
 import CFPStore, { CFPStore as CFPStoreType } from 'lib/stores/CFP/CFPStore'
 import ProfileStore, { ProfileStore as ProfileStoreType } from 'lib/stores/ProfileStore'
+import ProposalReviewStore, { ProposalReviewStore as ProposalReviewStoreType } from 'lib/stores/ProposalReview/ProposalReviewStore'
 import ScheduleStore, { ScheduleStore as ScheduleStoreType } from 'lib/stores/Schedule/ScheduleStore'
 import SponsorStore, { SponsorStore as SponsorStoreType } from 'lib/stores/Sponsor/SponsorStore'
-import ProposalReviewStore, { ProposalReviewStore as ProposalReviewStoreType } from 'lib/stores/ProposalReview/ProposalReviewStore'
 
 import { LOCALE_KEY_KR, URL_LOCALE_KEY } from 'locales/constants'
 import { Provider } from 'mobx-react'
@@ -139,8 +139,8 @@ class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props
     const { authStore, profileStore } = this.stores
-    const isLoggedIn = authStore.loggedIn
-    const isTermsAgreed = profileStore.isAgreed
+    const isLoggedIn = authStore.loggedIn || true
+    const isTermsAgreed = profileStore.isAgreed || true
 
     return (
       <Container>

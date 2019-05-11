@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
 import { H1 } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
-import { NaverLogo } from 'components/atoms/SVG'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
@@ -10,7 +9,7 @@ import { inject, observer } from 'mobx-react'
 import Router, { withRouter } from 'next/router'
 import React from 'react'
 import intl from 'react-intl-universal'
-import { FACEBOOK_BLUE, NAVER_GREEN } from 'styles/colors'
+import { FACEBOOK_BLUE } from 'styles/colors'
 import { StoresType } from '../_app'
 
 const LoginButtonsWrapper = styled.div`
