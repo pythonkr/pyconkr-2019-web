@@ -22,6 +22,7 @@ export enum clientIdEnum {
 }
 
 const TOKEN_KEY = 'token'
+const CODE = 'code'
 
 export class AuthStore {
   @observable isInitialized = false
@@ -30,6 +31,7 @@ export class AuthStore {
   @observable oAuthType?: keyof typeof clientIdEnum
   @observable clientId?: clientIdEnum
   @observable accessToken?: string | null = null
+  @observable code?: string | null = null
   @observable language?: string | null = null
 
   @action
@@ -63,8 +65,26 @@ export class AuthStore {
   }
 
   @action
+  getCode() {
+    this.code = localStorage.getItem(CODE)
+
+    return this.code
+  }
+
+  @action
+  setCode(code: string) {
+    localStorage.setItem(CODE, code)
+    this.code = code
+  }
+
+  @action
   setAccessToken(accessToken: string | null) {
     this.accessToken = accessToken
+  }
+
+  @action
+  getAccessToken() {
+    return this.accessToken || localStorage.getItem(TOKEN_KEY)
   }
 
   @computed

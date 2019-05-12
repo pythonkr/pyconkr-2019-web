@@ -104,6 +104,7 @@ class MyApp extends App {
       })
     this.initializeStores()
     await this.handleOAuth()
+    console.log('componentDidMount')
   }
 
   initializeStores() {
@@ -116,8 +117,9 @@ class MyApp extends App {
     const { state, code } = router.query! as any
     const { authStore, profileStore } = this.stores
     const redirect_url = `${location.origin}${this.props.router.route}`
+    const localStorageCode = authStore.getCode()
 
-    if (!code) {
+    if (!code && !localStorageCode) {
       authStore.syncToken()
 
       if (authStore.loggedIn) {
@@ -131,7 +133,9 @@ class MyApp extends App {
       return
     }
 
+    if (!localStorageCode) authStore.setCode(code)
     await authStore.login(state, code, redirect_url)
+
     if (!profileStore.isAgreed) {
       this.props.router.push(`${paths.account.agreement}?redirect_url=${Router.route}`)
     }
