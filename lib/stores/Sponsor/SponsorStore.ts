@@ -104,6 +104,7 @@ export class SponsorStore {
         if (response.data.sponsor) {
             this.currentSponsor = response.data.sponsor
         }
+        return response.data.sponsor
     }
 
     @action
