@@ -26,7 +26,7 @@ export type IndexPagePropsType = {
 @observer
 export default class CFPDetailedGuide extends React.Component<{ stores: StoresType }> {
   render() {
-    const { keynoteRecommendationStartAt } = this.props.stores.scheduleStore.schedule
+    const { keynoteRecommendationStartAt, keynoteRecommendationFinishAt } = this.props.stores.scheduleStore.schedule
     const schedule = [{
       title: '키노트 연사 추천 오픈',
       intlKey: 'contribute.recommendKeynoteSpeaker.schedule.open',
@@ -34,12 +34,9 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
     }, {
       title: '키노트 연사 추천 마감',
       intlKey: 'contribute.recommendKeynoteSpeaker.schedule.deadline',
-      desc: {
-        defaultText: '마감 시까지',
-        intlKey: 'common.status.untilSelected'
-      }
+      date: keynoteRecommendationFinishAt
     }]
-    
+
     return (
       <PageTemplate
         header={<Header title='키노트 연사 추천하기 :: 파이콘 한국 2019' intlKey='contribute.recommendKeynoteSpeaker.pageTitle' />}
@@ -55,6 +52,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           actionIntlKey='common.recommend'
           link={paths.contribute.recommendingAKeynoteSpeaker}
           openDate={keynoteRecommendationStartAt}
+          closeDate={keynoteRecommendationFinishAt}
         />
         <Paragraph><IntlText intlKey='contribute.recommendKeynoteSpeaker.description1'>
           파이써니스타들의 북극성이 되어주실 파이콘 한국 2019 키노트 연사를 찾고 있습니다.

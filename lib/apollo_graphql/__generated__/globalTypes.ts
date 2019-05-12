@@ -36,9 +36,6 @@ export interface PresentationProposalInput {
   placePresentedBefore?: string | null;
   presentedSlideUrlBefore?: string | null;
   comment?: string | null;
-  isCocAgreed?: boolean | null;
-  isContentsAgreed?: boolean | null;
-  isEtcAgreed?: boolean | null;
 }
 
 export interface ProfileInput {
@@ -55,16 +52,18 @@ export interface ProfileInput {
   signature?: string | null;
 }
 
+export interface ReviewInput {
+  id?: string | null;
+  comment?: string | null;
+}
+
 export interface SponsorInput {
   nameKo?: string | null;
   nameEn?: string | null;
   managerName?: string | null;
-  managerPhone?: string | null;
-  managerSecondaryPhone?: string | null;
   managerEmail?: string | null;
   levelId?: number | null;
   businessRegistrationNumber?: string | null;
-  contractProcessRequired?: boolean | null;
   url?: string | null;
   descKo?: string | null;
   descEn?: string | null;

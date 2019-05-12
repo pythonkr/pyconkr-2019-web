@@ -282,6 +282,13 @@ const IntroduceSection = styled.section`
 @inject('stores')
 @observer
 class Index extends React.Component<{ stores: StoresType }> {
+
+  static async getInitialProps() {
+    return {
+      namespacesRequired: ['account'],
+    }
+  }
+
   render() {
     return (
       <>
@@ -360,6 +367,15 @@ class Index extends React.Component<{ stores: StoresType }> {
                   진행하는 교육 프로그램입니다.
                 </IntlText>
               </p>
+              <ScheduleButtonsWrapper>
+                <Button
+                  intlKey='gnb.contribute.proposingATutorial'
+                  to={paths.contribute.proposingATutorial}
+                  fontSize={14}
+                >
+                  튜토리얼 제안하기
+                </Button>
+              </ScheduleButtonsWrapper>
             </li>
             <li>
               <h2>
@@ -386,20 +402,28 @@ class Index extends React.Component<{ stores: StoresType }> {
                 </IntlText>
               </p>
               <ScheduleButtonsWrapper>
-                <Button
+                {/* <Button
                   intlKey='gnb.contribute.recommendKeynoteSpeaker'
                   to={paths.contribute.recommendingAKeynoteSpeaker}
                   fontSize={14}
                 >
                   키노트 연사 추천하기
-                </Button>
-                <Button
+                </Button> */}
+                {/* <Button
                   primary={false}
                   intlKey='gnb.contribute.proposingATalk'
                   to={paths.contribute.proposingATalk}
                   fontSize={14}
                 >
                   발표안 제안하기
+                </Button> */}
+                <Button
+                  primary={false}
+                  intlKey='gnb.contribute.proposalReview'
+                  to={paths.contribute.proposalReview}
+                  fontSize={14}
+                >
+                  발표 제안 검토하기
                 </Button>
               </ScheduleButtonsWrapper>
             </li>
@@ -433,10 +457,9 @@ class Index extends React.Component<{ stores: StoresType }> {
               <Button
                 intlKey='home.sponsor.prospectus'
                 to={paths.sponsor.prospectus}
-                primary={false}
                 size='big'
               >
-                후원 안내 및 모집 일정 보기
+                자세한 후원 안내 보기
               </Button>
             </div>
           </ContentWidthWrapper>

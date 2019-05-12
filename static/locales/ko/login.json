@@ -1,0 +1,9 @@
+{
+  "needToLogin": {
+    "title": "로그인이 필요합니다.",
+    "desc": "파이콘 한국 계정으로 로그인해주세요."
+  },
+  "title": "로그인",
+  "githubButton": "GitHub 계정으로 로그인",
+  "facebookButton": "Facebook 계정으로 로그인"
+}

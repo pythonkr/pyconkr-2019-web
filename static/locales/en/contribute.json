@@ -1,0 +1,326 @@
+{
+  "overview": {
+    "pageTitle": "About contribution :: PyCon Korea 2019",
+    "title": "Various ways to contribute to PyCon Korea",
+    "intro": "You can contribute to PyCon Korea in various ways including keynote, speaker, tutorial, sprint, volunteer and lightning talk. We will recruit each item with the following schedule.",
+    "table": {
+      "keynote": "Recommending Keynote Speaker",
+      "talk": "Proposing a Talk",
+      "tutorial": "Proposing a Tutorial",
+      "sprint": "Proposing a Sprint",
+      "volunteer": "Recruiting Volunteer",
+      "lightingtalk": "Proposing a Lightning Talk",
+      "moreDetail": "More detail"
+    }
+  },
+  "recommendKeynoteSpeaker": {
+    "pageTitle": "Recommending Keynote Speaker :: PyCon Korea 2019",
+    "title": "Recommending Keynote Speaker",
+    "description1": "We are looking for PyCon Korea 2019 Keynote Speaker to be the Polaris of Pythonistas.",
+    "description2": "If you know someone who is actively using Python for life/work/hobbies, please do not hesitate to recommend it.",
+    "recommendButton": "Recommendation Form",
+    "schedule": {
+      "open": "Recommendation Open",
+      "deadline": "Recommendation Deadline"
+    }
+  },
+  "cfpGuide": {
+    "pageTitle": "How to submit proposal :: PyCon Korea 2019",
+    "title": "How to submit proposal",
+    "intro": "This page has written to provide detailed information for speakers of PyCon Korea. Below information and suggestion will guide your presentation to be more informative and persuasive to audience in PyCon Korea.",
+    "notice": {
+      "title": "Guide for Speakers",
+      "record": {
+        "title": "Session recording",
+        "content": "All session of PyCon Korea will be recorded and open to public after conference. Please consider this before you submit your proposal."
+      },
+      "pays": {
+        "title": "Everybody Pays",
+        "content": "PyCon is Python community's voluntary event. Please understand we are not able to provide all the material expense supports (pay, expenses, free tickets) to our speakers. Regards on this matter, please visit page explains about PyCon\u2019s main value and philosophy <a href=\"http://jessenoller.com/blog/2011/05/25/pycon-everybody-pays\"> \"Everybody Pays\" </a>."
+      },
+      "vote": {
+        "title": "Voting preference",
+        "content": "Also, first screened proposal will be voted by early bird ticket holders. The purpose of this vote is to find out preference and interest of sessions and rate those voted proposals. Program team will select final speakers based on preference vote to make this event more fun and enjoyable to as many audience as possible."
+      },
+      "communication": {
+        "title": "Continuing communication",
+        "content": "For the last, please understand the moment you submit your proposal and till it get selected, there will be continuing communication with program team. We recommend you to submit your proposal earlier before its deadline to communicate with program team to build your talk session more fun and informative."
+      },
+      "conclusion": "If you\u2019re all familiar with guidance now, are you ready to start your proposal?"
+    },
+    "beforeProposal": {
+      "title": "Before you start to fill your proposal",
+      "consider": {
+        "description": "There are a few things to consider before working on proposal.",
+        "item1": "What is your main topic? What would you like to talk about?",
+        "item2": "Who is your target audience?",
+        "item3": "What can your audience get from your talk?",
+        "item4": "How would you manage time in your session?"
+      },
+      "information": {
+        "description": "Also, below information must be included in your proposal.",
+        "header": {
+          "item": "Item",
+          "description": "Description",
+          "visibility": "Visibility at the time of vote"
+        },
+        "item": {
+          "title": {
+            "title": "Title"
+          },
+          "category": {
+            "title": "Category",
+            "desc": "You can see the list of categories on the proposal page."
+          },
+          "summary": {
+            "title": "Summary of your talk"
+          },
+          "detail": {
+            "title": "Details of your talk "
+          },
+          "audience": {
+            "title": "Target audience(Difficulty)",
+            "desc": "Beginner/Intermediate/Experienced"
+          },
+          "timeslot": {
+            "title": "Preferable time slot",
+            "desc": "25min/40min"
+          },
+          "language": {
+            "title": "Language",
+            "desc": "Korean/English"
+          },
+          "note": {
+            "title": "Note or Question",
+            "desc": "Only PyCon Korea Organizer can view this section, so feel free to write in any form"
+          }
+        },
+        "conclusion": "Only title, summary, details, target audience, time slot, and language will be disclosed to early bird holders during preference vote."
+      },
+      "conclusion": "Do you feel a little bit overwhelmed with all these criteria? Don't worry! Real guidance is now here. We'll help you with detailed information about how to work on your proposal."
+    },
+    "selectTopic": {
+      "title": "Select a topic",
+      "description": "The best way to select a topic is to review topics from previous PyCon event. Not only look for topic, but also get the reference from presentation slides will help you start. Choose interesting topic for audience!",
+      "viewOtherPycon": "See PyCon in other countries \ud83d\udc49",
+      "conclusion": "Once you decide your topic, now you can start thinking about what should be on your proposal in detailed level. Check below information for help."
+    },
+    "proposalType": {
+      "title": "Good proposal vs Not good proposal",
+      "good": {
+        "title": "Good proposal \ud83d\udc4d",
+        "item1": "Include below information on your summary/details section.",
+        "item1-1": "What kind of background does audience need to understand this talk?",
+        "item1-2": "What will audience gain after attend this talk?",
+        "item2": "Write presentation flow and estimate time of your talk.",
+        "item3": "If your topic is not familiar to most of Python users, Please include blog address, wiki, source code to help understand topic."
+      },
+      "bad": {
+        "title": "Not good proposal \ud83d\ude45\u200d\ufe0f",
+        "item1": "Please avoid deliver only simple information such as how to use or advertise your(or your company's) products. However, If you have case at company where you solve programming issue or open source project that helps to audience is more then welcome.",
+        "item2": "Proposal should be completed and detailed. Incomplete proposal is not acceptable."
+      }
+    },
+    "difficulty": {
+      "title": "How to target your audience",
+      "desc1": "A good presentation delivers right information to specific target audience with certain Python level.",
+      "desc1-1": "It\u2019s not a good to talk about solve performance issue to release GIL within C code block which is generated by Cython to beginner level audience.",
+      "desc1-2": "Other cases, basic introduction of Cython or GIL is too easy for expert level audience.",
+      "desc2": "Just like an example above, some cases are easier to select audience than others. but, not all cases are this easy! For those who needs a little more guideline on target audience selection, we have a few things to tell you.",
+      "beginner": {
+        "title": "Beginner",
+        "desc1": "None or little bit of knowledge about Python. They have basic syntax and control flow knowledge but don\u2019t have much of knowledge or experience in standard library and programming in general.",
+        "desc2": "For topic for beginners, topic like \"experience with python\" or \"how to become intermediate in python programming skill\" would be appropriate. Like Pandas or Django, not a built-in package of python is not for beginners."
+      },
+      "intermediate": {
+        "title": "Intermediate",
+        "desc1": "Usually, intermediate level audience like to know how python can be utilized in other programming area. Most of them used python for a long time but have less experience in how python can be utilized and used in many other area such as machine learning or data analysis.",
+        "desc2": "For this target audience, use of web framework, machine learning, web traffic monitoring, and automation could be a good topic. Please understand a proposal for intermediate level users may asked to modify its contents to beginner or expert level after review from program team."
+      },
+      "experienced": {
+        "title": "Experienced",
+        "desc1": "Expert level users are familiar with python programming and general concept of programming. A difference between intermediate and expert is the knowledge and experience of specific field they are in and higher level of programming knowledge.",
+        "desc2": "For expert level users, optimization, internals of library, or Python internal is recommended."
+      }
+    }
+  },
+  "talkProposal": {
+    "pageTitle": "Proposing a talk :: PyCon Korea 2019",
+    "title": "Proposing a talk",
+    "description1": "We are recruiting a variety of Python-related presentations, such as academic or commercial projects for Python, case studies. Please refer to the Guide for Speakers for more information.",
+    "schedule": {
+      "open": "CFP Open",
+      "close": "CFP Close",
+      "reviewStart": "CFP Review Start",
+      "reviewFinish": "CFP Review Finish",
+      "announcement": "Speaker Confirmation"
+    },
+    "process": {
+      "title": "Selection procedure",
+      "desc": "The procedure of selecting an talk is as follows. Information related to this can be found on the PyCon Korea website or e-mail.",
+      "item1": "After the CFP deadline, the PyCon Korea Preparation Organizer reviews the proposed talk.",
+      "item1-1": "If we need more information, we would request it.",
+      "item2": "Begin reviewing CFP",
+      "item3": "After reviewing CFP, the final speaker will be confirmed.",
+      "item3-1": "Regardless of the result, we will send an result e-mail to all of you."
+    },
+    "application": {
+      "title": "Apply for CFP",
+      "stages": {
+        "common": {
+          "button": {
+            "previous": "Previous",
+            "saveDraft": "Save draft",
+            "next": "Next"
+          }
+        },
+        "stages1": {
+          "header": "Save a profile",
+          "item1": "E-mail",
+          "item2": "Name in Korean",
+          "item3": "Name in English",
+          "item4": "Affiliation",
+          "item5": "Phone Number",
+          "desc1": "The information registered as a speaker profile will be saved in profile and can be edited in My Profile page. The profile will be used in Progam page later.",
+          "button": "Save the profile and Continue"
+        },
+        "stages2": {
+          "header": "Basic information",
+          "item1": "Topic",
+          "item2": "Session Category",
+          "item3": "Session Difficulty",
+          "item4": "Prerequisities to understand the session",
+          "item5": {
+            "header": "Session Length",
+            "sub1": "25 mins",
+            "sub2": "40 mins"
+          },
+          "item6": {
+            "header": "Language",
+            "sub1": "In Korean",
+            "sub2": "In English"
+          },
+          "button1": "Previous",
+          "button2": "Save draft",
+          "button3": "Next",
+          "button4": "Submit",
+          "alert": "Save Completed",
+          "nameKorean": "Sponsor Name (Korean)",
+          "nameEnglish": "Sponsor Name (English)",
+          "imageLogoFile": "Sponsor logo (Image)",
+          "imageLogoFileGuide": ".JPG, .PNG",
+          "vectorLogoFile": "Sponsor logo (Vector)",
+          "vectorLogoFileGuide": ".SVG, .AI",
+          "primaryContactInformation": "Primary Contact Information",
+          "primaryContactPersonEmail": "Primary Contact Email for Pycon Account",
+          "primaryContactPersonName": "Primary Contact Person's Name",
+          "businessEmail": "Business Email",
+          "sponsorshipIntroduction": "Sponsorship Introduction Info.",
+          "sponsorshipLevel": "Sponsorship Level",
+          "registrationNumber": "Company Registration Number",
+          "registrationCertificateFile": "Business Registration Certificate",
+          "website": "Sponsor Official/Service Website",
+          "businessIntroduction": "Sponsor Business Introduction Info.",
+          "introductionKorean": "Sponsor Introduction (Korean)",
+          "introductionEnglish": "Sponsor Introduction (English)",
+          "introductionGuide": "These are the contents to be described on the details page on the Pycon Official Sponsor homepage. Details may be added or modified later."
+        },
+        "stages3": {
+          "header": "Detailed information",
+          "item1": {
+            "sub1": "Contents of CFP in detail",
+            "desc1": "In case it's accessive, please provide an external link."
+          },
+          "item2": {
+            "header": "Have you presented the material in other events?",
+            "button1": "Yes, I have",
+            "button2": "No, I haven't"
+          },
+          "item3": "A conference you presented the material",
+          "item4": "External link to your presentation material",
+          "item5": {
+            "header": "Comments and Enquiries",
+            "desc1": "Feel free to write comments to reviewers"
+          }
+        },
+        "stages4": {
+          "header": "CoC and Ethics",
+          "item1": {
+            "header": "PyCon Korea Code Of Conduct",
+            "desc1": "PyCon Korea is where various people meet and interact. We want all participants in the community to feel respected and welcomed without feeling physical and mental threats. To this end, all participants, including speaker, must follow the PyCon Korea Code of Conduct (CoC).",
+            "desc1-1": "PyCon Korea participants should not be discriminated against by various personal circumstances such as gender, sexual orientation, disability, physical appearance, body size, race, or religion.",
+            "desc1-2": "If the presentation could seriously violate the CoC, we may ask you to correct the presentation. If you do not respond to the our request, the presentation can be canceled.",
+            "desc1-3": "The contents of the CoC may be updated from time to time. If the content is updated, the PyCon Korea Preparation Organizers may ask for agreement of CoC again",
+            "agree": "I have confirmed the above contents and promise to follow the PyCon Korea CoC."
+          },
+          "item2": {
+            "header": "Presentation Ethics",
+            "desc1": "All presentation are made based on mutual trust and respect. Therefore, all presentation should follow the following presentation ethics.",
+            "desc1-1": "If you use or refer someone else's creations, you must comply with the rights of the original copyright holder.",
+            "desc1-2": "If your presentation contains sensitive content, such as content related to your company's business, you must obtain the consent of your organization.",
+            "desc1-3": "You must make the same presentation as your suggestion.",
+            "desc1-4": "Do not use intentional manipulated or falsified data.",
+            "agree": "I have confirmed the above contents. I also agree that I will be responsible if I fail to comply, and that the selection of the presenter may be canceled if found to be violated."
+          },
+          "item3": {
+            "header": "Sharing presentation",
+            "desc1": "PyCon Korea is aiming at a community that shares technology experiences and grows together. Therefore, all slides and movie of presentations are released for sharing knowledge.",
+            "desc1-1": "If your slides has sensitive information such as company confidentiality or copyright, please prepare a public version of the slide.",
+            "desc1-2": "If you do not want to release your presentation, please contact the PyCon Korea Organizer(program@pycon.kr).",
+            "agree": "I have confirmed the above contents."
+          },
+          "proposeButton": "Propose presentation"
+        },
+        "stages5": {
+          "header": "Submit CFP",
+          "desc1": "You can check and edit your CFP at Proposal and Application page",
+          "button1": "View Proposal and Application"
+        }
+      }
+    }
+  },
+  "proposalReview": {
+    "title": "Review presentation proposals",
+    "description": "Anyone can review and comment on the presentation proposals submitted to PyCon Korea 2019. Make PyCon Korea 2018 with your hands :)",
+    "submitted": {
+      "title": "Your review comments have been submitted.",
+      "desc": "Your comments will be used to review the proposal by the PyCon Korea Organizer. <br/> Thank you for your contribution to the richer PyCon Korea.😍"
+    },
+    "schedule": {
+      "notOpenYet": "The open review period has not yet begun."
+    },
+    "review": {
+      "title": "Participate in the review",
+      "alert1": "Select the category you want to review and review the 7 proposals in selected categories",
+      "alert2": "Opinions that violate the PyCon Korea Code of Conduct are not reflected. Please be careful."
+    },
+    "stages": {
+      "stage1": {
+        "header": "Guide for Open Review",
+        "header1": "What is Open Review?",
+        "desc1": "Open Review is a review method that allows participants to review and comment on proposal submitted to PyCon Korea 2019. Any participant with a background in the categorized topics can read the proposal and submit review comments. Please leave your comments for the presentations that you want to meet in PyCon Korea 2019 :)",
+        "header2": "How are open review used?",
+        "desc2": "They will be used as a reference when reviewing the proposal.",
+        "header3": "Open Review Process",
+        "desc3-1": "1. Select two or more categories to review.",
+        "desc3-1-1": "Once you select categories, you can not change them.",
+        "desc3-2": "2. Any seven proposals in the selected categories will be assigned to review participants.",
+        "desc3-2-1": "Once assigned, the proposal will not be changed.",
+        "desc3-3": "3. Reviewers review selected proposals and write their comments.",
+        "desc3-4": "4. When you submit a reviews, the Open Review is complete.",
+        "button": "Start review👩‍💻👨‍💻",
+        "exceededSelectionLimit": "You can select up to 7 categories for Open Review.",
+        "selectCategoryTitle": "Select category"
+      },
+      "stage2": {
+        "header": "Select categories"
+      },
+      "stage3": {
+        "header": "Leave a comment for each proposal",
+        "presentationName": "Proposal {{number}}: {{name}}",
+        "backgroundDesc": "Background: {{backgroundDesc}}",
+        "button": "Submit review comments"
+      }
+    }
+  }
+}

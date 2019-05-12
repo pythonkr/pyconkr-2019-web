@@ -25,8 +25,6 @@ query getMyPresentationProposal {
         isPresentedBefore
         placePresentedBefore
         presentedSlideUrlBefore
-        comment
-        isAgreed
         recordable
         submitted
         accepted
