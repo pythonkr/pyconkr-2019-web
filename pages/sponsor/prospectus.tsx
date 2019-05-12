@@ -94,7 +94,7 @@ export default class Prospectus extends React.Component<{ stores: StoresType }> 
             <SponsorPackageTables />
             <Ul>
               <Li>{ intl.get('sponsor.prospectus.packages.desc1').d('후원금은 VAT 별도 금액입니다.') }</Li>
-              <Li>{ intl.get('sponsor.prospectus.packages.desc2').d('후원사 부스 1 칸의 크기는 3m x 2m x 2.5m 기준입니다.') }</Li>
+              <Li>{ intl.get('sponsor.prospectus.packages.desc2').d('후원사 부스 1칸의 크기는 3m x 2m x 2.5m 기준입니다.') }</Li>
               <Li>{ intl.get('sponsor.prospectus.packages.desc3').d('증정품 지급은 컨퍼런스 입장 시 참가자 전원에게 제공되는 에코백에 후원사의 증정품을 포함하는 것을 말합니다.') }</Li>
               <Li>{ intl.get('sponsor.prospectus.packages.desc4').d('세부 사항은 행사 전까지 다소 변경될 수 있습니다.') }</Li>
               <Li>{ intl.get('sponsor.prospectus.packages.desc5').d('커뮤니티 스폰서십은 비영리 단체에 한합니다.') }</Li>
