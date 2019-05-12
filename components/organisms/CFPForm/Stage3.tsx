@@ -161,6 +161,7 @@ export default class CFPFormStage3 extends React.Component<{stores: StoresType; 
                 alert('저장이 완료되었습니다')
               })
             }}
+            isSubmit={true}
           />
         </form>
       </FormWrapper>

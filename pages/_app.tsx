@@ -6,6 +6,7 @@ import IntlPolyfill from 'intl'
 import AuthStore, { AuthStore as AuthStoreType } from 'lib/stores/AuthStore'
 import CFPStore, { CFPStore as CFPStoreType } from 'lib/stores/CFP/CFPStore'
 import ProfileStore, { ProfileStore as ProfileStoreType } from 'lib/stores/ProfileStore'
+import ProposalReviewStore, { ProposalReviewStore as ProposalReviewStoreType } from 'lib/stores/ProposalReview/ProposalReviewStore'
 import ScheduleStore, { ScheduleStore as ScheduleStoreType } from 'lib/stores/Schedule/ScheduleStore'
 import SponsorStore, { SponsorStore as SponsorStoreType } from 'lib/stores/Sponsor/SponsorStore'
 
@@ -21,6 +22,11 @@ import { paths } from 'routes/paths'
 import { CORAL } from 'styles/colors'
 import { commonCSS } from 'styles/common'
 import { fontCSS } from 'styles/font'
+
+import _ from 'lodash'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { appWithTranslation, i18n, withNamespaces } from '../i18n'
 
 global.Intl = IntlPolyfill
 require('intl/locale-data/jsonp/ko.js')
@@ -50,6 +56,7 @@ export type StoresType = {
   profileStore: ProfileStoreType;
   sponsorStore: SponsorStoreType;
   cfpStore: CFPStoreType;
+  proposalReviewStore: ProposalReviewStoreType;
 }
 
 class MyApp extends App {
@@ -63,15 +70,19 @@ class MyApp extends App {
       profileStore: ProfileStore,
       sponsorStore: SponsorStore,
       cfpStore: CFPStore,
+      proposalReviewStore: ProposalReviewStore,
     }
 
     const { router: { query } } = this.props
     const currentLocale = query![URL_LOCALE_KEY] as string || LOCALE_KEY_KR
+
     intl.init({
       currentLocale,
       locales,
       warningHandler: intlWarningHandler
     })
+
+    i18n.changeLanguage(_.isEqual(LOCALE_KEY_KR, currentLocale) ? 'ko' : 'en')
   }
 
   static async getInitialProps({ Component, ctx }: any) {
@@ -82,37 +93,44 @@ class MyApp extends App {
     }
     const isServer = !!ctx.req
 
-    return { pageProps, isServer }
+    return { pageProps, isServer, namespacesRequired: ['common', 'constant'] }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const spoqaHanSans = new FontFaceObserver('Spoqa Han Sans')
     spoqaHanSans.load()
       .then(() => {
         document && document.body.classList.add('font-loaded')
       })
-    this.initializeSchedule()
-    this.handleOAuth()
+    this.initializeStores()
+    await this.handleOAuth()
   }
 
-  initializeSchedule() {
+  initializeStores() {
     this.stores.scheduleStore.initialize()
+    this.stores.sponsorStore.initialize()
   }
 
   async handleOAuth() {
-    const { state, code } = this.props.router.query! as any
+    const { router } = this.props
+    const { state, code } = router.query! as any
     const { authStore, profileStore } = this.stores
+    const redirect_url = `${location.origin}${this.props.router.route}`
+
     if (!code) {
       authStore.syncToken()
 
       if (authStore.loggedIn) {
         await profileStore.retrieveMe()
+        if (profileStore.isAgreed && router.asPath) {
+          router.push(router.asPath)
+          authStore.setLanguage((router.query as any).lang)
+        }
       }
 
       return
     }
 
-    const redirect_url = `${location.origin}${this.props.router.route}`
     await authStore.login(state, code, redirect_url)
     if (!profileStore.isAgreed) {
       this.props.router.push(`${paths.account.agreement}?redirect_url=${Router.route}`)
@@ -122,6 +140,8 @@ class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props
     const { authStore, profileStore } = this.stores
+    const isLoggedIn = authStore.loggedIn || true
+    const isTermsAgreed = profileStore.isAgreed || true
 
     return (
       <Container>
@@ -131,7 +151,7 @@ class MyApp extends App {
           showAfterMs={300}
           spinner={false}
         />
-        {authStore.loggedIn && !profileStore.isAgreed && (
+        {isLoggedIn && !isTermsAgreed && (
           <AlertBar
             text='회원 가입이 완료되지 않았습니다. 약관을 확인하고 회원 가입을 완료해주세요.'
             link={{
@@ -145,9 +165,18 @@ class MyApp extends App {
         <Provider stores={this.stores}>
           <Component {...pageProps} />
         </Provider>
+        <ToastContainer
+          position='top-center'
+          autoClose={5000}
+          hideProgressBar
+          closeOnClick
+          rtl={false}
+          draggable
+          pauseOnHover
+        />
       </Container>
     )
   }
 }
 
-export default MyApp
+export default appWithTranslation(withNamespaces(['common', 'constant'])(MyApp))

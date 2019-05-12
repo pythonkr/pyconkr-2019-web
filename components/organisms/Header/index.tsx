@@ -11,7 +11,8 @@ export type PropsType = {
 class Header extends React.Component<PropsType> {
   render() {
     const { title } = this.props
-    const intlKey = this.props.intlKey? this.props.intlKey : 'constant.pyconKorea.name'
+    const intlKey = this.props.intlKey ? this.props.intlKey : 'constant.pyconKorea.name'
+
     return (
       <>
         <Head>

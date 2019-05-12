@@ -26,5 +26,6 @@
         "mockTypeScriptVersion": false
       }
     ]
-  }
+  },
+  "exclude": [".next", "server/**/*.*"]
 }

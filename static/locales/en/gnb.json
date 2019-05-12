@@ -1,0 +1,28 @@
+{
+  "home": "Home",
+  "help": {
+    "root": "About",
+    "faq": "FAQ",
+    "notice": "Notice",
+    "venue": "Venue"
+  },
+  "contribute": {
+    "root": "Contribution",
+    "overview": "About Contribution",
+    "cfpDetailedGuide": "How to submit proposal",
+    "proposingATalk": "Proposing a talk",
+    "recommendKeynoteSpeaker": "Recommending Keynote"
+  },
+  "sponsor": {
+    "root": "Sponsor",
+    "prospectus": "Sponsor Prospectus",
+    "invitation": "Sponsor Invitation"
+  },
+  "info": {
+    "login": "Login",
+    "logout": "Logout",
+    "root": "My Info",
+    "history": "Proposal/Sponsor History",
+    "profile": "My Profile"
+  }
+}

@@ -1,8 +1,18 @@
 query getSponsors {
-   sponsors {
+  sponsors {
     id
     name
     nameKo
+    nameEn
+    level {
+      id
+      name
+    }
     desc
+    descKo
+    descEn
+    url
+    logoImage
+    logoVector
   }
 }

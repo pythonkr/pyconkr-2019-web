@@ -1,8 +1,8 @@
 
 import styled from '@emotion/styled'
 import { Button } from 'components/atoms/Button'
-import { paths } from 'routes/paths'
 import { TEAL } from 'styles/colors'
+import { IntlText } from 'components/atoms/IntlText'
 
 export const PaddingWrapper = styled.div`
 padding: 10px 0;
@@ -24,19 +24,42 @@ text-align: center;
 margin-bottom: 30px;
 `
 
-export const NotOpenYet: React.SFC = () => (<PaddingWrapper>
+interface Props {
+  title: string,
+  titleIntlKey?: string,
+  desc?: string,
+  descIntlKey?: string,
+  buttonText?: string,
+  buttonIntlKey?: string,
+  link?: string
+}
+
+export const NotOpenYet: React.SFC<Props> = ({
+  title,
+  titleIntlKey,
+  desc = '조금만 더 기다려주세요 :)',
+  descIntlKey = '조금만 더 기다려주세요 :)',
+  buttonText,
+  buttonIntlKey,
+  link
+}) => (<PaddingWrapper>
   <StyledFormWrapper>
-    <StyledNeedLoginTitle>아직 발표안 제안 모집이 시작되지 않았습니다.</StyledNeedLoginTitle>
+    <StyledNeedLoginTitle>
+      <IntlText intlKey={titleIntlKey}>{title}</IntlText>
+    </StyledNeedLoginTitle>
     <StyledNeedLoginDesc>
-      조금만 더 기다려주세요 :)
+      <IntlText intlKey={descIntlKey}>{desc}</IntlText>
     </StyledNeedLoginDesc>
-    <Button
-      intlKey='gnb.account.login'
-      to={paths.contribute.cfpDetailedGuide}
-      fontSize={14}
-      color={TEAL}
-    >
-      발표안 작성 가이드 보러 가기
-    </Button>
+    {
+      buttonText &&
+      <Button
+        intlKey={buttonIntlKey}
+        to={link}
+        fontSize={14}
+        color={TEAL}
+      >
+        {buttonText}
+      </Button>
+    }
   </StyledFormWrapper>
 </PaddingWrapper>)

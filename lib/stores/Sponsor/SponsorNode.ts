@@ -17,12 +17,9 @@ export class SponsorNode implements SponsorNodeType {
     @observable descKo: string = ''
     @observable descEn: string = ''
     @observable managerName: string = ''
-    @observable managerPhone: string = ''
-    @observable managerSecondaryPhone: string = ''
     @observable managerEmail: string = ''
     @observable businessRegistrationNumber: string = ''
     @observable businessRegistrationFile: any | null
-    @observable contractProcessRequired: boolean = false
     @observable url: string | null = null
     @observable logoImage: any | null
     @observable logoVector: any | null
@@ -56,18 +53,8 @@ export class SponsorNode implements SponsorNodeType {
     }
 
     @action
-    setManagerPhone(newManagerPhoneNumber: string) {
-        this.managerPhone = newManagerPhoneNumber
-    }
-
-    @action
     setManagerEmail(newManagerEmail: string) {
         this.managerEmail = newManagerEmail
-    }
-
-    @action
-    setManagerSecondaryPhone(newManagerSecondaryPhoneNumber: string) {
-        this.managerSecondaryPhone = newManagerSecondaryPhoneNumber
     }
 
     @action
@@ -78,11 +65,6 @@ export class SponsorNode implements SponsorNodeType {
     @action
     setBusinessRegistrationFile(fileUrl: string) {
         this.businessRegistrationFile = fileUrl
-    }
-
-    @action
-    setContractProcessRequired(isContractProcessRequired: boolean) {
-        this.contractProcessRequired = isContractProcessRequired
     }
 
     @action

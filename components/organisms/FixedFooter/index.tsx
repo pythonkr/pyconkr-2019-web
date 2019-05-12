@@ -1,13 +1,16 @@
 import styled from '@emotion/styled'
+import { IntlText } from 'components/atoms/IntlText'
 import { SNSLink } from 'components/atoms/SNSLink'
+import { FixedFooterItem, SNSLinkList } from 'components/molecules/SNSLinkList'
 import { LOCALE_KEY_EN, LOCALE_KEY_KR, localeMap, URL_LOCALE_KEY } from 'locales/constants'
+import { inject, observer } from 'mobx-react'
 import Link from 'next/link'
-import { withRouter } from 'next/router'
+import { RouterProps, withRouter } from 'next/router'
+import { StoresType } from 'pages/_app'
+import React from 'react'
 import intl from 'react-intl-universal'
 import { TEAL } from 'styles/colors'
 import { mobileWidth, navigationPadding } from 'styles/layout'
-import { FixedFooterItem, SNSLinkList } from 'components/molecules/SNSLinkList';
-import { IntlText } from 'components/atoms/IntlText';
 
 const FixedFooterWrapper = styled.nav`
   position: fixed;
@@ -64,7 +67,6 @@ color: white;
 font-size: 14px;
 `
 
-
 const MobileLanguageButton = styled.button`
 text-align: right;
 cursor: pointer;
@@ -76,49 +78,61 @@ display: none;
 }
 `
 
-const Footer: React.SFC<any> =  ({ router: { query: { lang: currentLocale }}}) => {
-  return (
-    <FixedFooterWrapper>
-      <ul>
-        <FixedFooterItem>
-          <Link href='/coc'>
-            <FixedFooterLinkA><span>
-              {intl.get('fixedFooter.coc').defaultMessage('파이콘 한국 성명서(CoC)')}
-            </span></FixedFooterLinkA>
-          </Link>
-          <MobileLanguageButton
-            onClick={() => {
-              window.location.assign(
-                `${window.location.pathname}?${URL_LOCALE_KEY}=${
-                    currentLocale === LOCALE_KEY_EN
-                      ? LOCALE_KEY_KR
-                      : LOCALE_KEY_EN
-                }`)
-          }}>
-            {currentLocale === LOCALE_KEY_EN
-              ? localeMap[LOCALE_KEY_KR]
-              : localeMap[LOCALE_KEY_EN]}
-        </MobileLanguageButton>
-        </FixedFooterItem>
-      </ul>
-      <RightPane>
-        <SNSLinkList color='white' />
-        <LanguageButton
-          onClick={() => {
-            window.location.assign(
-              `${window.location.pathname}?${URL_LOCALE_KEY}=${
-                  currentLocale === LOCALE_KEY_EN
-                    ? LOCALE_KEY_KR
-                    : LOCALE_KEY_EN
-              }`)
-        }}>
-          {currentLocale === LOCALE_KEY_EN
-            ? localeMap[LOCALE_KEY_KR]
-            : localeMap[LOCALE_KEY_EN]}
-        </LanguageButton>
-      </RightPane>
-    </FixedFooterWrapper>
-  )
+type PropsType = {
+  router: RouterProps;
+  stores: StoresType;
+}
+@inject('stores')
+@(withRouter as any)
+@observer
+class FixedFooter extends React.Component<PropsType> {
+  render() {
+    const { router, stores } = this.props
+    const currentLocale = router.query && router.query.lang || stores.authStore.language
+
+    return (
+        <FixedFooterWrapper>
+          <ul>
+            <FixedFooterItem>
+              <Link href='/coc'>
+                <FixedFooterLinkA><span>
+                  {intl.get('fixedFooter.coc').defaultMessage('파이콘 한국 성명서(CoC)')}
+                </span></FixedFooterLinkA>
+              </Link>
+              <MobileLanguageButton
+                onClick={() => {
+                  window.location.assign(
+                    `${window.location.pathname}?${URL_LOCALE_KEY}=${
+                        currentLocale === LOCALE_KEY_EN
+                          ? LOCALE_KEY_KR
+                          : LOCALE_KEY_EN
+                    }`)
+              }}>
+                {currentLocale === LOCALE_KEY_EN
+                  ? localeMap[LOCALE_KEY_KR]
+                  : localeMap[LOCALE_KEY_EN]}
+            </MobileLanguageButton>
+            </FixedFooterItem>
+          </ul>
+          <RightPane>
+            <SNSLinkList color='white' />
+            <LanguageButton
+              onClick={() => {
+                window.location.assign(
+                  `${window.location.pathname}?${URL_LOCALE_KEY}=${
+                      currentLocale === LOCALE_KEY_EN
+                        ? LOCALE_KEY_KR
+                        : LOCALE_KEY_EN
+                  }`)
+            }}>
+              {currentLocale === LOCALE_KEY_EN
+                ? localeMap[LOCALE_KEY_KR]
+                : localeMap[LOCALE_KEY_EN]}
+            </LanguageButton>
+          </RightPane>
+        </FixedFooterWrapper>
+    )
+  }
 }
 
-export default withRouter(Footer)
+export default FixedFooter

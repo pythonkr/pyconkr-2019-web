@@ -1,0 +1,5 @@
+mutation submitCfpReviews($reviews: [ReviewInput]!) {
+    submitCfpReviews(reviews:$reviews) {
+        success
+    }
+}

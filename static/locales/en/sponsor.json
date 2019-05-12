@@ -1,0 +1,78 @@
+{
+  "event": {
+    "invitation": "Sponsor Invitation"
+  },
+  "submitted": "Sponsorship application has been submitted.",
+  "submittedDesc": "Proposals submitted can be viewed and modified in the proposal and application history. We will inform you about the method and procedure of donation payment after review of the PyCon Korea Preparatory Committee.",
+  "prospectus": {
+    "pageTitle": "Sponsor Prospectus :: PyCon Korea 2019",
+    "title": "Sponsor Prospectus",
+    "description1": "So, sponsoring this event is the most honest way to show the direction and attitude of the sponsor or individual to the open source community and Python users. In addition, we will support you in various media, sponsor tutorial, sponsor session and booth composition, and you can use it as a place to recruit excellent developers.",
+    "schedule": {
+      "open": "Sponsor Invitation Open",
+      "deadline": "Sponsor Invitation Deadline"
+    },
+    "guideTitle": "Sponsorship Guide",
+    "faqTitle": "Sponsor FAQ",
+    "packageTitle": "Sponsorship Packages",
+    "packageDesc": "Sponsorship packages may vary by venue and circumstances. And sessions, tutorials and bag inserts provided by sponsors should be served after consultation with PyCon Korea Organizers.",
+    "boothDesc": "The sponsor booth will only be available at conferences that will be held between August 17 (Sat) and 18 (Sun).",
+    "packages": {
+      "level": {
+        "header": "Level",
+        "keystone": "Keystone",
+        "diamond": "Diamond",
+        "sapphire": "Sapphire",
+        "platinum": "Platinum",
+        "gold": "Gold",
+        "silver": "Silver",
+        "community": "Community"
+      },
+      "fee": {
+        "header": "Sponsorship Fee"
+      },
+      "availability": {
+        "header": "Availability",
+        "unlimited": "Unlimited"
+      },
+      "conferencePasses": {
+        "header": "Conference Passes"
+      },
+      "booth": {
+        "header": "Booth",
+        "table": "Table (2nd floor robby)"
+      },
+      "openlunch": {
+        "header": "Open Lunch"
+      },
+      "ost": {
+        "header": "OST room name for sponsor",
+        "space": "Space for {number} people"
+      },
+      "session": {
+        "header": "Sponsor Session"
+      },
+      "goods": {
+        "header": "Goods can be included in eco bag"
+      },
+      "recruitment": {
+        "header": "Recruitment advertisement"
+      },
+      "logo": {
+        "header": "Logo placement",
+        "attendeePass": "Attendee pass",
+        "website": "WebSite",
+        "hangingBanner": "Hanging banner",
+        "standingBanner": "Standing banner",
+        "webSite": "WebSite"
+      },
+      "desc1": "Sponsorship Fee does not include VAT. 10% VAT will be added.",
+      "desc2": "booth dimension is 3m x 2m x 2.5m (approx.)",
+      "desc3": "\"Goods can be included in eco bag\" means that the goods can be included in the eco bag provided to all participants.",
+      "desc4": "Details may change slightly before the event.",
+      "desc5": "Community sponsorship is only available for non-commercial organizations.",
+      "desc6": "Publishing sponsorship: history of publishing for Python book is required.",
+      "desc7": "Media sponsorship: Any related history for python is required."
+    }
+  }
+}

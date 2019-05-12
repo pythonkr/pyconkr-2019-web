@@ -45,15 +45,16 @@ const getStatusBarType = (openDate: DateDTO, closeDate?: DateDTO): StatusBarType
   return 'ongoing'
 }
 
-const getStatusText = (openDate?: DateDTO, closeDate?: DateDTO, titleIntlKey?: string, link?: string) => {
-  if (!openDate || !link) return '-'
+const getStatusText = (openDate?: DateDTO, closeDate?: DateDTO, titleIntlKey?: string) => {
+  if (!openDate) return '-'
 
   let statusMessage = intl.get('common.status.onProgress').d('진행 중입니다.')
-  if (isFuture(openDate) && link) {
+
+  if (isFuture(openDate)) {
     const diff = differenceInCalendarDays(openDate, new Date())
 
     statusMessage = diff < 7
-      ? intl.get('common.status.openBefore', { diff }).d(`시작까지 D${diff}!`)
+      ? intl.get('common.status.openBefore', { diff }).d(`${diff}일 후에 시작됩니다.`)
       : intl.get('common.status.preparing').d('준비 중입니다.')
 
     statusMessage = diff === 0 ? intl.get('common.status.openBefore', { diff }).d(`오늘 중 오픈!`) : statusMessage
@@ -63,9 +64,9 @@ const getStatusText = (openDate?: DateDTO, closeDate?: DateDTO, titleIntlKey?: s
     statusMessage = intl.get('common.status.closed').d('마감되었습니다.')
   }
 
-  if (closeDate) {
+  if (closeDate && isPast(openDate) && isFuture(closeDate)) {
     const diff = differenceInCalendarDays(closeDate, new Date())
-    statusMessage = `${statusMessage} (${intl.get('common.status.closeAfter', { diff }).d(`마감까지 D${diff}`)})`
+    statusMessage = `${statusMessage} (${intl.get('common.status.closeAfter', { diff }).d(`마감까지 D-${diff}`)})`
   }
 
   return titleIntlKey ? `${intl.get(titleIntlKey)} ${intl.get('common.is')} ${statusMessage}` : statusMessage
@@ -113,7 +114,7 @@ const _StatusBar: React.SFC<Props>  = ({
     borderColor={statusBarColors[barType].border}
     textColor={statusBarColors[barType].text}
     textLinkColor={statusBarColors[barType].textLink}
-    text={getStatusText(openDate, closeDate, titleIntlKey, link)}
+    text={getStatusText(openDate, closeDate, titleIntlKey)}
     link={getLink(link, pathname, barType, actionIntlKey)}
   />
 }

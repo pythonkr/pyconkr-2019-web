@@ -1,0 +1,18 @@
+{
+  "profile": {
+    "pageTitle": "Profile :: PyCon Korea 2019",
+    "header": "Profile",
+    "item1": "Profile Picture",
+    "button1": "Upload",
+    "item2": "Email",
+    "item3": "Name in Korean",
+    "item4": "Name in English",
+    "item5": "Phone Number",
+    "item6": "Affiliation",
+    "item7": "Nationality",
+    "item8": "Bio in Korean",
+    "item9": "Bio in English",
+    "button2": "Update Profile",
+    "alert1": "The profile has been updated"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "needToLogin": {
+    "title": "Login is required",
+    "desc": "Please sign in with your PyCon.KR account."
+  },
+  "title": "Login",
+  "githubButton": "Login with Github Account",
+  "facebookButton": "Login with Facebook Account"
+}
