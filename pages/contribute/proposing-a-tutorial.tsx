@@ -108,7 +108,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           <H2>FAQ</H2>
           <Paragraph>
             <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 튜토리얼은 몇 시간 동안 진행하나요?</strong>
-            A. 최소 1시간, 최대 8시간까지 진행이 가능하며 프로그램 진행과 적절한 시간을 직접 결정하셔서 진행해주시면 됩니다.
+            A. 최소 2시간, 최대 8시간까지 진행이 가능하며 프로그램 진행과 적절한 시간을 직접 결정하셔서 진행해주시면 됩니다.
           </Paragraph>
           <Paragraph>
             <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 꼭 파이썬과 관련된 내용이어야 하나요?</strong>
@@ -126,7 +126,8 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
             <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 기업에서도 튜토리얼을 진행할 수 있나요?</strong>
             A. 네, 기업에서도 튜토리얼을 진행할 수 있습니다. 단, 기업에서 제공하는 서비스나 기술과 관련된 튜토리얼의 경우 일정 금액을 파이콘 한국에 후원하는 형태로 진행합니다.<br/>
             파이콘 한국은 파이썬 사용자들을 모아 기술을 보급하고 다시 돌려주는 역할을 하고 있습니다. 튜토리얼 프로그램에서는 이 역할을 위하여 공간과 편의 사항 등을 제공합니다. 그러므로 기업의 기술 보급을 위한 목적으로 튜토리얼을 진행할 경우, 일정 비용을 지급하여 파이콘에서 공간과 편의를 제공받고 참가자들에게 해당 기술을 보급하게 됩니다. 파이콘 한국 준비위원회는 제공된 금액을 사용하여 다시 파이썬 개발자들에게 혜택을 주고 있습니다. 물론 해당 기술은 파이썬을 사용하거나 파이썬에 연관된 것이어야 합니다.<br/>
-            개인, 개발그룹이나 비영리 단체가 아닌 모든 주체는 기업으로 간주됩니다. 특정 기술이나 플랫폼을 제공하는 회사의 유저 그룹도 해당 회사의 지원을 받고 있다면 기업과 같이 간주합니다.
+            개인, 개발그룹이나 비영리 단체가 아닌 모든 주체는 기업으로 간주됩니다. 특정 기술이나 플랫폼을 제공하는 회사의 유저 그룹도 해당 회사의 지원을 받고 있다면 기업과 같이 간주합니다.<br/>
+            기업 튜토리얼 진행 관련 문의는 program@pycon.kr로 메일주시기 바랍니다.
           </Paragraph>
           <Paragraph>
             <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 튜토리얼 참가자는 컨퍼런스 티켓을 구매해야 하나요?</strong>
@@ -134,12 +135,12 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           </Paragraph>
           <Paragraph>
             <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 튜토리얼 참가 비용을 받나요?</strong>
-            A. 네, 노쇼 방지를 위한 최소한의 금액을 받고 있습니다. 참고로 작년에는 5천원이었습니다.
+            A. 네, 노쇼 방지를 위한 최소한의 금액을 받고 있습니다. 참고로 2018년에는 1시간당 천원이었습니다. (예: 2시간의 튜토리얼은 참가비 1만원)
           </Paragraph>
           <Paragraph>
             <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 참가 비용은 어떻게 쓰이나요?</strong>
             {/*A. 참가 비용은 파이콘 한국에서 준비한 예산과 합쳐져 튜토리얼 진행자 분들의 수고비로 사용됩니다. 1 튜터, 1 튜토리얼 세션 당 20만원을 드립니다. 보조 진행자 분들께는 5만원이 지급되며, 모든 분들께 세금 신고를 위한 신분증을 요청드립니다. 기업 튜토리얼의 경우 세션 내용에 따라 별도로 협의를 거칩니다.*/}
-            A. 참가 비용은 파이콘 한국에서 준비한 예산과 합쳐져 튜토리얼 진행자 분들의 수고비로 사용됩니다. 1 튜터, 1 튜토리얼 세션 당 (구체적인 내용은 제안 시작일 함께 공개됩니다) 지급되며 모든 분들께 세금 신고를 위한 신분증을 요청드립니다. 기업 튜토리얼의 경우 세션 내용에 따라 별도로 협의를 거칩니다.
+            A. 참가 비용은 파이콘 한국에서 준비한 예산과 합쳐져 튜토리얼 진행자 분들의 수고비 및 장소대관료 등으로 사용됩니다. 1 튜터, 1 튜토리얼 세션 당 (구체적인 내용은 제안 시작일 함께 공개됩니다) 지급되며 모든 분들께 세금 신고를 위한 신분증을 요청드립니다. 기업 튜토리얼의 경우 세션 내용에 따라 별도로 협의를 거칩니다.
           </Paragraph>
           <Paragraph>
             <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 보조 진행자는 어떻게 선정하나요?</strong>
@@ -147,7 +148,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           </Paragraph>
           <Paragraph>
             <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 튜토리얼 참가자 신청은 언제 어떻게 받나요?</strong>
-            A. 6월 말에 홈페이지 티켓 메뉴를 통해서 신청받을 예정입니다. 자세한 일정은 추후 공지할게요!
+            A. 6월 말에 홈페이지 티켓 메뉴를 통해서 신청받을 예정입니다. 자세한 일정은 추후 공지됩니다.
           </Paragraph>
           {/*<ContentButtonWrapper>*/}
           {/*  <Button*/}
