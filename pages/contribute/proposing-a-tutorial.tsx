@@ -75,13 +75,13 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           <Paragraph style={{ marginTop: 5 }}><IntlText intlKey='contribute.tutorial.eventDate.venue'>
             코엑스 그랜드볼룸 2층
           </IntlText></Paragraph>
-          {/*<ContentButtonWrapper>*/}
-          {/*  <Button*/}
-          {/*    intlKey='contribute.tutorial.proposeButton'*/}
-          {/*    to='https://forms.gle/XXGMVASUNMqT3mDL8'*/}
-          {/*    outlink*/}
-          {/*  >튜토리얼 제안하기</Button>*/}
-          {/*</ContentButtonWrapper>*/}
+          <ContentButtonWrapper>
+            <Button
+              intlKey='contribute.tutorial.proposeButton'
+              to='https://forms.gle/XXGMVASUNMqT3mDL8'
+              outlink
+            >튜토리얼 제안하기</Button>
+          </ContentButtonWrapper>
         </Section>
         <Section>
           <H2><IntlText intlKey='common.schedule'>모집 일정</IntlText></H2>
@@ -150,13 +150,13 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
             <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 튜토리얼 참가자 신청은 언제 어떻게 받나요?</strong>
             A. 6월 말에 홈페이지 티켓 메뉴를 통해서 신청받을 예정입니다. 자세한 일정은 추후 공지됩니다.
           </Paragraph>
-          {/*<ContentButtonWrapper>*/}
-          {/*  <Button*/}
-          {/*    intlKey='contribute.tutorial.proposeButton'*/}
-          {/*    to='https://forms.gle/XXGMVASUNMqT3mDL8'*/}
-          {/*    outlink*/}
-          {/*  >튜토리얼 제안하기</Button>*/}
-          {/*</ContentButtonWrapper>*/}
+          <ContentButtonWrapper>
+            <Button
+              intlKey='contribute.tutorial.proposeButton'
+              to='https://forms.gle/XXGMVASUNMqT3mDL8'
+              outlink
+            >튜토리얼 제안하기</Button>
+          </ContentButtonWrapper>
         </Section>
         <Section>
           <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
