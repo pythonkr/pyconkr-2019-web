@@ -1,5 +1,6 @@
 import { H1, H2, Paragraph, Section } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
+import ContributionTableRow from 'components/molecules/ContributionTableRow'
 import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import ContributionTable, { Contribution } from 'components/organisms/ContributionTable'
 import Footer from 'components/organisms/Footer'
@@ -20,6 +21,24 @@ export type PropsType = {
 export default class CFPDetailedGuide extends React.Component<PropsType> {
   contributions: Contribution[] = []
 
+  renderContributionTableRow = () => {
+      return (
+          this.contributions && this.contributions.map((contribution) => {
+              return (
+              <ContributionTableRow
+                  key={contribution.title}
+                  title={contribution.title || ''}
+                  intlKey={contribution.intlKey || ''}
+                  openDate={contribution.openDate || ''}
+                  closeDate={contribution.closeDate || ''}
+                  link={contribution.link || ''}
+                  editLink={contribution.editLink || ''}
+                  dateDescription={contribution.dateDescription}
+              />
+              )
+          })
+      )
+  }
   render() {
     const { stores } = this.props
     const { schedule } = stores.scheduleStore
@@ -29,6 +48,7 @@ export default class CFPDetailedGuide extends React.Component<PropsType> {
       title: '키노트 발표자 추천',
       intlKey: 'contribute.overview.table.keynote',
       openDate: schedule.keynoteRecommendationStartAt,
+      closeDate: schedule.keynoteRecommendationFinishAt,
       link: paths.contribute.recommendingAKeynoteSpeaker,
     }, {
       title: '발표 제안',
@@ -47,12 +67,11 @@ export default class CFPDetailedGuide extends React.Component<PropsType> {
       intlKey: 'contribute.overview.table.tutorial',
       openDate: schedule.tutorialProposalStartAt,
       closeDate: schedule.tutorialProposalFinishAt,
-      // link: paths.contribute.proposingATutorial
+      link: paths.contribute.proposingATutorial
     }, {
       title: '스프린트 제안',
       intlKey: 'contribute.overview.table.sprint',
       openDate: schedule.sprintProposalStartAt,
-      // link: paths.contribute.proposingASprint
     }, {
       title: '자원봉사자 모집',
       intlKey: 'contribute.overview.table.volunteer',
@@ -84,7 +103,7 @@ export default class CFPDetailedGuide extends React.Component<PropsType> {
         </IntlText></Paragraph>
         <ContributionTable
           stores={stores}
-          contributions={this.contributions}
+          renderTableRow={this.renderContributionTableRow}
         />
         <Section>
           <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>

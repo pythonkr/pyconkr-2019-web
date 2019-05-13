@@ -142,7 +142,7 @@ export const SponsorPackageTables = () => <>
         <Tr>
         <Th>{ intl.get('sponsor.prospectus.packages.availability.header').d('스폰서 수') }</Th>
           <Td>10</Td>
-          <Td>4</Td>
+          <Td>{ intl.get('sponsor.prospectus.packages.availability.unlimited').d('제한 없음') }</Td>
           <Td>{ intl.get('sponsor.prospectus.packages.availability.unlimited').d('제한 없음') }</Td>
           <Td></Td>
         </Tr>

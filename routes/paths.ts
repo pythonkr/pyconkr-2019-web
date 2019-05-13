@@ -94,10 +94,15 @@ export const contributionMenu: WithSubMenu = {
       intlKey: 'gnb.contribute.overview',
       link: paths.contribute.overview
     },
-     {
+    {
       title: '발표 제안 검토하기',
       intlKey: 'gnb.contribute.proposalReview',
       link: paths.contribute.proposalReview
+    },
+    {
+      title: '튜토리얼 제안하기',
+      intlKey: 'gnb.contribute.proposingATutorial',
+      link: paths.contribute.proposingATutorial
     },
     {
       title: '키노트 연사 추천하기',

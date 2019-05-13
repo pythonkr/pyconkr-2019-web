@@ -2,6 +2,7 @@ import { client } from 'lib/apollo_graphql/client'
 import { getAuthToken } from 'lib/apollo_graphql/mutations/getAuthToken'
 import { action, computed, configure, observable } from 'mobx'
 import ProfileStore from './ProfileStore'
+import _ from 'lodash'
 
 // don't allow state modifications outside actions
 configure({ enforceActions: 'observed' })
@@ -22,6 +23,7 @@ export enum clientIdEnum {
 }
 
 const TOKEN_KEY = 'token'
+const CODE = 'code'
 
 export class AuthStore {
   @observable isInitialized = false
@@ -30,6 +32,7 @@ export class AuthStore {
   @observable oAuthType?: keyof typeof clientIdEnum
   @observable clientId?: clientIdEnum
   @observable accessToken?: string | null = null
+  @observable code?: string | null = null
   @observable language?: string | null = null
 
   @action
@@ -40,17 +43,25 @@ export class AuthStore {
     this.oAuthType = oAuthType
     this.clientId = clientIdEnum[this.oAuthType]
 
-    // Get AuthToken
-    const response = await getAuthToken(client)({
-      clientId: this.clientId,
-      oauthType: this.oAuthType,
-      code,
-      redirectUri: redirect_url
-    })
-    const accessToken = response.data.oAuthTokenAuth.token
-    this.setAccessToken(accessToken)
+    const localStorageCode = localStorage.getItem(CODE)
+    const localStorageAccessCode = localStorage.getItem(TOKEN_KEY)
+
+    if (!_.isEqual(localStorageCode, code) && !localStorageAccessCode) {
+      // Get AuthToken
+      const response = await getAuthToken(client)({
+        clientId: this.clientId,
+        oauthType: this.oAuthType,
+        code,
+        redirectUri: redirect_url
+      })
+      const accessToken = response.data.oAuthTokenAuth.token
+      localStorage.setItem(TOKEN_KEY, accessToken)
+      localStorage.setItem(CODE, code)
+    }
+
+    this.setAccessToken(localStorage.getItem(TOKEN_KEY))
+    this.setCode(localStorage.getItem(CODE))
     this.isInitialized = true
-    localStorage.setItem(TOKEN_KEY, accessToken)
 
     return ProfileStore.retrieveMe()
   }
@@ -60,6 +71,12 @@ export class AuthStore {
     this.accessToken = null
     ProfileStore.clearUser()
     localStorage.removeItem(TOKEN_KEY)
+    localStorage.removeItem(CODE)
+  }
+
+  @action
+  setCode(code: string | null) {
+    this.code = code
   }
 
   @action

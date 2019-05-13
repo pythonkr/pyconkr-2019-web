@@ -1,5 +1,5 @@
-query getSponsors {
-  sponsors {
+query getSponsor($id: ID!) {
+  sponsor(id: $id) {
     id
     name
     nameKo
