@@ -135,7 +135,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
           </Paragraph>
           <Paragraph>
             <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 튜토리얼 참가 비용을 받나요?</strong>
-            A. 네, 노쇼 방지를 위한 최소한의 금액을 받고 있습니다. 참고로 2018년에는 1시간당 천원이었습니다. (예: 2시간의 튜토리얼은 참가비 1만원)
+            A. 네, 노쇼 방지를 위한 최소한의 금액을 받고 있습니다. 참고로 2018년에는 1시간당 5천원이었습니다. (예: 2시간의 튜토리얼은 참가비 1만원)
           </Paragraph>
           <Paragraph>
             <strong style={{ fontWeight: 'bold', display: 'block' }}>Q. 참가 비용은 어떻게 쓰이나요?</strong>
