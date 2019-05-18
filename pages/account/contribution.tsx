@@ -4,6 +4,7 @@ import { IntlText } from 'components/atoms/IntlText'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import MyContribution from 'components/organisms/MyContribution'
+import SponsorBanners from 'components/organisms/SponsorBanners'
 import PageTemplate from 'components/templates/PageTemplate'
 import { inject, observer } from 'mobx-react'
 import { RouterProps, withRouter } from 'next/router'
@@ -40,6 +41,7 @@ class Contribution extends React.Component<PropsType> {
     return (
       <PageTemplate
         header={<Header title='제안 및 신청 내역 :: 파이콘 한국 2019' intlKey='contribution.pageTitle'/>}
+        sponsorBanners={<SponsorBanners />}
         footer={<Footer />}
       >
         <H1>

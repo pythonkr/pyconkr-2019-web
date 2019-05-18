@@ -9,6 +9,7 @@ import {
 import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
+import SponsorBanners from 'components/organisms/SponsorBanners'
 import PageTemplate from 'components/templates/PageTemplate'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
@@ -40,6 +41,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
     return (
       <PageTemplate
         header={<Header title='키노트 연사 추천하기 :: 파이콘 한국 2019' intlKey='contribute.recommendKeynoteSpeaker.pageTitle' />}
+        sponsorBanners={<SponsorBanners />}
         footer={<Footer />}
       >
         <LocalNavigation list={contributionMenu.submenu} />

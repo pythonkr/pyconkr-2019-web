@@ -5,6 +5,7 @@ import { Loading } from 'components/atoms/Loading'
 import CFPEdit from 'components/organisms/CFPForm/CFPEdit'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
+import SponsorBanners from 'components/organisms/SponsorBanners'
 import PageTemplate from 'components/templates/PageTemplate'
 import { inject, observer } from 'mobx-react'
 import Router, { RouterProps, withRouter } from 'next/router'
@@ -47,6 +48,7 @@ class CFP extends React.Component<{
     return (
       <PageTemplate
         header={<Header title='발표 제안 수정 :: 파이콘 한국 2019' intlKey='contribution.pageTitle'/>}
+        sponsorBanners={<SponsorBanners />}
         footer={<Footer />}
       >
         <H1>

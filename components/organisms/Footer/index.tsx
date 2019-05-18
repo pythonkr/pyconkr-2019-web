@@ -4,7 +4,6 @@ import { SNSLinkList } from 'components/molecules/SNSLinkList'
 import FixedFooter from 'components/organisms/FixedFooter'
 import intl from 'react-intl-universal'
 import { mobileWidth } from 'styles/layout'
-import SponsorBanners from 'components/organisms/SponsorBanners'
 
 const FooterWrapper = styled.footer`
   background-color: #f5f5f5;
@@ -51,7 +50,6 @@ const MobileSNSFooterListWrapper = styled.div`
 `
 
 const Footer = () => (<>
-  <SponsorBanners />
   <FooterWrapper>
     <WideContentWidthWrapper>
       <ul style={{ padding: '0 10px' }}>

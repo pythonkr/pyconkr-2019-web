@@ -8,6 +8,7 @@ import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import CFPForm from 'components/organisms/CFPForm'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
+import SponsorBanners from 'components/organisms/SponsorBanners'
 import PageTemplate from 'components/templates/PageTemplate'
 import { isPast } from 'date-fns'
 import { inject, observer } from 'mobx-react'
@@ -66,6 +67,7 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
     return (
       <PageTemplate
         header={<Header title='발표 제안하기 :: 파이콘 한국 2019' intlKey='contribute.talkProposal.pageTitle'/>}
+        sponsorBanners={<SponsorBanners />}
         footer={<Footer />}
       >
         <LocalNavigation list={contributionMenu.submenu} />

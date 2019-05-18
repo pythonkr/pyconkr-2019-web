@@ -10,6 +10,7 @@ export default class ProposingATalk extends React.Component {
     return (
       <PageTemplate
         header={<Header title='이용 약관 :: 파이콘 한국 2019' intlKey='termOfService.pageTitle'/>}
+        sponsorBanners={<SponsorBanners />}
         footer={<Footer />}
       >
         <H1><IntlText intlKey='termOfService.heading'>

@@ -5,6 +5,7 @@ import { IntlText } from 'components/atoms/IntlText'
 import { MainBannerSvg, MainBannerSvgCompact } from 'components/atoms/SVG'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
+import SponsorBanners from 'components/organisms/SponsorBanners'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
 import { paths } from 'routes/paths'
@@ -511,6 +512,7 @@ class Index extends React.Component<{ stores: StoresType }> {
             </p>
           </ContentWidthWrapper>
         </IntroduceSection>
+        <SponsorBanners />
         <Footer />
       </>
     )
