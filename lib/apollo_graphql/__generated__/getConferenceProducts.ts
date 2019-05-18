@@ -2,43 +2,11 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { TicketTypeNode, OptionDescTypeNode } from "./globalTypes";
+import { TicketTypeNode } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: getConferenceProducts
 // ====================================================
-
-export interface getConferenceProducts_conferenceProducts_optiondescSet {
-  __typename: "OptionDescNode";
-  id: string;
-  type: OptionDescTypeNode | null;
-  /**
-   * ticket 판매시 노출되는 이름입니다
-   */
-  name: string;
-  /**
-   * ticket 판매시 노출되는 이름입니다
-   */
-  nameKo: string | null;
-  /**
-   * ticket 판매시 노출되는 이름입니다
-   */
-  nameEn: string | null;
-  /**
-   * ticket 판매시 노출되는 설명입니다
-   */
-  desc: string;
-  /**
-   * ticket 판매시 노출되는 설명입니다
-   */
-  descKo: string | null;
-  /**
-   * ticket 판매시 노출되는 설명입니다
-   */
-  descEn: string | null;
-  createdAt: any;
-  updatedAt: any;
-}
 
 export interface getConferenceProducts_conferenceProducts {
   __typename: "TicketProductNode";
@@ -53,6 +21,9 @@ export interface getConferenceProducts_conferenceProducts {
   desc: string;
   descKo: string | null;
   descEn: string | null;
+  warning: string;
+  warningKo: string | null;
+  warningEn: string | null;
   /**
    * 행사가 시작되는 일시입니다.
    */
@@ -92,7 +63,6 @@ export interface getConferenceProducts_conferenceProducts {
   ticketCloseAt: any | null;
   createdAt: any;
   updatedAt: any;
-  optiondescSet: (getConferenceProducts_conferenceProducts_optiondescSet | null)[] | null;
   /**
    * 로그인 했을 때에는 이 값에 구매한 티켓 개수가 들어갑니다.
    */

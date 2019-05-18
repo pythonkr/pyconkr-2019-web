@@ -8,8 +8,9 @@ import Header from 'components/organisms/Header'
 import ConferenceTicketList from 'components/organisms/Ticket/ConferenceTicketList'
 import PageTemplate from 'components/templates/PageTemplate'
 import { inject, observer } from 'mobx-react'
+import { withRouter } from 'next/router'
 import React from 'react'
-import { ticketMenu } from 'routes/paths'
+import { paths, ticketMenu } from 'routes/paths'
 import { DateDTO } from 'types/common'
 import { PageDefaultPropsType } from 'types/PageDefaultPropsType'
 
@@ -25,6 +26,7 @@ export type Schedule = {
   desc?: IntlTextType;
 }
 
+@(withRouter as any)
 @inject('stores')
 @observer
 export default class ProposingATalk extends React.Component<PageDefaultPropsType> {
@@ -34,7 +36,7 @@ export default class ProposingATalk extends React.Component<PageDefaultPropsType
   }
 
   render() {
-    const { stores, t } = this.props
+    const { stores, t, router } = this.props
 
     return (
       <PageTemplate
@@ -45,7 +47,13 @@ export default class ProposingATalk extends React.Component<PageDefaultPropsType
         <H1><IntlText intlKey='ticket.conference.title'>
           컨퍼런스 티켓
         </IntlText></H1>
-        <StatusBar />
+        <StatusBar
+          text={'컨퍼런스 티켓'}
+          actionIntlKey='common.apply'
+          link={paths.ticket.conference}
+          openDate={stores.scheduleStore.schedule.conferenceTicketStartAt}
+          closeDate={stores.scheduleStore.schedule.conferenceFinishAt}
+        />
         <Paragraph><IntlText intlKey='ticket.conference.description'>
           파이콘 한국의 메인 행사인 8월 18-19일(토-일) 이틀 간의 컨퍼런스에 입장할 수 있는 티켓입니다.
         </IntlText></Paragraph>
@@ -54,7 +62,7 @@ export default class ProposingATalk extends React.Component<PageDefaultPropsType
           <AlertBar text={'튜토리얼, 스프린트, 영코더, 아이 돌봄은 포함하지 않습니다.'} />
         </Section>
         <Section>
-          <ConferenceTicketList stores={stores} t={t}/>
+          <ConferenceTicketList stores={stores} t={t} router={router}/>
         </Section>
         <Section>
           <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>

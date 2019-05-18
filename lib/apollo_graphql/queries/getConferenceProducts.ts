@@ -1,7 +1,6 @@
 import {
   getConferenceProducts as ConferenceProductsType,
   getConferenceProducts_conferenceProducts as ConferenceProductType,
-  getConferenceProducts_conferenceProducts_optiondescSet as ConferenceProductsOptionsType,
 } from 'lib/apollo_graphql/__generated__/getConferenceProducts'
 import {
   createQueryDefinition,
@@ -21,5 +20,4 @@ export const getConferenceProducts = sendQuery(
 export {
   ConferenceProductType,
   ConferenceProductsType,
-  ConferenceProductsOptionsType
 }

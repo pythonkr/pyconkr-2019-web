@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import React from 'react'
+import _ from 'lodash';
 
 const SelectBoxStyles = styled.select`
     margin: 5px 0 29px 0;
@@ -10,15 +11,19 @@ const SelectBoxStyles = styled.select`
     border: solid 1px #ced3d6;
     background-color: #f8fafb;
     font-size: 14px;
-    padding: 17px 21px;
+    padding: 5px 21px;
 `
 
 type PropsType = {
-    options: string[];
+    options: {
+        value: string;
+        text: string;
+    }[];
+    selectedValue?: string;
     onChange(value: string): void;
 }
 export const SelectBox: React.SFC<PropsType>  = (props) => {
-    const { options, onChange } = props
+    const { options, onChange, selectedValue } = props
 
     return (
         <SelectBoxStyles
@@ -30,10 +35,12 @@ export const SelectBox: React.SFC<PropsType>  = (props) => {
             {options.map(option => {
                 return (
                     <option
-                        key={option}
-                        aria-selected='true'
+                        key={option.value}
+                        value={option.value}
+                        aria-selected={false}
+                        selected={!!_.isEqual(option.value, selectedValue)}
                     >
-                        {option}
+                        {option.text}
                     </option>
                 )
             })}

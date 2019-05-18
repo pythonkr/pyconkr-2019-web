@@ -23,10 +23,14 @@ export enum OauthTypeNode {
   NAVER = "NAVER",
 }
 
-export enum OptionDescTypeNode {
-  BOOL = "BOOL",
-  NUMBER = "NUMBER",
-  STRING = "STRING",
+/**
+ * An enumeration.
+ */
+export enum TicketStatus {
+  CANCELLED = "CANCELLED",
+  DELETE = "DELETE",
+  PAID = "PAID",
+  READY = "READY",
 }
 
 export enum TicketTypeNode {
@@ -36,6 +40,18 @@ export enum TicketTypeNode {
   SPRINT = "SPRINT",
   TUTORIAL = "TUTORIAL",
   YOUNG_CODER = "YOUNG_CODER",
+}
+
+export interface PaymentInput {
+  isDomesticCard: boolean;
+  amount?: number | null;
+  cardNumber: string;
+  expiry: string;
+  birth?: string | null;
+  pwd2digit?: string | null;
+  buyerEmail?: string | null;
+  buyerName?: string | null;
+  buyerTel?: string | null;
 }
 
 export interface PresentationProposalInput {

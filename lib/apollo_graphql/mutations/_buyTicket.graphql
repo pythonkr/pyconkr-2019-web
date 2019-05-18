@@ -1,0 +1,36 @@
+mutation buyTicket(
+    $options: JSONString,
+    $payment: PaymentInput!,
+    $productId: ID!
+) {
+    buyTicket(
+      options: $options,
+      payment: $payment,
+      productId: $productId
+    ) {
+        ticket {
+          id
+          isDomesticCard
+          amount
+          merchantUid
+          impUid
+          pgTid
+          receiptUrl
+          paidAt
+          cancelReceiptUrl
+          cancelledAt
+          status
+          owner {
+            email
+            username
+          }
+          product {
+            nameKo
+            nameEn
+          }
+          options
+          createdAt
+          updatedAt
+        }
+    }
+}

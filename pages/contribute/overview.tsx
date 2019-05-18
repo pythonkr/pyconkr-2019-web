@@ -43,7 +43,7 @@ export default class CFPDetailedGuide extends React.Component<PropsType> {
     const { stores } = this.props
     const { schedule } = stores.scheduleStore
 
-    // todo : update 발표 제안 리뷰하기
+    // #TODO: update 발표 제안 리뷰하기
     this.contributions = [{
       title: '키노트 발표자 추천',
       intlKey: 'contribute.overview.table.keynote',

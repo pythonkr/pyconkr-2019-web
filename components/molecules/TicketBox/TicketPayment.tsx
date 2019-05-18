@@ -8,7 +8,9 @@ type PropsType = {
     price: number;
     isEditablePrice: boolean;
     buttonTitle: string;
-    onPayTicket(): any;
+    disabled: boolean;
+    onPayTicket(): void;
+    setPrice(price: number): void;
 }
 
 const TicketPaymentWrapper = styled.div`
@@ -47,6 +49,10 @@ const TicketPaymentWrapper = styled.div`
         outline: none;
     }
 
+    .disabledButton {
+        opacity: 0.4
+    }
+
     @media (max-width: ${mobileWidth}) {
         display: block;
         padding: 45px 0 36px 0;
@@ -61,9 +67,6 @@ const TicketPaymentWrapper = styled.div`
         button {
             width: 85%;
             margin: 25px 0 0 0;
-
-            // STEP1-STEP2
-            // background: #f95858;
         }
     }
 `
@@ -82,8 +85,16 @@ class TicketPayment extends React.Component<PropsType> {
         this.setState({ adjustedPrice })
     }
 
+    onPay = () => {
+        const { onPayTicket, setPrice, isEditablePrice, price } = this.props
+        const { adjustedPrice } = this.state
+
+        setPrice(!isEditablePrice ? price : adjustedPrice)
+        onPayTicket()
+    }
+
     render() {
-        const { price, isEditablePrice, buttonTitle, onPayTicket } = this.props
+        const { price, isEditablePrice, buttonTitle, disabled } = this.props
         const { adjustedPrice } = this.state
 
         return (
@@ -100,7 +111,10 @@ class TicketPayment extends React.Component<PropsType> {
                         />
                        </p>
                 }
-                <button onClick={onPayTicket}>{buttonTitle}</button>
+                {!disabled
+                    ? <button onClick={this.onPay}>{buttonTitle}</button>
+                    : <button className='disabledButton' disabled={disabled}>{buttonTitle}</button>
+                }
             </TicketPaymentWrapper>
         )
     }

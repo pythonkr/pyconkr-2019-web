@@ -1,4 +1,7 @@
 {
+    "buy": "구매",
+    "pay": "결제",
+    "ticket": "티켓",
     "overview": {
         "pageTitle": "티켓 종류",
         "title": "티켓 종류",
@@ -38,7 +41,7 @@
         "title": "아이 돌봄 티켓",
         "description": "아이 돌봄 설명"
     },
-    "pay": {
+    "payment": {
         "pageTitle": "티켓 결제하기",
         "title": "티켓 결제하기",
         "description": "결제 정보를 입력하고 결제를 진행합니다."

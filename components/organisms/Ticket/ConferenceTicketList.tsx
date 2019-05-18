@@ -5,32 +5,68 @@ import ConferenceTicketOption from 'components/molecules/TicketBox/ConferenceTic
 import i18next from 'i18next'
 import { TicketTypeNode } from 'lib/apollo_graphql/__generated__/globalTypes'
 import { observer } from 'mobx-react'
+import { RouterProps } from 'next/router'
 import { StoresType } from 'pages/_app'
 import * as React from 'react'
 
 type PropsType = {
   stores: StoresType;
   t: i18next.TFunction;
+  router: RouterProps;
 }
 
 @observer
 class ConferenceTicketList extends React.Component<PropsType> {
   renderTicketBoxList = () => {
-    const { stores } = this.props
-    const { conferenceProducts, earlyBirdTicketStep, setEarlyBirdTicketStep, setEarlyBirdTicketOption, setEarlyBirdTicketOptionAgreed } = stores.ticketStore
+    const { stores, router } = this.props
+    const {
+      conferenceProducts, setPrice,
+      earlyBirdTicketOption, earlyBirdTicketOptionAgreed,
+      earlyBirdTicketStep, setEarlyBirdTicketStep, setEarlyBirdTicketOption, setEarlyBirdTicketOptionAgreed, validateEarlyBirdTicket, setEarlyBirdTicket,
+      patronTicketOption, patronTicketOptionAgreed,
+      patronTicketStep, setPatronTicketStep, setPatronTicketOption, setPatronTicketOptionAgreed, validatePatronTicket, setPatronTicket,
+    } = stores.ticketStore
     const ticketSteps = [
-      { ticketStepState: earlyBirdTicketStep,  setTicketStepState: setEarlyBirdTicketStep, setTicketOption: setEarlyBirdTicketOption, setTicketOptionAgreed: setEarlyBirdTicketOptionAgreed}
+      {
+        ticketStepState: earlyBirdTicketStep,
+        ticketOption: earlyBirdTicketOption,
+        isTicketAgreed: earlyBirdTicketOptionAgreed,
+        setTicketStepState: setEarlyBirdTicketStep,
+        setTicketOption: setEarlyBirdTicketOption,
+        setTicketOptionAgreed: setEarlyBirdTicketOptionAgreed,
+        validateTicket: validateEarlyBirdTicket,
+        setTicket: setEarlyBirdTicket,
+      },
+      {
+        ticketStepState: patronTicketStep,
+        ticketOption: patronTicketOption,
+        isTicketAgreed: patronTicketOptionAgreed,
+        setTicketStepState: setPatronTicketStep,
+        setTicketOption: setPatronTicketOption,
+        setTicketOptionAgreed: setPatronTicketOptionAgreed,
+        validateTicket: validatePatronTicket,
+        setTicket: setPatronTicket,
+      }
     ]
 
     return conferenceProducts.map((conferenceProduct, index) => {
-      const { nameEn, nameKo, descKo, descEn, price, isEditablePrice, type } = conferenceProduct
+      const { id, nameKo, nameEn, descKo, descEn, warningKo, warningEn, price, isEditablePrice, type, startAt, finishAt } = conferenceProduct
       const isLanguageKorean = i18next.language === 'ko'
       const title = isLanguageKorean ? nameKo : nameEn
       const desc = isLanguageKorean ? descKo : descEn
-      const { ticketStepState, setTicketStepState, setTicketOption, setTicketOptionAgreed } = ticketSteps[index]
+      const warning = isLanguageKorean ? warningKo : warningEn
+      const {
+        ticketStepState,
+        setTicketStepState, setTicketOption, setTicketOptionAgreed,
+        ticketOption, isTicketAgreed,
+        validateTicket, setTicket
+      } = ticketSteps[index]
       const options = type === TicketTypeNode.CONFERENCE && (
         <ConferenceTicketOption
           title={title || ''}
+          id={id}
+          ticketOption={ticketOption}
+          isTicketAgreed={isTicketAgreed}
           onCancel={() => setTicketStepState(1)}
           onChangeOption={setTicketOption}
           onChangeAgreed={setTicketOptionAgreed}
@@ -39,14 +75,21 @@ class ConferenceTicketList extends React.Component<PropsType> {
 
       return (
         <TicketBox
+          key={`ticketBox_${id}`}
           title={title || ''}
           description={desc || ''}
-          warning={'얼리버드 등록은 환불되지 않습니다.'}
+          warning={warning || ''}
           price={price}
           isEditablePrice={isEditablePrice}
           options={options || null}
           step={ticketStepState}
           onNextStep={() => setTicketStepState(2)}
+          onValidate={validateTicket}
+          setTicket={() => setTicket(id)}
+          setPrice={setPrice}
+          router={router}
+          startDate={startAt}
+          endDate={finishAt}
         />
       )
     })

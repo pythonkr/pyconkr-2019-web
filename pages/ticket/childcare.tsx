@@ -29,6 +29,12 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
     isFormInitialized: false
   }
 
+  static async getInitialProps() {
+    return {
+        namespacesRequired: ['common', 'constant'],
+    }
+  }
+
   render() {
     return (
       <PageTemplate

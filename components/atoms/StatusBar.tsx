@@ -10,6 +10,7 @@ type StatusBarType = 'scheduled' | 'ongoing' | 'closed'
 
 interface Props {
   router: RouterProps,
+  text?: string
   titleIntlKey: string,
   openDate: DateDTO,
   closeDate?: DateDTO,
@@ -45,7 +46,7 @@ const getStatusBarType = (openDate: DateDTO, closeDate?: DateDTO): StatusBarType
   return 'ongoing'
 }
 
-const getStatusText = (openDate?: DateDTO, closeDate?: DateDTO, titleIntlKey?: string) => {
+const getStatusText = (openDate?: DateDTO, closeDate?: DateDTO, titleIntlKey?: string, text?: string) => {
   if (!openDate) return '-'
 
   let statusMessage = intl.get('common.status.onProgress').d('진행 중입니다.')
@@ -69,7 +70,7 @@ const getStatusText = (openDate?: DateDTO, closeDate?: DateDTO, titleIntlKey?: s
     statusMessage = `${statusMessage} (${intl.get('common.status.closeAfter', { diff }).d(`마감까지 D-${diff}`)})`
   }
 
-  return titleIntlKey ? `${intl.get(titleIntlKey)} ${intl.get('common.is')} ${statusMessage}` : statusMessage
+  return titleIntlKey ? `${intl.get(titleIntlKey)} ${intl.get('common.is')} ${statusMessage}` : `${text} ${intl.get('common.is')} ${statusMessage}`
 }
 
 const getLink = (link?: string, pathname?: string, barType?: string, actionIntlKey?: string) => {
@@ -101,6 +102,7 @@ const getLink = (link?: string, pathname?: string, barType?: string, actionIntlK
 
 const _StatusBar: React.SFC<Props>  = ({
   router: { pathname },
+  text,
   titleIntlKey,
   openDate,
   closeDate,
@@ -109,14 +111,16 @@ const _StatusBar: React.SFC<Props>  = ({
 }) => {
   const barType: StatusBarType = getStatusBarType(openDate, closeDate)
 
-  return <NoticeBar
-    color={statusBarColors[barType].bg}
-    borderColor={statusBarColors[barType].border}
-    textColor={statusBarColors[barType].text}
-    textLinkColor={statusBarColors[barType].textLink}
-    text={getStatusText(openDate, closeDate, titleIntlKey)}
-    link={getLink(link, pathname, barType, actionIntlKey)}
-  />
+  return (
+    <NoticeBar
+      color={statusBarColors[barType].bg}
+      borderColor={statusBarColors[barType].border}
+      textColor={statusBarColors[barType].text}
+      textLinkColor={statusBarColors[barType].textLink}
+      text={getStatusText(openDate, closeDate, titleIntlKey, text)}
+      link={getLink(link, pathname, barType, actionIntlKey)}
+    />
+  )
 }
 
 export const StatusBar = withRouter(_StatusBar)

@@ -1,9 +1,9 @@
 import css from '@emotion/css'
 import styled from '@emotion/styled'
 import Link from 'next/link'
-import React, { HTMLProps } from 'react'
+import React from 'react'
 import intl from 'react-intl-universal'
-import { CORAL, TEAL_SEMI_DARK } from 'styles/colors'
+import { CORAL } from 'styles/colors'
 
 type ButtonSize = 'big' | 'normal' | 'small'
 
@@ -20,6 +20,7 @@ interface Props {
   outlink?: boolean,
   onClick?: VoidFunction,
   intlKey: string,
+  title?: string,
   children: string,
   [index: string]: any
 }
@@ -30,7 +31,8 @@ interface StyledAProps {
   fontSize: number,
   color: string,
   primary: boolean,
-  disabled: boolean
+  disabled: boolean,
+  margin?: string
 }
 
 const buttonStyle = css`
@@ -74,6 +76,7 @@ export const StyledButton = styled.button`
   opacity: ${({ disabled }) => disabled ? 0.4 : 1};
   cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
   border: solid 1px ${({ disabled, color }) => disabled ? '#bcc0c2' : color};
+  margin: ${({margin}) => margin ? margin : '0'};
   span {
     color: ${({ primary, disabled, color }) => primary
       ? 'white'
@@ -132,6 +135,7 @@ export const Button: React.SFC<Props>  = ({
   fontSize,
   width,
   height,
+  margin,
   color = CORAL,
   primary = true,
   disabled = false,
@@ -140,10 +144,11 @@ export const Button: React.SFC<Props>  = ({
   outlink = false,
   onClick = () => { /* */ },
   intlKey,
+  title,
   children,
   ...props
 }) => {
-  const buttonText = intl
+  const buttonText = title || intl
     .get(intlKey)
     .defaultMessage(children)
 
@@ -155,6 +160,7 @@ export const Button: React.SFC<Props>  = ({
       fontSize={getButtonFontSize(size, fontSize)}
       primary={primary}
       disabled={disabled}
+      margin={margin}
       onClick={onClick}
       {...props}
     >

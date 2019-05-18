@@ -1,6 +1,6 @@
 // tslint:disable: no-reserved-keywords
 import { TicketTypeNode } from 'lib/apollo_graphql/__generated__/globalTypes'
-import { ConferenceProductsOptionsType, ConferenceProductType } from 'lib/apollo_graphql/queries/getConferenceProducts'
+import { ConferenceProductType } from 'lib/apollo_graphql/queries/getConferenceProducts'
 import * as _ from 'lodash'
 import { configure, observable } from 'mobx'
 
@@ -16,6 +16,9 @@ export class ConferenceProduct implements ConferenceProductType {
   @observable desc: string = ''
   @observable descKo: string | null = null
   @observable descEn: string | null = null
+  @observable warning: string = ''
+  @observable warningKo: string | null = null
+  @observable warningEn: string | null = null
   @observable startAt: any
   @observable finishAt: any
   @observable total: number = 0
@@ -28,6 +31,5 @@ export class ConferenceProduct implements ConferenceProductType {
   @observable ticketCloseAt: any
   @observable createdAt: any
   @observable updatedAt: any
-  @observable optiondescSet: (ConferenceProductsOptionsType | null)[] | null = null
   @observable purchaseCount: number | null = null
 }

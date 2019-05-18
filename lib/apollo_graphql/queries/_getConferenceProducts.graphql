@@ -8,6 +8,9 @@ query getConferenceProducts {
     desc
     descKo
     descEn
+    warning
+    warningKo
+    warningEn
     startAt
     finishAt
     total
@@ -20,18 +23,6 @@ query getConferenceProducts {
     ticketCloseAt
     createdAt
     updatedAt
-    optiondescSet { 
-      id 
-      type 
-      name 
-      nameKo
-      nameEn
-      desc
-      descKo
-      descEn
-      createdAt
-      updatedAt
-    }
     purchaseCount
   }
 }

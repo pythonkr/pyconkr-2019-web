@@ -24,7 +24,7 @@ export const paths = {
     sprint: '/ticket/sprint',
     youngcoder: '/ticket/youngcoder',
     childcare: '/ticket/childcare',
-    pay: '/ticket/pay'
+    payment: '/ticket/payment'
   },
   sponsor: {
     base: '/sponsor',

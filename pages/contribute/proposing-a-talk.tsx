@@ -31,9 +31,15 @@ export type Schedule = {
 
 @inject('stores')
 @observer
-export default class ProposingATalk extends React.Component<{ stores: StoresType }> {
+export class ProposingATalk extends React.Component<{ stores: StoresType }> {
   state = {
     isFormInitialized: false
+  }
+
+  static async getInitialProps() {
+    return {
+        namespacesRequired: ['contribute'],
+    }
   }
 
   render() {
@@ -149,3 +155,5 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
     )
   }
 }
+
+export default withNamespaces(['contribute'])(ProposingATalk)

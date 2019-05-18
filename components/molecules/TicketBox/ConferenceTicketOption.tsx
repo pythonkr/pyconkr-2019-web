@@ -5,8 +5,12 @@ import { mobileWidth } from 'styles/layout'
 
 type PropsType = {
     title: string;
+    id: string;
+    ticketOption: { ticketOption: any } | null;
+    isTicketAgreed: boolean;
     onCancel(): void;
-    onChangeOption(value: string): void;
+    onChangeOption(option: string): void;
+    onChangeAgreed(isAgree: boolean): void;
 }
 
 const TicketInformationWrapper = styled.div`
@@ -85,25 +89,59 @@ const TicketInformationWrapper = styled.div`
   }
 `
 
+const tshirtOptions = [
+  {
+    value: '',
+    text: '티셔츠 사이즈 선택'
+  },
+  {
+    value: 'XS',
+    text: 'XS'
+  },
+  {
+    value: 'S',
+    text: 'S'
+  },
+  {
+    value: 'M',
+    text: 'M'
+  },
+  {
+    value: 'L',
+    text: 'L'
+  },
+  {
+    value: 'XL',
+    text: 'XL'
+  },
+  {
+    value: '2XL',
+    text: '2XL'
+  },
+]
 class ConferenceTicketOption extends React.Component<PropsType> {
     render() {
-        const { title, onCancel, onChangeOption } = this.props
+        const { title, id, onCancel, ticketOption, isTicketAgreed, onChangeOption, onChangeAgreed } = this.props
 
         return (
             <TicketInformationWrapper>
                 <h1>{title}</h1>
                 <p className='guide'>{'티켓 사이즈 선택'}</p>
                 <SelectBox
-                  options={['XS', 'S', 'M', 'L', 'XL', '2XL']}
+                  selectedValue={ticketOption && ticketOption.ticketOption}
+                  options={tshirtOptions}
                   onChange={onChangeOption}
                 />
                 <p className='terms'>
                   <input
                     type='checkbox'
-                    id='payment-terms'
+                    id={`payment-option-${id}`}
                     aria-checked={true}
-                    style={{ verticalAlign: 'top' }}/>
-                    <label htmlFor='payment-terms'>상품과 가격, 유의사항을 확인하였으며 구매에 동의합니다.</label>
+                    style={{ verticalAlign: 'top' }}
+                    checked={isTicketAgreed}
+                    onChange={e => onChangeAgreed(e.target.checked)}
+                  />
+                  <label htmlFor='payment-terms'>상품과 가격, 유의사항을 확인하였으며 구매에 동의합니다.</label>
                 </p>
                 <button className='back' onClick={onCancel}>&lt; 뒤로</button>
             </TicketInformationWrapper>

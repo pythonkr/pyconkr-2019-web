@@ -15,6 +15,7 @@ type PropsType = {
 }
 
 const ShowDetailButton = styled(Button)`
+text-transform: uppercase;
 @media (max-width: ${mobileWidth}) {
 width: 50px;
 font-size: 10px;
@@ -38,11 +39,15 @@ class TicketTableRow extends React.Component<PropsType> {
 
     getTicketStatus () {
         const { ticket, t } = this.props
-        const { openDate, link } = ticket
+        const { openDate, closeDate, link } = ticket
+        const isClosed = closeDate && isPast(closeDate)
+        const isOpen = openDate && isPast(openDate)
         const isBeforeOpening = openDate && isFuture(openDate) && link
+        const isOnProgress = isOpen && !isClosed
 
         let ticketStatus = '-'
         if (isBeforeOpening) ticketStatus = t('common:status.preparing')
+        if (isOnProgress) ticketStatus = t('common:status.onProgress')
 
         return ticketStatus
     }
@@ -55,18 +60,16 @@ class TicketTableRow extends React.Component<PropsType> {
         const isOnProgress = isOpen && !isClosed
 
         let ticketTitle
-        if (isOnProgress) ticketTitle = t('common:status.onProgress')
-        if (isClosed) ticketTitle = t('common:status.closed')
+        if (isOnProgress) ticketTitle = t('ticket:buy')
+        if (isClosed) ticketTitle = t('ticket:status.closed')
 
         return ticketTitle
     }
 
     renderTicketButton () {
         const { ticket } = this.props
-        const { openDate, closeDate, link } = ticket
+        const { closeDate, link } = ticket
         const isClosed = closeDate && isPast(closeDate)
-        const isOpen = openDate && isPast(openDate)
-        const isOnProgress = isOpen && !isClosed
         const buttonTitle = this.getShowDetailButtonTitle()
 
         if (!buttonTitle) return '-'
@@ -75,7 +78,8 @@ class TicketTableRow extends React.Component<PropsType> {
             <ShowDetailButton
                 size='small'
                 height={27}
-                intlKey='contribute.overview.table.moreDetail'
+                title={buttonTitle}
+                intlKey={''}
                 to={isClosed ? '' : link}
                 disabled={this.getContributionClass() === 'disabled'}
                 primary={!!(this.getContributionClass() === 'active')}
@@ -108,4 +112,4 @@ class TicketTableRow extends React.Component<PropsType> {
     }
 }
 
-export default withNamespaces(['common', 'ticket'])(TicketTableRow)
+export default withNamespaces(['ticket'])(TicketTableRow)
