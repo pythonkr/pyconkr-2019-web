@@ -70,11 +70,35 @@ const CustomNextArrow = (props) => {
     )
 }
 
+const Banner = (props) => {
+    return (<>
+        <img alt={props.sponsorName} src={props.logoImage} />
+    </>)
+}
+
+const SponsorBannersPerLevel = (props) => {
+    return (<>
+        <h2>후원사 - {props.level.name}</h2>
+        <BannersWrapper>
+            {
+                props.banners.map( banner => 
+                    <Banner sponsorId={banner.id} 
+                            sponsorName={banner.name}
+                            logoImage={banner.logoImage} />
+                )
+            }
+        </BannersWrapper>
+    </>)
+}
+
 @inject('stores')
 @(withRouter as any)
 @observer
 class SponsorBanners extends React.Component<PropsType> {
     render() {
+        const { stores } = this.props
+        const { sponsors, sponsorLevels } = stores.sponsorStore
+
         const settings = {
             dots: true,
             infinite: true,
@@ -85,24 +109,31 @@ class SponsorBanners extends React.Component<PropsType> {
             nextArrow: <CustomNextArrow/>
         }
 
+        let sponsorBanners = {}
+        sponsorLevels.forEach(function(sponsorLevel) {
+            sponsorBanners[sponsorLevel.id] = { 
+                name: sponsorLevel.name,
+                sponsors: []
+            }
+        })
+
+        sponsors.forEach(function(sponsor) {
+            const sponsorLevel = sponsor.level.id
+            const sponsorList = sponsorBanners[sponsorLevel.toString()].sponsors
+            const sponsorBanner = {
+                sponsorId: sponsor.id,
+                name: sponsor.name,
+                logoImage: sponsor.logoImage,
+            }
+            sponsorList.push(sponsorBanner)
+        })
+
         return <SponsorBannersSlider>
             <SliderWrapper>
                 <Slider {...settings}>
-                    <div>
-                        <h2>후원사 - 다이아몬드</h2>
-                        <BannersWrapper>
-                        </BannersWrapper>
-                    </div>
-                    <div>
-                        <h2>후원사 - 골드</h2>
-                        <BannersWrapper>
-                        </BannersWrapper>
-                    </div>
-                    <div>
-                        <h2>후원사 - 실버</h2>
-                        <BannersWrapper>
-                        </BannersWrapper>
-                    </div>
+                    {
+                        sponsorLevels.map( sponsorLevel => <SponsorBannersPerLevel level={sponsorLevel} banners={sponsorBanners[sponsorLevel.id].sponsors} />)
+                    }
                 </Slider>
             </SliderWrapper>
         </SponsorBannersSlider>
