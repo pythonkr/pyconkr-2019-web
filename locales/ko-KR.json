@@ -19,12 +19,15 @@
     },
     "proposalReview": {
       "title": "발표 제안 검토하기"
+    },
+    "tutorial": {
+      "title": "튜토리얼 제안하기"
     }
   },
 
   "sponsor": {
     "event": {
-      "invitation": "스폰서 모집"
+      "invitation": "후원사 신청"
     }
   }
 }

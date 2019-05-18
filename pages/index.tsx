@@ -368,6 +368,15 @@ class Index extends React.Component<{ stores: StoresType }> {
                   진행하는 교육 프로그램입니다.
                 </IntlText>
               </p>
+              <ScheduleButtonsWrapper>
+                <Button
+                  intlKey='gnb.contribute.proposingATutorial'
+                  to={paths.contribute.proposingATutorial}
+                  fontSize={14}
+                >
+                  튜토리얼 제안하기
+                </Button>
+              </ScheduleButtonsWrapper>
             </li>
             <li>
               <h2>
