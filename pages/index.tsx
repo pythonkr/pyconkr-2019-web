@@ -16,6 +16,7 @@ import {
   wideContentWidth
 } from 'styles/layout'
 import { StoresType } from './_app'
+import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 
 const BannerSection = styled.section`
   height: 65vw;
@@ -75,7 +76,7 @@ const MainBannerInfoWrapper = styled.div`
   h1 {
     font-weight: 700;
     font-size: 1.4em;
-    margin-top: 2.2em;
+    margin-top: 4.4em;
   }
   p {
     font-size: 1.1em;
@@ -290,6 +291,7 @@ class Index extends React.Component<{ stores: StoresType }> {
   }
 
   render() {
+    const { schedule } = this.props.stores.scheduleStore
     return (
       <>
         <Header title='파이콘 한국 2019' intlKey='constant.pyconKorea.name'/>
@@ -314,6 +316,12 @@ class Index extends React.Component<{ stores: StoresType }> {
               <IntlText intlKey='constant.pyconKorea.schedule'>
                 2019.08.15(목)-18(일)
               </IntlText>
+            </p>
+            <p>
+              <strong style={{ fontWeight: 'bold' }}>
+                {formatDateInWordsWithWeekdayAndTime(schedule.earlybirdTicketStartAt) + ' '}
+              </strong> 
+              <IntlText intlKey="constant.pyconKorea.earlybirdAndPatronTicketOpen">얼리버드/개인후원 티켓 오픈</IntlText>
             </p>
           </MainBannerInfoWrapper>
         </BannerSection>
