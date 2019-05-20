@@ -51,6 +51,8 @@ export interface getSponsorLevels_sponsorLevels {
    */
   canRecruit: boolean;
   currentRemainingNumber: number | null;
+  paidCount: number | null;
+  acceptedCount: number | null;
 }
 
 export interface getSponsorLevels {
