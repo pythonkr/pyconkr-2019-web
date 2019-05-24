@@ -17,7 +17,11 @@ type PropsType = {
 
 @observer
 class ConferenceTicketList extends React.Component<PropsType> {
-  renderTicketBoxList = () => {
+  componentDidMount () {
+    const { stores } = this.props
+    stores.ticketStore.cleanupConferenceTicketOptions()
+  }
+ renderTicketBoxList = () => {
     const { stores, router } = this.props
     const {
       conferenceProducts, setPrice,

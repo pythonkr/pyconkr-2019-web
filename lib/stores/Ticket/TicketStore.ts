@@ -64,7 +64,7 @@ export class TicketStore {
     }
 
     @action
-    setEarlyBirdTicketOption = (ticketOption: string) => {
+    setEarlyBirdTicketOption = (ticketOption: string | null) => {
         this.earlyBirdTicketOption = { ticketOption }
     }
 
@@ -79,7 +79,7 @@ export class TicketStore {
     }
 
     @action
-    setPatronTicketOption = (ticketOption: string) => {
+    setPatronTicketOption = (ticketOption: string | null) => {
       this.patronTicketOption = { ticketOption }
     }
 
@@ -146,6 +146,15 @@ export class TicketStore {
       this.expiryMonth = ''
       this.expiryYear = ''
       this.ticketInput = initialTicketInput
+    }
+
+    cleanupConferenceTicketOptions = () => {
+      this.setEarlyBirdTicketOption(null)
+      this.setEarlyBirdTicketOptionAgreed(false)
+      this.setEarlyBirdTicketStep(1)
+      this.setPatronTicketOption(null)
+      this.setPatronTicketOptionAgreed(false)
+      this.setPatronTicketStep(1)
     }
 
     @action
