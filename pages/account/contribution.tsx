@@ -1,8 +1,9 @@
 
 import { H1, Paragraph } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
+import { Loading } from 'components/atoms/Loading'
 import ContributionTableRow from 'components/molecules/ContributionTableRow'
-import DefaultTable, { Contribution } from 'components/organisms/ContributionTable'
+import DefaultTable, { Contribution } from 'components/organisms/DefaultTable'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'

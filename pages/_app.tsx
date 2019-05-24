@@ -9,6 +9,7 @@ import ProfileStore, { ProfileStore as ProfileStoreType } from 'lib/stores/Profi
 import ProposalReviewStore, { ProposalReviewStore as ProposalReviewStoreType } from 'lib/stores/ProposalReview/ProposalReviewStore'
 import ScheduleStore, { ScheduleStore as ScheduleStoreType } from 'lib/stores/Schedule/ScheduleStore'
 import SponsorStore, { SponsorStore as SponsorStoreType } from 'lib/stores/Sponsor/SponsorStore'
+import TicketStore, { TicketStore as TicketStoreType } from 'lib/stores/Ticket/TicketStore'
 
 import { LOCALE_KEY_KR, URL_LOCALE_KEY } from 'locales/constants'
 import { Provider } from 'mobx-react'
@@ -24,7 +25,8 @@ import { commonCSS } from 'styles/common'
 import { fontCSS } from 'styles/font'
 
 import _ from 'lodash'
-import { toast, ToastContainer } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { appWithTranslation, i18n, withNamespaces } from '../i18n'
 
@@ -57,6 +59,7 @@ export type StoresType = {
   sponsorStore: SponsorStoreType;
   cfpStore: CFPStoreType;
   proposalReviewStore: ProposalReviewStoreType;
+  ticketStore: TicketStoreType;
 }
 
 class MyApp extends App {
@@ -71,6 +74,7 @@ class MyApp extends App {
       sponsorStore: SponsorStore,
       cfpStore: CFPStore,
       proposalReviewStore: ProposalReviewStore,
+      ticketStore: TicketStore,
     }
 
     const { router: { query } } = this.props

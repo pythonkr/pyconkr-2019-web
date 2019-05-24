@@ -220,6 +220,34 @@ export const SubmenuItemLink = styled(NavMenuSubLink)`
   padding: 20px 0;
 }`
 
+export const TicketsButtonWrapper = styled.div`
+  display: block;
+  margin-left: auto;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+`
+
+export const TicketsButton = styled.input`
+  display: block;
+  width: 140px;
+  height: 38px;
+  border: solid 1px #f95858;
+  background-color: #F95859;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-align: center;
+  color: #fff;
+  @media (max-width: ${mobileWidth}) {
+    width: 100px;
+  }
+`
+
 class Navigation extends React.Component<any> {
   state = {
     isMenuOpened: false,
@@ -261,6 +289,14 @@ class Navigation extends React.Component<any> {
             </Link>
           </NavItem>
         </ul>
+        <TicketsButtonWrapper>
+          <Link href='/ticket/overview'>
+            <TicketsButton
+              type='button'
+              value='티켓'
+            />
+          </Link>
+        </TicketsButtonWrapper>
         <HamburgerCheckbox
           type='checkbox'
           id='menu-btn'

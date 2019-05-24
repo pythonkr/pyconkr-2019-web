@@ -2,7 +2,7 @@ import { H1, H2, Paragraph, Section } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
 import ContributionTableRow from 'components/molecules/ContributionTableRow'
 import { LocalNavigation } from 'components/molecules/LocalNavigation'
-import ContributionTable, { Contribution } from 'components/organisms/ContributionTable'
+import DefaultTable, { Contribution } from 'components/organisms/DefaultTable'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
@@ -43,7 +43,7 @@ export default class CFPDetailedGuide extends React.Component<PropsType> {
     const { stores } = this.props
     const { schedule } = stores.scheduleStore
 
-    // todo : update 발표 제안 리뷰하기
+    // #TODO: update 발표 제안 리뷰하기
     this.contributions = [{
       title: '키노트 발표자 추천',
       intlKey: 'contribute.overview.table.keynote',
@@ -101,7 +101,7 @@ export default class CFPDetailedGuide extends React.Component<PropsType> {
           파이콘 한국에는 발표, 튜토리얼 튜터 및 멘토, 스프린트 진행, 자원 봉사 등 다양한 형태로 공헌할 수 있습니다.
           각 항목은 아래와 같은 일정으로 모집합니다.
         </IntlText></Paragraph>
-        <ContributionTable
+        <DefaultTable
           stores={stores}
           renderTableRow={this.renderContributionTableRow}
         />

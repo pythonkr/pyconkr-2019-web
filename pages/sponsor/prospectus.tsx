@@ -12,9 +12,14 @@ import { paths } from 'routes/paths'
 import { withNamespaces } from '../../i18n'
 import { StoresType } from '../_app'
 
+type PropsType = {
+  stores: StoresType;
+  t: i18next.TFunction;
+}
+
 @inject('stores')
 @observer
-export class Prospectus extends React.Component<{ stores: StoresType; t: i18next.TFunction }> {
+export class Prospectus extends React.Component<PropsType> {
 
   static async getInitialProps() {
     return {

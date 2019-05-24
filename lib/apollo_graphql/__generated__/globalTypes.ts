@@ -23,6 +23,37 @@ export enum OauthTypeNode {
   NAVER = "NAVER",
 }
 
+/**
+ * An enumeration.
+ */
+export enum TicketStatus {
+  CANCELLED = "CANCELLED",
+  DELETE = "DELETE",
+  PAID = "PAID",
+  READY = "READY",
+}
+
+export enum TicketTypeNode {
+  BABY_CARE = "BABY_CARE",
+  CONFERENCE = "CONFERENCE",
+  HEALTH_CARE = "HEALTH_CARE",
+  SPRINT = "SPRINT",
+  TUTORIAL = "TUTORIAL",
+  YOUNG_CODER = "YOUNG_CODER",
+}
+
+export interface PaymentInput {
+  isDomesticCard: boolean;
+  amount?: number | null;
+  cardNumber: string;
+  expiry: string;
+  birth?: string | null;
+  pwd2digit?: string | null;
+  buyerEmail?: string | null;
+  buyerName?: string | null;
+  buyerTel?: string | null;
+}
+
 export interface PresentationProposalInput {
   name?: string | null;
   categoryId?: string | null;

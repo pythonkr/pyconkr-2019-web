@@ -1,0 +1,49 @@
+{
+    "buy": "구매",
+    "pay": "결제",
+    "ticket": "티켓",
+    "overview": {
+        "pageTitle": "티켓 종류",
+        "title": "티켓 종류",
+        "description": "파이콘 한국에는 발표 세션을 포함한 이틀 간의 컨퍼런스, 튜토리얼, 영코더 등 다양한 행사가 있습니다."
+    },
+    "conference": {
+        "pageTitle": "컨퍼런스 티켓",
+        "title": "컨퍼런스 티켓",
+        "description": "파이콘 한국의 메인 행사인 8월 18-19일(토-일) 이틀 간의 컨퍼런스에 입장할 수 있는 티켓입니다.",
+        "general": {
+            "title": "컨퍼런스 일반"
+        },
+        "earlybird": {
+            "title": "컨퍼런스 얼리버드"
+        },
+        "patron": {
+            "title": "컨퍼런스 개인 후원"
+        }
+    },
+    "tutorial": {
+        "pageTitle": "튜토리얼 티켓",
+        "title": "튜토리얼 티켓",
+        "description": "튜토리얼 설명"
+    },
+    "sprint": {
+        "pageTitle": "스프린트 티켓",
+        "title": "스프린트 티켓",
+        "description": "스프린트 설명"
+    },
+    "youngcoder": {
+        "pageTitle": "영코더 티켓",
+        "title": "영코더 티켓",
+        "description": "영코더 설명"
+    },
+    "childcare": {
+        "pageTitle": "아이 돌봄 티켓",
+        "title": "아이 돌봄 티켓",
+        "description": "아이 돌봄 설명"
+    },
+    "payment": {
+        "pageTitle": "티켓 결제하기",
+        "title": "티켓 결제하기",
+        "description": "결제 정보를 입력하고 결제를 진행합니다."
+    }
+}

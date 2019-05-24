@@ -20,6 +20,16 @@ export type Contribution = {
     isMyContribution?: boolean;
 }
 
+export type Ticket = {
+    title?: string;
+    intlKey?: string;
+    openDate?: string;
+    closeDate?: string;
+    link?: string;
+    editLink?: string;
+    dateDescription?: DateDescription;
+}
+
 type PropsType = {
     stores: StoresType;
     renderTableRow(): any;
