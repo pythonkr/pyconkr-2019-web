@@ -35,7 +35,21 @@ display: flex;
 margin-bottom: 40px;
 
 .radioButton {
-margin-right: 20px;
+  margin-right: 20px;
+}
+`
+
+const CreditCardNumberWrapper = styled.div`
+input[type=text] {
+  width: 325px;
+  font-size: 20px;
+  letter-spacing: 3px;
+}
+@media (max-width: ${mobileWidth}) {
+  input[type=text] {
+    width: 100%;
+    font-size: 18px;
+  }
 }
 `
 
@@ -168,7 +182,7 @@ export class Ticket extends React.Component<PropsType> {
                     <label htmlFor={CREDITCARD_TYPE.FOREIGN}>{'해외'}</label>
                   </div>
                 </CreditCardRadioButtons>
-                <div>
+                <CreditCardNumberWrapper>
                   <label className='required'>
                     {'카드번호'}
                   </label>
@@ -179,13 +193,8 @@ export class Ticket extends React.Component<PropsType> {
                     required
                     placeholder={'- 없이 입력'}
                     onChange={e => this.onChangeInputValue(e.target.value, stores.ticketStore.setCardNumber)}
-                    style={{
-                      width: '325px',
-                      fontSize: '20px',
-                      letterSpacing: '3px'
-                    }}
                   />
-                </div>
+                </CreditCardNumberWrapper>
                 <FormHalfBox>
                   <label className='required'>
                     {'유효기간'}

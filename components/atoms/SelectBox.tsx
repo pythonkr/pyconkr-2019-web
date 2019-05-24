@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
+import _ from 'lodash'
 import React from 'react'
-import _ from 'lodash';
 
 const SelectBoxStyles = styled.select`
     margin: 5px 0 29px 0;
@@ -31,6 +31,7 @@ export const SelectBox: React.SFC<PropsType>  = (props) => {
           onChange={e => onChange(e.target.value)}
           aria-required={true}
           required
+          value={selectedValue}
         >
             {options.map(option => {
                 return (
@@ -38,7 +39,6 @@ export const SelectBox: React.SFC<PropsType>  = (props) => {
                         key={option.value}
                         value={option.value}
                         aria-selected={false}
-                        selected={!!_.isEqual(option.value, selectedValue)}
                     >
                         {option.text}
                     </option>
