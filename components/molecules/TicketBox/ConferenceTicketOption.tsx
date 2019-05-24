@@ -88,7 +88,7 @@ const TicketInformationWrapper = styled.div`
     }
   }
 `
-
+// #TODO: 옵션 텍스트 변경 필요 (e.g XS-90)
 const tshirtOptions = [
   {
     value: '',

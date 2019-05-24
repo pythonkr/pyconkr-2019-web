@@ -10,6 +10,7 @@ import intl from 'react-intl-universal'
 import { globalNavigationMenu } from 'routes/paths'
 import { CORAL, CORAL_LIGHT } from 'styles/colors'
 import { mobileWidth, navigationPadding } from 'styles/layout'
+import { Button } from 'components/atoms/Button';
 
 const NavWrapper = styled.nav`
   display: flex;
@@ -36,7 +37,7 @@ const HamburgerButtonLabel = styled.label`
 cursor: pointer;
 display: inline-block;
 float: right;
-padding: 28px 20px;
+padding: 30px 20px;
 position: relative;
 user-select: none;
 z-index: 200;
@@ -229,22 +230,22 @@ export const TicketsButtonWrapper = styled.div`
   margin-right: 20px;
 `
 
-export const TicketsButton = styled.input`
-  display: block;
+export const TicketsButton = styled(Button)`
   width: 140px;
   height: 38px;
-  border: solid 1px #f95858;
-  background-color: #F95859;
-  font-size: 15px;
-  font-weight: bold;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1;
-  letter-spacing: normal;
-  text-align: center;
-  color: #fff;
+
+  span {
+    font-size: 15px;
+    font-weight: bold;
+  }
+
   @media (max-width: ${mobileWidth}) {
-    width: 100px;
+    width: 90px;
+    height: 30px;
+
+    span {
+      font-size: 12px;
+    }
   }
 `
 
@@ -290,12 +291,15 @@ class Navigation extends React.Component<any> {
           </NavItem>
         </ul>
         <TicketsButtonWrapper>
-          <Link href='/ticket/overview'>
-            <TicketsButton
-              type='button'
-              value='티켓'
-            />
-          </Link>
+          <TicketsButton
+            size='small'
+            height={27}
+            title={'티켓'}
+            intlKey={''}
+            to={'/ticket/overview'}
+          >
+            {'티켓'}
+          </TicketsButton>
         </TicketsButtonWrapper>
         <HamburgerCheckbox
           type='checkbox'
