@@ -44,6 +44,24 @@
     "payment": {
         "pageTitle": "티켓 결제하기",
         "title": "티켓 결제하기",
-        "description": "결제 정보를 입력하고 결제를 진행합니다."
+        "description": "결제 정보를 입력하고 결제를 진행합니다.",
+        "paymentInfo": {
+            "title": "결제정보",
+            "ticketTypeTitle": "티켓유형",
+            "priceTitle": "가격",
+            "currency": "원"
+        },
+        "creditCardInfo": {
+            "title": "카드정보",
+            "creditCardTypeLabel": "국내/해외 카드",
+            "domesticLabel": "국내",
+            "foreignLabel": "해외",
+            "cardNumberTitle": "카드번호",
+            "cardNumberPlaceholder": "- 없이 입력",
+            "expiryLabel": "유효기간",
+            "birthLabel": "생년월일",
+            "birthPlaceholder": "6자리",
+            "pwd2digitLabel": "비밀번호"
+        }
     }
 }

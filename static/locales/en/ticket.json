@@ -1,11 +1,11 @@
 {
-    "buy": "buy",
-    "pay": "pay",
+    "buy": "Buy",
+    "pay": "Pay",
     "ticket": "ticket",
     "overview": {
-        "pageTitle": "티켓 종류",
-        "title": "티켓 종류",
-        "description": "파이콘 한국에는 발표 세션을 포함한 이틀 간의 컨퍼런스, 튜토리얼, 영코더 등 다양한 행사가 있습니다."
+        "pageTitle": "Tickets",
+        "title": "Ticket",
+        "description": "Pycon KR 2019 has various types of tickets including Conference, Tutorial, Youngcoder etc.."
     },
     "conference": {
         "pageTitle": "Conference Ticket",
@@ -22,28 +22,46 @@
         }
     },
     "tutorial": {
-        "pageTitle": "튜토리얼 티켓",
-        "title": "튜토리얼 티켓",
-        "description": "튜토리얼 설명"
+        "pageTitle": "Tutorial Ticket",
+        "title": "Tutorial Ticket",
+        "description": "Description of Tutorial"
     },
     "sprint": {
-        "pageTitle": "스프린트 티켓",
-        "title": "스프린트 티켓",
-        "description": "스프린트 설명"
+        "pageTitle": "Sprint Ticket",
+        "title": "Sprint Ticket",
+        "description": "Description of Sprint"
     },
     "youngcoder": {
-        "pageTitle": "영코더 티켓",
-        "title": "영코더 티켓",
-        "description": "영코더 설명"
+        "pageTitle": "Youngcoder Ticket",
+        "title": "Youngcoder Ticket",
+        "description": "Description of Youngcoder"
     },
     "childcare": {
-        "pageTitle": "아이 돌봄 티켓",
-        "title": "아이 돌봄 티켓",
-        "description": "아이 돌봄 설명"
+        "pageTitle": "Childcare Ticket",
+        "title": "Childcare Ticket",
+        "description": "Description of Childcare"
     },
     "payment": {
-        "pageTitle": "티켓 결제하기",
-        "title": "티켓 결제하기",
-        "description": "결제 정보를 입력하고 결제를 진행합니다."
+        "pageTitle": "Ticket Payment",
+        "title": "Ticket Payment",
+        "description": "Please fill in the form for proceeding a payment",
+        "paymentInfo": {
+            "title": "Payment Information",
+            "ticketTypeTitle": "Ticket Payment Type",
+            "priceTitle": "Price",
+            "currency": "KRW"
+        },
+        "creditCardInfo": {
+            "title": "Creditcard Information",
+            "creditCardTypeLabel": "Domestic/Foreign Card",
+            "domesticLabel": "Domesitc",
+            "foreignLabel": "Foreign",
+            "cardNumberTitle": "Creditcard Number",
+            "cardNumberPlaceholder": "Without -",
+            "expiryLabel": "Expiry Month/Year",
+            "birthLabel": "Birth Date",
+            "birthPlaceholder": "YYYYMMDD",
+            "pwd2digitLabel": "Password"
+        }
     }
 }

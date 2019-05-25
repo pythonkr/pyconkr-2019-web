@@ -18,7 +18,8 @@ export interface NoticeBarProps {
   text: string,
   textIntlKey?: string,
   link?: LinkProps,
-  actionButton?: ActionButtonProps
+  actionButton?: ActionButtonProps,
+  style?: any
 }
 
 interface StyledNoticeBarProps {

@@ -36,7 +36,7 @@ export const SelectBox: React.SFC<PropsType>  = (props) => {
             {options.map(option => {
                 return (
                     <option
-                        key={option.value}
+                        key={option.text}
                         value={option.value}
                         aria-selected={false}
                     >

@@ -1,7 +1,6 @@
 
 import { H1, Paragraph } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
-import { Loading } from 'components/atoms/Loading'
 import ContributionTableRow from 'components/molecules/ContributionTableRow'
 import DefaultTable, { Contribution } from 'components/organisms/DefaultTable'
 import Footer from 'components/organisms/Footer'
@@ -41,7 +40,7 @@ class ContributionPage extends React.Component<PropsType> {
 
     renderContributionTableRow = () => {
       return (
-        this.contributions && this.contributions.map((contribution, index) => {
+        this.contributions && this.contributions.map((contribution) => {
               return (
               <ContributionTableRow
                   key={contribution.title}
