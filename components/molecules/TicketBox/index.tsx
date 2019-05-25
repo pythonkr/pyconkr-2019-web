@@ -123,6 +123,7 @@ class TicketBox extends React.Component<PropsType, StatesType> {
             onPayTicket={isTicketStep && step === 1 ? this.onBuyTicket :  this.onPayTicket}
             setPrice={setPrice}
             disabled={disablePayment !== '' && disablePayment}
+            minimunPrice={150000}
           />
         </TicketBoxWrapper>
       )

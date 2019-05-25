@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import { isStringNumber } from 'lib/util/common'
 import _ from 'lodash'
 import * as React from 'react'
+import { toast } from 'react-toastify'
 import { mobileWidth } from 'styles/layout'
 
 type PropsType = {
@@ -9,6 +10,7 @@ type PropsType = {
     isEditablePrice: boolean;
     buttonTitle: string;
     disabled: boolean;
+    minimunPrice: number;
     onPayTicket(): void;
     setPrice(price: number): void;
 }
@@ -86,8 +88,13 @@ class TicketPayment extends React.Component<PropsType> {
     }
 
     onPay = () => {
-        const { onPayTicket, setPrice, isEditablePrice, price } = this.props
+        const { onPayTicket, setPrice, isEditablePrice, price, minimunPrice } = this.props
         const { adjustedPrice } = this.state
+        if (isEditablePrice && minimunPrice > adjustedPrice) {
+            toast.error(`후원 티켓 가격은 최소 ${minimunPrice.toLocaleString()} 이어야 합니다.`)
+
+            return
+        }
 
         setPrice(!isEditablePrice ? price : adjustedPrice)
         onPayTicket()
@@ -108,6 +115,7 @@ class TicketPayment extends React.Component<PropsType> {
                             min={price}
                             value={adjustedPrice.toLocaleString()}
                             onChange={this.onChangeAdjustedPrice}
+                            // disabled={disabled}
                         />
                        </p>
                 }
