@@ -85,6 +85,14 @@
       "root": "My Info",
       "history": "Proposal/Sponsor History",
       "profile": "My Profile"
+    },
+    "ticket": {
+      "overview": "Overview",
+      "conference": "Conference",
+      "tutorial": "Tutorial",
+      "sprint": "Sprint",
+      "youngcoder": "Youngcoder",
+      "childcare": "Childcare"
     }
   },
   "account": {

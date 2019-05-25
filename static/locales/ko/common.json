@@ -25,5 +25,7 @@
     "untilSelected": "마감 시까지",
     "conferenceDays": "컨퍼런스 당일"
   },
-  "uploadTitle": "업로드"
+  "uploadTitle": "업로드",
+  "confirm": "확인",
+  "cancel": "취소"
 }
