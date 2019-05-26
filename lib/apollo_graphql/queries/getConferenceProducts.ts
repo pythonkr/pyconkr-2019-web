@@ -9,7 +9,7 @@ import {
 import * as _getConferenceProducts from './_getConferenceProducts.graphql'
 
 export const getConferenceProductsQueryDefinition = createQueryDefinition<
-ConferenceProductsType,
+  ConferenceProductsType,
   {}
 >(_getConferenceProducts)
 
