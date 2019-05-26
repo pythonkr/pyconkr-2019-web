@@ -1,47 +1,25 @@
 query getMyTickets {
   myTickets {
+    id
     isDomesticCard
     amount
     merchantUid
+    impUid
+    pgTid
     receiptUrl
     paidAt
     cancelReceiptUrl
     cancelledAt
     status
-
-    product{
+    product {
       id
       type
       name
       nameKo
       nameEn
-      desc
-      descKo
-      descEn
-      startAt
-      finishAt
-      total
-      owner {
-        profile {
-          name
-          nameKo
-          nameEn
-          email
-          image
-          avatarUrl
-        }
-      }
-      price
-      isEditablePrice
-      isUniqueInType
-      active
-      cancelableDate
-      ticketOpenAt
-      ticketCloseAt
-      createdAt
-      updatedAt
-      purchaseCount
     }
     options
+    createdAt
+    updatedAt
   }
 }

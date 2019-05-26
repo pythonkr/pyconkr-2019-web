@@ -2,6 +2,7 @@ import { PaymentInput } from 'lib/apollo_graphql/__generated__/globalTypes'
 import { client } from 'lib/apollo_graphql/client'
 import { buyTicket } from 'lib/apollo_graphql/mutations/buyTicket'
 import { ConferenceProductType, getConferenceProducts } from 'lib/apollo_graphql/queries/getConferenceProducts'
+import { getMyTickets, TicketNode } from 'lib/apollo_graphql/queries/getMyTickets'
 import * as _ from 'lodash'
 import { action, configure, observable, toJS } from 'mobx'
 
@@ -51,11 +52,17 @@ export class TicketStore {
     @observable expiryMonth: string = ''
     @observable expiryYear: string = ''
     @observable ticketInput: PaymentInput = initialTicketInput
+    @observable myTickets: TicketNode[] = []
 
     // Getter, Setter
     @action
     setConferenceProducts = (conferenceProducts: ConferenceProductType[]) => {
         this.conferenceProducts = conferenceProducts
+    }
+
+    @action
+    setMyTickets = (myTickets: TicketNode[]) => {
+        this.myTickets = myTickets
     }
 
     @action
@@ -138,6 +145,7 @@ export class TicketStore {
     initialize = async () => {
         if (this.isInitialized) return
         await this.retrieveConferenceProducts()
+        await this.retrieveMyTickets()
         this.isInitialized = true
     }
 
@@ -159,8 +167,14 @@ export class TicketStore {
 
     @action
     retrieveConferenceProducts = async () => {
-        const { data } = await getConferenceProducts(client)({})
-        this.setConferenceProducts(data.conferenceProducts as ConferenceProductType[])
+      const { data } = await getConferenceProducts(client)({})
+      if (data) this.setConferenceProducts(data.conferenceProducts as ConferenceProductType[])
+    }
+
+    @action
+    retrieveMyTickets = async () => {
+      const { data } = await getMyTickets(client)({})
+      this.setMyTickets(data.myTickets as TicketNode[])
     }
 
     @action
