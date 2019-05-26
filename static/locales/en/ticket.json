@@ -1,0 +1,98 @@
+{
+    "buy": "Buy",
+    "pay": "Pay",
+    "agree": "Agree",
+    "ticket": "ticket",
+    "back": "back",
+    "buying": "Buy",
+    "paying": "Pay",
+    "closed": "Closed",
+    "soldout": "Sold Out",
+    "fromStartDate": "From {{startDate}}",
+    "agreeToOptions": "I confirm the goods, the price and the agree to the purchase.",
+    "agreeToTerms": "I agree to the terms above.",
+    "terms": "We promise to participate in the event in a manner that respects each other in accordance with the Code of Conduct. Participation may be restricted if it is determined that there is a serious violation of the Code of Conduct and threats to others, in which case the ticket purchased cannot be refunded.",
+    "error": {
+        "noOptionSelected": "Please select a product option",
+        "notAgreeToOptions": "Please agree to the purchase",
+        "notAgreeToTerms": "Please agree to the terms"
+    },
+    "purchased": "Purchased",
+    "purchaseNotAvailable": "Not available",
+    "overview": {
+        "pageTitle": "Tickets",
+        "title": "Ticket",
+        "description": "Pycon KR 2019 has various types of tickets including Conference, Tutorial, Youngcoder etc.."
+    },
+    "myTickets": {
+        "headerTitle": "My Ticket :: PyCon Korea 2019",
+        "pageTitle": "My Ticket",
+        "alert": "Canceled tickets are not valid. Therefore, it can not be used for entry.",
+        "description": "Check the detail of my purchased/canceled tickets."
+    },
+    "conference": {
+        "pageTitle": "Conference Ticket",
+        "title": "Conference Ticket",
+        "ticket": "Conference Ticket",
+        "description": "It is the ticket that can enter the two-day conference of the main event of PyCon Korea on 18-19 (Sat-Sun) August.",
+        "alert1": "Conference ticket includes Presentation Session, Sponsor Booth, Lightning Talk, Open Space.",
+        "alert2": "Conference ticket It does not include tutorials, sprints, young coder, and child care.",
+        "general": {
+            "title": "General"
+        },
+        "earlybird": {
+            "title": "Earlybird"
+        },
+        "patron": {
+            "title": "Patron",
+            "minimumPriceWarning": "Patron ticket price can be adjustable with at least {{price}} ₩"
+        },
+        "option": {
+            "tshirtSize": "T-shirt size",
+            "selectTshirtSize": "Select T-shirt size"
+        }
+    },
+    "tutorial": {
+        "pageTitle": "Tutorial Ticket",
+        "title": "Tutorial Ticket",
+        "description": "Description of Tutorial"
+    },
+    "sprint": {
+        "pageTitle": "Sprint Ticket",
+        "title": "Sprint Ticket",
+        "description": "Description of Sprint"
+    },
+    "youngcoder": {
+        "pageTitle": "Youngcoder Ticket",
+        "title": "Youngcoder Ticket",
+        "description": "Description of Youngcoder"
+    },
+    "childcare": {
+        "pageTitle": "Childcare Ticket",
+        "title": "Childcare Ticket",
+        "description": "Description of Childcare"
+    },
+    "payment": {
+        "pageTitle": "Ticket Payment",
+        "title": "Ticket Payment",
+        "description": "Please fill in the form for proceeding a payment",
+        "paymentInfo": {
+            "title": "Payment Information",
+            "ticketTypeTitle": "Ticket Payment Type",
+            "priceTitle": "Price",
+            "currency": "KRW"
+        },
+        "creditCardInfo": {
+            "title": "Creditcard Information",
+            "creditCardTypeLabel": "Domestic/Foreign Card",
+            "domesticLabel": "Domesitc",
+            "foreignLabel": "Foreign",
+            "cardNumberTitle": "Creditcard Number",
+            "cardNumberPlaceholder": "Without -",
+            "expiryLabel": "Expiry Month/Year",
+            "birthLabel": "Birth Date",
+            "birthPlaceholder": "YYYYMMDD",
+            "pwd2digitLabel": "Password"
+        }
+    }
+}

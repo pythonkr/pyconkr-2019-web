@@ -7,6 +7,10 @@
       "schedule": "2019.08.15(Thu)-18(Sun)",
       "scheduleWithNameAndVenue": "PyCon Korea 2019: 8.15(Thu)-18(Sun), Coex Grand Ballroom",
       "venue": "Coex Grand Ballroom, Seoul",
+      "earlybirdAndPatronTicketOpen": "Earlybird/Patron Ticket Open",
+      "ragularTicketOpen": "Regular Ticket Open",
+      "TutorialTicketOpen": "Tutorial Ticket Open",
+      "SprintTicketOpen": "Sprint Ticket Open",
       "sprint": {
         "name": "Sprint",
         "schedule": "August 15-16",
@@ -73,7 +77,8 @@
     "sponsor": {
       "root": "Sponsor",
       "prospectus": "Sponsor Prospectus",
-      "invitation": "Sponsor Invitation"
+      "invitation": "Sponsor Invitation",
+      "patron": "Patrons"
     },
     "info": {
       "login": "Login",
@@ -81,6 +86,15 @@
       "root": "My Info",
       "history": "Proposal/Sponsor History",
       "profile": "My Profile"
+    },
+    "ticket": {
+      "overview": "Overview",
+      "myTickets": "My Tickets",
+      "conference": "Conference",
+      "tutorial": "Tutorial",
+      "sprint": "Sprint",
+      "youngcoder": "Youngcoder",
+      "childcare": "Childcare"
     }
   },
   "account": {
@@ -442,6 +456,48 @@
         "venue": "Coex Grand Ballroom 2F"
       },
       "proposeButton": "Propose a tutorial"
+    }
+  },
+  "ticket": {
+    "overview": {
+      "pageTitle": "티켓 종류",
+      "title": "티켓 종류",
+      "description": "파이콘 한국에는 발표 세션을 포함한 이틀 간의 컨퍼런스, 튜토리얼, 영코더 등 다양한 행사가 있습니다."
+    },
+    "myTickets": {
+      "pageTitle": "내 티켓",
+      "title": "내 티켓",
+      "description": "내가 구매한/취소한 티켓 내역을 확인합니다."
+    },
+    "myTicket": {
+      "pageTitle": "티켓 상세",
+      "title": "티켓 상세",
+      "description": "내가 구매한/취소한 티켓의 상세 내역을 확인합니다."
+    },
+    "conference": {
+      "pageTitle": "컨퍼런스 티켓",
+      "title": "컨퍼런스 티켓",
+      "description": "파이콘 한국의 메인 행사인 8월 18-19일(토-일) 이틀 간의 컨퍼런스에 입장할 수 있는 티켓입니다."
+    },
+    "tutorial": {
+      "pageTitle": "튜토리얼 티켓",
+      "title": "튜토리얼 티켓",
+      "description": "튜토리얼 설명"
+    },
+    "sprint": {
+      "pageTitle": "스프린트 티켓",
+      "title": "스프린트 티켓",
+      "description": "스프린트 설명"
+    },
+    "youngcoder": {
+      "pageTitle": "영코더 티켓",
+      "title": "영코더 티켓",
+      "description": "영코더 설명"
+    },
+    "childcare": {
+      "pageTitle": "아이돌봄 티켓",
+      "title": "아이돌봄 티켓",
+      "description": "아이돌봄 설명"
     }
   },
   "sponsor": {

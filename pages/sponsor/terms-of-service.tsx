@@ -29,6 +29,9 @@ export default class ProposingATalk extends React.Component {
             <Li><IntlText intlKey='termOfService.paragraph2-1'>
               후원사는 행사 홈페이지를 통해 후원신청서를 제출하여야 하며, 파이콘의 승인을 통지받은 날로부터 14일 이내에 후원신청 금액을 파이콘이 정한 계좌에 일시불로 지급해야 합니다. 단, 후원사가 지급기한 연장에 대한 정당한 사유를 들어 연장을 신청한 경우 파이콘은 해당 신청을 승인할 수 있습니다.
             </IntlText></Li>
+            <Li><IntlText intlKey='termOfService.paragraph2-3'>
+              파이콘이 승인을 통지한 날 해당 후원등급의 잔여 구좌가 감소됩니다. 입금 기한이 지나 신청이 취소된 경우 잔여 구좌가 다시 증가됩니다.
+            </IntlText></Li>
             <Li><IntlText intlKey='termOfService.paragraph2-2'>
               후원금 지급의 최종 기한은 2019. 7. 31. 이며 제1항에 따른 연장 신청이 승인된 경우에도 이와 같습니다.
             </IntlText></Li>

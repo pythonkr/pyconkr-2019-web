@@ -329,6 +329,7 @@ ${Ol} > & {
 /********************************* Form ***********************************/
 
 export const AgreementFieldset = styled.fieldset``
+export const PaymentInput = styled.input``
 export const SelectWrapper = styled.div`
 position: relative;
 
@@ -393,7 +394,7 @@ form label {
     padding-left: 5px;
     font-size: 10px;
     top: 6px;
-    
+
     @media (max-width: ${mobileWidth}) {
       position: unset;
     }
@@ -407,6 +408,7 @@ input[type=file] {
 }
 
 input[type=text],
+input[type=password],
 input[type=email],
 input[type=tel],
 input[type=url],
@@ -572,6 +574,14 @@ ${AgreementFieldset} {
   }
 }
 
+${PaymentInput} {
+width: 80px;
+textAlign: center;
+font-size: 20px;
+letter-spacing: 3px;
+margin-right: 10px;
+}
+
 .full {
     width: 100%;
 }
@@ -579,5 +589,4 @@ ${AgreementFieldset} {
 .half {
     width: 50%;
 }
-
 `

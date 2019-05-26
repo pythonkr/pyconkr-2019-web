@@ -2,7 +2,7 @@
 import { H1, Paragraph } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
 import ContributionTableRow from 'components/molecules/ContributionTableRow'
-import DefaultTable, { Contribution } from 'components/organisms/ContributionTable'
+import DefaultTable, { Contribution } from 'components/organisms/DefaultTable'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import SponsorBanners from 'components/organisms/SponsorBanners'
@@ -37,11 +37,12 @@ class ContributionPage extends React.Component<PropsType> {
       if (!stores.cfpStore.isInitialized) await stores.cfpStore.initialize()
       if (!stores.sponsorStore.isInitialized) await stores.sponsorStore.initialize()
       if (!stores.scheduleStore.isInitialized) await stores.scheduleStore.initialize()
+      
     }
 
     renderContributionTableRow = () => {
       return (
-        this.contributions && this.contributions.map((contribution, index) => {
+        this.contributions && this.contributions.map((contribution) => {
               return (
               <ContributionTableRow
                   key={contribution.title}
@@ -52,6 +53,8 @@ class ContributionPage extends React.Component<PropsType> {
                   link={contribution.link || ''}
                   editLink={contribution.editLink || ''}
                   dateDescription={contribution.dateDescription}
+                  isMyContribution={contribution.isMyContribution}
+                  isProposalSubmitted={contribution.isProposalSubmitted || false}
               />
               )
           })
@@ -62,7 +65,7 @@ class ContributionPage extends React.Component<PropsType> {
     const { stores } = this.props
     const { sponsorStore, cfpStore, scheduleStore } = stores
     const { schedule } = scheduleStore
-
+    
     this.contributions = [{
       title: '발표 제안',
       intlKey: 'contribute.overview.table.talk',
@@ -70,7 +73,8 @@ class ContributionPage extends React.Component<PropsType> {
       closeDate: schedule.presentationProposalFinishAt,
       link: paths.contribute.proposingATalk,
       editLink: paths.account.editproposal.cfp,
-      isMyContribution: cfpStore.isProposalInitialized
+      isMyContribution: cfpStore.isProposalInitialized,
+      isProposalSubmitted: cfpStore.proposal ? cfpStore.proposal.submitted : false
     }, {
       title: '스폰서 제안',
       intlKey: 'contribute.overview.table.talk',
@@ -78,7 +82,8 @@ class ContributionPage extends React.Component<PropsType> {
       closeDate: schedule.sponsorProposalFinishAt,
       link: paths.sponsor.applicationForm,
       editLink: paths.account.editproposal.cfs,
-      isMyContribution: sponsorStore.isProposalInitialized
+      isMyContribution: sponsorStore.isProposalInitialized,
+      isProposalSubmitted: sponsorStore.proposal ? sponsorStore.proposal.submitted : false
     }, {
       title: '튜토리얼 제안',
       intlKey: 'contribute.overview.table.tutorial',
@@ -103,7 +108,6 @@ class ContributionPage extends React.Component<PropsType> {
         intlKey: 'common.status.conferenceDays'
       }
     }]
-
     return (
       <PageTemplate
         header={<Header title='제안 및 신청 내역 :: 파이콘 한국 2019' intlKey='contribution.pageTitle'/>}

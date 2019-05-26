@@ -1,0 +1,14 @@
+query getPatrons {
+  patrons {
+    id
+    name
+    nameKo
+    nameEn
+    bio
+    bioKo
+    bioEn
+    organization
+    image
+    avatarUrl
+  }
+}

@@ -15,21 +15,19 @@ import intl from 'react-intl-universal'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 import {
   ContentTableWrapper, H1, H2, Paragraph, ScheduleTable,
-  Section, TBody, Td, Tr
+  Section, Table, TBody, Td, Th, THead, Tr, alignCenter
 } from '../../components/atoms/ContentWrappers'
 import { IntlText } from '../../components/atoms/IntlText'
 import {paths} from '../../routes/paths'
 
-export type IndexPagePropsType = {
-  stores: StoresType;
-}
-
 @inject('stores')
 @observer
-export default class ApplicationForm extends React.Component<{ stores: StoresType }> {
+export default class ApplicationForm extends React.Component<{ 
+  stores: StoresType;
+}> {
   render() {
     const { stores } = this.props
-    const { authStore } = this.props.stores
+    const { authStore, sponsorStore } = this.props.stores
     const { sponsorProposalStartAt,  sponsorProposalFinishAt} = stores.scheduleStore.schedule
 
     const schedule = [{
@@ -48,8 +46,6 @@ export default class ApplicationForm extends React.Component<{ stores: StoresTyp
             sponsorBanners={<SponsorBanners />}
             footer={<Footer />}
         >
-          {/* <LocalNavigation list={sponsorMenu.submenu} /> */}
-
           <H1><IntlText intlKey='sponsor.event.invitation'>
             후원사 신청하기
           </IntlText></H1>
@@ -85,6 +81,36 @@ export default class ApplicationForm extends React.Component<{ stores: StoresTyp
               </ScheduleTable>
             </ContentTableWrapper>
           </Section>
+          <Section>
+          <H2>등급별 후원사 신청 현황</H2>
+          <Paragraph>아래 테이블의 각 등급별 후원사 신청 현황은 <strong style={{ fontWeight: 'bold' }}>"신청수/스폰서수"</strong> 로 표시되었습니다.</Paragraph>
+          <ContentTableWrapper>
+            <Table>
+              <THead>
+                <Tr>
+                  {sponsorStore.sponsorLevels.map(({id, name}) =>
+                    <Th key={id} className={alignCenter}>{name}</Th>
+                  )}
+                </Tr>
+              </THead>
+              <TBody>
+                <Tr>
+                  {sponsorStore.sponsorLevels.map(({id, acceptedCount, limit}) =>
+                    <Td key={id} className={alignCenter}>
+                      { acceptedCount === limit ? 
+                          '마감'
+                          : ( 
+                              limit < 100 ? 
+                                `${acceptedCount}/${limit}` 
+                                : acceptedCount)}
+                    </Td>
+                  )}
+                </Tr>
+              </TBody>
+            </Table>
+          </ContentTableWrapper>
+          </Section>
+
           <Section>
             <H2><IntlText intlKey='sponsor.prospectus.faqTitle'>후원사 FAQ</IntlText></H2>
             <Paragraph>

@@ -31,7 +31,7 @@ jobs:
             set -x
             docker-compose build --no-cache
             docker-compose up -d
-            sleep 100
+            sleep 180
             docker-compose logs
             curl -L http://localhost:3000/
 
@@ -47,7 +47,7 @@ jobs:
           command: |
             sudo pip install fabric
             fab -H ${DEPLOY_USER}@${DEPLOY_HOST} -p -e deploy-dev --sha1 $CIRCLE_SHA1
-            sleep 100
+            sleep 180
             curl -Lf ${URL_ROOT}/
       
   deploy-prod:
@@ -62,7 +62,7 @@ jobs:
           command: |
             sudo pip install fabric
             fab -H ${DEPLOY_USER}@${DEPLOY_HOST} -p -e deploy-master --sha1 $CIRCLE_SHA1
-            sleep 100
+            sleep 180
             curl -Lf ${URL_ROOT}/
 
 workflows:

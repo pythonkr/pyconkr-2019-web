@@ -58,7 +58,7 @@ export const SponsorPackageTables = () => <>
           <Td>{ intl.get('common.unit.ea', { number: '20' }).d('20매') }</Td>
           <Td>{ intl.get('common.unit.ea', { number: '15' }).d('15매') }</Td>
           <Td>{ intl.get('common.unit.ea', { number: '10' }).d('10매') }</Td>
-          <Td>{ intl.get('common.unit.ea', { number: '2' }).d('2매') }</Td>
+          <Td>{ intl.get('common.unit.ea', { number: '8' }).d('8매') }</Td>
         </Tr>
         <Tr>
           <Th>{ intl.get('sponsor.prospectus.packages.booth.header').d('부스') }</Th>

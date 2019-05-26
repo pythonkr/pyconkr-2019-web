@@ -1,5 +1,6 @@
 export const paths = {
   home: '/',
+  coc: '/coc',
   help: {
     base: '/help',
     faq: '/help/faq',
@@ -16,11 +17,25 @@ export const paths = {
     proposingATutorial: '/contribute/proposing-a-tutorial',
     proposalReview: '/contribute/proposal-review',
   },
+  ticket: {
+    base: '/ticket',
+    overview: '/ticket/overview',
+    myTickets: '/ticket/my-tickets',
+    myTicket: '/ticket/my-ticket',
+    receipt: '/ticket/receipt',
+    conference: '/ticket/conference',
+    tutorial: '/ticket/tutorial',
+    sprint: '/ticket/sprint',
+    youngcoder: '/ticket/youngcoder',
+    childcare: '/ticket/childcare',
+    payment: '/ticket/payment'
+  },
   sponsor: {
     base: '/sponsor',
     prospectus: '/sponsor/prospectus',
     applicationForm: '/sponsor/application-form',
     termsOfService: '/sponsor/terms-of-service',
+    patronList: '/sponsor/patrons'
   },
   account: {
     base: '/account',
@@ -122,6 +137,49 @@ export const contributionMenu: WithSubMenu = {
   ]
 }
 
+export const ticketMenu: WithSubMenu = {
+  title: '티켓',
+  intlKey: 'gnb.ticket.root',
+  basePath: paths.ticket.base,
+  submenu: [
+    {
+      title: '티켓 종류',
+      intlKey: 'gnb.ticket.overview',
+      link: paths.ticket.overview
+    },
+    {
+      title: '내 티켓',
+      intlKey: 'gnb.ticket.myTickets',
+      link: paths.ticket.myTickets
+    },
+    {
+      title: '컨퍼런스',
+      intlKey: 'gnb.ticket.conference',
+      link: paths.ticket.conference
+    },
+    {
+      title: '튜토리얼',
+      intlKey: 'gnb.ticket.tutorial',
+      link: paths.ticket.tutorial
+    },
+    {
+      title: '스프린트',
+      intlKey: 'gnb.ticket.sprint',
+      link: paths.ticket.sprint
+    },
+    {
+      title: '영코더',
+      intlKey: 'gnb.ticket.youngcoder',
+      link: paths.ticket.youngcoder
+    },
+    {
+      title: '아이돌봄',
+      intlKey: 'gnb.ticket.childcare',
+      link: paths.ticket.childcare
+    }
+  ]
+}
+
 export const sponsorMenu: WithSubMenu = {
   title: '후원',
   intlKey: 'gnb.sponsor.root',
@@ -136,6 +194,11 @@ export const sponsorMenu: WithSubMenu = {
       title: '후원사 신청',
       intlKey: 'gnb.sponsor.invitation',
       link: paths.sponsor.applicationForm,
+    },
+    {
+      title: '개인 후원자 목록',
+      intlKey: 'gnb.sponsor.patron',
+      link: paths.sponsor.patronList,
     }
   ]
 }

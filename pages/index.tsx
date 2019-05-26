@@ -17,6 +17,7 @@ import {
   wideContentWidth
 } from 'styles/layout'
 import { StoresType } from './_app'
+import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 
 const BannerSection = styled.section`
   height: 65vw;
@@ -76,7 +77,7 @@ const MainBannerInfoWrapper = styled.div`
   h1 {
     font-weight: 700;
     font-size: 1.4em;
-    margin-top: 2.2em;
+    margin-top: 4.4em;
   }
   p {
     font-size: 1.1em;
@@ -291,6 +292,7 @@ class Index extends React.Component<{ stores: StoresType }> {
   }
 
   render() {
+    const { schedule } = this.props.stores.scheduleStore
     return (
       <>
         <Header title='파이콘 한국 2019' intlKey='constant.pyconKorea.name'/>
@@ -315,6 +317,12 @@ class Index extends React.Component<{ stores: StoresType }> {
               <IntlText intlKey='constant.pyconKorea.schedule'>
                 2019.08.15(목)-18(일)
               </IntlText>
+            </p>
+            <p>
+              <strong style={{ fontWeight: 'bold' }}>
+                {formatDateInWordsWithWeekdayAndTime(schedule.earlybirdTicketStartAt) + ' '}
+              </strong> 
+              <IntlText intlKey="constant.pyconKorea.earlybirdAndPatronTicketOpen">얼리버드/개인후원 티켓 오픈</IntlText>
             </p>
           </MainBannerInfoWrapper>
         </BannerSection>
@@ -398,7 +406,7 @@ class Index extends React.Component<{ stores: StoresType }> {
               <p>
                 <IntlText intlKey='home.conferenceDescription'>
                   파이썬 사용 사례와 지식을 공유하는 50여 개의 다양한 발표 세션이
-                  열립니다. 또 후원 기업 부스와 영코더, 라이트닝 토크, 열린 공간
+                  열립니다. 또 후원 기업 부스와 영코더, 라이트닝 토크, 열린공간
                   등 다양한 이벤트를 통해 다양한 참가자와 교류할 수 있습니다.
                 </IntlText>
               </p>

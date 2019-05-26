@@ -33,7 +33,7 @@ export class ProposalReview extends React.Component<PropsType> {
   }
 
   renderProposalReviewForm () {
-    const { stores, t } = this.props
+    const { stores } = this.props
     const isAuthStoreInitialized = stores.authStore.isInitialized
     const isLoggedIn = stores.authStore.loggedIn
 

@@ -2,7 +2,7 @@
 import styled from '@emotion/styled-base'
 import { Button } from 'components/atoms/Button'
 import { isBold, Td, Tr } from 'components/atoms/ContentWrappers'
-import { Contribution } from 'components/organisms/MyContribution/MyContributionTable'
+import { Contribution } from 'components/organisms/DefaultTable'
 import { differenceInCalendarDays, isFuture, isPast } from 'date-fns'
 import _ from 'lodash'
 import React from 'react'
@@ -86,7 +86,7 @@ export default class MyContributionTableRow extends React.Component<PropsType> {
 
     getShowDetailButtonTitle() {
         const { closeDate, isProposalSubmitted, isMyContribution } = this.props
-
+        
         if (isMyContribution) {
             const isFinished = closeDate && isPast(closeDate)
             const isProposalExist = !_.isNil(isProposalSubmitted)
