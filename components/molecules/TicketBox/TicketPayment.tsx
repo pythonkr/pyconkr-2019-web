@@ -11,6 +11,7 @@ type PropsType = {
     buttonTitle: string;
     disabled: boolean;
     minimunPrice: number;
+    isPaid: boolean;
     onPayTicket(): void;
     setPrice(price: number): void;
 }
@@ -100,7 +101,7 @@ class TicketPayment extends React.Component<PropsType> {
     }
 
     render() {
-        const { price, isEditablePrice, buttonTitle, disabled } = this.props
+        const { price, isEditablePrice, buttonTitle, disabled, isPaid } = this.props
         const { adjustedPrice } = this.state
 
         return (
@@ -114,11 +115,11 @@ class TicketPayment extends React.Component<PropsType> {
                             min={price}
                             value={adjustedPrice.toLocaleString()}
                             onChange={this.onChangeAdjustedPrice}
-                            // disabled={disabled}
+                            disabled={disabled}
                         />
                        </p>
                 }
-                {!disabled
+                {!disabled && isPaid
                     ? <button onClick={this.onPay}>{buttonTitle}</button>
                     : <button className='disabledButton' disabled={disabled}>{buttonTitle}</button>
                 }

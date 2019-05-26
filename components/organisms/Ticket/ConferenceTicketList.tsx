@@ -3,7 +3,9 @@ import { Loading } from 'components/atoms/Loading'
 import TicketBox from 'components/molecules/TicketBox'
 import ConferenceTicketOption from 'components/molecules/TicketBox/ConferenceTicketOption'
 import i18next from 'i18next'
-import { TicketTypeNode } from 'lib/apollo_graphql/__generated__/globalTypes'
+import { TicketStatus, TicketTypeNode } from 'lib/apollo_graphql/__generated__/globalTypes'
+import _ from 'lodash'
+import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { RouterProps } from 'next/router'
 import { StoresType } from 'pages/_app'
@@ -17,9 +19,15 @@ type PropsType = {
 
 @observer
 class ConferenceTicketList extends React.Component<PropsType> {
+  state = {
+    paidProductId: null
+  }
+
   componentDidMount () {
     const { stores } = this.props
     stores.ticketStore.cleanupConferenceTicketOptions()
+    const myConferenceTicket = toJS(stores.ticketStore.getMyConferenceTickets()[0])
+    if (myConferenceTicket) this.setState({ paidProductId: myConferenceTicket.product.id })
   }
  renderTicketBoxList = () => {
     const { stores, router, t } = this.props

@@ -1,4 +1,4 @@
-import { PaymentInput } from 'lib/apollo_graphql/__generated__/globalTypes'
+import { PaymentInput, TicketStatus, TicketTypeNode } from 'lib/apollo_graphql/__generated__/globalTypes'
 import { client } from 'lib/apollo_graphql/client'
 import { buyTicket } from 'lib/apollo_graphql/mutations/buyTicket'
 import { ConferenceProductType, getConferenceProducts } from 'lib/apollo_graphql/queries/getConferenceProducts'
@@ -58,6 +58,14 @@ export class TicketStore {
     @observable currentTicket: MyTicketNode | null = null
 
     // Getter, Setter
+    @action
+    getMyConferenceTickets = () => {
+      return this.myTickets.filter(myTicket =>
+        myTicket.status === TicketStatus.PAID &&
+        myTicket.product.type === TicketTypeNode.CONFERENCE
+      )
+    }
+
     @action
     setConferenceProducts = (conferenceProducts: ConferenceProductType[]) => {
         this.conferenceProducts = conferenceProducts

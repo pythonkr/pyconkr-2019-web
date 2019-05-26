@@ -85,7 +85,7 @@ class TicketBox extends React.Component<PropsType, StatesType> {
   }
 
   renderTicketButtonTitle = () => {
-    const { step, startDate, endDate } = this.props
+    const { step, startDate, endDate, isPaid } = this.props
     const { isTicketStep } = this.state
     const isBuying = isTicketStep && step === 1
     const isBeforeOpening = startDate && isFuture(startDate)
@@ -93,13 +93,15 @@ class TicketBox extends React.Component<PropsType, StatesType> {
     // #TODO: 번역 필요
     if (isBeforeOpening) return `${moment(startDate).format('MM-DD hh:mm')} 부터`
     if (isFinished) return `마감`
+    if (isPaid) return '구매한 티켓'
+    if (!isPaid) return '구매 불가'
 
     if (isBuying) return '구매하기'
     else return '결제하기'
   }
 
   render() {
-      const { title, description, warning, price, isEditablePrice, options, step, setPrice, startDate, endDate } = this.props
+      const { title, description, warning, price, isEditablePrice, options, step, setPrice, startDate, endDate, isPaid } = this.props
       const { isTicketStep } = this.state
       const isBeforeOpening = startDate && isFuture(startDate)
       const isFinished = endDate && isPast(endDate)
@@ -124,6 +126,7 @@ class TicketBox extends React.Component<PropsType, StatesType> {
             setPrice={setPrice}
             disabled={disablePayment !== '' && disablePayment}
             minimunPrice={150000}
+            isPaid={isPaid}
           />
         </TicketBoxWrapper>
       )
