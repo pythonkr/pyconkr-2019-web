@@ -4,7 +4,7 @@ import { IntlText } from 'components/atoms/IntlText'
 import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
-import ConferenceTicketList from 'components/organisms/Ticket/ConferenceTicketList'
+import MyTicketList from 'components/organisms/Ticket/MyTicketList'
 import PageTemplate from 'components/templates/PageTemplate'
 import { inject, observer } from 'mobx-react'
 import { withRouter } from 'next/router'
@@ -37,8 +37,8 @@ export class MyTickets extends React.Component<PageDefaultPropsType> {
   }
 
   async componentDidMount() {
-    const { stores } = this.props
-    // TODO : my tickets 셋팅
+    const {stores} = this.props
+    if (!stores.ticketStore.isInitialized) stores.ticketStore.initialize()
   }
 
   render() {
@@ -56,7 +56,7 @@ export class MyTickets extends React.Component<PageDefaultPropsType> {
           <AlertBar text={t('ticket:myTickets.alert')} />
         </Section>
         <Section>
-          <ConferenceTicketList stores={stores} t={t} router={router}/>
+          <MyTicketList stores={stores} t={t} router={router}/>
         </Section>
         <Section>
           <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>

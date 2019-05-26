@@ -8,7 +8,7 @@ type PropsType = {
     warning: string;
 }
 
-const TicketDescriptionWrapper = styled.div`
+export const TicketDescriptionWrapper = styled.div`
     flex: 2;
     display: flex;
     flex-direction: column;
@@ -42,7 +42,7 @@ const TicketDescriptionWrapper = styled.div`
   }
 `
 
-const TicketWarning = styled.div`
+export const TicketWarning = styled.div`
     margin-top: auto;
     font-size: 15px;
     font-weight: bold;

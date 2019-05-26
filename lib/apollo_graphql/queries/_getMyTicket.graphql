@@ -17,10 +17,14 @@ query getMyTicket($id: ID!) {
       name
       nameKo
       nameEn
-      desc
       descKo
       descEn
+      warningKo
+      warningEn
+      isUniqueInType
       cancelableDate
+      startAt
+      finishAt
     }
     options
     createdAt

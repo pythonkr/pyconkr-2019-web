@@ -1,14 +1,8 @@
 query getMyTickets {
   myTickets {
     id
-    isDomesticCard
     amount
-    merchantUid
-    impUid
-    pgTid
-    receiptUrl
     paidAt
-    cancelReceiptUrl
     cancelledAt
     status
     product {
@@ -17,8 +11,15 @@ query getMyTickets {
       name
       nameKo
       nameEn
+      descKo
+      descEn
+      warningKo
+      warningEn
+      isUniqueInType
+      cancelableDate
+      startAt
+      finishAt
     }
-    options
     createdAt
     updatedAt
   }

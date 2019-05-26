@@ -9,23 +9,36 @@ import { TicketStatus, TicketTypeNode } from "./globalTypes";
 // ====================================================
 
 export interface getMyTicket_myTicket_product {
-  __typename: "MyTicketProductNode";
+  __typename: "TicketProductNode";
   id: string;
   type: TicketTypeNode | null;
   name: string | null;
   nameKo: string | null;
   nameEn: string | null;
-  desc: string;
   descKo: string | null;
   descEn: string | null;
+  warningKo: string | null;
+  warningEn: string | null;
+  /**
+   * 같은 타입간에 하나만 구매가 가능한지 여부를 나타냅니다. 대표적으로 컨퍼런스티켓이 이에 해당합니다.
+   */
+  isUniqueInType: boolean;
   /**
    * 결재 취소가 가능한 기한입니다. 이 일시 이후에는 취소가 불가합니다.
    */
   cancelableDate: any | null;
+  /**
+   * 행사가 시작되는 일시입니다.
+   */
+  startAt: any | null;
+  /**
+   * 행사가 종료되는 일시입니다.
+   */
+  finishAt: any | null;
 }
 
 export interface getMyTicket_myTicket {
-  __typename: "MyTicketNode";
+  __typename: "TicketNode";
   /**
    * The ID of the object.
    */
