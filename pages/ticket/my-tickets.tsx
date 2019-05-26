@@ -9,10 +9,10 @@ import PageTemplate from 'components/templates/PageTemplate'
 import { inject, observer } from 'mobx-react'
 import { withRouter } from 'next/router'
 import React from 'react'
-import { withNamespaces } from '../../i18n'
-import { paths, ticketMenu } from 'routes/paths'
+import { ticketMenu } from 'routes/paths'
 import { DateDTO } from 'types/common'
 import { PageDefaultPropsType } from 'types/PageDefaultPropsType'
+import { withNamespaces } from '../../i18n'
 
 export type IntlTextType = {
   intlKey: string;
@@ -37,8 +37,8 @@ export class MyTickets extends React.Component<PageDefaultPropsType> {
   }
 
   async componentDidMount() {
-    const {stores} = this.props
-    if (!stores.ticketStore.isInitialized) stores.ticketStore.initialize()
+    const { stores } = this.props
+    if (!stores.ticketStore.isInitialized) await stores.ticketStore.initialize()
   }
 
   render() {

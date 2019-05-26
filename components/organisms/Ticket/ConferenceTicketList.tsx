@@ -48,7 +48,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
     const ticketSteps = [
       {
         ticketStepState: earlyBirdTicketStep,
-        ticketOption: earlyBirdTicketOption,
+        tshirtsize: earlyBirdTicketOption && earlyBirdTicketOption.tshirtsize,
         isTicketAgreed: earlyBirdTicketOptionAgreed,
         setTicketStepState: setEarlyBirdTicketStep,
         setTicketOption: setEarlyBirdTicketOption,
@@ -58,7 +58,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
       },
       {
         ticketStepState: patronTicketStep,
-        ticketOption: patronTicketOption,
+        tshirtsize: patronTicketOption && patronTicketOption.tshirtsize,
         isTicketAgreed: patronTicketOptionAgreed,
         setTicketStepState: setPatronTicketStep,
         setTicketOption: setPatronTicketOption,
@@ -77,7 +77,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
       const {
         ticketStepState,
         setTicketStepState, setTicketOption, setTicketOptionAgreed,
-        ticketOption, isTicketAgreed,
+        tshirtsize, isTicketAgreed,
         validateTicket, setTicket
       } = ticketSteps[index]
       const options = type === TicketTypeNode.CONFERENCE && (
@@ -85,7 +85,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
           t={t}
           title={title || ''}
           id={id}
-          ticketOption={ticketOption}
+          tshirtsize={tshirtsize || ''}
           isTicketAgreed={isTicketAgreed}
           onCancel={() => setTicketStepState(1)}
           onChangeOption={setTicketOption}
