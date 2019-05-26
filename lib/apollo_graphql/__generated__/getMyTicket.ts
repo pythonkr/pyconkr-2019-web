@@ -2,13 +2,28 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { TicketTypeNode } from "./globalTypes";
+import { TicketStatus, TicketTypeNode } from "./globalTypes";
 
 // ====================================================
-// GraphQL query operation: getConferenceProducts
+// GraphQL query operation: getMyTicket
 // ====================================================
 
-export interface getConferenceProducts_conferenceProducts {
+export interface getMyTicket_myTicket_product_owner_profile {
+  __typename: "ProfileNode";
+  name: string;
+  nameKo: string | null;
+  nameEn: string | null;
+  email: string;
+  image: any | null;
+  avatarUrl: string;
+}
+
+export interface getMyTicket_myTicket_product_owner {
+  __typename: "UserNode";
+  profile: getMyTicket_myTicket_product_owner_profile | null;
+}
+
+export interface getMyTicket_myTicket_product {
   __typename: "TicketProductNode";
   id: string;
   type: TicketTypeNode | null;
@@ -18,9 +33,6 @@ export interface getConferenceProducts_conferenceProducts {
   desc: string;
   descKo: string | null;
   descEn: string | null;
-  warning: string;
-  warningKo: string | null;
-  warningEn: string | null;
   /**
    * 행사가 시작되는 일시입니다.
    */
@@ -33,6 +45,7 @@ export interface getConferenceProducts_conferenceProducts {
    * 판매할 티켓의 총 개수입니다.
    */
   total: number;
+  owner: getMyTicket_myTicket_product_owner | null;
   price: number;
   /**
    * 개인후원과 같이 가격을 상향조정할 수 있는지 여부를 나타냅니다.
@@ -66,6 +79,39 @@ export interface getConferenceProducts_conferenceProducts {
   purchaseCount: number | null;
 }
 
-export interface getConferenceProducts {
-  conferenceProducts: (getConferenceProducts_conferenceProducts | null)[] | null;
+export interface getMyTicket_myTicket {
+  __typename: "TicketNode";
+  isDomesticCard: boolean;
+  /**
+   * 아이엠포트를 통해 결재한 가격입니다.
+   */
+  amount: number;
+  /**
+   * 파이콘 한국에서 발행하는 주문번호입니다. 영수증에 출력됩니다.
+   */
+  merchantUid: string;
+  /**
+   * 결재 영수증 URL입니다. 이 값은 카드 결제 내역을 보여줄 때에 사용됩니다.
+   */
+  receiptUrl: string | null;
+  paidAt: any | null;
+  /**
+   * 결재 취소 영수증 URL입니다. 이 값은 카드 결제 취소 내역을 보여줄 때에 사용됩니다.
+   */
+  cancelReceiptUrl: string;
+  cancelledAt: any | null;
+  status: TicketStatus;
+  product: getMyTicket_myTicket_product;
+  options: any;
+}
+
+export interface getMyTicket {
+  /**
+   * The ID of the object
+   */
+  myTicket: getMyTicket_myTicket | null;
+}
+
+export interface getMyTicketVariables {
+  id: string;
 }

@@ -25,6 +25,9 @@ export interface buyTicket_buyTicket_ticket_product {
 
 export interface buyTicket_buyTicket_ticket {
   __typename: "TicketNode";
+  /**
+   * The ID of the object.
+   */
   id: string;
   isDomesticCard: boolean;
   /**
