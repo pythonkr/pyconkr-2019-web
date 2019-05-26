@@ -32,6 +32,7 @@ const initialTicketInput = {
   expiry: '',
   birth: '',
   pwd2digit: '',
+  amount: 0,
   buyerEmail: '',
   buyerName: '',
   buyerTel: ''
@@ -225,6 +226,7 @@ export class TicketStore {
     @action
     payTicket = async () => {
       try {
+        this.ticketInput.amount = this.price
         return await buyTicket(client)({
           options: this.options,
           payment: toJS(this.ticketInput),
