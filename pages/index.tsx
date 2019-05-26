@@ -405,7 +405,7 @@ class Index extends React.Component<{ stores: StoresType }> {
               <p>
                 <IntlText intlKey='home.conferenceDescription'>
                   파이썬 사용 사례와 지식을 공유하는 50여 개의 다양한 발표 세션이
-                  열립니다. 또 후원 기업 부스와 영코더, 라이트닝 토크, 열린 공간
+                  열립니다. 또 후원 기업 부스와 영코더, 라이트닝 토크, 열린공간
                   등 다양한 이벤트를 통해 다양한 참가자와 교류할 수 있습니다.
                 </IntlText>
               </p>

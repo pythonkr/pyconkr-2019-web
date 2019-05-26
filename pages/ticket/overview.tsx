@@ -83,7 +83,7 @@ export class Ticket extends React.Component<PropsType> {
       closeDate: schedule.youngcoderTicketFinishAt,
       link: paths.ticket.youngcoder
     }, {
-      title: '아이 돌봄',
+      title: '아이돌봄',
       intlKey: 'ticket:childcare.title',
       openDate: schedule.babycareTicketStartAt,
       closeDate: schedule.babycareTicketFinishAt,
