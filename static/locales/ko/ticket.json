@@ -3,7 +3,17 @@
     "pay": "결제",
     "ticket": "티켓",
     "back": "뒤로",
+    "buying": "구매하기",
+    "paying": "결제하기",
+    "closed": "마감",
+    "fromStartDate": "{{startDate}} 부터",
     "agree": "상품과 가격, 유의사항을 확인하였으며 구매에 동의합니다.",
+    "error": {
+        "noOptionSelected": "상품 옵션을 선택하지 않으셨습니다.",
+        "notAgreed": "상품 구매에 동의하지 않으셨습니다."
+    },
+    "purchased": "구매완료",
+    "purchaseNotAvailable": "구매불가",
     "overview": {
         "pageTitle": "티켓 종류",
         "title": "티켓 종류",
@@ -29,7 +39,8 @@
             "title": "컨퍼런스 얼리버드"
         },
         "patron": {
-            "title": "컨퍼런스 개인 후원"
+            "title": "컨퍼런스 개인 후원",
+            "minimumPriceWarning": "후원 티켓 가격은 최소 {{price}} 이어야 합니다."
         },
         "option": {
             "tshirtSize": "티셔츠 사이즈",

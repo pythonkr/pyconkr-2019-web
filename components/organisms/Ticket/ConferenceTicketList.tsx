@@ -99,6 +99,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
 
       return (
         <TicketBox
+          t={t}
           key={`ticketBox_${id}`}
           title={title || ''}
           description={desc || ''}
