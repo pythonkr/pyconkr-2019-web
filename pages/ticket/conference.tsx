@@ -7,6 +7,7 @@ import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import ConferenceTicketList from 'components/organisms/Ticket/ConferenceTicketList'
 import PageTemplate from 'components/templates/PageTemplate'
+import { withNamespaces } from '../../i18n'
 import { inject, observer } from 'mobx-react'
 import { withRouter } from 'next/router'
 import React from 'react'
@@ -29,7 +30,7 @@ export type Schedule = {
 @(withRouter as any)
 @inject('stores')
 @observer
-export default class ProposingATalk extends React.Component<PageDefaultPropsType> {
+export class ConferenceTicket extends React.Component<PageDefaultPropsType> {
   async componentDidMount() {
     const { stores } = this.props
     if (!stores.ticketStore.isInitialized) stores.ticketStore.initialize()
@@ -44,22 +45,18 @@ export default class ProposingATalk extends React.Component<PageDefaultPropsType
         footer={<Footer />}
       >
         <LocalNavigation list={ticketMenu.submenu} />
-        <H1><IntlText intlKey='ticket.conference.title'>
-          컨퍼런스 티켓
-        </IntlText></H1>
+        <H1>{t('ticket:conference.pageTitle')}</H1>
         <StatusBar
-          text={'컨퍼런스 티켓'}
+          text={t('ticket:conference.ticket')}
           actionIntlKey='common.apply'
           link={paths.ticket.conference}
           openDate={stores.scheduleStore.schedule.conferenceTicketStartAt}
           closeDate={stores.scheduleStore.schedule.conferenceFinishAt}
         />
-        <Paragraph><IntlText intlKey='ticket.conference.description'>
-          파이콘 한국의 메인 행사인 8월 18-19일(토-일) 이틀 간의 컨퍼런스에 입장할 수 있는 티켓입니다.
-        </IntlText></Paragraph>
+        <Paragraph>{t('ticket:conference.description')}</Paragraph>
         <Section>
-          <AlertBar text={'발표 세션 , 후원사 부스, 라이트닝 토크, 열린 세션을 포함합니다.'} />
-          <AlertBar text={'튜토리얼, 스프린트, 영코더, 아이 돌봄은 포함하지 않습니다.'} />
+          <AlertBar text={t('ticket:conference.alert1')} />
+          <AlertBar text={t('ticket:conference.alert2')} />
         </Section>
         <Section>
           <ConferenceTicketList stores={stores} t={t} router={router}/>
@@ -72,3 +69,5 @@ export default class ProposingATalk extends React.Component<PageDefaultPropsType
     )
   }
 }
+
+export default withNamespaces(['ticket'])(ConferenceTicket)
