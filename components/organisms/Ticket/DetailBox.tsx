@@ -1,6 +1,6 @@
 import {observer} from 'mobx-react'
 import * as React from 'react'
-import {TicketNode} from 'lib/stores/Ticket/TicketNode'
+import { TicketNode } from 'lib/apollo_graphql/queries/getMyTickets'
 import {
   ContentTableWrapper,
   TBody, Table,
@@ -9,6 +9,7 @@ import {
   Tr
 } from '../../atoms/ContentWrappers'
 import { paths } from 'routes/paths'
+import {formatDateInWordsWithWeekdayAndTime} from 'utils/formatDate'
 
 type PropsType = {
   ticket: TicketNode;
@@ -19,7 +20,7 @@ class DetailBox extends React.Component<PropsType> {
   render() {
     const {ticket} = this.props
     const {id, status, amount, paidAt, options, product} = ticket
-    const {type, nameKo, nameEn, descKo, descEn, cancelableDate} = product
+    const {type, nameKo, nameEn, descKo, descEn, cancelableDate, startAt, finishAt} = product
     const parsedOptions = JSON.parse(options)
 
     return (
@@ -39,12 +40,16 @@ class DetailBox extends React.Component<PropsType> {
               <Td>{descKo}<br/>{descEn}</Td>
             </Tr>
             <Tr>
+              <Th>행사 기간</Th>
+              <Td>{formatDateInWordsWithWeekdayAndTime(startAt)}-{formatDateInWordsWithWeekdayAndTime(finishAt)}</Td>
+            </Tr>
+            <Tr>
               <Th>가격</Th>
-              <Td>{amount}</Td>
+              <Td>{`₩ ${amount.toLocaleString()}`}</Td>
             </Tr>
             <Tr>
               <Th>구매일</Th>
-              <Td>{paidAt}</Td>
+              <Td>{formatDateInWordsWithWeekdayAndTime(paidAt)}</Td>
             </Tr>
             <Tr>
               <Th>취소기한</Th> {/* cancelat 이 있으면 취소일*/}
