@@ -95,31 +95,31 @@ const tshirtOptions = [
     text: 'Select T-shirt size'
   },
   {
-    value: 'S',
+    value: 'S(85)',
     text: 'S(85)'
   },
   {
-    value: 'M',
+    value: 'M(90)',
     text: 'M(90)'
   },
   {
-    value: 'L',
+    value: 'L(95)',
     text: 'L(95)'
   },
   {
-    value: 'XL',
+    value: 'XL(100)',
     text: 'XL(100)'
   },
   {
-    value: '2XL',
+    value: '2XL(105)',
     text: '2XL(105)'
   },
   {
-    value: '3XL',
+    value: '3XL(110)',
     text: '3XL(110)'
   },
   {
-    value: '4XL',
+    value: '4XL(115)',
     text: '4XL(115)'
   },
 ]
