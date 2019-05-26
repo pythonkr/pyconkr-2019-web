@@ -93,14 +93,14 @@ class TicketBox extends React.Component<PropsType, StatesType> {
     const isBeforeOpening = startDate && isFuture(startDate)
     const isFinished = endDate && isPast(endDate)
     // #TODO: 번역 필요
-    if (isBeforeOpening) return `${moment(startDate).format('MM-DD hh:mm')} 부터`
-    if (isFinished) return `마감`
+    if (isBeforeOpening) return `Available at ${moment(startDate).format('MM-DD hh:mm')}`
+    if (isFinished) return `Sold Out`
 
     if (!_.isNull(isPaid)) {
-      return isPaid ? '구매완료' : '구매불가'
+      return isPaid ? 'Completed' : 'Unable to Complete'
     }
-    if (isBuying) return '구매하기'
-    else return '결제하기'
+    if (isBuying) return 'Register'
+    else return 'Pay'
   }
 
   render() {
