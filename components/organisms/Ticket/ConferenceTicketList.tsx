@@ -53,8 +53,6 @@ class ConferenceTicketList extends React.Component<PropsType> {
       }
     ]
 
-    if (!conferenceProducts)return null
-
     return conferenceProducts.map((conferenceProduct, index) => {
       const { id, nameKo, nameEn, descKo, descEn, warningKo, warningEn, price, isEditablePrice, type, startAt, finishAt } = conferenceProduct
       const isLanguageKorean = i18next.language === 'ko'
