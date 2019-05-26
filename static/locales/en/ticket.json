@@ -3,7 +3,17 @@
     "pay": "Pay",
     "ticket": "ticket",
     "back": "back",
+    "buying": "Buy",
+    "paying": "Pay",
+    "closed": "Closed",
+    "fromStartDate": "From {{startDate}}",
     "agree": "I confirm the goods, the price and the agree to the purchase.",
+    "error": {
+        "noOptionSelected": "Please select a product option",
+        "notAgreed": "Please agree to the purchase"
+    },
+    "purchased": "Purchased",
+    "purchaseNotAvailable": "Not available",
     "overview": {
         "pageTitle": "Tickets",
         "title": "Ticket",
@@ -29,7 +39,8 @@
             "title": "Earlybird"
         },
         "patron": {
-            "title": "Patron"
+            "title": "Patron",
+            "minimumPriceWarning": "Patron ticket price can be adjustable with at least {{price}} ₩"
         },
         "option": {
             "tshirtSize": "T-shirt size",

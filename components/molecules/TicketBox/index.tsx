@@ -5,6 +5,7 @@ import styled from '@emotion/styled'
 import TicketDescription from 'components/molecules/TicketBox/TicketDescription'
 import TicketPayment from 'components/molecules/TicketBox/TicketPayment'
 import { isFuture, isPast } from 'date-fns'
+import i18next from 'i18next'
 import { VALIDATION_ERROR_TYPE } from 'lib/stores/Ticket/TicketStore'
 import _ from 'lodash'
 import { observer } from 'mobx-react'
@@ -14,6 +15,7 @@ import { paths } from 'routes/paths'
 import { mobileWidth } from 'styles/layout'
 
 type PropsType = {
+  t: i18next.TFunction;
   title: string;
   description: string;
   warning: string;
@@ -65,17 +67,17 @@ class TicketBox extends React.Component<PropsType, StatesType> {
   }
 
   onPayTicket = () => {
-    const { onValidate, setTicket, router } = this.props
+    const { onValidate, setTicket, router, t } = this.props
     const error = onValidate()
-    // #TODO: 번역 필요
+
     if (error === VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED) {
-      toast.error('상품 옵션을 선택하지 않으셨습니다.')
+      toast.error(t('ticket:error.noOptionSelected'))
 
       return
     }
 
     if (error === VALIDATION_ERROR_TYPE.NOT_AGREED) {
-      toast.error('상품 구매에 동의하지 않으셨습니다.')
+      toast.error(t('ticket:error.notAgreed'))
 
       return
     }
@@ -87,24 +89,24 @@ class TicketBox extends React.Component<PropsType, StatesType> {
   }
 
   renderTicketButtonTitle = () => {
-    const { step, startDate, endDate, isPaid } = this.props
+    const { step, startDate, endDate, isPaid, t } = this.props
     const { isTicketStep } = this.state
     const isBuying = isTicketStep && step === 1
     const isBeforeOpening = startDate && isFuture(startDate)
     const isFinished = endDate && isPast(endDate)
-    // #TODO: 번역 필요
-    if (isBeforeOpening) return `${moment(startDate).format('MM-DD hh:mm')} 부터`
-    if (isFinished) return `마감`
+
+    if (isBeforeOpening) return t('ticket:fromStartDate', { startDate: moment(startDate).format('MM-DD hh:mm') })
+    if (isFinished) return t('ticket:closed')
 
     if (!_.isNull(isPaid)) {
-      return isPaid ? '구매완료' : '구매불가'
+      return isPaid ? t('ticket:purchased') : t('ticket:purchaseNotAvailable')
     }
-    if (isBuying) return '구매하기'
-    else return '결제하기'
+    if (isBuying) return t('ticket:buying')
+    else return t('ticket:paying')
   }
 
   render() {
-      const { title, description, warning, price, isEditablePrice, options, step, setPrice, startDate, endDate, isPaid } = this.props
+      const { title, description, warning, price, isEditablePrice, options, step, setPrice, startDate, endDate, isPaid, t } = this.props
       const { isTicketStep } = this.state
       const isBeforeOpening = startDate && isFuture(startDate)
       const isFinished = endDate && isPast(endDate)
@@ -122,13 +124,14 @@ class TicketBox extends React.Component<PropsType, StatesType> {
             : options
           }
           <TicketPayment
+            t={t}
             price={price}
             buttonTitle={buttonTitle}
             isEditablePrice={isEditablePrice}
             onPayTicket={isTicketStep && step === 1 ? this.onBuyTicket :  this.onPayTicket}
             setPrice={setPrice}
             disabled={(disablePayment !== '' && disablePayment) || !_.isNull(isPaid)}
-            minimunPrice={150000}
+            minimumPrice={150000}
           />
         </TicketBoxWrapper>
       )
