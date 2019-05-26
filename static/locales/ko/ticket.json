@@ -75,7 +75,7 @@
             "cardNumberPlaceholder": "- 없이 입력",
             "expiryLabel": "유효기간",
             "birthLabel": "생년월일",
-            "birthPlaceholder": "6자리",
+            "birthPlaceholder": "YYMMDD",
             "pwd2digitLabel": "비밀번호"
         }
     }

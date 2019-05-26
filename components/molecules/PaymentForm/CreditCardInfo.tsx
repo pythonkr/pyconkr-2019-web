@@ -173,7 +173,7 @@ class CreditCardInfo extends React.Component<PropsType> {
             value={birth || ''}
             aria-required={true}
             required
-            placeholder={'6자리'}
+            placeholder={'YYMMDD'}
             onChange={e => this.onChangeInputValue(e.target.value, setBirth)}
             style={{
               width: '255px',
