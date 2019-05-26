@@ -3,7 +3,8 @@ import { Loading } from 'components/atoms/Loading'
 import TicketBox from 'components/molecules/TicketBox'
 import ConferenceTicketOption from 'components/molecules/TicketBox/ConferenceTicketOption'
 import i18next from 'i18next'
-import { TicketStatus, TicketTypeNode } from 'lib/apollo_graphql/__generated__/globalTypes'
+import { TicketTypeNode } from 'lib/apollo_graphql/__generated__/globalTypes'
+import { TicketNode } from 'lib/apollo_graphql/queries/getMyTickets'
 import _ from 'lodash'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
@@ -17,20 +18,26 @@ type PropsType = {
   router: RouterProps;
 }
 
+type StatesType = {
+  myConferenceTicket: TicketNode;
+}
 @observer
-class ConferenceTicketList extends React.Component<PropsType> {
+class ConferenceTicketList extends React.Component<PropsType, StatesType> {
   state = {
-    paidProductId: null
+    myConferenceTicket: null as any
   }
 
-  componentDidMount () {
+  async componentDidMount () {
     const { stores } = this.props
     stores.ticketStore.cleanupConferenceTicketOptions()
+    if (_.isEmpty(stores.ticketStore.myTickets)) await stores.ticketStore.retrieveMyTickets()
     const myConferenceTicket = toJS(stores.ticketStore.getMyConferenceTickets()[0])
-    if (myConferenceTicket) this.setState({ paidProductId: myConferenceTicket.product.id })
+    if (!_.isEmpty(myConferenceTicket)) this.setState({ myConferenceTicket })
   }
- renderTicketBoxList = () => {
+
+  renderTicketBoxList = () => {
     const { stores, router, t } = this.props
+    const { myConferenceTicket } = this.state
     const {
       conferenceProducts, setPrice,
       earlyBirdTicketOption, earlyBirdTicketOptionAgreed,
@@ -85,6 +92,10 @@ class ConferenceTicketList extends React.Component<PropsType> {
           onChangeAgreed={setTicketOptionAgreed}
         />
       )
+      let isPaid = null
+      if (!_.isEmpty(myConferenceTicket)) {
+        isPaid = myConferenceTicket.product.id === id
+      }
 
       return (
         <TicketBox
@@ -103,6 +114,7 @@ class ConferenceTicketList extends React.Component<PropsType> {
           router={router}
           startDate={startAt}
           endDate={finishAt}
+          isPaid={isPaid}
         />
       )
     })

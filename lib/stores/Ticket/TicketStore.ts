@@ -235,6 +235,7 @@ export class TicketStore {
     payTicket = async () => {
       try {
         this.ticketInput.amount = this.price
+
         return await buyTicket(client)({
           options: this.options,
           payment: toJS(this.ticketInput),

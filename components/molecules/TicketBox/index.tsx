@@ -6,6 +6,7 @@ import TicketDescription from 'components/molecules/TicketBox/TicketDescription'
 import TicketPayment from 'components/molecules/TicketBox/TicketPayment'
 import { isFuture, isPast } from 'date-fns'
 import { VALIDATION_ERROR_TYPE } from 'lib/stores/Ticket/TicketStore'
+import _ from 'lodash'
 import { observer } from 'mobx-react'
 import { RouterProps } from 'next/router'
 import { toast } from 'react-toastify'
@@ -23,6 +24,7 @@ type PropsType = {
   startDate: string;
   endDate: string;
   router: RouterProps;
+  isPaid: boolean | null;
   onNextStep(): void;
   onValidate(): VALIDATION_ERROR_TYPE | null;
   setTicket(): void;
@@ -93,9 +95,10 @@ class TicketBox extends React.Component<PropsType, StatesType> {
     // #TODO: 번역 필요
     if (isBeforeOpening) return `${moment(startDate).format('MM-DD hh:mm')} 부터`
     if (isFinished) return `마감`
-    if (isPaid) return '구매한 티켓'
-    if (!isPaid) return '구매 불가'
 
+    if (!_.isNull(isPaid)) {
+      return isPaid ? '구매완료' : '구매불가'
+    }
     if (isBuying) return '구매하기'
     else return '결제하기'
   }
@@ -124,9 +127,8 @@ class TicketBox extends React.Component<PropsType, StatesType> {
             isEditablePrice={isEditablePrice}
             onPayTicket={isTicketStep && step === 1 ? this.onBuyTicket :  this.onPayTicket}
             setPrice={setPrice}
-            disabled={disablePayment !== '' && disablePayment}
+            disabled={(disablePayment !== '' && disablePayment) || !_.isNull(isPaid)}
             minimunPrice={150000}
-            isPaid={isPaid}
           />
         </TicketBoxWrapper>
       )
