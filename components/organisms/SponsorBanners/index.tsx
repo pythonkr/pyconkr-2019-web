@@ -12,10 +12,11 @@ import React from 'react'
 
 const SponsorBannersSlider = styled.div`
   width: 940px;
-  margin-left: auto;
-  margin-right: auto;
   height: 250px;
   background-color: rgba(216, 216, 216, 0);
+
+  margin-left: auto;
+  margin-right: auto;
 
   h2 {
     font-size: 18px;
@@ -30,7 +31,34 @@ const SponsorBannersSlider = styled.div`
 `
 
 const BannersWrapper = styled.div`
-    height: 130px
+    height: 130px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    width: max-content;
+    max-width: 100%;
+
+    white-space: nowrap;
+    overflow-x: scroll;
+
+    img {
+        margin-top: 33px;
+        margin-bottom: 0px;
+        margin-left: auto;
+        margin-right: auto;
+
+        padding-top: 0px
+        padding-bottom: 0px;
+        padding-left: 10px;
+        padding-right: 10px;
+
+        width: 200px;
+        height: 40px;
+
+        position: relative;
+        display: inline;
+    }
 `
 
 const SliderWrapper = styled.div`
@@ -39,6 +67,9 @@ const SliderWrapper = styled.div`
   height: 100%;
   padding-top: 47px;
   padding-bottom: 42px;
+
+  margin-left: auto;
+  margin-right: auto;
 `
 
 type PropsType = {
@@ -72,7 +103,7 @@ const CustomNextArrow = (props) => {
 
 const Banner = (props) => {
     return (<>
-        <img alt={props.sponsorName} src={props.logoImage} />
+        <img className="slide-banner" alt={props.sponsorName} src={props.logoImage} />
     </>)
 }
 
