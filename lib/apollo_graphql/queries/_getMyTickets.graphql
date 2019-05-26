@@ -1,5 +1,5 @@
-query getMyTicket($id: ID!) {
-  myTicket(id: $id) {
+query getMyTickets {
+  myTickets {
     isDomesticCard
     amount
     merchantUid
