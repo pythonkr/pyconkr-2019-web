@@ -86,7 +86,7 @@ export default class MyContributionTableRow extends React.Component<PropsType> {
 
     getShowDetailButtonTitle() {
         const { closeDate, isProposalSubmitted, isMyContribution } = this.props
-
+        
         if (isMyContribution) {
             const isFinished = closeDate && isPast(closeDate)
             const isProposalExist = !_.isNil(isProposalSubmitted)
