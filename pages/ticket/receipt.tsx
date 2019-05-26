@@ -51,12 +51,12 @@ export default class Receipt extends React.Component<PageDefaultPropsType> {
             <Tr>
               <Th>Provider</Th>
               <Td>
-                Python Korea Inc.<br/>Chair man. Kwon-Han, Bae
-                {/*<img*/}
-                {/*  width='160px'*/}
-                {/*  height='160px'*/}
-                {/*  src={this.state.stampUrl}*/}
-                {/*/>*/}
+                Python Korea Inc.<br/>Chair man. Kwon-Han, Bae<br/>
+                <img
+                  width='160px'
+                  height='160px'
+                  src='/static/images/stamp.jpg'
+                />
               </Td>
             </Tr>
             <Tr>
