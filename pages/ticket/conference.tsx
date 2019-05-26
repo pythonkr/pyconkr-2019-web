@@ -32,6 +32,7 @@ export type Schedule = {
 export default class ProposingATalk extends React.Component<PageDefaultPropsType> {
   async componentDidMount() {
     const { stores } = this.props
+    debugger
     if (!stores.ticketStore.isInitialized) stores.ticketStore.initialize()
   }
 

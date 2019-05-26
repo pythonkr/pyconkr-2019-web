@@ -1,5 +1,5 @@
 import {
-  getMyTickets as getMyTicketsType,
+  getMyTickets as MyTicketsType,
   getMyTickets_myTickets as TicketNode,
 } from 'lib/apollo_graphql/__generated__/getMyTickets'
 import {
@@ -9,7 +9,7 @@ import {
 import * as _getMyTickets from './_getMyTickets.graphql'
 
 export const getMyTicketsQueryDefinition = createQueryDefinition<
-  getMyTicketsType,
+  MyTicketsType,
   {}
 >(_getMyTickets)
 
@@ -19,4 +19,5 @@ export const getMyTickets = sendQuery(
 
 export {
   TicketNode,
+  MyTicketsType,
 }
