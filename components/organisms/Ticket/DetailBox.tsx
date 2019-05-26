@@ -8,6 +8,7 @@ import {
   Th,
   Tr
 } from '../../atoms/ContentWrappers'
+import { paths } from 'routes/paths'
 
 type PropsType = {
   ticket: TicketNode;
@@ -17,7 +18,7 @@ type PropsType = {
 class DetailBox extends React.Component<PropsType> {
   render() {
     const {ticket} = this.props
-    const {status, amount, paidAt, options, product} = ticket
+    const {id, status, amount, paidAt, options, product} = ticket
     const {type, nameKo, nameEn, descKo, descEn, cancelableDate} = product
     const parsedOptions = JSON.parse(options)
 
@@ -47,11 +48,11 @@ class DetailBox extends React.Component<PropsType> {
             </Tr>
             <Tr>
               <Th>취소기한</Th> {/* cancelat 이 있으면 취소일*/}
-              <Td>{cancelableDate}</Td>
+              <Td>{cancelableDate ? cancelableDate : '취소 불가(Unrefundable)'}</Td>
             </Tr>
             <Tr>
               <Th>등록영수증</Th>
-              <Td>link</Td>
+              <Td><a href={`${paths.ticket.receipt}?id=${id}`} target='_blank'>link</a></Td>
             </Tr>
             {Object.keys(parsedOptions).map(key => {
               return (

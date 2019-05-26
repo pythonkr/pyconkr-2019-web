@@ -9,7 +9,7 @@ import { TicketStatus, TicketTypeNode } from "./globalTypes";
 // ====================================================
 
 export interface getMyTicket_myTicket_product {
-  __typename: "TicketProductNode";
+  __typename: "MyTicketProductNode";
   id: string;
   type: TicketTypeNode | null;
   name: string | null;
@@ -25,7 +25,7 @@ export interface getMyTicket_myTicket_product {
 }
 
 export interface getMyTicket_myTicket {
-  __typename: "TicketNode";
+  __typename: "MyTicketNode";
   /**
    * The ID of the object.
    */

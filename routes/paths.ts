@@ -20,6 +20,8 @@ export const paths = {
     base: '/ticket',
     overview: '/ticket/overview',
     myTickets: '/ticket/my-tickets',
+    myTicket: '/ticket/my-ticket',
+    receipt: '/ticket/receipt',
     conference: '/ticket/conference',
     tutorial: '/ticket/tutorial',
     sprint: '/ticket/sprint',
