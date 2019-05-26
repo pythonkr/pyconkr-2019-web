@@ -17,7 +17,8 @@
   "sponsor": {
     "root": "후원",
     "prospectus": "후원사 안내",
-    "invitation": "후원사 신청"
+    "invitation": "후원사 신청",
+    "patron": "개인 후원자 목록"
   },
   "info": {
     "login": "로그인",

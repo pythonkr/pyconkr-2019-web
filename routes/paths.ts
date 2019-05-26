@@ -34,6 +34,7 @@ export const paths = {
     prospectus: '/sponsor/prospectus',
     applicationForm: '/sponsor/application-form',
     termsOfService: '/sponsor/terms-of-service',
+    patronList: '/sponsor/patron-list'
   },
   account: {
     base: '/account',
@@ -192,6 +193,11 @@ export const sponsorMenu: WithSubMenu = {
       title: '후원사 신청',
       intlKey: 'gnb.sponsor.invitation',
       link: paths.sponsor.applicationForm,
+    },
+    {
+      title: '개인 후원자 목록',
+      intlKey: 'gnb.sponsor.patron',
+      link: paths.sponsor.patronList,
     }
   ]
 }
