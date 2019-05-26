@@ -89,35 +89,38 @@ const TicketInformationWrapper = styled.div`
     }
   }
 `
-// #TODO: 옵션 텍스트 변경 필요 (e.g XS-90)
 const tshirtOptions = [
   {
     value: '',
     text: 'Select T-shirt size'
   },
   {
-    value: 'XS',
-    text: 'XS'
-  },
-  {
     value: 'S',
-    text: 'S'
+    text: 'S(85)'
   },
   {
     value: 'M',
-    text: 'M'
+    text: 'M(90)'
   },
   {
     value: 'L',
-    text: 'L'
+    text: 'L(95)'
   },
   {
     value: 'XL',
-    text: 'XL'
+    text: 'XL(100)'
   },
   {
     value: '2XL',
-    text: '2XL'
+    text: '2XL(105)'
+  },
+  {
+    value: '3XL',
+    text: '3XL(110)'
+  },
+  {
+    value: '4XL',
+    text: '4XL(115)'
   },
 ]
 class ConferenceTicketOption extends React.Component<PropsType> {
