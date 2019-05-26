@@ -1,16 +1,16 @@
-import { AlertBar } from 'components/atoms/AlertBar'
-import { H1, H2, Paragraph, Section } from 'components/atoms/ContentWrappers'
-import { IntlText } from 'components/atoms/IntlText'
-import { LocalNavigation } from 'components/molecules/LocalNavigation'
+import {H1, H2, Paragraph, Section} from 'components/atoms/ContentWrappers'
+import {IntlText} from 'components/atoms/IntlText'
+import {LocalNavigation} from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
+import DetailBox from 'components/organisms/Ticket/DetailBox'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
-import { inject, observer } from 'mobx-react'
-import { withRouter } from 'next/router'
+import {inject, observer} from 'mobx-react'
+import {withRouter} from 'next/router'
 import React from 'react'
-import { ticketMenu } from 'routes/paths'
-import { DateDTO } from 'types/common'
-import { PageDefaultPropsType } from 'types/PageDefaultPropsType'
+import {ticketMenu} from 'routes/paths'
+import {DateDTO} from 'types/common'
+import {PageDefaultPropsType} from 'types/PageDefaultPropsType'
 
 export type IntlTextType = {
   intlKey: string;
@@ -33,13 +33,14 @@ export default class MyTickets extends React.Component<PageDefaultPropsType> {
   }
 
   render() {
+    const {stores, t, router} = this.props
 
     return (
       <PageTemplate
         header={<Header title='티켓 상세 :: 파이콘 한국 2019' intlKey='ticket.myTickets.pageTitle'/>}
-        footer={<Footer />}
+        footer={<Footer/>}
       >
-        <LocalNavigation list={ticketMenu.submenu} />
+        <LocalNavigation list={ticketMenu.submenu}/>
         <H1><IntlText intlKey='ticket.myTickets.title'>
           티켓 상세
         </IntlText></H1>
@@ -47,10 +48,8 @@ export default class MyTickets extends React.Component<PageDefaultPropsType> {
           내가 구매한/취소한 티켓의 상세 내역을 확인합니다.
         </IntlText></Paragraph>
         <Section>
-          <AlertBar text={'취소된 티켓은 유효하지 않으며 입장시 사용될 수 없습니다.'} />
-        </Section>
-        <Section>
           {/* TODO : 티켓 상세 컴포넌트 */}
+          <DetailBox stores={stores} t={t} router={router}/>
         </Section>
         <Section>
           <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
