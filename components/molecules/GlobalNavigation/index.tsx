@@ -7,6 +7,7 @@ import { PyConKRLogo } from 'components/atoms/SVG'
 import Link from 'next/link'
 import { withRouter } from 'next/router'
 import React from 'react'
+import { withNamespaces } from '../../../i18n'
 import intl from 'react-intl-universal'
 import { globalNavigationMenu } from 'routes/paths'
 import { CORAL, CORAL_LIGHT } from 'styles/colors'
@@ -271,7 +272,7 @@ class Navigation extends React.Component<any> {
   }
 
   render() {
-    const { router } = this.props
+    const { router, t } = this.props
     const { isMenuOpened, openedSubmenu } = this.state
 
     return (
@@ -293,11 +294,9 @@ class Navigation extends React.Component<any> {
           <TicketsButton
             size='small'
             height={27}
-            title={'티켓'}
-            intlKey={''}
+            title={t('gnb:ticket')}
             to={'/ticket/overview'}
           >
-            {'티켓'}
           </TicketsButton>
         </TicketsButtonWrapper>
         <HamburgerCheckbox
@@ -358,5 +357,4 @@ class Navigation extends React.Component<any> {
     )
   }
 }
-
-export default withRouter(Navigation)
+export default withNamespaces(['gnb'])(withRouter(Navigation))

@@ -7,10 +7,19 @@
         "title": "Ticket",
         "description": "Pycon KR 2019 has various types of tickets including Conference, Tutorial, Youngcoder etc.."
     },
+    "myTickets": {
+        "headerTitle": "My Ticket :: PyCon Korea 2019",
+        "pageTitle": "My Ticket",
+        "alert": "Canceled tickets are not valid. Therefore, it can not be used for entry.",
+        "description": "Check the detail of my purchased/canceled tickets."
+    },
     "conference": {
         "pageTitle": "Conference Ticket",
-        "title": "컨퍼런스 티켓",
-        "description": "파이콘 한국의 메인 행사인 8월 18-19일(토-일) 이틀 간의 컨퍼런스에 입장할 수 있는 티켓입니다.",
+        "title": "Conference Ticket",
+        "ticket": "Conference Ticket",
+        "description": "It is the ticket that can enter the two-day conference of the main event of PyCon Korea on 18-19 (Sat-Sun) August.",
+        "alert1": "Conference ticket includes Presentation Session, Sponsor Booth, Lightning Talk, Open Space.",
+        "alert2": "Conference ticket It does not include tutorials, sprints, young coder, and child care.",
         "general": {
             "title": "General"
         },
