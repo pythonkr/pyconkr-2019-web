@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { SelectBox } from 'components/atoms/SelectBox'
+import i18next from 'i18next'
 import * as React from 'react'
 import { mobileWidth } from 'styles/layout'
 
@@ -7,10 +8,10 @@ type PropsType = {
     t: i18next.TFunction;
     title: string;
     id: string;
-    ticketOption: { ticketOption: any } | null;
+    tshirtsize: string;
     isTicketAgreed: boolean;
     onCancel(): void;
-    onChangeOption(option: string): void;
+    onChangeOption(ticketOption: { tshirtsize: any }): void;
     onChangeAgreed(isAgree: boolean): void;
 }
 
@@ -125,7 +126,7 @@ const tshirtOptions = [
 ]
 class ConferenceTicketOption extends React.Component<PropsType> {
     render() {
-        const { title, id, onCancel, ticketOption, isTicketAgreed, onChangeOption, onChangeAgreed } = this.props
+        const { title, id, onCancel, tshirtsize, isTicketAgreed, onChangeOption, onChangeAgreed } = this.props
         const { t } = this.props
 
         return (
@@ -133,9 +134,9 @@ class ConferenceTicketOption extends React.Component<PropsType> {
                 <h1>{title}</h1>
                 <p className='guide'>{t('ticket:conference.option.tshirtSize')}</p>
                 <SelectBox
-                  selectedValue={ticketOption && ticketOption.ticketOption}
+                  selectedValue={tshirtsize}
                   options={tshirtOptions}
-                  onChange={onChangeOption}
+                  onChange={value => onChangeOption({ tshirtsize: value })}
                 />
                 <p className='terms'>
                   <input

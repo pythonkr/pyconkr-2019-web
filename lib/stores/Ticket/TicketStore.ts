@@ -46,10 +46,10 @@ export class TicketStore {
     @observable options: string = ''
     @observable productId: string = ''
     @observable earlyBirdTicketStep: number = 1
-    @observable earlyBirdTicketOption: { ticketOption: any } | null = null
+    @observable earlyBirdTicketOption: { tshirtsize: string } | null = null
     @observable earlyBirdTicketOptionAgreed: boolean = false
     @observable patronTicketStep: number = 1
-    @observable patronTicketOption: { ticketOption: any } | null = null
+    @observable patronTicketOption: { tshirtsize: string } | null = null
     @observable patronTicketOptionAgreed: boolean = false
     @observable expiryMonth: string = ''
     @observable expiryYear: string = ''
@@ -87,8 +87,8 @@ export class TicketStore {
     }
 
     @action
-    setEarlyBirdTicketOption = (ticketOption: string | null) => {
-        this.earlyBirdTicketOption = { ticketOption }
+    setEarlyBirdTicketOption = (ticketOption: { tshirtsize: string }) => {
+        this.earlyBirdTicketOption = ticketOption
     }
 
     @action
@@ -102,8 +102,8 @@ export class TicketStore {
     }
 
     @action
-    setPatronTicketOption = (ticketOption: string | null) => {
-      this.patronTicketOption = { ticketOption }
+    setPatronTicketOption = (ticketOption: { tshirtsize: string }) => {
+      this.patronTicketOption = ticketOption
     }
 
     @action
@@ -201,7 +201,7 @@ export class TicketStore {
 
     @action
     validateEarlyBirdTicket = () => {
-        if (!this.earlyBirdTicketOption || _.isEmpty(this.earlyBirdTicketOption.ticketOption)) return VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED
+        if (!this.earlyBirdTicketOption || _.isEmpty(this.earlyBirdTicketOption.tshirtsize)) return VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED
         if (!this.earlyBirdTicketOptionAgreed) return VALIDATION_ERROR_TYPE.NOT_AGREED
 
         return VALIDATION_ERROR_TYPE.NONE
@@ -217,7 +217,7 @@ export class TicketStore {
 
     @action
     validatePatronTicket = () => {
-      if (!this.patronTicketOption || _.isEmpty(this.patronTicketOption.ticketOption)) return VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED
+      if (!this.patronTicketOption || _.isEmpty(this.patronTicketOption.tshirtsize)) return VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED
       if (!this.patronTicketOptionAgreed) return VALIDATION_ERROR_TYPE.NOT_AGREED
 
       return VALIDATION_ERROR_TYPE.NONE
