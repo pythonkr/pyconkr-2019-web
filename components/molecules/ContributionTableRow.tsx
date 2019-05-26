@@ -34,13 +34,21 @@ export default class ContributionTableRow extends React.Component<PropsType> {
     }
 
     getContributionStatus () {
-        const { openDate, closeDate, link } = this.props
+        const { openDate, closeDate, link, isMyContribution, isProposalSubmitted } = this.props
         const isContributionAvailable = openDate && link
         const isBeforeOpening = openDate && isFuture(openDate) && link
         const isFinished = closeDate && isPast(closeDate)
         const now = new Date()
 
         if (!isContributionAvailable) return '-'
+        console.log(isMyContribution)
+        if (isMyContribution) {
+            if (!_.isNil(isProposalSubmitted)) {
+                return !isProposalSubmitted
+                    ? '임시 저장'
+                    : `제출완료`
+            }
+        }
 
         // 제안 및 신청내역
         if (isBeforeOpening) {
@@ -64,9 +72,13 @@ export default class ContributionTableRow extends React.Component<PropsType> {
     }
 
     getShowDetailButtonTitle() {
-        const { openDate, closeDate } = this.props
+        const { openDate, closeDate, isProposalSubmitted, isMyContribution } = this.props
         const isFinished = closeDate && isPast(closeDate)
         const isOngoing = openDate && isPast(openDate) && !isFinished
+
+        if (isMyContribution && !_.isNil(isProposalSubmitted)) {
+            return  isProposalSubmitted? '수정 제출하기' : '이어서 작성하기'
+        }
 
         if (isFinished) return '마감'
 
@@ -76,17 +88,16 @@ export default class ContributionTableRow extends React.Component<PropsType> {
     }
 
     renderShowDetailButton () {
-        const { link } = this.props
+        const { link, editLink, isProposalSubmitted } = this.props
         const buttonTitle = this.getShowDetailButtonTitle()
-
-        if (link) {
+        const buttonLink = isProposalSubmitted? editLink: link
+        if (buttonLink) {
           return (
             <ShowDetailButton
                 size='small'
                 height={27}
                 intlKey='contribute.overview.table.moreDetail'
-                to={link}
-                disabled={this.getContributionClass() === 'disabled'}
+                to={buttonLink}
                 primary={!!(this.getContributionClass() === 'active')}
             >
                 {buttonTitle}

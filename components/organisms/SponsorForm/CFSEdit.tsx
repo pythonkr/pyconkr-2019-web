@@ -144,6 +144,7 @@ export default class CFPEdit extends React.Component<PropsType> {
               onBlur={e => sponsorStore.setProposalLevelById(e.target.value)}
               onChange={e => sponsorStore.setProposalLevelById(e.target.value)}
               aria-required={true}
+              disabled
               required
             >
               {
