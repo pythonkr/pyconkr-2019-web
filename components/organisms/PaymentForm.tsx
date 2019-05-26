@@ -37,7 +37,7 @@ class PaymentForm extends React.Component<PropTypes> {
       return
     }
 
-    if (!_.isEmpty(data)) router.push(paths.home)
+    if (!_.isEmpty(data)) router.push(paths.ticket.myTickets)
   }
 
   onChangeDomesticCard = (isDomestic: boolean) => {
