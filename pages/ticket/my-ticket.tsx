@@ -11,6 +11,8 @@ import React from 'react'
 import {ticketMenu} from 'routes/paths'
 import {DateDTO} from 'types/common'
 import {PageDefaultPropsType} from 'types/PageDefaultPropsType'
+import {Loading} from 'components/atoms/Loading'
+import {FormNeedsLogin} from 'components/atoms/FormNeedsLogin'
 
 export type IntlTextType = {
   intlKey: string;
@@ -29,11 +31,13 @@ export type Schedule = {
 @observer
 export default class MyTickets extends React.Component<PageDefaultPropsType> {
   async componentDidMount() {
-    // TODO : my ticket 셋팅
+    const {stores} = this.props
+    await stores.ticketStore.retrieveMyTicket(this.props.router.query.id)
   }
 
-  render() {
-    const {stores, t, router} = this.props
+  renderTicketPage = () => {
+    const {stores} = this.props
+    const {currentTicket} = stores.ticketStore
 
     return (
       <PageTemplate
@@ -48,14 +52,30 @@ export default class MyTickets extends React.Component<PageDefaultPropsType> {
           내가 구매한/취소한 티켓의 상세 내역을 확인합니다.
         </IntlText></Paragraph>
         <Section>
-          {/* TODO : 티켓 상세 컴포넌트 */}
-          <DetailBox stores={stores} t={t} router={router}/>
+          {!currentTicket ? '잘못된 요청입니다' : <DetailBox ticket={currentTicket}/>}
         </Section>
         <Section>
           <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
           <Paragraph><a href='mailto:program@pycon.kr'>program@pycon.kr</a></Paragraph>
         </Section>
       </PageTemplate>
+    )
+  }
+
+  render() {
+    const {stores} = this.props
+    const {authStore} = stores
+    const isAuthStoreInitialized = authStore.isInitialized
+    const isLoggedIn = authStore.loggedIn
+
+    if (!isAuthStoreInitialized) {
+      return <Loading width={50} height={50}/>
+    }
+
+    return (
+      !isLoggedIn
+        ? <FormNeedsLogin/>
+        : this.renderTicketPage()
     )
   }
 }

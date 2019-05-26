@@ -2,6 +2,7 @@ import { PaymentInput } from 'lib/apollo_graphql/__generated__/globalTypes'
 import { client } from 'lib/apollo_graphql/client'
 import { buyTicket } from 'lib/apollo_graphql/mutations/buyTicket'
 import { ConferenceProductType, getConferenceProducts } from 'lib/apollo_graphql/queries/getConferenceProducts'
+import { getMyTicket } from 'lib/apollo_graphql/queries/getMyTicket'
 import { getMyTickets, TicketNode } from 'lib/apollo_graphql/queries/getMyTickets'
 import * as _ from 'lodash'
 import { action, configure, observable, toJS } from 'mobx'
@@ -53,6 +54,7 @@ export class TicketStore {
     @observable expiryYear: string = ''
     @observable ticketInput: PaymentInput = initialTicketInput
     @observable myTickets: TicketNode[] = []
+    @observable currentTicket: TicketNode | null = null
 
     // Getter, Setter
     @action
@@ -63,6 +65,11 @@ export class TicketStore {
     @action
     setMyTickets = (myTickets: TicketNode[]) => {
         this.myTickets = myTickets
+    }
+
+    @action
+    setCurrentTicket = (ticket: TicketNode) => {
+        this.currentTicket = ticket
     }
 
     @action
@@ -175,6 +182,12 @@ export class TicketStore {
     retrieveMyTickets = async () => {
       const { data } = await getMyTickets(client)({})
       this.setMyTickets(data.myTickets as TicketNode[])
+    }
+
+    @action
+    async retrieveMyTicket(id: string) {
+      const { data } = await getMyTicket(client)({id})
+      this.setCurrentTicket(data.myTicket as TicketNode)
     }
 
     @action

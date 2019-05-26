@@ -15,6 +15,13 @@ export interface getMyTicket_myTicket_product {
   name: string | null;
   nameKo: string | null;
   nameEn: string | null;
+  desc: string;
+  descKo: string | null;
+  descEn: string | null;
+  /**
+   * 결재 취소가 가능한 기한입니다. 이 일시 이후에는 취소가 불가합니다.
+   */
+  cancelableDate: any | null;
 }
 
 export interface getMyTicket_myTicket {

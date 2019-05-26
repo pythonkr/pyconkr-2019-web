@@ -17,6 +17,10 @@ query getMyTicket($id: ID!) {
       name
       nameKo
       nameEn
+      desc
+      descKo
+      descEn
+      cancelableDate
     }
     options
     createdAt
