@@ -88,6 +88,7 @@
     },
     "ticket": {
       "overview": "Overview",
+      "myTickets": "My Tickets",
       "conference": "Conference",
       "tutorial": "Tutorial",
       "sprint": "Sprint",
@@ -461,6 +462,11 @@
       "pageTitle": "티켓 종류",
       "title": "티켓 종류",
       "description": "파이콘 한국에는 발표 세션을 포함한 이틀 간의 컨퍼런스, 튜토리얼, 영코더 등 다양한 행사가 있습니다."
+    },
+    "myTickets": {
+      "pageTitle": "내 티켓",
+      "title": "내 티켓",
+      "description": "내가 구매한/취소한 티켓 내역을 확인합니다."
     },
     "conference": {
       "pageTitle": "컨퍼런스 티켓",

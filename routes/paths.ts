@@ -19,6 +19,7 @@ export const paths = {
   ticket: {
     base: '/ticket',
     overview: '/ticket/overview',
+    myTickets: '/ticket/my-tickets',
     conference: '/ticket/conference',
     tutorial: '/ticket/tutorial',
     sprint: '/ticket/sprint',
@@ -141,6 +142,11 @@ export const ticketMenu: WithSubMenu = {
       title: '티켓 종류',
       intlKey: 'gnb.ticket.overview',
       link: paths.ticket.overview
+    },
+    {
+      title: '내 티켓',
+      intlKey: 'gnb.ticket.myTickets',
+      link: paths.ticket.myTickets
     },
     {
       title: '컨퍼런스',
