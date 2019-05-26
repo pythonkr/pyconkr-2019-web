@@ -172,7 +172,7 @@ export const ticketMenu: WithSubMenu = {
       link: paths.ticket.youngcoder
     },
     {
-      title: '아이 돌봄',
+      title: '아이돌봄',
       intlKey: 'gnb.ticket.childcare',
       link: paths.ticket.childcare
     }

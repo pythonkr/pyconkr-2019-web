@@ -43,7 +43,7 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
       >
         <LocalNavigation list={ticketMenu.submenu} />
         <H1><IntlText intlKey='ticket.childcare.title'>
-          아이 돌봄 티켓
+          아이돌봄 티켓
         </IntlText></H1>
 
         <Section>
