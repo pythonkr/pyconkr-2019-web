@@ -4,6 +4,7 @@ import * as React from 'react'
 import { mobileWidth } from 'styles/layout'
 
 type PropsType = {
+    t: i18next.TFunction;
     title: string;
     id: string;
     ticketOption: { ticketOption: any } | null;
@@ -92,7 +93,7 @@ const TicketInformationWrapper = styled.div`
 const tshirtOptions = [
   {
     value: '',
-    text: '티셔츠 사이즈 선택'
+    text: 'Select T-shirt size'
   },
   {
     value: 'XS',
@@ -122,11 +123,12 @@ const tshirtOptions = [
 class ConferenceTicketOption extends React.Component<PropsType> {
     render() {
         const { title, id, onCancel, ticketOption, isTicketAgreed, onChangeOption, onChangeAgreed } = this.props
+        const { t } = this.props
 
         return (
             <TicketInformationWrapper>
                 <h1>{title}</h1>
-                <p className='guide'>{'티켓 사이즈 선택'}</p>
+                <p className='guide'>{t('ticket:conference.option.tshirtSize')}</p>
                 <SelectBox
                   selectedValue={ticketOption && ticketOption.ticketOption}
                   options={tshirtOptions}
@@ -141,9 +143,9 @@ class ConferenceTicketOption extends React.Component<PropsType> {
                     checked={isTicketAgreed}
                     onChange={e => onChangeAgreed(e.target.checked)}
                   />
-                  <label htmlFor='payment-terms'>상품과 가격, 유의사항을 확인하였으며 구매에 동의합니다.</label>
+                  <label htmlFor='payment-terms'>{t('ticket:agree')}</label>
                 </p>
-                <button className='back' onClick={onCancel}>&lt; 뒤로</button>
+                <button className='back' onClick={onCancel}>&lt; {t('ticket:back')}</button>
             </TicketInformationWrapper>
         )
     }

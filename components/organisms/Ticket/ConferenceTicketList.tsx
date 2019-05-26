@@ -22,7 +22,7 @@ class ConferenceTicketList extends React.Component<PropsType> {
     stores.ticketStore.cleanupConferenceTicketOptions()
   }
  renderTicketBoxList = () => {
-    const { stores, router } = this.props
+    const { stores, router, t } = this.props
     const {
       conferenceProducts, setPrice,
       earlyBirdTicketOption, earlyBirdTicketOptionAgreed,
@@ -67,6 +67,7 @@ class ConferenceTicketList extends React.Component<PropsType> {
       } = ticketSteps[index]
       const options = type === TicketTypeNode.CONFERENCE && (
         <ConferenceTicketOption
+          t={t}
           title={title || ''}
           id={id}
           ticketOption={ticketOption}

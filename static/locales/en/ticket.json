@@ -2,6 +2,8 @@
     "buy": "Buy",
     "pay": "Pay",
     "ticket": "ticket",
+    "back": "back",
+    "agree": "I confirm the goods, the price and the agree to the purchase.",
     "overview": {
         "pageTitle": "Tickets",
         "title": "Ticket",
@@ -28,6 +30,10 @@
         },
         "patron": {
             "title": "Patron"
+        },
+        "option": {
+            "tshirtSize": "T-shirt size",
+            "selectTshirtSize": "Select T-shirt size"
         }
     },
     "tutorial": {

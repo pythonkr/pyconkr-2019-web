@@ -2,6 +2,7 @@
     "buy": "구매",
     "pay": "결제",
     "ticket": "티켓",
+    "agree": "상품과 가격, 유의사항을 확인하였으며 구매에 동의합니다.",
     "overview": {
         "pageTitle": "티켓 종류",
         "title": "티켓 종류",
@@ -28,7 +29,12 @@
         },
         "patron": {
             "title": "컨퍼런스 개인 후원"
-        }
+        },
+        "option": {
+            "tshirtSize": "티셔츠 사이즈",
+            "selectTshirtSize": "티셔츠 사이즈 선택"
+        },
+        
     },
     "tutorial": {
         "pageTitle": "튜토리얼 티켓",

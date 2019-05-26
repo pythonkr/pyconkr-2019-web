@@ -92,7 +92,6 @@ class TicketPayment extends React.Component<PropsType> {
         const { adjustedPrice } = this.state
         if (isEditablePrice && minimunPrice > adjustedPrice) {
             toast.error(`후원 티켓 가격은 최소 ${minimunPrice.toLocaleString()} 이어야 합니다.`)
-
             return
         }
 
