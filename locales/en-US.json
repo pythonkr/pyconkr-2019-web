@@ -468,6 +468,11 @@
       "title": "내 티켓",
       "description": "내가 구매한/취소한 티켓 내역을 확인합니다."
     },
+    "myTicket": {
+      "pageTitle": "티켓 상세",
+      "title": "티켓 상세",
+      "description": "내가 구매한/취소한 티켓의 상세 내역을 확인합니다."
+    },
     "conference": {
       "pageTitle": "컨퍼런스 티켓",
       "title": "컨퍼런스 티켓",
