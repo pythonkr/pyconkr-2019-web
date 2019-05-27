@@ -58,7 +58,7 @@ class Header extends React.Component<PropsType> {
           <meta name='msapplication-TileColor' content='#ffffff'/>
           <meta name='msapplication-TileImage' content='/static/favicon/ms-icon-144x144.png'/>
           <meta name='theme-color' content='#ffffff'/>
-          <meta property='og:image' content='/static/images/1200x630_og.jpg'/>
+          <meta property='og:image' content='/static/images/og-pyconkr-image.png'/>
           <meta name='viewport' content='initial-scale=1.0, width=device-width' />
         </Head>
         <Navigation />
