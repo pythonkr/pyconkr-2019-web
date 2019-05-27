@@ -82,7 +82,7 @@ class ContributionPage extends React.Component<PropsType> {
       link: paths.sponsor.applicationForm,
       editLink: paths.account.editproposal.cfs,
       isMyContribution: sponsorStore.isProposalInitialized,
-      isProposalSubmitted: sponsorStore.proposal ? cfpStore.proposal.submitted : false
+      isProposalSubmitted: sponsorStore.proposal ? sponsorStore.proposal.submitted : false
     }, {
       title: '튜토리얼 제안',
       intlKey: 'contribute.overview.table.tutorial',
