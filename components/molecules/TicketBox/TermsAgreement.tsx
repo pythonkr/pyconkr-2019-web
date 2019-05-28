@@ -1,17 +1,15 @@
 import styled from '@emotion/styled'
-import { SelectBox } from 'components/atoms/SelectBox'
 import i18next from 'i18next'
 import * as React from 'react'
+import { paths } from 'routes/paths'
 import { mobileWidth } from 'styles/layout'
 
 type PropsType = {
     t: i18next.TFunction;
     title: string;
     id: string;
-    tshirtsize?: string;
-    isTicketAgreed: boolean;
+    isTermsAgreed: boolean;
     onCancel(): void;
-    onChangeOption(ticketOption: { tshirtsize: any }): void;
     onChangeAgreed(isAgree: boolean): void;
 }
 
@@ -55,11 +53,26 @@ const TicketInformationWrapper = styled.div`
     font-size: 17px;
   }
 
+  input[type=checkbox] {
+    margin: 3px 3px 3px 0;
+  }
+
   p.terms {
+    font-size: 15px;
+    line-height: 1.67;
+    color: #088487;
+
+    a {
+      font-weight: 800;
+    }
+  }
+
+  p.agreement {
     font-size: 14px;
     line-height: 1.29;
     color: #4d5256;
-    margin-bottom: 35px;
+    margin-top: 10px;
+    margin-bottom: 25px;
   }
 
   button.back {
@@ -90,64 +103,29 @@ const TicketInformationWrapper = styled.div`
     }
   }
 `
-const tshirtOptions = [
-  {
-    value: '',
-    text: 'Select T-shirt size'
-  },
-  {
-    value: 'S(85)',
-    text: 'S(85)'
-  },
-  {
-    value: 'M(90)',
-    text: 'M(90)'
-  },
-  {
-    value: 'L(95)',
-    text: 'L(95)'
-  },
-  {
-    value: 'XL(100)',
-    text: 'XL(100)'
-  },
-  {
-    value: '2XL(105)',
-    text: '2XL(105)'
-  },
-  {
-    value: '3XL(110)',
-    text: '3XL(110)'
-  },
-  {
-    value: '4XL(115)',
-    text: '4XL(115)'
-  },
-]
-class ConferenceTicketOption extends React.Component<PropsType> {
+
+class TermsAgreement extends React.Component<PropsType> {
     render() {
-        const { title, id, onCancel, tshirtsize, isTicketAgreed, onChangeOption, onChangeAgreed } = this.props
+        const { title, id, onCancel, isTermsAgreed, onChangeAgreed } = this.props
         const { t } = this.props
+        const isLanguageKorean = i18next.language === 'ko'
+        const cocLink = isLanguageKorean ? paths.coc : `${paths.coc}?lang=en-US`
 
         return (
             <TicketInformationWrapper>
                 <h1>{title}</h1>
-                <p className='guide'>{t('ticket:conference.option.tshirtSize')}</p>
-                <SelectBox
-                  selectedValue={tshirtsize}
-                  options={tshirtOptions}
-                  onChange={value => onChangeOption({ tshirtsize: value })}
-                />
-                <p className='terms'>
+                <p className='terms'><a target='_blank' rel='noopener noreferrer' href={cocLink}>{`[${t('constant:pyconKorea.nameOnly')} ${t('common:coc')}]`}</a></p>
+                <p className='terms'>{t('ticket:terms')}</p>
+                <p className='agreement'>
                   <input
                     type='checkbox'
-                    id={`payment-option-${id}`}
+                    id={`terms-option-${id}`}
                     aria-checked={true}
                     style={{ verticalAlign: 'top' }}
-                    checked={isTicketAgreed}
+                    checked={isTermsAgreed}
                     onChange={e => onChangeAgreed(e.target.checked)}
                   />
-                  <label htmlFor={`payment-option-${id}`}>{t('ticket:agreeToOptions')}</label>
+                  <label htmlFor={`payment-option-${id}`}>{t('ticket:agreeToTerms')}</label>
                 </p>
                 <button className='back' onClick={onCancel}>&lt; {t('ticket:back')}</button>
             </TicketInformationWrapper>
@@ -155,4 +133,4 @@ class ConferenceTicketOption extends React.Component<PropsType> {
     }
 }
 
-export default ConferenceTicketOption
+export default TermsAgreement

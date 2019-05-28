@@ -1,16 +1,20 @@
 {
     "buy": "구매",
     "pay": "결제",
+    "agree": "동의",
     "ticket": "티켓",
     "back": "뒤로",
     "buying": "구매하기",
     "paying": "결제하기",
     "closed": "마감",
     "fromStartDate": "{{startDate}} 부터",
-    "agree": "상품과 가격, 유의사항을 확인하였으며 구매에 동의합니다.",
+    "agreeToOptions": "상품과 가격, 유의사항을 확인하였으며 구매에 동의합니다.",
+    "agreeToTerms": "행동강령을 확인하였으며 위 내용에 동의합니다.",
+    "terms": "행동강령에 따라 서로를 존중하는 태도로 행사에 참여할 것을 약속합니다.행동강령을 심각하게 위반하여 다른 사람에게 위협이 된다고 판단되는 경우 참가를 제한당할 수 있으며 이 경우 참가비는 환불되지 않습니다.",
     "error": {
         "noOptionSelected": "상품 옵션을 선택하지 않으셨습니다.",
-        "notAgreed": "상품 구매에 동의하지 않으셨습니다."
+        "notAgreeToOptions": "상품 구매에 동의하지 않으셨습니다.",
+        "notAgreeToTerms": "참가자 약관에 동의하지 않으셨습니다."
     },
     "purchased": "구매완료",
     "purchaseNotAvailable": "구매불가",

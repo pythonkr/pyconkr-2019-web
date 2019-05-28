@@ -27,7 +27,8 @@ type PropsType = {
   endDate: string;
   router: RouterProps;
   isPaid: boolean | null;
-  onNextStep(): void;
+  isTermsAgreed: boolean | null;
+  onNextStep(step: number): void;
   onValidate(): VALIDATION_ERROR_TYPE | null;
   setTicket(): void;
   setPrice(price: number): void;
@@ -63,7 +64,17 @@ class TicketBox extends React.Component<PropsType, StatesType> {
 
   onBuyTicket = () => {
     const { onNextStep } = this.props
-    if (onNextStep) onNextStep()
+    if (onNextStep) onNextStep(2)
+  }
+
+  onAgreeTerms = () => {
+    const { onNextStep, isTermsAgreed, t } = this.props
+    if (!isTermsAgreed) {
+      toast.error(t('ticket:error.notAgreeToTerms'))
+
+      return
+    }
+    onNextStep(3)
   }
 
   onPayTicket = () => {
@@ -76,8 +87,8 @@ class TicketBox extends React.Component<PropsType, StatesType> {
       return
     }
 
-    if (error === VALIDATION_ERROR_TYPE.NOT_AGREED) {
-      toast.error(t('ticket:error.notAgreed'))
+    if (error === VALIDATION_ERROR_TYPE.NOT_AGREED_TO_OPTIONS) {
+      toast.error(t('ticket:error.notAgreeToOptions'))
 
       return
     }
@@ -91,7 +102,6 @@ class TicketBox extends React.Component<PropsType, StatesType> {
   renderTicketButtonTitle = () => {
     const { step, startDate, endDate, isPaid, t } = this.props
     const { isTicketStep } = this.state
-    const isBuying = isTicketStep && step === 1
     const isBeforeOpening = startDate && isFuture(startDate)
     const isFinished = endDate && isPast(endDate)
 
@@ -101,13 +111,47 @@ class TicketBox extends React.Component<PropsType, StatesType> {
     if (!_.isNull(isPaid)) {
       return isPaid ? t('ticket:purchased') : t('ticket:purchaseNotAvailable')
     }
-    if (isBuying) return t('ticket:buying')
-    else return t('ticket:paying')
+
+    if (isTicketStep) {
+      if (step === 1) return t('ticket:buying')
+      if (step === 2) return t('ticket:agree')
+      if (step === 3) return t('ticket:paying')
+    }
+  }
+
+  renderTicketDescription = () => {
+    const { title, description, step, warning, options } = this.props
+
+    if (step === 1) {
+      return (
+        <TicketDescription
+          title={title}
+          description={description}
+          warning={warning}
+        />
+      )
+    }
+
+    return options
+  }
+
+  onTicketStepForPayment = () => {
+    const { step } = this.props
+    const { isTicketStep } = this.state
+    if (!isTicketStep) return  this.onPayTicket()
+    if (isTicketStep) {
+      if (step === 1) return this.onBuyTicket()
+      if (step === 2) return this.onAgreeTerms()
+      if (step === 3) return this.onPayTicket()
+    }
   }
 
   render() {
-      const { title, description, warning, price, isEditablePrice, options, step, setPrice, startDate, endDate, isPaid, t } = this.props
-      const { isTicketStep } = this.state
+      const {
+        price, isEditablePrice,
+        setPrice, startDate, endDate, isPaid, t
+      } = this.props
+
       const isBeforeOpening = startDate && isFuture(startDate)
       const isFinished = endDate && isPast(endDate)
       const disablePayment = isBeforeOpening || isFinished
@@ -115,20 +159,13 @@ class TicketBox extends React.Component<PropsType, StatesType> {
 
       return (
         <TicketBoxWrapper>
-          {step === 1
-            ? <TicketDescription
-                title={title}
-                description={description}
-                warning={warning}
-              />
-            : options
-          }
+          {this.renderTicketDescription()}
           <TicketPayment
             t={t}
             price={price}
-            buttonTitle={buttonTitle}
+            buttonTitle={buttonTitle || ''}
             isEditablePrice={isEditablePrice}
-            onPayTicket={isTicketStep && step === 1 ? this.onBuyTicket :  this.onPayTicket}
+            onPayTicket={this.onTicketStepForPayment}
             setPrice={setPrice}
             disabled={(disablePayment !== '' && disablePayment) || !_.isNull(isPaid)}
             minimumPrice={150000}

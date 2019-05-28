@@ -2,6 +2,7 @@ import { FormNeedsLogin } from 'components/atoms/FormNeedsLogin'
 import { Loading } from 'components/atoms/Loading'
 import TicketBox from 'components/molecules/TicketBox'
 import ConferenceTicketOption from 'components/molecules/TicketBox/ConferenceTicketOption'
+import TermsAgreement from 'components/molecules/TicketBox/TermsAgreement'
 import i18next from 'i18next'
 import { TicketTypeNode } from 'lib/apollo_graphql/__generated__/globalTypes'
 import { TicketNode } from 'lib/apollo_graphql/queries/getMyTickets'
@@ -35,24 +36,27 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
     if (!_.isEmpty(myConferenceTicket)) this.setState({ myConferenceTicket })
   }
 
-  renderTicketBoxList = () => {
-    const { stores, router, t } = this.props
-    const { myConferenceTicket } = this.state
+  getTicketSteps = () => {
+    const { stores } = this.props
     const {
-      conferenceProducts, setPrice,
-      earlyBirdTicketOption, earlyBirdTicketOptionAgreed,
-      earlyBirdTicketStep, setEarlyBirdTicketStep, setEarlyBirdTicketOption, setEarlyBirdTicketOptionAgreed, validateEarlyBirdTicket, setEarlyBirdTicket,
-      patronTicketOption, patronTicketOptionAgreed,
-      patronTicketStep, setPatronTicketStep, setPatronTicketOption, setPatronTicketOptionAgreed, validatePatronTicket, setPatronTicket,
+      earlyBirdTicketOption, earlyBirdTicketOptionAgreed, earlyBirdTicketTermsAgreed,
+      earlyBirdTicketStep, setEarlyBirdTicketStep, setEarlyBirdTicketOption, setEarlyBirdTicketOptionAgreed, setEarlyBirdTicketTermsAgreed,
+      validateEarlyBirdTicket, setEarlyBirdTicket,
+      patronTicketOption, patronTicketOptionAgreed, patronTicketTermsAgreed,
+      patronTicketStep, setPatronTicketStep, setPatronTicketOption, setPatronTicketOptionAgreed, setPatronTicketTermsAgreed,
+      validatePatronTicket, setPatronTicket,
     } = stores.ticketStore
-    const ticketSteps = [
+
+    return [
       {
         ticketStepState: earlyBirdTicketStep,
         tshirtsize: earlyBirdTicketOption && earlyBirdTicketOption.tshirtsize,
         isTicketAgreed: earlyBirdTicketOptionAgreed,
+        isTermsAgreed: earlyBirdTicketTermsAgreed,
         setTicketStepState: setEarlyBirdTicketStep,
         setTicketOption: setEarlyBirdTicketOption,
         setTicketOptionAgreed: setEarlyBirdTicketOptionAgreed,
+        setTicketTermsAgreed: setEarlyBirdTicketTermsAgreed,
         validateTicket: validateEarlyBirdTicket,
         setTicket: setEarlyBirdTicket,
       },
@@ -60,13 +64,22 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
         ticketStepState: patronTicketStep,
         tshirtsize: patronTicketOption && patronTicketOption.tshirtsize,
         isTicketAgreed: patronTicketOptionAgreed,
+        isTermsAgreed: patronTicketTermsAgreed,
         setTicketStepState: setPatronTicketStep,
         setTicketOption: setPatronTicketOption,
         setTicketOptionAgreed: setPatronTicketOptionAgreed,
+        setTicketTermsAgreed: setPatronTicketTermsAgreed,
         validateTicket: validatePatronTicket,
         setTicket: setPatronTicket,
       }
     ]
+  }
+
+  renderTicketBoxList = () => {
+    const { stores, router, t } = this.props
+    const { myConferenceTicket } = this.state
+    const { conferenceProducts, setPrice, cleanupConferenceTicketOptions } = stores.ticketStore
+    const ticketSteps = this.getTicketSteps()
 
     return conferenceProducts.map((conferenceProduct, index) => {
       const { id, nameKo, nameEn, descKo, descEn, warningKo, warningEn, price, isEditablePrice, type, startAt, finishAt } = conferenceProduct
@@ -76,22 +89,40 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
       const warning = isLanguageKorean ? warningKo : warningEn
       const {
         ticketStepState,
-        setTicketStepState, setTicketOption, setTicketOptionAgreed,
-        tshirtsize, isTicketAgreed,
+        setTicketStepState, setTicketOption, setTicketOptionAgreed, setTicketTermsAgreed,
+        tshirtsize, isTicketAgreed, isTermsAgreed,
         validateTicket, setTicket
       } = ticketSteps[index]
-      const options = type === TicketTypeNode.CONFERENCE && (
-        <ConferenceTicketOption
-          t={t}
-          title={title || ''}
-          id={id}
-          tshirtsize={tshirtsize || ''}
-          isTicketAgreed={isTicketAgreed}
-          onCancel={() => setTicketStepState(1)}
-          onChangeOption={setTicketOption}
-          onChangeAgreed={setTicketOptionAgreed}
-        />
-      )
+
+      let options = null
+
+      if (ticketStepState === 1 || ticketStepState === 2) {
+        options = (
+          <TermsAgreement
+            t={t}
+            title={title || ''}
+            id={id}
+            isTermsAgreed={isTermsAgreed}
+            onCancel={cleanupConferenceTicketOptions}
+            onChangeAgreed={setTicketTermsAgreed}
+          />
+        )
+      }
+      if (ticketStepState === 3) {
+        options = (
+          <ConferenceTicketOption
+            t={t}
+            title={title || ''}
+            id={id}
+            tshirtsize={tshirtsize || ''}
+            isTicketAgreed={isTicketAgreed}
+            onCancel={cleanupConferenceTicketOptions}
+            onChangeOption={setTicketOption}
+            onChangeAgreed={setTicketOptionAgreed}
+          />
+        )
+      }
+
       let isPaid = null
       if (!_.isEmpty(myConferenceTicket)) {
         isPaid = myConferenceTicket.product.id === id
@@ -108,7 +139,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
           isEditablePrice={isEditablePrice}
           options={options || null}
           step={ticketStepState}
-          onNextStep={() => setTicketStepState(2)}
+          onNextStep={setTicketStepState}
           onValidate={validateTicket}
           setTicket={() => setTicket(id)}
           setPrice={setPrice}
@@ -116,6 +147,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
           startDate={startAt}
           endDate={finishAt}
           isPaid={isPaid}
+          isTermsAgreed={isTermsAgreed}
         />
       )
     })
