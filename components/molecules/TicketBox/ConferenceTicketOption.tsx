@@ -147,7 +147,7 @@ class ConferenceTicketOption extends React.Component<PropsType> {
                     checked={isTicketAgreed}
                     onChange={e => onChangeAgreed(e.target.checked)}
                   />
-                  <label htmlFor='payment-terms'>{t('ticket:agree')}</label>
+                  <label htmlFor={`payment-option-${id}`}>{t('ticket:agree')}</label>
                 </p>
                 <button className='back' onClick={onCancel}>&lt; {t('ticket:back')}</button>
             </TicketInformationWrapper>
