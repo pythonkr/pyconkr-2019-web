@@ -4,10 +4,11 @@ import { uploadBusinessRegistrationFile as uploadSponsorBusinessRegistrationFile
 import { uploadLogoImage as uploadSponsorLogoImage } from 'lib/apollo_graphql/mutations/uploadLogoImage'
 import { uploadLogoVector as uploadSponsorLogoVector } from 'lib/apollo_graphql/mutations/uploadLogoVector'
 import { getMySponsor } from 'lib/apollo_graphql/queries/getMySponsor'
+import { getSponsor } from 'lib/apollo_graphql/queries/getSponsor'
 import { getSponsorLevels, SponsorLevelType } from 'lib/apollo_graphql/queries/getSponsorLevels'
 import { getSponsors, PublicSponsorNode } from 'lib/apollo_graphql/queries/getSponsors'
-import { getSponsor } from 'lib/apollo_graphql/queries/getSponsor'
 
+import { getPatrons, PatronNode, PatronsType } from 'lib/apollo_graphql/queries/getPatrons';
 import * as _ from 'lodash'
 import { action, configure, observable, set } from 'mobx'
 import { SponsorNode } from './SponsorNode'
@@ -29,6 +30,7 @@ export class SponsorStore {
     @observable isProposalInitialized: boolean = false
     @observable proposalLevel: SponsorLevelType
     @observable currentStage: SponsorFormStage = SponsorFormStage.stage1
+    @observable patrons: PatronNode[] = []
 
     constructor() {
         this.proposal = new SponsorNode()
@@ -73,12 +75,13 @@ export class SponsorStore {
 
     @action
     getAvailableLevel() {
-        for(const i in this.sponsorLevels){
+        for (const i in this.sponsorLevels) {
             const sponsor = this.sponsorLevels[i]
-            if(sponsor.currentRemainingNumber){
+            if (sponsor.currentRemainingNumber) {
                 return sponsor
             }
         }
+
         return {}
     }
 
@@ -104,6 +107,7 @@ export class SponsorStore {
         if (response.data.sponsor) {
             this.currentSponsor = response.data.sponsor
         }
+
         return response.data.sponsor
     }
 
@@ -164,6 +168,17 @@ export class SponsorStore {
         this.proposal.setLogoVector(fileUrl)
 
         return fileUrl
+    }
+
+    @action
+    async retrievePatrons() {
+        const response = await getPatrons(client)({})
+        this.setPatrons(response.data.patrons as PatronNode[])
+    }
+
+    @action
+    setPatrons(patrons: PatronNode[]) {
+        this.patrons = patrons
     }
 }
 

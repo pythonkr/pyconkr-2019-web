@@ -34,7 +34,7 @@ export const paths = {
     prospectus: '/sponsor/prospectus',
     applicationForm: '/sponsor/application-form',
     termsOfService: '/sponsor/terms-of-service',
-    patronList: '/sponsor/patron-list'
+    patronList: '/sponsor/patrons'
   },
   account: {
     base: '/account',

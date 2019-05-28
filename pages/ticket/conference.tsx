@@ -7,13 +7,13 @@ import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import ConferenceTicketList from 'components/organisms/Ticket/ConferenceTicketList'
 import PageTemplate from 'components/templates/PageTemplate'
-import { withNamespaces } from '../../i18n'
 import { inject, observer } from 'mobx-react'
 import { withRouter } from 'next/router'
 import React from 'react'
 import { paths, ticketMenu } from 'routes/paths'
 import { DateDTO } from 'types/common'
 import { PageDefaultPropsType } from 'types/PageDefaultPropsType'
+import { withNamespaces } from '../../i18n'
 
 export type IntlTextType = {
   intlKey: string;
@@ -31,6 +31,12 @@ export type Schedule = {
 @inject('stores')
 @observer
 export class ConferenceTicket extends React.Component<PageDefaultPropsType> {
+  static async getInitialProps() {
+      return {
+          namespacesRequired: ['ticket'],
+      }
+  }
+
   async componentDidMount() {
     const { stores } = this.props
     if (!stores.ticketStore.isInitialized) stores.ticketStore.initialize()

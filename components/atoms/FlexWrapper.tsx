@@ -10,3 +10,8 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 `
+
+export const FlexColumnWrapper = styled.div`
+display: flex;
+flex-direction: column
+`
