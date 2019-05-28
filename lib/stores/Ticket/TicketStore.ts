@@ -17,7 +17,8 @@ export enum PAYMENT_TYPE_ENUM {
 
 export enum VALIDATION_ERROR_TYPE {
     NONE = 'NONE',
-    NOT_AGREED = 'NOT_AGREED',
+    NOT_AGREED_TO_OPTIONS = 'NOT_AGREED_TO_OPTIONS',
+    NOT_AGREED_TO_TERMS = 'NOT_AGREED_TO_TERMS',
     NO_OPTION_SELECTED = 'NO_OPTIONS_SELECTED'
 }
 
@@ -48,9 +49,11 @@ export class TicketStore {
     @observable earlyBirdTicketStep: number = 1
     @observable earlyBirdTicketOption: { tshirtsize: string } | null = null
     @observable earlyBirdTicketOptionAgreed: boolean = false
+    @observable earlyBirdTicketTermsAgreed: boolean = false
     @observable patronTicketStep: number = 1
     @observable patronTicketOption: { tshirtsize: string } | null = null
     @observable patronTicketOptionAgreed: boolean = false
+    @observable patronTicketTermsAgreed: boolean = false
     @observable expiryMonth: string = ''
     @observable expiryYear: string = ''
     @observable ticketInput: PaymentInput = initialTicketInput
@@ -87,7 +90,7 @@ export class TicketStore {
     }
 
     @action
-    setEarlyBirdTicketOption = (ticketOption: { tshirtsize: string }) => {
+    setEarlyBirdTicketOption = (ticketOption: { tshirtsize: string } | null) => {
         this.earlyBirdTicketOption = ticketOption
     }
 
@@ -97,18 +100,28 @@ export class TicketStore {
     }
 
     @action
+    setEarlyBirdTicketTermsAgreed = (isAgree: boolean) => {
+        this.earlyBirdTicketTermsAgreed = isAgree
+    }
+
+    @action
     setPatronTicketStep = (step: number) => {
         this.patronTicketStep = step
     }
 
     @action
-    setPatronTicketOption = (ticketOption: { tshirtsize: string }) => {
+    setPatronTicketOption = (ticketOption: { tshirtsize: string } | null) => {
       this.patronTicketOption = ticketOption
     }
 
     @action
     setPatronTicketOptionAgreed = (isAgree: boolean) => {
       this.patronTicketOptionAgreed = isAgree
+    }
+
+    @action
+    setPatronTicketTermsAgreed = (isAgree: boolean) => {
+      this.patronTicketTermsAgreed = isAgree
     }
 
     @action
@@ -175,9 +188,11 @@ export class TicketStore {
     cleanupConferenceTicketOptions = () => {
       this.setEarlyBirdTicketOption(null)
       this.setEarlyBirdTicketOptionAgreed(false)
+      this.setEarlyBirdTicketTermsAgreed(false)
       this.setEarlyBirdTicketStep(1)
       this.setPatronTicketOption(null)
       this.setPatronTicketOptionAgreed(false)
+      this.setPatronTicketTermsAgreed(false)
       this.setPatronTicketStep(1)
     }
 
@@ -201,10 +216,10 @@ export class TicketStore {
 
     @action
     validateEarlyBirdTicket = () => {
-        if (!this.earlyBirdTicketOption || _.isEmpty(this.earlyBirdTicketOption.tshirtsize)) return VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED
-        if (!this.earlyBirdTicketOptionAgreed) return VALIDATION_ERROR_TYPE.NOT_AGREED
+      if (!this.earlyBirdTicketOption || _.isEmpty(this.earlyBirdTicketOption.tshirtsize)) return VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED
+      if (!this.earlyBirdTicketOptionAgreed) return VALIDATION_ERROR_TYPE.NOT_AGREED_TO_OPTIONS
 
-        return VALIDATION_ERROR_TYPE.NONE
+      return VALIDATION_ERROR_TYPE.NONE
     }
 
     @action
@@ -218,7 +233,7 @@ export class TicketStore {
     @action
     validatePatronTicket = () => {
       if (!this.patronTicketOption || _.isEmpty(this.patronTicketOption.tshirtsize)) return VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED
-      if (!this.patronTicketOptionAgreed) return VALIDATION_ERROR_TYPE.NOT_AGREED
+      if (!this.patronTicketOptionAgreed) return VALIDATION_ERROR_TYPE.NOT_AGREED_TO_OPTIONS
 
       return VALIDATION_ERROR_TYPE.NONE
     }

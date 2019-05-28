@@ -1,5 +1,6 @@
 export const paths = {
   home: '/',
+  coc: '/coc',
   help: {
     base: '/help',
     faq: '/help/faq',

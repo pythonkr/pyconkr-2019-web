@@ -1,16 +1,20 @@
 {
     "buy": "Buy",
     "pay": "Pay",
+    "agree": "Agree",
     "ticket": "ticket",
     "back": "back",
     "buying": "Buy",
     "paying": "Pay",
     "closed": "Closed",
     "fromStartDate": "From {{startDate}}",
-    "agree": "I confirm the goods, the price and the agree to the purchase.",
+    "agreeToOptions": "I confirm the goods, the price and the agree to the purchase.",
+    "agreeToTerms": "I agree to the terms above.",
+    "terms": "We promise to participate in the event in a manner that respects each other in accordance with the Code of Conduct. Participation may be restricted if it is determined that there is a serious violation of the Code of Conduct and threats to others, in which case the ticket purchased cannot be refunded.",
     "error": {
         "noOptionSelected": "Please select a product option",
-        "notAgreed": "Please agree to the purchase"
+        "notAgreeToOptions": "Please agree to the purchase",
+        "notAgreeToTerms": "Please agree to the terms"
     },
     "purchased": "Purchased",
     "purchaseNotAvailable": "Not available",
