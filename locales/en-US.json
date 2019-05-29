@@ -77,7 +77,8 @@
     "sponsor": {
       "root": "Sponsor",
       "prospectus": "Sponsor Prospectus",
-      "invitation": "Sponsor Invitation"
+      "invitation": "Sponsor Invitation",
+      "patron": "Patrons"
     },
     "info": {
       "login": "Login",
