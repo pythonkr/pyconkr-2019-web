@@ -28,9 +28,7 @@ export class ProposalReviewStore {
 
     @action
     async initialize() {
-        if (this.isInitialized) {
-            return
-        }
+        if (this.isInitialized) return
         await this.retrieveAssignedCfpReviews()
         this.isInitialized = true
     }

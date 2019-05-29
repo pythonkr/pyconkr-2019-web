@@ -1,0 +1,26 @@
+query getMyTickets {
+  myTickets {
+    id
+    amount
+    paidAt
+    cancelledAt
+    status
+    product {
+      id
+      type
+      name
+      nameKo
+      nameEn
+      descKo
+      descEn
+      warningKo
+      warningEn
+      isUniqueInType
+      cancelableDate
+      startAt
+      finishAt
+    }
+    createdAt
+    updatedAt
+  }
+}

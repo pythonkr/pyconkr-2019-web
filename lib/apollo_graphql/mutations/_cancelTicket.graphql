@@ -1,0 +1,10 @@
+mutation cancelTicket($ticketId: ID!) {
+  cancelTicket(ticketId: $ticketId) {
+    ticket {
+      id
+      cancelledAt
+      status
+      cancelReceiptUrl
+    }
+  }
+}

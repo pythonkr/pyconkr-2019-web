@@ -18,7 +18,8 @@ export interface NoticeBarProps {
   text: string,
   textIntlKey?: string,
   link?: LinkProps,
-  actionButton?: ActionButtonProps
+  actionButton?: ActionButtonProps,
+  style?: any
 }
 
 interface StyledNoticeBarProps {
@@ -119,15 +120,19 @@ export const NoticeBar: React.SFC<PropsWithChildren<NoticeBarProps & StyledNotic
   actionButton,
   style
 }) => {
-  return <StyledNoticeBar
+  return (
+    <StyledNoticeBar
     color={color}
     borderColor={borderColor}
     textColor={textColor}
     textLinkColor={textLinkColor}
     style={style}
-  >
-    <StyledNoticeBarContent>{text}</StyledNoticeBarContent>
-    {!!link && <NoticeBarLink {...link} />}
-    {!!actionButton && <ActionButton {...actionButton} />}
-  </StyledNoticeBar>
+    >
+      <StyledNoticeBarContent>
+        {text}
+      </StyledNoticeBarContent>
+      {!!link && <NoticeBarLink {...link} />}
+      {!!actionButton && <ActionButton {...actionButton} />}
+    </StyledNoticeBar>
+  )
 }

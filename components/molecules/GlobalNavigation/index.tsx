@@ -1,16 +1,17 @@
 import styled from '@emotion/styled'
 import AccountMenuButton from 'components/atoms/AccountMenuButton'
+import { Button } from 'components/atoms/Button';
 import NavLink from 'components/atoms/NavLink'
 import NavMenuSubLink from 'components/atoms/NavMenuSubLink'
 import { PyConKRLogo } from 'components/atoms/SVG'
 import Link from 'next/link'
 import { withRouter } from 'next/router'
 import React from 'react'
+import { withNamespaces } from '../../../i18n'
 import intl from 'react-intl-universal'
 import { globalNavigationMenu } from 'routes/paths'
 import { CORAL, CORAL_LIGHT } from 'styles/colors'
 import { mobileWidth, navigationPadding } from 'styles/layout'
-
 const NavWrapper = styled.nav`
   display: flex;
   justify-content: space-between;
@@ -36,7 +37,7 @@ const HamburgerButtonLabel = styled.label`
 cursor: pointer;
 display: inline-block;
 float: right;
-padding: 28px 20px;
+padding: 30px 20px;
 position: relative;
 user-select: none;
 z-index: 200;
@@ -220,6 +221,34 @@ export const SubmenuItemLink = styled(NavMenuSubLink)`
   padding: 20px 0;
 }`
 
+export const TicketsButtonWrapper = styled.div`
+  display: block;
+  margin-left: auto;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+`
+
+export const TicketsButton = styled(Button)`
+  width: 140px;
+  height: 38px;
+
+  span {
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  @media (max-width: ${mobileWidth}) {
+    width: 90px;
+    height: 30px;
+
+    span {
+      font-size: 12px;
+    }
+  }
+`
+
 class Navigation extends React.Component<any> {
   state = {
     isMenuOpened: false,
@@ -243,7 +272,7 @@ class Navigation extends React.Component<any> {
   }
 
   render() {
-    const { router } = this.props
+    const { router, t } = this.props
     const { isMenuOpened, openedSubmenu } = this.state
 
     return (
@@ -261,6 +290,15 @@ class Navigation extends React.Component<any> {
             </Link>
           </NavItem>
         </ul>
+        <TicketsButtonWrapper>
+          <TicketsButton
+            size='small'
+            height={27}
+            title={t('gnb:ticket')}
+            to={'/ticket/overview'}
+          >
+          </TicketsButton>
+        </TicketsButtonWrapper>
         <HamburgerCheckbox
           type='checkbox'
           id='menu-btn'
@@ -319,5 +357,4 @@ class Navigation extends React.Component<any> {
     )
   }
 }
-
-export default withRouter(Navigation)
+export default withNamespaces(['gnb'])(withRouter(Navigation))

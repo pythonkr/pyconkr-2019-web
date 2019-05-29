@@ -18,7 +18,16 @@ export type Contribution = {
     editLink?: string;
     dateDescription?: DateDescription;
     isMyContribution?: boolean;
-    isProposalSubmitted?: boolean;
+}
+
+export type Ticket = {
+    title?: string;
+    intlKey?: string;
+    openDate?: string;
+    closeDate?: string;
+    link?: string;
+    editLink?: string;
+    dateDescription?: DateDescription;
 }
 
 type PropsType = {

@@ -1,0 +1,33 @@
+query getMyTicket($id: ID!) {
+  myTicket(id: $id) {
+    id
+    isDomesticCard
+    amount
+    merchantUid
+    impUid
+    pgTid
+    receiptUrl
+    paidAt
+    cancelReceiptUrl
+    cancelledAt
+    status
+    product {
+      id
+      type
+      name
+      nameKo
+      nameEn
+      descKo
+      descEn
+      warningKo
+      warningEn
+      isUniqueInType
+      cancelableDate
+      startAt
+      finishAt
+    }
+    options
+    createdAt
+    updatedAt
+  }
+}

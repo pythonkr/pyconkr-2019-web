@@ -1,0 +1,28 @@
+query getConferenceProducts {
+  conferenceProducts {
+    id
+    type
+    name
+    nameKo
+    nameEn
+    desc
+    descKo
+    descEn
+    warning
+    warningKo
+    warningEn
+    startAt
+    finishAt
+    total
+    price
+    isEditablePrice
+    isUniqueInType
+    active
+    cancelableDate
+    ticketOpenAt
+    ticketCloseAt
+    createdAt
+    updatedAt
+    purchaseCount
+  }
+}
