@@ -22,7 +22,7 @@ export class Patrons extends React.Component<PageDefaultPropsType> {
 
   async componentDidMount() {
     const { stores } = this.props
-    stores.sponsorStore.retrievePatrons()
+    await stores.sponsorStore.retrievePatrons()
   }
 
   render() {
@@ -30,16 +30,18 @@ export class Patrons extends React.Component<PageDefaultPropsType> {
 
     return (
       <PageTemplate
-        header={<Header title={t('sponsor:patron.headerTitle')}/>}
+        header={<Header titleTranslated={t('sponsor:patron.headerTitle')}/>}
         footer={<Footer />}
       >
         <H1>{t('sponsor:patron.headerTitle')}</H1>
-        <Section>
-          <AlertBar text={t('sponsor:patron.waitingAlert')} />
-        </Section>
-        <Section>
-          <PatronList stores={stores} />
-        </Section>
+        {!stores.sponsorStore.patrons || _.isEmpty(stores.sponsorStore.patrons)
+          ? <Section>
+              <AlertBar text={t('sponsor:patron.waitingAlert')} />
+            </Section>
+          : <Section>
+              <PatronList stores={stores} />
+            </Section>
+        }
       </PageTemplate>
     )
   }

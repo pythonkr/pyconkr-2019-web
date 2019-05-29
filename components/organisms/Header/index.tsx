@@ -1,23 +1,26 @@
 import Navigation from 'components/molecules/GlobalNavigation'
+import _ from 'lodash'
 import Head from 'next/head'
 import React from 'react'
 import intl from 'react-intl-universal'
 
 export type PropsType = {
-  title: string;
+  title?: string;
+  titleTranslated?: string;
   intlKey?: string | null;
 }
 
 class Header extends React.Component<PropsType> {
   render() {
-    const { title } = this.props
+    const { title, titleTranslated } = this.props
     const intlKey = this.props.intlKey ? this.props.intlKey : 'constant.pyconKorea.name'
 
     return (
       <>
         <Head>
-          <title>{intl.get(intlKey).d(title)}</title>
-          {/* <title>{title}</title> */}
+          <title>
+            {!_.isEmpty(titleTranslated) ? titleTranslated : intl.get(intlKey).d(title || '')}
+          </title>
           <meta charSet='utf-8' />
           <meta
             property='og:site_name'

@@ -74,5 +74,9 @@
       "desc6": "Publishing sponsorship: history of publishing for Python book is required.",
       "desc7": "Media sponsorship: Any related history for python is required."
     }
+  },
+  "patron": {
+    "headerTitle": "Patrons",
+    "waitingAlert": "There is no patrons. Please contribute to Pycon Korea 2019. 🙏"
   }
 }

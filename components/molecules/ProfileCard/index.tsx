@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import * as React from 'react'
+import { mobileWidth } from 'styles/layout'
 
 type PropsType = {
   profileImg: string;
@@ -12,6 +13,12 @@ const ProfileCardWrapper = styled.div`
   width: 100%;
   display: flex;
   margin-bottom: 40px;
+
+  @media (max-width: ${mobileWidth}) {
+    display: block;
+    position: relative;
+    margin-top: 80px;
+  }
 `
 
 const ProfileImage = styled.div`
@@ -22,6 +29,16 @@ const ProfileImage = styled.div`
     width: 100px;
     border-radius: 50%;
     box-shadow: 0px 0px 20px #DFDFDF
+  }
+
+  @media (max-width: ${mobileWidth}) {
+    width: 100%;
+    position: absolute;
+    top: -60px;
+
+    img {
+      width: 80px;
+    }
   }
 `
 
@@ -36,6 +53,10 @@ const ProfileDescription = styled.div`
     white-space: pre-wrap;
     color: #4a4a4a;
     line-height: 1.4em;
+  }
+
+  @media (max-width: ${mobileWidth}) {
+    width: 100%;
   }
 `
 
