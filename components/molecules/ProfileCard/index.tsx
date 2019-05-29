@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import * as React from 'react'
 import { mobileWidth } from 'styles/layout'
+import ProfileBio from './ProfileBio'
 
 type PropsType = {
   profileImg: string;
@@ -47,8 +48,8 @@ const ProfileDescription = styled.div`
   padding: 25px;
   box-shadow: 0px 0px 20px #DFDFDF;
   border-radius: 5px;
-  color: #077477;
-
+  color: #4a4a4a;
+  
   pre {
     white-space: pre-wrap;
     color: #4a4a4a;
@@ -64,18 +65,20 @@ const ProfileName = styled.div`
   font-weight: bold;
   margin-bottom: 10px;
   font-size: 20px;
+  color: #077477;
 `
 
 const ProfileOrganization = styled.div`
   font-weight: bold;
   margin-bottom: 10px;
   opacity: 0.8;
+  color: #077477;
 `
 
 class ProfileCard extends React.Component<PropsType> {
   render() {
     const { profileImg, name, organization, bio } = this.props
-
+    
     return (
       <ProfileCardWrapper>
         <ProfileImage>
@@ -84,7 +87,7 @@ class ProfileCard extends React.Component<PropsType> {
         <ProfileDescription>
           <ProfileName>{name}</ProfileName>
           <ProfileOrganization>{organization}</ProfileOrganization>
-          <pre>{bio}</pre>
+          <ProfileBio bio={bio}></ProfileBio>
         </ProfileDescription>
       </ProfileCardWrapper>
     )
