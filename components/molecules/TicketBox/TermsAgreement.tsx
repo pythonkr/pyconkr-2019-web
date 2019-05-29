@@ -125,7 +125,7 @@ class TermsAgreement extends React.Component<PropsType> {
                     checked={isTermsAgreed}
                     onChange={e => onChangeAgreed(e.target.checked)}
                   />
-                  <label htmlFor={`payment-option-${id}`}>{t('ticket:agreeToTerms')}</label>
+                  <label htmlFor={`terms-option-${id}`}>{t('ticket:agreeToTerms')}</label>
                 </p>
                 <button className='back' onClick={onCancel}>&lt; {t('ticket:back')}</button>
             </TicketInformationWrapper>
