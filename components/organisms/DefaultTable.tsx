@@ -18,7 +18,6 @@ export type Contribution = {
     editLink?: string;
     dateDescription?: DateDescription;
     isMyContribution?: boolean;
-    isProposalSubmitted?: boolean;
 }
 
 export type Ticket = {
