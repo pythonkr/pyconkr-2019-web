@@ -26,8 +26,7 @@ class PaymentForm extends React.Component<PropTypes> {
 
   onSubmitPayment = async (event: React.FormEvent<HTMLInputElement | HTMLFormElement>) => {
     event.preventDefault()
-    const { stores, router } = this.props
-    stores.ticketStore.setExpiry()
+    const { stores } = this.props
     const data = await stores.ticketStore.payTicket()
 
     if (data.graphQLErrors) {
@@ -88,6 +87,7 @@ class PaymentForm extends React.Component<PropTypes> {
               setPwd2Digit={setPwd2Digit}
               onSubmitPayment={this.onSubmitPayment}
               onClickCancel={this.onClickCancel}
+              isSubmitPayment={stores.ticketStore.isSubmitPayment}
             />
           </FormWrapper>
         </Section>

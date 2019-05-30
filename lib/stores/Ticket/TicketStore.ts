@@ -42,6 +42,7 @@ export class TicketStore {
     @observable isInitialized: boolean = false
     @observable conferenceProducts: ConferenceProductType[] = []
     @observable isPaying: boolean = false
+    @observable isSubmitPayment: boolean = false
     @observable payingType: PAYMENT_TYPE_ENUM | null = null
     @observable price: number = 0
     @observable options: string = ''
@@ -169,6 +170,11 @@ export class TicketStore {
       this.ticketInput.pwd2digit = pwd2Digit
     }
 
+    @action
+    setIsSubmitPayment = (isSubmitPayment: boolean) => {
+      this.isSubmitPayment = isSubmitPayment
+    }
+
     // Actions
     @action
     initialize = async () => {
@@ -249,6 +255,8 @@ export class TicketStore {
     @action
     payTicket = async () => {
       try {
+        this.setIsSubmitPayment(true)
+        this.setExpiry()
         this.ticketInput.amount = this.price
 
         return await buyTicket(client)({
@@ -257,6 +265,8 @@ export class TicketStore {
           productId: this.productId
         })
       } catch (err) {
+        this.setIsSubmitPayment(false)
+
         return err
       }
     }
