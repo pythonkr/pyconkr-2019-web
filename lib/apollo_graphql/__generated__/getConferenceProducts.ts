@@ -33,6 +33,14 @@ export interface getConferenceProducts_conferenceProducts {
    * 판매할 티켓의 총 개수입니다.
    */
   total: number;
+  /**
+   * 해당 제품에 남아있는 티켓 개수입니다.
+   */
+  remainingCount: number | null;
+  /**
+   * True면 매진, False면 판매중 입니다.
+   */
+  isSoldOut: boolean | null;
   price: number;
   /**
    * 개인후원과 같이 가격을 상향조정할 수 있는지 여부를 나타냅니다.

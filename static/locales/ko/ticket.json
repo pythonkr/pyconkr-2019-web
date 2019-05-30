@@ -7,6 +7,7 @@
     "buying": "구매하기",
     "paying": "결제하기",
     "closed": "마감",
+    "soldout": "매진",
     "fromStartDate": "{{startDate}} 부터",
     "agreeToOptions": "상품과 가격, 유의사항을 확인하였으며 구매에 동의합니다.",
     "agreeToTerms": "행동강령을 확인하였으며 위 내용에 동의합니다.",

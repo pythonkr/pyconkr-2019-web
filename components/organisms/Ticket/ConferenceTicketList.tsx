@@ -82,7 +82,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
     const ticketSteps = this.getTicketSteps()
 
     return conferenceProducts.map((conferenceProduct, index) => {
-      const { id, nameKo, nameEn, descKo, descEn, warningKo, warningEn, price, isEditablePrice, type, ticketOpenAt, ticketCloseAt } = conferenceProduct
+      const { id, nameKo, nameEn, descKo, descEn, warningKo, warningEn, price, isEditablePrice, type, ticketOpenAt, ticketCloseAt, isSoldOut } = conferenceProduct
       const isLanguageKorean = i18next.language === 'ko'
       const title = isLanguageKorean ? nameKo : nameEn
       const desc = isLanguageKorean ? descKo : descEn
@@ -148,6 +148,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
           endDate={ticketCloseAt}
           isPaid={isPaid}
           isTermsAgreed={isTermsAgreed}
+          isSoldOut={isSoldOut}
         />
       )
     })
