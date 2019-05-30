@@ -52,6 +52,7 @@ type PropsType = {
   expiryYear: string;
   birth: string;
   pwd2digit: string;
+  isSubmitPayment: boolean;
   setIsDomesticCard(isDomestic: boolean): void;
   setCardNumber(cardNumber: string): void;
   setExpiryMonth(month: string): void;
@@ -73,7 +74,7 @@ class CreditCardInfo extends React.Component<PropsType> {
   render() {
     const {
       t, isDomesticCard, cardNumber, expiryMonth, expiryYear, birth, pwd2digit,
-      setIsDomesticCard, setCardNumber, setExpiryMonth, setExpiryYear, setBirth, setPwd2Digit,
+      setIsDomesticCard, setCardNumber, setExpiryMonth, setExpiryYear, setBirth, setPwd2Digit, isSubmitPayment,
       onSubmitPayment, onClickCancel
     } = this.props
 
@@ -242,6 +243,7 @@ class CreditCardInfo extends React.Component<PropsType> {
             color={TEAL}
             width={80}
             onSubmit={onSubmitPayment}
+            disabled={isSubmitPayment}
           >
             {t('ticket:pay')}
           </Button>
