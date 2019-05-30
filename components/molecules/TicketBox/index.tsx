@@ -28,6 +28,7 @@ type PropsType = {
   router: RouterProps;
   isPaid: boolean | null;
   isTermsAgreed: boolean | null;
+  isSoldOut: boolean;
   onNextStep(step: number): void;
   onValidate(): VALIDATION_ERROR_TYPE | null;
   setTicket(): void;
@@ -100,13 +101,15 @@ class TicketBox extends React.Component<PropsType, StatesType> {
   }
 
   renderTicketButtonTitle = () => {
-    const { step, startDate, endDate, isPaid, t } = this.props
+    const { step, startDate, endDate, isPaid, isSoldOut, t } = this.props
     const { isTicketStep } = this.state
     const isBeforeOpening = startDate && isFuture(startDate)
     const isFinished = endDate && isPast(endDate)
 
     if (isBeforeOpening) return t('ticket:fromStartDate', { startDate: moment(startDate).format('MM-DD hh:mm') })
     if (isFinished) return t('ticket:closed')
+
+    if (isSoldOut) return t('ticket:soldout')
 
     if (!_.isNull(isPaid)) {
       return isPaid ? t('ticket:purchased') : t('ticket:purchaseNotAvailable')
@@ -149,7 +152,7 @@ class TicketBox extends React.Component<PropsType, StatesType> {
   render() {
       const {
         price, isEditablePrice,
-        setPrice, startDate, endDate, isPaid, t
+        setPrice, startDate, endDate, isPaid, isSoldOut, t
       } = this.props
 
       const isBeforeOpening = startDate && isFuture(startDate)
@@ -167,7 +170,7 @@ class TicketBox extends React.Component<PropsType, StatesType> {
             isEditablePrice={isEditablePrice}
             onPayTicket={this.onTicketStepForPayment}
             setPrice={setPrice}
-            disabled={(disablePayment !== '' && disablePayment) || !_.isNull(isPaid)}
+            disabled={(disablePayment !== '' && disablePayment) || !_.isNull(isPaid) || isSoldOut}
             minimumPrice={150000}
           />
         </TicketBoxWrapper>
