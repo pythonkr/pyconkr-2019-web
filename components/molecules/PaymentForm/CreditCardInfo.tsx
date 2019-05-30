@@ -190,7 +190,7 @@ class CreditCardInfo extends React.Component<PropsType> {
           </label>
           <div>
             <input
-              type='text'
+              type='password'
               value={pwd2digit !== null && isDomesticCard
                 ? pwd2digit
                 : ''
