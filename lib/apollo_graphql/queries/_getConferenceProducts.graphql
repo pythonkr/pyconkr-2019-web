@@ -14,6 +14,8 @@ query getConferenceProducts {
     startAt
     finishAt
     total
+    remainingCount
+    isSoldOut
     price
     isEditablePrice
     isUniqueInType

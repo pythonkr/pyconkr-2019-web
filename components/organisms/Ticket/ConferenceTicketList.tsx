@@ -82,12 +82,11 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
     const ticketSteps = this.getTicketSteps()
 
     return conferenceProducts.map((conferenceProduct, index) => {
-      const { id, nameKo, nameEn, descKo, descEn, warningKo, warningEn, price, isEditablePrice, type, ticketOpenAt, ticketCloseAt, total } = conferenceProduct
+      const { id, nameKo, nameEn, descKo, descEn, warningKo, warningEn, price, isEditablePrice, type, ticketOpenAt, ticketCloseAt, isSoldOut } = conferenceProduct
       const isLanguageKorean = i18next.language === 'ko'
       const title = isLanguageKorean ? nameKo : nameEn
       const desc = isLanguageKorean ? descKo : descEn
       const warning = isLanguageKorean ? warningKo : warningEn
-      const isSoldOut = total === 0
       const {
         ticketStepState,
         setTicketStepState, setTicketOption, setTicketOptionAgreed, setTicketTermsAgreed,
