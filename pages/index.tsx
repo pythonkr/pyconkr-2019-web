@@ -248,6 +248,35 @@ const SponserSection = styled.section`
     }
   }
 `
+
+const NoticeSection = styled.section`
+  background-color: #0584870f;
+  padding: 60px 20px;
+  h2 {
+    font-size: 26px;
+    line-height: 1.4;
+    font-weight: bold;
+    text-align: center;
+    color: #4a4a4a;
+    max-width: 400px;
+    margin: 0 auto;
+    @media (max-width: ${mobileWidth}) {
+      width: auto;
+      margin: 0;
+      text-align: left;
+      font-size: 21px;
+    }
+  }
+  p {
+    max-width: 740px;
+    margin: 32px auto 0;
+    font-size: 16px;
+    line-height: 1.7em;
+    @media (max-width: ${mobileWidth}) {
+      font-size: 15px;
+    }
+  }
+`
 const IntroduceSection = styled.section`
   padding: 155px 0 171px 0;
   h2 {
@@ -325,6 +354,27 @@ class Index extends React.Component<{ stores: StoresType }> {
             </p>
           </MainBannerInfoWrapper>
         </BannerSection>
+        <NoticeSection>
+          <h2>
+              <IntlText intlKey='home.notice.title'>
+                파이콘 한국 2019 얼리버드/개인후원 티켓 판매 일시중단 안내
+              </IntlText>
+            </h2>
+            <p>
+              <IntlText intlKey='home.notice.description1'>
+                안녕하세요, 금일 파이콘 한국 티켓 구매와 관련해 서버 이슈로 인해 불편을 끼쳐드린 점에 대해 사과드립니다. 현재와 같은 상황으로 티켓을 판매하는 것은 불편함이 커질 것이라는 판단하에 재오픈을 결정하게 되었습니다.
+
+<br/><br/>1. 이미 구매하신 구매자분들은 티켓이 유지됩니다.
+<br/>현재 구매하였으나 내 티켓에 티켓이 보이지 않는 현상은 서버 이슈도 연관이 있을 것으로 보여 서버가 안정화된 후에 다시 확인해주시기 바라고, 그럼에도 보이지 않을 경우 파이콘 한국으로 메일(support@pycon.kr) 주시기 바랍니다.
+
+<br/><br/>2. 재오픈 일정은 추후 파이콘 한국 공식 채널(페이스북/트위터/공식홈페이지)을 통해 다시 안내드리겠습니다.
+<br/>확실하게 재정비 후 오픈을 하기 위하여 일정을 섣불리 정하지 않기로 한 점 양해 부탁드립니다.
+
+<br/><br/>문의 : support@pycon.kr
+<br/>정비된 파이콘으로 다시 찾아뵙겠습니다. 감사합니다.
+              </IntlText>
+            </p>
+        </NoticeSection>
         <ScheduleSection>
           <ul>
             <li>
