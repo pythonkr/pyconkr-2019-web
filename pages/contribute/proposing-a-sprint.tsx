@@ -1,7 +1,6 @@
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import SponsorBanners from 'components/organisms/SponsorBanners'
-import SponsorBanners from 'components/organisms/SponsorBanners'
 import PageTemplate from 'components/templates/PageTemplate'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
