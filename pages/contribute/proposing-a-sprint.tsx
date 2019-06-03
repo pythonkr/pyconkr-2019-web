@@ -1,5 +1,6 @@
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
+import SponsorBanners from 'components/organisms/SponsorBanners'
 import PageTemplate from 'components/templates/PageTemplate'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
@@ -20,6 +21,7 @@ export default class CFPDetailedGuide extends React.Component<{ stores: StoresTy
     return (
       <PageTemplate
         header={<Header title='스프린트 제안하기 :: 파이콘 한국 2019' />}
+        sponsorBanners={<SponsorBanners />}
         footer={<Footer />}
       >
         <span>Pycon Sponsors</span>

@@ -4,6 +4,7 @@ import { StatusBar } from 'components/atoms/StatusBar'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import { SponsorPackageTables } from 'components/organisms/SponsorPackageTables'
+import SponsorBanners from 'components/organisms/SponsorBanners'
 import PageTemplate from 'components/templates/PageTemplate'
 import i18next from 'i18next'
 import { inject, observer } from 'mobx-react'
@@ -34,6 +35,7 @@ export class Prospectus extends React.Component<PropsType> {
     return (
         <PageTemplate
             header={<Header title='후원사 안내 :: 파이콘 한국 2019' intlKey='sponsor.prospectus.pageTitle'/>}
+            sponsorBanners={<SponsorBanners />}
             footer={<Footer />}
         >
           <H1>{t('sponsor:prospectus.title')}</H1>
