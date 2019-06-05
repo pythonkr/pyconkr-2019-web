@@ -50,6 +50,7 @@
     "mobx-react": "^5.4.3",
     "mobx-state-tree": "^3.10.2",
     "next": "^7.0.2",
+    "next-ga": "^2.3.4",
     "next-i18next": "^0.37.0",
     "next-nprogress": "^1.4.0",
     "next-plugin-graphql": "^0.0.2",
