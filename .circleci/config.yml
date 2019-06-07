@@ -96,7 +96,7 @@ workflows:
           context: PROD
           requires:
             - build
-            - docker
+            # - docker
           filters:
             branches:
               only: master
