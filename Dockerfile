@@ -3,7 +3,9 @@ FROM node:11.10
 ARG NODE_ENV=production
 ENV NODE_ENV=$NODE_ENV
 
+
 # Set a working directory
+COPY . /web
 WORKDIR /web
 
 # Install native dependencies
