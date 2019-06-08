@@ -13,7 +13,7 @@ import React from 'react'
 const SponsorBannersSlider = styled.div`
   width: 940px;
   height: 250px;
-  background-color: rgba(216, 216, 216, 0);
+
 
   margin-left: auto;
   margin-right: auto;
@@ -101,11 +101,24 @@ const CustomNextArrow = (props) => {
     )
 }
 
-const Banner = (props) => {
-    return (<>
-        <img className="slide-banner" alt={props.sponsorName} src={props.logoImage} />
-    </>)
-}
+const Banner = styled.img`
+    margin-top: 33px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-top: 0px
+    padding-bottom: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    height: 80px;
+
+    position: relative;
+    display: inline;
+`
+
+
 
 const SponsorBannersPerLevel = (props) => {
     return (<>
@@ -113,9 +126,9 @@ const SponsorBannersPerLevel = (props) => {
         <BannersWrapper>
             {
                 props.banners.map( banner => 
-                    <Banner sponsorId={banner.id} 
-                            sponsorName={banner.name}
-                            logoImage={banner.logoImage} />
+                    <Banner id={banner.id} 
+                            alt={banner.name}
+                            src={banner.logoImage} />
                 )
             }
         </BannersWrapper>
@@ -136,6 +149,9 @@ class SponsorBanners extends React.Component<PropsType> {
             speed: 500,
             slidesToShow: 1,
             slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 5000,
+            cssEase: "linear",
             prevArrow: <CustomPrevArrow/>,
             nextArrow: <CustomNextArrow/>
         }
