@@ -17,6 +17,8 @@ const FACEBOOK_CLIENT_ID = process.env.FACEBOOK_CLIENT_ID ?
   process.env.FACEBOOK_CLIENT_ID : '395817644484509'
 const NAVER_CLIENT_ID = process.env.NAVER_CLIENT_ID ?
   process.env.NAVER_CLIENT_ID : 'K1dzcT_4mOnrA7KTFVFq'
+const GA_TRACKING_ID = process.env.GA_TRACKING_ID ?
+  process.env.GA_TRACKING_ID : 'UA-137343905-1'
 
 const env = {
   API_SERVER: JSON.stringify(API_SERVER),
@@ -24,6 +26,7 @@ const env = {
   GOOGLE_CLIENT_ID: JSON.stringify(GOOGLE_CLIENT_ID),
   FACEBOOK_CLIENT_ID: JSON.stringify(FACEBOOK_CLIENT_ID),
   NAVER_CLIENT_ID: JSON.stringify(NAVER_CLIENT_ID),
+  GA_TRACKING_ID: JSON.stringify(GA_TRACKING_ID),
 }
 
 console.log(JSON.stringify(env))
