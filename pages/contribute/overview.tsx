@@ -5,6 +5,7 @@ import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import DefaultTable, { Contribution } from 'components/organisms/DefaultTable'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
+import SponsorBanners from 'components/organisms/SponsorBanners'
 import PageTemplate from 'components/templates/PageTemplate'
 import _ from 'lodash'
 import { inject, observer } from 'mobx-react'
@@ -91,6 +92,7 @@ export default class CFPDetailedGuide extends React.Component<PropsType> {
     return (
       <PageTemplate
         header={<Header title='공헌 안내 :: 파이콘 한국 2019' intlKey='contribute.overview.pageTitle' />}
+        sponsorBanners={<SponsorBanners />}
         footer={<Footer />}
       >
         <LocalNavigation list={contributionMenu.submenu} />

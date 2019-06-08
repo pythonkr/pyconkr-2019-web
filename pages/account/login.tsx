@@ -3,6 +3,7 @@ import { H1 } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
+import SponsorBanners from 'components/organisms/SponsorBanners'
 import PageTemplate from 'components/templates/PageTemplate'
 import { clientIdEnum } from 'lib/stores/AuthStore'
 import { inject, observer } from 'mobx-react'
@@ -135,6 +136,7 @@ class Login extends React.Component<{ stores: StoresType; router: any }> {
     return (
       <PageTemplate
         header={<Header title='파이콘 한국 2019' />}
+        sponsorBanners={<SponsorBanners />}
         footer={<Footer />}
       >
         <H1>

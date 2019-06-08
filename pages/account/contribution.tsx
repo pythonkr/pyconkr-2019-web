@@ -5,6 +5,7 @@ import ContributionTableRow from 'components/molecules/ContributionTableRow'
 import DefaultTable, { Contribution } from 'components/organisms/DefaultTable'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
+import SponsorBanners from 'components/organisms/SponsorBanners'
 import PageTemplate from 'components/templates/PageTemplate'
 import _ from 'lodash'
 import { inject, observer } from 'mobx-react'
@@ -110,6 +111,7 @@ class ContributionPage extends React.Component<PropsType> {
     return (
       <PageTemplate
         header={<Header title='제안 및 신청 내역 :: 파이콘 한국 2019' intlKey='contribution.pageTitle'/>}
+        sponsorBanners={<SponsorBanners />}
         footer={<Footer />}
       >
         <H1>

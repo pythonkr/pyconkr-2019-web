@@ -3,6 +3,7 @@ import { injectGlobal } from 'emotion'
 import emotionReset from 'emotion-reset'
 import FontFaceObserver from 'fontfaceobserver'
 import IntlPolyfill from 'intl'
+import withGA from 'next-ga'
 import AuthStore, { AuthStore as AuthStoreType } from 'lib/stores/AuthStore'
 import CFPStore, { CFPStore as CFPStoreType } from 'lib/stores/CFP/CFPStore'
 import ProfileStore, { ProfileStore as ProfileStoreType } from 'lib/stores/ProfileStore'
@@ -183,4 +184,4 @@ class MyApp extends App {
   }
 }
 
-export default appWithTranslation(withNamespaces(['common', 'constant'])(MyApp))
+export default appWithTranslation(withNamespaces(['common', 'constant'])(withGA(GA_TRACKING_ID, Router)(MyApp)))

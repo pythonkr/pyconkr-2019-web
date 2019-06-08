@@ -17,6 +17,8 @@ const FACEBOOK_CLIENT_ID = process.env.FACEBOOK_CLIENT_ID ?
   process.env.FACEBOOK_CLIENT_ID : '395817644484509'
 const NAVER_CLIENT_ID = process.env.NAVER_CLIENT_ID ?
   process.env.NAVER_CLIENT_ID : 'K1dzcT_4mOnrA7KTFVFq'
+const GA_TRACKING_ID = process.env.GA_TRACKING_ID ?
+  process.env.GA_TRACKING_ID : 'UA-137343905-1'
 
 const env = {
   API_SERVER: JSON.stringify(API_SERVER),
@@ -24,6 +26,7 @@ const env = {
   GOOGLE_CLIENT_ID: JSON.stringify(GOOGLE_CLIENT_ID),
   FACEBOOK_CLIENT_ID: JSON.stringify(FACEBOOK_CLIENT_ID),
   NAVER_CLIENT_ID: JSON.stringify(NAVER_CLIENT_ID),
+  GA_TRACKING_ID: JSON.stringify(GA_TRACKING_ID),
 }
 
 console.log(JSON.stringify(env))
@@ -40,6 +43,17 @@ module.exports = withCSS(withGraphQL(withTypescript({
       'utils': path.join(__dirname, 'utils'),
     }
     config.plugins.push(new webpack.DefinePlugin(env))
+    // https://github.com/zeit/next-plugins/issues/273
+    config.module.rules.push({
+      test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
+      use: {
+        loader: 'url-loader',
+        options: {
+          limit: 100000,
+          name: '[name].[ext]'
+        }
+      }
+    })   
     return config
   }
 })))

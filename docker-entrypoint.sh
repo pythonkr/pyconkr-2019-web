@@ -6,7 +6,4 @@ if [ -z "$DEPLOY_ENV" ]; then
 else
     source ./envs/${DEPLOY_ENV}.sh
 fi
-
-yarn && yarn build
 yarn start
-
