@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Section } from 'components/atoms/ContentWrappers'
 import { Button, StyledA } from 'components/atoms/Button'
 import { ContentWidthWrapper } from 'components/atoms/ContentWidthWrapper'
 import { IntlText } from 'components/atoms/IntlText'
@@ -486,7 +487,9 @@ class Index extends React.Component<{ stores: StoresType }> {
             </li>
           </ul>
         </ScheduleSection>
-        {/* <SponsorBanners /> */}
+        <ContentWidthWrapper>
+          <SponsorBanners />
+        </ContentWidthWrapper>
         <SponserSection>
           <ContentWidthWrapper>
             <SponsorComingSoonBadge>
