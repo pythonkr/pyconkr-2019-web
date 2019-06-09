@@ -5,7 +5,6 @@ import { StatusBar } from 'components/atoms/StatusBar'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import SponsorForm from 'components/organisms/SponsorForm'
-import SponsorBanners from 'components/organisms/SponsorBanners'
 import PageTemplate from 'components/templates/PageTemplate'
 import { isPast } from 'date-fns'
 import { inject, observer } from 'mobx-react'
@@ -43,7 +42,6 @@ export default class ApplicationForm extends React.Component<{
     return (
         <PageTemplate
             header={<Header title='후원사 신청하기 :: 파이콘 한국 2019' />}
-            sponsorBanners={<SponsorBanners />}
             footer={<Footer />}
         >
           <H1><IntlText intlKey='sponsor.event.invitation'>

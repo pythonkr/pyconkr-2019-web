@@ -9,16 +9,14 @@ import Slider from "react-slick"
 
 import { StoresType } from 'pages/_app'
 import React from 'react'
+import {
+    Section, H2, H3
+  } from 'components/atoms/ContentWrappers'
 
 const SponsorBannersSlider = styled.div`
-  width: 940px;
+//   width: 940px;
   height: 250px;
-<<<<<<< HEAD
-
-=======
   background-color: rgba(216, 216, 216, 0);
->>>>>>> master
-
   margin-left: auto;
   margin-right: auto;
 
@@ -45,24 +43,6 @@ const BannersWrapper = styled.div`
 
     white-space: nowrap;
     overflow-x: scroll;
-
-    img {
-        margin-top: 33px;
-        margin-bottom: 0px;
-        margin-left: auto;
-        margin-right: auto;
-
-        padding-top: 0px
-        padding-bottom: 0px;
-        padding-left: 10px;
-        padding-right: 10px;
-
-        width: 200px;
-        height: 40px;
-
-        position: relative;
-        display: inline;
-    }
 `
 
 const SliderWrapper = styled.div`
@@ -123,10 +103,9 @@ const Banner = styled.img`
 `
 
 
-
 const SponsorBannersPerLevel = (props) => {
     return (<>
-        <h2>후원사 - {props.level.name}</h2>
+        <h2>{props.level.name}</h2>
         <BannersWrapper>
             {
                 props.banners.map( banner => 
@@ -147,18 +126,18 @@ class SponsorBanners extends React.Component<PropsType> {
         const { stores } = this.props
         const { sponsors, sponsorLevels } = stores.sponsorStore
 
-        const settings = {
-            dots: true,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 5000,
-            cssEase: "linear",
-            prevArrow: <CustomPrevArrow/>,
-            nextArrow: <CustomNextArrow/>
-        }
+        // const settings = {
+        //     dots: true,
+        //     infinite: true,
+        //     speed: 500,
+        //     slidesToShow: 1,
+        //     slidesToScroll: 1,
+        //     autoplay: true,
+        //     autoplaySpeed: 5000,
+        //     cssEase: "linear",
+        //     prevArrow: <CustomPrevArrow/>,
+        //     nextArrow: <CustomNextArrow/>
+        // }
 
         let sponsorBanners = {}
         sponsorLevels.forEach(function(sponsorLevel) {
@@ -179,15 +158,29 @@ class SponsorBanners extends React.Component<PropsType> {
             sponsorList.push(sponsorBanner)
         })
 
-        return <SponsorBannersSlider>
-            <SliderWrapper>
-                <Slider {...settings}>
-                    {
-                        sponsorLevels.map( sponsorLevel => <SponsorBannersPerLevel level={sponsorLevel} banners={sponsorBanners[sponsorLevel.id].sponsors} />)
-                    }
-                </Slider>
-            </SliderWrapper>
-        </SponsorBannersSlider>
+        return <Section>
+            <H2>후원사</H2>
+            {/* <SponsorBannersPerLevel level={sponsorLevel} banners={sponsorBanners[sponsorLevel.id].sponsors} */}
+                {
+                    sponsorLevels.map( sponsorLevel => 
+                        <SponsorBannersPerLevel 
+                            level={sponsorLevel} 
+                            banners={sponsorBanners[sponsorLevel.id].sponsors>
+                                {sponsorLevel.name}
+                        </SponsorBannersPerLevel> )
+                }    
+            
+            
+            {/* <SponsorBannersSlider>
+                <SliderWrapper>
+                    <Slider {...settings}>
+                        {
+                            sponsorLevels.map( sponsorLevel => <SponsorBannersPerLevel level={sponsorLevel} banners={sponsorBanners[sponsorLevel.id].sponsors} />)
+                        }
+                    </Slider>
+                </SliderWrapper>
+            </SponsorBannersSlider> */}
+        </Section>
     }
 }
 
