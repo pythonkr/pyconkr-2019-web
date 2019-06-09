@@ -44,6 +44,7 @@ workflows:
       - aws-ecs/deploy-service-update:
           context: AWS_DEPLOY
           requires:
+            - build
             - aws-ecr/build_and_push_image
           aws-region: ${AWS_DEFAULT_REGION}
           family: "pyconkr-2019-web-dev-task"
@@ -58,6 +59,7 @@ workflows:
       - aws-ecs/deploy-service-update:
           context: AWS_DEPLOY
           requires:
+            - build
             - aws-ecr/build_and_push_image
           aws-region: ${AWS_DEFAULT_REGION}
           family: "pyconkr-2019-web-task"
