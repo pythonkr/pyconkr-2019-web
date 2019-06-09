@@ -6,31 +6,13 @@ import { IntlText } from 'components/atoms/IntlText'
 // import "slick-carousel/slick/slick.css"
 // import "slick-carousel/slick/slick-theme.css"
 // import Slider from "react-slick"
-
+import { paths } from 'routes/paths'
 import { StoresType } from 'pages/_app'
 import React from 'react'
 import {
     Section, H2, H3
   } from 'components/atoms/ContentWrappers'
 
-// const SponsorBannersSlider = styled.div`
-// //   width: 940px;
-//   height: 250px;
-//   background-color: rgba(216, 216, 216, 0);
-//   margin-left: auto;
-//   margin-right: auto;
-
-//   h2 {
-//     font-size: 18px;
-//     font-weight: 500;
-//     font-style: normal;
-//     font-stretch: normal;
-//     line-height: normal;
-//     letter-spacing: normal;
-//     text-align: center;
-//     color: #4a4a4a;
-//   }
-// `
 
 const BannersWrapper = styled.ul`
     margin: 0 auto 15px auto;
@@ -83,12 +65,14 @@ const BannerImage = styled.img`
 const Banner = (props) => {
     return (<>
         <BannerLi className={props.levelName}>
-            <BannerWrapper>
-                <BannerImage
-                    id={props.banner.id}
-                    alt={props.banner.name}
-                    src={props.banner.logoImage}/>
-            </BannerWrapper>
+            <a href={`${paths.sponsor.detail}?id=${props.banner.id}`}>
+                <BannerWrapper>
+                    <BannerImage
+                        id={props.banner.id}
+                        alt={props.banner.name}
+                        src={props.banner.logoImage}/>
+                </BannerWrapper>
+            </a>
         </BannerLi>
     </>)
 }
@@ -130,7 +114,7 @@ class SponsorBanners extends React.Component<PropsType> {
             const sponsorLevel = sponsor.level.id
             const sponsorList = sponsorBanners[sponsorLevel.toString()].sponsors
             const sponsorBanner = {
-                sponsorId: sponsor.id,
+                id: sponsor.id,
                 name: sponsor.name,
                 logoImage: sponsor.logoImage,
             }
@@ -138,7 +122,7 @@ class SponsorBanners extends React.Component<PropsType> {
         })
 
         return <Section>
-            <H2><IntlText intlKey='constant.sponsor'>🧚‍♀️ 후원사🧚‍♂️</IntlText></H2>
+            <H2><IntlText intlKey='constant.sponsor'>🧚‍♀️ 후원사 🧚‍♂️</IntlText></H2>
                 {
                     sponsorLevels.map( sponsorLevel => 
                         <SponsorBannersPerLevel 
