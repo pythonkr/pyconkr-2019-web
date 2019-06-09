@@ -15,7 +15,7 @@ const PageTemplate = ({
   {header}
   <ContentWrapper>
     {children}
-    <SponsorBanners/>
+    {/* <SponsorBanners/> */}
   </ContentWrapper>
   
   {footer}

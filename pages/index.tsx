@@ -486,7 +486,7 @@ class Index extends React.Component<{ stores: StoresType }> {
             </li>
           </ul>
         </ScheduleSection>
-        <SponsorBanners />
+        {/* <SponsorBanners /> */}
         <SponserSection>
           <ContentWidthWrapper>
             <SponsorComingSoonBadge>
