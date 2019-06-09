@@ -2,124 +2,96 @@ import styled from '@emotion/styled'
 import { inject, observer } from 'mobx-react'
 import Link from 'next/link'
 import { RouterProps, withRouter } from 'next/router'
-
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
-import Slider from "react-slick"
-
+import { IntlText } from 'components/atoms/IntlText'
+// import "slick-carousel/slick/slick.css"
+// import "slick-carousel/slick/slick-theme.css"
+// import Slider from "react-slick"
+import { paths } from 'routes/paths'
 import { StoresType } from 'pages/_app'
 import React from 'react'
+import {
+    Section, H2, H3
+  } from 'components/atoms/ContentWrappers'
 
-const SponsorBannersSlider = styled.div`
-  width: 940px;
-  height: 250px;
-  background-color: rgba(216, 216, 216, 0);
 
-  margin-left: auto;
-  margin-right: auto;
-
-  h2 {
-    font-size: 18px;
-    font-weight: 500;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
+const BannersWrapper = styled.ul`
+    margin: 0 auto 15px auto;
+    padding: 0;
     text-align: center;
-    color: #4a4a4a;
-  }
 `
 
-const BannersWrapper = styled.div`
-    height: 130px;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    width: max-content;
-    max-width: 100%;
-
-    white-space: nowrap;
-    overflow-x: scroll;
-
-    img {
-        margin-top: 33px;
-        margin-bottom: 0px;
-        margin-left: auto;
-        margin-right: auto;
-
-        padding-top: 0px
-        padding-bottom: 0px;
-        padding-left: 10px;
-        padding-right: 10px;
-
-        width: 200px;
-        height: 40px;
-
-        position: relative;
-        display: inline;
-    }
-`
-
-const SliderWrapper = styled.div`
-  padding-left: 20px;
-  padding-right: 20px;
-  height: 100%;
-  padding-top: 47px;
-  padding-bottom: 42px;
-
-  margin-left: auto;
-  margin-right: auto;
-`
 
 type PropsType = {
     router: RouterProps;
     stores: StoresType;
 }
 
-const CustomPrevArrow = (props) => {
-    const { className, style, onClick } = props
-    return (
-        <div
-      className={className}
-      style={{ ...style, height: "40px", display: "block", background: "green" }}
-      onClick={onClick}
-    >
-    </div>
-    )
+
+const BannerLi = styled.li`
+list-style: none;
+display: inline-block;
+width: 20%;
+padding: 3%;
+box-sizing: border-box;
+
+&.keystone
+{
+    width: 100%;
+}
+&.diamond,
+&.sapphire 
+{
+    width: 50%;
 }
 
-const CustomNextArrow = (props) => {
-    const { className, style, onClick } = props
-    return (
-        <div
-      className={className}
-      style={{ ...style, height: "40px", display: "block", background: "green" }}
-      onClick={onClick}
-    >
-    </div>
-    )
+&.platinum {
+    width: 33%;
 }
+
+&.gold {
+    width: 25%;
+}
+`
+const BannerWrapper = styled.div`
+    
+`
+
+const BannerImage = styled.img`
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+`
 
 const Banner = (props) => {
     return (<>
-        <img className="slide-banner" alt={props.sponsorName} src={props.logoImage} />
+        <BannerLi className={props.levelName}>
+            <a href={`${paths.sponsor.detail}?id=${props.banner.id}`}>
+                <BannerWrapper>
+                    <BannerImage
+                        id={props.banner.id}
+                        alt={props.banner.name}
+                        src={props.banner.logoImage}/>
+                </BannerWrapper>
+            </a>
+        </BannerLi>
     </>)
 }
 
 const SponsorBannersPerLevel = (props) => {
-    return (<>
-        <h2>후원사 - {props.level.name}</h2>
-        <BannersWrapper>
-            {
-                props.banners.map( banner => 
-                    <Banner sponsorId={banner.id} 
-                            sponsorName={banner.name}
-                            logoImage={banner.logoImage} />
-                )
-            }
-        </BannersWrapper>
-    </>)
+    const bannerExists = props.banners.length > 0
+    if (bannerExists) {
+        return (<>
+            <H3>{props.level.name}</H3>
+            <BannersWrapper>
+                {
+                    props.banners.map( banner => 
+                        <Banner banner={banner} levelName={props.level.nameEn.toLowerCase()} />
+                    )
+                }
+            </BannersWrapper>
+        </>)
+    }
+    return null
 }
 
 @inject('stores')
@@ -129,16 +101,6 @@ class SponsorBanners extends React.Component<PropsType> {
     render() {
         const { stores } = this.props
         const { sponsors, sponsorLevels } = stores.sponsorStore
-
-        const settings = {
-            dots: true,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            prevArrow: <CustomPrevArrow/>,
-            nextArrow: <CustomNextArrow/>
-        }
 
         let sponsorBanners = {}
         sponsorLevels.forEach(function(sponsorLevel) {
@@ -152,22 +114,23 @@ class SponsorBanners extends React.Component<PropsType> {
             const sponsorLevel = sponsor.level.id
             const sponsorList = sponsorBanners[sponsorLevel.toString()].sponsors
             const sponsorBanner = {
-                sponsorId: sponsor.id,
+                id: sponsor.id,
                 name: sponsor.name,
                 logoImage: sponsor.logoImage,
             }
             sponsorList.push(sponsorBanner)
         })
 
-        return <SponsorBannersSlider>
-            <SliderWrapper>
-                <Slider {...settings}>
-                    {
-                        sponsorLevels.map( sponsorLevel => <SponsorBannersPerLevel level={sponsorLevel} banners={sponsorBanners[sponsorLevel.id].sponsors} />)
-                    }
-                </Slider>
-            </SliderWrapper>
-        </SponsorBannersSlider>
+        return <Section>
+            <H2><IntlText intlKey='constant.sponsor'>🧚‍♀️ 후원사 🧚‍♂️</IntlText></H2>
+                {
+                    sponsorLevels.map( sponsorLevel => 
+                        <SponsorBannersPerLevel 
+                            level={sponsorLevel} 
+                            banners={sponsorBanners[sponsorLevel.id].sponsors}/>
+                    )
+                }    
+        </Section>
     }
 }
 

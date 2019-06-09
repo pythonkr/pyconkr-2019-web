@@ -3,7 +3,6 @@ import { IntlText } from 'components/atoms/IntlText'
 import PageTemplate from 'components/templates/PageTemplate'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
-import SponsorBanners from 'components/organisms/SponsorBanners'
 import { RouterProps, withRouter } from 'next/router'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
@@ -24,7 +23,6 @@ class Logout extends React.Component<{ stores: StoresType, router: RouterProps }
     return (
       <PageTemplate
         header={<Header title='파이콘 한국 2019' />}
-        sponsorBanners={<SponsorBanners />}
         footer={<Footer />}
       >
         <H1><IntlText intlKey='homeTitle'>로그아웃</IntlText></H1>

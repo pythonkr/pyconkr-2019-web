@@ -2,7 +2,6 @@ import { H1, H2, Li, Ol, Paragraph, Section } from 'components/atoms/ContentWrap
 import { IntlText } from 'components/atoms/IntlText'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
-import SponsorBanners from 'components/organisms/SponsorBanners'
 import PageTemplate from 'components/templates/PageTemplate'
 import React from 'react'
 
@@ -11,7 +10,6 @@ export default class ProposingATalk extends React.Component {
     return (
       <PageTemplate
         header={<Header title='이용 약관 :: 파이콘 한국 2019' intlKey='termOfService.pageTitle'/>}
-        sponsorBanners={<SponsorBanners />}
         footer={<Footer />}
       >
         <H1><IntlText intlKey='termOfService.heading'>

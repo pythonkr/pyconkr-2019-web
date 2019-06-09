@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Section } from 'components/atoms/ContentWrappers'
 import { Button, StyledA } from 'components/atoms/Button'
 import { ContentWidthWrapper } from 'components/atoms/ContentWidthWrapper'
 import { IntlText } from 'components/atoms/IntlText'
@@ -356,23 +357,21 @@ class Index extends React.Component<{ stores: StoresType }> {
           </MainBannerInfoWrapper>
         </BannerSection>
         <NoticeSection>
-          <h2>
+            <h2>
               <IntlText intlKey='home.notice.title'>
-                파이콘 한국 2019 얼리버드/개인후원 티켓 판매 일시중단 안내
+                얼리버드 티켓 추가 오픈 일정 안내
               </IntlText>
             </h2>
             <p>
               <IntlText intlKey='home.notice.description1'>
-                안녕하세요, 금일 파이콘 한국 티켓 구매와 관련해 서버 이슈로 인해 불편을 끼쳐드린 점에 대해 사과드립니다. 현재와 같은 상황으로 티켓을 판매하는 것은 불편함이 커질 것이라는 판단하에 재오픈을 결정하게 되었습니다.
+              안녕하세요, 파이써니스타 여러분!<br/>
+              파이콘 한국 2019 얼리버드 티켓의 추가 오픈 일정 안내 드립니다.<br/>
+              빠르게 매진되는 파이콘 한국의 얼리버드 티켓을 놓치지 마세요!<br/><br/>
 
-<br/><br/>1. 이미 구매하신 구매자분들은 티켓이 유지됩니다.
-<br/>현재 구매하였으나 내 티켓에 티켓이 보이지 않는 현상은 서버 이슈도 연관이 있을 것으로 보여 서버가 안정화된 후에 다시 확인해주시기 바라고, 그럼에도 보이지 않을 경우 파이콘 한국으로 메일(support@pycon.kr) 주시기 바랍니다.
+              ⭐ 얼리버드 티켓 오픈일 : 2019년 6월 10일 월요일 19:00 KST (UTC+9)<br/>
+              ⭐ 얼리버드 티켓 가격 : 50,000원<br/><br/>
 
-<br/><br/>2. 재오픈 일정은 추후 파이콘 한국 공식 채널(페이스북/트위터/공식홈페이지)을 통해 다시 안내드리겠습니다.
-<br/>확실하게 재정비 후 오픈을 하기 위하여 일정을 섣불리 정하지 않기로 한 점 양해 부탁드립니다.
-
-<br/><br/>문의 : support@pycon.kr
-<br/>정비된 파이콘으로 다시 찾아뵙겠습니다. 감사합니다.
+              p.s. 200장 추가 오픈입니다!
               </IntlText>
             </p>
         </NoticeSection>
@@ -488,6 +487,9 @@ class Index extends React.Component<{ stores: StoresType }> {
             </li>
           </ul>
         </ScheduleSection>
+        <ContentWidthWrapper>
+          <SponsorBanners />
+        </ContentWidthWrapper>
         <SponserSection>
           <ContentWidthWrapper>
             <SponsorComingSoonBadge>
@@ -579,7 +581,7 @@ class Index extends React.Component<{ stores: StoresType }> {
             </p>
           </ContentWidthWrapper>
         </IntroduceSection>
-        <SponsorBanners />
+        
         <Footer />
       </>
     )

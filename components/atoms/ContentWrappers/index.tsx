@@ -80,6 +80,7 @@ export const Paragraph: any = styled.p`
 font-size: 17px;
 line-height: 33px;
 margin: 20px 0;
+white-space: pre-wrap;
 
 @media (max-width: ${mobileWidth}) {
   font-size: 16px;
