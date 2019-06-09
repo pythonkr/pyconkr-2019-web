@@ -2,4 +2,3 @@ node_modules
 *.log
 .next
 .DS_Store
-yarn.lock
