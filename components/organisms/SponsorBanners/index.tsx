@@ -13,7 +13,11 @@ import React from 'react'
 const SponsorBannersSlider = styled.div`
   width: 940px;
   height: 250px;
+<<<<<<< HEAD
 
+=======
+  background-color: rgba(216, 216, 216, 0);
+>>>>>>> master
 
   margin-left: auto;
   margin-right: auto;
