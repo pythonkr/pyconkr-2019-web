@@ -106,7 +106,7 @@ class TicketBox extends React.Component<PropsType, StatesType> {
     const isBeforeOpening = startDate && isFuture(startDate)
     const isFinished = endDate && isPast(endDate)
 
-    if (isBeforeOpening) return t('ticket:fromStartDate', { startDate: moment(startDate).format('MM-DD hh:mm') })
+    if (isBeforeOpening) return t('ticket:fromStartDate', { startDate: moment(startDate).format('MM-DD HH:mm') })
     if (isFinished) return t('ticket:closed')
 
     if (isSoldOut) return t('ticket:soldout')
