@@ -8,6 +8,7 @@ import React from 'react'
 import {
   Section, H2, H3
 } from 'components/atoms/ContentWrappers'
+import { mobileWidth } from 'styles/layout'
 
 const BannersWrapper = styled.ul`
     margin: 0 auto 15px auto;
@@ -46,12 +47,26 @@ const BannerLi = styled.li`
     width: 25%;
   }
 
-  &.sapphire.square {
+  &.sapphire.square,
+  &.diamond.square {
     width: 150px;
+    @media (max-width: ${mobileWidth}) {
+        width: 120px;
+    }
+  }
+
+  &.platinum.square {
+    width: 130px;
+    @media (max-width: ${mobileWidth}) {
+        width: 105px;
+    }
   }
 
   &.square {
     width: 120px;
+    @media (max-width: ${mobileWidth}) {
+        width: 100px;
+    }
   }
 `
 
