@@ -51,21 +51,21 @@ const BannerLi = styled.li`
   &.diamond.square {
     width: 170px;
     @media (max-width: ${mobileWidth}) {
-        width: 130px;
+        width: 110px;
     }
   }
 
   &.platinum.square {
     width: 150px;
     @media (max-width: ${mobileWidth}) {
-        width: 120px;
+        width: 100px;
     }
   }
 
   &.square {
     width: 120px;
     @media (max-width: ${mobileWidth}) {
-        width: 100px;
+        width: 80px;
     }
   }
 `
