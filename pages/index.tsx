@@ -274,9 +274,6 @@ const NoticeSection = styled.section`
     margin: 32px auto 0;
     font-size: 16px;
     line-height: 1.7em;
-    @media (max-width: ${mobileWidth}) {
-      font-size: 15px;
-    }
   }
 `
 const IntroduceSection = styled.section`
@@ -357,22 +354,19 @@ class Index extends React.Component<{ stores: StoresType }> {
           </MainBannerInfoWrapper>
         </BannerSection>
         <NoticeSection>
-            <h2>
-              <IntlText intlKey='home.notice.title'>
-                얼리버드 티켓 추가 오픈 일정 안내
-              </IntlText>
+          <h2>
+              {/*<IntlText intlKey='home.notice.title'>*/}
+                Notice 🗣
+              {/*</IntlText>*/}
             </h2>
             <p>
-              <IntlText intlKey='home.notice.description1'>
-              안녕하세요, 파이써니스타 여러분!<br/>
-              파이콘 한국 2019 얼리버드 티켓의 추가 오픈 일정 안내 드립니다.<br/>
-              빠르게 매진되는 파이콘 한국의 얼리버드 티켓을 놓치지 마세요!<br/><br/>
-
-              ⭐ 얼리버드 티켓 오픈일 : 2019년 6월 10일 월요일 19:00 KST (UTC+9)<br/>
-              ⭐ 얼리버드 티켓 가격 : 50,000원<br/><br/>
-
-              p.s. 200장 추가 오픈입니다!
-              </IntlText>
+              {/*TODO : API를 통해 자동으로 로드를 하면 좋겠지만 일단은 수동으로 채웠어요*/}
+              <h4>📍
+                <a href='https://www.facebook.com/1532554713673409/posts/2327748334154039'>얼리버드 티켓 추가 오픈 일정 안내</a>
+              </h4>
+              <h4>📍
+                <a href='https://www.facebook.com/1532554713673409/posts/2321995128062693'>파이콘 한국 2019 얼리버드/개인후원 티켓 판매 일시중단 안내</a>
+              </h4>
             </p>
         </NoticeSection>
         <ScheduleSection>
