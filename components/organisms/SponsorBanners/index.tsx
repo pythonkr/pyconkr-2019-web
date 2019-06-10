@@ -49,16 +49,16 @@ const BannerLi = styled.li`
 
   &.sapphire.square,
   &.diamond.square {
-    width: 150px;
+    width: 170px;
     @media (max-width: ${mobileWidth}) {
-        width: 120px;
+        width: 130px;
     }
   }
 
   &.platinum.square {
-    width: 130px;
+    width: 150px;
     @media (max-width: ${mobileWidth}) {
-        width: 105px;
+        width: 120px;
     }
   }
 
