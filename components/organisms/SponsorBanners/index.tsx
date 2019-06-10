@@ -79,7 +79,6 @@ class Banner extends React.Component<BannerPropsType> {
     if (event.target.height === event.target.width) {
       this.setState({isSquare: true})
     }
-    console.log(event.target.height, event.target.width)
   }
 
   render() {
