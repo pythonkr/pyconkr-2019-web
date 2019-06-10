@@ -76,7 +76,8 @@ class Banner extends React.Component<BannerPropsType> {
   }
 
   handleImageLoaded = event => {
-    if (event.target.height === event.target.width) {
+    const imgRatio = event.target.height / event.target.width
+    if (imgRatio < 1.2 && imgRatio > 0.8) {
       this.setState({isSquare: true})
     }
   }
