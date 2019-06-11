@@ -78,7 +78,7 @@ const MainBannerInfoWrapper = styled.div`
   h1 {
     font-weight: 700;
     font-size: 1.4em;
-    margin-top: 4.4em;
+    margin-top: 5.5em;
   }
   p {
     font-size: 1.1em;
@@ -349,7 +349,12 @@ class Index extends React.Component<{ stores: StoresType }> {
               <strong style={{ fontWeight: 'bold' }}>
                 {formatDateInWordsWithWeekdayAndTime(schedule.earlybirdTicketStartAt) + ' '}
               </strong> 
-              <IntlText intlKey="constant.pyconKorea.earlybirdAndPatronTicketOpen">얼리버드/개인후원 티켓 오픈</IntlText>
+              <IntlText intlKey="constant.pyconKorea.earlybirdTicketOpen">얼리버드 티켓 오픈</IntlText>
+              <br/>
+              <strong style={{ fontWeight: 'bold' }}>
+                {formatDateInWordsWithWeekdayAndTime(schedule.conferenceTicketStartAt) + ' '}
+              </strong> 
+              <IntlText intlKey="constant.pyconKorea.regularTicketOpen">일반 티켓 오픈</IntlText>
             </p>
           </MainBannerInfoWrapper>
         </BannerSection>
