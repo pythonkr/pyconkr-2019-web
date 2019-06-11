@@ -11,7 +11,7 @@ configure({ enforceActions: 'observed' })
 
 export enum PAYMENT_TYPE_ENUM {
     EARLYBIRD = 'EARLYBIRD',
-    GENERAL = 'GENERAL',
+    REGULAR = 'REGULAR',
     PATRON = 'PATRON'
 }
 
@@ -51,10 +51,18 @@ export class TicketStore {
     @observable earlyBirdTicketOption: { tshirtsize: string } | null = null
     @observable earlyBirdTicketOptionAgreed: boolean = false
     @observable earlyBirdTicketTermsAgreed: boolean = false
+    @observable earlyBirdIssuedTicketStep: number = 1
+    @observable earlyBirdTicketOption: { tshirtsize: string } | null = null
+    @observable earlyBirdTicketOptionAgreed: boolean = false
+    @observable earlyBirdTicketTermsAgreed: boolean = false
     @observable patronTicketStep: number = 1
     @observable patronTicketOption: { tshirtsize: string } | null = null
     @observable patronTicketOptionAgreed: boolean = false
     @observable patronTicketTermsAgreed: boolean = false
+    @observable regularTicketStep: number = 1
+    @observable regularTicketOption: { tshirtsize: string } | null = null
+    @observable regularTicketOptionAgreed: boolean = false
+    @observable regularTicketTermsAgreed: boolean = false
     @observable expiryMonth: string = ''
     @observable expiryYear: string = ''
     @observable ticketInput: PaymentInput = initialTicketInput
@@ -123,6 +131,26 @@ export class TicketStore {
     @action
     setPatronTicketTermsAgreed = (isAgree: boolean) => {
       this.patronTicketTermsAgreed = isAgree
+    }
+
+    @action
+    setRegularTicketStep = (step: number) => {
+        this.regularTicketStep = step
+    }
+
+    @action
+    setRegularTicketOption = (ticketOption: { tshirtsize: string } | null) => {
+      this.regularTicketOption = ticketOption
+    }
+
+    @action
+    setRegularTicketOptionAgreed = (isAgree: boolean) => {
+      this.regularTicketOptionAgreed = isAgree
+    }
+
+    @action
+    setRegularTicketTermsAgreed = (isAgree: boolean) => {
+      this.regularTicketTermsAgreed = isAgree
     }
 
     @action
@@ -250,6 +278,22 @@ export class TicketStore {
       this.productId = productId
       this.payingType = PAYMENT_TYPE_ENUM.PATRON
       this.options = JSON.stringify(this.patronTicketOption)
+    }
+
+    @action
+    validateRegularTicket = () => {
+      if (!this.regularTicketOption || _.isEmpty(this.regularTicketOption.tshirtsize)) return VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED
+      if (!this.regularTicketOptionAgreed) return VALIDATION_ERROR_TYPE.NOT_AGREED_TO_OPTIONS
+
+      return VALIDATION_ERROR_TYPE.NONE
+    }
+
+    @action
+    setRegularTicket = (productId: string) => {
+      this.isPaying = true
+      this.productId = productId
+      this.payingType = PAYMENT_TYPE_ENUM.REGULAR
+      this.options = JSON.stringify(this.regularTicketOption)
     }
 
     @action
