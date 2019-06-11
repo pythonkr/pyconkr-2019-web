@@ -101,13 +101,13 @@ class TicketInfo extends React.Component<PropsType> {
   }
 
   render() {
-    const {amount, paidAt, cancelledAt, cancelableDate} = this.props
+    const {amount, paidAt, status, cancelledAt, cancelableDate} = this.props
 
     return (
       <TicketInfoWrapper>
         <PriceText>{`₩ ${amount.toLocaleString()}`}</PriceText>
         <InfoText>paid at {formatDateInWordsWithWeekdayAndTime(paidAt)}</InfoText>
-        {status === TicketStatus.CANCELLED ? <InfoText>cancelled at {cancelledAt}</InfoText> : ''}
+        {status === TicketStatus.CANCELLED ? <InfoText>cancelled at {formatDateInWordsWithWeekdayAndTime(cancelledAt)}</InfoText> : ''}
         {isFuture(cancelableDate) ? <button>Refund</button> : ''}
         <button onClick={this.onDetail}>More</button>
       </TicketInfoWrapper>
