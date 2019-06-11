@@ -30,7 +30,7 @@ const BannerLi = styled.li`
 
   &.keystone
   {
-    width: 100%;
+    width: 90%;
   }
 
   &.diamond,
@@ -51,21 +51,21 @@ const BannerLi = styled.li`
   &.diamond.square {
     width: 170px;
     @media (max-width: ${mobileWidth}) {
-        width: 110px;
+        width: 100px;
     }
   }
 
   &.platinum.square {
     width: 150px;
     @media (max-width: ${mobileWidth}) {
-        width: 100px;
+        width: 90px;
     }
   }
 
   &.square {
     width: 120px;
     @media (max-width: ${mobileWidth}) {
-        width: 80px;
+        width: 70px;
     }
   }
 `
