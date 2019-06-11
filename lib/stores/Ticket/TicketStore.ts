@@ -6,6 +6,7 @@ import { getMyTicket, MyTicketNode } from 'lib/apollo_graphql/queries/getMyTicke
 import { getMyTickets, TicketNode } from 'lib/apollo_graphql/queries/getMyTickets'
 import * as _ from 'lodash'
 import { action, configure, observable, toJS } from 'mobx'
+import { TicketStep } from './TicketStep';
 
 configure({ enforceActions: 'observed' })
 
@@ -38,20 +39,18 @@ const initialTicketInput = {
   buyerName: '',
   buyerTel: ''
 }
+
 export class TicketStore {
     @observable isInitialized: boolean = false
     @observable conferenceProducts: ConferenceProductType[] = []
     @observable isPaying: boolean = false
     @observable isSubmitPayment: boolean = false
     @observable payingType: PAYMENT_TYPE_ENUM | null = null
+    @observable payingTicketTitle: string | null = ''
     @observable price: number = 0
     @observable options: string = ''
     @observable productId: string = ''
     @observable earlyBirdTicketStep: number = 1
-    @observable earlyBirdTicketOption: { tshirtsize: string } | null = null
-    @observable earlyBirdTicketOptionAgreed: boolean = false
-    @observable earlyBirdTicketTermsAgreed: boolean = false
-    @observable earlyBirdIssuedTicketStep: number = 1
     @observable earlyBirdTicketOption: { tshirtsize: string } | null = null
     @observable earlyBirdTicketOptionAgreed: boolean = false
     @observable earlyBirdTicketTermsAgreed: boolean = false
@@ -68,6 +67,8 @@ export class TicketStore {
     @observable ticketInput: PaymentInput = initialTicketInput
     @observable myTickets: TicketNode[] = []
     @observable currentTicket: MyTicketNode | null = null
+
+    @observable ticketSteps: Map<string, TicketStep> = new Map([])
 
     // Getter, Setter
     @action
@@ -281,19 +282,29 @@ export class TicketStore {
     }
 
     @action
-    validateRegularTicket = () => {
-      if (!this.regularTicketOption || _.isEmpty(this.regularTicketOption.tshirtsize)) return VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED
-      if (!this.regularTicketOptionAgreed) return VALIDATION_ERROR_TYPE.NOT_AGREED_TO_OPTIONS
-
-      return VALIDATION_ERROR_TYPE.NONE
+    setPayingTicket = (ticketStep: TicketStep) => {
+      this.isPaying = true
+      this.productId = ticketStep.ticketId
+      this.payingTicketTitle = ticketStep.ticketTitle
+      this.options = JSON.stringify(ticketStep.ticketOption)
     }
 
     @action
-    setRegularTicket = (productId: string) => {
-      this.isPaying = true
-      this.productId = productId
-      this.payingType = PAYMENT_TYPE_ENUM.REGULAR
-      this.options = JSON.stringify(this.regularTicketOption)
+    setTicketStep = (id: string, title: string | null) => {
+      const newTicketStep = new TicketStep()
+      newTicketStep.setTicketId(id)
+      newTicketStep.setTicketTitle(title || '')
+      this.ticketSteps.set(newTicketStep.ticketId, newTicketStep)
+    }
+
+    @action
+    getTicketStep = (id: string) => {
+      return this.ticketSteps.get(id)
+    }
+
+    @action
+    getIsTicketStepExist = (id: string) => {
+      return !!this.getTicketStep(id)
     }
 
     @action

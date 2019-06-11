@@ -17,7 +17,7 @@ export interface cancelTicket_cancelTicket_ticket {
   cancelledAt: any | null;
   status: TicketStatus;
   /**
-   * 결재 취소 영수증 URL입니다. 이 값은 카드 결제 취소 내역을 보여줄 때에 사용됩니다.
+   * 결제 취소 영수증 URL입니다. 이 값은 카드 결제 취소 내역을 보여줄 때에 사용됩니다.
    */
   cancelReceiptUrl: string;
 }

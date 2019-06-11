@@ -27,6 +27,7 @@ class PaymentForm extends React.Component<PropTypes> {
   onSubmitPayment = async (event: React.FormEvent<HTMLInputElement | HTMLFormElement>) => {
     event.preventDefault()
     const { stores } = this.props
+    stores.ticketStore.setExpiry()
     const data = await stores.ticketStore.payTicket()
 
     if (data.graphQLErrors) {
@@ -48,12 +49,12 @@ class PaymentForm extends React.Component<PropTypes> {
   render() {
     const { stores, t } = this.props
     const {
-      payingType, expiryMonth, expiryYear,
+      payingTicketTitle, expiryMonth, expiryYear,
       setCardNumber, setExpiryMonth, setExpiryYear, setBirth, setPwd2Digit,
     } = stores.ticketStore
     const { isDomesticCard, cardNumber, birth, pwd2digit } = stores.ticketStore.ticketInput
-    const loweredCasedPayingType = payingType && _.lowerCase(PAYMENT_TYPE_ENUM[payingType])
-    const paymentType = `${t(`ticket:conference.${loweredCasedPayingType}.title`)} ${t('ticket:ticket')}`
+    // const loweredCasedPayingType = payingType && _.lowerCase(PAYMENT_TYPE_ENUM[payingType])
+    // const paymentType = `${t(`ticket:conference.${loweredCasedPayingType}.title`)} ${t('ticket:ticket')}`
 
     return (
       <>
@@ -64,7 +65,7 @@ class PaymentForm extends React.Component<PropTypes> {
               ticketTypeTitle={t('ticket:payment.paymentInfo.ticketTypeTitle')}
               priceTitle={t('ticket:payment.paymentInfo.priceTitle')}
               currency={t('ticket:payment.paymentInfo.currency')}
-              paymentType={paymentType}
+              paymentType={payingTicketTitle || ''}
               price={stores.ticketStore.price.toLocaleString()}
             />
           </FormWrapper>

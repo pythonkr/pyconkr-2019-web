@@ -127,9 +127,9 @@ const SponsorBannersPerLevel = (props) => {
       <H3>{props.level.name}</H3>
       <BannersWrapper>
         {
-          props.banners.map(banner =>
-            <Banner banner={banner} levelName={props.level.nameEn.toLowerCase()}/>
-          )
+          props.banners.map(banner => {
+            <Banner key={banner.id} banner={banner} levelName={props.level.nameEn.toLowerCase()}/>
+          })
         }
       </BannersWrapper>
     </>)
@@ -169,6 +169,7 @@ class SponsorBanners extends React.Component<PropsType> {
       {
         sponsorLevels.map(sponsorLevel =>
           <SponsorBannersPerLevel
+            key={sponsorLevel.id}
             level={sponsorLevel}
             banners={sponsorBanners[sponsorLevel.id].sponsors}/>
         )
