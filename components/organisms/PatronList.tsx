@@ -23,6 +23,7 @@ class PatronList extends React.Component<PropsType> {
     if (!isPatronExist) return null
 
     return patrons.map(patron => {
+      const profileImg = patron.image ? patron.image : patron.avatarUrl
       const name = isLanguageKorean ? patron.nameKo : patron.nameEn
       const bio = isLanguageKorean ? patron.bioKo : patron.bioEn
       const organization = _.isEmpty(patron.organization) ? 'Patron Contributor' : patron.organization
@@ -30,7 +31,7 @@ class PatronList extends React.Component<PropsType> {
       return (
         <ProfileCard
           key={`patron_${patron.id}`}
-          profileImg={patron.avatarUrl}
+          profileImg={profileImg}
           name={name || 'Patron'}
           organization={organization}
           bio={bio || 'Thank you for your contribution.'}
