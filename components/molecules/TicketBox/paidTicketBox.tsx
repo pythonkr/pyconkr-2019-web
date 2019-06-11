@@ -8,6 +8,7 @@ import {RouterProps} from 'next/router'
 import {mobileWidth} from 'styles/layout'
 import {TicketNode} from 'lib/apollo_graphql/queries/getMyTickets'
 import i18next from 'i18next'
+import { TicketStatus } from 'lib/apollo_graphql/__generated__/globalTypes'
 
 type PropsType = {
   ticket: TicketNode;
@@ -49,8 +50,9 @@ class PaidTicketBox extends React.Component<PropsType, StatesType> {
     return (
       <TicketBoxWrapper>
         <TicketPaidDescription
-          title={title}
+          title={status === TicketStatus.CANCELLED ? `[Cancelled] ${title}` : title }
           description={desc}
+          status={status}
           warning={warning}
           startAt={startAt}
           finishAt={finishAt}

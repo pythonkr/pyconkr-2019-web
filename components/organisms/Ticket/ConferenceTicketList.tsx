@@ -45,6 +45,9 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
       patronTicketOption, patronTicketOptionAgreed, patronTicketTermsAgreed,
       patronTicketStep, setPatronTicketStep, setPatronTicketOption, setPatronTicketOptionAgreed, setPatronTicketTermsAgreed,
       validatePatronTicket, setPatronTicket,
+      regularTicketOption, regularTicketOptionAgreed, regularTicketTermsAgreed,
+      regularTicketStep, setRegularTicketStep, setRegularTicketOption, setRegularTicketOptionAgreed, setRegularTicketTermsAgreed,
+      validateRegularTicket, setRegularTicket,
     } = stores.ticketStore
 
     return [
@@ -71,7 +74,19 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
         setTicketTermsAgreed: setPatronTicketTermsAgreed,
         validateTicket: validatePatronTicket,
         setTicket: setPatronTicket,
-      }
+      },
+      {
+        ticketStepState: regularTicketStep,
+        tshirtsize: regularTicketOption && regularTicketOption.tshirtsize,
+        isTicketAgreed: regularTicketOptionAgreed,
+        isTermsAgreed: regularTicketTermsAgreed,
+        setTicketStepState: setRegularTicketStep,
+        setTicketOption: setRegularTicketOption,
+        setTicketOptionAgreed: setRegularTicketOptionAgreed,
+        setTicketTermsAgreed: setRegularTicketTermsAgreed,
+        validateTicket: validateRegularTicket,
+        setTicket: setRegularTicket,
+      },
     ]
   }
 
@@ -93,7 +108,6 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
         tshirtsize, isTicketAgreed, isTermsAgreed,
         validateTicket, setTicket
       } = ticketSteps[index]
-
       let options = null
 
       if (ticketStepState === 1 || ticketStepState === 2) {
