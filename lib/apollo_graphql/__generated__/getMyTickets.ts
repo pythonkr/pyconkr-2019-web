@@ -24,7 +24,7 @@ export interface getMyTickets_myTickets_product {
    */
   isUniqueInType: boolean;
   /**
-   * 결재 취소가 가능한 기한입니다. 이 일시 이후에는 취소가 불가합니다.
+   * 결제 취소가 가능한 기한입니다. 이 일시 이후에는 취소가 불가합니다.
    */
   cancelableDate: any | null;
   /**
@@ -44,7 +44,7 @@ export interface getMyTickets_myTickets {
    */
   id: string;
   /**
-   * 아이엠포트를 통해 결재한 가격입니다.
+   * 아이엠포트를 통해 결제한 가격입니다.
    */
   amount: number;
   paidAt: any | null;
