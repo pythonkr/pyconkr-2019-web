@@ -59,8 +59,8 @@ export class Prospectus extends React.Component<PropsType> {
             <Paragraph>
               <strong style={{ fontWeight: 'bold', display: 'block' }}>{t('sponsor:prospectus.faq.question3')}</strong>
               {t('sponsor:prospectus.faq.answer3').split('\n')[0]}
-              {/* <a href='mailto: sponsor@pycon.kr'>sponsor@pycon.kr</a>
-              {t('sponsor:prospectus.faq.answer3').split('\n')[1]} */}
+              {<a href='mailto: sponsor@pycon.kr'>sponsor@pycon.kr</a>
+              {t('sponsor:prospectus.faq.answer3').split('\n')[1]}}
             </Paragraph>
             <Paragraph>
               <strong style={{ fontWeight: 'bold', display: 'block' }}>{t('sponsor:prospectus.faq.question4')}</strong>
