@@ -51,11 +51,11 @@ export class Prospectus extends React.Component<PropsType> {
             <H2>{t('sponsor:prospectus.faqTitle')}</H2>
             <Paragraph>
               <strong style={{ fontWeight: 'bold', display: 'block' }}>{t('sponsor:prospectus.faq.question1')}</strong>
-              {t('sponsor:prospectus.faq.answer1')}
+              <ReactMarkdown source={t('sponsor:prospectus.faq.answer1')} />
             </Paragraph>
             <Paragraph>
               <strong style={{ fontWeight: 'bold', display: 'block' }}>{t('sponsor:prospectus.faq.question2')}</strong>
-              {t('sponsor:prospectus.faq.answer2')}
+              <ReactMarkdown source={t('sponsor:prospectus.faq.answer2')} />
             </Paragraph>
             <Paragraph>
               <strong style={{ fontWeight: 'bold', display: 'block' }}>{t('sponsor:prospectus.faq.question3')}</strong>
@@ -63,10 +63,7 @@ export class Prospectus extends React.Component<PropsType> {
             </Paragraph>
             <Paragraph>
               <strong style={{ fontWeight: 'bold', display: 'block' }}>{t('sponsor:prospectus.faq.question4')}</strong>
-              {t('sponsor:prospectus.faq.answer4')
-                .split('\n')
-                .map((line, index) => <Paragraph2 key={`faq_answer4_${index}`}>{line}</Paragraph2>)
-              }
+              <ReactMarkdown source={t('sponsor:prospectus.faq.answer4')} />
             </Paragraph>
           </Section>
           <Section>
