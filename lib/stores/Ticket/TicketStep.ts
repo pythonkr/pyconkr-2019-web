@@ -54,4 +54,11 @@ export class TicketStep {
 
     return VALIDATION_ERROR_TYPE.NONE
   }
+
+  initConferenceTicketOptions = () => {
+    this.setTicketOption(null)
+    this.setTicketOptionAgreed(false)
+    this.setTicketTermsAgreed(false)
+    this.setTicketStepState(1)
+  }
 }
