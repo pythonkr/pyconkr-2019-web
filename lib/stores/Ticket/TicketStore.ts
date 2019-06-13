@@ -10,12 +10,6 @@ import { TicketStep } from './TicketStep';
 
 configure({ enforceActions: 'observed' })
 
-export enum PAYMENT_TYPE_ENUM {
-    EARLYBIRD = 'EARLYBIRD',
-    REGULAR = 'REGULAR',
-    PATRON = 'PATRON'
-}
-
 export enum VALIDATION_ERROR_TYPE {
     NONE = 'NONE',
     NOT_AGREED_TO_OPTIONS = 'NOT_AGREED_TO_OPTIONS',
@@ -45,23 +39,10 @@ export class TicketStore {
     @observable conferenceProducts: ConferenceProductType[] = []
     @observable isPaying: boolean = false
     @observable isSubmitPayment: boolean = false
-    @observable payingType: PAYMENT_TYPE_ENUM | null = null
     @observable payingTicketTitle: string | null = ''
     @observable price: number = 0
     @observable options: string = ''
     @observable productId: string = ''
-    @observable earlyBirdTicketStep: number = 1
-    @observable earlyBirdTicketOption: { tshirtsize: string } | null = null
-    @observable earlyBirdTicketOptionAgreed: boolean = false
-    @observable earlyBirdTicketTermsAgreed: boolean = false
-    @observable patronTicketStep: number = 1
-    @observable patronTicketOption: { tshirtsize: string } | null = null
-    @observable patronTicketOptionAgreed: boolean = false
-    @observable patronTicketTermsAgreed: boolean = false
-    @observable regularTicketStep: number = 1
-    @observable regularTicketOption: { tshirtsize: string } | null = null
-    @observable regularTicketOptionAgreed: boolean = false
-    @observable regularTicketTermsAgreed: boolean = false
     @observable expiryMonth: string = ''
     @observable expiryYear: string = ''
     @observable ticketInput: PaymentInput = initialTicketInput
@@ -92,71 +73,6 @@ export class TicketStore {
     @action
     setCurrentTicket = (ticket: MyTicketNode) => {
         this.currentTicket = ticket
-    }
-
-    @action
-    setEarlyBirdTicketStep = (step: number) => {
-        this.earlyBirdTicketStep = step
-    }
-
-    @action
-    setEarlyBirdTicketOption = (ticketOption: { tshirtsize: string } | null) => {
-        this.earlyBirdTicketOption = ticketOption
-    }
-
-    @action
-    setEarlyBirdTicketOptionAgreed = (isAgree: boolean) => {
-        this.earlyBirdTicketOptionAgreed = isAgree
-    }
-
-    @action
-    setEarlyBirdTicketTermsAgreed = (isAgree: boolean) => {
-        this.earlyBirdTicketTermsAgreed = isAgree
-    }
-
-    @action
-    setPatronTicketStep = (step: number) => {
-        this.patronTicketStep = step
-    }
-
-    @action
-    setPatronTicketOption = (ticketOption: { tshirtsize: string } | null) => {
-      this.patronTicketOption = ticketOption
-    }
-
-    @action
-    setPatronTicketOptionAgreed = (isAgree: boolean) => {
-      this.patronTicketOptionAgreed = isAgree
-    }
-
-    @action
-    setPatronTicketTermsAgreed = (isAgree: boolean) => {
-      this.patronTicketTermsAgreed = isAgree
-    }
-
-    @action
-    setRegularTicketStep = (step: number) => {
-        this.regularTicketStep = step
-    }
-
-    @action
-    setRegularTicketOption = (ticketOption: { tshirtsize: string } | null) => {
-      this.regularTicketOption = ticketOption
-    }
-
-    @action
-    setRegularTicketOptionAgreed = (isAgree: boolean) => {
-      this.regularTicketOptionAgreed = isAgree
-    }
-
-    @action
-    setRegularTicketTermsAgreed = (isAgree: boolean) => {
-      this.regularTicketTermsAgreed = isAgree
-    }
-
-    @action
-    setPayingType = (payingType: PAYMENT_TYPE_ENUM) => {
-        this.payingType = payingType
     }
 
     @action
@@ -220,17 +136,6 @@ export class TicketStore {
       this.ticketInput = initialTicketInput
     }
 
-    cleanupConferenceTicketOptions = () => {
-      this.setEarlyBirdTicketOption(null)
-      this.setEarlyBirdTicketOptionAgreed(false)
-      this.setEarlyBirdTicketTermsAgreed(false)
-      this.setEarlyBirdTicketStep(1)
-      this.setPatronTicketOption(null)
-      this.setPatronTicketOptionAgreed(false)
-      this.setPatronTicketTermsAgreed(false)
-      this.setPatronTicketStep(1)
-    }
-
     @action
     retrieveConferenceProducts = async () => {
       const { data } = await getConferenceProducts(client)({})
@@ -247,38 +152,6 @@ export class TicketStore {
     async retrieveMyTicket(id: string) {
       const { data } = await getMyTicket(client)({id})
       this.setCurrentTicket(data.myTicket as MyTicketNode)
-    }
-
-    @action
-    validateEarlyBirdTicket = () => {
-      if (!this.earlyBirdTicketOption || _.isEmpty(this.earlyBirdTicketOption.tshirtsize)) return VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED
-      if (!this.earlyBirdTicketOptionAgreed) return VALIDATION_ERROR_TYPE.NOT_AGREED_TO_OPTIONS
-
-      return VALIDATION_ERROR_TYPE.NONE
-    }
-
-    @action
-    setEarlyBirdTicket = (productId: string) => {
-      this.isPaying = true
-      this.productId = productId
-      this.payingType = PAYMENT_TYPE_ENUM.EARLYBIRD
-      this.options = JSON.stringify(this.earlyBirdTicketOption)
-    }
-
-    @action
-    validatePatronTicket = () => {
-      if (!this.patronTicketOption || _.isEmpty(this.patronTicketOption.tshirtsize)) return VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED
-      if (!this.patronTicketOptionAgreed) return VALIDATION_ERROR_TYPE.NOT_AGREED_TO_OPTIONS
-
-      return VALIDATION_ERROR_TYPE.NONE
-    }
-
-    @action
-    setPatronTicket = (productId: string) => {
-      this.isPaying = true
-      this.productId = productId
-      this.payingType = PAYMENT_TYPE_ENUM.PATRON
-      this.options = JSON.stringify(this.patronTicketOption)
     }
 
     @action

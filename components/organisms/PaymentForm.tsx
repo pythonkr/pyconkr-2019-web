@@ -2,7 +2,6 @@ import { FormWrapper, Section } from 'components/atoms/ContentWrappers'
 import CreditCardInfo from 'components/molecules/PaymentForm/CreditCardInfo'
 import PaymentInfo from 'components/molecules/PaymentForm/PaymentInfo'
 import i18next from 'i18next'
-import { PAYMENT_TYPE_ENUM } from 'lib/stores/Ticket/TicketStore'
 import _ from 'lodash'
 import { observer } from 'mobx-react'
 import { RouterProps } from 'next/router'
@@ -53,8 +52,6 @@ class PaymentForm extends React.Component<PropTypes> {
       setCardNumber, setExpiryMonth, setExpiryYear, setBirth, setPwd2Digit,
     } = stores.ticketStore
     const { isDomesticCard, cardNumber, birth, pwd2digit } = stores.ticketStore.ticketInput
-    // const loweredCasedPayingType = payingType && _.lowerCase(PAYMENT_TYPE_ENUM[payingType])
-    // const paymentType = `${t(`ticket:conference.${loweredCasedPayingType}.title`)} ${t('ticket:ticket')}`
 
     return (
       <>
