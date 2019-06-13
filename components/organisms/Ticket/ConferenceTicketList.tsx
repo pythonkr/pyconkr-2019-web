@@ -53,7 +53,6 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
     const {
       conferenceProducts,
       setPrice,
-      cleanupConferenceTicketOptions,
       getTicketStep,
       getIsTicketStepExist,
       setTicketStep,
@@ -76,7 +75,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
         ticketStepState,
         setTicketStepState, setTicketOption, setTicketOptionAgreed, setTicketTermsAgreed,
         ticketOption, isTicketOptionAgreed, isTermsAgreed,
-        validateTicket
+        validateTicket, initConferenceTicketOptions
       } = ticketStep
 
       let options = null
@@ -88,7 +87,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
             title={title || ''}
             id={id}
             isTermsAgreed={isTermsAgreed}
-            onCancel={cleanupConferenceTicketOptions}
+            onCancel={initConferenceTicketOptions}
             onChangeAgreed={setTicketTermsAgreed}
           />
         )
@@ -101,7 +100,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
             id={id}
             tshirtsize={ticketOption && ticketOption.tshirtsize || ''}
             isTicketAgreed={isTicketOptionAgreed}
-            onCancel={cleanupConferenceTicketOptions}
+            onCancel={initConferenceTicketOptions}
             onChangeOption={setTicketOption}
             onChangeAgreed={setTicketOptionAgreed}
           />
