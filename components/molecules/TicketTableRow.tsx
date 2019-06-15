@@ -61,7 +61,7 @@ class TicketTableRow extends React.Component<PropsType> {
 
         let ticketTitle
         if (isOnProgress) ticketTitle = t('ticket:buy')
-        if (isClosed) ticketTitle = t('ticket:status.closed')
+        if (isClosed) ticketTitle = t('ticket:closed')
 
         return ticketTitle
     }
@@ -93,9 +93,9 @@ class TicketTableRow extends React.Component<PropsType> {
         const { ticket, t } = this.props
         const { intlKey, dateDescription, openDate, closeDate } = ticket
         const translatedTitle = intlKey && t(intlKey)
-        const dateInfo = dateDescription
-            ? t(dateDescription.intlKey)
-            : `${openDate && formatDateInWords(openDate)} - ${(closeDate && formatDateInWords(closeDate)) || t('common:status.untilSelected')}`
+        const dateInfo = openDate
+            ? `${openDate && formatDateInWords(openDate)} - ${(closeDate && formatDateInWords(closeDate)) || t('common:status.untilSelected')}`
+            : '-'
         const ticketStatus = this.getTicketStatus()
         const ticketButton = this.renderTicketButton()
 

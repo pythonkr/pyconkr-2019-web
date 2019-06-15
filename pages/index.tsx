@@ -7,7 +7,6 @@ import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import SponsorBanners from 'components/organisms/SponsorBanners'
 import { inject, observer } from 'mobx-react'
-import { withRouter } from 'next/router'
 import React from 'react'
 import { paths } from 'routes/paths'
 import { BG_GRAY, CORAL, HEADING_LIGHT_BLACK, TEAL } from 'styles/colors'
@@ -262,18 +261,31 @@ const NoticeSection = styled.section`
     color: #4a4a4a;
     max-width: 400px;
     margin: 0 auto;
-    @media (max-width: ${mobileWidth}) {
+  }
+
+  ul {
+    padding: 0 20%;
+
+    li {
+      margin: 20px 10px;
+    }
+
+    li:before {
+      content: "📍";
+    }
+  }
+
+  @media (max-width: ${mobileWidth}) {
+    h2 {
       width: auto;
       margin: 0;
       text-align: left;
       font-size: 21px;
     }
-  }
-  p {
-    max-width: 740px;
-    margin: 32px auto 0;
-    font-size: 16px;
-    line-height: 1.7em;
+
+    ul {
+      padding: 0 5%
+    }
   }
 `
 const IntroduceSection = styled.section`
@@ -309,7 +321,6 @@ const IntroduceSection = styled.section`
 `
 
 @inject('stores')
-@(withRouter as any)
 @observer
 class Index extends React.Component<PageDefaultPropsType> {
 
@@ -320,7 +331,7 @@ class Index extends React.Component<PageDefaultPropsType> {
   }
 
   render() {
-    const { stores, router } = this.props
+    const { stores } = this.props
     const { schedule } = stores.scheduleStore
 
     return (
@@ -365,18 +376,18 @@ class Index extends React.Component<PageDefaultPropsType> {
           <h2>
             Notice 🗣
           </h2>
-          <div>
-            <h4>📍
+          <ul>
+            <li>
               <a href='https://www.facebook.com/1532554713673409/posts/2327748334154039'>
                 얼리버드 티켓 추가 오픈 일정 안내
               </a>
-            </h4>
-            <h4>📍
+            </li>
+            <li>
               <a href='https://www.facebook.com/1532554713673409/posts/2321995128062693'>
                 파이콘 한국 2019 얼리버드/개인후원 티켓 판매 일시중단 안내
               </a>
-            </h4>
-          </div>
+            </li>
+          </ul>
         </NoticeSection>
         <ScheduleSection>
           <ul>
@@ -491,7 +502,7 @@ class Index extends React.Component<PageDefaultPropsType> {
           </ul>
         </ScheduleSection>
         <ContentWidthWrapper>
-          <SponsorBanners router={router} stores={stores} />
+          <SponsorBanners />
         </ContentWidthWrapper>
         <SponserSection>
           <ContentWidthWrapper>

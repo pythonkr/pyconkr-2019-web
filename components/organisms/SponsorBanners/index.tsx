@@ -4,8 +4,8 @@ import {
   H2, H3, Section
 } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
-import { observer } from 'mobx-react'
-import { RouterProps } from 'next/router'
+import { inject, observer } from 'mobx-react'
+import { RouterProps, withRouter } from 'next/router'
 import { StoresType } from 'pages/_app'
 import React from 'react'
 import { paths } from 'routes/paths'
@@ -18,8 +18,8 @@ const BannersWrapper = styled.ul`
 `
 
 type PropsType = {
-  router: RouterProps;
-  stores: StoresType;
+  router?: RouterProps;
+  stores?: StoresType;
 }
 
 const BannerLi = styled.li`
@@ -119,11 +119,26 @@ class Banner extends React.Component<BannerPropsType, { isSquare: boolean }> {
     )
   }
 }
+@inject('stores')
+@(withRouter as any)
 @observer
 class SponsorBanners extends React.Component<PropsType> {
+  componentDidMount () {
+    const { stores } = this.props
+    if (stores) {
+      const { isInitialized } = stores.sponsorStore
+
+      if (!isInitialized) {
+        stores.sponsorStore.initialize()
+      }
+    }
+  }
+
   render() {
-    const {stores} = this.props
-    const {sponsors, sponsorLevels} = stores.sponsorStore
+    const { stores } = this.props
+    if (!stores) return null
+
+    const { sponsors, sponsorLevels } = stores.sponsorStore
 
     const sponsorBanners = {} as any
     sponsorLevels.forEach((sponsorLevel) => {
