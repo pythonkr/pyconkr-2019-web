@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import { Section } from 'components/atoms/ContentWrappers'
 import { Button, StyledA } from 'components/atoms/Button'
 import { ContentWidthWrapper } from 'components/atoms/ContentWidthWrapper'
 import { IntlText } from 'components/atoms/IntlText'
@@ -17,7 +16,7 @@ import {
   mobileWidth,
   wideContentWidth
 } from 'styles/layout'
-import { StoresType } from './_app'
+import { PageDefaultPropsType } from 'types/PageDefaultPropsType'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 
 const BannerSection = styled.section`
@@ -262,18 +261,31 @@ const NoticeSection = styled.section`
     color: #4a4a4a;
     max-width: 400px;
     margin: 0 auto;
-    @media (max-width: ${mobileWidth}) {
+  }
+
+  ul {
+    padding: 0 20%;
+
+    li {
+      margin: 20px 10px;
+    }
+
+    li:before {
+      content: "📍";
+    }
+  }
+
+  @media (max-width: ${mobileWidth}) {
+    h2 {
       width: auto;
       margin: 0;
       text-align: left;
       font-size: 21px;
     }
-  }
-  p {
-    max-width: 740px;
-    margin: 32px auto 0;
-    font-size: 16px;
-    line-height: 1.7em;
+
+    ul {
+      padding: 0 5%
+    }
   }
 `
 const IntroduceSection = styled.section`
@@ -310,7 +322,7 @@ const IntroduceSection = styled.section`
 
 @inject('stores')
 @observer
-class Index extends React.Component<{ stores: StoresType }> {
+class Index extends React.Component<PageDefaultPropsType> {
 
   static async getInitialProps() {
     return {
@@ -319,7 +331,9 @@ class Index extends React.Component<{ stores: StoresType }> {
   }
 
   render() {
-    const { schedule } = this.props.stores.scheduleStore
+    const { stores } = this.props
+    const { schedule } = stores.scheduleStore
+
     return (
       <>
         <Header title='파이콘 한국 2019' intlKey='constant.pyconKorea.name'/>
@@ -347,32 +361,33 @@ class Index extends React.Component<{ stores: StoresType }> {
             </p>
             <p>
               <strong style={{ fontWeight: 'bold' }}>
-                {formatDateInWordsWithWeekdayAndTime(schedule.earlybirdTicketStartAt) + ' '}
-              </strong> 
-              <IntlText intlKey="constant.pyconKorea.earlybirdTicketOpen">얼리버드 티켓 오픈</IntlText>
+                {`${formatDateInWordsWithWeekdayAndTime(schedule.earlybirdTicketStartAt)} `}
+              </strong>
+              <IntlText intlKey='constant.pyconKorea.earlybirdTicketOpen'>얼리버드 티켓 오픈</IntlText>
               <br/>
               <strong style={{ fontWeight: 'bold' }}>
-                {formatDateInWordsWithWeekdayAndTime(schedule.conferenceTicketStartAt) + ' '}
-              </strong> 
-              <IntlText intlKey="constant.pyconKorea.regularTicketOpen">일반 티켓 오픈</IntlText>
+                {`${formatDateInWordsWithWeekdayAndTime(schedule.conferenceTicketStartAt)} `}
+              </strong>
+              <IntlText intlKey='constant.pyconKorea.regularTicketOpen'>일반 티켓 오픈</IntlText>
             </p>
           </MainBannerInfoWrapper>
         </BannerSection>
         <NoticeSection>
           <h2>
-              {/*<IntlText intlKey='home.notice.title'>*/}
-                Notice 🗣
-              {/*</IntlText>*/}
-            </h2>
-            <p>
-              {/*TODO : API를 통해 자동으로 로드를 하면 좋겠지만 일단은 수동으로 채웠어요*/}
-              <h4>📍
-                <a href='https://www.facebook.com/1532554713673409/posts/2327748334154039'>얼리버드 티켓 추가 오픈 일정 안내</a>
-              </h4>
-              <h4>📍
-                <a href='https://www.facebook.com/1532554713673409/posts/2321995128062693'>파이콘 한국 2019 얼리버드/개인후원 티켓 판매 일시중단 안내</a>
-              </h4>
-            </p>
+            Notice 🗣
+          </h2>
+          <ul>
+            <li>
+              <a href='https://www.facebook.com/1532554713673409/posts/2327748334154039'>
+                얼리버드 티켓 추가 오픈 일정 안내
+              </a>
+            </li>
+            <li>
+              <a href='https://www.facebook.com/1532554713673409/posts/2321995128062693'>
+                파이콘 한국 2019 얼리버드/개인후원 티켓 판매 일시중단 안내
+              </a>
+            </li>
+          </ul>
         </NoticeSection>
         <ScheduleSection>
           <ul>
@@ -580,7 +595,6 @@ class Index extends React.Component<{ stores: StoresType }> {
             </p>
           </ContentWidthWrapper>
         </IntroduceSection>
-        
         <Footer />
       </>
     )

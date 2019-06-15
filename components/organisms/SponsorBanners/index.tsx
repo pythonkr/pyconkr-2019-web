@@ -1,13 +1,14 @@
 import styled from '@emotion/styled'
-import {inject, observer} from 'mobx-react'
-import {RouterProps, withRouter} from 'next/router'
-import {IntlText} from 'components/atoms/IntlText'
-import {paths} from 'routes/paths'
-import {StoresType} from 'pages/_app'
-import React from 'react'
+import classNames from 'classnames'
 import {
-  Section, H2, H3
+  H2, H3, Section
 } from 'components/atoms/ContentWrappers'
+import { IntlText } from 'components/atoms/IntlText'
+import { inject, observer } from 'mobx-react'
+import { RouterProps, withRouter } from 'next/router'
+import { StoresType } from 'pages/_app'
+import React from 'react'
+import { paths } from 'routes/paths'
 import { mobileWidth } from 'styles/layout'
 
 const BannersWrapper = styled.ul`
@@ -17,8 +18,8 @@ const BannersWrapper = styled.ul`
 `
 
 type PropsType = {
-  router: RouterProps;
-  stores: StoresType;
+  router?: RouterProps;
+  stores?: StoresType;
 }
 
 const BannerLi = styled.li`
@@ -84,43 +85,103 @@ type BannerPropsType = {
   banner: any;
 }
 
-class Banner extends React.Component<BannerPropsType> {
-  constructor(props) {
-    super(props)
-    this.state = {isSquare: false}
+class Banner extends React.Component<BannerPropsType, { isSquare: boolean }> {
+  state = {
+    isSquare: false,
   }
 
-  handleImageLoaded = event => {
+  handleImageLoaded = (event: any) => {
     const imgRatio = event.target.height / event.target.width
     if (imgRatio < 1.2 && imgRatio > 0.8) {
-      this.setState({isSquare: true})
+      this.setState({ isSquare: true })
     }
   }
 
   render() {
-    const {levelName, banner} = this.props
-    const boxClass = [levelName]
-    if (this.state.isSquare) {
-      boxClass.push('square')
-    }
+    const { levelName, banner } = this.props
+    const { isSquare } = this.state
+    const boxClass = classNames(levelName, { square: !!isSquare })
 
-    return (<>
-    <BannerLi className={boxClass.join(' ')}>
-      <a href={`${paths.sponsor.detail}?id=${banner.id}`}>
-        <BannerWrapper>
-          <BannerImage
-            id={banner.id}
-            alt={banner.name}
-            src={banner.logoImage}
-            onLoad={(event) => this.handleImageLoaded(event)}/>
-        </BannerWrapper>
-      </a>
-    </BannerLi>
-  </>)
+    return (
+      <>
+        <BannerLi className={boxClass}>
+          <a href={`${paths.sponsor.detail}?id=${banner.id}`}>
+            <BannerWrapper>
+              <BannerImage
+                id={banner.id}
+                alt={banner.name}
+                src={banner.logoImage}
+                onLoad={(event) => this.handleImageLoaded(event)}/>
+            </BannerWrapper>
+          </a>
+        </BannerLi>
+      </>
+    )
+  }
+}
+@inject('stores')
+@(withRouter as any)
+@observer
+class SponsorBanners extends React.Component<PropsType> {
+  componentDidMount () {
+    const { stores } = this.props
+    if (stores) {
+      const { isInitialized } = stores.sponsorStore
+
+      if (!isInitialized) {
+        stores.sponsorStore.initialize()
+      }
+    }
+  }
+
+  render() {
+    const { stores } = this.props
+    if (!stores) return null
+
+    const { sponsors, sponsorLevels } = stores.sponsorStore
+
+    const sponsorBanners = {} as any
+    sponsorLevels.forEach((sponsorLevel) => {
+      sponsorBanners[sponsorLevel.id] = {
+        name: sponsorLevel.name,
+        sponsors: []
+      }
+    })
+
+    sponsors.forEach((sponsor) => {
+      const sponsorLevel = sponsor && sponsor.level && sponsor.level.id
+      const sponsorList = sponsorLevel && sponsorBanners[sponsorLevel.toString()].sponsors
+      const sponsorBanner = {
+        id: sponsor.id,
+        name: sponsor.name,
+        logoImage: sponsor.logoImage,
+      }
+      sponsorList.push(sponsorBanner)
+    })
+
+    return <Section>
+      <H2><IntlText intlKey='constant.sponsor'>🧚‍♀️ 후원사 🧚‍♂️</IntlText></H2>
+      {sponsorLevels.map(sponsorLevel => {
+
+      return (
+        <SponsorBannersPerLevel
+          key={sponsorLevel.id}
+          level={sponsorLevel as any}
+          banners={sponsorBanners[sponsorLevel.id].sponsors}/>
+      )})}
+    </Section>
   }
 }
 
-const SponsorBannersPerLevel = (props) => {
+type BannerPerLevelType = {
+  key: string;
+  level: {
+    name: string;
+    nameEn: string;
+  };
+  banners: any[];
+}
+const SponsorBannersPerLevel = (props: BannerPerLevelType) => {
   const bannerExists = props.banners.length > 0
   if (bannerExists) {
     return (<>
@@ -134,48 +195,8 @@ const SponsorBannersPerLevel = (props) => {
       </BannersWrapper>
     </>)
   }
+
   return null
-}
-
-@inject('stores')
-@(withRouter as any)
-@observer
-class SponsorBanners extends React.Component<PropsType> {
-  render() {
-    const {stores} = this.props
-    const {sponsors, sponsorLevels} = stores.sponsorStore
-
-    let sponsorBanners = {}
-    sponsorLevels.forEach(function (sponsorLevel) {
-      sponsorBanners[sponsorLevel.id] = {
-        name: sponsorLevel.name,
-        sponsors: []
-      }
-    })
-
-    sponsors.forEach(function (sponsor) {
-      const sponsorLevel = sponsor.level.id
-      const sponsorList = sponsorBanners[sponsorLevel.toString()].sponsors
-      const sponsorBanner = {
-        id: sponsor.id,
-        name: sponsor.name,
-        logoImage: sponsor.logoImage,
-      }
-      sponsorList.push(sponsorBanner)
-    })
-
-    return <Section>
-      <H2><IntlText intlKey='constant.sponsor'>🧚‍♀️ 후원사 🧚‍♂️</IntlText></H2>
-      {
-        sponsorLevels.map(sponsorLevel =>
-          <SponsorBannersPerLevel
-            key={sponsorLevel.id}
-            level={sponsorLevel}
-            banners={sponsorBanners[sponsorLevel.id].sponsors}/>
-        )
-      }
-    </Section>
-  }
 }
 
 export default SponsorBanners
