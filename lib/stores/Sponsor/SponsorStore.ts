@@ -8,6 +8,7 @@ import { getSponsor } from 'lib/apollo_graphql/queries/getSponsor'
 import { getSponsorLevels, SponsorLevelType } from 'lib/apollo_graphql/queries/getSponsorLevels'
 import { getSponsors, PublicSponsorNode } from 'lib/apollo_graphql/queries/getSponsors'
 
+import { getSponsors_sponsors } from 'lib/apollo_graphql/__generated__/getSponsors'
 import { getPatrons, PatronNode } from 'lib/apollo_graphql/queries/getPatrons'
 import * as _ from 'lodash'
 import { action, configure, observable, set } from 'mobx'

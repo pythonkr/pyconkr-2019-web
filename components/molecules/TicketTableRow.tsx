@@ -91,7 +91,7 @@ class TicketTableRow extends React.Component<PropsType> {
 
     render() {
         const { ticket, t } = this.props
-        const { intlKey, dateDescription, openDate, closeDate } = ticket
+        const { intlKey, openDate, closeDate } = ticket
         const translatedTitle = intlKey && t(intlKey)
         const dateInfo = openDate
             ? `${openDate && formatDateInWords(openDate)} - ${(closeDate && formatDateInWords(closeDate)) || t('common:status.untilSelected')}`
