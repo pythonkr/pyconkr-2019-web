@@ -28,7 +28,7 @@ export enum OauthTypeNode {
  */
 export enum TicketStatus {
   CANCELLED = "CANCELLED",
-  DELETE = "DELETE",
+  ERROR = "ERROR",
   PAID = "PAID",
   READY = "READY",
 }

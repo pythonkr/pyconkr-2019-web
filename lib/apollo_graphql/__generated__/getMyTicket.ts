@@ -24,7 +24,7 @@ export interface getMyTicket_myTicket_product {
    */
   isUniqueInType: boolean;
   /**
-   * 결재 취소가 가능한 기한입니다. 이 일시 이후에는 취소가 불가합니다.
+   * 결제 취소가 가능한 기한입니다. 이 일시 이후에는 취소가 불가합니다.
    */
   cancelableDate: any | null;
   /**
@@ -45,7 +45,7 @@ export interface getMyTicket_myTicket {
   id: string;
   isDomesticCard: boolean;
   /**
-   * 아이엠포트를 통해 결재한 가격입니다.
+   * 아이엠포트를 통해 결제한 가격입니다.
    */
   amount: number;
   /**
@@ -61,12 +61,12 @@ export interface getMyTicket_myTicket {
    */
   pgTid: string | null;
   /**
-   * 결재 영수증 URL입니다. 이 값은 카드 결제 내역을 보여줄 때에 사용됩니다.
+   * 결제 영수증 URL입니다. 이 값은 카드 결제 내역을 보여줄 때에 사용됩니다.
    */
   receiptUrl: string | null;
   paidAt: any | null;
   /**
-   * 결재 취소 영수증 URL입니다. 이 값은 카드 결제 취소 내역을 보여줄 때에 사용됩니다.
+   * 결제 취소 영수증 URL입니다. 이 값은 카드 결제 취소 내역을 보여줄 때에 사용됩니다.
    */
   cancelReceiptUrl: string;
   cancelledAt: any | null;
