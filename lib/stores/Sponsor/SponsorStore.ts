@@ -8,7 +8,8 @@ import { getSponsor } from 'lib/apollo_graphql/queries/getSponsor'
 import { getSponsorLevels, SponsorLevelType } from 'lib/apollo_graphql/queries/getSponsorLevels'
 import { getSponsors, PublicSponsorNode } from 'lib/apollo_graphql/queries/getSponsors'
 
-import { getPatrons, PatronNode, PatronsType } from 'lib/apollo_graphql/queries/getPatrons';
+import { getSponsors_sponsors } from 'lib/apollo_graphql/__generated__/getSponsors'
+import { getPatrons, PatronNode } from 'lib/apollo_graphql/queries/getPatrons'
 import * as _ from 'lodash'
 import { action, configure, observable, set } from 'mobx'
 import { SponsorNode } from './SponsorNode'
@@ -75,12 +76,11 @@ export class SponsorStore {
 
     @action
     getAvailableLevel() {
-        for (const i in this.sponsorLevels) {
-            const sponsor = this.sponsorLevels[i]
-            if (sponsor.currentRemainingNumber) {
-                return sponsor
+        this.sponsorLevels.forEach(sponsorLevel => {
+            if (sponsorLevel.currentRemainingNumber) {
+                return sponsorLevel
             }
-        }
+        })
 
         return {}
     }
@@ -95,7 +95,7 @@ export class SponsorStore {
     async retrieveSponsors() {
         const response = await getSponsors(client)({})
         if (response.data.sponsors) {
-            this.sponsors = response.data.sponsors
+            this.sponsors = response.data.sponsors as getSponsors_sponsors[]
         }
     }
 
