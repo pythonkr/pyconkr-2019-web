@@ -90,6 +90,8 @@ export class CFPStore {
         data: presentation
       })
 
+      console.log(response)
+
       this.setProposal(response.data.createOrUpdatePresentationProposal.proposal)
     }
 }

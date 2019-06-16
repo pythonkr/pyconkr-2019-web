@@ -2,8 +2,10 @@ import { Button } from 'components/atoms/Button'
 import { FormWrapper, SelectWrapper } from 'components/atoms/ContentWrappers'
 import { FlexSpaceBetweenWrapper } from 'components/atoms/FlexWrapper'
 import { IntlText } from 'components/atoms/IntlText'
+import { isPast } from 'date-fns'
 import { DurationNode, LanguageNode } from 'lib/apollo_graphql/__generated__/globalTypes'
 import { CFPStore } from 'lib/stores/CFP/CFPStore'
+import { ScheduleStore } from 'lib/stores/Schedule/ScheduleStore'
 import { observer } from 'mobx-react'
 import React from 'react'
 import intl from 'react-intl-universal'
@@ -11,6 +13,7 @@ import { DEFAULT_TEXT_BLACK } from 'styles/colors'
 
 type PropsType = {
   cfpStore: CFPStore;
+  scheduleStore: ScheduleStore;
 }
 
 @observer
@@ -39,22 +42,26 @@ export default class CFPEdit extends React.Component<PropsType> {
   }
 
   render () {
-    const { cfpStore } = this.props
+    const { cfpStore, scheduleStore } = this.props
     const { proposal } = cfpStore
     if (!proposal) return null
+
+    const { presentationProposalFinishAt } = scheduleStore.schedule
+    const isAcceptedProposal = isPast(presentationProposalFinishAt) && proposal.accepted
 
     return (
       <FormWrapper>
         <form onSubmit={this.onSubmitCFPEdit}>
           <label className='required'>
             <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
-              주제
+              {isAcceptedProposal ? '발표 제목' : '주제'}
             </IntlText>
           </label>
           <input
             type='text'
             value={proposal.name}
             onChange={e => proposal.setName(e.target.value)}
+            disabled={isAcceptedProposal}
             aria-required={true}
             required
           />
@@ -69,6 +76,7 @@ export default class CFPEdit extends React.Component<PropsType> {
               value={proposal.categoryId}
               onBlur={e => proposal.setCategoryId(e.target.value)}
               onChange={e => proposal.setCategoryId(e.target.value)}
+              disabled={isAcceptedProposal}
               aria-required={true}
               required
             >
@@ -81,7 +89,7 @@ export default class CFPEdit extends React.Component<PropsType> {
               )}
             </select>
           </SelectWrapper>
-          <fieldset>
+          <fieldset disabled={isAcceptedProposal}>
             <legend className='required'>
               <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item3'>
                 세션 난이도
@@ -113,8 +121,32 @@ export default class CFPEdit extends React.Component<PropsType> {
             aria-required={true}
             required
           />
+          {isAcceptedProposal && <>
+            <label className='required'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages3.item1.sub1'>
+                발표 소개
+              </IntlText>
+            </label>
+            <p><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item1.desc1'>
+              국문 350자 내외, 영문 700자 내외
+            </IntlText></p>
+            <textarea
+              value={proposal.desc}
+              onChange={e => proposal.setDesc(e.target.value)}
+              style={{ height: 400, marginBottom: 5 }}
+              aria-required={true}
+              required
+            />
+            <div style={{textAlign: 'right'}}>
+              <span style={{
+                color: proposal.desc.length < 20 ? 'red ' : 'black'
+              }}>
+                {proposal.desc.length}
+              </span>/700
+            </div>
+          </>}
           <div role='group'>
-            <fieldset>
+            <fieldset disabled={isAcceptedProposal} style={{ width: '50%' }}>
               <legend className='required'>
                 <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item5.header'>
                   세션 길이
@@ -151,7 +183,7 @@ export default class CFPEdit extends React.Component<PropsType> {
                 </label>
               </p>
             </fieldset>
-            <fieldset>
+            <fieldset disabled={isAcceptedProposal} style={{ width: '50%' }}>
               <legend className='required'>
                 <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item6.header'>
                   언어
@@ -200,8 +232,9 @@ export default class CFPEdit extends React.Component<PropsType> {
           <textarea
             value={proposal.detailDesc}
             onChange={e => proposal.setDetailDesc(e.target.value)}
-            aria-required={true}
             style={{ height: 400, marginBottom: 5 }}
+            disabled={isAcceptedProposal}
+            aria-required={true}
             required
           />
           <span style={{
@@ -211,7 +244,7 @@ export default class CFPEdit extends React.Component<PropsType> {
             fontSize: 14,
             color: proposal.detailDesc.length >= 5000 ? 'red' : DEFAULT_TEXT_BLACK
           }}>{proposal.detailDesc.length} / 5000(최대)</span>
-          <fieldset>
+          <fieldset disabled={isAcceptedProposal}>
             <legend className='required'>
               <IntlText intlKey='contribute.talkProposal.application.stages.stages3.item2.header'>
                 이미 다른 곳에서 발표한 내용인가요?
@@ -254,9 +287,9 @@ export default class CFPEdit extends React.Component<PropsType> {
             type='text'
             value={proposal.placePresentedBefore}
             onChange={e => proposal.setPlacePresentedBefore(e.target.value)}
-            disabled={!proposal.isPresentedBefore}
-            required={proposal.isPresentedBefore}
+            disabled={!proposal.isPresentedBefore || isAcceptedProposal}
             aria-required={proposal.isPresentedBefore}
+            required={proposal.isPresentedBefore}
           />
           <label className={proposal.isPresentedBefore ? 'required' : undefined}>
             <IntlText intlKey='contribute.talkProposal.application.stages.stages3.item4'>
@@ -268,7 +301,7 @@ export default class CFPEdit extends React.Component<PropsType> {
             type='url'
             value={proposal.presentedSlideUrlBefore}
             onChange={e => proposal.setPresentedSlideUrlBefore(e.target.value)}
-            disabled={!proposal.isPresentedBefore}
+            disabled={!proposal.isPresentedBefore || isAcceptedProposal}
             required={proposal.isPresentedBefore}
             aria-required={proposal.isPresentedBefore}
           />
@@ -282,6 +315,7 @@ export default class CFPEdit extends React.Component<PropsType> {
             type='text'
             value={proposal.comment}
             onChange={e => proposal.setComment(e.target.value)}
+            disabled={isAcceptedProposal}
           />
           <FlexSpaceBetweenWrapper style={{ justifyContent: 'center', marginTop: 80 }}>
             <Button

@@ -37,6 +37,7 @@ export interface getMyPresentationProposal_myPresentationProposal_difficulty {
 export interface getMyPresentationProposal_myPresentationProposal {
   __typename: "PresentationProposalNode";
   name: string | null;
+  desc: string;
   owner: getMyPresentationProposal_myPresentationProposal_owner | null;
   backgroundDesc: string;
   detailDesc: string;
