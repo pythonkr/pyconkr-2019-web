@@ -6,19 +6,19 @@ import CFPEdit from 'components/organisms/CFPForm/CFPEdit'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
+import { isPast } from 'date-fns'
 import { inject, observer } from 'mobx-react'
+import Link from 'next/link'
 import Router, { RouterProps, withRouter } from 'next/router'
 import React from 'react'
 import { paths } from 'routes/paths'
 import { StoresType } from '../../_app'
-import { isPast } from 'date-fns';
-import Link from 'next/link';
 
 @inject('stores')
 @(withRouter as any)
 @observer
 class CFP extends React.Component<{
-  stores: StoresType;''
+  stores: StoresType;
   router: RouterProps;
 }> {
   async componentDidMount() {
