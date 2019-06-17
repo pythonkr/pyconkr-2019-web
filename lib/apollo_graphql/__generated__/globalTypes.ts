@@ -56,6 +56,7 @@ export interface PaymentInput {
 
 export interface PresentationProposalInput {
   name?: string | null;
+  desc?: string | null;
   categoryId?: string | null;
   difficultyId?: string | null;
   backgroundDesc?: string | null;

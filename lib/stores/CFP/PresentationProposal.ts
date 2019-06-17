@@ -13,6 +13,7 @@ export class PresentationProposal implements PresentationProposalNode {
     __typename: 'PresentationProposalNode' = 'PresentationProposalNode'
     @observable name: string = ''
     @observable owner: getMyPresentationProposal_myPresentationProposal_owner | null = null
+    @observable desc: string = ''
     @observable backgroundDesc: string = ''
     @observable detailDesc: string = ''
     @observable language: LanguageNode | null = null
@@ -40,6 +41,10 @@ export class PresentationProposal implements PresentationProposalNode {
 
     @action setName(newName: string) {
         this.name = newName
+    }
+
+    @action setDesc(desc: string) {
+        this.desc = desc
     }
 
     @action setBackgroundDesc(newBackgroundDesc: string) {

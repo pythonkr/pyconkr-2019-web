@@ -6,7 +6,9 @@ import CFPEdit from 'components/organisms/CFPForm/CFPEdit'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
+import { isPast } from 'date-fns'
 import { inject, observer } from 'mobx-react'
+import Link from 'next/link'
 import Router, { RouterProps, withRouter } from 'next/router'
 import React from 'react'
 import { paths } from 'routes/paths'
@@ -42,22 +44,38 @@ class CFP extends React.Component<{
 
   render() {
     const { stores } = this.props
-    const { cfpStore } = stores
+    const { cfpStore, scheduleStore } = stores
+    const { proposal } = cfpStore
+
+    if (!proposal) return null
+
+    const { presentationProposalFinishAt } = scheduleStore.schedule
+    const isAcceptedProposal = isPast(presentationProposalFinishAt) && proposal.accepted
 
     return (
       <PageTemplate
-        header={<Header title='발표 제안 수정 :: 파이콘 한국 2019' intlKey='contribution.pageTitle'/>}
+        header={<Header
+          title={`발표 ${isAcceptedProposal ? '소개' : '제안'} 수정 :: 파이콘 한국 2019`}
+          intlKey='contribution.pageTitle'/>
+        }
         footer={<Footer />}
       >
         <H1>
-          <IntlText intlKey='contribution.title'>발표 제안 수정</IntlText>
+          <IntlText intlKey='contribution.title'>발표 {isAcceptedProposal ? '소개' : '제안'} 수정</IntlText>
         </H1>
         <Paragraph intlKey='contribution.paragraph'>
-          파이콘 한국 2019 발표 제안을 수정합니다.<br/>
+          파이콘 한국 2019 발표 {isAcceptedProposal ? '내용' : '제안'}을 수정합니다.<br/>
         </Paragraph>
+        {isAcceptedProposal && <Paragraph intlKey='contribution.paragraph'>
+          발표 제목, 카테고리, 발표 시간은 준비위원회와 상의하여 변경할 수 있습니다.<br/>
+          program@pycon.kr로 문의해주세요.
+        </Paragraph>}
+        {isAcceptedProposal && <Paragraph intlKey='contribution.paragraph'>
+          <Link href={paths.account.profile}><a>발표자 프로필 수정하기</a></Link>
+        </Paragraph>}
         {!stores.cfpStore.isInitialized
           ? <Loading width={50} height={50}/>
-          : <CFPEdit cfpStore={cfpStore} />
+          : <CFPEdit cfpStore={cfpStore} scheduleStore={scheduleStore} />
         }
       </PageTemplate>
     )
