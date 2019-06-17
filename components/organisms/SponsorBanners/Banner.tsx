@@ -84,8 +84,6 @@ export class Banner extends React.Component<BannerPropsType, { isSquare: boolean
     const { isSquare } = this.state
     const boxClass = classNames(levelName, { square: !!isSquare })
 
-    console.log('boxClass:::', boxClass)
-
     return (
       <>
         <BannerLi className={boxClass}>
