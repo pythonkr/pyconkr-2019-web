@@ -86,7 +86,7 @@ export class Banner extends React.Component<BannerPropsType, { isSquare: boolean
 
     return (
       <>
-        <BannerLi className={boxClass}>
+        <BannerLi key={banner.id} className={boxClass}>
           <a href={`${paths.sponsor.detail}?id=${banner.id}`}>
             <BannerWrapper>
               <BannerImage

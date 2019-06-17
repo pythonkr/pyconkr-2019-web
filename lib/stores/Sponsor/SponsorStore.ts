@@ -76,13 +76,14 @@ export class SponsorStore {
 
     @action
     getAvailableLevel() {
+        const sponsorLevels = {}
         this.sponsorLevels.forEach(sponsorLevel => {
             if (sponsorLevel.currentRemainingNumber) {
-                return sponsorLevel
+                Object.assign(sponsorLevels, sponsorLevel)
             }
         })
 
-        return {}
+        return sponsorLevels
     }
 
     @action
