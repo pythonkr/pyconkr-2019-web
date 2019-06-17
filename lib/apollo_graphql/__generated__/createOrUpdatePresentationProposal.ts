@@ -29,6 +29,7 @@ export interface createOrUpdatePresentationProposal_createOrUpdatePresentationPr
 export interface createOrUpdatePresentationProposal_createOrUpdatePresentationProposal_proposal {
   __typename: "PresentationProposalNode";
   name: string | null;
+  desc: string;
   backgroundDesc: string;
   detailDesc: string;
   language: LanguageNode | null;
