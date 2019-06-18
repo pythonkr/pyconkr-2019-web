@@ -10,6 +10,8 @@ import { ticketMenu } from 'routes/paths'
 import { DateDTO } from 'types/common'
 import { StoresType } from '../_app'
 
+import { paths } from '../../routes/paths'
+
 export type IntlTextType = {
   intlKey: string;
   defaultText: string;
@@ -46,6 +48,9 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
         <Paragraph><IntlText intlKey='ticket.tutorial.description2'>
         기업에서 튜토리얼을 진행을 신청하는 경우, 파이콘 한국 준비위원회와 별도의 협의가 필요합니다. program@pycon.kr 로 연락주시면 안내해드리겠습니다.
         </IntlText></Paragraph>
+
+        <H2>Tutorials</H2>
+        <Paragraph><a href={paths.ticket.tutorial.detail}>자세히 보기</a></Paragraph>
 
         <Section>
           <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>

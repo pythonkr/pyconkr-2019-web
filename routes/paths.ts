@@ -24,8 +24,14 @@ export const paths = {
     myTicket: '/ticket/my-ticket',
     receipt: '/ticket/receipt',
     conference: '/ticket/conference',
-    tutorial: '/ticket/tutorial',
-    sprint: '/ticket/sprint',
+    tutorial: {
+      base: '/ticket/tutorial',
+      detail: '/ticket/tutorialDetail' // TODO: 엔트리포인트 연결되면 :id 로 수정
+    },
+    sprint: {
+      base: '/ticket/sprint',
+      detail: '/ticket/sprintDetail' // TODO: 엔트리포인트 연결되면 :id 로 수정
+    },
     youngcoder: '/ticket/youngcoder',
     childcare: '/ticket/childcare',
     payment: '/ticket/payment'

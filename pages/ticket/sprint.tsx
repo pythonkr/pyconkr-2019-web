@@ -10,6 +10,8 @@ import { ticketMenu } from 'routes/paths'
 import { DateDTO } from 'types/common'
 import { StoresType } from '../_app'
 
+import { paths } from '../../routes/paths'
+
 export type IntlTextType = {
   intlKey: string;
   defaultText: string;
@@ -46,6 +48,9 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
         <Paragraph><IntlText intlKey='ticket.sprint.description2'>
         스프린트는 파이썬 뿐만 아니라 모든 언어의 오픈소스 프로젝트를 대상으로 진행됩니다.
         </IntlText></Paragraph>
+
+        <H2>Sprints</H2>
+        <Paragraph><a href={paths.ticket.sprint.detail}>자세히 보기</a></Paragraph>
 
         <Section>
           <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
