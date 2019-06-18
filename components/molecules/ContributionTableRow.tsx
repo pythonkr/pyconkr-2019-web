@@ -41,7 +41,6 @@ export default class ContributionTableRow extends React.Component<PropsType> {
         const now = new Date()
 
         if (!isContributionAvailable) return '-'
-        console.log(isMyContribution)
         if (isMyContribution) {
             if (!_.isNil(isProposalSubmitted)) {
                 return !isProposalSubmitted
@@ -77,7 +76,7 @@ export default class ContributionTableRow extends React.Component<PropsType> {
         const isOngoing = openDate && isPast(openDate) && !isFinished
 
         if (isMyContribution && !_.isNil(isProposalSubmitted)) {
-            return  isProposalSubmitted? '수정 제출하기' : '이어서 작성하기'
+            return  isProposalSubmitted ? '수정 제출하기' : '이어서 작성하기'
         }
 
         if (isFinished) return '마감'
@@ -88,9 +87,15 @@ export default class ContributionTableRow extends React.Component<PropsType> {
     }
 
     renderShowDetailButton () {
-        const { link, editLink, isProposalSubmitted } = this.props
+        const { link, editLink, closeDate, isProposalSubmitted, isMyContribution, isProposalAccepted } = this.props
+        const isFinished = closeDate && isPast(closeDate)
         const buttonTitle = this.getShowDetailButtonTitle()
-        const buttonLink = isProposalSubmitted? editLink: link
+        const buttonLink = (
+            isMyContribution &&
+            !_.isNil(isProposalSubmitted) &&
+            (!isFinished || isProposalAccepted)
+        ) ? editLink : link
+
         if (buttonLink) {
           return (
             <ShowDetailButton

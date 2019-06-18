@@ -1,4 +1,5 @@
 import { ContentWrapper } from 'components/atoms/ContentWrappers'
+import SponsorBanners from 'components/organisms/SponsorBanners'
 import React from 'react'
 
 export type PageTemplatePropsType = {
@@ -7,18 +8,22 @@ export type PageTemplatePropsType = {
   sponsorBanners: React.ReactNode;
   children: React.ReactNode;
 }
-const PageTemplate = ({
-  header,
-  footer,
-  children,
-  sponsorBanners,
-}: PageTemplatePropsType) => (<React.Fragment>
-  {header}
-  <ContentWrapper>
-    {children}
-  </ContentWrapper>
-  {sponsorBanners}
-  {footer}
-</React.Fragment>)
+
+export class PageTemplate extends React.Component<PageTemplatePropsType> {
+ render() {
+   const { header, children, footer } = this.props
+
+   return (
+    <>
+      {header}
+      <ContentWrapper>
+        {children}
+        <SponsorBanners/>
+      </ContentWrapper>
+      {footer}
+    </>
+   )
+ }
+}
 
 export default PageTemplate

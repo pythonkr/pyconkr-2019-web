@@ -28,7 +28,7 @@ export enum OauthTypeNode {
  */
 export enum TicketStatus {
   CANCELLED = "CANCELLED",
-  DELETE = "DELETE",
+  ERROR = "ERROR",
   PAID = "PAID",
   READY = "READY",
 }
@@ -56,6 +56,7 @@ export interface PaymentInput {
 
 export interface PresentationProposalInput {
   name?: string | null;
+  desc?: string | null;
   categoryId?: string | null;
   difficultyId?: string | null;
   backgroundDesc?: string | null;

@@ -47,10 +47,6 @@ export default class CFPEdit extends React.Component<PropsType> {
     return ''
   }
 
-  numberWithCommas(x: string) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-  }
-
   render () {
     const { sponsorStore } = this.props
     const { sponsorLevels, proposal, proposalLevel } = sponsorStore
@@ -170,7 +166,7 @@ export default class CFPEdit extends React.Component<PropsType> {
               <TBody>
                 <Tr>
                   <Td>후원금</Td>
-                  <Td>{this.numberWithCommas(proposalLevel.price)} 원</Td>
+                  <Td>{proposalLevel.price.toLocaleString()} 원</Td>
                   <Td>발표세션</Td>
                   <Td>{proposalLevel.presentationCount ? proposalLevel.presentationCount + '세션' : '❌'}</Td>
                 </Tr>
@@ -307,7 +303,7 @@ export default class CFPEdit extends React.Component<PropsType> {
             </IntlText>
           </InputDesc>
           <InputDesc><a href={proposal.logoVector}>{this.getFilename(proposal.logoVector)}</a></InputDesc>
-          
+
           <label
               htmlFor='logo_vector_upload'
               className='file-upload__label'

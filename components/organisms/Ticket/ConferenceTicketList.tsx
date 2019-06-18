@@ -30,69 +30,53 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
 
   async componentDidMount () {
     const { stores } = this.props
-    stores.ticketStore.cleanupConferenceTicketOptions()
-    if (_.isEmpty(stores.ticketStore.myTickets)) await stores.ticketStore.retrieveMyTickets()
-    const myConferenceTicket = toJS(stores.ticketStore.getMyConferenceTickets()[0])
-    if (!_.isEmpty(myConferenceTicket)) this.setState({ myConferenceTicket })
-  }
-
-  getTicketSteps = () => {
-    const { stores } = this.props
     const {
-      earlyBirdTicketOption, earlyBirdTicketOptionAgreed, earlyBirdTicketTermsAgreed,
-      earlyBirdTicketStep, setEarlyBirdTicketStep, setEarlyBirdTicketOption, setEarlyBirdTicketOptionAgreed, setEarlyBirdTicketTermsAgreed,
-      validateEarlyBirdTicket, setEarlyBirdTicket,
-      patronTicketOption, patronTicketOptionAgreed, patronTicketTermsAgreed,
-      patronTicketStep, setPatronTicketStep, setPatronTicketOption, setPatronTicketOptionAgreed, setPatronTicketTermsAgreed,
-      validatePatronTicket, setPatronTicket,
+      myTickets,
+      retrieveMyTickets,
+      getMyConferenceTickets,
     } = stores.ticketStore
+    const myConferenceTicket = toJS(getMyConferenceTickets()[0])
 
-    return [
-      {
-        ticketStepState: earlyBirdTicketStep,
-        tshirtsize: earlyBirdTicketOption && earlyBirdTicketOption.tshirtsize,
-        isTicketAgreed: earlyBirdTicketOptionAgreed,
-        isTermsAgreed: earlyBirdTicketTermsAgreed,
-        setTicketStepState: setEarlyBirdTicketStep,
-        setTicketOption: setEarlyBirdTicketOption,
-        setTicketOptionAgreed: setEarlyBirdTicketOptionAgreed,
-        setTicketTermsAgreed: setEarlyBirdTicketTermsAgreed,
-        validateTicket: validateEarlyBirdTicket,
-        setTicket: setEarlyBirdTicket,
-      },
-      {
-        ticketStepState: patronTicketStep,
-        tshirtsize: patronTicketOption && patronTicketOption.tshirtsize,
-        isTicketAgreed: patronTicketOptionAgreed,
-        isTermsAgreed: patronTicketTermsAgreed,
-        setTicketStepState: setPatronTicketStep,
-        setTicketOption: setPatronTicketOption,
-        setTicketOptionAgreed: setPatronTicketOptionAgreed,
-        setTicketTermsAgreed: setPatronTicketTermsAgreed,
-        validateTicket: validatePatronTicket,
-        setTicket: setPatronTicket,
-      }
-    ]
+    if (_.isEmpty(myTickets)) {
+      await retrieveMyTickets()
+    }
+
+
+    if (!_.isEmpty(myConferenceTicket)) {
+      this.setState({ myConferenceTicket })
+    }
   }
 
   renderTicketBoxList = () => {
     const { stores, router, t } = this.props
     const { myConferenceTicket } = this.state
-    const { conferenceProducts, setPrice, cleanupConferenceTicketOptions } = stores.ticketStore
-    const ticketSteps = this.getTicketSteps()
+    const {
+      conferenceProducts,
+      setPrice,
+      getTicketStep,
+      getIsTicketStepExist,
+      setTicketStep,
+      setPayingTicket,
+    } = stores.ticketStore
 
-    return conferenceProducts.map((conferenceProduct, index) => {
-      const { id, nameKo, nameEn, descKo, descEn, warningKo, warningEn, price, isEditablePrice, type, ticketOpenAt, ticketCloseAt, isSoldOut } = conferenceProduct
+    return conferenceProducts.map((conferenceProduct) => {
+      const { id, nameKo, nameEn, descKo, descEn, warningKo, warningEn, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut } = conferenceProduct
       const isLanguageKorean = i18next.language === 'ko'
       const title = isLanguageKorean ? nameKo : nameEn
       const desc = isLanguageKorean ? descKo : descEn
       const warning = isLanguageKorean ? warningKo : warningEn
+      const isTicketStepExist = getIsTicketStepExist(id)
+      if (!isTicketStepExist) setTicketStep(id, title)
+      const ticketStep = getTicketStep(id)
+
+      if (!ticketStep) return null
+
       const {
         ticketStepState,
         setTicketStepState, setTicketOption, setTicketOptionAgreed, setTicketTermsAgreed,
-        tshirtsize, isTicketAgreed, isTermsAgreed,
-        validateTicket, setTicket
-      } = ticketSteps[index]
+        ticketOption, isTicketOptionAgreed, isTermsAgreed,
+        validateTicket, initConferenceTicketOptions
+      } = ticketStep
 
       let options = null
 
@@ -103,7 +87,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
             title={title || ''}
             id={id}
             isTermsAgreed={isTermsAgreed}
-            onCancel={cleanupConferenceTicketOptions}
+            onCancel={initConferenceTicketOptions}
             onChangeAgreed={setTicketTermsAgreed}
           />
         )
@@ -114,9 +98,9 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
             t={t}
             title={title || ''}
             id={id}
-            tshirtsize={tshirtsize || ''}
-            isTicketAgreed={isTicketAgreed}
-            onCancel={cleanupConferenceTicketOptions}
+            tshirtsize={ticketOption && ticketOption.tshirtsize || ''}
+            isTicketAgreed={isTicketOptionAgreed}
+            onCancel={initConferenceTicketOptions}
             onChangeOption={setTicketOption}
             onChangeAgreed={setTicketOptionAgreed}
           />
@@ -141,7 +125,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
           step={ticketStepState}
           onNextStep={setTicketStepState}
           onValidate={validateTicket}
-          setTicket={() => setTicket(id)}
+          setTicket={() => setPayingTicket(ticketStep)}
           setPrice={setPrice}
           router={router}
           startDate={ticketOpenAt}

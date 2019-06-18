@@ -34,7 +34,7 @@ const DescText = styled.div`
 
 class TicketPaidDescription extends React.Component<PropsType> {
   render() {
-    const {title, description, warning, startAt, finishAt} = this.props
+    const {title, status, description, warning, startAt, finishAt} = this.props
 
     return (
       <TicketDescriptionWrapper>

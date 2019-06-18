@@ -16,7 +16,7 @@ import {
   mobileWidth,
   wideContentWidth
 } from 'styles/layout'
-import { StoresType } from './_app'
+import { PageDefaultPropsType } from 'types/PageDefaultPropsType'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 
 const BannerSection = styled.section`
@@ -77,7 +77,7 @@ const MainBannerInfoWrapper = styled.div`
   h1 {
     font-weight: 700;
     font-size: 1.4em;
-    margin-top: 4.4em;
+    margin-top: 5.5em;
   }
   p {
     font-size: 1.1em;
@@ -249,6 +249,45 @@ const SponserSection = styled.section`
     }
   }
 `
+
+const NoticeSection = styled.section`
+  background-color: #0584870f;
+  padding: 60px 20px;
+  h2 {
+    font-size: 26px;
+    line-height: 1.4;
+    font-weight: bold;
+    text-align: center;
+    color: #4a4a4a;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  ul {
+    padding: 0 20%;
+
+    li {
+      margin: 20px 10px;
+    }
+
+    li:before {
+      content: "📍";
+    }
+  }
+
+  @media (max-width: ${mobileWidth}) {
+    h2 {
+      width: auto;
+      margin: 0;
+      text-align: left;
+      font-size: 21px;
+    }
+
+    ul {
+      padding: 0 5%
+    }
+  }
+`
 const IntroduceSection = styled.section`
   padding: 155px 0 171px 0;
   h2 {
@@ -283,7 +322,7 @@ const IntroduceSection = styled.section`
 
 @inject('stores')
 @observer
-class Index extends React.Component<{ stores: StoresType }> {
+class Index extends React.Component<PageDefaultPropsType> {
 
   static async getInitialProps() {
     return {
@@ -292,7 +331,9 @@ class Index extends React.Component<{ stores: StoresType }> {
   }
 
   render() {
-    const { schedule } = this.props.stores.scheduleStore
+    const { stores } = this.props
+    const { schedule } = stores.scheduleStore
+
     return (
       <>
         <Header title='파이콘 한국 2019' intlKey='constant.pyconKorea.name'/>
@@ -320,12 +361,34 @@ class Index extends React.Component<{ stores: StoresType }> {
             </p>
             <p>
               <strong style={{ fontWeight: 'bold' }}>
-                {formatDateInWordsWithWeekdayAndTime(schedule.earlybirdTicketStartAt) + ' '}
-              </strong> 
-              <IntlText intlKey="constant.pyconKorea.earlybirdAndPatronTicketOpen">얼리버드/개인후원 티켓 오픈</IntlText>
+                {`${formatDateInWordsWithWeekdayAndTime(schedule.earlybirdTicketStartAt)} `}
+              </strong>
+              <IntlText intlKey='constant.pyconKorea.earlybirdTicketOpen'>얼리버드 티켓 오픈</IntlText>
+              <br/>
+              <strong style={{ fontWeight: 'bold' }}>
+                {`${formatDateInWordsWithWeekdayAndTime(schedule.conferenceTicketStartAt)} `}
+              </strong>
+              <IntlText intlKey='constant.pyconKorea.regularTicketOpen'>일반 티켓 오픈</IntlText>
             </p>
           </MainBannerInfoWrapper>
         </BannerSection>
+        <NoticeSection>
+          <h2>
+            Notice 🗣
+          </h2>
+          <ul>
+            <li>
+              <a href='https://www.facebook.com/1532554713673409/posts/2327748334154039'>
+                얼리버드 티켓 추가 오픈 일정 안내
+              </a>
+            </li>
+            <li>
+              <a href='https://www.facebook.com/1532554713673409/posts/2321995128062693'>
+                파이콘 한국 2019 얼리버드/개인후원 티켓 판매 일시중단 안내
+              </a>
+            </li>
+          </ul>
+        </NoticeSection>
         <ScheduleSection>
           <ul>
             <li>
@@ -438,6 +501,9 @@ class Index extends React.Component<{ stores: StoresType }> {
             </li>
           </ul>
         </ScheduleSection>
+        <ContentWidthWrapper>
+          <SponsorBanners />
+        </ContentWidthWrapper>
         <SponserSection>
           <ContentWidthWrapper>
             <SponsorComingSoonBadge>

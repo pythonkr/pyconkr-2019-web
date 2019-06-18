@@ -48,7 +48,6 @@ export type PropsType = {
   toPrevStage(): void;
 }
 
-@inject('stores')
 @observer
 export default class CFPFormStage2 extends React.Component<PropsType> {
   async componentDidMount() {
@@ -62,10 +61,6 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
     }
 
     return ''
-  }
-
-  numberWithCommas(x: string) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
 
   render() {
@@ -200,7 +195,7 @@ export default class CFPFormStage2 extends React.Component<PropsType> {
               <TBody>
                 <Tr>
                   <Td>후원금</Td>
-                  <Td>{this.numberWithCommas(proposalLevel.price)} 원</Td>
+                  <Td>{proposalLevel.price.toLocaleString()} 원</Td>
                   <Td>발표세션</Td>
                   <Td>{proposalLevel.presentationCount ? proposalLevel.presentationCount + '세션' : '❌'}</Td>
                 </Tr>

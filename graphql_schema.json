@@ -14,6 +14,18 @@
         "description": null,
         "fields": [
           {
+            "name": "sleepPing",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "ticketProduct",
             "description": null,
             "args": [],
@@ -354,6 +366,16 @@
         "possibleTypes": null
       },
       {
+        "kind": "SCALAR",
+        "name": "Boolean",
+        "description": "The `Boolean` scalar type represents `true` or `false`.",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "OBJECT",
         "name": "TicketProductNode",
         "description": null,
@@ -620,7 +642,7 @@
           },
           {
             "name": "cancelableDate",
-            "description": "결재 취소가 가능한 기한입니다. 이 일시 이후에는 취소가 불가합니다.",
+            "description": "결제 취소가 가능한 기한입니다. 이 일시 이후에는 취소가 불가합니다.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -947,16 +969,6 @@
         "possibleTypes": null
       },
       {
-        "kind": "SCALAR",
-        "name": "Boolean",
-        "description": "The `Boolean` scalar type represents `true` or `false`.",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
         "kind": "OBJECT",
         "name": "ProfileNode",
         "description": "User Profile",
@@ -1267,7 +1279,7 @@
           },
           {
             "name": "amount",
-            "description": "아이엠포트를 통해 결재한 가격입니다.",
+            "description": "아이엠포트를 통해 결제한 가격입니다.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1323,7 +1335,7 @@
           },
           {
             "name": "receiptUrl",
-            "description": "결재 영수증 URL입니다. 이 값은 카드 결제 내역을 보여줄 때에 사용됩니다.",
+            "description": "결제 영수증 URL입니다. 이 값은 카드 결제 내역을 보여줄 때에 사용됩니다.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1347,7 +1359,7 @@
           },
           {
             "name": "cancelReceiptUrl",
-            "description": "결재 취소 영수증 URL입니다. 이 값은 카드 결제 취소 내역을 보여줄 때에 사용됩니다.",
+            "description": "결제 취소 영수증 URL입니다. 이 값은 카드 결제 취소 내역을 보여줄 때에 사용됩니다.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1385,6 +1397,18 @@
                 "name": "TicketStatus",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "reason",
+            "description": "결재 실패 시 실패 사유를 저장합니다.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -1540,14 +1564,14 @@
             "deprecationReason": null
           },
           {
-            "name": "DELETE",
-            "description": "deleted",
+            "name": "CANCELLED",
+            "description": "cancelled",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "CANCELLED",
-            "description": "cancelled",
+            "name": "ERROR",
+            "description": "error",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -5292,7 +5316,7 @@
           },
           {
             "name": "amount",
-            "description": "결재할 금액을 의미합니다. 수정 가능한 상품인 경우(개인후원)에만 사용됩니다.",
+            "description": "결제할 금액을 의미합니다. 수정 가능한 상품인 경우(개인후원)에만 사용됩니다.",
             "type": {
               "kind": "SCALAR",
               "name": "Int",
@@ -5302,7 +5326,7 @@
           },
           {
             "name": "cardNumber",
-            "description": "결재에 사용할 카드 번호입니다. (e.g, xxxx-xxxx-xxxx-xxxx)",
+            "description": "결제에 사용할 카드 번호입니다. (e.g, xxxx-xxxx-xxxx-xxxx)",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -5316,7 +5340,7 @@
           },
           {
             "name": "expiry",
-            "description": "결재에 사용하는 카드의 만료 기간입니다. (e.g, YYYY-MM)",
+            "description": "결제에 사용하는 카드의 만료 기간입니다. (e.g, YYYY-MM)",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -5744,6 +5768,16 @@
         "inputFields": [
           {
             "name": "name",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "desc",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -7103,6 +7137,16 @@
             "deprecationReason": null
           }
         ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Float",
+        "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point). ",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
         "possibleTypes": null
       }
     ],

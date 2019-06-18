@@ -50,6 +50,7 @@
     "mobx-react": "^5.4.3",
     "mobx-state-tree": "^3.10.2",
     "next": "^7.0.2",
+    "next-ga": "^2.3.4",
     "next-i18next": "^0.37.0",
     "next-nprogress": "^1.4.0",
     "next-plugin-graphql": "^0.0.2",
@@ -66,6 +67,7 @@
     "react-intl-universal": "^1.15.5",
     "react-slick": "^0.24.0",
     "react-markdown": "^4.0.8",
+    "react-slick": "^0.24.0",
     "react-toastify": "^5.1.0",
     "slick-carousel": "^1.8.1",
     "universal-cookie": "^3.0.7"
@@ -73,7 +75,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.3.0",
     "@babel/plugin-transform-async-to-generator": "^7.2.0",
-    "@types/classnames": "^2.2.7",
+    "@types/classnames": "^2.2.8",
     "@types/i18next": "^12.1.0",
     "@types/intl": "^1.2.0",
     "@types/next": "^7.0.6",
@@ -93,6 +95,7 @@
     "tslint-config-prettier": "^1.17.0",
     "tslint-eslint-rules": "^5.4.0",
     "tslint-microsoft-contrib": "^6.0.0",
+    "tslint-react": "^4.0.0",
     "typescript": "^3.2.2",
     "typescript-tslint-plugin": "^0.3.1",
     "url-loader": "^1.1.2"

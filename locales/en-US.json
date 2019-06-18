@@ -7,8 +7,8 @@
       "schedule": "2019.08.15(Thu)-18(Sun)",
       "scheduleWithNameAndVenue": "PyCon Korea 2019: 8.15(Thu)-18(Sun), Coex Grand Ballroom",
       "venue": "Coex Grand Ballroom, Seoul",
-      "earlybirdAndPatronTicketOpen": "Earlybird/Patron Ticket Open",
-      "ragularTicketOpen": "Regular Ticket Open",
+      "earlybirdTicketOpen": "Earlybird Ticket Open",
+      "regularTicketOpen": "Regular Ticket Open",
       "TutorialTicketOpen": "Tutorial Ticket Open",
       "SprintTicketOpen": "Sprint Ticket Open",
       "sprint": {
@@ -26,7 +26,8 @@
         "schedule": "August 17-18",
         "dayofweek": "Sat-Sun"
       }
-    }
+    },
+    "sponsor": "🧚‍♀ Sponsor 🧚‍♂️"
   },
   "common": {
     "contact": "Contact",
@@ -140,6 +141,10 @@
       "description1": "Thanks to all the sponsors who supported the importance of open source and Python community, we could organize an event that more programmers can attend by providing many speech sessions, side programs, video recordings and financial aid.",
       "description2": "We are currently looking for the official sponsors for PyCon Korea 2019 who are interested in supporting the growth of Python community. ",
       "prospectus": "Schedule & Prospectus"
+    },
+    "notice": {
+      "title": "🎉 Early bird ticket schedule",
+      "description1": "Hello, pythonista!<br/>We will be open early bird ticket schedule for PyCon Korea 2019.<br/>Don't miss out on the early bird tickets in Korea that will always be sold out in a hurry!<br/><br/>⭐ Early bird tickets open: Monday, June 10, 19:00 2019 KST (UTC + 9)<br/>⭐ EARLY BIRD TICKET PRICE: 50,000 KRW<br/><br/>P.S. 200 additional open!"
     },
     "pyconKoreaTitle": "About PyCon Korea",
     "pyconKoreaDescription": "PyCon is a non-commercial conference held by Python Programming Communities over the world. PyCon Korea has been successfully hold in several years with a group of volunteers called ‘PyCon Korea Preparation Organizers’, who support the local Korean Python community.",
@@ -477,7 +482,7 @@
     "conference": {
       "pageTitle": "컨퍼런스 티켓",
       "title": "컨퍼런스 티켓",
-      "description": "파이콘 한국의 메인 행사인 8월 18-19일(토-일) 이틀 간의 컨퍼런스에 입장할 수 있는 티켓입니다."
+      "description": "파이콘 한국의 메인 행사인 8월 17-18일(토-일) 이틀 간의 컨퍼런스에 입장할 수 있는 티켓입니다."
     },
     "tutorial": {
       "pageTitle": "튜토리얼 티켓",

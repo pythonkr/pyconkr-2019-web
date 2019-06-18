@@ -32,4 +32,6 @@ export class ConferenceProduct implements ConferenceProductType {
   @observable createdAt: any
   @observable updatedAt: any
   @observable purchaseCount: number | null = null
+  @observable remainingCount: number | null = null;
+  @observable isSoldOut: boolean | null = null;
 }

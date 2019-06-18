@@ -10,6 +10,7 @@ import ProposalReviewStore, { ProposalReviewStore as ProposalReviewStoreType } f
 import ScheduleStore, { ScheduleStore as ScheduleStoreType } from 'lib/stores/Schedule/ScheduleStore'
 import SponsorStore, { SponsorStore as SponsorStoreType } from 'lib/stores/Sponsor/SponsorStore'
 import TicketStore, { TicketStore as TicketStoreType } from 'lib/stores/Ticket/TicketStore'
+import withGA from 'next-ga'
 
 import { LOCALE_KEY_KR, URL_LOCALE_KEY } from 'locales/constants'
 import { Provider } from 'mobx-react'
@@ -183,4 +184,4 @@ class MyApp extends App {
   }
 }
 
-export default appWithTranslation(withNamespaces(['common', 'constant'])(MyApp))
+export default appWithTranslation(withNamespaces(['common', 'constant'])(withGA(GA_TRACKING_ID, Router)(MyApp)))
