@@ -65,9 +65,7 @@
     "react-dom": "^16.7.0",
     "react-intl": "^2.8.0",
     "react-intl-universal": "^1.15.5",
-    "react-slick": "^0.24.0",
     "react-markdown": "^4.0.8",
-    "react-slick": "^0.24.0",
     "react-toastify": "^5.1.0",
     "slick-carousel": "^1.8.1",
     "universal-cookie": "^3.0.7"

@@ -5,7 +5,6 @@ import React from 'react'
 export type PageTemplatePropsType = {
   header: React.ReactNode;
   footer: React.ReactNode;
-  sponsorBanners: React.ReactNode;
   children: React.ReactNode;
 }
 

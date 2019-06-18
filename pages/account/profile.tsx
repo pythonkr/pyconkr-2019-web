@@ -4,7 +4,6 @@ import { FlexCenterWrapper } from 'components/atoms/FlexWrapper'
 import { IntlText } from 'components/atoms/IntlText'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
-import SponsorBanners from 'components/organisms/SponsorBanners'
 import PageTemplate from 'components/templates/PageTemplate'
 import { inject, observer } from 'mobx-react'
 import { RouterProps, withRouter } from 'next/router'
@@ -85,7 +84,6 @@ class Profile extends React.Component<{
     return (
       <PageTemplate
         header={<Header title='프로필 :: 파이콘 한국 2019' intlKey='account.profile.pageTitle' />}
-        sponsorBanners={<SponsorBanners />}
         footer={<Footer />}
       >
         <H1>

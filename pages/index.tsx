@@ -595,7 +595,6 @@ class Index extends React.Component<PageDefaultPropsType> {
             </p>
           </ContentWidthWrapper>
         </IntroduceSection>
-        <SponsorBanners />
         <Footer />
       </>
     )
