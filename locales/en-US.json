@@ -487,12 +487,16 @@
     "tutorial": {
       "pageTitle": "튜토리얼 티켓",
       "title": "튜토리얼 티켓",
-      "description": "튜토리얼 설명"
+      "description": "튜토리얼 설명",
+      "description1": "튜토리얼 설명",
+      "description2": "튜토리얼 설명"
     },
     "sprint": {
       "pageTitle": "스프린트 티켓",
       "title": "스프린트 티켓",
-      "description": "스프린트 설명"
+      "description": "스프린트 설명",
+      "description1": "스프린트 설명",
+      "description2": "스프린트 설명"
     },
     "youngcoder": {
       "pageTitle": "영코더 티켓",
