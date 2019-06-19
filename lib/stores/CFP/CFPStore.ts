@@ -4,6 +4,7 @@ import { CreateOrUpdatePresentationProposal } from 'lib/apollo_graphql/mutations
 import { CategoryType, getCategories } from 'lib/apollo_graphql/queries/getCategories'
 import { DifficultyType, getDifficulties } from 'lib/apollo_graphql/queries/getDifficulties'
 import { getMyPresentationProposal } from 'lib/apollo_graphql/queries/getMyPresentationProposal'
+import { getPresentations } from 'lib/apollo_graphql/queries/getPresentations'
 import _ from 'lodash'
 import { action, configure, observable, set, toJS } from 'mobx'
 import { PresentationProposal } from './PresentationProposal'
@@ -66,6 +67,12 @@ export class CFPStore {
     async retriveMyProposal() {
       const response = await getMyPresentationProposal(client)({})
       this.setProposal(response.data.myPresentationProposal)
+    }
+
+    @action
+    async retrievePresentations() {
+      const response = await getPresentations(client)({})
+      return response.data.presentations
     }
 
     @action

@@ -1,0 +1,42 @@
+query getPresentations {
+    presentations {
+        owner {
+            username
+
+        }
+        name
+        nameKo
+        nameEn
+        place {
+          name
+          nameEn
+          nameKo
+        }
+        duration
+        startedAt
+        finishedAt
+        desc
+        descKo
+        descEn
+        language
+        backgroundDesc        
+        slideUrl
+        pdfUrl
+        videoUrl
+        category {
+            id
+            name
+            nameKo
+            nameEn
+            slug
+            visible
+        }
+        difficulty {
+            id
+            name
+            nameKo
+            nameEn
+        }
+        recordable
+    }
+}
