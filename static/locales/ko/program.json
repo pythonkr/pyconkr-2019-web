@@ -20,5 +20,25 @@
   "keynote": {
     "pageTitle": "키노트 :: 파이콘 한국 2019",
     "title": "키노트"
+  },
+  "lightningTalk": {
+    "pageTitle": "라이트닝 토크 :: 파이콘 한국 2019",
+    "title": "라이트닝 토크"
+  },
+  "openSpaceTalk": {
+    "pageTitle": "열린 공간 :: 파이콘 한국 2019",
+    "title": "열린 공간"
+  },
+  "sprint": {
+    "pageTitle": "스프린트 :: 파이콘 한국 2019",
+    "title": "스프린트"
+  },
+  "tutorial": {
+    "pageTitle": "튜토리얼 :: 파이콘 한국 2019",
+    "title": "튜토리얼"
+  },
+  "youngCoder": {
+    "pageTitle": "영코더 :: 파이콘 한국 2019",
+    "title": "영코더"
   }
 }
