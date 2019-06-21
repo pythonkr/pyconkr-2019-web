@@ -234,7 +234,7 @@ export const Td = styled.td`
   font-size: 15px;
   line-height: 24px;
   color: ${DEFAULT_TEXT_BLACK};
-  padding: 14px 0.5em 14px 0;
+  padding: 14px 0.5em 14px 0.5em;
   white-space: pre-wrap;
   @media (max-width: ${mobileWidth}) {
     font-size: 13px;

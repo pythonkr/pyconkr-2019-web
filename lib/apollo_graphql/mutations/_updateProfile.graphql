@@ -15,6 +15,12 @@ mutation UpdateProfile($data: ProfileInput!) {
             nationality
             image
             avatarUrl
+            blogUrl
+            githubUrl
+            facebookUrl
+            twitterUrl
+            linkedInUrl
+            instagramUrl
         }
     }
 }

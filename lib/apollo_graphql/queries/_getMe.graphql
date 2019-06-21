@@ -19,6 +19,12 @@ query getMe {
             nationality
             image
             avatarUrl
+            blogUrl
+            githubUrl
+            facebookUrl
+            twitterUrl
+            linkedInUrl
+            instagramUrl
         }
     }
 }

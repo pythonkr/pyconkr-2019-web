@@ -9,7 +9,8 @@ export const paths = {
   },
   program: {
     base: '/program',
-    talks: '/program/talks'
+    talks: '/program/talks',
+    talkDetail: '/program/talk-detail'
   },
   contribute: {
     base: '/contribute',

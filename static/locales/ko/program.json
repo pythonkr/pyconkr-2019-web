@@ -2,5 +2,8 @@
   "talks": {
     "pageTitle": "발표 세션 :: 파이콘 한국 2019",
     "title": "발표 세션 리스트"
+  },
+  "talkDetail": {
+    "pageTitle": "{{ talkName }} :: 파이콘 한국 2019"
   }
 }

@@ -8,12 +8,27 @@ import { DurationNode, LanguageNode } from "./globalTypes";
 // GraphQL query operation: getPresentations
 // ====================================================
 
+export interface getPresentations_presentations_owner_profile {
+  __typename: "ProfileNode";
+  name: string;
+  nameKo: string | null;
+  nameEn: string | null;
+  image: any | null;
+  avatarUrl: string;
+  bio: string;
+  bioKo: string | null;
+  bioEn: string | null;
+  blogUrl: string;
+  githubUrl: string;
+  facebookUrl: string;
+  twitterUrl: string;
+  linkedInUrl: string;
+  instagramUrl: string;
+}
+
 export interface getPresentations_presentations_owner {
   __typename: "UserNode";
-  /**
-   * 150자 이하 문자, 숫자 그리고 @/./+/-/_만 가능합니다.
-   */
-  username: string;
+  profile: getPresentations_presentations_owner_profile | null;
 }
 
 export interface getPresentations_presentations_place {
@@ -42,7 +57,8 @@ export interface getPresentations_presentations_difficulty {
 }
 
 export interface getPresentations_presentations {
-  __typename: "PresentationProposalNode";
+  __typename: "PublicPresentationNode";
+  id: string;
   owner: getPresentations_presentations_owner | null;
   name: string | null;
   nameKo: string | null;

@@ -1,7 +1,10 @@
-query getPresentations {
-    presentations {
+query getPresentation($id: Int!) {
+    presentation(id: $id) {
         id
+        name
+        desc
         owner {
+            username
             profile {
                 name
                 nameKo
@@ -19,25 +22,9 @@ query getPresentations {
                 instagramUrl
             }
         }
-        name
-        nameKo
-        nameEn
-        place {
-          name
-          nameEn
-          nameKo
-        }
-        duration
-        startedAt
-        finishedAt
-        desc
-        descKo
-        descEn
+        backgroundDesc
         language
-        backgroundDesc        
-        slideUrl
-        pdfUrl
-        videoUrl
+        duration
         category {
             id
             name
@@ -53,6 +40,8 @@ query getPresentations {
             nameEn
         }
         recordable
+        submitted
+        accepted
         slideUrl
         pdfUrl
         videoUrl

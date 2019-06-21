@@ -12,6 +12,7 @@ import { contributionMenu, paths } from 'routes/paths'
 import { StoresType } from '../_app'
 import i18next from 'i18next'
 import { withNamespaces } from '../../i18n'
+import Link from 'next/link'
 
 export type PropsType = {
   stores: StoresType;
@@ -54,7 +55,9 @@ export class TalkList extends React.Component<PropsType> {
                     group[1].map(presentation => {
                       return (
                         <Li key={presentation.id}> 
-                          { presentation.name }
+                          <Link href={`${paths.program.talkDetail}?id=${presentation.id}`}>
+                            { presentation.name }
+                          </Link>
                         </Li>
                       )
                     })
