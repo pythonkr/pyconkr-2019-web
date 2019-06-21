@@ -61,7 +61,7 @@ export class TalkDetail extends React.Component<PropsType> {
       return <Loading width={50} height={50}/>
     }
     const pageTitle = t('program:talkDetail.pageTitle', { talkName: this.state.presentation.name })
-    const recordable = presentation.recordable ? '이 발표 장면은 녹화되어 컨퍼런스 이후 공개됩니다.' : '이 발표 장면은 녹화되어 컨퍼런스 이후 공개되지 않습니다.'
+    const recordable = presentation.recordable ? t('program:talkDetail.recordable') : t('program:talkDetail.notRecordable')
     return (
       <PageTemplate
         header={<Header title={ pageTitle } intlKey='' />}
@@ -77,22 +77,38 @@ export class TalkDetail extends React.Component<PropsType> {
               <col width='85%'/>
             </colgroup>
             <TBody>
-              <TalkTableRow header='분류' content={ presentation.category.name }/>
-              <TalkTableRow header='난이도' content={ presentation.difficulty.name }/>
-              <TalkTableRow header='언어' content={ presentation.language }/>
-              <TalkTableRow header='발표자' content={ presentation.owner.profile.name }/>
-              <TalkTableRow header='선수 지식' content={ presentation.backgroundDesc }/>
+              <TalkTableRow 
+                header={t('program:talkDetail.category')} 
+                content={ presentation.category.name }/>
+              <TalkTableRow 
+                header={t('program:talkDetail.difficulty')} 
+                content={ presentation.difficulty.name }/>
+              <TalkTableRow 
+                header={t('program:talkDetail.language')} 
+                content={ presentation.language }/>
+              <TalkTableRow 
+                header={t('program:talkDetail.speaker')} 
+                content={ presentation.owner.profile.name }/>
+              <TalkTableRow 
+                header={t('program:talkDetail.background')} 
+                content={ presentation.backgroundDesc }/>
               {
                 presentation.startedAt &&
                 <TalkTableRow 
-                  header='슬라이드 주소' 
+                  header={t('program:talkDetail.datetime')}
                   content={ `${formatDateInWordsWithWeekdayAndTime(presentation.startedAt)}~${formatDateInWordsWithWeekdayAndTime(presentation.finishedAt)}` }/>
               }
-              <TalkTableRow header='슬라이드 주소' content={ presentation.slideUrl }/>
-              <TalkTableRow header='영상 공개 여부' content={ recordable }/>
+              <TalkTableRow 
+                header={t('program:talkDetail.slideUrl')}
+                content={ presentation.slideUrl }/>
+              <TalkTableRow 
+                header={t('program:talkDetail.videoPublic')}
+                content={ recordable }/>
               {
                 presentation.slideUrl &&
-                  <TalkTableRow header='발표 영상 주소' content={ presentation.slideUrl }/>
+                  <TalkTableRow 
+                    header={t('program:talkDetail.slideUrl')}
+                    content={ presentation.slideUrl }/>
               }
               
             </TBody>
