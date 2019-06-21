@@ -31,7 +31,6 @@ export class TalkList extends React.Component<PropsType> {
     this.setState({
       'presentationGroupByCategories': _.chain(presentations).groupBy('category.name').toPairs().value()
     })
-    console.log(this.state.presentationGroupByCategories)
   }
   render() {
     const { stores, t } = this.props

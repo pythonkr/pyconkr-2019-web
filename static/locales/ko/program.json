@@ -16,5 +16,9 @@
     "recordable": "촬영, 녹화가 가능합니다.",
     "notRecordable": "촬영, 녹화가 불가능합니다.",
     "videoUrl": "발표 영상 주소"
+  },
+  "keynote": {
+    "pageTitle": "키노트 :: 파이콘 한국 2019",
+    "title": "키노트"
   }
 }

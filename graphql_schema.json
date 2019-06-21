@@ -3335,6 +3335,22 @@
             "deprecationReason": null
           },
           {
+            "name": "isKeynote",
+            "description": "키노트 스피커인 경우 TRUE로 설정합니다.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "owner",
             "description": null,
             "args": [],
@@ -4183,6 +4199,22 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "ProgramNode",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isKeynote",
+            "description": "키노트 스피커인 경우 TRUE로 설정합니다.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               }
             },
