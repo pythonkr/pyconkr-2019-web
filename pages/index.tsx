@@ -368,7 +368,7 @@ class Index extends React.Component<PageDefaultPropsType> {
               <strong style={{ fontWeight: 'bold' }}>
                 {`${formatDateInWordsWithWeekdayAndTime(schedule.conferenceTicketStartAt)} `}
               </strong>
-              <IntlText intlKey='constant.pyconKorea.regularTicketOpen'>일반 티켓 오픈</IntlText>
+              <IntlText intlKey='constant.pyconKorea.generalTicketOpen'>일반 티켓 오픈</IntlText>
             </p>
           </MainBannerInfoWrapper>
         </BannerSection>
