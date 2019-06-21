@@ -24,6 +24,12 @@ export interface getMe_me_profile {
   nationality: string;
   image: any | null;
   avatarUrl: string;
+  blogUrl: string;
+  githubUrl: string;
+  facebookUrl: string;
+  twitterUrl: string;
+  linkedInUrl: string;
+  instagramUrl: string;
 }
 
 export interface getMe_me {

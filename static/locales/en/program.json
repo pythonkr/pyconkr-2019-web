@@ -1,0 +1,20 @@
+{
+  "talks": {
+    "pageTitle": "List of talks :: PyCon Korea 2019",
+    "title": "List of talks"
+  },
+  "talkDetail": {
+    "pageTitle": "{{ talkName }} :: PyCon Korea 2019",
+    "category": "Category",
+    "difficulty": "Difficulty",
+    "language": "Language",
+    "speaker": "Speaker",
+    "background": "Background",
+    "datetime": "Datetime",
+    "slideUrl": "Slide Url",
+    "videoPublic": "Video public",
+    "recordable": "You can record and record.",
+    "notRecordable": "You can not record and record.",
+    "videoUrl": "발표 영상 주소"
+  }
+}

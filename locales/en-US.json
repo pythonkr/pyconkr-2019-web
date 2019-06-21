@@ -66,6 +66,10 @@
       "notice": "Notice",
       "venue": "Venue"
     },
+    "program": {
+      "root": "Program",
+      "talks": "List of talks"
+    },
     "contribute": {
       "root": "Contribution",
       "overview": "About Contribution",

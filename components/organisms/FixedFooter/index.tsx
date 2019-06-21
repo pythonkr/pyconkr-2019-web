@@ -1,6 +1,4 @@
 import styled from '@emotion/styled'
-import { IntlText } from 'components/atoms/IntlText'
-import { SNSLink } from 'components/atoms/SNSLink'
 import { FixedFooterItem, SNSLinkList } from 'components/molecules/SNSLinkList'
 import { LOCALE_KEY_EN, LOCALE_KEY_KR, localeMap, URL_LOCALE_KEY } from 'locales/constants'
 import { inject, observer } from 'mobx-react'

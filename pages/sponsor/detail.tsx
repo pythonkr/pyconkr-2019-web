@@ -35,17 +35,6 @@ const SponsorContent = (props) => {
       {sponsor.desc}
     </Paragraph>
   </Section>
-        {/* <H1>{sponsor.name}</H1>
-
-         */}
-{/* 
-        <Section>
-          {!currentTicket ? '잘못된 요청입니다' : this.renderReceipt()}
-        </Section>
-        <Section>
-          <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
-          <Paragraph><a href='mailto:program@pycon.kr'>program@pycon.kr</a></Paragraph>
-        </Section> */}
   </>)
 }
 

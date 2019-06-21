@@ -17,6 +17,7 @@ query getConferenceProducts {
     remainingCount
     isSoldOut
     price
+    isDepositTicket
     isEditablePrice
     isUniqueInType
     active

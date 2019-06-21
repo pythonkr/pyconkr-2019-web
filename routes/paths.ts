@@ -7,6 +7,11 @@ export const paths = {
     notice: '/help/notice',
     venue: '/help/venue'
   },
+  program: {
+    base: '/program',
+    talks: '/program/talks',
+    talkDetail: '/program/talk-detail'
+  },
   contribute: {
     base: '/contribute',
     overview: '/contribute/overview',
@@ -102,6 +107,19 @@ export const helpMenu: WithSubMenu = {
       title: '장소',
       intlKey: 'gnb.help.venue',
       link: paths.help.venue
+    }
+  ]
+}
+
+export const programMenu: WithSubMenu = {
+  title: '프로그램',
+  intlKey: 'gnb.program.root',
+  basePath: paths.program.base,
+  submenu: [
+    {
+      title: '발표 세션',
+      intlKey: 'gnb.program.talks',
+      link: paths.program.talks,
     }
   ]
 }
@@ -243,6 +261,7 @@ export const loginMenu: NormalMenu = {
 export const globalNavigationMenu: GNBMenu[] = [
   homeMenu,
   // helpMenu,
+  programMenu,
   contributionMenu,
   sponsorMenu,
 ]
