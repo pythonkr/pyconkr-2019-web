@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { H1, H2, Li, Section, Ul } from 'components/atoms/ContentWrappers'
+import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
@@ -9,7 +10,7 @@ import _ from 'lodash'
 import { inject, observer } from 'mobx-react'
 import Link from 'next/link'
 import React from 'react'
-import { paths } from 'routes/paths'
+import { paths, programMenu } from 'routes/paths'
 import { CORAL_SEMI_LIGHT, TEAL_SEMI_LIGHT } from 'styles/colors'
 import { withNamespaces } from '../../i18n'
 import { StoresType } from '../_app'
@@ -101,12 +102,6 @@ export class TalkList extends React.Component<PropsType> {
         .toPairs()
         .value()
     })
-    console.log(
-      _.chain(presentations)
-        .groupBy('category.name')
-        .toPairs()
-        .value()
-    )
   }
 
   render() {
@@ -118,6 +113,7 @@ export class TalkList extends React.Component<PropsType> {
         header={<Header title={t('common:pageTitle')} intlKey='' />}
         footer={<Footer />}
       >
+        <LocalNavigation list={programMenu.submenu} />
         <H1>{ title }</H1>
         {
           this.state.presentationGroupByCategories.map(group => {

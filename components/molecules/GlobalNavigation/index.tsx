@@ -1,17 +1,18 @@
 import styled from '@emotion/styled'
 import AccountMenuButton from 'components/atoms/AccountMenuButton'
-import { Button } from 'components/atoms/Button';
+import { Button } from 'components/atoms/Button'
 import NavLink from 'components/atoms/NavLink'
 import NavMenuSubLink from 'components/atoms/NavMenuSubLink'
 import { PyConKRLogo } from 'components/atoms/SVG'
 import Link from 'next/link'
 import { withRouter } from 'next/router'
 import React from 'react'
-import { withNamespaces } from '../../../i18n'
 import intl from 'react-intl-universal'
 import { globalNavigationMenu } from 'routes/paths'
 import { CORAL, CORAL_LIGHT } from 'styles/colors'
-import { mobileWidth, navigationPadding } from 'styles/layout'
+import { mobileGnbWidth, navigationPadding } from 'styles/layout'
+import { withNamespaces } from '../../../i18n'
+
 const NavWrapper = styled.nav`
   display: flex;
   justify-content: space-between;
@@ -21,7 +22,7 @@ const NavWrapper = styled.nav`
   box-sizing: border-box;
   border-bottom: solid 2px ${CORAL_LIGHT};
   z-index: 100;
-  @media (max-width: ${mobileWidth}) {
+  @media (max-width: ${mobileGnbWidth}) {
     padding: 0;
   }
 `
@@ -31,7 +32,7 @@ const HeaderLogo = styled.p`
   cursor: pointer;
 `
 const HamburgerCheckbox = styled.input`
- display: none;
+  display: none;
 `
 const HamburgerButtonLabel = styled.label`
 cursor: pointer;
@@ -41,7 +42,7 @@ padding: 30px 20px;
 position: relative;
 user-select: none;
 z-index: 200;
-@media (min-width: ${mobileWidth}) {
+@media (min-width: ${mobileGnbWidth}) {
   display: none;
   z-index: 0;
 }
@@ -88,7 +89,7 @@ ${HamburgerCheckbox}:checked ~${HamburgerButtonLabel} & {
 `
 const NavMenuList = styled.ul`
 // transition: max-height .2s ease-out;
-@media (max-width: ${mobileWidth}) {
+@media (max-width: ${mobileGnbWidth}) {
 display: none;
 position: fixed;
 overflow-y: scroll;
@@ -109,7 +110,7 @@ export const NavItem = styled.li`
   position: relative;
   margin: 0 10px;
   font-size: 14px;
-  @media (max-width: ${mobileWidth}) {
+  @media (max-width: ${mobileGnbWidth}) {
     display: block;
     position: relative;
     width: 100%;
@@ -129,7 +130,7 @@ height: 80px;
 align-items: center;
 padding: 0 10px;
 cursor: pointer;
-@media (max-width: ${mobileWidth}) {
+@media (max-width: ${mobileGnbWidth}) {
   padding: 0;
   width: 100%;
   height: auto;
@@ -140,7 +141,7 @@ font-size: 16px;
 padding: 10px 0;
 font-weight: ${(props: { isActive: boolean }) => props.isActive ? '700' : 'normal'};
 border-bottom: ${(props: { isActive: boolean }) => `solid 2px ${props.isActive ? CORAL : 'rgba(1, 1, 1, 0)'}`};
-@media (max-width: ${mobileWidth}) {
+@media (max-width: ${mobileGnbWidth}) {
   margin: 10px 0;
   padding: 0;
   margin-bottom: ${(props: { isActive: boolean }) => props.isActive ? '30px' : '10px'};
@@ -156,19 +157,19 @@ border-style: solid;
 border-width: 6px 6px 0 6px;
 border-color: rgba(255, 255, 255, 0.75) transparent transparent transparent;
 
-@media (max-width: ${mobileWidth}) {
+@media (max-width: ${mobileGnbWidth}) {
   position: absolute;
   right: 10%;
   top: 35px;
 }
-@media (min-width: ${mobileWidth}) {
+@media (min-width: ${mobileGnbWidth}) {
   border-color: rgba(0, 0, 0, 0.75) transparent transparent transparent;
 }
 ${SubmenuButtonCheckbox}:checked ~ & {
   margin: 0 0 5px 5px;
   border-width: 0 6px 6px 6px;
   border-color: transparent transparent rgba(255, 255, 255, 0.75) transparent;
-  @media (min-width: ${mobileWidth}) {
+  @media (min-width: ${mobileGnbWidth}) {
     border-color: transparent transparent rgba(0, 0, 0, 0.75) transparent;
   }
 }
@@ -188,7 +189,7 @@ export const SubmenuList = styled.ul`
     height: auto;
   }
 
-  @media (min-width: ${mobileWidth}) {
+  @media (min-width: ${mobileGnbWidth}) {
     display: flex;
     position: absolute;
     flex-direction: column;
@@ -209,7 +210,7 @@ export const SubmenuList = styled.ul`
   }
 `
 export const SubmenuItem = styled.li`
-@media (max-width: ${mobileWidth}) {
+@media (max-width: ${mobileGnbWidth}) {
   padding: 2px 0;
   &:last-of-type {
     padding-bottom: 10px;
@@ -217,7 +218,7 @@ export const SubmenuItem = styled.li`
 }
 `
 export const SubmenuItemLink = styled(NavMenuSubLink)`
-@media (max-width: ${mobileWidth}) {
+@media (max-width: ${mobileGnbWidth}) {
   padding: 20px 0;
 }`
 
@@ -239,7 +240,7 @@ export const TicketsButton = styled(Button)`
     font-weight: bold;
   }
 
-  @media (max-width: ${mobileWidth}) {
+  @media (max-width: ${mobileGnbWidth}) {
     width: 90px;
     height: 30px;
 
