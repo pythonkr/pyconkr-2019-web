@@ -24,7 +24,6 @@ const SponsorContent = (props) => {
   }
   return (<>
   <H1>{sponsor.name}</H1>
-  <H3>{sponsor.level.name}</H3>
   <a href={sponsor.url} target="_blank">
     <SponsorLogo src={sponsor.logoImage} alt={sponsor.name}/>
   </a>
