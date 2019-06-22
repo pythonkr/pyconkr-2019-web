@@ -59,9 +59,6 @@ export class Babycare extends React.Component<PropsType> {
           <Paragraph>
             { t('help:financialAid.desc1-4') }
           </Paragraph>
-          <Paragraph>
-            { t('help:financialAid.desc1-5') }
-          </Paragraph>
         </Section>
         <Section>
           <H2>{ t('help:financialAid.header2') }</H2>
@@ -70,20 +67,20 @@ export class Babycare extends React.Component<PropsType> {
           </Paragraph>
           <Paragraph>
             { t('help:financialAid.desc2-2') }
-            <Ul>
-              <Li>{ t('help:financialAid.desc2-2-1') }</Li>
-              <Li><Ul>
-                <Li>{ t('help:financialAid.desc2-2-1-1') }</Li>
-              </Ul></Li>
-              <Li>{ t('help:financialAid.desc2-2-2') }</Li>
-            </Ul>
           </Paragraph>
         </Section>
         <Section>
           <H2>{ t('help:financialAid.header3') }</H2>
+          <Paragraph>
+            { t('help:financialAid.desc3-1') }
+          </Paragraph>
+        </Section>
+        <Section>
+          <H2>{ t('help:financialAid.header4') }</H2>
           <Ul>
-            <Li>{ t('help:financialAid.desc3-1') }</Li>
-            <Li>{ t('help:financialAid.desc3-2') }</Li>
+            <Li>{ t('help:financialAid.desc4-1') }</Li>
+            <Li>{ t('help:financialAid.desc4-2') }</Li>
+            <Li>{ t('help:financialAid.desc4-3') }</Li>
           </Ul>
         </Section>
         <Section>
