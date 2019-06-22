@@ -34,15 +34,15 @@ export class TalkList extends React.Component<PropsType> {
   }
   render() {
     const { stores, t } = this.props
-
+    const title = t('program:talks.title')
     
     return (
       <PageTemplate
-        header={<Header title={t('program:talks.pageTitle')} intlKey='' />}
+        header={<Header title={t('common:pageTitle'). {title}} intlKey='' />}
         footer={<Footer />}
       >
         <H1>
-          {t('program:talks.title')}
+          { title }
         </H1>
         {
           this.state.presentationGroupByCategories.map(group => {

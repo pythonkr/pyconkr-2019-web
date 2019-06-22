@@ -23,13 +23,14 @@ export class Sprint extends React.Component<PropsType> {
   }
   render() {
     const { stores, t } = this.props
+    const title = t('program:sprint.title')
     return (
       <PageTemplate
-        header={<Header title={t('program:sprint.pageTitle')} intlKey='' />}
+        header={<Header title={t('common:pageTitle'), {title}} intlKey='' />}
         footer={<Footer />}
       >
         <H1>
-          {t('program:sprint.title')}
+          { title }
         </H1>
         <Section>
           <Paragraph>

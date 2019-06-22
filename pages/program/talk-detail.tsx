@@ -55,7 +55,7 @@ export class TalkDetail extends React.Component<PropsType> {
     if(presentation == null){
       return <Loading width={50} height={50}/>
     }
-    const pageTitle = t('program:talkDetail.pageTitle', { talkName: this.state.presentation.name })
+    const pageTitle = t('common:.pageTitle', { title: this.state.presentation.name })
     const recordable = presentation.recordable ? t('program:talkDetail.recordable') : t('program:talkDetail.notRecordable')
     return (
       <PageTemplate

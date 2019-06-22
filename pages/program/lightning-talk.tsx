@@ -23,13 +23,14 @@ export class LightningTalk extends React.Component<PropsType> {
   }
   render() {
     const { stores, t } = this.props
+    const title = t('program:lightningTalk.title')
     return (
       <PageTemplate
-        header={<Header title={t('program:lightningTalk.pageTitle')} intlKey='' />}
+        header={<Header title={t('common:pageTitle', {title})} intlKey='' />}
         footer={<Footer />}
       >
         <H1>
-          {t('program:lightningTalk.title')}
+          { title }
         </H1>
         <Section>
           <Paragraph>

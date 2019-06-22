@@ -23,13 +23,14 @@ export class Tutorial extends React.Component<PropsType> {
   }
   render() {
     const { stores, t } = this.props
+    const title = t('program:tutorial.title')
     return (
       <PageTemplate
-        header={<Header title={t('program:tutorial.pageTitle')} intlKey='' />}
+        header={<Header title={t('common:pageTitle', {title})} intlKey='' />}
         footer={<Footer />}
       >
         <H1>
-          {t('program:tutorial.title')}
+          { title }
         </H1>
         <Section>
           <Paragraph>

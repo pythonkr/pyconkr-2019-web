@@ -5,7 +5,10 @@ export const paths = {
     base: '/help',
     faq: '/help/faq',
     notice: '/help/notice',
-    venue: '/help/venue'
+    venue: '/help/venue',
+    babycare: '/help/babycare',
+    financialAid: '/help/financial-aid',
+    visaSponsing: '/help/visa-sponsing'
   },
   program: {
     base: '/program',
@@ -100,21 +103,36 @@ export const helpMenu: WithSubMenu = {
   intlKey: 'gnb.help.root',
   basePath: paths.help.base,
   submenu: [
-    {
-      title: '자주 묻는 질문',
-      intlKey: 'gnb.help.faq',
-      link: paths.help.faq
-    },
-    {
-      title: '알림',
-      intlKey: 'gnb.help.notice',
-      link: paths.help.notice
-    },
+    // {
+    //   title: '자주 묻는 질문',
+    //   intlKey: 'gnb.help.faq',
+    //   link: paths.help.faq
+    // },
+    // {
+    //   title: '알림',
+    //   intlKey: 'gnb.help.notice',
+    //   link: paths.help.notice
+    // },
     {
       title: '장소',
       intlKey: 'gnb.help.venue',
       link: paths.help.venue
-    }
+    },
+    {
+      title: '재정지원',
+      intlKey: 'gnb.help.financialAid',
+      link: paths.help.financialAid
+    },
+    {
+      title: 'Visa Sponsing',
+      intlKey: 'gnb.help.visaSponsing',
+      link: paths.help.visaSponsing
+    },
+    {
+      title: '아이돌봄',
+      intlKey: 'gnb.help.babycare',
+      link: paths.help.babycare
+    },
   ]
 }
 
@@ -302,7 +320,7 @@ export const loginMenu: NormalMenu = {
 
 export const globalNavigationMenu: GNBMenu[] = [
   homeMenu,
-  // helpMenu,
+  helpMenu,
   programMenu,
   contributionMenu,
   sponsorMenu,

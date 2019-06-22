@@ -47,13 +47,14 @@ export class Keynote extends React.Component<PropsType> {
   }
   render() {
     const { stores, t } = this.props
+    const title = t('program:keynote.title')
     return (
       <PageTemplate
-        header={<Header title={t('program:keynote.pageTitle')} intlKey='' />}
+        header={<Header title={t('common:pageTitle', {title})} intlKey='' />}
         footer={<Footer />}
       >
         <H1>
-          {t('program:keynote.title')}
+          { title }
         </H1>
         {
           this.state.speakers.map(profile => {
