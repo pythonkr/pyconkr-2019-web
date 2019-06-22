@@ -16,6 +16,7 @@ import { contentWidth, contentWidthPadding, mobileWidth } from 'styles/layout'
  * classnames
  */
 export const isActive = 'active'
+export const isHeader = 'header'
 export const isDisabled = 'disabled'
 export const isBold = 'bold'
 export const isSmall = 'small'
@@ -268,6 +269,13 @@ export const Td = styled.td`
   &.${isBold} {
     font-weight: 700;
     color: ${HEADING_LIGHT_BLACK};
+  }
+
+  &.${isHeader} {
+    font-weight: bold;
+    color: ${TEAL_SEMI_DARK};
+    background-color: ${TEAL_LIGHT};
+    text-align: right;
   }
 
   .${isActive} & {

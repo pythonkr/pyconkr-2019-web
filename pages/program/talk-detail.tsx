@@ -1,4 +1,4 @@
-import { ContentTableWrapper, H1, H2, Ul, Li, Paragraph, Section, Table, TBody, Td, Tr } from 'components/atoms/ContentWrappers'
+import { ContentTableWrapper, H1, H2, Ul, Li, Paragraph, Section, Table, TBody, Td, Tr, isHeader } from 'components/atoms/ContentWrappers'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
@@ -16,12 +16,7 @@ import { TEAL_SEMI_DARK, TEAL_LIGHT } from 'styles/colors'
 import MarkdownWrapper from 'components/atoms/MarkdownWrapper'
 import {formatDateInWordsWithWeekdayAndTime} from 'utils/formatDate'
 
-const HeaderTd = styled(Td)`
-  font-weight: bold;
-  color: ${TEAL_SEMI_DARK};
-  background-color: ${TEAL_LIGHT};
-  text-align: right;
-`
+
 
 export type PropsType = {
   stores: StoresType;
@@ -30,9 +25,9 @@ export type PropsType = {
 
 const TalkTableRow = (props) => <>
   <Tr>
-    <HeaderTd>
+    <Td className={isHeader}>
       { props.header }
-    </HeaderTd>
+    </Td>
     <Td>
       { props.content }
     </Td>
