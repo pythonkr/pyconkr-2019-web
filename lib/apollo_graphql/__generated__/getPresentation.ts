@@ -56,6 +56,10 @@ export interface getPresentation_presentation_difficulty {
 export interface getPresentation_presentation {
   __typename: "PublicPresentationNode";
   id: string;
+  /**
+   * 키노트 스피커인 경우 TRUE로 설정합니다.
+   */
+  isKeynote: boolean;
   name: string | null;
   desc: string;
   owner: getPresentation_presentation_owner | null;

@@ -64,7 +64,6 @@ class SponsorBanners extends React.Component<PropsType> {
       <Section>
         <H2><IntlText intlKey='constant.sponsor'>🧚‍♀️ 후원사 🧚‍♂️</IntlText></H2>
         {sponsorLevels.map(sponsorLevel => {
-          const key = sponsorLevel.id
           const level = sponsorLevel
           const banners = sponsorBanners[sponsorLevel.id].sponsors as any[]
           const isBannersExist = banners.length > 0
@@ -72,14 +71,14 @@ class SponsorBanners extends React.Component<PropsType> {
           if (!isBannersExist) return null
 
           return (
-            <>
+            <div key={level.id}>
               <H3>{level.name}</H3>
-              <BannersWrapper key={key}>
+              <BannersWrapper>
                 {banners.map(banner => {
                   return <Banner key={banner.id} banner={banner} levelName={(level.nameEn && level.nameEn.toLowerCase()) || ''}/>
                 })}
               </BannersWrapper>
-            </>
+            </div>
           )}
         )}
       </Section>

@@ -1,6 +1,7 @@
 query getPresentations {
     presentations {
         id
+        isKeynote
         owner {
             profile {
                 name

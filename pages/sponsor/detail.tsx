@@ -10,6 +10,7 @@ import {toJS} from 'mobx'
 import {withRouter} from 'next/router'
 import {Loading} from 'components/atoms/Loading'
 import styled from '@emotion/styled'
+import MarkdownWrapper from 'components/atoms/MarkdownWrapper'
 
 const SponsorLogo = styled.img`
   width: 50%;
@@ -32,9 +33,7 @@ const SponsorContent = (props) => {
     <a href={sponsor.url} target="_blank">{sponsor.url}</a>
   </Section>
   <Section>
-    <Paragraph>
-      {sponsor.desc}
-    </Paragraph>
+    <MarkdownWrapper contents={sponsor.desc}/>
   </Section>
   </>)
 }
