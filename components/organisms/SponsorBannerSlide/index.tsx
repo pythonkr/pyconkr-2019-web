@@ -1,8 +1,5 @@
 import styled from '@emotion/styled'
-import {
-  H2, H3
-} from 'components/atoms/ContentWrappers'
-import { IntlText } from 'components/atoms/IntlText'
+import { H2, H3 } from 'components/atoms/ContentWrappers'
 import { WideContentWidthWrapper } from 'components/atoms/WideContentWidthWrapper'
 import _ from 'lodash'
 import { toJS } from 'mobx'
@@ -28,6 +25,10 @@ const BannersWrapper = styled.ul`
 const SliderWrapper = styled.div`
 padding: 50px 30px 25px;
 margin-bottom: 42px;
+& .slick-arrow {
+  width: 23px;
+  height: 42px;
+}
 & .slick-arrow::before {
   color: ${FORM_LABEL_GRAY};
 }
@@ -50,8 +51,6 @@ display: flex;
 justify-content: center;
 align-items: center;
 `
-
-// const NextArrow = styled.
 
 type PropsType = {
   router?: RouterProps;
@@ -77,8 +76,12 @@ const sliderSettings = {
   pauseOnHover: true,
   pauseOnFocus: true,
   pauseOnDotsHover: true,
-  // nextArrow: <NextArrow />,
-  // prevArrow: <PrevArrow />
+  nextArrow: <svg width='23' height='42' viewBox='0 0 23 42' xmlns='http://www.w3.org/2000/svg'>
+    <path d='M1 1l20 19.84L1 41' stroke='#D0D2D3' stroke-width='2' fill='none' fill-rule='evenodd'/>
+  </svg>,
+  prevArrow: <svg width='23' height='42' viewBox='0 0 23 42' xmlns='http://www.w3.org/2000/svg'>
+    <path d='M21.84 1L2 20.84 21.84 41' stroke='#D0D2D3' stroke-width='2' fill='none' fill-rule='evenodd'/>
+  </svg>
 }
 
 @inject('stores')
@@ -137,8 +140,6 @@ class SponsorBannerSlide extends React.Component<PropsType> {
         }))
       ]
     })
-
-    console.log(bannerGroups)
 
     return (
       <WideContentWidthWrapper>
