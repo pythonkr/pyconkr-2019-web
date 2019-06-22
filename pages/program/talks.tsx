@@ -38,7 +38,7 @@ export class TalkList extends React.Component<PropsType> {
     
     return (
       <PageTemplate
-        header={<Header title={t('common:pageTitle'). {title}} intlKey='' />}
+        header={<Header title={t('common:pageTitle'), {title}} intlKey='' />}
         footer={<Footer />}
       >
         <H1>
