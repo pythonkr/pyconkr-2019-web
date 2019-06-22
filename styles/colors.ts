@@ -1,9 +1,11 @@
 export const TEAL = '#088487'
 export const TEAL_SEMI_DARK = '#077477'
 export const TEAL_DARK = '#044748'
+export const TEAL_SEMI_LIGHT = '#0aa5a9'
 export const TEAL_LIGHT = '#e6f3f3'
 export const TEAL_LIGHT_LIGHT = '#eef7f7'
 export const CORAL_LIGHT = '#fff3f3'
+export const CORAL_SEMI_LIGHT = '#fb8484'
 export const CORAL = '#F95858'
 export const CORAL_DARK = '#d24343'
 

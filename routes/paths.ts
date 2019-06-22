@@ -72,7 +72,7 @@ export const paths = {
       cfp: '/account/editproposal/cfp',
       cfs: '/account/editproposal/cfs'
     }
-  }
+  },
 }
 
 export type NormalMenu = {
