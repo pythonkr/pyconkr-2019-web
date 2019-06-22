@@ -41,5 +41,19 @@
     "header3": "지원 대상",
     "desc3-1": "발표자나 튜토리얼 강사 혹은 오픈소스 기여자 와 같이 PyCon Korea 이 보다 나은 컨퍼런스가 될 수 있도록 도움을 주는 분",
     "desc3-2": "또한 학생이나 저소득자 와 같이 재정적인 문제로 참가하기 어려운 분"
+  },
+  "visaSponsing": {
+    "title": "Visa Sponsing",
+    "desc1": "All Python friends who want to attend PyCon Korea but don’t have visa to visit south korea. We are supporting Visa.",
+    "desc2": "Please send us these informations and we can support Invitation Letter.",
+    "desc3": "Contact email: support@pycon.kr",
+    "desc3-1": "Family Name in your passport",
+    "desc3-2": "Given Name in your passport",
+    "desc3-3": "Birthday Information in your passport",
+    "desc3-4": "Gender",
+    "desc3-5": "Nationality in your passport",
+    "desc3-6": "Phone Number",
+    "desc3-7": "Address in Korea ( in most case you can use hotel address )",
+    "desc3-8": "Visit Date"
   }
 }
