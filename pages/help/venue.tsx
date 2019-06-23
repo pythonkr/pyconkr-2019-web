@@ -57,7 +57,11 @@ export class Venue extends React.Component<PropsType> {
           <H3>{ t('help:venue.header2-1') }</H3>
           <Paragraph>
           <a href="http://www.coex.co.kr/tour-guide/traffic/location-1" target="_blank">
-              http://www.coex.co.kr/tour-guide/traffic/location-1</a>
+            [한글] http://www.coex.co.kr/tour-guide/traffic/location-1</a>
+          </Paragraph>
+          <Paragraph>
+          <a href="https://www.coexcenter.com/directions-map-subway" target="_blank">
+            [Eng] https://www.coexcenter.com/directions-map-subway</a>
           </Paragraph>
           <Ul>
             <Li>{ t('help:venue.desc2-1-1') }</Li>
@@ -67,7 +71,11 @@ export class Venue extends React.Component<PropsType> {
           <H3>{ t('help:venue.header2-2') }</H3>
           <Paragraph>
             <a href="http://www.coex.co.kr/tour-guide/traffic/location-2" target="_blank">
-                http://www.coex.co.kr/tour-guide/traffic/location-2</a>
+              [한글] http://www.coex.co.kr/tour-guide/traffic/location-2</a>
+          </Paragraph>
+          <Paragraph>
+            <a href="https://www.coexcenter.com/directions-map-bus" target="_blank">
+              [Eng] https://www.coexcenter.com/directions-map-bus</a>
           </Paragraph>
           <Paragraph>
             { t('help:venue.desc2-2-1') }

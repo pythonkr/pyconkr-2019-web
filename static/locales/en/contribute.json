@@ -322,5 +322,17 @@
         "button": "Submit review comments"
       }
     }
+  },
+  "volunteer": {
+    "title": "Volunteer",
+    "desc1-1": "PyCon is a community-based conference with passions and helps of Pythonistas.",
+    "desc1-2": "We will need your help in various places. ",
+    "desc1-3": "Anyone who attends PyCon Korea can apply for the volunteers. The application is only valid for those who have completed the registration of PyCon Korea. We always appreciate your help.",
+    "header2": "List of volunteers (가나다순)",
+    "desc2-1": "No volunteers have been confirmed yet😉. We would like a lot of support during the application period.",
+    "header3": "Schedule",
+    "desc3-1": "Application period: 2018.06.24(Mon) ~ 2018.07.05(Fri)",
+    "desc3-2": "Announcd: 2018.07.10(Wed)",
+    "desc3-3": "Volunteers can apply through the application form."
   }
 }

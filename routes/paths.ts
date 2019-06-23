@@ -6,7 +6,7 @@ export const paths = {
     faq: '/help/faq',
     notice: '/help/notice',
     venue: '/help/venue',
-    babycare: '/help/babycare',
+    childcare: '/help/childcare',
     financialAid: '/help/financial-aid',
     visaSponsing: '/help/visa-sponsing'
   },
@@ -130,8 +130,8 @@ export const helpMenu: WithSubMenu = {
     },
     {
       title: '아이돌봄',
-      intlKey: 'gnb.help.babycare',
-      link: paths.help.babycare
+      intlKey: 'gnb.help.childcare',
+      link: paths.help.childcare
     },
   ]
 }

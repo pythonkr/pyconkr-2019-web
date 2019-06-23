@@ -64,11 +64,19 @@
       "root": "About",
       "faq": "FAQ",
       "notice": "Notice",
-      "venue": "Venue"
+      "venue": "Venue",
+      "financialAid": "Financial Aid",
+      "childcare": "Child Care"
     },
     "program": {
       "root": "Program",
-      "talks": "List of talks"
+      "talks": "List of talks",
+      "keynote": "Keynote",
+      "lightningTalk": "Lightning Talk",
+      "openSpaceTalk": "Open Space",
+      "tutorial": "Tutorial",
+      "sprint": "Sprint",
+      "youngcoder": "Youngcoder"
     },
     "contribute": {
       "root": "Contribution",
@@ -77,7 +85,8 @@
       "proposingATalk": "Proposing a talk",
       "proposingATutorial": "Proposing a tutorial",
       "recommendKeynoteSpeaker": "Recommending Keynote",
-      "proposalReview": "Review Talk Proposals"
+      "proposalReview": "Review Talk Proposals",
+      "volunteer": "Volunteer"
     },
     "sponsor": {
       "root": "Sponsor",
