@@ -5248,7 +5248,7 @@
             "deprecationReason": null
           },
           {
-            "name": "babycareTicketStartAt",
+            "name": "childcareTicketStartAt",
             "description": "",
             "args": [],
             "type": {
@@ -5260,7 +5260,7 @@
             "deprecationReason": null
           },
           {
-            "name": "babycareTicketFinishAt",
+            "name": "childcareTicketFinishAt",
             "description": "",
             "args": [],
             "type": {

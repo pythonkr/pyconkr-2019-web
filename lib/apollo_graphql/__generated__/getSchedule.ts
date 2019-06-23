@@ -52,8 +52,8 @@ export interface getSchedule_schedule {
   patronTicketFinishAt: any | null;
   conferenceTicketStartAt: any | null;
   conferenceTicketFinishAt: any | null;
-  babycareTicketStartAt: any | null;
-  babycareTicketFinishAt: any | null;
+  childcareTicketStartAt: any | null;
+  childcareTicketFinishAt: any | null;
   youngcoderTicketStartAt: any | null;
   youngcoderTicketFinishAt: any | null;
 }

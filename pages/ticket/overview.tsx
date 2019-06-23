@@ -85,8 +85,8 @@ export class Ticket extends React.Component<PropsType> {
     }, {
       title: '아이돌봄',
       intlKey: 'ticket:childcare.title',
-      openDate: schedule.babycareTicketStartAt,
-      closeDate: schedule.babycareTicketFinishAt,
+      openDate: schedule.childcareTicketStartAt,
+      closeDate: schedule.childcareTicketFinishAt,
       link: paths.ticket.childcare
     }]
 
