@@ -10,7 +10,7 @@ import React from 'react'
 import intl from 'react-intl-universal'
 import { globalNavigationMenu } from 'routes/paths'
 import { CORAL, CORAL_LIGHT } from 'styles/colors'
-import { mobileGnbWidth, navigationPadding } from 'styles/layout'
+import { mobileGnbWidth, navigationPadding, mobileWidth } from 'styles/layout'
 import { withNamespaces } from '../../../i18n'
 
 const NavWrapper = styled.nav`
@@ -42,6 +42,7 @@ padding: 30px 20px;
 position: relative;
 user-select: none;
 z-index: 200;
+order: 1;
 @media (min-width: ${mobileGnbWidth}) {
   display: none;
   z-index: 0;
@@ -89,6 +90,10 @@ ${HamburgerCheckbox}:checked ~${HamburgerButtonLabel} & {
 `
 const NavMenuList = styled.ul`
 // transition: max-height .2s ease-out;
+// order: 2;
+margin-left: auto;
+margin-right: 30px;
+
 @media (max-width: ${mobileGnbWidth}) {
 display: none;
 position: fixed;
@@ -224,11 +229,16 @@ export const SubmenuItemLink = styled(NavMenuSubLink)`
 
 export const TicketsButtonWrapper = styled.div`
   display: block;
-  margin-left: auto;
   vertical-align: middle;
   display: flex;
   align-items: center;
   margin-right: 20px;
+  order: 2;
+  @media (max-width: ${mobileGnbWidth}) {
+    margin-right: 0;
+    margin-left: auto;
+    order: 1;
+  }
 `
 
 export const TicketsButton = styled(Button)`
@@ -240,7 +250,7 @@ export const TicketsButton = styled(Button)`
     font-weight: bold;
   }
 
-  @media (max-width: ${mobileGnbWidth}) {
+  @media (max-width: ${mobileWidth}) {
     width: 90px;
     height: 30px;
 
