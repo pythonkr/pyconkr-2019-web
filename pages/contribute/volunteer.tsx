@@ -10,6 +10,7 @@ import { StoresType } from '../_app'
 import i18next from 'i18next'
 import { withNamespaces } from '../../i18n'
 import Link from 'next/link'
+import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 
 export type PropsType = {
   stores: StoresType;
@@ -23,6 +24,7 @@ export class Volunteer extends React.Component<PropsType> {
   }
   render() {
     const { stores, t } = this.props
+    const { volunteerRecruitingStartAt, volunteerRecruitingFinishAt, volunteerAnnounceAt } = stores.scheduleStore.schedule
     const title = t('contribute:volunteer.title')
     return (
       <PageTemplate
@@ -52,10 +54,14 @@ export class Volunteer extends React.Component<PropsType> {
         <Section>
           <H2>{ t('contribute:volunteer.header3') }</H2>
           <Ul>
-            <Li>{ t('contribute:volunteer.desc3-1') }</Li>
-            <Li>{ t('contribute:volunteer.desc3-2') }</Li>
+            <Li>{ `${t('contribute:volunteer.desc3-1')}: ${formatDateInWordsWithWeekdayAndTime(volunteerRecruitingStartAt)}~${formatDateInWordsWithWeekdayAndTime(volunteerRecruitingFinishAt)}` }</Li>
+            <Li>{ `${t('contribute:volunteer.desc3-2')}: ${formatDateInWordsWithWeekdayAndTime(volunteerAnnounceAt)}` }</Li>
             <Li>{ t('contribute:volunteer.desc3-3') }</Li>
           </Ul>
+        </Section>
+        <Section>
+          <H2>{ t('common:contact') }</H2>
+          <Paragraph><a href='mailto:support@pycon.kr'>support@pycon.kr</a></Paragraph>
         </Section>
       </PageTemplate>
     )
