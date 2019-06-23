@@ -81,14 +81,12 @@ export class Babycare extends React.Component<PropsType> {
             <Li>{ t('help:financialAid.desc4-1') }</Li>
             <Li>{ t('help:financialAid.desc4-2') }</Li>
             <Li>{ t('help:financialAid.desc4-3') }</Li>
-            <Ul>
-              <Li>{ t('help:financialAid.desc4-3-1') }</Li>
-            </Ul>
+            <Li>{ t('help:financialAid.desc4-3-1') }</Li>
           </Ul>
         </Section>
         <Section>
           <H2>{t('common:contact')}</H2>
-          <Paragraph><a href='mailto:support@pycon.kr'>support@pycon.kr</a></Paragraph>
+          <Paragraph><a href='mailto:pyconkr@pycon.kr'>pyconkr@pycon.kr</a></Paragraph>
         </Section>
       </PageTemplate>
     )
