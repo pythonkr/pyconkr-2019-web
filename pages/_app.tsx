@@ -29,6 +29,9 @@ import _ from 'lodash'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { appWithTranslation, i18n, withNamespaces } from '../i18n'
+import { ApolloProvider } from 'react-apollo'
+import { client } from 'lib/apollo_graphql/client'
+
 
 global.Intl = IntlPolyfill
 require('intl/locale-data/jsonp/ko.js')
@@ -149,37 +152,39 @@ class MyApp extends App {
     const isTermsAgreed = profileStore.isAgreed || true
 
     return (
-      <Container>
-        <NProgress
-          color={CORAL}
-          options={{ trickleSpeed: 50 }}
-          showAfterMs={300}
-          spinner={false}
-        />
-        {isLoggedIn && !isTermsAgreed && (
-          <AlertBar
-            text='회원 가입이 완료되지 않았습니다. 약관을 확인하고 회원 가입을 완료해주세요.'
-            link={{
-              title: '완료하러 가기',
-              to: paths.account.agreement,
-              outlink: false
-            }}
-            style={{ margin: 0 }}
+      <ApolloProvider client={client}>
+        <Container>
+          <NProgress
+            color={CORAL}
+            options={{ trickleSpeed: 50 }}
+            showAfterMs={300}
+            spinner={false}
           />
-        )}
-        <Provider stores={this.stores}>
-          <Component {...pageProps} />
-        </Provider>
-        <ToastContainer
-          position='top-center'
-          autoClose={5000}
-          hideProgressBar
-          closeOnClick
-          rtl={false}
-          draggable
-          pauseOnHover
-        />
-      </Container>
+          {isLoggedIn && !isTermsAgreed && (
+            <AlertBar
+              text='회원 가입이 완료되지 않았습니다. 약관을 확인하고 회원 가입을 완료해주세요.'
+              link={{
+                title: '완료하러 가기',
+                to: paths.account.agreement,
+                outlink: false
+              }}
+              style={{ margin: 0 }}
+            />
+          )}
+          <Provider stores={this.stores}>
+            <Component {...pageProps} />
+          </Provider>
+          <ToastContainer
+            position='top-center'
+            autoClose={5000}
+            hideProgressBar
+            closeOnClick
+            rtl={false}
+            draggable
+            pauseOnHover
+          />
+        </Container>
+      </ApolloProvider>
     )
   }
 }
