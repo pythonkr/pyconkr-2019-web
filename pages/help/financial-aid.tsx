@@ -81,7 +81,9 @@ export class Babycare extends React.Component<PropsType> {
             <Li>{ t('help:financialAid.desc4-1') }</Li>
             <Li>{ t('help:financialAid.desc4-2') }</Li>
             <Li>{ t('help:financialAid.desc4-3') }</Li>
+            <Ul>
               <Li>{ t('help:financialAid.desc4-3-1') }</Li>
+            </Ul>
           </Ul>
         </Section>
         <Section>
