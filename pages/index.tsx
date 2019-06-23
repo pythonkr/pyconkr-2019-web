@@ -387,6 +387,16 @@ class Index extends React.Component<PageDefaultPropsType> {
                 파이콘 한국 2019 얼리버드/개인후원 티켓 판매 일시중단 안내
               </a>
             </li>
+            <li>
+              <a href='https://www.facebook.com/pyconkorea/posts/2338970393031833'>
+                재정지원 연기 안내
+              </a>
+            </li>
+            <li>
+              <a href='https://www.facebook.com/pyconkorea/posts/2337461739849365'>
+                파이콘 한국 2019 일반 컨퍼런스 티켓 판매 연기 안내
+              </a>
+            </li>
           </ul>
         </NoticeSection>
         <ScheduleSection>
