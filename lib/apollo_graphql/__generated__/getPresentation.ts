@@ -80,6 +80,16 @@ export interface getPresentation_presentation_difficulty {
   nameEn: string | null;
 }
 
+export interface getPresentation_presentation_cfpReviewSet_presentation {
+  __typename: "ProposalForReviewNode";
+  detailDesc: string;
+}
+
+export interface getPresentation_presentation_cfpReviewSet {
+  __typename: "CFPReviewNode";
+  presentation: getPresentation_presentation_cfpReviewSet_presentation | null;
+}
+
 export interface getPresentation_presentation {
   __typename: "PublicPresentationNode";
   id: string;
@@ -104,6 +114,7 @@ export interface getPresentation_presentation {
   videoUrl: string;
   startedAt: any | null;
   finishedAt: any | null;
+  cfpReviewSet: (getPresentation_presentation_cfpReviewSet | null)[] | null;
 }
 
 export interface getPresentation {

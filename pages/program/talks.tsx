@@ -34,7 +34,7 @@ const Presenter = styled.span`
 color: ${FORM_LABEL_GRAY};
 font-weight: 700;
 `
-const Tag = styled.span`
+export const Tag = styled.span`
 color: white;
 font-size: 12px;
 border-radius: 3px;

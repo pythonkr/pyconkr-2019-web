@@ -10,7 +10,7 @@
     "background": "선수 지식",
     "datetime": "발표 일시",
     "slideUrl": "슬라이드 주소",
-    "videoPublic": "영상 공개 여부",
+    "videoPublic": "공개 여부",
     "recordable": "촬영, 녹화가 가능합니다.",
     "notRecordable": "촬영, 녹화가 불가능합니다.",
     "videoUrl": "발표 영상 주소"

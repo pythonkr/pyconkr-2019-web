@@ -27,7 +27,8 @@ export const ContentWrapper = styled.main`
   min-height: 900px;
   width: 100%;
   max-width: ${contentWidth};
-  padding: 10px ${contentWidthPadding} 63px;
+  // padding: 10px ${contentWidthPadding} 63px;
+  padding: 10px ${contentWidthPadding} 200px;
   margin: 0 auto;
 `
 
@@ -46,7 +47,7 @@ export const H1 = styled.h1`
   text-align: center;
   width: 100%;
   margin: 100px auto;
-  max-width: 600px;
+  max-width: 500px;
   @media (max-width: ${mobileWidth}) {
     font-size: 40px;
     margin: 70px auto 60px;
@@ -276,6 +277,84 @@ export const Td = styled.td`
     color: ${TEAL_SEMI_DARK};
     background-color: ${TEAL_LIGHT};
     text-align: right;
+  }
+
+  .${isActive} & {
+    font-weight: bold;
+    color: ${TEAL_SEMI_DARK};
+  }
+
+  &.${isSmall}, .${isSmall} & {
+    font-size: 14px;
+    line-height:2;
+  }
+
+  .${isDisabled} & {
+    color: #a2a7aa;
+  }
+`
+/********************************* Table Style List ***********************************/
+export const TableList = styled.ul`
+width: 100%;
+border-top: solid 2px ${TEAL};
+border-bottom: solid 1px #dfe3e6;
+${Paragraph} + & {
+  margin-top: 50px;
+}
+`
+export const TableListRow = styled.li`
+border-top: solid 1px #dfe3e6;
+display: flex;
+
+&.${isActive} {
+  background-color: ${TEAL_LIGHT};
+}
+
+&.${isDisabled} {
+  background-color: rgba(57, 57, 57, 0.1);
+}
+`
+
+export const TableListRowContent = styled.span`
+  vertical-align: top;
+  font-size: 15px;
+  line-height: 24px;
+  color: ${props => props.color || DEFAULT_TEXT_BLACK};
+  padding: 14px 1.2em 14px 1.2em;
+  white-space: pre-wrap;
+
+  @media (max-width: ${mobileWidth}) {
+    font-size: 13px;
+    line-height: 1.4em;
+    padding: 14px 0.8em 14px 0.8em;
+  }
+
+  &.${alignCenter} {
+    text-align: center;
+  }
+
+  &.${verticalAlignTop}, .${verticalAlignTop} & {
+    vertical-align: top;
+  }
+
+  &.${isBold} {
+    font-weight: 700;
+    color: ${HEADING_LIGHT_BLACK};
+  }
+
+  &.${isHeader} {
+    font-weight: bold;
+    color: ${TEAL_SEMI_DARK};
+    background-color: ${TEAL_LIGHT};
+    text-align: right;
+    width: ${props => props.width || '140px'};
+    @media (max-width: ${mobileWidth}) {
+      width: ${props => props.width || '80px'};
+    }
+  }
+
+  &:not(.${isHeader}) {
+    flex: 1;
   }
 
   .${isActive} & {

@@ -67,5 +67,10 @@ query getPresentation($id: Int!) {
         videoUrl
         startedAt
         finishedAt
+        cfpReviewSet {
+            presentation {
+                detailDesc
+            }
+        }
     }
 }

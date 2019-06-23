@@ -261,7 +261,7 @@ export const TicketsButton = styled(Button)`
   }
 
   @media (max-width: ${mobileWidth}) {
-    width: 90px;
+    width: 80px;
     height: 30px;
 
     span {
