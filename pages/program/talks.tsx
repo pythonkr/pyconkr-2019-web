@@ -12,6 +12,7 @@ import Link from 'next/link'
 import React from 'react'
 import { paths, programMenu } from 'routes/paths'
 import { CORAL, FORM_LABEL_GRAY, FORM_LABEL_GRAY_LIGHT, GREEN, TEAL, YELLOW } from 'styles/colors'
+import { mobileWidth } from 'styles/layout'
 import { withNamespaces } from '../../i18n'
 import { StoresType } from '../_app'
 
@@ -24,6 +25,9 @@ const TagWrapper = styled.div`
 text-align: right;
 padding-left: 10px;
 min-width: 80px;
+@media (max-width: ${mobileWidth}) {
+  min-width: 60px;
+}
 `
 
 const Presenter = styled.span`
@@ -72,6 +76,11 @@ justify-content: space-between;
 margin: 28px 0;
 font-size: 17px;
 
+@media (max-width: ${mobileWidth}) {
+  padding-left: 20px;
+  font-size: 16px;
+}
+
 ${PresentationUl} > & {
   &:before {
     content: '';
@@ -79,8 +88,14 @@ ${PresentationUl} > & {
     width: 10px;
     height: 12px;
     left: 24px;
-    top: 12px;
+    top: 11px;
     background: url('data:image/svg+xml;utf8,<svg width="10" height="12" viewBox="0 0 14 16" xmlns="http://www.w3.org/2000/svg"><path fill="%23088487" d="M9.062 5.643L14 8l-4.938 2.358L7 16l-2.063-5.642L0 8l4.937-2.357L7 0z" fillRule="evenodd"/></svg>')
+  }
+
+  @media (max-width: ${mobileWidth}) {
+    &:before {
+      left: 0;
+    }
   }
 }
 
@@ -148,9 +163,13 @@ export class TalkList extends React.Component<PropsType> {
                     group[1]!.map((presentation: PresentationProposal) => {
                       return (
                         <PresentationLi key={presentation.id}>
-                          <div>
+                          <div style={{ lineHeight: 1.8 }}>
                             <Link href={`${paths.program.talkDetail}?id=${presentation.id}`}>
-                              <a>{presentation.name}</a>
+                              <a>{
+                                presentation.name.endsWith('.')
+                                  ? presentation.name.slice(0, -1)
+                                  : presentation.name
+                              }</a>
                             </Link>
                             <Presenter>{presentation.owner.profile.name}</Presenter>
                           </div>
