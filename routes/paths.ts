@@ -113,11 +113,11 @@ export const helpMenu: WithSubMenu = {
     //   intlKey: 'gnb.help.notice',
     //   link: paths.help.notice
     // },
-    // {
-    //   title: '장소',
-    //   intlKey: 'gnb.help.venue',
-    //   link: paths.help.venue
-    // },
+    {
+      title: '장소',
+      intlKey: 'gnb.help.venue',
+      link: paths.help.venue
+    },
     {
       title: '재정지원',
       intlKey: 'gnb.help.financialAid',
