@@ -10,7 +10,8 @@ import React from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
-import { FORM_LABEL_GRAY, HEADING_LIGHT_BLACK } from 'styles/colors'
+import { HEADING_LIGHT_BLACK } from 'styles/colors'
+import { mobileWidth } from 'styles/layout'
 import { Banner } from './Banner'
 
 const BannersWrapper = styled.ul`
@@ -20,21 +21,39 @@ const BannersWrapper = styled.ul`
   margin: 0 auto 15px auto;
   padding: 0;
   text-align: center;
+  @media (max-width: ${mobileWidth}) {
+    margin-bottom: 20px;
+  }
 `
 
 const SliderWrapper = styled.div`
 padding: 50px 30px 25px;
 margin-bottom: 42px;
+@media (max-width: ${mobileWidth}) {
+  margin-bottom: 22px;
+}
+
 & .slick-arrow {
   width: 23px;
   height: 42px;
+  @media (max-width: ${mobileWidth}) {
+    width: 18px;
+    height: 28px;
+  }
 }
 & .slick-arrow::before {
-  // color: ${FORM_LABEL_GRAY};
   content: none;
 }
 & .slick-track {
   vertical-align: middle;
+}
+& .slick-dots li button:before {
+  line-height: 1;
+}
+& .slick-dots {
+  @media (max-width: ${mobileWidth}) {
+    bottom: -14px;
+  }
 }
 `
 
@@ -45,6 +64,12 @@ text-align: center;
 margin-top: 0;
 margin-bottom: 15px;
 font-weight: 500;
+
+@media (max-width: ${mobileWidth}) {
+  font-size: 14px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
 `
 
 const BannerGroupWrapper = styled.div`
@@ -69,13 +94,13 @@ const bannerForRowMap = {
 }
 
 const NextArrow = (props) => <button {...props}>
-  <svg width='23' height='42' viewBox='0 0 23 42' xmlns='http://www.w3.org/2000/svg'>
+  <svg width='100%' height='100%' viewBox='0 0 23 42' xmlns='http://www.w3.org/2000/svg'>
     <path d='M1 1l20 19.84L1 41' stroke='#D0D2D3' strokeWidth='2' fill='none' fillRule='evenodd'/>
   </svg>
 </button>
 
 const PrevArrow = (props) => <button {...props}>
-  <svg width='23' height='42' viewBox='0 0 23 42' xmlns='http://www.w3.org/2000/svg'>
+  <svg width='100%' height='100%' viewBox='0 0 23 42' xmlns='http://www.w3.org/2000/svg'>
     <path d='M21.84 1L2 20.84 21.84 41' stroke='#D0D2D3' strokeWidth='2' fill='none' fillRule='evenodd'/>
   </svg>
 </button>

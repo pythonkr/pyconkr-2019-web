@@ -13,7 +13,7 @@ box-sizing: border-box;
 
 &.keystone
 {
-  width: 60%;
+  width: 50%;
 }
 
 &.diamond,
@@ -34,14 +34,14 @@ box-sizing: border-box;
 &.diamond.square {
   width: 140px;
   @media (max-width: ${mobileWidth}) {
-      width: 100px;
+      width: 80px;
   }
 }
 
 &.platinum.square {
   width: 120px;
   @media (max-width: ${mobileWidth}) {
-      width: 90px;
+      width: 70px;
   }
 }
 

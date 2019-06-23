@@ -46,7 +46,7 @@ export const H1 = styled.h1`
   text-align: center;
   width: 100%;
   margin: 100px auto;
-  max-width: 500px;
+  max-width: 600px;
   @media (max-width: ${mobileWidth}) {
     font-size: 40px;
     margin: 70px auto 60px;
