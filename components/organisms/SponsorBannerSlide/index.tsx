@@ -30,7 +30,8 @@ margin-bottom: 42px;
   height: 42px;
 }
 & .slick-arrow::before {
-  color: ${FORM_LABEL_GRAY};
+  // color: ${FORM_LABEL_GRAY};
+  content: none;
 }
 & .slick-track {
   vertical-align: middle;
@@ -67,6 +68,18 @@ const bannerForRowMap = {
   7: 5
 }
 
+const NextArrow = (props) => <button {...props}>
+  <svg width='23' height='42' viewBox='0 0 23 42' xmlns='http://www.w3.org/2000/svg'>
+    <path d='M1 1l20 19.84L1 41' stroke='#D0D2D3' strokeWidth='2' fill='none' fillRule='evenodd'/>
+  </svg>
+</button>
+
+const PrevArrow = (props) => <button {...props}>
+  <svg width='23' height='42' viewBox='0 0 23 42' xmlns='http://www.w3.org/2000/svg'>
+    <path d='M21.84 1L2 20.84 21.84 41' stroke='#D0D2D3' strokeWidth='2' fill='none' fillRule='evenodd'/>
+  </svg>
+</button>
+
 const sliderSettings = {
   dots: true,
   infinite: true,
@@ -76,12 +89,8 @@ const sliderSettings = {
   pauseOnHover: true,
   pauseOnFocus: true,
   pauseOnDotsHover: true,
-  nextArrow: <svg width='23' height='42' viewBox='0 0 23 42' xmlns='http://www.w3.org/2000/svg'>
-    <path d='M1 1l20 19.84L1 41' stroke='#D0D2D3' stroke-width='2' fill='none' fill-rule='evenodd'/>
-  </svg>,
-  prevArrow: <svg width='23' height='42' viewBox='0 0 23 42' xmlns='http://www.w3.org/2000/svg'>
-    <path d='M21.84 1L2 20.84 21.84 41' stroke='#D0D2D3' stroke-width='2' fill='none' fill-rule='evenodd'/>
-  </svg>
+  nextArrow: <NextArrow />,
+  prevArrow: <PrevArrow />
 }
 
 @inject('stores')

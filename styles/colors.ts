@@ -27,3 +27,7 @@ export const FACEBOOK_BLUE = '#3b5998'
 export const DEFAULT_TEXT_BLACK = '#222222'
 export const HEADING_LIGHT_BLACK = '#4a4a4a'
 export const FORM_LABEL_GRAY = '#878d91'
+export const FORM_LABEL_GRAY_LIGHT = '#bcc0c2'
+
+export const YELLOW = '#F5A623'
+export const GREEN = '#5AA300'

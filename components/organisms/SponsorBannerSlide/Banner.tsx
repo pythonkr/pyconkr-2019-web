@@ -13,7 +13,7 @@ box-sizing: border-box;
 
 &.keystone
 {
-  width: 80%;
+  width: 60%;
 }
 
 &.diamond,
