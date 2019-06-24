@@ -35,6 +35,33 @@ export interface getPresentation_presentation_owner {
   profile: getPresentation_presentation_owner_profile | null;
 }
 
+export interface getPresentation_presentation_secondaryOwner_profile {
+  __typename: "ProfileNode";
+  name: string;
+  nameKo: string | null;
+  nameEn: string | null;
+  image: any | null;
+  avatarUrl: string;
+  bio: string;
+  bioKo: string | null;
+  bioEn: string | null;
+  blogUrl: string;
+  githubUrl: string;
+  facebookUrl: string;
+  twitterUrl: string;
+  linkedInUrl: string;
+  instagramUrl: string;
+}
+
+export interface getPresentation_presentation_secondaryOwner {
+  __typename: "UserNode";
+  /**
+   * 150자 이하 문자, 숫자 그리고 @/./+/-/_만 가능합니다.
+   */
+  username: string;
+  profile: getPresentation_presentation_secondaryOwner_profile | null;
+}
+
 export interface getPresentation_presentation_category {
   __typename: "CategoryNode";
   id: string;
@@ -61,8 +88,9 @@ export interface getPresentation_presentation {
    */
   isKeynote: boolean;
   name: string | null;
-  desc: string;
+  desc: string | null;
   owner: getPresentation_presentation_owner | null;
+  secondaryOwner: getPresentation_presentation_secondaryOwner | null;
   backgroundDesc: string;
   language: LanguageNode | null;
   duration: DurationNode | null;

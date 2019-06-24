@@ -136,7 +136,17 @@ export class TalkList extends React.Component<PropsType> {
         .toPairs()
         .value()
     })
-    console.log(presentations)
+  }
+
+  getSpeakerName(presentation:any){
+    const ownerName = presentation.owner.profile.name
+    if(presentation.secondaryOwner) {
+      const secondaryOwnerName = presentation.secondaryOwner.profile.name
+      if(secondaryOwnerName) {
+        return `${ownerName} / ${secondaryOwnerName}`
+      }
+    }
+    return ownerName
   }
 
   render() {
@@ -171,7 +181,7 @@ export class TalkList extends React.Component<PropsType> {
                                   : presentation.name
                               }</a>
                             </Link>
-                            <Presenter>{presentation.owner.profile.name}</Presenter>
+                            <Presenter>{ this.getSpeakerName(presentation) }</Presenter>
                           </div>
                           <TagWrapper>
                             <Tag difficulty={presentation.difficulty.id}>{presentation.difficulty.name}</Tag>

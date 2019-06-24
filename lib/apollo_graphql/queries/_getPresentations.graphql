@@ -20,6 +20,25 @@ query getPresentations {
                 instagramUrl
             }
         }
+        secondaryOwner {
+            username
+            profile {
+                name
+                nameKo
+                nameEn
+                image
+                avatarUrl
+                bio
+                bioKo
+                bioEn
+                blogUrl
+                githubUrl
+                facebookUrl
+                twitterUrl
+                linkedInUrl
+                instagramUrl
+            }
+        }
         name
         nameKo
         nameEn
