@@ -9,8 +9,8 @@ import { withRouter } from 'next/router'
 import React from 'react'
 import intl from 'react-intl-universal'
 import { globalNavigationMenu } from 'routes/paths'
-import { CORAL, CORAL_LIGHT } from 'styles/colors'
-import { mobileGnbWidth, navigationPadding, mobileWidth } from 'styles/layout'
+import { CORAL, CORAL_LIGHT, FORM_LABEL_GRAY_LIGHT } from 'styles/colors'
+import { mobileGnbWidth, mobileWidth, navigationPadding } from 'styles/layout'
 import { withNamespaces } from '../../../i18n'
 
 const NavWrapper = styled.nav`
@@ -214,18 +214,28 @@ export const SubmenuList = styled.ul`
     }
   }
 `
+const SubmenuGroup = styled.ul``
 export const SubmenuItem = styled.li`
 @media (max-width: ${mobileGnbWidth}) {
-  padding: 2px 0;
+  padding: ${props => props.border ? '10px' : '2px'} 0;
   &:last-of-type {
     padding-bottom: 10px;
   }
 }
+border-bottom: ${props => props.border ? `solid 1px ${FORM_LABEL_GRAY_LIGHT}` : 'none'};
+&:last-of-type {
+  border-bottom: none;
+}
+${SubmenuGroup} > &:last-of-type {
+  padding-bottom: 10px;
+}
 `
 export const SubmenuItemLink = styled(NavMenuSubLink)`
+padding: ${props => props.border ? '14px' : '10px'} 0;
 @media (max-width: ${mobileGnbWidth}) {
-  padding: 20px 0;
-}`
+  padding: ${props => props.border ? '24px' : '20px'} 0;
+}
+`
 
 export const TicketsButtonWrapper = styled.div`
   display: block;
@@ -336,15 +346,25 @@ class Navigation extends React.Component<any> {
                     </SubmenuButtonLabel>
                     <Caret />
                     <SubmenuList>
-                    {submenu.map(({ title, intlKey, link }) =>
-                      <SubmenuItem key={intlKey}>
-                        <SubmenuItemLink
-                          to={link}
-                          intlKey={intlKey}
-                          name={title}
-                          currentPath={router.pathname}
-                        />
-                      </SubmenuItem>
+                    {submenu.map(({ title, intlKey, link, submenu: subsubmenu }) =>
+                      subsubmenu
+                        ? <SubmenuItem border={submenu.some(item => !!item.submenu)}><SubmenuGroup>{subsubmenu.map(subsubmenuItem => <SubmenuItem key={subsubmenuItem.intlKey}>
+                          <SubmenuItemLink
+                            to={subsubmenuItem.link}
+                            intlKey={subsubmenuItem.intlKey}
+                            name={subsubmenuItem.title}
+                            currentPath={router.pathname}
+                          />
+                        </SubmenuItem>)}</SubmenuGroup></SubmenuItem>
+                        : <SubmenuItem key={intlKey} border={submenu.some(item => !!item.submenu)}>
+                          <SubmenuItemLink
+                            to={link}
+                            intlKey={intlKey}
+                            name={title}
+                            currentPath={router.pathname}
+                            border={submenu.some(item => !!item.submenu)}
+                          />
+                        </SubmenuItem>
                     )}
                     </SubmenuList>
                   </NavItem>

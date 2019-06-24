@@ -76,11 +76,19 @@ export type NormalMenu = {
   permission?: 'public' | 'user' | 'staff';
 }
 
+export type SubMenuGroup = {
+  title: string;
+  intlKey: string;
+  link?: string;
+  submenu?: NormalMenu[];
+  permission?: 'public' | 'user' | 'staff';
+}
+
 export type WithSubMenu = {
   title: string;
   intlKey: string;
   basePath: string;
-  submenu: NormalMenu[];
+  submenu: (NormalMenu | WithSubMenu)[];
   permission?: 'anonymous' | 'user' | 'staff';
 }
 
@@ -134,43 +142,47 @@ export const programMenu: WithSubMenu = {
   title: '프로그램',
   intlKey: 'gnb.program.root',
   basePath: paths.program.base,
-  submenu: [
-    {
-      title: '키노트',
-      intlKey: 'gnb.program.keynote',
-      link: paths.program.keynote,
-    },
-    {
-      title: '발표 세션',
-      intlKey: 'gnb.program.talks',
-      link: paths.program.talks,
-    },
-    {
-      title: '라이트닝 토크',
-      intlKey: 'gnb.program.lightningTalk',
-      link: paths.program.lightningTalk,
-    },
-    {
-      title: '열린 공간',
-      intlKey: 'gnb.program.openSpaceTalk',
-      link: paths.program.openSpaceTalk,
-    },
-    {
-      title: '튜토리얼',
-      intlKey: 'gnb.program.tutorial',
-      link: paths.program.tutorial,
-    },
-    {
-      title: '스프린트',
-      intlKey: 'gnb.program.sprint',
-      link: paths.program.sprint,
-    },
-    {
-      title: '영코더',
-      intlKey: 'gnb.program.youngcoder',
-      link: paths.program.youngcoder,
-    }
-  ]
+  submenu: [{
+    title: '컨퍼런스',
+    intlKey: 'gnb.program.keynote',
+    basePath: paths.program.base,
+    submenu: [
+      {
+        title: '키노트',
+        intlKey: 'gnb.program.keynote',
+        link: paths.program.keynote,
+      },
+      {
+        title: '발표 세션',
+        intlKey: 'gnb.program.talks',
+        link: paths.program.talks,
+      },
+      {
+        title: '라이트닝 토크',
+        intlKey: 'gnb.program.lightningTalk',
+        link: paths.program.lightningTalk,
+      },
+      {
+        title: '열린 공간',
+        intlKey: 'gnb.program.openSpaceTalk',
+        link: paths.program.openSpaceTalk,
+      },
+    ]
+  }, {
+    title: '튜토리얼',
+    intlKey: 'gnb.program.tutorial',
+    link: paths.program.tutorial,
+  },
+  {
+    title: '스프린트',
+    intlKey: 'gnb.program.sprint',
+    link: paths.program.sprint,
+  },
+  {
+    title: '영코더',
+    intlKey: 'gnb.program.youngcoder',
+    link: paths.program.youngcoder,
+  }]
 }
 
 export const contributionMenu: WithSubMenu = {
