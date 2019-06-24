@@ -1,4 +1,5 @@
-import { ContentTableWrapper, Td, Tr, Table, TBody, isHeader, H1, H2, Ul, Li, Paragraph, Section } from 'components/atoms/ContentWrappers'
+import { Button } from 'components/atoms/Button'
+import { ContentButtonWrapper, ContentTableWrapper, Td, Tr, Table, TBody, isHeader, H1, H2, Ul, Li, Paragraph, Section } from 'components/atoms/ContentWrappers'
 import styled from '@emotion/styled'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
