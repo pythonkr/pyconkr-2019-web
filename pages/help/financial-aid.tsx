@@ -54,7 +54,7 @@ export class FinancialAid extends React.Component<PropsType> {
               target='_blank'
               rel='noreferrer'
             >
-              [(Ko)Everybody Pays]
+               [(Ko)Everybody Pays]
             </a>
             <a
               href='http://jessenoller.com/blog/2011/05/25/pycon-everybody-pays'
@@ -95,8 +95,10 @@ export class FinancialAid extends React.Component<PropsType> {
             <Li>{ t('help:financialAid.desc4-1') }</Li>
             <Li>{ t('help:financialAid.desc4-2') }</Li>
             <Li>{ t('help:financialAid.desc4-3') }</Li>
-            <Li>{ t('help:financialAid.desc4-3-1') }</Li>
           </Ul>
+          <Paragraph style={{ fontWeight: 700, marginBottom: 0, marginTop: 5 }}>
+            { t('help:financialAid.desc4-3-1') }
+          </Paragraph>
           <ContentButtonWrapper>
             <Button
               intlKey='tempkey'
