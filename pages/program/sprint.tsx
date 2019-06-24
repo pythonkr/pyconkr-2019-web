@@ -1,15 +1,14 @@
-import { H1, H2, Ul, Li, Paragraph, Section } from 'components/atoms/ContentWrappers'
-import styled from '@emotion/styled'
+import { Button } from 'components/atoms/Button'
+import { ContentButtonWrapper, H1, Paragraph, Section } from 'components/atoms/ContentWrappers'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
+import i18next from 'i18next'
 import _ from 'lodash'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
-import { StoresType } from '../_app'
-import i18next from 'i18next'
 import { withNamespaces } from '../../i18n'
-import Link from 'next/link'
+import { StoresType } from '../_app'
 
 export type PropsType = {
   stores: StoresType;
@@ -19,11 +18,10 @@ export type PropsType = {
 @inject('stores')
 @observer
 export class Sprint extends React.Component<PropsType> {
-  async componentDidMount() {
-  }
   render() {
-    const { stores, t } = this.props
+    const { t } = this.props
     const title = t('program:sprint.title')
+
     return (
       <PageTemplate
         header={<Header title={ t('common:pageTitle', {title}) } intlKey='' />}
@@ -40,6 +38,13 @@ export class Sprint extends React.Component<PropsType> {
             { t('program:sprint.desc2') }
           </Paragraph>
         </Section>
+        <ContentButtonWrapper>
+            <Button
+              intlKey='tempkey'
+              to='https://forms.gle/6C5JCqGtC657DQ6i6'
+              outlink
+            >스프린트 진행 신청하기</Button>
+          </ContentButtonWrapper>
       </PageTemplate>
     )
   }
