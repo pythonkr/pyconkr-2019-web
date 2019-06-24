@@ -92,12 +92,6 @@ export class TalkDetail extends React.Component<PropsType> {
     return ownerName
   }
 
-  getSpeakerProfileImage(presentation: any){
-    if(presentation.owner.profile.image)
-      return presentation.owner.profile.image
-    return presentation.owner.profile.avatarUrl
-  }
-
   render() {
     const { t } = this.props
     const presentation = this.state.presentation
@@ -162,7 +156,7 @@ export class TalkDetail extends React.Component<PropsType> {
           <img
             width='160px'
             height='160px'
-            src={this.getSpeakerProfileImage(presentation)}
+            src={presentation.owner.profile.avatarUrl}
           />
           {(presentation.owner.profile.linkedInUrl ||
           presentation.owner.profile.twitterUrl ||
