@@ -1,21 +1,21 @@
-import { Button } from 'components/atoms/Button'
-import { ContentButtonWrapper, ContentTableWrapper, Td, Tr, Table, TBody, isHeader, H1, H2, Ul, Li, Paragraph, Section } from 'components/atoms/ContentWrappers'
 import styled from '@emotion/styled'
+import { Button } from 'components/atoms/Button'
+import { ContentButtonWrapper, ContentTableWrapper, H1, H2, isHeader, Li, Paragraph, Section, Table, TBody, Td, Tr, Ul } from 'components/atoms/ContentWrappers'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
+import i18next from 'i18next'
 import _ from 'lodash'
 import { inject, observer } from 'mobx-react'
-import React from 'react'
-import { StoresType } from '../_app'
-import i18next from 'i18next'
-import { withNamespaces } from '../../i18n'
 import Link from 'next/link'
+import React from 'react'
+import { withNamespaces } from '../../i18n'
 
 export type PropsType = {
   stores: StoresType;
   t: i18next.TFunction;
 }
+
 const FinancialAidTableRow = (props) => <>
   <Tr>
     <Td className={isHeader}>
@@ -27,15 +27,13 @@ const FinancialAidTableRow = (props) => <>
   </Tr>
 </>
 
-
 @inject('stores')
 @observer
-export class Babycare extends React.Component<PropsType> {
-  async componentDidMount() {
-  }
+export class FinancialAid extends React.Component<PropsType> {
   render() {
     const { stores, t } = this.props
     const title = t('help:financialAid.title')
+
     return (
       <PageTemplate
         header={<Header title={t('common:pageTitle', { title })} intlKey='' />}
@@ -50,9 +48,21 @@ export class Babycare extends React.Component<PropsType> {
             { t('help:financialAid.desc1-1') }
           </Paragraph>
           <Paragraph>
-            { t('help:financialAid.desc1-2') } 
-            <a href='http://blog.pycon.kr/2017/06/14/everybody-pays/' target='_blank'>[(Ko)Everybody Pays] </a>
-            <a href='http://jessenoller.com/blog/2011/05/25/pycon-everybody-pays' target='_blank'>[(En)Everybody Pays] </a>
+            { t('help:financialAid.desc1-2') }
+            <a
+              href='http://blog.pycon.kr/2017/06/14/everybody-pays/'
+              target='_blank'
+              rel='noreferrer'
+            >
+              [(Ko)Everybody Pays]
+            </a>
+            <a
+              href='http://jessenoller.com/blog/2011/05/25/pycon-everybody-pays'
+              target='_blank'
+              rel='noreferrer'
+            >
+              [(En)Everybody Pays]
+            </a>
           </Paragraph>
           <Paragraph>
             { t('help:financialAid.desc1-3') }
@@ -89,7 +99,7 @@ export class Babycare extends React.Component<PropsType> {
           </Ul>
           <ContentButtonWrapper>
             <Button
-              intlKey=''
+              intlKey='tempkey'
               to='https://forms.gle/PJ93TnWFgHTkEM7f7'
               outlink
             >재정지원 신청하기</Button>
@@ -104,4 +114,4 @@ export class Babycare extends React.Component<PropsType> {
   }
 }
 
-export default withNamespaces(['help'])(Babycare)
+export default withNamespaces(['help'])(FinancialAid)
