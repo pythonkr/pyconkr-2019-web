@@ -44,6 +44,7 @@ const SponsorContent = (props: any) => {
     <SponsorLogo src={sponsor.logoImage} alt={sponsor.name}/>
   </a>
   <Section>
+    <H2>홈페이지</H2>
     <a href={sponsor.url} target="_blank">{sponsor.url}</a>
   </Section>
   <Section>
