@@ -8,7 +8,7 @@
       "scheduleWithNameAndVenue": "PyCon Korea 2019: 8.15(Thu)-18(Sun), Coex Grand Ballroom",
       "venue": "Coex Grand Ballroom, Seoul",
       "earlybirdTicketOpen": "Earlybird Ticket Open",
-      "regularTicketOpen": "Regular Ticket Open",
+      "generalTicketOpen": "General Ticket Open",
       "TutorialTicketOpen": "Tutorial Ticket Open",
       "SprintTicketOpen": "Sprint Ticket Open",
       "sprint": {
@@ -61,10 +61,22 @@
   "gnb": {
     "home": "Home",
     "help": {
-      "root": "About",
+      "root": "Support",
       "faq": "FAQ",
       "notice": "Notice",
-      "venue": "Venue"
+      "venue": "Venue",
+      "financialAid": "Financial Aid",
+      "childcare": "Child Care"
+    },
+    "program": {
+      "root": "Program",
+      "talks": "List of talks",
+      "keynote": "Keynote",
+      "lightningTalk": "Lightning Talk",
+      "openSpaceTalk": "Open Space",
+      "tutorial": "Tutorial",
+      "sprint": "Sprint",
+      "youngcoder": "Youngcoder"
     },
     "contribute": {
       "root": "Contribution",
@@ -73,7 +85,8 @@
       "proposingATalk": "Proposing a talk",
       "proposingATutorial": "Proposing a tutorial",
       "recommendKeynoteSpeaker": "Recommending Keynote",
-      "proposalReview": "Review Talk Proposals"
+      "proposalReview": "Review Talk Proposals",
+      "volunteer": "Volunteer"
     },
     "sponsor": {
       "root": "Sponsor",
@@ -487,12 +500,16 @@
     "tutorial": {
       "pageTitle": "튜토리얼 티켓",
       "title": "튜토리얼 티켓",
-      "description": "튜토리얼 설명"
+      "description": "튜토리얼 설명",
+      "description1": "튜토리얼 설명",
+      "description2": "튜토리얼 설명"
     },
     "sprint": {
       "pageTitle": "스프린트 티켓",
       "title": "스프린트 티켓",
-      "description": "스프린트 설명"
+      "description": "스프린트 설명",
+      "description1": "스프린트 설명",
+      "description2": "스프린트 설명"
     },
     "youngcoder": {
       "pageTitle": "영코더 티켓",

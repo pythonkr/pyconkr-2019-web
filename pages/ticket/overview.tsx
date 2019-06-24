@@ -60,7 +60,7 @@ export class Ticket extends React.Component<PropsType> {
       link: paths.ticket.conference
     }, {
       title: '컨퍼런스 일반',
-      intlKey: 'ticket:conference.regular.title',
+      intlKey: 'ticket:conference.general.title',
       openDate: schedule.conferenceTicketStartAt,
       closeDate: schedule.conferenceFinishAt,
       link: paths.ticket.conference
@@ -85,8 +85,8 @@ export class Ticket extends React.Component<PropsType> {
     }, {
       title: '아이돌봄',
       intlKey: 'ticket:childcare.title',
-      openDate: schedule.babycareTicketStartAt,
-      closeDate: schedule.babycareTicketFinishAt,
+      openDate: schedule.childcareTicketStartAt,
+      closeDate: schedule.childcareTicketFinishAt,
       link: paths.ticket.childcare
     }]
 

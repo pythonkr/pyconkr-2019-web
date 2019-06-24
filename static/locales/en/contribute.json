@@ -92,7 +92,7 @@
           },
           "note": {
             "title": "Note or Question",
-            "desc": "Only PyCon Korea Organizer can view this section, so feel free to write in any form"
+            "desc": "Only PyCon Korea Organizing Team can view this section, so feel free to write in any form"
           }
         },
         "conclusion": "Only title, summary, details, target audience, time slot, and language will be disclosed to early bird holders during preference vote."
@@ -158,7 +158,7 @@
     "process": {
       "title": "Selection procedure",
       "desc": "The procedure of selecting an talk is as follows. Information related to this can be found on the PyCon Korea website or e-mail.",
-      "item1": "After the CFP deadline, the PyCon Korea Preparation Organizer reviews the proposed talk.",
+      "item1": "After the CFP deadline, the PyCon Korea Preparation Organizing reviews the proposed talk.",
       "item1-1": "If we need more information, we would request it.",
       "item2": "Begin reviewing CFP",
       "item3": "After reviewing CFP, the final speaker will be confirmed.",
@@ -250,7 +250,7 @@
             "desc1": "PyCon Korea is where various people meet and interact. We want all participants in the community to feel respected and welcomed without feeling physical and mental threats. To this end, all participants, including speaker, must follow the PyCon Korea Code of Conduct (CoC).",
             "desc1-1": "PyCon Korea participants should not be discriminated against by various personal circumstances such as gender, sexual orientation, disability, physical appearance, body size, race, or religion.",
             "desc1-2": "If the presentation could seriously violate the CoC, we may ask you to correct the presentation. If you do not respond to the our request, the presentation can be canceled.",
-            "desc1-3": "The contents of the CoC may be updated from time to time. If the content is updated, the PyCon Korea Preparation Organizers may ask for agreement of CoC again",
+            "desc1-3": "The contents of the CoC may be updated from time to time. If the content is updated, the PyCon Korea Preparation Organizing Team may ask for agreement of CoC again",
             "agree": "I have confirmed the above contents and promise to follow the PyCon Korea CoC."
           },
           "item2": {
@@ -266,7 +266,7 @@
             "header": "Sharing presentation",
             "desc1": "PyCon Korea is aiming at a community that shares technology experiences and grows together. Therefore, all slides and movie of presentations are released for sharing knowledge.",
             "desc1-1": "If your slides has sensitive information such as company confidentiality or copyright, please prepare a public version of the slide.",
-            "desc1-2": "If you do not want to release your presentation, please contact the PyCon Korea Organizer(program@pycon.kr).",
+            "desc1-2": "If you do not want to release your presentation, please contact the PyCon Korea Organizing Team(program@pycon.kr).",
             "agree": "I have confirmed the above contents."
           },
           "proposeButton": "Propose presentation"
@@ -284,7 +284,7 @@
     "description": "Anyone can review and comment on the presentation proposals submitted to PyCon Korea 2019. Make PyCon Korea 2018 with your hands :)",
     "submitted": {
       "title": "Your review comments have been submitted.",
-      "desc": "Your comments will be used to review the proposal by the PyCon Korea Organizer. <br/> Thank you for your contribution to the richer PyCon Korea.😍"
+      "desc": "Your comments will be used to review the proposal by the PyCon Korea Organizing Team. <br/> Thank you for your contribution to the richer PyCon Korea.😍"
     },
     "schedule": {
       "notOpenYet": "The open review period has not yet begun."
@@ -322,5 +322,17 @@
         "button": "Submit review comments"
       }
     }
+  },
+  "volunteer": {
+    "title": "Volunteer",
+    "desc1-1": "PyCon is a community-based conference with passions and helps of Pythonistas.",
+    "desc1-2": "We will need your help in various places. ",
+    "desc1-3": "Anyone who attends PyCon Korea can apply for the volunteers. The application is only valid for those who have completed the registration of PyCon Korea. We always appreciate your help.",
+    "header2": "List of volunteers (가나다순)",
+    "desc2-1": "No volunteers have been confirmed yet😉. We would like a lot of support during the application period.",
+    "header3": "Schedule",
+    "desc3-1": "Application period",
+    "desc3-2": "Announce",
+    "desc3-3": "Volunteers can apply through the application form."
   }
 }

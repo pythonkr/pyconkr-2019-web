@@ -1,5 +1,5 @@
 import { ContentWrapper } from 'components/atoms/ContentWrappers'
-import SponsorBanners from 'components/organisms/SponsorBanners'
+import SponsorBannerSlide from 'components/organisms/SponsorBannerSlide'
 import React from 'react'
 
 export type PageTemplatePropsType = {
@@ -17,8 +17,8 @@ export class PageTemplate extends React.Component<PageTemplatePropsType> {
       {header}
       <ContentWrapper>
         {children}
-        <SponsorBanners/>
       </ContentWrapper>
+      <SponsorBannerSlide/>
       {footer}
     </>
    )

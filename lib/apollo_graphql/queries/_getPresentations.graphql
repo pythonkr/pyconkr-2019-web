@@ -1,0 +1,82 @@
+query getPresentations {
+    presentations {
+        id
+        isKeynote
+        owner {
+            profile {
+                name
+                nameKo
+                nameEn
+                image
+                avatarUrl
+                bio
+                bioKo
+                bioEn
+                blogUrl
+                githubUrl
+                facebookUrl
+                twitterUrl
+                linkedInUrl
+                instagramUrl
+            }
+        }
+        secondaryOwner {
+            username
+            profile {
+                name
+                nameKo
+                nameEn
+                image
+                avatarUrl
+                bio
+                bioKo
+                bioEn
+                blogUrl
+                githubUrl
+                facebookUrl
+                twitterUrl
+                linkedInUrl
+                instagramUrl
+            }
+        }
+        name
+        nameKo
+        nameEn
+        place {
+          name
+          nameEn
+          nameKo
+        }
+        duration
+        startedAt
+        finishedAt
+        desc
+        descKo
+        descEn
+        language
+        backgroundDesc        
+        slideUrl
+        pdfUrl
+        videoUrl
+        category {
+            id
+            name
+            nameKo
+            nameEn
+            slug
+            visible
+        }
+        difficulty {
+            id
+            name
+            nameKo
+            nameEn
+        }
+        recordable
+        slideUrl
+        pdfUrl
+        videoUrl
+        startedAt
+        finishedAt
+    }
+}

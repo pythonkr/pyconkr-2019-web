@@ -1,4 +1,5 @@
 {
+  "pageTitle": "{{ title }} :: PyCon Korea 2019",
   "contact": "Contact",
   "maximum": "Maximum",
   "schedule": "Schedule",

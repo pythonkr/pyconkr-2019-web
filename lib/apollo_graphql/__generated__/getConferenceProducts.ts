@@ -43,6 +43,10 @@ export interface getConferenceProducts_conferenceProducts {
   isSoldOut: boolean | null;
   price: number;
   /**
+   * 단체 구매 등으로 티켓을 현금으로 입금하는 경우에 True로 설정합니다.
+   */
+  isDepositTicket: boolean;
+  /**
    * 개인후원과 같이 가격을 상향조정할 수 있는지 여부를 나타냅니다.
    */
   isEditablePrice: boolean;

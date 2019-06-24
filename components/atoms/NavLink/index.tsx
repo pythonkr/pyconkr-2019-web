@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 import intl from 'react-intl-universal'
 import { CORAL } from 'styles/colors'
-import { mobileWidth } from 'styles/layout'
+import { mobileGnbWidth, mobileWidth } from 'styles/layout'
 
 const NavLinkA = styled.a`
   display: inline-flex;
@@ -11,7 +11,7 @@ const NavLinkA = styled.a`
   align-items: center;
   padding: 0 10px;
   cursor: pointer;
-  @media (max-width: ${mobileWidth}) {
+  @media (max-width: ${mobileGnbWidth}) {
     padding: 0;
     width: 100%;
     height: auto;

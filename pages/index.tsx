@@ -368,7 +368,7 @@ class Index extends React.Component<PageDefaultPropsType> {
               <strong style={{ fontWeight: 'bold' }}>
                 {`${formatDateInWordsWithWeekdayAndTime(schedule.conferenceTicketStartAt)} `}
               </strong>
-              <IntlText intlKey='constant.pyconKorea.regularTicketOpen'>일반 티켓 오픈</IntlText>
+              <IntlText intlKey='constant.pyconKorea.generalTicketOpen'>일반 티켓 오픈</IntlText>
             </p>
           </MainBannerInfoWrapper>
         </BannerSection>
@@ -385,6 +385,16 @@ class Index extends React.Component<PageDefaultPropsType> {
             <li>
               <a href='https://www.facebook.com/1532554713673409/posts/2321995128062693'>
                 파이콘 한국 2019 얼리버드/개인후원 티켓 판매 일시중단 안내
+              </a>
+            </li>
+            <li>
+              <a href='https://www.facebook.com/pyconkorea/posts/2338970393031833'>
+                재정지원 연기 안내
+              </a>
+            </li>
+            <li>
+              <a href='https://www.facebook.com/pyconkorea/posts/2337461739849365'>
+                파이콘 한국 2019 일반 컨퍼런스 티켓 판매 연기 안내
               </a>
             </li>
           </ul>

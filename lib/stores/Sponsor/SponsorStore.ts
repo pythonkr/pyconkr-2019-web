@@ -27,7 +27,6 @@ export class SponsorStore {
     @observable sponsorLevels: SponsorLevelType[] = []
     @observable proposal: SponsorNode
     @observable sponsors: PublicSponsorNode[] = []
-    @observable currentSponsor: PublicSponsorNode | null = null
     @observable isProposalInitialized: boolean = false
     @observable proposalLevel: SponsorLevelType
     @observable currentStage: SponsorFormStage = SponsorFormStage.stage1
@@ -98,18 +97,6 @@ export class SponsorStore {
         if (response.data.sponsors) {
             this.sponsors = response.data.sponsors as getSponsors_sponsors[]
         }
-    }
-
-    @action
-    async retrieveSponsor(id: string) {
-        const response = await getSponsor(client)({
-            id
-        })
-        if (response.data.sponsor) {
-            this.currentSponsor = response.data.sponsor
-        }
-
-        return response.data.sponsor
     }
 
     @action

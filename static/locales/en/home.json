@@ -9,12 +9,12 @@
     "prospectus": "Schedule & Prospectus"
   },
   "pyconKoreaTitle": "About PyCon Korea",
-  "pyconKoreaDescription": "PyCon is a non-commercial conference held by Python Programming Communities over the world. PyCon Korea has been successfully hold in several years with a group of volunteers called \u2018PyCon Korea Preparation Organizers\u2019, who support the local Korean Python community.",
+  "pyconKoreaDescription": "PyCon is a non-commercial conference held by Python Programming Communities over the world. PyCon Korea has been successfully hold in several years with a group of volunteers called \u2018PyCon Korea Preparation Organizing Team\u2019, who support the local Korean Python community.",
   "sloganDescription1": "The slogan of PyCon Korea 2019 is \"Connect the Pythonistas\".",
   "sloganDescription2": "PyCon can be a place where Python users meet, or a place that connects with other languages or communities. In PyCon, you can meet someone who is researching deeply on one thing, another Pythonista from a different field, or a friend of yours.",
   "sloganDescription3": "With PyCon, we want all the Pythonistas who are in different fields and heading to different directions to get together and become an awesome constellation. See you again at PyCon Korea 2019.",
   "differenceWithOthers": {
     "title": "What's the difference between PyCon and other developer's conferences?",
-    "description": "PyCon Korea is a non-profitable, developer-oriented event organized by community members, and has different characteristics from conferences organized companies or organizations. All attendees, including speakers, tutorial hosts, voluntary workers, and organizers, participate in PyCon Korea without any profitable purpose, and only to broaden the usage of Python, an open source programming language, and activate its community."
+    "description": "PyCon Korea is a non-profitable, developer-oriented event organized by community members, and has different characteristics from conferences organized companies or organizations. All attendees, including speakers, tutorial hosts, voluntary workers, and organizing team, participate in PyCon Korea without any profitable purpose, and only to broaden the usage of Python, an open source programming language, and activate its community."
   }
 }

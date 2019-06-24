@@ -1,0 +1,76 @@
+query getPresentation($id: Int!) {
+    presentation(id: $id) {
+        id
+        isKeynote
+        name
+        desc
+        owner {
+            username
+            profile {
+                name
+                nameKo
+                nameEn
+                image
+                avatarUrl
+                bio
+                bioKo
+                bioEn
+                blogUrl
+                githubUrl
+                facebookUrl
+                twitterUrl
+                linkedInUrl
+                instagramUrl
+            }
+        }
+        secondaryOwner {
+            username
+            profile {
+                name
+                nameKo
+                nameEn
+                image
+                avatarUrl
+                bio
+                bioKo
+                bioEn
+                blogUrl
+                githubUrl
+                facebookUrl
+                twitterUrl
+                linkedInUrl
+                instagramUrl
+            }
+        }
+        backgroundDesc
+        language
+        duration
+        category {
+            id
+            name
+            nameKo
+            nameEn
+            slug
+            visible
+        }
+        difficulty {
+            id
+            name
+            nameKo
+            nameEn
+        }
+        recordable
+        submitted
+        accepted
+        slideUrl
+        pdfUrl
+        videoUrl
+        startedAt
+        finishedAt
+        cfpReviewSet {
+            presentation {
+                detailDesc
+            }
+        }
+    }
+}

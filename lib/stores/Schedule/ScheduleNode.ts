@@ -47,8 +47,8 @@ export class ScheduleNode {
     @observable patronTicketFinishAt: any | null
     @observable conferenceTicketStartAt: any | null
     @observable conferenceTicketFinishAt: any | null
-    @observable babycareTicketStartAt: any | null
-    @observable babycareTicketFinishAt: any | null
+    @observable childcareTicketStartAt: any | null
+    @observable childcareTicketFinishAt: any | null
     @observable youngcoderTicketStartAt: any | null
     @observable youngcoderTicketFinishAt: any | null
   }

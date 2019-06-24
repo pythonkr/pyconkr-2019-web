@@ -19,7 +19,7 @@ type PropsType = {
 class DetailBox extends React.Component<PropsType> {
   render() {
     const {ticket} = this.props
-    const {id, status, amount, paidAt, options, product} = ticket
+    const {id, status, amount, paidAt, options, product, receiptUrl, cancelReceiptUrl} = ticket
     const {type, nameKo, nameEn, descKo, descEn, cancelableDate, startAt, finishAt} = product
     const parsedOptions = JSON.parse(options)
 
@@ -59,6 +59,17 @@ class DetailBox extends React.Component<PropsType> {
               <Th>등록영수증</Th>
               <Td><a href={`${paths.ticket.receipt}?id=${id}`} target='_blank'>link</a></Td>
             </Tr>
+            <Tr>
+              <Th>결제 영수증</Th>
+              <Td><a href={receiptUrl} target='_blank'>link</a></Td>
+            </Tr>
+            {
+              cancelReceiptUrl &&
+              <Tr>
+                <Th>결제 취소 영수증</Th>
+                <Td><a href={cancelReceiptUrl} target='_blank'>link</a></Td>
+              </Tr>
+            }
             {Object.keys(parsedOptions).map(key => {
               return (
                 <Tr>

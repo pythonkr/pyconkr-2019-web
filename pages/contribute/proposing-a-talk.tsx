@@ -15,8 +15,8 @@ import React from 'react'
 import { contributionMenu, paths } from 'routes/paths'
 import { DateDTO } from 'types/common'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
-import { StoresType } from '../_app'
 import { withNamespaces } from '../../i18n'
+import { StoresType } from '../_app'
 
 export type IntlTextType = {
   intlKey: string;

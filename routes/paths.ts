@@ -5,7 +5,21 @@ export const paths = {
     base: '/help',
     faq: '/help/faq',
     notice: '/help/notice',
-    venue: '/help/venue'
+    venue: '/help/venue',
+    childcare: '/help/childcare',
+    financialAid: '/help/financial-aid',
+    visaSponsing: '/help/visa-sponsing'
+  },
+  program: {
+    base: '/program',
+    keynote: '/program/keynote',
+    talks: '/program/talks',
+    talkDetail: '/program/talk-detail',
+    lightningTalk: '/program/lightning-talk',
+    openSpaceTalk: '/program/open-space-talk',
+    tutorial: '/program/tutorial',
+    sprint: '/program/sprint',
+    youngcoder: '/program/youngcoder',
   },
   contribute: {
     base: '/contribute',
@@ -16,6 +30,7 @@ export const paths = {
     proposingASprint: '/contribute/proposing-a-sprint',
     proposingATutorial: '/contribute/proposing-a-tutorial',
     proposalReview: '/contribute/proposal-review',
+    volunteer: '/contribute/volunteer',
   },
   ticket: {
     base: '/ticket',
@@ -36,7 +51,7 @@ export const paths = {
     applicationForm: '/sponsor/application-form',
     termsOfService: '/sponsor/terms-of-service',
     patronList: '/sponsor/patrons',
-    detail: '/sponsor/detail'
+    detail: '/sponsor/detail',
   },
   account: {
     base: '/account',
@@ -51,7 +66,7 @@ export const paths = {
       cfp: '/account/editproposal/cfp',
       cfs: '/account/editproposal/cfs'
     }
-  }
+  },
 }
 
 export type NormalMenu = {
@@ -61,11 +76,19 @@ export type NormalMenu = {
   permission?: 'public' | 'user' | 'staff';
 }
 
+export type SubMenuGroup = {
+  title: string;
+  intlKey: string;
+  link?: string;
+  submenu?: NormalMenu[];
+  permission?: 'public' | 'user' | 'staff';
+}
+
 export type WithSubMenu = {
   title: string;
   intlKey: string;
   basePath: string;
-  submenu: NormalMenu[];
+  submenu: (NormalMenu | WithSubMenu)[];
   permission?: 'anonymous' | 'user' | 'staff';
 }
 
@@ -82,22 +105,84 @@ export const helpMenu: WithSubMenu = {
   intlKey: 'gnb.help.root',
   basePath: paths.help.base,
   submenu: [
-    {
-      title: '자주 묻는 질문',
-      intlKey: 'gnb.help.faq',
-      link: paths.help.faq
-    },
-    {
-      title: '알림',
-      intlKey: 'gnb.help.notice',
-      link: paths.help.notice
-    },
+    // {
+    //   title: '자주 묻는 질문',
+    //   intlKey: 'gnb.help.faq',
+    //   link: paths.help.faq
+    // },
+    // {
+    //   title: '알림',
+    //   intlKey: 'gnb.help.notice',
+    //   link: paths.help.notice
+    // },
     {
       title: '장소',
       intlKey: 'gnb.help.venue',
       link: paths.help.venue
-    }
+    },
+    {
+      title: '재정지원',
+      intlKey: 'gnb.help.financialAid',
+      link: paths.help.financialAid
+    },
+    {
+      title: 'Visa Sponsing',
+      intlKey: 'gnb.help.visaSponsing',
+      link: paths.help.visaSponsing
+    },
+    {
+      title: '아이돌봄',
+      intlKey: 'gnb.help.childcare',
+      link: paths.help.childcare
+    },
   ]
+}
+
+export const programMenu: WithSubMenu = {
+  title: '프로그램',
+  intlKey: 'gnb.program.root',
+  basePath: paths.program.base,
+  submenu: [{
+    title: '컨퍼런스',
+    intlKey: 'gnb.program.keynote',
+    basePath: paths.program.base,
+    submenu: [
+      {
+        title: '키노트',
+        intlKey: 'gnb.program.keynote',
+        link: paths.program.keynote,
+      },
+      {
+        title: '발표 세션',
+        intlKey: 'gnb.program.talks',
+        link: paths.program.talks,
+      },
+      {
+        title: '라이트닝 토크',
+        intlKey: 'gnb.program.lightningTalk',
+        link: paths.program.lightningTalk,
+      },
+      {
+        title: '열린 공간',
+        intlKey: 'gnb.program.openSpaceTalk',
+        link: paths.program.openSpaceTalk,
+      },
+    ]
+  }, {
+    title: '튜토리얼',
+    intlKey: 'gnb.program.tutorial',
+    link: paths.program.tutorial,
+  },
+  {
+    title: '스프린트',
+    intlKey: 'gnb.program.sprint',
+    link: paths.program.sprint,
+  },
+  {
+    title: '영코더',
+    intlKey: 'gnb.program.youngcoder',
+    link: paths.program.youngcoder,
+  }]
 }
 
 export const contributionMenu: WithSubMenu = {
@@ -134,6 +219,11 @@ export const contributionMenu: WithSubMenu = {
       title: '발표 제안하기',
       intlKey: 'gnb.contribute.proposingATalk',
       link: paths.contribute.proposingATalk,
+    },
+    {
+      title: '자원봉사',
+      intlKey: 'gnb.contribute.volunteer',
+      link: paths.contribute.volunteer,
     }
   ]
 }
@@ -236,7 +326,8 @@ export const loginMenu: NormalMenu = {
 
 export const globalNavigationMenu: GNBMenu[] = [
   homeMenu,
-  // helpMenu,
+  helpMenu,
+  programMenu,
   contributionMenu,
   sponsorMenu,
 ]

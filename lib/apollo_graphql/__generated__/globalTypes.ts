@@ -31,10 +31,11 @@ export enum TicketStatus {
   ERROR = "ERROR",
   PAID = "PAID",
   READY = "READY",
+  WAITING = "WAITING",
 }
 
 export enum TicketTypeNode {
-  BABY_CARE = "BABY_CARE",
+  CHILD_CARE = "CHILD_CARE",
   CONFERENCE = "CONFERENCE",
   HEALTH_CARE = "HEALTH_CARE",
   SPRINT = "SPRINT",
@@ -43,10 +44,10 @@ export enum TicketTypeNode {
 }
 
 export interface PaymentInput {
-  isDomesticCard: boolean;
+  isDomesticCard?: boolean | null;
   amount?: number | null;
-  cardNumber: string;
-  expiry: string;
+  cardNumber?: string | null;
+  expiry?: string | null;
   birth?: string | null;
   pwd2digit?: string | null;
   buyerEmail?: string | null;
@@ -82,6 +83,12 @@ export interface ProfileInput {
   organization?: string | null;
   nationality?: string | null;
   signature?: string | null;
+  blogUrl?: string | null;
+  githubUrl?: string | null;
+  facebookUrl?: string | null;
+  twitterUrl?: string | null;
+  linkedinUrl?: string | null;
+  instagramUrl?: string | null;
 }
 
 export interface ReviewInput {

@@ -2,6 +2,7 @@ import * as React from 'react'
 import styled from '@emotion/styled'
 import * as ReactMarkdown from 'react-markdown'
 import 'github-markdown-css'
+import MarkdownWrapper from 'components/atoms/MarkdownWrapper'
 
 type PropsType = {
   bio: string;
@@ -11,14 +12,6 @@ const ProfileBioWrapper = styled.div`
   &.closed {
     max-height: 15em;
     overflow-y: hidden;
-  }
-
-  .markdown-body ul {
-    list-style-type: disc;
-  }
-
-  .markdown-body ol {
-    list-style-type: decimal;
   }
 `
 
@@ -44,10 +37,7 @@ class ProfileBio extends React.Component<PropsType> {
     return (
       <div>
         <ProfileBioWrapper className={this.state.opened ? '' : 'closed'}>
-          <ReactMarkdown 
-            source={bio} 
-            className="markdown-body" 
-            escapeHtml={false}></ReactMarkdown>
+          <MarkdownWrapper contents={bio}/>
         </ProfileBioWrapper>
         <ReadMoreButton onClick={ this.toogleOpened.bind(this) }>
           {this.state.opened? 'close' : 'more'}

@@ -8,6 +8,7 @@ import PageTemplate from 'components/templates/PageTemplate'
 import i18next from 'i18next'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
+import ReactMarkdown from 'react-markdown'
 import { paths } from 'routes/paths'
 import { withNamespaces } from '../../i18n'
 import { StoresType } from '../_app'
@@ -50,24 +51,19 @@ export class Prospectus extends React.Component<PropsType> {
             <H2>{t('sponsor:prospectus.faqTitle')}</H2>
             <Paragraph>
               <strong style={{ fontWeight: 'bold', display: 'block' }}>{t('sponsor:prospectus.faq.question1')}</strong>
-              {t('sponsor:prospectus.faq.answer1')}
+              <ReactMarkdown source={t('sponsor:prospectus.faq.answer1')} />
             </Paragraph>
             <Paragraph>
               <strong style={{ fontWeight: 'bold', display: 'block' }}>{t('sponsor:prospectus.faq.question2')}</strong>
-              {t('sponsor:prospectus.faq.answer2')}
+              <ReactMarkdown source={t('sponsor:prospectus.faq.answer2')} />
             </Paragraph>
             <Paragraph>
               <strong style={{ fontWeight: 'bold', display: 'block' }}>{t('sponsor:prospectus.faq.question3')}</strong>
-              {t('sponsor:prospectus.faq.answer3').split('\n')[0]}
-              {/* <a href='mailto: sponsor@pycon.kr'>sponsor@pycon.kr</a>
-              {t('sponsor:prospectus.faq.answer3').split('\n')[1]} */}
+              <ReactMarkdown source={t('sponsor:prospectus.faq.answer3')} />
             </Paragraph>
             <Paragraph>
               <strong style={{ fontWeight: 'bold', display: 'block' }}>{t('sponsor:prospectus.faq.question4')}</strong>
-              {t('sponsor:prospectus.faq.answer4')
-                .split('\n')
-                .map((line, index) => <Paragraph2 key={`faq_answer4_${index}`}>{line}</Paragraph2>)
-              }
+              <ReactMarkdown source={t('sponsor:prospectus.faq.answer4')} />
             </Paragraph>
           </Section>
           <Section>
