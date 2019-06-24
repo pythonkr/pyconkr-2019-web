@@ -37,14 +37,14 @@ export class Sprint extends React.Component<PropsType> {
           <Paragraph>
             { t('program:sprint.desc2') }
           </Paragraph>
-        </Section>
-        <ContentButtonWrapper>
+          <ContentButtonWrapper>
             <Button
               intlKey='tempkey'
               to='https://forms.gle/6C5JCqGtC657DQ6i6'
               outlink
             >스프린트 진행 신청하기</Button>
           </ContentButtonWrapper>
+        </Section>
       </PageTemplate>
     )
   }
