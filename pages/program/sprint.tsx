@@ -1,22 +1,19 @@
 import { Button } from 'components/atoms/Button'
 import { ContentButtonWrapper, H1, Paragraph, Section } from 'components/atoms/ContentWrappers'
+import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
 import i18next from 'i18next'
 import _ from 'lodash'
-import { inject, observer } from 'mobx-react'
 import React from 'react'
+import { programMenu } from 'routes/paths'
 import { withNamespaces } from '../../i18n'
-import { StoresType } from '../_app'
 
 export type PropsType = {
-  stores: StoresType;
   t: i18next.TFunction;
 }
 
-@inject('stores')
-@observer
 export class Sprint extends React.Component<PropsType> {
   render() {
     const { t } = this.props
@@ -27,6 +24,7 @@ export class Sprint extends React.Component<PropsType> {
         header={<Header title={ t('common:pageTitle', {title}) } intlKey='' />}
         footer={<Footer />}
       >
+        <LocalNavigation list={programMenu.submenu} />
         <H1>
           { title }
         </H1>

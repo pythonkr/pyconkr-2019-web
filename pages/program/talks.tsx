@@ -138,14 +138,15 @@ export class TalkList extends React.Component<PropsType> {
     })
   }
 
-  getSpeakerName(presentation:any){
+  getSpeakerName(presentation: any) {
     const ownerName = presentation.owner.profile.name
-    if(presentation.secondaryOwner) {
+    if (presentation.secondaryOwner) {
       const secondaryOwnerName = presentation.secondaryOwner.profile.name
-      if(secondaryOwnerName) {
+      if (secondaryOwnerName) {
         return `${ownerName} / ${secondaryOwnerName}`
       }
     }
+
     return ownerName
   }
 

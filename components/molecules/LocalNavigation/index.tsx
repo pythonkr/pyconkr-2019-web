@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { withRouter } from 'next/router'
 import React from 'react'
 import intl from 'react-intl-universal'
+import { NormalMenu, WithSubMenu } from 'routes/paths'
 import { CORAL, HEADING_LIGHT_BLACK, TEAL } from 'styles/colors'
 import { mobileWidth, navigationPadding } from 'styles/layout'
 
@@ -69,19 +70,8 @@ ${NavSpan} {
 }
 `
 
-type LNBItem = {
-  title: string;
-  link?: string;
-  intlKey: string;
-  submenu?: {
-    title: string;
-    link: string;
-    intlKey: string;
-  }[];
-}
-
 type Props = {
-  list: LNBItem[];
+  list: (NormalMenu | WithSubMenu)[];
   router: any;
 }
 

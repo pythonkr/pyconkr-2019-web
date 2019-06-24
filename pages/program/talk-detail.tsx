@@ -1,22 +1,16 @@
-import { ContentTableWrapper, H1, H2, Ul, Li, Paragraph, Section, Table, TBody, Td, Tr, isHeader } from 'components/atoms/ContentWrappers'
+import { ContentTableWrapper, H1, isHeader, Section, Table, TBody, Td, Tr } from 'components/atoms/ContentWrappers'
+import { Loading } from 'components/atoms/Loading'
+import MarkdownWrapper from 'components/atoms/MarkdownWrapper'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
-import _ from 'lodash'
-import { inject, observer } from 'mobx-react'
-import React from 'react'
-import { paths } from 'routes/paths'
-import { StoresType } from '../_app'
 import i18next from 'i18next'
+import { inject, observer } from 'mobx-react'
+import { withRouter } from 'next/router'
+import React from 'react'
+import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 import { withNamespaces } from '../../i18n'
-import {withRouter} from 'next/router'
-import { Loading } from 'components/atoms/Loading'
-import styled from '@emotion/styled'
-import { TEAL_SEMI_DARK, TEAL_LIGHT } from 'styles/colors'
-import MarkdownWrapper from 'components/atoms/MarkdownWrapper'
-import {formatDateInWordsWithWeekdayAndTime} from 'utils/formatDate'
-
-
+import { StoresType } from '../_app'
 
 export type PropsType = {
   stores: StoresType;
@@ -49,25 +43,27 @@ export class TalkDetail extends React.Component<PropsType> {
     })
   }
 
-  getSpeakerName(presentation:any){
+  getSpeakerName(presentation: any) {
     const ownerName = presentation.owner.profile.name
-    if(presentation.secondaryOwner) {
+    if (presentation.secondaryOwner) {
       const secondaryOwnerName = presentation.secondaryOwner.profile.name
-      if(secondaryOwnerName) {
+      if (secondaryOwnerName) {
         return `${ownerName} / ${secondaryOwnerName}`
       }
     }
+
     return ownerName
   }
 
   render() {
     const { t } = this.props
     const presentation = this.state.presentation
-    if(presentation == null){
+    if (presentation == null) {
       return <Loading width={50} height={50}/>
     }
     const pageTitle = t('common:pageTitle', { title: this.state.presentation.name })
     const recordable = presentation.recordable ? t('program:talkDetail.recordable') : t('program:talkDetail.notRecordable')
+
     return (
       <PageTemplate
         header={<Header title={ pageTitle } intlKey='' />}
@@ -83,40 +79,40 @@ export class TalkDetail extends React.Component<PropsType> {
               <col width='85%'/>
             </colgroup>
             <TBody>
-              <TalkTableRow 
-                header={t('program:talkDetail.category')} 
+              <TalkTableRow
+                header={t('program:talkDetail.category')}
                 content={ presentation.category.name }/>
-              <TalkTableRow 
-                header={t('program:talkDetail.difficulty')} 
+              <TalkTableRow
+                header={t('program:talkDetail.difficulty')}
                 content={ presentation.difficulty.name }/>
-              <TalkTableRow 
-                header={t('program:talkDetail.language')} 
+              <TalkTableRow
+                header={t('program:talkDetail.language')}
                 content={ presentation.language }/>
-              <TalkTableRow 
-                header={t('program:talkDetail.speaker')} 
+              <TalkTableRow
+                header={t('program:talkDetail.speaker')}
                 content={ this.getSpeakerName(presentation) }/>
-              <TalkTableRow 
-                header={t('program:talkDetail.background')} 
+              <TalkTableRow
+                header={t('program:talkDetail.background')}
                 content={ presentation.backgroundDesc }/>
               {
                 presentation.startedAt &&
-                <TalkTableRow 
+                <TalkTableRow
                   header={t('program:talkDetail.datetime')}
                   content={ `${formatDateInWordsWithWeekdayAndTime(presentation.startedAt)}~${formatDateInWordsWithWeekdayAndTime(presentation.finishedAt)}` }/>
               }
-              <TalkTableRow 
+              <TalkTableRow
                 header={t('program:talkDetail.slideUrl')}
                 content={ presentation.slideUrl }/>
-              <TalkTableRow 
+              <TalkTableRow
                 header={t('program:talkDetail.videoPublic')}
                 content={ recordable }/>
               {
                 presentation.slideUrl &&
-                  <TalkTableRow 
+                  <TalkTableRow
                     header={t('program:talkDetail.slideUrl')}
                     content={ presentation.slideUrl }/>
               }
-              
+
             </TBody>
           </Table>
         </ContentTableWrapper>
