@@ -15,20 +15,13 @@ import { Query } from 'react-apollo'
 const GET_SPONSOR = gql`
 query Sponsor($id: ID!) {
   sponsor(id: $id) {
-    id
     name
-    nameKo
-    nameEn
     level {
-      id
       name
     }
     desc
-    descKo
-    descEn
     url
     logoImage
-    logoVector
   }
 }
 `
@@ -39,7 +32,7 @@ const SponsorLogo = styled.img`
   display: block;
 `
 
-const SponsorContent = (props) => {
+const SponsorContent = (props: any) => {
   const sponsor = props.sponsor
   if(sponsor == null){
     return <Loading width={50} height={50}/>

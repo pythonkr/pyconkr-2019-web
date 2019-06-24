@@ -35,7 +35,7 @@ export enum TicketStatus {
 }
 
 export enum TicketTypeNode {
-  BABY_CARE = "BABY_CARE",
+  CHILD_CARE = "CHILD_CARE",
   CONFERENCE = "CONFERENCE",
   HEALTH_CARE = "HEALTH_CARE",
   SPRINT = "SPRINT",

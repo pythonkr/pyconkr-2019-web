@@ -31,6 +31,33 @@ export interface getPresentations_presentations_owner {
   profile: getPresentations_presentations_owner_profile | null;
 }
 
+export interface getPresentations_presentations_secondaryOwner_profile {
+  __typename: "ProfileNode";
+  name: string;
+  nameKo: string | null;
+  nameEn: string | null;
+  image: any | null;
+  avatarUrl: string;
+  bio: string;
+  bioKo: string | null;
+  bioEn: string | null;
+  blogUrl: string;
+  githubUrl: string;
+  facebookUrl: string;
+  twitterUrl: string;
+  linkedInUrl: string;
+  instagramUrl: string;
+}
+
+export interface getPresentations_presentations_secondaryOwner {
+  __typename: "UserNode";
+  /**
+   * 150자 이하 문자, 숫자 그리고 @/./+/-/_만 가능합니다.
+   */
+  username: string;
+  profile: getPresentations_presentations_secondaryOwner_profile | null;
+}
+
 export interface getPresentations_presentations_place {
   __typename: "PlaceNode";
   name: string;
@@ -59,7 +86,12 @@ export interface getPresentations_presentations_difficulty {
 export interface getPresentations_presentations {
   __typename: "PublicPresentationNode";
   id: string;
+  /**
+   * 키노트 스피커인 경우 TRUE로 설정합니다.
+   */
+  isKeynote: boolean;
   owner: getPresentations_presentations_owner | null;
+  secondaryOwner: getPresentations_presentations_secondaryOwner | null;
   name: string | null;
   nameKo: string | null;
   nameEn: string | null;
@@ -67,7 +99,7 @@ export interface getPresentations_presentations {
   duration: DurationNode | null;
   startedAt: any | null;
   finishedAt: any | null;
-  desc: string;
+  desc: string | null;
   descKo: string | null;
   descEn: string | null;
   language: LanguageNode | null;

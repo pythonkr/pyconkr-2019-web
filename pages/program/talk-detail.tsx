@@ -49,6 +49,17 @@ export class TalkDetail extends React.Component<PropsType> {
     })
   }
 
+  getSpeakerName(presentation:any){
+    const ownerName = presentation.owner.profile.name
+    if(presentation.secondaryOwner) {
+      const secondaryOwnerName = presentation.secondaryOwner.profile.name
+      if(secondaryOwnerName) {
+        return `${ownerName} / ${secondaryOwnerName}`
+      }
+    }
+    return ownerName
+  }
+
   render() {
     const { t } = this.props
     const presentation = this.state.presentation
@@ -83,7 +94,7 @@ export class TalkDetail extends React.Component<PropsType> {
                 content={ presentation.language }/>
               <TalkTableRow 
                 header={t('program:talkDetail.speaker')} 
-                content={ presentation.owner.profile.name }/>
+                content={ this.getSpeakerName(presentation) }/>
               <TalkTableRow 
                 header={t('program:talkDetail.background')} 
                 content={ presentation.backgroundDesc }/>

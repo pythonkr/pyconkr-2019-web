@@ -23,6 +23,25 @@ query getPresentation($id: Int!) {
                 instagramUrl
             }
         }
+        secondaryOwner {
+            username
+            profile {
+                name
+                nameKo
+                nameEn
+                image
+                avatarUrl
+                bio
+                bioKo
+                bioEn
+                blogUrl
+                githubUrl
+                facebookUrl
+                twitterUrl
+                linkedInUrl
+                instagramUrl
+            }
+        }
         backgroundDesc
         language
         duration
