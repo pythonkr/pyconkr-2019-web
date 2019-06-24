@@ -68,6 +68,9 @@ export class Babycare extends React.Component<PropsType> {
           <Paragraph>
             { t('help:financialAid.desc2-2') }
           </Paragraph>
+          <Paragraph style={{ fontWeight: 700, marginBottom: 0, marginTop: 5 }}>
+            { t('help:financialAid.desc2-3') }
+          </Paragraph>
         </Section>
         <Section>
           <H2>{ t('help:financialAid.header3') }</H2>
