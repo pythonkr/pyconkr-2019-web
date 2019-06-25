@@ -77,7 +77,7 @@ class ContributionPage extends React.Component<PropsType> {
       isProposalAccepted: cfpStore.proposal ? cfpStore.proposal.accepted : false,
     }, {
       title: '스폰서 제안',
-      intlKey: 'contribute.overview.table.talk',
+      intlKey: 'contribute.overview.table.sponsor',
       openDate: schedule.sponsorProposalStartAt,
       closeDate: schedule.sponsorProposalFinishAt,
       link: paths.sponsor.applicationForm,

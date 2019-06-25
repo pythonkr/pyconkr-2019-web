@@ -39,6 +39,11 @@ type PropsType = {
 
 @observer
 export default class CFPEdit extends React.Component<PropsType> {
+  async componentDidMount() {
+    const { sponsorStore } = this.props
+    await sponsorStore.retrieveMySponsorProposal()
+  }
+
   getFilename(url: string) {
     if (url) {
       return url.substring(url.lastIndexOf('/') + 1)

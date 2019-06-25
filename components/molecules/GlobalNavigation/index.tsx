@@ -348,7 +348,7 @@ class Navigation extends React.Component<any> {
                     <SubmenuList>
                     {submenu.map(({ title, intlKey, link, submenu: subsubmenu }) =>
                       subsubmenu
-                        ? <SubmenuItem border={submenu.some(item => !!item.submenu)}><SubmenuGroup>{subsubmenu.map(subsubmenuItem => <SubmenuItem key={subsubmenuItem.intlKey}>
+                        ? <SubmenuItem key={intlKey} border={submenu.some(item => !!item.submenu)}><SubmenuGroup>{subsubmenu.map(subsubmenuItem => <SubmenuItem key={subsubmenuItem.intlKey}>
                           <SubmenuItemLink
                             to={subsubmenuItem.link}
                             intlKey={subsubmenuItem.intlKey}

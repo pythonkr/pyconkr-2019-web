@@ -42,11 +42,11 @@ export class Venue extends React.Component<PropsType> {
         <Section>
           <Paragraph>
             { t('help:venue.desc1') }
-            <Ul>
-              <Li>{ t('help:venue.address') }</Li>
-              <Li><a href="http://www.coex.co.kr/" target="_blank">http://www.coex.co.kr/</a></Li>
-            </Ul>
           </Paragraph>
+          <Ul>
+            <Li>{ t('help:venue.address') }</Li>
+            <Li><a href="http://www.coex.co.kr/" target="_blank">http://www.coex.co.kr/</a></Li>
+          </Ul>
           <GoogleMapIFrame 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3164.820434500639!2d127.05690121619708!3d37.51215307980805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2012d6bd01b%3A0x30702ebd32133065!2sCoex+Mall!5e0!3m2!1sen!2skr!4v1463414893518" 
             allowfullscreen="" frameborder="0" height="450" width="600">
