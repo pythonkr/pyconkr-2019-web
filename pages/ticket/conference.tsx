@@ -1,5 +1,5 @@
 import { AlertBar } from 'components/atoms/AlertBar'
-import { H1, H2, Paragraph, Section } from 'components/atoms/ContentWrappers'
+import { H1, H2, H3, Ul, Li, Paragraph, Section } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
 import { StatusBar } from 'components/atoms/StatusBar'
 import { LocalNavigation } from 'components/molecules/LocalNavigation'
@@ -44,14 +44,14 @@ export class ConferenceTicket extends React.Component<PageDefaultPropsType> {
 
   render() {
     const { stores, t, router } = this.props
-
+    const title = t('ticket:conference.title')
     return (
       <PageTemplate
-        header={<Header title='컨퍼런스 티켓 :: 파이콘 한국 2019' intlKey='ticket.conference.pageTitle'/>}
+        header={<Header title={t('common:pageTitle', { title })} intlKey='' />}
         footer={<Footer />}
       >
         <LocalNavigation list={ticketMenu.submenu} />
-        <H1>{t('ticket:conference.pageTitle')}</H1>
+        <H1>{ title }</H1>
         <StatusBar
           text={t('ticket:conference.ticket')}
           actionIntlKey='common.apply'
@@ -68,8 +68,27 @@ export class ConferenceTicket extends React.Component<PageDefaultPropsType> {
           <ConferenceTicketList stores={stores} t={t} router={router}/>
         </Section>
         <Section>
-          <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
-          <Paragraph><a href='mailto:program@pycon.kr'>program@pycon.kr</a></Paragraph>
+          <H2>{ t('ticket:conference.header2') }</H2>
+          <Paragraph>{t('ticket:conference.desc2')} </Paragraph>
+          <H3>{ t('ticket:conference.header2-1') }</H3>
+          <Paragraph>{ t('ticket:conference.desc2-1') }</Paragraph>
+          <Ul>
+            <Li>{ t('ticket:conference.desc2-1-1') }</Li>
+            <Li>{ t('ticket:conference.desc2-1-2') }</Li>
+          </Ul>
+          <H3>{ t('ticket:conference.header2-2') }</H3>
+          <Paragraph>{ t('ticket:conference.desc2-2') }</Paragraph>
+          <Ul>
+            <Li>{ t('ticket:conference.desc2-2-1') }</Li>
+            <Li>{ t('ticket:conference.desc2-2-2') }</Li>
+            <Li>{ t('ticket:conference.desc2-2-3') }</Li>
+            <Li>{ t('ticket:conference.desc2-2-4') }</Li>
+            <Li>{ t('ticket:conference.desc2-2-5') }</Li>
+          </Ul>
+        </Section>
+        <Section>
+          <H2>{ t('common:contact') }</H2>
+          <Paragraph><a href='mailto:pyconkr@pycon.kr'>pyconkr@pycon.kr</a></Paragraph>
         </Section>
       </PageTemplate>
     )
