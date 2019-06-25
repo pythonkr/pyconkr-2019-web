@@ -4,7 +4,6 @@ import TicketBox from 'components/molecules/TicketBox'
 import ConferenceTicketOption from 'components/molecules/TicketBox/ConferenceTicketOption'
 import TermsAgreement from 'components/molecules/TicketBox/TermsAgreement'
 import i18next from 'i18next'
-import { TicketTypeNode } from 'lib/apollo_graphql/__generated__/globalTypes'
 import { TicketNode } from 'lib/apollo_graphql/queries/getMyTickets'
 import _ from 'lodash'
 import { toJS } from 'mobx'
@@ -60,13 +59,9 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
     } = stores.ticketStore
 
     return conferenceProducts.map((conferenceProduct) => {
-      const { id, nameKo, nameEn, descKo, descEn, warningKo, warningEn, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut } = conferenceProduct
-      const isLanguageKorean = i18next.language === 'ko'
-      const title = isLanguageKorean ? nameKo : nameEn
-      const desc = isLanguageKorean ? descKo : descEn
-      const warning = isLanguageKorean ? warningKo : warningEn
+      const { id, name, desc, warning, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut } = conferenceProduct
       const isTicketStepExist = getIsTicketStepExist(id)
-      if (!isTicketStepExist) setTicketStep(id, title)
+      if (!isTicketStepExist) setTicketStep(id, name)
       const ticketStep = getTicketStep(id)
 
       if (!ticketStep) return null
@@ -84,7 +79,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
         options = (
           <TermsAgreement
             t={t}
-            title={title || ''}
+            title={name || ''}
             id={id}
             isTermsAgreed={isTermsAgreed}
             onCancel={initConferenceTicketOptions}
@@ -96,7 +91,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
         options = (
           <ConferenceTicketOption
             t={t}
-            title={title || ''}
+            title={name || ''}
             id={id}
             tshirtsize={ticketOption && ticketOption.tshirtsize || ''}
             isTicketAgreed={isTicketOptionAgreed}
@@ -116,7 +111,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
         <TicketBox
           t={t}
           key={`ticketBox_${id}`}
-          title={title || ''}
+          title={name || ''}
           description={desc || ''}
           warning={warning || ''}
           price={price}
