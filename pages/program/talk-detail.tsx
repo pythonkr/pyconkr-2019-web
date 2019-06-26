@@ -92,12 +92,6 @@ export class TalkDetail extends React.Component<PropsType> {
     return ownerName
   }
 
-  getSpeakerProfileImage(presentation: any){
-    if(presentation.owner.profile.image)
-      return presentation.owner.profile.image
-    return presentation.owner.profile.avatarUrl
-  }
-
   render() {
     const { t } = this.props
     const presentation = this.state.presentation
@@ -116,7 +110,7 @@ export class TalkDetail extends React.Component<PropsType> {
       >
         <H1 style={{ maxWidth: '600px' }}>
           { presentation.name }<br/>
-          <Presenter>{presentation.owner.profile.name}</Presenter><br/>
+          <Presenter>{this.getSpeakerName(presentation)}</Presenter><br/>
         </H1>
         <ContentTableWrapper>
           <TableList>
@@ -162,7 +156,7 @@ export class TalkDetail extends React.Component<PropsType> {
           <img
             width='160px'
             height='160px'
-            src={this.getSpeakerProfileImage(presentation)}
+            src={presentation.owner.profile.avatarUrl}
           />
           {(presentation.owner.profile.linkedInUrl ||
           presentation.owner.profile.twitterUrl ||
@@ -180,6 +174,29 @@ export class TalkDetail extends React.Component<PropsType> {
           </SocialNetworkList>}
           <MarkdownWrapper contents={presentation.owner.profile.desc}/>
         </Section>
+        {!!presentation.secondaryOwner && <Section>
+          <H2>{presentation.secondaryOwner.profile.name} 님</H2>
+          <img
+            width='160px'
+            height='160px'
+            src={presentation.secondaryOwner.profile.avatarUrl}
+          />
+          {(presentation.secondaryOwner.profile.linkedInUrl ||
+          presentation.secondaryOwner.profile.twitterUrl ||
+          presentation.secondaryOwner.profile.linkedInUrl) &&
+          <SocialNetworkList>
+            {presentation.secondaryOwner.profile.githubUrl && <SocialNetworkListItem>
+              <a href={presentation.secondaryOwner.profile.githubUrl}>Github</a>
+            </SocialNetworkListItem>}
+            {presentation.secondaryOwner.profile.twitterUrl && <SocialNetworkListItem>
+              <a href={presentation.secondaryOwner.profile.twitterUrl}>Twitter</a>
+            </SocialNetworkListItem>}
+            {presentation.secondaryOwner.profile.linkedInUrl && <SocialNetworkListItem>
+              <a href={presentation.secondaryOwner.profile.linkedInUrl}>LinkedIn</a>
+            </SocialNetworkListItem>}
+          </SocialNetworkList>}
+          <MarkdownWrapper contents={presentation.secondaryOwner.profile.desc}/>
+        </Section>}
       </PageTemplate>
     )
   }
