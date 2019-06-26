@@ -10,10 +10,12 @@ import { observer } from 'mobx-react'
 import React from 'react'
 import intl from 'react-intl-universal'
 import { DEFAULT_TEXT_BLACK } from 'styles/colors'
+import i18next from 'i18next'
 
 type PropsType = {
   cfpStore: CFPStore;
   scheduleStore: ScheduleStore;
+  t: i18next.TFunction;
 }
 
 @observer
@@ -48,19 +50,31 @@ export default class CFPEdit extends React.Component<PropsType> {
 
     const { presentationProposalFinishAt } = scheduleStore.schedule
     const isAcceptedProposal = isPast(presentationProposalFinishAt) && proposal.accepted
-
     return (
       <FormWrapper>
         <form onSubmit={this.onSubmitCFPEdit}>
           <label className='required'>
             <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
-              {isAcceptedProposal ? '발표 제목' : '주제'}
+              발표 제목(한글)
             </IntlText>
           </label>
           <input
             type='text'
-            value={proposal.name}
-            onChange={e => proposal.setName(e.target.value)}
+            value={proposal.nameKo}
+            onChange={e => proposal.setNameKo(e.target.value)}
+            disabled={isAcceptedProposal}
+            aria-required={true}
+            required
+          />
+          <label className='required'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+            발표 제목(영어)
+            </IntlText>
+          </label>
+          <input
+            type='text'
+            value={proposal.nameEn}
+            onChange={e => proposal.setNameEn(e.target.value)}
             disabled={isAcceptedProposal}
             aria-required={true}
             required
@@ -124,24 +138,47 @@ export default class CFPEdit extends React.Component<PropsType> {
           {isAcceptedProposal && <>
             <label className='required'>
               <IntlText intlKey='contribute.talkProposal.application.stages.stages3.item1.sub1'>
-                발표 소개
+                발표 소개(한글)
               </IntlText>
             </label>
             <p><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item1.desc1'>
               국문 350자 내외, 영문 700자 내외
             </IntlText></p>
             <textarea
-              value={proposal.desc}
-              onChange={e => proposal.setDesc(e.target.value)}
+              value={proposal.descKo}
+              onChange={e => proposal.setDescKo(e.target.value)}
               style={{ height: 400, marginBottom: 5 }}
               aria-required={true}
               required
             />
             <div style={{textAlign: 'right'}}>
               <span style={{
-                color: proposal.desc.length < 20 ? 'red ' : 'black'
+                color: proposal.descKo.length < 20 ? 'red ' : 'black'
               }}>
-                {proposal.desc.length}
+                {proposal.descKo.length}
+              </span>/700
+            </div>
+
+            <label className='required'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages3.item1.sub1'>
+                발표 소개(영문)
+              </IntlText>
+            </label>
+            <p><IntlText intlKey='contribute.talkProposal.application.stages.stages3.item1.desc1'>
+              국문 350자 내외, 영문 700자 내외
+            </IntlText></p>
+            <textarea
+              value={proposal.descEn}
+              onChange={e => proposal.setDescEn(e.target.value)}
+              style={{ height: 400, marginBottom: 5 }}
+              aria-required={true}
+              required
+            />
+            <div style={{textAlign: 'right'}}>
+              <span style={{
+                color: proposal.descEn.length < 20 ? 'red ' : 'black'
+              }}>
+                {proposal.descEn.length}
               </span>/700
             </div>
           </>}
