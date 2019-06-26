@@ -13,6 +13,7 @@ import Router, { RouterProps, withRouter } from 'next/router'
 import React from 'react'
 import { paths } from 'routes/paths'
 import { StoresType } from '../../_app'
+import i18next from 'i18next'
 
 @inject('stores')
 @(withRouter as any)
@@ -20,22 +21,19 @@ import { StoresType } from '../../_app'
 class CFP extends React.Component<{
   stores: StoresType;
   router: RouterProps;
+  t: i18next.TFunction;
 }> {
   async componentDidMount() {
     const { stores, router } = this.props
     const { authStore, cfpStore } = stores
-    const isLoggedIn = authStore.loggedIn
     const isStoreInitialized = cfpStore.isInitialized
     let isProposalSubmitted = false
-
-    if (!isLoggedIn) {
+    authStore.syncToken()
+    if (!authStore.loggedIn) {
       router.replace(`${paths.account.login}?redirect_url=${Router.route}`)
-
       return
     }
-
     if (!isStoreInitialized) await stores.cfpStore.initialize()
-
     isProposalSubmitted = cfpStore.proposal.submitted
     if (!isProposalSubmitted) {
       Router.push(paths.contribute.proposingATalk)
@@ -43,7 +41,7 @@ class CFP extends React.Component<{
   }
 
   render() {
-    const { stores } = this.props
+    const { stores, t } = this.props
     const { cfpStore, scheduleStore } = stores
     const { proposal } = cfpStore
 
@@ -75,7 +73,7 @@ class CFP extends React.Component<{
         </Paragraph>}
         {!stores.cfpStore.isInitialized
           ? <Loading width={50} height={50}/>
-          : <CFPEdit cfpStore={cfpStore} scheduleStore={scheduleStore} />
+          : <CFPEdit cfpStore={cfpStore} scheduleStore={scheduleStore} t={t}/>
         }
       </PageTemplate>
     )

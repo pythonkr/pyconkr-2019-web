@@ -27,12 +27,16 @@ import { withNamespaces } from '../../i18n'
 export class ApplicationForm extends React.Component<{ 
   stores: StoresType;
   t: i18next.TFunction;
-}> {
-
+}> {  
   static async getInitialProps() {
     return {
       namespacesRequired: ['home', 'sponsor'],
     }
+  }
+
+  async componentDidMount() {
+    const { sponsorStore, authStore } = this.props.stores
+    if (authStore.loggedIn) await sponsorStore.retrieveMySponsorProposal()
   }
 
   render() {

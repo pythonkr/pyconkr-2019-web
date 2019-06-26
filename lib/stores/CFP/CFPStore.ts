@@ -40,6 +40,12 @@ export class CFPStore {
     @action
     setProposal(proposal: any) {
         set(this.proposal, proposal as { [key: string]: any })
+        if(proposal.category){
+          this.proposal.setCategoryId(proposal.category.id)
+        }
+        if(proposal.difficulty){
+          this.proposal.setDifficultyId(proposal.difficulty.id)
+        }
         this.isProposalInitialized = proposal !== null
     }
 
@@ -105,8 +111,6 @@ export class CFPStore {
       const response = await CreateOrUpdatePresentationProposal(client)({
         data: presentation
       })
-
-      console.log(response)
 
       this.setProposal(response.data.createOrUpdatePresentationProposal.proposal)
     }
