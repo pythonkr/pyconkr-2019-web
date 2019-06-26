@@ -12,8 +12,12 @@ configure({ enforceActions: 'observed' })
 export class PresentationProposal implements PresentationProposalNode {
     __typename: 'PresentationProposalNode' = 'PresentationProposalNode'
     @observable name: string = ''
+    @observable nameKo: string = ''
+    @observable nameEn: string = ''
     @observable owner: getMyPresentationProposal_myPresentationProposal_owner | null = null
     @observable desc: string = ''
+    @observable descKo: string = ''
+    @observable descEn: string = ''
     @observable backgroundDesc: string = ''
     @observable detailDesc: string = ''
     @observable language: LanguageNode | null = null
@@ -43,8 +47,21 @@ export class PresentationProposal implements PresentationProposalNode {
         this.name = newName
     }
 
+    @action setNameKo(newName: string) {
+        this.nameKo = newName
+    }
+    @action setNameEn(newName: string) {
+        this.nameEn = newName
+    }
+
     @action setDesc(desc: string) {
         this.desc = desc
+    }
+    @action setDescKo(desc: string) {
+        this.descKo = desc
+    }
+    @action setDescEn(desc: string) {
+        this.descEn = desc
     }
 
     @action setBackgroundDesc(newBackgroundDesc: string) {

@@ -1,7 +1,11 @@
 query getMyPresentationProposal {
     myPresentationProposal {
         name
+        nameKo
+        nameEn
         desc
+        descKo
+        descEn
         owner {
             username
         }
