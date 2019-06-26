@@ -34,8 +34,6 @@ export type PropsType = {
 
 const TutorialList = (props) => {
   const { tutorials }  = props
-  console.log(props)
-  console.log(tutorials)
   return (<>
     <Ul>
       {
