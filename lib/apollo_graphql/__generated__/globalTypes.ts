@@ -57,7 +57,11 @@ export interface PaymentInput {
 
 export interface PresentationProposalInput {
   name?: string | null;
+  nameKo?: string | null;
+  nameEn?: string | null;
   desc?: string | null;
+  descKo?: string | null;
+  descEn?: string | null;
   categoryId?: string | null;
   difficultyId?: string | null;
   backgroundDesc?: string | null;
