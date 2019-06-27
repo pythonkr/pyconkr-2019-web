@@ -18,22 +18,18 @@ class PatronList extends React.Component<PropsType> {
     const { stores } = this.props
     const { patrons } = stores.sponsorStore
     const isPatronExist = !!!_.isNil(patrons)
-    const isLanguageKorean = i18next.language === 'ko'
 
     if (!isPatronExist) return null
 
     return patrons.map(patron => {
-      const profileImg = patron.image ? patron.image : patron.avatarUrl
-      const name = isLanguageKorean ? patron.nameKo : patron.nameEn
-      const bio = isLanguageKorean ? patron.bioKo : patron.bioEn
-      const organization = _.isEmpty(patron.organization) ? 'Patron Contributor' : patron.organization
+      const {image, name, bio, organization } = patron
 
       return (
         <ProfileCard
           key={`patron_${patron.id}`}
-          profileImg={profileImg}
+          profileImg={image}
           name={name || 'Patron'}
-          organization={organization}
+          organization={organization || 'Patron Contributor'}
           bio={bio || 'Thank you for your contribution.'}
         />
       )

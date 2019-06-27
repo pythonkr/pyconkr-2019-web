@@ -5,11 +5,12 @@ import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
 import i18next from 'i18next'
 import React from 'react'
-import { programMenu } from 'routes/paths'
+import { paths, programMenu } from 'routes/paths'
 import { withNamespaces } from '../../i18n'
 import {Loading} from 'components/atoms/Loading'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
+import { ProgramUl, ProgramItem } from 'components/molecules/Program/List'
 
 const TUTORIALS = gql`
 query Tutorials {
@@ -23,6 +24,7 @@ query Tutorials {
     }
     difficulty {
       name
+      nameEn
     }
   }
 }
@@ -32,18 +34,25 @@ export type PropsType = {
   t: i18next.TFunction;
 }
 
+
 const TutorialList = (props) => {
   const { tutorials }  = props
   return (<>
-    <Ul>
+    <ProgramUl>
       {
         tutorials.map(({id, name, owner, difficulty}) => {
+          const href = `${paths.program.tutorialDetail}?id=${id}`
           return (
-            <Li key={id}>{name}/{owner ? owner.profile.name : ''}/{difficulty.name}</Li>
+            <ProgramItem
+              key={ id } 
+              href={href}
+              speakerName={owner ? owner.profile.name : ''}
+              name={name}
+              difficulty={difficulty} />
           )
         })
       }
-    </Ul>
+    </ProgramUl>
   </>)
 }
 

@@ -365,7 +365,8 @@
           },
           "stages2": {
             "header": "Basic information",
-            "item1": "Topic",
+            "item1-1": "Topic(Korean)",
+            "item1-2": "Topic(English)",
             "item2": "Session Category",
             "item3": "Session Difficulty",
             "item4": "Prerequisities to understand the session",
@@ -407,7 +408,8 @@
           "stages3": {
             "header": "Detailed information",
             "item1": {
-            "sub1": "Contents of CFP in detail",
+            "sub1-1": "Contents of CFP in detail(Korean)",
+            "sub1-2": "Contents of CFP in detail(English)",
             "desc1": "In case it's accessive, please provide an external link."
             },
             "item2":{
