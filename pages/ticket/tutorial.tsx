@@ -42,7 +42,7 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
           튜토리얼 티켓
         </IntlText></H1>
         <Paragraph><IntlText intlKey='ticket.tutorial.description1'>
-        튜토리얼은 초보자들을 위해, 또는 새로운 것을 접하는 사람들을 위해 진행하는 교육 프로그램입니다. 튜토리얼 진행자와 도움을 주는 사람들이 여러분을 기다리고 있습니다. 프로그래밍을 처음 시작하거나 파이썬을 새롭게 시작하는 분들에게 튜토리얼 프로그램을 추천합니다.
+        튜토리얼은 초보자들을 위해 또는 새로운 것을 접하는 사람들을 위해 진행하는 교육 프로그램입니다. 튜토리얼 진행자와 도움을 주는 사람들이 여러분을 기다리고 있습니다. 프로그래밍을 처음 시작하거나 파이썬을 새롭게 시작하는 분들에게 튜토리얼 프로그램을 추천합니다.
         </IntlText></Paragraph>
 
         <Paragraph><IntlText intlKey='ticket.tutorial.description2'>

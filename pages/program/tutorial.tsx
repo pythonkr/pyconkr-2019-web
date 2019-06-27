@@ -12,6 +12,7 @@ import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 import { ProgramUl, ProgramItem } from 'components/molecules/Program/List'
 
+
 const TUTORIALS = gql`
 query Tutorials {
   tutorials {
@@ -33,7 +34,6 @@ query Tutorials {
 export type PropsType = {
   t: i18next.TFunction;
 }
-
 
 const TutorialList = (props) => {
   const { tutorials }  = props
