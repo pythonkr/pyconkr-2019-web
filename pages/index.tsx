@@ -378,8 +378,8 @@ class Index extends React.Component<PageDefaultPropsType> {
           </h2>
           <ul>
             <li>
-              <a href='https://www.facebook.com/pyconkorea/posts/2338970393031833'>
-                재정지원 연기 안내
+              <a href='https://www.facebook.com/pyconkorea/posts/2341383369457202'>
+                파이콘 한국 2019 컨퍼런스 티켓 오픈 안내
               </a>
             </li>
             <li>
@@ -388,8 +388,8 @@ class Index extends React.Component<PageDefaultPropsType> {
               </a>
             </li>
             <li>
-              <a href='https://www.facebook.com/pyconkorea/posts/2341383369457202'>
-                파이콘 한국 2019 컨퍼런스 티켓 오픈 안내
+              <a href='https://www.facebook.com/pyconkorea/posts/2338970393031833'>
+                재정지원 연기 안내
               </a>
             </li>
           </ul>
