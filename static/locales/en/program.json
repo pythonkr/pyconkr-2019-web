@@ -1,19 +1,21 @@
 {
+  "common": {
+    "difficulty": "Difficulty",
+    "language": "Language",
+    "speaker": "Speaker",
+    "datetime": "Datetime"
+  },
   "talks": {
     "title": "List of talks"
   },
   "talkDetail": {
     "category": "Category",
-    "difficulty": "Difficulty",
-    "language": "Language",
-    "speaker": "Speaker",
     "background": "Background",
-    "datetime": "Datetime",
     "slideUrl": "Slide Url",
     "videoPublic": "Video public",
     "recordable": "You can record and record.",
     "notRecordable": "You can not record and record.",
-    "videoUrl": "발표 영상 주소"
+    "videoUrl": "Video url"
   },
   "keynote": {
     "title": "Keynote"

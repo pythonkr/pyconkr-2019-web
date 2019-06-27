@@ -54,7 +54,7 @@ export default class CFPEdit extends React.Component<PropsType> {
       <FormWrapper>
         <form onSubmit={this.onSubmitCFPEdit}>
           <label className='required'>
-            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1-1'>
               발표 제목(한글)
             </IntlText>
           </label>
@@ -67,7 +67,7 @@ export default class CFPEdit extends React.Component<PropsType> {
             required
           />
           <label className='required'>
-            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1'>
+            <IntlText intlKey='contribute.talkProposal.application.stages.stages2.item1-2'>
             발표 제목(영어)
             </IntlText>
           </label>
@@ -137,7 +137,7 @@ export default class CFPEdit extends React.Component<PropsType> {
           />
           {isAcceptedProposal && <>
             <label className='required'>
-              <IntlText intlKey='contribute.talkProposal.application.stages.stages3.item1.sub1'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages3.item1.sub1-1'>
                 발표 소개(한글)
               </IntlText>
             </label>
@@ -160,7 +160,7 @@ export default class CFPEdit extends React.Component<PropsType> {
             </div>
 
             <label className='required'>
-              <IntlText intlKey='contribute.talkProposal.application.stages.stages3.item1.sub1'>
+              <IntlText intlKey='contribute.talkProposal.application.stages.stages3.item1.sub1-2'>
                 발표 소개(영문)
               </IntlText>
             </label>

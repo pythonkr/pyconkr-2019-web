@@ -1,14 +1,16 @@
 {
+  "common": {
+    "difficulty": "난이도",
+    "language": "언어",
+    "speaker": "발표자",
+    "datetime": "일시"
+  },
   "talks": {
     "title": "발표 세션 리스트"
   },
   "talkDetail": {
     "category": "분류",
-    "difficulty": "난이도",
-    "language": "언어",
-    "speaker": "발표자",
     "background": "선수 지식",
-    "datetime": "발표 일시",
     "slideUrl": "슬라이드 주소",
     "videoPublic": "공개 여부",
     "recordable": "촬영, 녹화가 가능합니다.",
