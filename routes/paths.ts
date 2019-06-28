@@ -18,7 +18,9 @@ export const paths = {
     lightningTalk: '/program/lightning-talk',
     openSpaceTalk: '/program/open-space-talk',
     tutorial: '/program/tutorial',
+    tutorialDetail: '/program/tutorial-detail',
     sprint: '/program/sprint',
+    sprintDetail: '/program/sprint-detail',
     youngcoder: '/program/youngcoder',
   },
   contribute: {

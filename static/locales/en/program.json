@@ -1,19 +1,21 @@
 {
+  "common": {
+    "difficulty": "Difficulty",
+    "language": "Language",
+    "speaker": "Speaker",
+    "datetime": "Datetime"
+  },
   "talks": {
     "title": "List of talks"
   },
   "talkDetail": {
     "category": "Category",
-    "difficulty": "Difficulty",
-    "language": "Language",
-    "speaker": "Speaker",
     "background": "Background",
-    "datetime": "Datetime",
     "slideUrl": "Slide Url",
     "videoPublic": "Video public",
     "recordable": "You can record and record.",
     "notRecordable": "You can not record and record.",
-    "videoUrl": "발표 영상 주소"
+    "videoUrl": "Video url"
   },
   "keynote": {
     "title": "Keynote"
@@ -54,8 +56,10 @@
   },
   "tutorial": {
     "title": "Tutorial",
-    "desc1": "Tutorials are educational programs for beginners, or challengers for new era. Tutorial mentors and tutors will guide you to easy way of learning. We recommend tutorials for beginner programmers or Python strangers.",
-    "desc2": "When an organization applies to host a tutorial session, additional agreement with PyCon Korea Organizing Team is required."
+    "desc1-1": "Tutorials are educational programs for beginners, or challengers for new era. Tutorial mentors and tutors will guide you to easy way of learning. We recommend tutorials for beginner programmers or Python strangers.",
+    "desc1-2": "When an organization applies to host a tutorial session, additional agreement with PyCon Korea Organizing Team is required.",
+    "header2": "List of tutorials",
+    "desc2": "There are also various tutorials this year.🧙‍♀️ 🧙‍♂️"
   },
   "youngCoder": {
     "title": "Young Coder",
@@ -65,8 +69,8 @@
     "desc1-3": "초등학교 5학년부터 고등학생까지 소프트웨어란 무엇이고, 어떻게 동작하는 지, 모두가 사랑하는 \"파이썬\"이라는 언어를 통해 함께 알아봅시다!",
     "header2": "왜 프로그래밍을 배우나요?",
     "desc2-1": "여러분들이 모두 개발자가 될 필요는 없어요. 하지만 오늘날 프로그래밍 언어를 이해하는 것은 영어를 잘하는 것만큼 여러분들을 더 훌륭한 사람으로 만들어줄 수 있답니다.",
-    "desc2-2": "또한 프로그래밍을 배운다는 것은 컴퓨터가 어떻게 동작하는지, 그리고 IT가 세상을 어떻게 변화시켜나가는 지 이해하게 만들어줍니다.",
-    "desc2-3": "영어를 쓰는 사람들의 문화와 삶의 방식을 이해할 수 있게 되는 것 처럼요!",
+    "desc2-2": "또한 프로그래밍을 배운다는 것은 컴퓨터가 어떻게 동작하는지 그리고 IT가 세상을 어떻게 변화시켜나가는 지 이해하게 만들어줍니다.",
+    "desc2-3": "영어를 쓰는 사람들의 문화와 삶의 방식을 이해할 수 있게 되는 것처럼요!",
     "desc2-4": "게다가 프로그래밍이라는 것은 상당히 합리적이고 논리적이어서, 이것을 배우면 여러분들에게 어떠한 문제가 닥쳐도 가장 알맞은 해결방법을 더욱 정확하고 빠르게 찾을 수 있는 사고력을 길러준답니다.",
     "header3": "무엇을 배우나요?",
     "desc3-1": "마치 영어를 배우듯 쉽게 배울 수 있는 \"파이썬\"은 굉장히 강력한 프로그래밍 언어입니다. ",

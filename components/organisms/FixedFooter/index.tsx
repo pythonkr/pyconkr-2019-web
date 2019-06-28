@@ -99,12 +99,15 @@ class FixedFooter extends React.Component<PropsType> {
               </Link>
               <MobileLanguageButton
                 onClick={() => {
-                  window.location.assign(
-                    `${window.location.pathname}?${URL_LOCALE_KEY}=${
-                        currentLocale === LOCALE_KEY_EN
-                          ? LOCALE_KEY_KR
-                          : LOCALE_KEY_EN
-                    }`)
+                    let query = window.location.search ? window.location.search : '?'
+                    const locale_value = (currentLocale === LOCALE_KEY_EN ? LOCALE_KEY_KR : LOCALE_KEY_EN)
+                    if (query.indexOf(URL_LOCALE_KEY) !== -1) {
+                        query = query.replace(currentLocale, locale_value)
+                    } else {
+                        query = `${query}&${URL_LOCALE_KEY}=${locale_value}`
+                    }
+                    window.location.assign(
+                        `${window.location.pathname}${query}`)
               }}>
                 {currentLocale === LOCALE_KEY_EN
                   ? localeMap[LOCALE_KEY_KR]
@@ -116,12 +119,15 @@ class FixedFooter extends React.Component<PropsType> {
             <SNSLinkList color='white' />
             <LanguageButton
               onClick={() => {
-                window.location.assign(
-                  `${window.location.pathname}?${URL_LOCALE_KEY}=${
-                      currentLocale === LOCALE_KEY_EN
-                        ? LOCALE_KEY_KR
-                        : LOCALE_KEY_EN
-                  }`)
+                    let query = window.location.search ? window.location.search : '?'
+                    const locale_value = (currentLocale === LOCALE_KEY_EN ? LOCALE_KEY_KR : LOCALE_KEY_EN)
+                    if (query.indexOf(URL_LOCALE_KEY) !== -1) {
+                        query = query.replace(currentLocale, locale_value)
+                    } else {
+                        query = `${query}&${URL_LOCALE_KEY}=${locale_value}`
+                    }
+                    window.location.assign(
+                        `${window.location.pathname}${query}`)
             }}>
               {currentLocale === LOCALE_KEY_EN
                 ? localeMap[LOCALE_KEY_KR]

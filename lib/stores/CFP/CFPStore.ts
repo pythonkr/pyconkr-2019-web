@@ -39,6 +39,10 @@ export class CFPStore {
 
     @action
     setProposal(proposal: any) {
+        if(!proposal){
+          this.isProposalInitialized = false
+          return  
+        }
         set(this.proposal, proposal as { [key: string]: any })
         if(proposal.category){
           this.proposal.setCategoryId(proposal.category.id)
@@ -46,7 +50,7 @@ export class CFPStore {
         if(proposal.difficulty){
           this.proposal.setDifficultyId(proposal.difficulty.id)
         }
-        this.isProposalInitialized = proposal !== null
+        this.isProposalInitialized = true
     }
 
     @action

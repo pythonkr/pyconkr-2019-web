@@ -11,7 +11,7 @@ type StatusBarType = 'scheduled' | 'ongoing' | 'closed'
 interface Props {
   router: RouterProps,
   text?: string
-  titleIntlKey: string,
+  titleIntlKey?: string,
   openDate: DateDTO,
   closeDate?: DateDTO,
   link: string,

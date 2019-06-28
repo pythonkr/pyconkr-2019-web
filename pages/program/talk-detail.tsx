@@ -1,14 +1,9 @@
-import styled from '@emotion/styled'
 import {
   ContentTableWrapper,
   H1,
   H2,
-  isBold,
-  isHeader,
   Section,
   TableList,
-  TableListRow,
-  TableListRowContent,
 } from 'components/atoms/ContentWrappers'
 import { Loading } from 'components/atoms/Loading'
 import MarkdownWrapper from 'components/atoms/MarkdownWrapper'
@@ -19,51 +14,16 @@ import i18next from 'i18next'
 import { inject, observer } from 'mobx-react'
 import { withRouter } from 'next/router'
 import React from 'react'
-import { FORM_LABEL_GRAY } from 'styles/colors'
-import { mobileWidth } from 'styles/layout'
 import { withNamespaces } from '../../i18n'
 import { StoresType } from '../_app'
-import { Tag } from './talks'
+import { Tag } from 'components/molecules/Program/List'
+import { ProgramTableRow, SpeakerSpan } from 'components/molecules/Program/Detail'
+import ProfileCard from 'components/molecules/ProfileCard'
 
 export type PropsType = {
   stores: StoresType;
   t: i18next.TFunction;
 }
-
-const TalkTableRow = (props) => <>
-  <TableListRow>
-    <TableListRowContent className={isHeader}>
-      { props.header }
-    </TableListRowContent>
-    <TableListRowContent
-      className={props.bold ? isBold : ''}
-      color={props.color}
-    >
-      { props.content }
-    </TableListRowContent>
-  </TableListRow>
-</>
-
-const SocialNetworkList = styled.ul`
-display: flex;
-margin-top: 20px;
-`
-const SocialNetworkListItem = styled.li`
-a {
-  display: inline-block;
-  padding: 10px;
-  cursor: pointer;
-}
-`
-
-const Presenter = styled.span`
-  font-size: 32px;
-  color: ${FORM_LABEL_GRAY};
-
-  @media (max-width: ${mobileWidth}) {
-    font-size: 26px;
-  }
-`
 
 @(withRouter as any)
 @inject('stores')
@@ -110,93 +70,71 @@ export class TalkDetail extends React.Component<PropsType> {
       >
         <H1 style={{ maxWidth: '600px' }}>
           { presentation.name }<br/>
-          <Presenter>{this.getSpeakerName(presentation)}</Presenter><br/>
+          <SpeakerSpan>{this.getSpeakerName(presentation)}</SpeakerSpan><br/>
         </H1>
         <ContentTableWrapper>
           <TableList>
-            <TalkTableRow
+            <ProgramTableRow
               header={t('program:talkDetail.category')}
-              content={ presentation.category.name }
-              bold
-            />
-            <TalkTableRow
-              header={t('program:talkDetail.difficulty')}
-              content={ <Tag difficulty={presentation.difficulty.id}>{presentation.difficulty.name}</Tag> }/>
-            <TalkTableRow
-              header={t('program:talkDetail.language')}
-              content={ presentation.language }/>
-            <TalkTableRow
-              header={t('program:talkDetail.background')}
-              content={ presentation.backgroundDesc }/>
+              bold>
+            { presentation.category.name }
+            </ProgramTableRow>
+
+            <ProgramTableRow
+              header={t('program:common.difficulty')} >
+              <Tag className={presentation.difficulty.nameEn.toLowerCase()}>
+                {presentation.difficulty.name}
+              </Tag>
+            </ProgramTableRow>
+            <ProgramTableRow
+              header={t('program:common.language')}>
+              { presentation.language }
+            </ProgramTableRow>
+            <ProgramTableRow
+              header={t('program:talkDetail.background')}>
+              {presentation.backgroundDesc }
+            </ProgramTableRow>
             {
               presentation.startedAt &&
-              <TalkTableRow
-                header={t('program:talkDetail.datetime')}
-                content={ `${formatDateInWordsWithWeekdayAndTime(presentation.startedAt)}~${formatDateInWordsWithWeekdayAndTime(presentation.finishedAt)}` }/>
+              <ProgramTableRow
+                header={t('program:common.datetime')} >
+                `${formatDateInWordsWithWeekdayAndTime(presentation.startedAt)}~${formatDateInWordsWithWeekdayAndTime(presentation.finishedAt)}` }
+              </ProgramTableRow>
             }
-            <TalkTableRow
+            <ProgramTableRow
               header={t('program:talkDetail.videoPublic')}
-              content={ recordable }
-              color={presentation.recordable ? null : 'red'}
-            />
+              color={presentation.recordable ? null : 'red'} >
+              { recordable }
+            </ProgramTableRow>
             {
               presentation.slideUrl &&
-                <TalkTableRow
-                  header={t('program:talkDetail.slideUrl')}
-                  content={ presentation.slideUrl }/>
+                <ProgramTableRow
+                  header={t('program:talkDetail.slideUrl')} >
+                  { presentation.slideUrl }
+                </ProgramTableRow>
             }
           </TableList>
         </ContentTableWrapper>
         <Section style={{ marginTop: '36px'}}>
-          {/* <H2>발표 내용</H2> */}
-          <MarkdownWrapper contents={presentation.desc || presentation.cfpReviewSet[0].presentation.detailDesc}/>
+          <MarkdownWrapper contents={presentation.desc}/>
         </Section>
         <Section>
-          <H2>{presentation.owner.profile.name} 님</H2>
-          <img
-            width='160px'
-            height='160px'
-            src={presentation.owner.profile.avatarUrl}
+          <ProfileCard
+            profileImg={presentation.owner.profile.image}
+            name={presentation.owner.profile.name}
+            organization={presentation.owner.profile.organization}
+            bio={presentation.owner.profile.bio || 'Thank you for your contribution.'}
           />
-          {(presentation.owner.profile.linkedInUrl ||
-          presentation.owner.profile.twitterUrl ||
-          presentation.owner.profile.linkedInUrl) &&
-          <SocialNetworkList>
-            {presentation.owner.profile.githubUrl && <SocialNetworkListItem>
-              <a href={presentation.owner.profile.githubUrl}>Github</a>
-            </SocialNetworkListItem>}
-            {presentation.owner.profile.twitterUrl && <SocialNetworkListItem>
-              <a href={presentation.owner.profile.twitterUrl}>Twitter</a>
-            </SocialNetworkListItem>}
-            {presentation.owner.profile.linkedInUrl && <SocialNetworkListItem>
-              <a href={presentation.owner.profile.linkedInUrl}>LinkedIn</a>
-            </SocialNetworkListItem>}
-          </SocialNetworkList>}
-          <MarkdownWrapper contents={presentation.owner.profile.desc}/>
+          {
+            presentation.secondaryOwner &&
+              <ProfileCard
+                profileImg={presentation.secondaryOwner.profile.image}
+                name={presentation.secondaryOwner.profile.name}
+                organization={presentation.secondaryOwner.profile.organization}
+                bio={presentation.secondaryOwner.profile.bio || 'Thank you for your contribution.'}
+              />
+          }
         </Section>
-        {!!presentation.secondaryOwner && <Section>
-          <H2>{presentation.secondaryOwner.profile.name} 님</H2>
-          <img
-            width='160px'
-            height='160px'
-            src={presentation.secondaryOwner.profile.avatarUrl}
-          />
-          {(presentation.secondaryOwner.profile.linkedInUrl ||
-          presentation.secondaryOwner.profile.twitterUrl ||
-          presentation.secondaryOwner.profile.linkedInUrl) &&
-          <SocialNetworkList>
-            {presentation.secondaryOwner.profile.githubUrl && <SocialNetworkListItem>
-              <a href={presentation.secondaryOwner.profile.githubUrl}>Github</a>
-            </SocialNetworkListItem>}
-            {presentation.secondaryOwner.profile.twitterUrl && <SocialNetworkListItem>
-              <a href={presentation.secondaryOwner.profile.twitterUrl}>Twitter</a>
-            </SocialNetworkListItem>}
-            {presentation.secondaryOwner.profile.linkedInUrl && <SocialNetworkListItem>
-              <a href={presentation.secondaryOwner.profile.linkedInUrl}>LinkedIn</a>
-            </SocialNetworkListItem>}
-          </SocialNetworkList>}
-          <MarkdownWrapper contents={presentation.secondaryOwner.profile.desc}/>
-        </Section>}
       </PageTemplate>
     )
   }
