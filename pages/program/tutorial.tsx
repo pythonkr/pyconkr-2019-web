@@ -8,9 +8,11 @@ import React from 'react'
 import { paths, programMenu } from 'routes/paths'
 import { withNamespaces } from '../../i18n'
 import {Loading} from 'components/atoms/Loading'
+import _ from 'lodash'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 import { ProgramUl, ProgramItem } from 'components/molecules/Program/List'
+import { AlertBar } from 'components/atoms/AlertBar'
 
 
 const TUTORIALS = gql`
@@ -37,6 +39,7 @@ export type PropsType = {
 
 const TutorialList = (props) => {
   const { tutorials }  = props
+  
   return (<>
     <ProgramUl>
       {
@@ -84,6 +87,12 @@ export class Tutorial extends React.Component<PropsType> {
           <Query query={TUTORIALS}>
             {({ loading, error, data }) => {
               if (loading || error) return (<Loading width={50} height={50}/>);
+              const tutorials = data.tutorials
+              if(_.isEmpty(tutorials)){
+                return (
+                    <AlertBar text={t('program:tutorial.waitingAlert')} />
+                )
+              }
               return (
                 <TutorialList tutorials={ data.tutorials }/>
               )

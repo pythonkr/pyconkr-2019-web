@@ -59,7 +59,8 @@
     "desc1-1": "Tutorials are educational programs for beginners, or challengers for new era. Tutorial mentors and tutors will guide you to easy way of learning. We recommend tutorials for beginner programmers or Python strangers.",
     "desc1-2": "When an organization applies to host a tutorial session, additional agreement with PyCon Korea Organizing Team is required.",
     "header2": "List of tutorials",
-    "desc2": "There are also various tutorials this year.🧙‍♀️ 🧙‍♂️"
+    "desc2": "There are also various tutorials this year.🧙‍♀️ 🧙‍♂️",
+    "waitingAlert": "The tutorial has not been opened yet. It will be notified through the Facebook, Twitter, and homepage at the time of opening. 👩‍🏫 👨‍🏫"
   },
   "youngCoder": {
     "title": "Young Coder",

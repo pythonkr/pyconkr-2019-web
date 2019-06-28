@@ -77,12 +77,15 @@ const TutorialDetailContent = (props) => {
       </H1>
       <ContentTableWrapper>
         <TableList>
-          <ProgramTableRow
-            header={t('program:common.difficulty')} >
-            <Tag className={tutorial.difficulty.nameEn.toLowerCase()}>
-              {tutorial.difficulty.name}
-            </Tag>
-          </ProgramTableRow>
+          {
+            tutorial.difficulty &&
+            <ProgramTableRow
+              header={t('program:common.difficulty')} >
+              <Tag className={tutorial.difficulty.nameEn.toLowerCase()}>
+                {tutorial.difficulty.name}
+              </Tag>
+            </ProgramTableRow>
+          }
             
           <ProgramTableRow
             header={t('program:common.language')} >
