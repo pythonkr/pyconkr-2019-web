@@ -1,25 +1,20 @@
-import styled from '@emotion/styled'
 import {
   ContentTableWrapper,
   H1,
-  H2,
   Section,
   TableList,
 } from 'components/atoms/ContentWrappers'
+import {formatDateInWordsWithWeekdayAndTime} from 'utils/formatDate'
 import {PageDefaultPropsType} from 'types/PageDefaultPropsType'
 import { Loading } from 'components/atoms/Loading'
 import MarkdownWrapper from 'components/atoms/MarkdownWrapper'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
-import i18next from 'i18next'
 import { inject, observer } from 'mobx-react'
 import { withRouter } from 'next/router'
 import React from 'react'
-import { FORM_LABEL_GRAY } from 'styles/colors'
-import { mobileWidth } from 'styles/layout'
 import { withNamespaces } from '../../i18n'
-import { StoresType } from '../_app'
 import { Tag } from 'components/molecules/Program/List'
 import { ProgramTableRow, SpeakerSpan } from 'components/molecules/Program/Detail'
 import ProfileCard from 'components/molecules/ProfileCard'

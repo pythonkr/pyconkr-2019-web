@@ -1,10 +1,10 @@
 import {
   ContentTableWrapper,
   H1,
-  H2,
   Section,
   TableList,
 } from 'components/atoms/ContentWrappers'
+import {formatDateInWordsWithWeekdayAndTime} from 'utils/formatDate'
 import { Loading } from 'components/atoms/Loading'
 import MarkdownWrapper from 'components/atoms/MarkdownWrapper'
 import Footer from 'components/organisms/Footer'
