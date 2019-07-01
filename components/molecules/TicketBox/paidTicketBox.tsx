@@ -11,6 +11,7 @@ import i18next from 'i18next'
 import { TicketStatus } from 'lib/apollo_graphql/__generated__/globalTypes'
 
 type PropsType = {
+  stores: StoresType;
   ticket: TicketNode;
   t: i18next.TFunction;
   router: RouterProps;
@@ -39,7 +40,7 @@ class PaidTicketBox extends React.Component<PropsType, StatesType> {
   }
 
   render() {
-    const {router, ticket} = this.props
+    const {router, ticket, stores, t} = this.props
     const {id, product, amount, status, paidAt, cancelledAt} = ticket
     const {type, nameKo, nameEn, warningEn, warningKo, descEn, descKo, startAt, finishAt, cancelableDate} = product
     const isLanguageKorean = i18next.language === 'ko'
@@ -65,6 +66,8 @@ class PaidTicketBox extends React.Component<PropsType, StatesType> {
           cancelableDate={cancelableDate}
           id={id}
           router={router}
+          stores={stores}
+          t={t}
         />
       </TicketBoxWrapper>
     )

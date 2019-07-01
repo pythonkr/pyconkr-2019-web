@@ -6,6 +6,8 @@ import {isFuture} from 'date-fns'
 import {paths} from 'routes/paths'
 import {RouterProps} from 'next-server/router'
 import { TicketStatus } from 'lib/apollo_graphql/__generated__/globalTypes'
+import { StoresType } from 'pages/_app'
+import { toast } from 'react-toastify'
 
 type PropsType = {
   amount: number;
@@ -15,6 +17,8 @@ type PropsType = {
   cancelableDate: any;
   id: string;
   router: RouterProps;
+  stores: StoresType;
+  t: i18next.TFunction;
 }
 
 const TicketInfoWrapper = styled.div`
@@ -100,6 +104,24 @@ class TicketInfo extends React.Component<PropsType> {
     router.push(path)
   }
 
+  onRefund = async () => {
+    const {t} = this.props
+    const isRefund = confirm(t('ticket:common.refundWarning'))
+    if(!isRefund){
+      return
+    }
+    const {id} = this.props
+    const {ticketStore} = this.props.stores
+    const data = await ticketStore.cancelTicket(id)
+    
+    if (data.graphQLErrors) {
+      const { message } = data.graphQLErrors[0]
+      toast.error(message)
+    }
+
+    alert(t('ticket:common.refundSuccess'))
+  }
+
   render() {
     const {amount, paidAt, status, cancelledAt, cancelableDate} = this.props
 
@@ -108,7 +130,7 @@ class TicketInfo extends React.Component<PropsType> {
         <PriceText>{`₩ ${amount.toLocaleString()}`}</PriceText>
         <InfoText>paid at {formatDateInWordsWithWeekdayAndTime(paidAt)}</InfoText>
         {status === TicketStatus.CANCELLED ? <InfoText>cancelled at {formatDateInWordsWithWeekdayAndTime(cancelledAt)}</InfoText> : ''}
-        {isFuture(cancelableDate) ? <button>Refund</button> : ''}
+        {isFuture(cancelableDate) ? <button onClick={this.onRefund}>Refund</button> : ''}
         <button onClick={this.onDetail}>More</button>
       </TicketInfoWrapper>
     )
