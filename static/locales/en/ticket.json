@@ -17,6 +17,10 @@
         "notAgreeToOptions": "Please agree to the purchase",
         "notAgreeToTerms": "Please agree to the terms"
     },
+    "common": {
+        "refundWarning": "Do you want to refund ticket?",
+        "refundSuccess": "The ticket was successfully refunded."
+    },
     "purchased": "Purchased",
     "purchaseNotAvailable": "Not available",
     "overview": {

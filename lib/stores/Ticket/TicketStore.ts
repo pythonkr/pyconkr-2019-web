@@ -1,6 +1,7 @@
 import { PaymentInput, TicketStatus, TicketTypeNode } from 'lib/apollo_graphql/__generated__/globalTypes'
 import { client } from 'lib/apollo_graphql/client'
 import { buyTicket } from 'lib/apollo_graphql/mutations/buyTicket'
+import { cancelTicket } from 'lib/apollo_graphql/mutations/cancelTicket'
 import { ConferenceProductType, getConferenceProducts } from 'lib/apollo_graphql/queries/getConferenceProducts'
 import { getMyTicket, MyTicketNode } from 'lib/apollo_graphql/queries/getMyTicket'
 import { getMyTickets, TicketNode } from 'lib/apollo_graphql/queries/getMyTickets'
@@ -195,6 +196,19 @@ export class TicketStore {
       } catch (err) {
         this.setIsSubmitPayment(false)
 
+        return err
+      }
+    }
+
+    @action
+    cancelTicket = async (ticketId: any) => {
+      try{
+        const data = await cancelTicket(client)({
+          ticketId
+        }) 
+        this.retrieveMyTickets()
+        return data
+      } catch (err) {
         return err
       }
     }
