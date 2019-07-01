@@ -33,6 +33,12 @@ const TicketInformationWrapper = styled.div`
     color: #878d91;
   }
 
+  p.warning {
+    font-size: 12px;
+    color: #ec5967;
+    margin: 8px 0;
+  }
+
   select {
     margin: 5px 0 29px 0;
     width: 80%;
@@ -133,6 +139,7 @@ class ConferenceTicketOption extends React.Component<PropsType> {
             <TicketInformationWrapper>
                 <h1>{title}</h1>
                 <p className='guide'>{t('ticket:conference.option.tshirtSize')}</p>
+                <p className='warning'>{t('ticket:conference.option.tshirtWarning')}</p>
                 <SelectBox
                   selectedValue={tshirtsize}
                   options={tshirtOptions}

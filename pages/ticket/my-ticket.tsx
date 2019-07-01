@@ -48,9 +48,14 @@ export default class MyTickets extends React.Component<PageDefaultPropsType> {
         <H1><IntlText intlKey='ticket.myTickets.title'>
           티켓 상세
         </IntlText></H1>
-        <Paragraph><IntlText intlKey='ticket.myTickets.description'>
-          내가 구매한/취소한 티켓의 상세 내역을 확인합니다.
-        </IntlText></Paragraph>
+        <Paragraph>
+          <IntlText intlKey='ticket.myTickets.description'>
+            내가 구매한/취소한 티켓의 상세 내역을 확인합니다.
+          </IntlText><br/>
+          <IntlText intlKey='ticket:conference.option.tshirtWarning'>
+            티셔츠 사이즈는 참고용이며 현장에서 상황에 따라 입력한 사이즈 제공이 어려울 수 있습니다.
+          </IntlText>
+        </Paragraph>
         <Section>
           {!currentTicket ? '잘못된 요청입니다' : <DetailBox ticket={currentTicket}/>}
         </Section>
