@@ -26,6 +26,7 @@ class MyTicketList extends React.Component<PropsType> {
     return myTickets.map(ticket => {
       return (
         <PaidTicketBox
+          stores={stores}
           ticket={ticket}
           t={t}
           router={router}
