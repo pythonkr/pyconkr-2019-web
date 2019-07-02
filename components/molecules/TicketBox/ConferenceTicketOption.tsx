@@ -125,10 +125,6 @@ const tshirtOptions = [
     value: '3XL(115)',
     text: '3XL(115)'
   },
-  {
-    value: '4XL(120)',
-    text: '4XL(120)'
-  },
 ]
 class ConferenceTicketOption extends React.Component<PropsType> {
     render() {
