@@ -102,32 +102,32 @@ const tshirtOptions = [
     text: 'Select T-shirt size'
   },
   {
-    value: 'S(85)',
-    text: 'S(85)'
+    value: 'S(90)',
+    text: 'S(90)'
   },
   {
-    value: 'M(90)',
-    text: 'M(90)'
+    value: 'M(95)',
+    text: 'M(95)'
   },
   {
-    value: 'L(95)',
-    text: 'L(95)'
+    value: 'L(100)',
+    text: 'L(100)'
   },
   {
-    value: 'XL(100)',
-    text: 'XL(100)'
+    value: 'XL(105)',
+    text: 'XL(105)'
   },
   {
-    value: '2XL(105)',
-    text: '2XL(105)'
+    value: '2XL(110)',
+    text: '2XL(110)'
   },
   {
-    value: '3XL(110)',
-    text: '3XL(110)'
+    value: '3XL(115)',
+    text: '3XL(115)'
   },
   {
-    value: '4XL(115)',
-    text: '4XL(115)'
+    value: '4XL(120)',
+    text: '4XL(120)'
   },
 ]
 class ConferenceTicketOption extends React.Component<PropsType> {
