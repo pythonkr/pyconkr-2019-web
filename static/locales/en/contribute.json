@@ -333,6 +333,7 @@
     "header3": "Schedule",
     "desc3-1": "Application period",
     "desc3-2": "Announce",
-    "desc3-3": "Volunteers can apply through the application form."
+    "desc3-3": "Volunteers can apply through the application form.",
+    "apply": "Apply for a volunteer"
   }
 }
