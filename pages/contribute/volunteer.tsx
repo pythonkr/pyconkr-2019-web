@@ -1,16 +1,14 @@
-import { H1, H2, Ul, Li, Paragraph, Section } from 'components/atoms/ContentWrappers'
-import styled from '@emotion/styled'
+import { H1, H2, Li, Paragraph, Section, Ul } from 'components/atoms/ContentWrappers'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
+import i18next from 'i18next'
 import _ from 'lodash'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
-import { StoresType } from '../_app'
-import i18next from 'i18next'
-import { withNamespaces } from '../../i18n'
-import Link from 'next/link'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
+import { withNamespaces } from '../../i18n'
+import { StoresType } from '../_app'
 
 export type PropsType = {
   stores: StoresType;
@@ -20,12 +18,16 @@ export type PropsType = {
 @inject('stores')
 @observer
 export class Volunteer extends React.Component<PropsType> {
-  async componentDidMount() {
+  static async getInitialProps() {
+    return {
+      namespacesRequired: ['program'],
+    }
   }
   render() {
     const { stores, t } = this.props
     const { volunteerRecruitingStartAt, volunteerRecruitingFinishAt, volunteerAnnounceAt } = stores.scheduleStore.schedule
     const title = t('contribute:volunteer.title')
+
     return (
       <PageTemplate
         header={<Header title={t('common:pageTitle', {title})} intlKey='' />}
@@ -68,4 +70,4 @@ export class Volunteer extends React.Component<PropsType> {
   }
 }
 
-export default withNamespaces(['sponsor'])(Volunteer)
+export default withNamespaces(['contribute'])(Volunteer)
