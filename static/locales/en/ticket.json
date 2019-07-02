@@ -96,7 +96,7 @@
             "cardNumberPlaceholder": "Without -",
             "expiryLabel": "Expiry Month/Year",
             "birthLabel": "Birth Date",
-            "birthPlaceholder": "YYYYMMDD",
+            "birthPlaceholder": "YYMMDD",
             "pwd2digitLabel": "Password"
         }
     }

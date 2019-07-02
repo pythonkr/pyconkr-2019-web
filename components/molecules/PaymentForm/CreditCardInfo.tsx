@@ -181,7 +181,7 @@ class CreditCardInfo extends React.Component<PropsType> {
               fontSize: '20px',
               letterSpacing: '3px'
             }}
-            maxLength={6}
+            maxLength={10}
             disabled={!isDomesticCard}
           />
         </FormHalfBox>
