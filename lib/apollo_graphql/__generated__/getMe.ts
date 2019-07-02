@@ -22,7 +22,7 @@ export interface getMe_me_profile {
   phone: string;
   organization: string;
   nationality: string;
-  image: any | null;
+  image: string | null;
   avatarUrl: string;
   blogUrl: string;
   githubUrl: string;

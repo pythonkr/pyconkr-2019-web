@@ -22,7 +22,7 @@ export interface UpdateAgreement_updateAgreement_user_profile {
   phone: string;
   organization: string;
   nationality: string;
-  image: any | null;
+  image: string | null;
   avatarUrl: string;
 }
 

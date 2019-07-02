@@ -37,6 +37,7 @@ export enum TicketStatus {
 export enum TicketTypeNode {
   CHILD_CARE = "CHILD_CARE",
   CONFERENCE = "CONFERENCE",
+  GROUP_CONFERENCE = "GROUP_CONFERENCE",
   HEALTH_CARE = "HEALTH_CARE",
   SPRINT = "SPRINT",
   TUTORIAL = "TUTORIAL",

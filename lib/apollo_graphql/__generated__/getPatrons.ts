@@ -16,7 +16,7 @@ export interface getPatrons_patrons {
   bioKo: string | null;
   bioEn: string | null;
   organization: string;
-  image: any | null;
+  image: string | null;
   avatarUrl: string;
 }
 

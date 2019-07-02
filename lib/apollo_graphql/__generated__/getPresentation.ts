@@ -13,7 +13,7 @@ export interface getPresentation_presentation_owner_profile {
   name: string;
   nameKo: string | null;
   nameEn: string | null;
-  image: any | null;
+  image: string | null;
   avatarUrl: string;
   bio: string;
   bioKo: string | null;
@@ -40,7 +40,7 @@ export interface getPresentation_presentation_secondaryOwner_profile {
   name: string;
   nameKo: string | null;
   nameEn: string | null;
-  image: any | null;
+  image: string | null;
   avatarUrl: string;
   bio: string;
   bioKo: string | null;
