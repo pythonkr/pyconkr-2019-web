@@ -19,9 +19,9 @@ interface Props {
   to?: string,
   outlink?: boolean,
   onClick?: VoidFunction,
-  intlKey: string,
+  intlKey?: string,
   title?: string,
-  children: string,
+  children?: string,
   [index: string]: any
 }
 
