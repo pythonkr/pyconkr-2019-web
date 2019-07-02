@@ -18,7 +18,8 @@
         "notAgreeToTerms": "참가자 약관에 동의하지 않으셨습니다."
     },
     "common": {
-        "refundWarning": "정말로 환불하시겠습니까?"
+        "refundWarning": "정말로 환불하시겠습니까?",
+        "refundSuccess": "환불이 성공적으로 완료되었습니다"
     },
     "purchased": "구매완료",
     "purchaseNotAvailable": "구매불가",
