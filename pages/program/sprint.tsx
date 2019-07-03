@@ -1,5 +1,5 @@
 import { Button } from 'components/atoms/Button'
-import { ContentButtonWrapper, H1, Paragraph, Section } from 'components/atoms/ContentWrappers'
+import { ContentButtonWrapper, H1, H2, Paragraph, Section } from 'components/atoms/ContentWrappers'
 import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
@@ -7,11 +7,51 @@ import PageTemplate from 'components/templates/PageTemplate'
 import i18next from 'i18next'
 import _ from 'lodash'
 import React from 'react'
-import { programMenu } from 'routes/paths'
+import { paths, programMenu } from 'routes/paths'
 import { withNamespaces } from '../../i18n'
+import {Loading} from 'components/atoms/Loading'
+import gql from 'graphql-tag'
+import { Query } from 'react-apollo'
+import { ProgramUl, ProgramItem } from 'components/molecules/Program/List'
+import { AlertBar } from 'components/atoms/AlertBar'
+
+const SPRINTS = gql`
+query Sprints {
+  sprints {
+    id
+    name
+    owner {
+      profile {
+        name
+      }
+    }
+  }
+}
+`
 
 export type PropsType = {
   t: i18next.TFunction;
+}
+
+const SprintList = (props) => {
+  const { sprints }  = props
+  
+  return (<>
+    <ProgramUl>
+      {
+        sprints.map(({id, name, owner}) => {
+          const href = `${paths.program.sprintDetail}?id=${id}`
+          return (
+            <ProgramItem
+              key={ id } 
+              href={href}
+              speakerName={owner ? owner.profile.name : ''}
+              name={name} />
+          )
+        })
+      }
+    </ProgramUl>
+  </>)
 }
 
 export class Sprint extends React.Component<PropsType> {
@@ -30,10 +70,10 @@ export class Sprint extends React.Component<PropsType> {
         </H1>
         <Section>
           <Paragraph>
-            { t('program:sprint.desc1') }
+            { t('program:sprint.desc1-1') }
           </Paragraph>
           <Paragraph>
-            { t('program:sprint.desc2') }
+            { t('program:sprint.desc1-2') }
           </Paragraph>
           <ContentButtonWrapper>
             <Button
@@ -42,6 +82,31 @@ export class Sprint extends React.Component<PropsType> {
               outlink
             >스프린트 진행 신청하기</Button>
           </ContentButtonWrapper>
+        </Section>
+        <Section>
+          <H2>{ t('program:sprint.header2') }</H2>
+          <Paragraph>{ t('program:sprint.desc2') }</Paragraph>
+          <Query query={SPRINTS}>
+            {({ loading, error, data }) => {
+              if (loading || error) 
+                return (<Loading width={50} height={50}/>);
+              const sprints = data.sprints
+              if(_.isEmpty(sprints)){
+                return (
+                    <AlertBar text={ t('program:common.waitingAlert') } />
+                )
+              }
+              return (
+                <SprintList sprints={ data.sprints }/>
+              )
+            }}
+          </Query>
+        </Section>
+        <Section>
+          <H2>{t('common:contact')}</H2>
+          <Paragraph>
+            <a href='mailto: program@pycon.kr'>program@pycon.kr</a>
+          </Paragraph>
         </Section>
       </PageTemplate>
     )
