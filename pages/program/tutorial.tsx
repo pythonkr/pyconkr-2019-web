@@ -86,7 +86,8 @@ export class Tutorial extends React.Component<PropsType> {
           <Paragraph>{ t('program:tutorial.desc2') }</Paragraph>
           <Query query={TUTORIALS}>
             {({ loading, error, data }) => {
-              if (loading || error) return (<Loading width={50} height={50}/>);
+              if (loading || error) 
+                return (<Loading width={50} height={50}/>);
               const tutorials = data.tutorials
               if(_.isEmpty(tutorials)){
                 return (
