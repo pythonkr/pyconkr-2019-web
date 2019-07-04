@@ -84,17 +84,15 @@ export class ConferenceTicket extends React.Component<PageDefaultPropsType> {
             <Li>{ t('ticket:conference.desc2-2-3') }</Li>
             <Li>{ t('ticket:conference.desc2-2-4') }</Li>
             <Li>{ t('ticket:conference.desc2-2-5') }</Li>
-            <Li>
-              <Ul>
-                <Li>{ t('ticket:conference.desc2-2-5-1') }</Li>
-                <Li>{ t('ticket:conference.desc2-2-5-2') }</Li>
-              </Ul>
-            </Li>
           </Ul>
           <H3>{ t('ticket:conference.header2-3') }</H3>
           <Paragraph>
             <strong style={{ fontWeight: 'bold', display: 'block' }}>{t('ticket:conference.desc2-3-1')}</strong>
             { t('ticket:conference.desc2-3-1-1') }
+          </Paragraph>
+          <Paragraph>
+            <strong style={{ fontWeight: 'bold', display: 'block' }}>{t('ticket:conference.desc2-3-2')}</strong>
+            { t('ticket:conference.desc2-3-2-1') }
           </Paragraph>
         </Section>
         <Section>
