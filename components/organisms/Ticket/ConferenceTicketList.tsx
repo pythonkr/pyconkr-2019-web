@@ -32,23 +32,15 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
     const {
       myTickets,
       retrieveMyTickets,
-      getMyConferenceTickets,
     } = stores.ticketStore
-    const myConferenceTicket = toJS(getMyConferenceTickets()[0])
 
     if (_.isEmpty(myTickets)) {
       await retrieveMyTickets()
-    }
-
-
-    if (!_.isEmpty(myConferenceTicket)) {
-      this.setState({ myConferenceTicket })
     }
   }
 
   renderTicketBoxList = () => {
     const { stores, router, t } = this.props
-    const { myConferenceTicket } = this.state
     const {
       conferenceProducts,
       setPrice,
@@ -56,7 +48,9 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
       getIsTicketStepExist,
       setTicketStep,
       setPayingTicket,
+      getMyConferenceTickets
     } = stores.ticketStore
+    const myConferenceTicket = toJS(getMyConferenceTickets()[0])
 
     return conferenceProducts.map((conferenceProduct) => {
       const { id, name, desc, warning, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut } = conferenceProduct
