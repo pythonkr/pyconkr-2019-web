@@ -3,7 +3,10 @@
     "difficulty": "Difficulty",
     "language": "Language",
     "speaker": "Speaker",
-    "datetime": "Datetime"
+    "datetime": "Datetime",
+    "numOfParticipants": "Num of participants",
+    "place": "Place",
+    "waitingAlert": "The program list has not been opened yet. It will be notified through the Facebook, Twitter, and homepage at the time of opening. 👩‍🏫 👨‍🏫"
   },
   "talks": {
     "title": "List of talks"
@@ -51,16 +54,19 @@
   },
   "sprint": {
     "title": "Sprint",
-    "desc1": "Sprints are intensive development session on an open source project of your choice, in a team environment. It's a time to come together with colleagues, old and new, to share what you've learned and apply it to an open source project. Is this your first time joining in Sprints? No problem! It will be the time that you learn directly from the open source contributors.",
-    "desc2": "Sprint sessions are not just limited to the projects using Python, all languages are welcome!"
+    "opensourceDesc": "Opensource Desc",
+    "opensourceUrl": "Opensource Url",
+    "desc1-1": "Sprints are intensive development session on an open source project of your choice, in a team environment. It's a time to come together with colleagues, old and new, to share what you've learned and apply it to an open source project. Is this your first time joining in Sprints? No problem! It will be the time that you learn directly from the open source contributors.",
+    "desc1-2": "Sprint sessions are not just limited to the projects using Python, all languages are welcome!",
+    "header2": "List of sprint",
+    "desc2": "There are also various sprints this year.🧙‍♀️ 🧙‍♂️"
   },
   "tutorial": {
     "title": "Tutorial",
     "desc1-1": "Tutorials are educational programs for beginners, or challengers for new era. Tutorial mentors and tutors will guide you to easy way of learning. We recommend tutorials for beginner programmers or Python strangers.",
     "desc1-2": "When an organization applies to host a tutorial session, additional agreement with PyCon Korea Organizing Team is required.",
     "header2": "List of tutorials",
-    "desc2": "There are also various tutorials this year.🧙‍♀️ 🧙‍♂️",
-    "waitingAlert": "The tutorial has not been opened yet. It will be notified through the Facebook, Twitter, and homepage at the time of opening. 👩‍🏫 👨‍🏫"
+    "desc2": "There are also various tutorials this year.🧙‍♀️ 🧙‍♂️"
   },
   "youngCoder": {
     "title": "Young Coder",

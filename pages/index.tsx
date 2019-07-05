@@ -429,12 +429,12 @@ class Index extends React.Component<PageDefaultPropsType> {
               </h2>
               <h3>
                 <IntlText intlKey='constant.pyconKorea.tutorial.schedule'>
-                  8월 16일
+                  8월 15-16일
                 </IntlText>
               </h3>
               <span>
                 <IntlText intlKey='constant.pyconKorea.tutorial.dayofweek'>
-                  금
+                  목-금
                 </IntlText>
               </span>
               <hr />
@@ -445,13 +445,13 @@ class Index extends React.Component<PageDefaultPropsType> {
                 </IntlText>
               </p>
               <ScheduleButtonsWrapper>
-                <Button
+                {/* <Button
                   intlKey='gnb.contribute.proposingATutorial'
                   to={paths.contribute.proposingATutorial}
                   fontSize={14}
                 >
                   튜토리얼 제안하기
-                </Button>
+                </Button> */}
               </ScheduleButtonsWrapper>
             </li>
             <li>
@@ -494,14 +494,14 @@ class Index extends React.Component<PageDefaultPropsType> {
                 >
                   발표안 제안하기
                 </Button> */}
-                <Button
+                {/* <Button
                   primary={false}
                   intlKey='gnb.contribute.proposalReview'
                   to={paths.contribute.proposalReview}
                   fontSize={14}
                 >
                   발표 제안 검토하기
-                </Button>
+                </Button> */}
               </ScheduleButtonsWrapper>
             </li>
           </ul>
