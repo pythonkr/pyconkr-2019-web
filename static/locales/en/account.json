@@ -18,5 +18,25 @@
   "contribution": {
     "title": "Proposal/Sponsor History",
     "desc": "It is the contents which you submitted or applied to PyCon Korea 2019."
+  },
+  "editCommon": {
+    "nameKo": "Name(Korean)",
+    "nameEn": "Name(English)",
+    "descKo": "Description(Korean)",
+    "descEn": "Description(English)",
+    "descLabel": "These are the contents to be described on the details page on the Pycon Official homepage. Details may be added or modified later.",
+    "editCompleteAlert": "Updated Successfully",
+    "errorAlert": "There is error. Please contact pyconkr@pycon.kr",
+    "updateButton": "Update"
+  },
+  "editTutorial": {
+    "title": "Edit tutorial detail",
+    "desc": "Edit tutorial details that are visible on the homepage.",
+    "tutorialNotExistAlert": "You are not tutorial owner."
+  },
+  "editSprint": {
+    "title": "Edit sprint detail",
+    "desc": "Edit sprint details that are visible on the homepage.",
+    "sprintNotExistAlert": "You are not sprint owner."
   }
 }
