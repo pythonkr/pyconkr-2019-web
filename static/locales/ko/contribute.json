@@ -1,4 +1,11 @@
 {
+  "constant": {
+    "temporarilySaved": "임시 저장",
+    "submitted": "제출 완료",
+    "edit": "수정 제출하기",
+    "finished": "마감",
+    "participant": "참여하기"
+  },
   "overview": {
     "pageTitle": "공헌 안내 :: 파이콘 한국 2019",
     "title": "파이콘 한국에 공헌하는 다양한 방법",
@@ -6,11 +13,14 @@
     "table": {
       "keynote": "키노트 발표자 추천",
       "talk": "발표안 제안",
+      "reviewCfp": "발표 제안 검토하기",
+      "sponsor": "스폰서 제안",
       "tutorial": "튜토리얼 제안",
       "sprint": "스프린트 제안",
       "volunteer": "자원봉사자 모집",
-      "lightingtalk": "라이트닝 토크 신청",
-      "moreDetail": "More detail"
+      "lightningtalk": "라이트닝 토크 신청",
+      "moreDetail": "자세히 보기",
+      "conferenceDays": "컨퍼런스 당일"
     }
   },
   "recommendKeynoteSpeaker": {

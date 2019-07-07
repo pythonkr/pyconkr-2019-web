@@ -66,7 +66,9 @@ export const paths = {
     privacyPolicy: '/account/privacy-policy',
     editproposal: {
       cfp: '/account/editproposal/cfp',
-      cfs: '/account/editproposal/cfs'
+      cfs: '/account/editproposal/cfs',
+      tutorial: '/account/editproposal/tutorial',
+      sprint: '/account/editproposal/sprint',
     }
   },
 }

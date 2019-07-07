@@ -95,13 +95,13 @@ const bannerForRowMap = {
 
 const NextArrow = (props) => <button {...props}>
   <svg width='100%' height='100%' viewBox='0 0 23 42' xmlns='http://www.w3.org/2000/svg'>
-    <path d='M1 1l20 19.84L1 41' stroke='#D0D2D3' strokeWidth='2' fill='none' fillRule='evenodd'/>
+    <path d='M1 1l20 19.84L1 41' stroke='#D0D2D3' strokeWidth='2' fill='none' fillRule='evenodd' />
   </svg>
 </button>
 
 const PrevArrow = (props) => <button {...props}>
   <svg width='100%' height='100%' viewBox='0 0 23 42' xmlns='http://www.w3.org/2000/svg'>
-    <path d='M21.84 1L2 20.84 21.84 41' stroke='#D0D2D3' strokeWidth='2' fill='none' fillRule='evenodd'/>
+    <path d='M21.84 1L2 20.84 21.84 41' stroke='#D0D2D3' strokeWidth='2' fill='none' fillRule='evenodd' />
   </svg>
 </button>
 
@@ -122,7 +122,7 @@ const sliderSettings = {
 @(withRouter as any)
 @observer
 class SponsorBannerSlide extends React.Component<PropsType> {
-  componentDidMount () {
+  componentDidMount() {
     const { stores } = this.props
     if (stores) {
       const { isInitialized } = stores.sponsorStore

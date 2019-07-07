@@ -2,13 +2,13 @@
 import styled from '@emotion/styled-base'
 import { Button } from 'components/atoms/Button'
 import { isBold, Td, Tr } from 'components/atoms/ContentWrappers'
-import { Contribution } from 'components/organisms/DefaultTable'
 import { differenceInCalendarDays, isFuture, isPast } from 'date-fns'
 import _ from 'lodash'
+import i18next from 'i18next'
 import React from 'react'
-import intl from 'react-intl-universal'
 import { mobileWidth } from 'styles/layout'
 import { formatDateInWords } from 'utils/formatDate'
+import { withNamespaces } from '../../i18n'
 
 const ShowDetailButton = styled(Button)`
 @media (max-width: ${mobileWidth}) {
@@ -20,9 +20,20 @@ text-align: center;
 }
 `
 
-type PropsType = Contribution
+type PropsType = {
+    t: i18next.TFunction;
+    title?: string;
+    openDate?: string;
+    closeDate?: string;
+    link?: string;
+    editLink?: string;
+    dateDescription?: string;
+    isMyContribution?: boolean;
+    isProposalSubmitted?: boolean;
+    isProposalAccepted?: boolean;
+}
 
-export default class ContributionTableRow extends React.Component<PropsType> {
+export class ContributionTableRow extends React.Component<PropsType> {
 
     getContributionClass () {
         const { openDate, closeDate } = this.props
@@ -34,7 +45,7 @@ export default class ContributionTableRow extends React.Component<PropsType> {
     }
 
     getContributionStatus () {
-        const { openDate, closeDate, link, isMyContribution, isProposalSubmitted } = this.props
+        const { t, openDate, closeDate, link, isMyContribution, isProposalSubmitted } = this.props
         const isContributionAvailable = openDate && link
         const isBeforeOpening = openDate && isFuture(openDate) && link
         const isFinished = closeDate && isPast(closeDate)
@@ -44,8 +55,8 @@ export default class ContributionTableRow extends React.Component<PropsType> {
         if (isMyContribution) {
             if (!_.isNil(isProposalSubmitted)) {
                 return !isProposalSubmitted
-                    ? '임시 저장'
-                    : `제출완료`
+                    ? t('contribute:constant.temporarilySaved')
+                    : t('contribute:constant.submitted')
             }
         }
 
@@ -55,41 +66,38 @@ export default class ContributionTableRow extends React.Component<PropsType> {
             const isBefore7days = daysDifference && daysDifference < 7
 
             return isBefore7days
-                ? intl.get('common.status.openBefore', { diff: daysDifference }).d(`모집 시작 D-${daysDifference}`)
-                : intl.get('common.status.preparing').d('준비 중')
+                ? t('common:status.openBefore', { diff: daysDifference })
+                : t('common:status.preparing')
         }
 
-        if (isFinished) return intl.get('common.status.closed').d('마감')
+        if (isFinished) return t('common:status.closed')
 
-        if (closeDate && differenceInCalendarDays(closeDate, now) < 7) {
+        if (closeDate && differenceInCalendarDays(closeDate, now) < 7 ) {
             const daysDifference = differenceInCalendarDays(closeDate, now)
-
-            return intl.get('common.status.closeAfter', { diff: daysDifference }).d(`마감 D-${ daysDifference}`)
+            return t('common:status.closeAfter', { diff: daysDifference }) 
         }
-
-        return intl.get('common.status.onProgress').d('모집 중')
+        return t('common:status.onProgress')
     }
 
     getShowDetailButtonTitle() {
-        const { openDate, closeDate, isProposalSubmitted, isMyContribution } = this.props
+        const { t, openDate, closeDate, isProposalSubmitted, isMyContribution } = this.props
         const isFinished = closeDate && isPast(closeDate)
         const isOngoing = openDate && isPast(openDate) && !isFinished
 
         if (isMyContribution && !_.isNil(isProposalSubmitted)) {
-            return  isProposalSubmitted ? '수정 제출하기' : '이어서 작성하기'
+            return  t('contribute:constant.edit')
         }
 
-        if (isFinished) return '마감'
+        if (isFinished) return t('contribute:constant.finished')
 
-        if (isOngoing) return '참여하기'
+        if (isOngoing) return t('contribute:constant.participant')
 
-        return '자세히 보기'
+        return t('contribute:overview.table.moreDetail')
     }
 
     renderShowDetailButton () {
         const { link, editLink, closeDate, isProposalSubmitted, isMyContribution, isProposalAccepted } = this.props
         const isFinished = closeDate && isPast(closeDate)
-        const buttonTitle = this.getShowDetailButtonTitle()
         const buttonLink = (
             isMyContribution &&
             !_.isNil(isProposalSubmitted) &&
@@ -101,12 +109,9 @@ export default class ContributionTableRow extends React.Component<PropsType> {
             <ShowDetailButton
                 size='small'
                 height={27}
-                intlKey='contribute.overview.table.moreDetail'
+                title={this.getShowDetailButtonTitle()}
                 to={buttonLink}
-                primary={!!(this.getContributionClass() === 'active')}
-            >
-                {buttonTitle}
-            </ShowDetailButton>
+                primary={!!(this.getContributionClass() === 'active')}/>
           )
         }
 
@@ -114,7 +119,7 @@ export default class ContributionTableRow extends React.Component<PropsType> {
     }
 
     render() {
-        const { title, intlKey, openDate, closeDate, dateDescription } = this.props
+        const { t, title, openDate, closeDate, dateDescription } = this.props
 
         return (
             <Tr
@@ -122,12 +127,13 @@ export default class ContributionTableRow extends React.Component<PropsType> {
                 className={this.getContributionClass()}
             >
                 <Td className={isBold}>
-                    { (intlKey && title) && intl.get(intlKey).d(title) }
+                    { title }
                 </Td>
                 <Td>
                     {dateDescription
-                        ? intl.get(dateDescription.intlKey).d(dateDescription.default)
-                        : `${openDate && formatDateInWords(openDate)} - ${(closeDate && formatDateInWords(closeDate)) || intl.get('common.status.untilSelected').d('마감 시까지')}`
+                        ? dateDescription
+                        : `${openDate && formatDateInWords(openDate)} - ${(closeDate && formatDateInWords(closeDate)) 
+                            || t('common:status.untilSelected')}`
                     }
                 </Td>
                 <Td>
@@ -140,3 +146,5 @@ export default class ContributionTableRow extends React.Component<PropsType> {
         )
     }
 }
+
+export default withNamespaces(['common', 'contribute'])(ContributionTableRow)

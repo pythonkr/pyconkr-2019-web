@@ -678,3 +678,10 @@ margin-right: 10px;
     width: 50%;
 }
 `
+
+export const InputDesc = styled.div`
+color: ${FORM_LABEL_GRAY};
+font-size: 12px;
+line-height: 1.8;
+margin-bottom: 5px;
+}`

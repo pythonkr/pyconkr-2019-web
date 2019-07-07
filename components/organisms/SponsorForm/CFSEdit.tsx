@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { Button } from 'components/atoms/Button'
-import { ContentTableWrapper, FormWrapper, SelectWrapper, Table, TBody, Td, Tr } from 'components/atoms/ContentWrappers'
+import { ContentTableWrapper, FormWrapper, SelectWrapper, Table, TBody, Td, Tr, InputDesc } from 'components/atoms/ContentWrappers'
 import { FlexSpaceBetweenWrapper } from 'components/atoms/FlexWrapper'
 import { IntlText } from 'components/atoms/IntlText'
 import { SponsorStore } from 'lib/stores/Sponsor/SponsorStore'
@@ -25,13 +25,7 @@ width: 45%;
 const SectionTitle = styled.div`
 margin-top: 20px;
 }`
-
-const InputDesc = styled.div`
-color: ${FORM_LABEL_GRAY};
-font-size: 12px;
-line-height: 1.8;
-margin-bottom: 5px;
-}`
+ 
 
 type PropsType = {
   sponsorStore: SponsorStore;

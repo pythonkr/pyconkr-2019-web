@@ -53,7 +53,7 @@ class CFS extends React.Component<{
 
     isProposalSubmitted = sponsorStore.proposal.submitted
     if (!isProposalSubmitted) {
-      Router.push(paths.contribute.proposingATalk)
+      Router.push(paths.sponsor.applicationForm)
     }
   }
 

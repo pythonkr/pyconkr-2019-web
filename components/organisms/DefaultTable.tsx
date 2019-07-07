@@ -34,7 +34,7 @@ export type Ticket = {
 
 type PropsType = {
     stores: StoresType;
-    renderTableRow(): any;
+    renderTableRow?(): any;
 }
 
 export default class DefaultTable extends React.Component<PropsType> {
@@ -45,7 +45,7 @@ export default class DefaultTable extends React.Component<PropsType> {
             <ContentTableWrapper>
                 <TableWithBg>
                     <TBody>
-                        {renderTableRow()}
+                        {renderTableRow? renderTableRow() : this.props.children}
                     </TBody>
                 </TableWithBg>
             </ContentTableWrapper>
