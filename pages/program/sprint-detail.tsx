@@ -27,7 +27,7 @@ query Sprint($id: Int!) {
     name
     desc
     language
-    numOfParticipants
+    programmingLanguage
     startedAt
     finishedAt
     opensourceDesc
@@ -88,10 +88,10 @@ const SprintDetailContent = (props) => {
             </ProgramTableRow>
           }
           {
-            sprint.numOfParticipants &&
+            sprint.programmingLanguage &&
             <ProgramTableRow
-              header={t('program:common.numOfParticipants')} >
-              { sprint.numOfParticipants }
+              header={t('program:sprint.programmingLanguage')} >
+              { sprint.programmingLanguage }
             </ProgramTableRow>
           }
           {
