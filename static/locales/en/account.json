@@ -17,13 +17,6 @@
   },
   "contribution": {
     "title": "Proposal/Sponsor History",
-    "desc": "It is the contents which you submitted or applied to PyCon Korea 2019.",
-    "talk": "Proposing a Talk",
-    "sponsor": "Proposing Sponsorship",
-    "tutorial": "Proposing a Tutorial",
-    "sprint": "Proposing a Sprint",
-    "volunteer": "Recruiting Volunteer",
-    "lightningTalk": "Proposing a Lighting Talk",
-    "conferenceDays": "Conference Days"
+    "desc": "It is the contents which you submitted or applied to PyCon Korea 2019."
   }
 }

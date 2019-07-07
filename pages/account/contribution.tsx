@@ -1,143 +1,154 @@
 
 import { H1, Paragraph } from 'components/atoms/ContentWrappers'
-import { IntlText } from 'components/atoms/IntlText'
+import {PageDefaultPropsType} from 'types/PageDefaultPropsType'
 import ContributionTableRow from 'components/molecules/ContributionTableRow'
-import DefaultTable, { Contribution } from 'components/organisms/DefaultTable'
+import DefaultTable from 'components/organisms/DefaultTable'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
 import _ from 'lodash'
 import { inject, observer } from 'mobx-react'
-import { RouterProps, withRouter } from 'next/router'
+import { withRouter } from 'next/router'
 import React from 'react'
 import { paths } from 'routes/paths'
 import { withNamespaces } from '../../i18n'
-import { StoresType } from '../_app'
+import gql from 'graphql-tag'
+import { Query } from 'react-apollo'
+import {Loading} from 'components/atoms/Loading'
 
-type PropsType = {
-    stores: StoresType;
-    router: RouterProps;
+const CONTRIBUTIONS = gql`
+query Contributions {
+  schedule {
+    id
+    presentationProposalStartAt
+    presentationProposalFinishAt
+    sponsorProposalStartAt
+    sponsorProposalFinishAt
+    tutorialProposalStartAt
+    tutorialProposalFinishAt
+    sprintProposalStartAt
+    volunteerRecruitingStartAt
+    volunteerRecruitingFinishAt
+    lightningTalkProposalStartAt
+    lightningTalkProposalFinishAt
+  }
+  myPresentationProposal {
+    id
+    submitted
+    accepted
+  }
+  isCfpReviewSubmitted
+  mySponsor {
+    id
+    submitted
+    accepted
+  }
+  myTutorials {
+    id
+    submitted
+    accepted
+  }
+  mySprints {
+    id
+    submitted
+    accepted
+  }
 }
+`
+
+const ContributionTable = (props: any) => {
+  const {t, stores} = props
+  return (
+    <Query query={CONTRIBUTIONS}>
+      {({ loading, error, data }) => {
+        if (loading || error) {
+          return (<Loading width={50} height={50}/>)
+        }
+        const { schedule, myPresentationProposal, mySponsor, myTutorials, mySprints} = data
+        return (
+          <DefaultTable stores={stores}>
+            <ContributionTableRow
+                title={ t('contribute:overview.table.talk') }
+                openDate={schedule.presentationProposalStartAt || ''}
+                closeDate={schedule.presentationProposalFinishAt || ''}
+                link={paths.contribute.proposingATalk || ''}
+                editLink={paths.account.editproposal.cfp || ''}
+                isMyContribution={myPresentationProposal}
+                isProposalSubmitted={myPresentationProposal? myPresentationProposal.submitted:false}
+                isProposalAccepted={myPresentationProposal? myPresentationProposal.accepted:false}
+            />
+            <ContributionTableRow
+                title={ t('contribute:overview.table.sponsor') }
+                openDate={schedule.sponsorProposalStartAt || ''}
+                closeDate={schedule.sponsorProposalFinishAt || ''}
+                link={paths.sponsor.applicationForm || ''}
+                editLink={paths.account.editproposal.cfs || ''}
+                isMyContribution={mySponsor}
+                isProposalSubmitted={mySponsor? mySponsor.submitted:false}
+                isProposalAccepted={mySponsor? mySponsor.accepted:false}
+            />
+            <ContributionTableRow
+                title={ t('contribute:overview.table.tutorial') } 
+                openDate={schedule.tutorialProposalStartAt || ''}
+                closeDate={schedule.tutorialProposalFinishAt || ''}
+                link={paths.contribute.proposingATutorial || ''}
+                editLink={paths.account.editproposal.tutorial || ''}
+                isMyContribution={myTutorials && myTutorials.length > 0}
+                isProposalSubmitted={ !_.isEmpty(myTutorials) && myTutorials[0].submitted }
+                isProposalAccepted={ !_.isEmpty(myTutorials) && myTutorials[0].accepted }
+            />
+            <ContributionTableRow
+                title={ t('contribute:overview.table.sprint') } 
+                openDate={schedule.sprintProposalStartAt || ''}
+                link={paths.contribute.proposingASprint || ''}
+                editLink={paths.account.editproposal.sprint || ''}
+                isMyContribution={mySprints && mySprints.length > 0}
+                isProposalSubmitted={ !_.isEmpty(mySprints) && mySprints[0].submitted }
+                isProposalAccepted={ !_.isEmpty(mySprints) && mySprints[0].accepted }
+            />
+            <ContributionTableRow
+                title={ t('contribute:overview.table.volunteer') }
+                openDate={schedule.volunteerRecruitingStartAt || ''}
+                closeDate={schedule.volunteerRecruitingFinishAt || ''}
+                link={paths.contribute.volunteer || ''}
+            />
+            <ContributionTableRow
+                title={ t('contribute:overview.table.lightningtalk') }
+                openDate={schedule.lightningTalkProposalStartAt || ''}
+                closeDate={schedule.lightningTalkProposalFinishAt || ''}
+                link={paths.program.lightningTalk || ''}
+                dateDescription={t('contribute:overview.table.conferenceDays')}
+            />
+          </DefaultTable>
+        )
+      }}
+    </Query>
+  )
+}
+
 
 @inject('stores')
 @(withRouter as any)
 @observer
-class ContributionPage extends React.Component<PropsType> {
-    contributions: Contribution[] = []
-
-    static async getInitialProps() {
-      return {
-        namespacesRequired: ['account'],
-      }
-    }
-    async componentDidMount() {
-      const { stores } = this.props
-
-      if (!stores.cfpStore.isInitialized) await stores.cfpStore.initialize()
-      if (!stores.sponsorStore.isInitialized) await stores.sponsorStore.initialize()
-      if (!stores.scheduleStore.isInitialized) await stores.scheduleStore.initialize()
-    }
-
-    renderContributionTableRow = () => {
-      return (
-        this.contributions && this.contributions.map((contribution) => {
-              return (
-              <ContributionTableRow
-                  key={contribution.title}
-                  title={contribution.title || ''}
-                  intlKey={contribution.intlKey || ''}
-                  openDate={contribution.openDate || ''}
-                  closeDate={contribution.closeDate || ''}
-                  link={contribution.link || ''}
-                  editLink={contribution.editLink || ''}
-                  dateDescription={contribution.dateDescription}
-                  isMyContribution={contribution.isMyContribution}
-                  isProposalSubmitted={contribution.isProposalSubmitted || false}
-                  isProposalAccepted={contribution.isProposalAccepted || false}
-              />
-              )
-          })
-      )
-  }
-
+class ContributionPage extends React.Component<PageDefaultPropsType> {
   render() {
-    const { stores } = this.props
-    const { sponsorStore, cfpStore, scheduleStore } = stores
-    const { schedule } = scheduleStore
-
-    this.contributions = [{
-      title: '발표 제안',
-      intlKey: 'contribute.overview.table.talk',
-      openDate: schedule.presentationProposalStartAt,
-      closeDate: schedule.presentationProposalFinishAt,
-      link: paths.contribute.proposingATalk,
-      editLink: paths.account.editproposal.cfp,
-      isMyContribution: cfpStore.isProposalInitialized,
-      isProposalSubmitted: cfpStore.proposal ? cfpStore.proposal.submitted : false,
-      isProposalAccepted: cfpStore.proposal ? cfpStore.proposal.accepted : false,
-    }, {
-      title: '스폰서 제안',
-      intlKey: 'contribute.overview.table.sponsor',
-      openDate: schedule.sponsorProposalStartAt,
-      closeDate: schedule.sponsorProposalFinishAt,
-      link: paths.sponsor.applicationForm,
-      editLink: paths.account.editproposal.cfs,
-      isMyContribution: sponsorStore.isProposalInitialized,
-      isProposalSubmitted: sponsorStore.proposal ? sponsorStore.proposal.submitted : false
-    }, {
-      title: '튜토리얼 제안',
-      intlKey: 'contribute.overview.table.tutorial',
-      openDate: schedule.tutorialProposalStartAt,
-      closeDate: schedule.tutorialProposalFinishAt,
-      link: paths.contribute.proposingATutorial,
-      editLink: paths.account.editproposal.tutorial,
-      isMyContribution: true,
-      isProposalSubmitted: true,
-      isProposalAccepted: false,
-    }, {
-      title: '스프린트 제안',
-      intlKey: 'contribute.overview.table.sprint',
-      openDate: schedule.sprintProposalStartAt,
-      link: paths.contribute.proposingASprint,
-      editLink: paths.account.editproposal.sprint,
-      isMyContribution: true,
-      isProposalSubmitted: true,
-      isProposalAccepted: true,
-    }, {
-      title: '자원봉사자 모집',
-      intlKey: 'contribute.overview.table.volunteer',
-      openDate: schedule.volunteerRecruitingStartAt,
-      closeDate: schedule.volunteerRecruitingFinishAt,
-    }, {
-      title: '라이트닝 토크 신청',
-      intlKey: 'contribute.overview.table.lightingtalk',
-      openDate: schedule.lightningTalkProposalStartAt,
-      closeDate: schedule.lightningTalkProposalFinishAt,
-      dateDescription: {
-        default: '컨퍼런스 당일',
-        intlKey: 'common.status.conferenceDays'
-      }
-    }]
-
+    const { stores, t } = this.props
+    const title = t('account:contribution.title')
     return (
       <PageTemplate
-        header={<Header title='제안 및 신청 내역 :: 파이콘 한국 2019' intlKey='contribution.pageTitle'/>}
+        header={<Header title={t('common:pageTitle', {title})} intlKey='' />}
         footer={<Footer />}
       >
         <H1>
-          <IntlText intlKey='contribution.title'>제안 및 신청 내역</IntlText>
+          { title }
         </H1>
-        <Paragraph intlKey='contribution.paragraph'>
-          파이콘 한국 2019 에 제안 또는 신청한 내역입니다.<br/>
-          파이콘 한국 준비위원회 내부 검토 이후 최종 확정 등의 절차 관련 내용은 메일로 다시 안내드리도록 하겠습니다.
+        <Paragraph>
+          {t('account:contribution.desc')}
         </Paragraph>
-        <DefaultTable
-          stores={stores}
-          renderTableRow={this.renderContributionTableRow}
-        />
+        <ContributionTable stores={stores} t={t}/>
       </PageTemplate>
     )
   }
 }
 
-export default withNamespaces('account')(ContributionPage)
+export default withNamespaces(['account', 'contribute'])(ContributionPage)

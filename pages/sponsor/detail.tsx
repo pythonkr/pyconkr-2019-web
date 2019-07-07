@@ -15,6 +15,7 @@ import { Query } from 'react-apollo'
 const GET_SPONSOR = gql`
 query Sponsor($id: ID!) {
   sponsor(id: $id) {
+    id
     name
     level {
       name

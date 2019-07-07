@@ -1,4 +1,12 @@
 {
+  "constant": {
+    "temporarilySaved": "Temporarily saved",
+    "submitted": "Submitted",
+    "edit": "Edit",
+    "finished": "Finished",
+    "participant": "Participant",
+    "moreDetail": "More Detail"
+  },
   "overview": {
     "pageTitle": "About contribution :: PyCon Korea 2019",
     "title": "Various ways to contribute to PyCon Korea",
@@ -6,11 +14,14 @@
     "table": {
       "keynote": "Recommending Keynote Speaker",
       "talk": "Proposing a Talk",
+      "reviewCfp": "Review CFP",
+      "sponsor": "Proposing Sponsorship",
       "tutorial": "Proposing a Tutorial",
       "sprint": "Proposing a Sprint",
       "volunteer": "Recruiting Volunteer",
-      "lightingtalk": "Proposing a Lightning Talk",
-      "moreDetail": "More detail"
+      "lightningtalk": "Proposing a Lightning Talk",
+      "moreDetail": "More detail",
+      "conferenceDays": "Conference Days"
     }
   },
   "recommendKeynoteSpeaker": {

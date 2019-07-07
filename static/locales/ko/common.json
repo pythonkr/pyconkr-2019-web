@@ -5,9 +5,9 @@
   "schedule": "일정",
   "tableOfContents": "목차",
   "unit": {
-    "ea": "{number} EA",
-    "krw": "{number} KRW",
-    "minimumKrw": "Minimum {number} KRW"
+    "ea": "{{ number }} EA",
+    "krw": "{{ number }} KRW",
+    "minimumKrw": "Minimum {{ number }} KRW"
   },
   "alert": "제안서를 작성하시기 전에 발표안 작성 가이드를 꼭 읽어주세요.",
   "is": "is",
@@ -19,9 +19,9 @@
   "status": {
     "onProgress": "진행 중입니다.",
     "preparing": "준비 중입니다.",
-    "openBefore": "시작까지 D-{diff}",
+    "openBefore": "시작까지 D-{{ diff }}",
     "openToday": "오늘 중 오픈!",
-    "closeAfter": "마감까지 D-{diff}",
+    "closeAfter": "마감까지 D-{{ diff }}",
     "closed": "마감되었습니다.",
     "untilSelected": "마감 시까지",
     "conferenceDays": "컨퍼런스 당일"
