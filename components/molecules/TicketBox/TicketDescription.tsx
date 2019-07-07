@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import MarkdownWrapper from 'components/atoms/MarkdownWrapper'
 import * as React from 'react'
 import { mobileWidth } from 'styles/layout'
 
@@ -57,10 +58,7 @@ class TicketDescription extends React.Component<PropsType> {
         return (
             <TicketDescriptionWrapper>
                 <h1>{title}</h1>
-                {description && description
-                  .split('\n')
-                  .map((line, index) => <p key={`description_${index}`}>{line}</p>)
-                }
+                <MarkdownWrapper contents={description} />
                 <TicketWarning>
                     {warning}
                 </TicketWarning>

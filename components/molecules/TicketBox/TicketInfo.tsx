@@ -113,7 +113,7 @@ class TicketInfo extends React.Component<PropsType> {
     const {id} = this.props
     const {ticketStore} = this.props.stores
     const data = await ticketStore.cancelTicket(id)
-    
+
     if (data.graphQLErrors) {
       const { message } = data.graphQLErrors[0]
       toast.error(message)

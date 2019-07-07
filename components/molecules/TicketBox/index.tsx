@@ -14,6 +14,7 @@ import { toast } from 'react-toastify'
 import { paths } from 'routes/paths'
 import { mobileWidth } from 'styles/layout'
 
+// step, isPaid, isTermsAgreed, onNextStep, onValidate
 type PropsType = {
   t: i18next.TFunction;
   title: string;
@@ -21,16 +22,16 @@ type PropsType = {
   warning: string;
   price: number;
   isEditablePrice: boolean;
-  options: React.ReactElement | null;
+  options?: React.ReactElement | null;
   step: number;
   startDate: string;
   endDate: string;
   router: RouterProps;
-  isPaid: boolean | null;
-  isTermsAgreed: boolean | null;
+  isPaid?: boolean | null;
+  isTermsAgreed?: boolean | null;
   isSoldOut: boolean | null;
-  onNextStep(step: number): void;
-  onValidate(): VALIDATION_ERROR_TYPE | null;
+  onNextStep?(step: number): void;
+  onValidate?(): VALIDATION_ERROR_TYPE | null;
   setTicket(): void;
   setPrice(price: number): void;
 }
@@ -75,29 +76,31 @@ class TicketBox extends React.Component<PropsType, StatesType> {
 
       return
     }
-    onNextStep(3)
+    if (onNextStep) onNextStep(3)
   }
 
   onPayTicket = () => {
     const { onValidate, setTicket, router, t } = this.props
-    const error = onValidate()
 
-    if (error === VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED) {
-      toast.error(t('ticket:error.noOptionSelected'))
+    if (onValidate) {
+      const error = onValidate()
 
-      return
+      if (error === VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED) {
+        toast.error(t('ticket:error.noOptionSelected'))
+
+        return
+      }
+
+      if (error === VALIDATION_ERROR_TYPE.NOT_AGREED_TO_OPTIONS) {
+        toast.error(t('ticket:error.notAgreeToOptions'))
+
+        return
+      }
     }
+    setTicket()
+    router.push(paths.ticket.payment)
 
-    if (error === VALIDATION_ERROR_TYPE.NOT_AGREED_TO_OPTIONS) {
-      toast.error(t('ticket:error.notAgreeToOptions'))
-
-      return
-    }
-
-    if (error === VALIDATION_ERROR_TYPE.NONE) {
-      setTicket()
-      router.replace(paths.ticket.payment)
-    }
+    return
   }
 
   renderTicketButtonTitle = () => {
@@ -111,7 +114,7 @@ class TicketBox extends React.Component<PropsType, StatesType> {
 
     if (isSoldOut) return t('ticket:soldout')
 
-    if (!_.isNull(isPaid)) {
+    if (isPaid) {
       return isPaid ? t('ticket:purchased') : t('ticket:purchaseNotAvailable')
     }
 
@@ -120,6 +123,8 @@ class TicketBox extends React.Component<PropsType, StatesType> {
       if (step === 2) return t('ticket:agree')
       if (step === 3) return t('ticket:paying')
     }
+
+    return t('ticket:paying')
   }
 
   renderTicketDescription = () => {
@@ -170,7 +175,7 @@ class TicketBox extends React.Component<PropsType, StatesType> {
             isEditablePrice={isEditablePrice}
             onPayTicket={this.onTicketStepForPayment}
             setPrice={setPrice}
-            disabled={(disablePayment !== '' && disablePayment) || !_.isNull(isPaid) || (!_.isNull(isSoldOut) && isSoldOut)}
+            disabled={(disablePayment !== '' && disablePayment) || isPaid || (!_.isNull(isSoldOut) && isSoldOut)}
             minimumPrice={150000}
           />
         </TicketBoxWrapper>

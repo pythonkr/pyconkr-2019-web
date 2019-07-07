@@ -1,37 +1,46 @@
 import { H1, H2, Paragraph, Section } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
+import { Loading } from 'components/atoms/Loading'
 import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
+import SprintTicketList from 'components/organisms/Ticket/SprintTicketList'
 import PageTemplate from 'components/templates/PageTemplate'
+import _ from 'lodash'
 import { inject, observer } from 'mobx-react'
+import { withRouter } from 'next/router'
 import React from 'react'
 import { ticketMenu } from 'routes/paths'
-import { DateDTO } from 'types/common'
-import { StoresType } from '../_app'
-
-import { paths } from '../../routes/paths'
-
-export type IntlTextType = {
-  intlKey: string;
-  defaultText: string;
-}
-
-export type Schedule = {
-  title: string;
-  intlKey: string;
-  date: DateDTO;
-  desc?: IntlTextType;
-}
+import { PageDefaultPropsType } from 'types/PageDefaultPropsType'
+import { withNamespaces } from '../../i18n'
 
 @inject('stores')
+@(withRouter as any)
 @observer
-export default class ProposingATalk extends React.Component<{ stores: StoresType }> {
-  state = {
-    isFormInitialized: false
+export class SprintTicket extends React.Component<PageDefaultPropsType> {
+  static async getInitialProps() {
+    return {
+      namespacesRequired: ['ticket'],
+    }
+  }
+
+  async componentDidMount () {
+    const { stores } = this.props
+    const { sprintProducts, retrieveSprintProducts } = stores.ticketStore
+
+    if (_.isEmpty(sprintProducts)) {
+      await retrieveSprintProducts()
+    }
   }
 
   render() {
+    const { stores, t, router } = this.props
+    const { sprintProducts } = stores.ticketStore
+
+    if (_.isEmpty(sprintProducts)) {
+      return <Loading width={50} height={50}/>
+    }
+
     return (
       <PageTemplate
         header={<Header title='컨퍼런스 티켓 :: 파이콘 한국 2019' intlKey='ticket.sprint.pageTitle'/>}
@@ -49,8 +58,9 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
         스프린트는 파이썬 뿐만 아니라 모든 언어의 오픈소스 프로젝트를 대상으로 진행됩니다.
         </IntlText></Paragraph>
 
-        <H2>Sprints</H2>
-        <Paragraph><a href={paths.ticket.sprint.detail}>자세히 보기</a></Paragraph>
+        <Section>
+          <SprintTicketList stores={stores} t={t} router={router} />
+        </Section>
 
         <Section>
           <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
@@ -60,3 +70,5 @@ export default class ProposingATalk extends React.Component<{ stores: StoresType
     )
   }
 }
+
+export default withNamespaces(['ticket'])(SprintTicket)
