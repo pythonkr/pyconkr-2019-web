@@ -9,6 +9,7 @@ import React from 'react'
 import intl from 'react-intl-universal'
 import { mobileWidth } from 'styles/layout'
 import { formatDateInWords } from 'utils/formatDate'
+import { withNamespaces } from '../../i18n'
 
 const ShowDetailButton = styled(Button)`
 @media (max-width: ${mobileWidth}) {
@@ -22,7 +23,7 @@ text-align: center;
 
 type PropsType = Contribution
 
-export default class ContributionTableRow extends React.Component<PropsType> {
+export class ContributionTableRow extends React.Component<PropsType> {
 
     getContributionClass () {
         const { openDate, closeDate } = this.props
@@ -96,6 +97,7 @@ export default class ContributionTableRow extends React.Component<PropsType> {
             (!isFinished || isProposalAccepted)
         ) ? editLink : link
 
+        debugger
         if (buttonLink) {
           return (
             <ShowDetailButton
@@ -140,3 +142,5 @@ export default class ContributionTableRow extends React.Component<PropsType> {
         )
     }
 }
+
+export default withNamespaces('account')(ContributionTableRow)
