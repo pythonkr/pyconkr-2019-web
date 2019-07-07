@@ -1,31 +1,48 @@
 query getConferenceProducts {
-  conferenceProducts {
-    id
-    type
-    name
-    nameKo
-    nameEn
-    desc
-    descKo
-    descEn
-    warning
-    warningKo
-    warningEn
-    startAt
-    finishAt
-    total
-    remainingCount
-    isSoldOut
-    price
-    isDepositTicket
-    isEditablePrice
-    isUniqueInType
-    active
-    cancelableDate
-    ticketOpenAt
-    ticketCloseAt
-    createdAt
-    updatedAt
-    purchaseCount
+  conferenceProducts{
+    ...TicketProductInfo
   }
+  tutorialProducts{
+    ...TicketProductInfo
+  }
+  sprintProducts{
+    ...TicketProductInfo
+  }
+  childCareProducts{
+    ...TicketProductInfo
+  }
+  youngCoderProducts{
+    ...TicketProductInfo
+  }
+}
+fragment TicketProductInfo on TicketProductNode {
+  id
+  type
+  name
+  desc
+  warning
+  startAt
+  finishAt
+  total
+  remainingCount
+  isSoldOut
+  owner {
+    profile {
+      name
+      email
+      image
+      avatarUrl
+    }
+  }
+  price
+  isEditablePrice
+  isUniqueInType
+  active
+  cancelableDate
+  ticketOpenAt
+  ticketCloseAt
+  createdAt
+  updatedAt
+  purchaseCount
+  isPurchased
 }
