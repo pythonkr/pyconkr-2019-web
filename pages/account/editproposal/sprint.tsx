@@ -50,7 +50,7 @@ class SprintEdit extends React.Component {
   }
   render () {
     const {t} = this.props
-    const {id, nameEn, nameKo} = this.props.tutorial
+    const {id, nameEn, nameKo} = this.props.sprint
     return (
       <Mutation 
         mutation={UPDATE_SPRINT}

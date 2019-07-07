@@ -31,12 +31,12 @@
   },
   "editTutorial": {
     "title": "튜토리얼 신청 내역 수정",
-    "desc": "튜토리얼 신청 내역을 수정합니다.",
+    "desc": "파이콘 홈페이지에 공개되는 튜토리얼 내용을 수정합니다.",
     "tutorialNotExistAlert": "튜토리얼 진행자가 아닙니다"
   },
   "editSprint": {
     "title": "스프린트 신청 내역 수정",
-    "desc": "스프린트 신청 내역을 수정합니다.",
+    "desc": "파이콘 홈페이지에 공개되는 스프린트 내용을 수정합니다.",
     "sprintNotExistAlert": "스프린트 진행자가 아닙니다"
   }
 }
