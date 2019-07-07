@@ -4,7 +4,6 @@
     "language": "Language",
     "speaker": "Speaker",
     "datetime": "Datetime",
-    "numOfParticipants": "Num of participants",
     "place": "Place",
     "waitingAlert": "The program list has not been opened yet. It will be notified through the Facebook, Twitter, and homepage at the time of opening. 👩‍🏫 👨‍🏫"
   },
@@ -54,6 +53,7 @@
   },
   "sprint": {
     "title": "Sprint",
+    "programmingLanguage": "Programming Language",
     "opensourceDesc": "Opensource Desc",
     "opensourceUrl": "Opensource Url",
     "desc1-1": "Sprints are intensive development session on an open source project of your choice, in a team environment. It's a time to come together with colleagues, old and new, to share what you've learned and apply it to an open source project. Is this your first time joining in Sprints? No problem! It will be the time that you learn directly from the open source contributors.",
