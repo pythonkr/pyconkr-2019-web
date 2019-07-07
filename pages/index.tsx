@@ -18,6 +18,20 @@ import {
 } from 'styles/layout'
 import { PageDefaultPropsType } from 'types/PageDefaultPropsType'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
+import gql from 'graphql-tag'
+import { Query } from 'react-apollo'
+import {Loading} from 'components/atoms/Loading'
+
+const NOTICES = gql`
+query Notices {
+  notices {
+    id
+    title
+    link
+    publishedAt
+  }
+}
+`
 
 const BannerSection = styled.section`
   height: 65vw;
@@ -377,21 +391,22 @@ class Index extends React.Component<PageDefaultPropsType> {
             Notice 🗣
           </h2>
           <ul>
-            <li>
-              <a href='https://www.facebook.com/pyconkorea/posts/2341383369457202'>
-                파이콘 한국 2019 컨퍼런스 티켓 오픈 안내
-              </a>
-            </li>
-            <li>
-              <a href='https://www.facebook.com/pyconkorea/posts/2337461739849365'>
-                파이콘 한국 2019 일반 컨퍼런스 티켓 판매 연기 안내
-              </a>
-            </li>
-            <li>
-              <a href='https://www.facebook.com/pyconkorea/posts/2338970393031833'>
-                재정지원 연기 안내
-              </a>
-            </li>
+            <Query query={NOTICES}>
+              {({ loading, error, data }) => {
+                if (loading) return (<Loading width={50} height={50}/>)
+                return (
+                  data.notices.map((notice) => {
+                    return (
+                      <li key={notice.id}>
+                        <a href={notice.link}>
+                          {notice.title}
+                        </a>
+                      </li>
+                    )
+                  })
+                )
+              }}
+            </Query>
           </ul>
         </NoticeSection>
         <ScheduleSection>
