@@ -3,14 +3,18 @@ import { Loading } from 'components/atoms/Loading'
 import TicketBox from 'components/molecules/TicketBox'
 import ConferenceTicketOption from 'components/molecules/TicketBox/ConferenceTicketOption'
 import TermsAgreement from 'components/molecules/TicketBox/TermsAgreement'
+import TicketDescription from 'components/molecules/TicketBox/TicketDescription'
 import i18next from 'i18next'
 import { TicketNode } from 'lib/apollo_graphql/queries/getMyTickets'
+import { TICKET_STEP, TicketStep, VALIDATION_ERROR_TYPE } from 'lib/stores/Ticket/TicketStep'
 import _ from 'lodash'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { RouterProps } from 'next/router'
 import { StoresType } from 'pages/_app'
 import * as React from 'react'
+import { toast } from 'react-toastify'
+import { paths } from 'routes/paths'
 
 type PropsType = {
   stores: StoresType;
@@ -27,27 +31,91 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
     myConferenceTicket: null as any
   }
 
-  async componentDidMount () {
-    const { stores } = this.props
-    const {
-      myTickets,
-      retrieveMyTickets,
-    } = stores.ticketStore
-
-    if (_.isEmpty(myTickets)) {
-      await retrieveMyTickets()
+  getStepAction = (ticketStep: TicketStep) => {
+    switch (ticketStep.ticketStepState) {
+      case TICKET_STEP.BUYING:
+        return null
+      case TICKET_STEP.AGREE_TERMS:
+        return () => this.onAgreeTerms(ticketStep)
+      case TICKET_STEP.SELECT_OPTION:
+        return () => this.onPayTicket(ticketStep)
+      default:
+        return null
     }
   }
 
-  renderTicketBoxList = () => {
+  getNextTicketStep = (ticketStepState: TICKET_STEP) => {
+    switch (ticketStepState) {
+      case TICKET_STEP.BUYING:
+        return TICKET_STEP.AGREE_TERMS
+      case TICKET_STEP.AGREE_TERMS:
+        return TICKET_STEP.SELECT_OPTION
+      case TICKET_STEP.SELECT_OPTION:
+        return TICKET_STEP.PAYING
+      default:
+        return TICKET_STEP.BUYING
+    }
+  }
+
+  getTicketButtonTitle = (ticketStepState: TICKET_STEP) => {
+    const { t } = this.props
+
+    switch (ticketStepState) {
+      case TICKET_STEP.BUYING:
+        return t('ticket:buying')
+      case TICKET_STEP.AGREE_TERMS:
+        return t('ticket:agree')
+      case TICKET_STEP.SELECT_OPTION:
+        return t('ticket:paying')
+      default:
+        return t('ticket:buying')
+    }
+  }
+
+  onAgreeTerms = (ticketStep: TicketStep) => {
+    const { t } = this.props
+    if (!ticketStep.isTermsAgreed) {
+      toast.error(t('ticket:error.notAgreeToTerms'))
+
+      return false
+    }
+
+    return true
+  }
+
+  onPayTicket = (ticketStep: TicketStep) => {
     const { stores, router, t } = this.props
+    const { setPayingTicket } = stores.ticketStore
+
+    if (ticketStep.validateTicket) {
+      const error = ticketStep.validateTicket()
+
+      if (error === VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED) {
+        toast.error(t('ticket:error.noOptionSelected'))
+
+        return false
+      }
+
+      if (error === VALIDATION_ERROR_TYPE.NOT_AGREED_TO_OPTIONS) {
+        toast.error(t('ticket:error.notAgreeToOptions'))
+
+        return false
+      }
+    }
+    setPayingTicket(ticketStep)
+    router.push(paths.ticket.payment)
+
+    return false
+  }
+
+  renderTicketBoxList = () => {
+    const { stores, t } = this.props
     const {
       conferenceProducts,
       setPrice,
       getTicketStep,
       getIsTicketStepExist,
       setTicketStep,
-      setPayingTicket,
       getMyConferenceTickets
     } = stores.ticketStore
     const myConferenceTicket = toJS(getMyConferenceTickets()[0])
@@ -64,12 +132,22 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
         ticketStepState,
         setTicketStepState, setTicketOption, setTicketOptionAgreed, setTicketTermsAgreed,
         ticketOption, isTicketOptionAgreed, isTermsAgreed,
-        validateTicket, initConferenceTicketOptions
+        initConferenceTicketOptions
       } = ticketStep
 
       let options = null
 
-      if (ticketStepState === 1 || ticketStepState === 2) {
+      if (ticketStepState === TICKET_STEP.BUYING) {
+        options = (
+          <TicketDescription
+            title={name || ''}
+            description={desc}
+            warning={warning}
+          />
+        )
+      }
+
+      if (ticketStepState === TICKET_STEP.AGREE_TERMS) {
         options = (
           <TermsAgreement
             t={t}
@@ -81,7 +159,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
           />
         )
       }
-      if (ticketStepState === 3) {
+      if (ticketStepState === TICKET_STEP.SELECT_OPTION) {
         options = (
           <ConferenceTicketOption
             t={t}
@@ -105,27 +183,23 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
         <TicketBox
           t={t}
           key={`ticketBox_${id}`}
-          title={name || ''}
-          description={desc || ''}
-          warning={warning || ''}
+          ticketButtonTitle={this.getTicketButtonTitle(ticketStepState)}
           price={price}
           isEditablePrice={isEditablePrice}
-          options={options || null}
-          step={ticketStepState}
-          onNextStep={setTicketStepState}
-          onValidate={validateTicket}
-          setTicket={() => setPayingTicket(ticketStep)}
           setPrice={setPrice}
-          router={router}
           startDate={ticketOpenAt}
           endDate={ticketCloseAt}
-          isPaid={isPaid}
-          isTermsAgreed={isTermsAgreed}
           isSoldOut={isSoldOut}
+          onNextStep={setTicketStepState}
+          stepAction={this.getStepAction(ticketStep)}
+          nextStep={this.getNextTicketStep(ticketStepState)}
+          options={options}
+          isPaid={isPaid}
         />
       )
     })
   }
+
   render() {
     const { stores } = this.props
     const { authStore } = stores

@@ -109,7 +109,7 @@ class TicketPayment extends React.Component<PropsType> {
         return (
             <TicketPaymentWrapper>
                 {!isEditablePrice
-                    ?  <p>{`₩ ${price.toLocaleString()}`}</p>
+                    ?  <p>{price !== 0 ? `₩ ${price.toLocaleString()}` : 'Free'}</p>
                     :  <p>{'₩ '}
                         <input
                             type='tel'

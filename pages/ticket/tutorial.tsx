@@ -12,7 +12,6 @@ import { inject, observer } from 'mobx-react'
 import { withRouter } from 'next/router'
 import React from 'react'
 import { ticketMenu } from 'routes/paths'
-import { DateDTO } from 'types/common'
 import { PageDefaultPropsType } from 'types/PageDefaultPropsType'
 import { withNamespaces } from '../../i18n'
 import { paths } from '../../routes/paths'
@@ -40,10 +39,6 @@ export class TutorialTicket extends React.Component<PageDefaultPropsType> {
     const { stores, t, router } = this.props
     const { tutorialProducts } = stores.ticketStore
 
-    if (_.isEmpty(tutorialProducts)) {
-      return <Loading width={50} height={50}/>
-    }
-
     return (
       <PageTemplate
         header={<Header title='컨퍼런스 티켓 :: 파이콘 한국 2019' intlKey='ticket.tutorial.pageTitle'/>}
@@ -69,9 +64,11 @@ export class TutorialTicket extends React.Component<PageDefaultPropsType> {
           </IntlText>
         </Paragraph>
         <Section>
-          <TutorialTicketList stores={stores} t={t} router={router}/>
+          {_.isEmpty(tutorialProducts)
+            ? <Loading width={50} height={50}/>
+            : <TutorialTicketList stores={stores} t={t} router={router} />
+          }
         </Section>
-
         <Section>
           <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
           <Paragraph><a href='mailto:program@pycon.kr'>program@pycon.kr</a></Paragraph>
