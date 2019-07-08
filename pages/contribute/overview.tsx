@@ -1,5 +1,4 @@
 import { H1, H2, Paragraph, Section } from 'components/atoms/ContentWrappers'
-import { IntlText } from 'components/atoms/IntlText'
 import ContributionTableRow from 'components/molecules/ContributionTableRow'
 import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import DefaultTable, { Contribution } from 'components/organisms/DefaultTable'
@@ -11,14 +10,17 @@ import { inject, observer } from 'mobx-react'
 import React from 'react'
 import { contributionMenu, paths } from 'routes/paths'
 import { StoresType } from '../_app'
+import { withNamespaces } from '../../i18n'
+import i18next from 'i18next'
 
 export type PropsType = {
   stores: StoresType;
+  t: i18next.TFunction;
 }
 
 @inject('stores')
 @observer
-export default class CFPDetailedGuide extends React.Component<PropsType> {
+class CFPDetailedGuide extends React.Component<PropsType> {
   contributions: Contribution[] = []
 
   renderContributionTableRow = () => {
@@ -28,7 +30,6 @@ export default class CFPDetailedGuide extends React.Component<PropsType> {
               <ContributionTableRow
                   key={contribution.title}
                   title={contribution.title || ''}
-                  intlKey={contribution.intlKey || ''}
                   openDate={contribution.openDate || ''}
                   closeDate={contribution.closeDate || ''}
                   link={contribution.link || ''}
@@ -40,76 +41,65 @@ export default class CFPDetailedGuide extends React.Component<PropsType> {
       )
   }
   render() {
-    const { stores } = this.props
+    const { stores, t } = this.props
     const { schedule } = stores.scheduleStore
 
     // #TODO: update 발표 제안 리뷰하기
     this.contributions = [{
-      title: '키노트 발표자 추천',
-      intlKey: 'contribute.overview.table.keynote',
+      title: t('contribute:overview.table.keynote'),
       openDate: schedule.keynoteRecommendationStartAt,
       closeDate: schedule.keynoteRecommendationFinishAt,
       link: paths.contribute.recommendingAKeynoteSpeaker,
     }, {
-      title: '발표 제안',
-      intlKey: 'contribute.overview.table.talk',
+      title: t('contribute:overview.table.talk'),
       openDate: schedule.presentationProposalStartAt,
       closeDate: schedule.presentationProposalFinishAt,
       link: paths.contribute.cfpDetailedGuide
     }, {
-      title: '발표 제안 검토하기',
-      intlKey: 'contribute.overview.table.talk',
+      title: t('contribute:overview.table.reviewCfp'),
       openDate: schedule.presentationReviewStartAt,
       closeDate: schedule.presentationReviewFinishAt,
       link: paths.contribute.proposalReview
     }, {
-      title: '튜토리얼 제안',
-      intlKey: 'contribute.overview.table.tutorial',
+      title: t('contribute:overview.table.tutorial') ,
       openDate: schedule.tutorialProposalStartAt,
       closeDate: schedule.tutorialProposalFinishAt,
       link: paths.contribute.proposingATutorial
     }, {
-      title: '스프린트 제안',
-      intlKey: 'contribute.overview.table.sprint',
+      title: t('contribute:overview.table.sprint'),
       openDate: schedule.sprintProposalStartAt,
     }, {
-      title: '자원봉사자 모집',
-      intlKey: 'contribute.overview.table.volunteer',
+      title: t('contribute:overview.table.volunteer'),
       openDate: schedule.volunteerRecruitingStartAt,
       closeDate: schedule.volunteerRecruitingFinishAt,
     }, {
-      title: '라이트닝 토크 신청',
-      intlKey: 'contribute.overview.table.lightingtalk',
+      title: t('contribute:overview.table.lightningtalk'),
       openDate: schedule.lightningTalkProposalStartAt,
       closeDate: schedule.lightningTalkProposalFinishAt,
-      dateDescription: {
-        default: '컨퍼런스 당일',
-        intlKey: 'common.status.conferenceDays'
-      }
+      dateDescription: t('contribute:overview.table.conferenceDays'),
     }]
+
+    const title = t('contribute:overview.title')
 
     return (
       <PageTemplate
-        header={<Header title='공헌 안내 :: 파이콘 한국 2019' intlKey='contribute.overview.pageTitle' />}
+        header={<Header title={t('common:pageTitle', {title})} intlKey='' />}
         footer={<Footer />}
       >
         <LocalNavigation list={contributionMenu.submenu} />
-        <H1><IntlText intlKey='contribute.overview.title'>
-          파이콘 한국에 공헌하는 다양한 방법
-        </IntlText></H1>
-        <Paragraph><IntlText intlKey='contribute.overview.intro'>
-          파이콘 한국에는 발표, 튜토리얼 튜터 및 멘토, 스프린트 진행, 자원 봉사 등 다양한 형태로 공헌할 수 있습니다.
-          각 항목은 아래와 같은 일정으로 모집합니다.
-        </IntlText></Paragraph>
+        <H1>{title}</H1>
+        <Paragraph> {t('contribute:overview.intro')} </Paragraph>
         <DefaultTable
           stores={stores}
           renderTableRow={this.renderContributionTableRow}
         />
         <Section>
-          <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
+          <H2>{ t('common:contact') }</H2>
           <Paragraph><a href='mailto:program@pycon.kr'>program@pycon.kr</a></Paragraph>
         </Section>
       </PageTemplate>
     )
   }
 }
+
+export default withNamespaces('contribute')(CFPDetailedGuide)

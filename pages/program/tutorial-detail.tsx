@@ -4,22 +4,22 @@ import {
   Section,
   TableList,
 } from 'components/atoms/ContentWrappers'
-import {formatDateInWordsWithWeekdayAndTime} from 'utils/formatDate'
-import {PageDefaultPropsType} from 'types/PageDefaultPropsType'
 import { Loading } from 'components/atoms/Loading'
 import MarkdownWrapper from 'components/atoms/MarkdownWrapper'
+import ProfileCard from 'components/molecules/ProfileCard'
+import { ProgramTableRow, SpeakerSpan } from 'components/molecules/Program/Detail'
+import { Tag } from 'components/molecules/Program/List'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
+import gql from 'graphql-tag'
 import { inject, observer } from 'mobx-react'
 import { withRouter } from 'next/router'
 import React from 'react'
-import { withNamespaces } from '../../i18n'
-import { Tag } from 'components/molecules/Program/List'
-import { ProgramTableRow, SpeakerSpan } from 'components/molecules/Program/Detail'
-import ProfileCard from 'components/molecules/ProfileCard'
-import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
+import {PageDefaultPropsType} from 'types/PageDefaultPropsType'
+import {formatDateInWordsWithWeekdayAndTime} from 'utils/formatDate'
+import { withNamespaces } from '../../i18n'
 
 const TUTORIAL = gql`
 query Tutorial($id: Int!) {
@@ -52,15 +52,14 @@ query Tutorial($id: Int!) {
     place {
       name
     }
-    
   }
 }
 `
 
-
 const TutorialDetailContent = (props) => {
-  const {t, tutorial} = props
+  const { t, tutorial } = props
   const pageTitle = t('common:pageTitle', { title: tutorial.name })
+
   return (
     <PageTemplate
       header={<Header title={ pageTitle } intlKey='' />}
@@ -81,7 +80,6 @@ const TutorialDetailContent = (props) => {
               </Tag>
             </ProgramTableRow>
           }
-            
           <ProgramTableRow
             header={t('program:common.language')} >
             { tutorial.language }
@@ -117,14 +115,23 @@ const TutorialDetailContent = (props) => {
 @inject('stores')
 @observer
 export class TutorialDetail extends React.Component<PageDefaultPropsType> {
+
+  static async getInitialProps() {
+    return {
+      namespacesRequired: ['program'],
+    }
+  }
+
   render() {
     const { t } = this.props
     const id = parseInt(this.props.router.query.id)
+
     return (
       <Query query={TUTORIAL} variables={{id}}>
         {
           ({ loading, error, data }) => {
-            if (loading || error) return (<Loading width={50} height={50}/>);
+            if (loading || error) return (<Loading width={50} height={50}/>)
+
             return (
               <TutorialDetailContent t={t} tutorial={data.tutorial}/>
             )

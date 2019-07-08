@@ -25,13 +25,12 @@ import { CORAL } from 'styles/colors'
 import { commonCSS } from 'styles/common'
 import { fontCSS } from 'styles/font'
 
+import { client } from 'lib/apollo_graphql/client'
 import _ from 'lodash'
+import { ApolloProvider } from 'react-apollo'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { appWithTranslation, i18n, withNamespaces } from '../i18n'
-import { ApolloProvider } from 'react-apollo'
-import { client } from 'lib/apollo_graphql/client'
-
 
 global.Intl = IntlPolyfill
 require('intl/locale-data/jsonp/ko.js')
@@ -90,6 +89,7 @@ class MyApp extends App {
     })
 
     i18n.changeLanguage(_.isEqual(LOCALE_KEY_KR, currentLocale) ? 'ko' : 'en')
+    i18n.init({ fallbackLng: 'ko' })
   }
 
   static async getInitialProps({ Component, ctx }: any) {

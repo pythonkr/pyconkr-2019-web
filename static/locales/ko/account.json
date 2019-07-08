@@ -14,5 +14,29 @@
     "item9": "영문 소개",
     "button2": "프로필 업데이트",
     "alert1": "프로필이 수정되었습니다."
+  },
+  "contribution": {
+    "title": "제안 및 신청 내역",
+    "desc": "파이콘 한국 2019 에 제안 또는 신청한 내역입니다. 파이콘 한국 준비위원회 내부 검토 이후 최종 확정 등의 절차 관련 내용은 메일로 다시 안내드리도록 하겠습니다."
+  },
+  "editCommon": {
+    "nameKo": "제목(한글)",
+    "nameEn": "제목(영문)",
+    "descKo": "설명(한글)",
+    "descEn": "설명(영문)",
+    "descLabel": "파이콘 홈페이지 상세페이지에 기재될 내용입니다.추후 추가 또는 수정 가능합니다.",
+    "editCompleteAlert": "수정이 완료되었습니다.",
+    "errorAlert": "'에러가 발생했습니다.'",
+    "updateButton": "수정 제출하기"
+  },
+  "editTutorial": {
+    "title": "튜토리얼 신청 내역 수정",
+    "desc": "파이콘 홈페이지에 공개되는 튜토리얼 내용을 수정합니다.",
+    "tutorialNotExistAlert": "튜토리얼 진행자가 아닙니다"
+  },
+  "editSprint": {
+    "title": "스프린트 신청 내역 수정",
+    "desc": "파이콘 홈페이지에 공개되는 스프린트 내용을 수정합니다.",
+    "sprintNotExistAlert": "스프린트 진행자가 아닙니다"
   }
 }
