@@ -46,7 +46,7 @@ export class TicketStore {
     @observable isSubmitPayment: boolean = false
     @observable payingTicketTitle: string | null = ''
     @observable price: number = 0
-    @observable options: string = ''
+    @observable options: string | null = null
     @observable productId: string = ''
     @observable expiryMonth: string = ''
     @observable expiryYear: string = ''
@@ -186,7 +186,9 @@ export class TicketStore {
       this.isPaying = true
       this.productId = ticketStep.ticketId
       this.payingTicketTitle = ticketStep.ticketTitle
-      this.options = JSON.stringify(ticketStep.ticketOption)
+      if(ticketStep.ticketOption){
+        this.options = JSON.stringify(ticketStep.ticketOption)
+      }
     }
 
     @action
