@@ -125,9 +125,18 @@ class SprintTicketList extends React.Component<PropsType> {
         ticketStepState,
         setTicketTermsAgreed,
         isTermsAgreed,
-        initConferenceTicketOptions,
         setTicketStepState,
       } = ticketStep
+
+      if (ticketStepState === TICKET_STEP.BUYING) {
+        options = (
+          <TicketDescription
+            title={name || ''}
+            description={desc}
+            warning={warning}
+          />
+        )
+      }
 
       if (ticketStepState === TICKET_STEP.AGREE_TERMS) {
         options = (
@@ -136,18 +145,20 @@ class SprintTicketList extends React.Component<PropsType> {
             title={name || ''}
             id={id}
             isTermsAgreed={isTermsAgreed}
-            onCancel={initConferenceTicketOptions}
+            onCancel={() => {setTicketStepState(TICKET_STEP.BUYING)}}
             onChangeAgreed={setTicketTermsAgreed}
           />
         )
       }
 
-      if (ticketStepState === TICKET_STEP.BUYING || ticketStepState === TICKET_STEP.PAYING) {
+      if (ticketStepState === TICKET_STEP.PAYING) {
         options = (
           <TicketDescription
             title={name || ''}
             description={desc}
             warning={warning}
+            onCancel={() => {setTicketStepState(TICKET_STEP.AGREE_TERMS)}}
+            cancelButtonTitle={t('ticket:back')}
           />
         )
       }

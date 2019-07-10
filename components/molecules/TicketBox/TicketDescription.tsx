@@ -7,9 +7,11 @@ type PropsType = {
     title: string;
     description: string;
     warning: string;
+    cancelButtonTitle?: string;
+    onCancel?: (() => void);
 }
 
-export const TicketDescriptionWrapper = styled.div`
+const TicketDescriptionWrapper = styled.div`
     flex: 2;
     display: flex;
     flex-direction: column;
@@ -43,26 +45,48 @@ export const TicketDescriptionWrapper = styled.div`
   }
 `
 
-export const TicketWarning = styled.div`
-    margin-top: auto;
-    font-size: 15px;
-    font-weight: bold;
-    line-height: 1.47;
-    color: #f95858;
+const TicketDescriptionBottomWrapper = styled.div<{isCancel: boolean}>`
+  margin-top: ${props => props.isCancel ? '20px' : 'auto'};
+  display: flex;
+  align-items: center;
+`
+
+const TicketWarning = styled.div<{isCancel: boolean }>`
+  margin-left: ${props => props.isCancel ? '20px' : '0'};
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.47;
+  color: #f95858;
+`
+
+const ButtonCancel = styled.button`
+  width: 86px;
+  height: 53px;
+  border: solid 1px #088487;
+  font-size: 18px;
+  color: #088487;
 `
 
 class TicketDescription extends React.Component<PropsType> {
+
     render() {
-        const { title, description, warning } = this.props
+        const { title, description, warning, onCancel, cancelButtonTitle } = this.props
 
         return (
-            <TicketDescriptionWrapper>
-                <h1>{title}</h1>
-                <MarkdownWrapper contents={description} />
-                <TicketWarning>
+          <TicketDescriptionWrapper>
+              <h1>{title}</h1>
+              <MarkdownWrapper contents={description} />
+              <TicketDescriptionBottomWrapper isCancel={!!onCancel}>
+                {onCancel && (
+                  <ButtonCancel onClick={onCancel}>
+                    {cancelButtonTitle || 'Back'}
+                  </ButtonCancel>
+                )}
+                <TicketWarning isCancel={!!onCancel}>
                     {warning}
                 </TicketWarning>
-            </TicketDescriptionWrapper>
+              </TicketDescriptionBottomWrapper>
+          </TicketDescriptionWrapper>
         )
     }
 }
