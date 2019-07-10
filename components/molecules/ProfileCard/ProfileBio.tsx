@@ -1,8 +1,8 @@
-import * as React from 'react'
 import styled from '@emotion/styled'
-import * as ReactMarkdown from 'react-markdown'
-import 'github-markdown-css'
 import MarkdownWrapper from 'components/atoms/MarkdownWrapper'
+import 'github-markdown-css'
+import * as React from 'react'
+import * as ReactMarkdown from 'react-markdown'
 
 type PropsType = {
   bio: string;
@@ -34,13 +34,14 @@ class ProfileBio extends React.Component<PropsType> {
 
   render() {
     const { bio } = this.props
+
     return (
       <div>
         <ProfileBioWrapper className={this.state.opened ? '' : 'closed'}>
           <MarkdownWrapper contents={bio}/>
         </ProfileBioWrapper>
         <ReadMoreButton onClick={ this.toogleOpened.bind(this) }>
-          {this.state.opened? 'close' : 'more'}
+          {this.state.opened ? 'close' : 'more'}
         </ReadMoreButton>
       </div>
     )
