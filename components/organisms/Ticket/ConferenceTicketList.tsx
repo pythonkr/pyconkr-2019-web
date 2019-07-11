@@ -140,6 +140,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
       if (ticketStepState === TICKET_STEP.BUYING) {
         options = (
           <TicketDescription
+            t={t}
             title={name || ''}
             description={desc}
             warning={warning}

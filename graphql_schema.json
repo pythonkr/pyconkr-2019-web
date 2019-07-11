@@ -513,6 +513,38 @@
             "deprecationReason": null
           },
           {
+            "name": "volunteers",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "PatronNode",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "organizers",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "PatronNode",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "schedule",
             "description": null,
             "args": [],
@@ -1368,6 +1400,38 @@
             "deprecationReason": null
           },
           {
+            "name": "isVolunteer",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isOrganizer",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "name",
             "description": "",
             "args": [],
@@ -1791,16 +1855,12 @@
           },
           {
             "name": "language",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "ProgramLanguage",
-                "ofType": null
-              }
+              "kind": "ENUM",
+              "name": "LanguageNode",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -2001,21 +2061,21 @@
       },
       {
         "kind": "ENUM",
-        "name": "ProgramLanguage",
-        "description": "An enumeration.",
+        "name": "LanguageNode",
+        "description": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
-            "name": "E",
-            "description": "English",
+            "name": "KOREAN",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "K",
-            "description": "Korean",
+            "name": "ENGLISH",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -2226,6 +2286,29 @@
         "possibleTypes": null
       },
       {
+        "kind": "ENUM",
+        "name": "ProgramLanguage",
+        "description": "An enumeration.",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "E",
+            "description": "English",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "K",
+            "description": "Korean",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
         "kind": "OBJECT",
         "name": "ProposalForReviewNode",
         "description": "\n        리뷰를 위한 CFP Node입니다. 제안자를 제외하고 리뷰에 필요한 필드만 제공합니다.\n        ",
@@ -2350,29 +2433,6 @@
         "inputFields": null,
         "interfaces": [],
         "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "LanguageNode",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "KOREAN",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ENGLISH",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
         "possibleTypes": null
       },
       {
@@ -2867,7 +2927,7 @@
           },
           {
             "name": "owner",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -2891,7 +2951,7 @@
           },
           {
             "name": "place",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -2915,11 +2975,11 @@
           },
           {
             "name": "startedAt",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "DateTime",
+              "name": "SeoulDateTime",
               "ofType": null
             },
             "isDeprecated": false,
@@ -2927,11 +2987,11 @@
           },
           {
             "name": "finishedAt",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "DateTime",
+              "name": "SeoulDateTime",
               "ofType": null
             },
             "isDeprecated": false,

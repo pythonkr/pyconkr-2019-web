@@ -15,12 +15,8 @@ query getMyTicket($id: ID!) {
       id
       type
       name
-      nameKo
-      nameEn
-      descKo
-      descEn
-      warningKo
-      warningEn
+      desc
+      warning
       isUniqueInType
       cancelableDate
       startAt

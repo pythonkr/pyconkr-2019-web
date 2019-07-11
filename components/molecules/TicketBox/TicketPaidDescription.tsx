@@ -34,10 +34,7 @@ class TicketPaidDescription extends React.Component<PropsType> {
       <TicketDescriptionWrapper>
         <TitleText>{title}</TitleText>
         <PeriodText>Period : {formatDateInWordsWithWeekdayAndTime(startAt)} - {formatDateInWordsWithWeekdayAndTime(finishAt)}</PeriodText>
-        {description && description
-          .split('\n')
-          .map((line, index) => <DescText key={`description_${index}`}>{line}</DescText>)
-        }
+        <DescText>{description}</DescText>
         <TicketWarning>
           {warning}
         </TicketWarning>
