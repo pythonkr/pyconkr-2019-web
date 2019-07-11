@@ -31,3 +31,11 @@ export const FORM_LABEL_GRAY_LIGHT = '#bcc0c2'
 
 export const YELLOW = '#F5A623'
 export const GREEN = '#5AA300'
+
+// Ticket Color
+export const CONFERENCE = TEAL
+export const TUTORIAL = '#885053'
+export const SPRINT = '#54428E'
+export const YOUNGCODER = '#5C2751'
+export const CHILD_CARE = '#36558F'
+

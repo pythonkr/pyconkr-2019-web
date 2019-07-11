@@ -1,5 +1,5 @@
+import _ from 'lodash'
 import { action, configure, observable } from 'mobx'
-import _ from 'lodash';
 
 export enum VALIDATION_ERROR_TYPE {
   NONE = 'NONE',
@@ -8,11 +8,18 @@ export enum VALIDATION_ERROR_TYPE {
   NO_OPTION_SELECTED = 'NO_OPTIONS_SELECTED'
 }
 
+export enum TICKET_STEP {
+  AGREE_TERMS = 'AGREE_TERMS',
+  SELECT_OPTION = 'SELECT_OPTION',
+  PAYING = 'PAYING',
+  BUYING = 'BUYING',
+}
+
 configure({ enforceActions: 'observed' })
 export class TicketStep {
   @observable ticketId: string = ''
   @observable ticketTitle: string | null = ''
-  @observable ticketStepState: number = 1
+  @observable ticketStepState: TICKET_STEP = TICKET_STEP.BUYING
   @observable ticketOption: { tshirtsize: string } | null = null
   @observable isTicketOptionAgreed: boolean = false
   @observable isTermsAgreed: boolean = false
@@ -28,7 +35,7 @@ export class TicketStep {
   }
 
   @action
-  setTicketStepState = (step: number) => {
+  setTicketStepState = (step: TICKET_STEP) => {
     this.ticketStepState = step
   }
 
@@ -59,6 +66,6 @@ export class TicketStep {
     this.setTicketOption(null)
     this.setTicketOptionAgreed(false)
     this.setTicketTermsAgreed(false)
-    this.setTicketStepState(1)
+    this.setTicketStepState(TICKET_STEP.BUYING)
   }
 }

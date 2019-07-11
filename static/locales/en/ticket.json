@@ -60,12 +60,16 @@
     "tutorial": {
         "pageTitle": "Tutorial Ticket",
         "title": "Tutorial Ticket",
-        "description": "Description of Tutorial"
+        "description": "Description of Tutorial",
+        "description1": "Tutorial is an educational program for those who are new or beginner to a subject. A tutor and our staffs are waiting for you. Tutorial is recommended for those who are new to python or to programming.",
+        "description2": "A further discussion will be needed in case of tutorials running by a company. We will inform you about details if you contact via program@pycon.kr"
     },
     "sprint": {
         "pageTitle": "Sprint Ticket",
         "title": "Sprint Ticket",
-        "description": "Description of Sprint"
+        "description": "Description of Sprint",
+        "description1": "Sprint is an event to develop a interesting open-source project intensively. You can meet a new friend, also share an experience and knowledge for each other. Is this your first in sprint? That's fine! It will be the time that you can learn from a person who are experienced to have led a project regarding the topic.",
+        "description2": "Sprints are targeted at open source projects with not only Python also all programming languages."
     },
     "youngcoder": {
         "pageTitle": "Youngcoder Ticket",

@@ -5,9 +5,11 @@ import { cancelTicket } from 'lib/apollo_graphql/mutations/cancelTicket'
 import { ConferenceProductType, getConferenceProducts } from 'lib/apollo_graphql/queries/getConferenceProducts'
 import { getMyTicket, MyTicketNode } from 'lib/apollo_graphql/queries/getMyTicket'
 import { getMyTickets, TicketNode } from 'lib/apollo_graphql/queries/getMyTickets'
+import { getSprintProducts, SprintProductType } from 'lib/apollo_graphql/queries/getSprintProducts'
+import { getTutorialProducts, TutorialProductType } from 'lib/apollo_graphql/queries/getTutorialProducts'
 import * as _ from 'lodash'
 import { action, configure, observable, toJS } from 'mobx'
-import { TicketStep } from './TicketStep';
+import { TicketStep } from './TicketStep'
 
 configure({ enforceActions: 'observed' })
 
@@ -38,11 +40,13 @@ const initialTicketInput = {
 export class TicketStore {
     @observable isInitialized: boolean = false
     @observable conferenceProducts: ConferenceProductType[] = []
+    @observable tutorialProducts: TutorialProductType[] = []
+    @observable sprintProducts: SprintProductType[] = []
     @observable isPaying: boolean = false
     @observable isSubmitPayment: boolean = false
     @observable payingTicketTitle: string | null = ''
     @observable price: number = 0
-    @observable options: string = ''
+    @observable options: string | null = null
     @observable productId: string = ''
     @observable expiryMonth: string = ''
     @observable expiryYear: string = ''
@@ -63,7 +67,17 @@ export class TicketStore {
 
     @action
     setConferenceProducts = (conferenceProducts: ConferenceProductType[]) => {
-        this.conferenceProducts = conferenceProducts
+      this.conferenceProducts = conferenceProducts
+    }
+
+    @action
+    setTutorialProducts = (tutorialProducts: TutorialProductType[]) => {
+      this.tutorialProducts = tutorialProducts
+    }
+
+    @action
+    setSprintProducts = (sprintProducts: SprintProductType[]) => {
+      this.sprintProducts = sprintProducts
     }
 
     @action
@@ -144,6 +158,18 @@ export class TicketStore {
     }
 
     @action
+    retrieveTutorialProducts = async () => {
+      const { data } = await getTutorialProducts(client)({})
+      if (data) this.setTutorialProducts(data.tutorialProducts as TutorialProductType[])
+    }
+
+    @action
+    retrieveSprintProducts = async () => {
+      const { data } = await getSprintProducts(client)({})
+      if (data) this.setSprintProducts(data.sprintProducts as SprintProductType[])
+    }
+
+    @action
     retrieveMyTickets = async () => {
       const { data } = await getMyTickets(client)({})
       this.setMyTickets(data.myTickets as TicketNode[])
@@ -160,7 +186,9 @@ export class TicketStore {
       this.isPaying = true
       this.productId = ticketStep.ticketId
       this.payingTicketTitle = ticketStep.ticketTitle
-      this.options = JSON.stringify(ticketStep.ticketOption)
+      if(ticketStep.ticketOption){
+        this.options = JSON.stringify(ticketStep.ticketOption)
+      }
     }
 
     @action
@@ -202,11 +230,12 @@ export class TicketStore {
 
     @action
     cancelTicket = async (ticketId: any) => {
-      try{
+      try {
         const data = await cancelTicket(client)({
           ticketId
-        }) 
+        })
         this.retrieveMyTickets()
+
         return data
       } catch (err) {
         return err
