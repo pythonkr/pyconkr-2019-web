@@ -39,8 +39,7 @@ const SponsorContent = (props: any) => {
     return <Loading width={50} height={50}/>
   }
   return (<>
-  <H1>{sponsor.name} - {sponsor.level.name}</H1>
-  <H2 align="center">{sponsor.level.name}</H2>
+  <H1>{sponsor.name}</H1>
   <a href={sponsor.url} target="_blank">
     <SponsorLogo src={sponsor.logoImage} alt={sponsor.name}/>
   </a>
