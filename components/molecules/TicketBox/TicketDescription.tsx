@@ -1,8 +1,6 @@
 import styled from '@emotion/styled'
-import MarkdownWrapper from 'components/atoms/MarkdownWrapper'
 import * as React from 'react'
 import { mobileWidth } from 'styles/layout'
-import { CONFERENCE, SPRINT, TUTORIAL, YOUNGCODER, CHILD_CARE} from 'styles/colors'
 
 type PropsType = {
     title: string;
@@ -32,14 +30,12 @@ export const TicketDescriptionWrapper = styled.div`
     h1 {
       font-size: 26px;
       font-weight: bold;
-      // color: #088487;
       margin-bottom: 23px;
     }
 
     p {
       font-size: 15px;
       line-height: 1.67;
-      // color: #088487;
     }
   }
 `
