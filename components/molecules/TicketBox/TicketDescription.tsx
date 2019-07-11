@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import MarkdownWrapper from 'components/atoms/MarkdownWrapper'
 import * as React from 'react'
 import { mobileWidth } from 'styles/layout'
+import { CONFERENCE, SPRINT, TUTORIAL, YOUNGCODER, CHILD_CARE} from 'styles/colors'
 
 type PropsType = {
     title: string;
@@ -31,14 +32,14 @@ export const TicketDescriptionWrapper = styled.div`
     h1 {
       font-size: 26px;
       font-weight: bold;
-      color: #088487;
+      // color: #088487;
       margin-bottom: 23px;
     }
 
     p {
       font-size: 15px;
       line-height: 1.67;
-      color: #088487;
+      // color: #088487;
     }
   }
 `
@@ -51,6 +52,13 @@ export const TicketWarning = styled.div`
     color: #f95858;
 `
 
+export const DescText = styled.div`
+    margin: 2px 0;
+    font-size: 15px;
+    line-height: 18px;
+    white-space: pre-line;
+`
+
 class TicketDescription extends React.Component<PropsType> {
     render() {
         const { title, description, warning } = this.props
@@ -58,7 +66,7 @@ class TicketDescription extends React.Component<PropsType> {
         return (
             <TicketDescriptionWrapper>
                 <h1>{title}</h1>
-                <MarkdownWrapper contents={description} />
+                <DescText>{description}</DescText> 
                 <TicketWarning>
                     {warning}
                 </TicketWarning>

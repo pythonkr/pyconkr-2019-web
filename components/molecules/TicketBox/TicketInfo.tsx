@@ -83,14 +83,14 @@ const InfoText = styled.div`
     margin-top: 8px;
     font-size: 14px;
     text-align: right;
-    color: #088487;
+    // color: #088487;
 `
 
 const PriceText = styled.div`
     font-size: 20px;
     text-align: right;
     font-weight: bold;
-    color: #088487;
+    // color: #088487;
 `
 
 class TicketInfo extends React.Component<PropsType> {

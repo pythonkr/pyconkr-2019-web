@@ -28,13 +28,14 @@ const TicketPaymentWrapper = styled.div`
     text-align: right;
     font-size: 26px;
     font-weight: bold;
-    color: #088487;
+    // color: #088487;
 
     input[type=tel] {
         width: 157px;
         height: 54px;
         border-radius: 4px;
-        border: solid 1px #ced3d6;
+        // border: solid 1px #ced3d6;
+        border: solid 1px;
         background-color: #ffffff;
         padding-right: 12px;
         font-size: 21px;

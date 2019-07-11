@@ -9,9 +9,11 @@ import { TICKET_STEP } from 'lib/stores/Ticket/TicketStep'
 import _ from 'lodash'
 import { observer } from 'mobx-react'
 import { mobileWidth } from 'styles/layout'
+import { CONFERENCE, SPRINT, TUTORIAL, YOUNGCODER, CHILD_CARE} from 'styles/colors'
 
 type PropsType = {
   t: i18next.TFunction;
+  type?: string | null;
   price: number;
   isEditablePrice: boolean;
   options?: React.ReactElement | null;
@@ -30,14 +32,30 @@ type StatesType = {
   isTicketStep: boolean | null;
 }
 
-const TicketBoxWrapper = styled.div`
+export const TicketBoxWrapper = styled.div`
   border: 3px solid #088487;
   border-radius: 2px;
   display: flex;
   min-height: 300px;
   margin-bottom: 32px;
+  border-color: ${props => props.ticketColor || CONFERENCE};
+  color: ${props => props.ticketColor || CONFERENCE};
   @media (max-width: ${mobileWidth}) {
     display: block;
+  }
+  
+  h1,
+  p,
+  div  {
+    color: ${props => props.ticketColor || CONFERENCE};
+  }
+
+  button:not(.back) {
+    background-color: ${props => props.ticketColor || CONFERENCE};
+  }
+  button.back {
+    color: ${props => props.ticketColor || CONFERENCE};
+    border-color: ${props => props.ticketColor || CONFERENCE};
   }
 `
 
@@ -56,6 +74,22 @@ class TicketBox extends React.Component<PropsType, StatesType> {
     return ticketButtonTitle
   }
 
+  getTicketColor = (type: string) => {
+    const lowerType = type.toLocaleLowerCase()
+    switch(lowerType){
+      case 'conference':
+        return CONFERENCE
+      case 'tutorial':
+        return TUTORIAL
+      case 'youngcoder':
+        return YOUNGCODER
+      case 'childcare':
+        return CHILD_CARE
+      case 'sprint':
+        return SPRINT
+    }
+  }
+
   onTicketStepForPayment = async () => {
     const { nextStep, onNextStep, stepAction } = this.props
 
@@ -66,7 +100,7 @@ class TicketBox extends React.Component<PropsType, StatesType> {
 
   render() {
       const {
-        price, isEditablePrice,
+        price, isEditablePrice, type,
         setPrice, startDate, endDate, isPaid, isSoldOut, t, options
       } = this.props
 
@@ -76,7 +110,8 @@ class TicketBox extends React.Component<PropsType, StatesType> {
       const buttonTitle = this.getTicketButtonTitle()
 
       return (
-        <TicketBoxWrapper>
+        <TicketBoxWrapper
+          ticketColor={this.getTicketColor(type)}>
           {options}
           <TicketPayment
             t={t}

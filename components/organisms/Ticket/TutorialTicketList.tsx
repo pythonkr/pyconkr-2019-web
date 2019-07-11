@@ -105,6 +105,7 @@ class TutorialTicketList extends React.Component<PropsType> {
     return tutorialProducts.map(tutorialProduct => {
       const {
         id,
+        type,
         name,
         desc,
         warning,
@@ -157,6 +158,7 @@ class TutorialTicketList extends React.Component<PropsType> {
         <TicketBox
           t={t}
           key={`ticketBox_${id}`}
+          type={type}
           ticketButtonTitle={this.getTicketButtonTitle(ticketStepState)}
           price={price}
           isEditablePrice={isEditablePrice}

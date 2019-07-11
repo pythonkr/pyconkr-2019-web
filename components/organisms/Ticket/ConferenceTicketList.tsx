@@ -121,7 +121,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
     const myConferenceTicket = toJS(getMyConferenceTickets()[0])
 
     return conferenceProducts.map((conferenceProduct) => {
-      const { id, name, desc, warning, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut } = conferenceProduct
+      const { id, type, name, desc, warning, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut } = conferenceProduct
       const isTicketStepExist = getIsTicketStepExist(id)
       if (!isTicketStepExist) setTicketStep(id, name)
       const ticketStep = getTicketStep(id)
@@ -183,6 +183,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
         <TicketBox
           t={t}
           key={`ticketBox_${id}`}
+          type={type}
           ticketButtonTitle={this.getTicketButtonTitle(ticketStepState)}
           price={price}
           isEditablePrice={isEditablePrice}

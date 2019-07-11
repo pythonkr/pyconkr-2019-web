@@ -104,6 +104,7 @@ class SprintTicketList extends React.Component<PropsType> {
     return sprintProducts.map(sprintProduct => {
       const {
         id,
+        type,
         name,
         desc,
         warning,
@@ -156,6 +157,7 @@ class SprintTicketList extends React.Component<PropsType> {
         <TicketBox
           t={t}
           key={`ticketBox_${id}`}
+          type={type}
           ticketButtonTitle={this.getTicketButtonTitle(ticketStepState)}
           price={price}
           isEditablePrice={isEditablePrice}

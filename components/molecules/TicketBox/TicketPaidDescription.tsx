@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import * as React from 'react'
-import {TicketDescriptionWrapper, TicketWarning} from 'components/molecules/TicketBox/TicketDescription'
+import {TicketDescriptionWrapper, TicketWarning, DescText} from 'components/molecules/TicketBox/TicketDescription'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 
 type PropsType = {
@@ -14,7 +14,7 @@ type PropsType = {
 const TitleText = styled.div`
     font-size: 26px;
     font-weight: bold;
-    color: #088487;
+    // color: #088487;
     margin: 0;
 `
 const PeriodText = styled.div`
@@ -22,15 +22,9 @@ const PeriodText = styled.div`
     font-size: 16px;
     font-weight: bold;
     line-height: 22px;
-    color: #088487;
+    // color: #088487;
 `
 
-const DescText = styled.div`
-    margin: 2px 0;
-    font-size: 13px;
-    line-height: 18px;
-    color: #088487;
-`
 
 class TicketPaidDescription extends React.Component<PropsType> {
   render() {
