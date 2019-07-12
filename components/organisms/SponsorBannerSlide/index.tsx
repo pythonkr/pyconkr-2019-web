@@ -160,11 +160,15 @@ class SponsorBannerSlide extends React.Component<PropsType> {
       sponsorList.push(sponsorBanner)
     })
 
-    let bannerGroups = []
+    let bannerGroups: {
+      name: string | null;
+      id: string;
+      banners: any;
+    }[] = []
     sponsorLevels.forEach(sponsorLevel => {
       const level = sponsorLevel
       const banners = sponsorBanners[sponsorLevel.id].sponsors as any[]
-      const bannerGroupsForLevel = _.chunk(banners, bannerForRowMap[level.id])
+      const bannerGroupsForLevel = _.chunk(banners, (bannerForRowMap as any)[level.id])
       bannerGroups = [
         ...bannerGroups,
         ...bannerGroupsForLevel.map((group, index) => ({
@@ -180,13 +184,13 @@ class SponsorBannerSlide extends React.Component<PropsType> {
         {/* <H2><IntlText intlKey='constant.sponsor'>🧚‍♀️ 후원사 🧚‍♂️</IntlText></H2> */}
         <SliderWrapper>
           <Slider {...sliderSettings}>
-            {bannerGroups.map(bannerGroup => <BannerGroupWrapper key={bannerGroup.id}>
+            {bannerGroups && bannerGroups.map(bannerGroup => <BannerGroupWrapper key={bannerGroup.id}>
               <SponsorGroupTitle>후원사 - {bannerGroup.name}</SponsorGroupTitle>
               <BannersWrapper>
                 {bannerGroup.banners.map(banner => <Banner
                   key={banner.id}
                   banner={banner}
-                  levelName={bannerGroup.name.toLowerCase()}
+                  levelName={(bannerGroup.name && bannerGroup.name.toLowerCase()) || ''}
                 />)}
               </BannersWrapper>
             </BannerGroupWrapper>)}
