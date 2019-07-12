@@ -94,8 +94,17 @@ const PriceText = styled.div`
 
 const TicketQRCode = styled(QRCode)`
   margin-left: auto;
+  margin-right: auto;
   margin-top: 10px;
   margin-bottom: 10px;
+`
+
+const TicketButtonWrapper = styled.div`
+  margin-top: auto;
+  button {
+    margin-left: auto;
+    width: 100%;
+  }
 `
 
 class TicketInfo extends React.Component<PropsType> {
@@ -137,9 +146,11 @@ class TicketInfo extends React.Component<PropsType> {
         <PriceText>{price !== 0 ? `₩ ${price.toLocaleString()}` : 'Free'}</PriceText>
         <InfoText>paid at {formatDateInWordsWithWeekdayAndTime(paidAt)}</InfoText>
         {status === TicketStatus.CANCELLED ? <InfoText>cancelled at {formatDateInWordsWithWeekdayAndTime(cancelledAt)}</InfoText> : ''}
-        <TicketQRCode value={ticketUrl} size={156}/>
-        {isFuture(cancelableDate) ? <button onClick={this.onRefund}>Refund</button> : ''}
-        <button onClick={this.onDetail}>More</button>
+        {status === TicketStatus.PAID && <TicketQRCode value={ticketUrl} size={156}/>}
+        <TicketButtonWrapper>
+          {(isFuture(cancelableDate) && status === TicketStatus.PAID) ? <button onClick={this.onRefund}>Refund</button> : ''}
+          <button onClick={this.onDetail}>More</button>
+        </TicketButtonWrapper>
       </TicketInfoWrapper>
     )
   }
