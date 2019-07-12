@@ -13,12 +13,8 @@ export interface getMyTicket_myTicket_product {
   id: string;
   type: TicketTypeNode | null;
   name: string | null;
-  nameKo: string | null;
-  nameEn: string | null;
-  descKo: string | null;
-  descEn: string | null;
-  warningKo: string | null;
-  warningEn: string | null;
+  desc: string;
+  warning: string;
   /**
    * 같은 타입간에 하나만 구매가 가능한지 여부를 나타냅니다. 대표적으로 컨퍼런스티켓이 이에 해당합니다.
    */

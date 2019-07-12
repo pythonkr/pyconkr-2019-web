@@ -64,7 +64,7 @@ const TicketInformationWrapper = styled.div`
   p.terms {
     font-size: 14px;
     line-height: 1.29;
-    color: #4d5256;
+    // color: #4d5256;
     margin-bottom: 35px;
   }
 
@@ -73,9 +73,9 @@ const TicketInformationWrapper = styled.div`
     margin-right: auto;
     width: 86px;
     height: 53px;
-    border: solid 1px #088487;
+    border: solid 1px;
     font-size: 18px;
-    color: #088487;
+    // color: #088487;
   }
 
   @media (max-width: ${mobileWidth}) {

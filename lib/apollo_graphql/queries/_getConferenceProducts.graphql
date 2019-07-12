@@ -2,18 +2,6 @@ query getConferenceProducts {
   conferenceProducts{
     ...TicketProductInfo
   }
-  tutorialProducts{
-    ...TicketProductInfo
-  }
-  sprintProducts{
-    ...TicketProductInfo
-  }
-  childCareProducts{
-    ...TicketProductInfo
-  }
-  youngCoderProducts{
-    ...TicketProductInfo
-  }
 }
 fragment TicketProductInfo on TicketProductNode {
   id

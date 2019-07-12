@@ -83,14 +83,12 @@ const InfoText = styled.div`
     margin-top: 8px;
     font-size: 14px;
     text-align: right;
-    color: #088487;
 `
 
 const PriceText = styled.div`
     font-size: 20px;
     text-align: right;
     font-weight: bold;
-    color: #088487;
 `
 
 class TicketInfo extends React.Component<PropsType> {
@@ -113,7 +111,7 @@ class TicketInfo extends React.Component<PropsType> {
     const {id} = this.props
     const {ticketStore} = this.props.stores
     const data = await ticketStore.cancelTicket(id)
-    
+
     if (data.graphQLErrors) {
       const { message } = data.graphQLErrors[0]
       toast.error(message)
@@ -124,10 +122,10 @@ class TicketInfo extends React.Component<PropsType> {
 
   render() {
     const {amount, paidAt, status, cancelledAt, cancelableDate} = this.props
-
+    const price = amount
     return (
       <TicketInfoWrapper>
-        <PriceText>{`₩ ${amount.toLocaleString()}`}</PriceText>
+        <PriceText>{price !== 0 ? `₩ ${price.toLocaleString()}` : 'Free'}</PriceText>
         <InfoText>paid at {formatDateInWordsWithWeekdayAndTime(paidAt)}</InfoText>
         {status === TicketStatus.CANCELLED ? <InfoText>cancelled at {formatDateInWordsWithWeekdayAndTime(cancelledAt)}</InfoText> : ''}
         {isFuture(cancelableDate) ? <button onClick={this.onRefund}>Refund</button> : ''}

@@ -1,14 +1,11 @@
 import { FormNeedsLogin } from 'components/atoms/FormNeedsLogin'
 import { Loading } from 'components/atoms/Loading'
 import TicketBox from 'components/molecules/TicketBox'
-import ConferenceTicketOption from 'components/molecules/TicketBox/ConferenceTicketOption'
 import TermsAgreement from 'components/molecules/TicketBox/TermsAgreement'
 import TicketDescription from 'components/molecules/TicketBox/TicketDescription'
 import i18next from 'i18next'
-import { TicketNode } from 'lib/apollo_graphql/queries/getMyTickets'
 import { TICKET_STEP, TicketStep, VALIDATION_ERROR_TYPE } from 'lib/stores/Ticket/TicketStep'
 import _ from 'lodash'
-import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { RouterProps } from 'next/router'
 import { StoresType } from 'pages/_app'
@@ -22,14 +19,8 @@ type PropsType = {
   router: RouterProps;
 }
 
-type StatesType = {
-  myConferenceTicket: TicketNode;
-}
 @observer
-class ConferenceTicketList extends React.Component<PropsType, StatesType> {
-  state = {
-    myConferenceTicket: null as any
-  }
+class TutorialTicketList extends React.Component<PropsType> {
 
   getStepAction = (ticketStep: TicketStep) => {
     switch (ticketStep.ticketStepState) {
@@ -37,7 +28,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
         return null
       case TICKET_STEP.AGREE_TERMS:
         return () => this.onAgreeTerms(ticketStep)
-      case TICKET_STEP.SELECT_OPTION:
+      case TICKET_STEP.PAYING:
         return () => this.onPayTicket(ticketStep)
       default:
         return null
@@ -49,8 +40,6 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
       case TICKET_STEP.BUYING:
         return TICKET_STEP.AGREE_TERMS
       case TICKET_STEP.AGREE_TERMS:
-        return TICKET_STEP.SELECT_OPTION
-      case TICKET_STEP.SELECT_OPTION:
         return TICKET_STEP.PAYING
       default:
         return TICKET_STEP.BUYING
@@ -65,7 +54,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
         return t('ticket:buying')
       case TICKET_STEP.AGREE_TERMS:
         return t('ticket:agree')
-      case TICKET_STEP.SELECT_OPTION:
+      case TICKET_STEP.PAYING:
         return t('ticket:paying')
       default:
         return t('ticket:buying')
@@ -74,6 +63,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
 
   onAgreeTerms = (ticketStep: TicketStep) => {
     const { t } = this.props
+
     if (!ticketStep.isTermsAgreed) {
       toast.error(t('ticket:error.notAgreeToTerms'))
 
@@ -90,12 +80,6 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
     if (ticketStep.validateTicket) {
       const error = ticketStep.validateTicket()
 
-      if (error === VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED) {
-        toast.error(t('ticket:error.noOptionSelected'))
-
-        return false
-      }
-
       if (error === VALIDATION_ERROR_TYPE.NOT_AGREED_TO_OPTIONS) {
         toast.error(t('ticket:error.notAgreeToOptions'))
 
@@ -111,36 +95,44 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
   renderTicketBoxList = () => {
     const { stores, t } = this.props
     const {
-      conferenceProducts,
-      setPrice,
-      getTicketStep,
+      tutorialProducts,
       getIsTicketStepExist,
       setTicketStep,
-      getMyConferenceTickets
+      getTicketStep,
+      setPrice,
     } = stores.ticketStore
-    const myConferenceTicket = toJS(getMyConferenceTickets()[0])
 
-    return conferenceProducts.map((conferenceProduct) => {
-      const { id, type, name, desc, warning, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut } = conferenceProduct
+    return tutorialProducts.map(tutorialProduct => {
+      const {
+        id,
+        type,
+        name,
+        desc,
+        warning,
+        price,
+        isEditablePrice,
+        ticketOpenAt,
+        ticketCloseAt,
+        isSoldOut,
+        isPurchased,
+      } = tutorialProduct
       const isTicketStepExist = getIsTicketStepExist(id)
       if (!isTicketStepExist) setTicketStep(id, name)
       const ticketStep = getTicketStep(id)
 
       if (!ticketStep) return null
 
+      let options = null
       const {
         ticketStepState,
-        setTicketStepState, setTicketOption, setTicketOptionAgreed, setTicketTermsAgreed,
-        ticketOption, isTicketOptionAgreed, isTermsAgreed,
-        initConferenceTicketOptions
+        setTicketTermsAgreed,
+        isTermsAgreed,
+        setTicketStepState,
       } = ticketStep
-
-      let options = null
 
       if (ticketStepState === TICKET_STEP.BUYING) {
         options = (
           <TicketDescription
-            t={t}
             title={name || ''}
             description={desc}
             warning={warning}
@@ -155,29 +147,22 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
             title={name || ''}
             id={id}
             isTermsAgreed={isTermsAgreed}
-            onCancel={initConferenceTicketOptions}
+            onCancel={() => setTicketStepState(TICKET_STEP.BUYING)}
             onChangeAgreed={setTicketTermsAgreed}
           />
         )
       }
-      if (ticketStepState === TICKET_STEP.SELECT_OPTION) {
+
+      if (ticketStepState === TICKET_STEP.PAYING) {
         options = (
-          <ConferenceTicketOption
-            t={t}
+          <TicketDescription
             title={name || ''}
-            id={id}
-            tshirtsize={ticketOption && ticketOption.tshirtsize || ''}
-            isTicketAgreed={isTicketOptionAgreed}
-            onCancel={initConferenceTicketOptions}
-            onChangeOption={setTicketOption}
-            onChangeAgreed={setTicketOptionAgreed}
+            description={desc}
+            warning={warning}
+            cancelButtonTitle={t('ticket:back')}
+            onCancel={() => setTicketStepState(TICKET_STEP.AGREE_TERMS)}
           />
         )
-      }
-
-      let isPaid = null
-      if (!_.isEmpty(myConferenceTicket)) {
-        isPaid = myConferenceTicket.product.id === id
       }
 
       return (
@@ -196,7 +181,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
           stepAction={this.getStepAction(ticketStep)}
           nextStep={this.getNextTicketStep(ticketStepState)}
           options={options}
-          isPaid={isPaid}
+          isPaid={isPurchased}
         />
       )
     })
@@ -220,4 +205,4 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
   }
 }
 
-export default ConferenceTicketList
+export default TutorialTicketList

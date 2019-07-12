@@ -5,6 +5,7 @@ import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
 import i18next from 'i18next'
 import _ from 'lodash'
+import { AlertBar } from 'components/atoms/AlertBar'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
@@ -50,9 +51,10 @@ export class Volunteer extends React.Component<PropsType> {
         </Section>
         <Section>
           <H2>{ t('contribute:volunteer.header2') }</H2>
-          <Paragraph>
+          <AlertBar text={t('contribute:volunteer.alertFinished')} />
+          {/* <Paragraph>
             { t('contribute:volunteer.desc2-1') }
-          </Paragraph>
+          </Paragraph> */}
         </Section>
         <Section>
           <H2>{ t('contribute:volunteer.header3') }</H2>
@@ -62,13 +64,13 @@ export class Volunteer extends React.Component<PropsType> {
             <Li>{ t('contribute:volunteer.desc3-3') }</Li>
           </Ul>
         </Section>
-        <ContentButtonWrapper>
+        {/* <ContentButtonWrapper>
           <Button
             title={t('contribute:volunteer.apply')}
             to='https://forms.gle/MHByFnAKVLcr2xzy7'
             outlink
           />
-        </ContentButtonWrapper>
+        </ContentButtonWrapper> */}
         <Section>
           <H2>{ t('common:contact') }</H2>
           <Paragraph><a href='mailto:pyconkr@pycon.kr'>pyconkr@pycon.kr</a></Paragraph>

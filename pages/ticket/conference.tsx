@@ -1,31 +1,19 @@
 import { AlertBar } from 'components/atoms/AlertBar'
-import { H1, H2, H3, Ul, Li, Paragraph, Section } from 'components/atoms/ContentWrappers'
-import { IntlText } from 'components/atoms/IntlText'
+import { H1, H2, H3, Li, Paragraph, Section, Ul } from 'components/atoms/ContentWrappers'
+import { Loading } from 'components/atoms/Loading'
 import { StatusBar } from 'components/atoms/StatusBar'
 import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import ConferenceTicketList from 'components/organisms/Ticket/ConferenceTicketList'
 import PageTemplate from 'components/templates/PageTemplate'
+import _ from 'lodash'
 import { inject, observer } from 'mobx-react'
 import { withRouter } from 'next/router'
 import React from 'react'
 import { paths, ticketMenu } from 'routes/paths'
-import { DateDTO } from 'types/common'
 import { PageDefaultPropsType } from 'types/PageDefaultPropsType'
 import { withNamespaces } from '../../i18n'
-
-export type IntlTextType = {
-  intlKey: string;
-  defaultText: string;
-}
-
-export type Schedule = {
-  title: string;
-  intlKey: string;
-  date: DateDTO;
-  desc?: IntlTextType;
-}
 
 @(withRouter as any)
 @inject('stores')
@@ -37,14 +25,21 @@ export class ConferenceTicket extends React.Component<PageDefaultPropsType> {
       }
   }
 
-  async componentDidMount() {
+  async componentDidMount () {
     const { stores } = this.props
-    if (!stores.ticketStore.isInitialized) stores.ticketStore.initialize()
+    const {
+      isInitialized,
+      initialize,
+    } = stores.ticketStore
+
+    if (!isInitialized) initialize()
   }
 
   render() {
     const { stores, t, router } = this.props
+    const { conferenceProducts } = stores.ticketStore
     const title = t('ticket:conference.title')
+
     return (
       <PageTemplate
         header={<Header title={t('common:pageTitle', { title })} intlKey='' />}
@@ -65,7 +60,10 @@ export class ConferenceTicket extends React.Component<PageDefaultPropsType> {
           <AlertBar text={t('ticket:conference.alert2')} />
         </Section>
         <Section>
-          <ConferenceTicketList stores={stores} t={t} router={router}/>
+          {_.isEmpty(conferenceProducts)
+            ? <Loading width={50} height={50}/>
+            : <ConferenceTicketList stores={stores} t={t} router={router} />
+          }
         </Section>
         <Section>
           <H2>{ t('ticket:conference.header2') }</H2>
