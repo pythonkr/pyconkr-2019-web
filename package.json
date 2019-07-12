@@ -57,6 +57,7 @@
     "next-routes": "^1.4.2",
     "node-fetch": "^1.7.2",
     "path": "^0.12.7",
+    "qrcode.react": "^0.9.3",
     "qs": "^6.6.0",
     "ramda": "^0.26.1",
     "rc-steps": "^3.3.1",
