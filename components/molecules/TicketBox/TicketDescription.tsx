@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
+import i18next from 'i18next'
 import * as React from 'react'
 import { mobileWidth } from 'styles/layout'
-import i18next from 'i18next'
 
 type PropsType = {
     title: string;
@@ -45,10 +45,13 @@ export const TicketDescriptionWrapper = styled.div`
 `
 
 const TicketDescriptionBottomWrapper = styled.div<{isCancel: boolean}>`
-  // margin-top: ${props => props.isCancel ? '20px' : 'auto'};
   margin-top: auto;
   display: flex;
   align-items: center;
+
+  @media (max-width: ${mobileWidth}) {
+    flex-direction: column-reverse;
+  }
 `
 
 export const TicketWarning = styled.div<{isCancel: boolean }>`
@@ -56,8 +59,12 @@ export const TicketWarning = styled.div<{isCancel: boolean }>`
   font-size: 15px;
   font-weight: bold;
   line-height: 1.47;
-  margin-top: auto;
   color: #f95858 !important;
+
+  @media (max-width: ${mobileWidth}) {
+    margin-left: 0;
+    margin-top: 20px;
+  }
 `
 
 const ButtonCancel = styled.button`
@@ -65,6 +72,11 @@ const ButtonCancel = styled.button`
   height: 53px;
   border: solid 1px;
   font-size: 18px;
+
+  @media (max-width: ${mobileWidth}) {
+    width: 100%;
+    margin-top: 20px;
+  }
 `
 
 export const DescText = styled.div`
@@ -82,7 +94,7 @@ class TicketDescription extends React.Component<PropsType> {
         return (
             <TicketDescriptionWrapper>
               <h1>{title}</h1>
-              <DescText>{description}</DescText> 
+              <DescText>{description}</DescText>
               <TicketDescriptionBottomWrapper isCancel={!!onCancel}>
                 {onCancel && (
                   <ButtonCancel className='back' onClick={onCancel}>
