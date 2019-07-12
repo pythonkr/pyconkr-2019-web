@@ -7212,6 +7212,11 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
+typescript-string-enums@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/typescript-string-enums/-/typescript-string-enums-1.0.0.tgz#4e6bf18e3c6ef02efc80bb35c7edf31b78953d2f"
+  integrity sha512-7ZtI+QpAihetJPm2qSEzH6P9m7cy3Fqa+Y9L3ONS0PStfjBgB2hiaS07qLmBolwGbPko2blakPfcgT3g+Mh7Fw==
+
 typescript-tslint-plugin@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/typescript-tslint-plugin/-/typescript-tslint-plugin-0.3.1.tgz#d86ae0342c9e8f9ecfcbcc47f7a7c2b5ab0e86f9"

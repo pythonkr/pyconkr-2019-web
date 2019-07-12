@@ -70,6 +70,7 @@
     "react-slick": "^0.24.0",
     "react-toastify": "^5.1.0",
     "slick-carousel": "^1.8.1",
+    "typescript-string-enums": "^1.0.0",
     "universal-cookie": "^3.0.7"
   },
   "devDependencies": {

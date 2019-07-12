@@ -16,6 +16,7 @@ import { StoresType } from 'pages/_app'
 import * as React from 'react'
 import { toast } from 'react-toastify'
 import { paths } from 'routes/paths'
+import { TICKET_COLOR } from 'styles/colors'
 
 type PropsType = {
   stores: StoresType;
@@ -126,7 +127,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
       )
     }
     return conferenceProducts.map((conferenceProduct) => {
-      const { id, type, name, desc, warning, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut } = conferenceProduct
+      const { id, name, desc, warning, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut } = conferenceProduct
       const isTicketStepExist = getIsTicketStepExist(id)
       if (!isTicketStepExist) setTicketStep(id, name)
       const ticketStep = getTicketStep(id)
@@ -189,7 +190,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
         <TicketBox
           t={t}
           key={`ticketBox_${id}`}
-          type={type}
+          ticketColor={TICKET_COLOR.CONFERENCE}
           ticketButtonTitle={this.getTicketButtonTitle(ticketStepState)}
           price={price}
           isEditablePrice={isEditablePrice}

@@ -1,3 +1,6 @@
+
+import { Enum } from 'typescript-string-enums'
+
 export const TEAL = '#088487'
 export const TEAL_SEMI_DARK = '#077477'
 export const TEAL_DARK = '#044748'
@@ -32,10 +35,12 @@ export const FORM_LABEL_GRAY_LIGHT = '#bcc0c2'
 export const YELLOW = '#F5A623'
 export const GREEN = '#5AA300'
 
-// Ticket Color
-export const CONFERENCE = TEAL
-export const TUTORIAL = '#885053'
-export const SPRINT = '#54428E'
-export const YOUNGCODER = '#5C2751'
-export const CHILD_CARE = '#36558F'
+export const TICKET_COLOR = {
+  CONFERENCE: TEAL,
+  TUTORIAL: '#885053',
+  SPRINT: '#54428E',
+  YOUNGCODER: '#5C2751',
+  CHILD_CARE: '#36558F',
+}
 
+export type TICKET_COLOR_TYPE = Enum<typeof TICKET_COLOR>

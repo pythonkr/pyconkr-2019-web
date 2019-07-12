@@ -13,6 +13,7 @@ import { StoresType } from 'pages/_app'
 import * as React from 'react'
 import { toast } from 'react-toastify'
 import { paths } from 'routes/paths'
+import { TICKET_COLOR } from 'styles/colors'
 
 type PropsType = {
   stores: StoresType;
@@ -122,7 +123,6 @@ class TutorialTicketList extends React.Component<PropsType> {
     return tutorialProducts.map(tutorialProduct => {
       const {
         id,
-        type,
         name,
         desc,
         warning,
@@ -150,6 +150,7 @@ class TutorialTicketList extends React.Component<PropsType> {
       if (ticketStepState === TICKET_STEP.BUYING) {
         options = (
           <TicketDescription
+            t={t}
             title={name || ''}
             description={desc}
             warning={warning}
@@ -173,6 +174,7 @@ class TutorialTicketList extends React.Component<PropsType> {
       if (ticketStepState === TICKET_STEP.PAYING) {
         options = (
           <TicketDescription
+            t={t}
             title={name || ''}
             description={desc}
             warning={warning}
@@ -186,7 +188,7 @@ class TutorialTicketList extends React.Component<PropsType> {
         <TicketBox
           t={t}
           key={`ticketBox_${id}`}
-          type={type}
+          ticketColor={TICKET_COLOR.TUTORIAL}
           ticketButtonTitle={this.getTicketButtonTitle(ticketStepState)}
           price={price}
           isEditablePrice={isEditablePrice}
