@@ -15,12 +15,20 @@ export enum TICKET_STEP {
   BUYING = 'BUYING',
 }
 
+export type TicketOptionType = {
+  tshirtsize?: string;
+  childcareBirthDate?: string;
+  isRequireParkingDiscount?: boolean;
+  isSiblings?: false;
+  note?: string;
+}
+
 configure({ enforceActions: 'observed' })
 export class TicketStep {
   @observable ticketId: string = ''
   @observable ticketTitle: string | null = ''
   @observable ticketStepState: TICKET_STEP = TICKET_STEP.BUYING
-  @observable ticketOption: { tshirtsize: string } | null = null
+  @observable ticketOption: TicketOptionType | null = null
   @observable isTicketOptionAgreed: boolean = false
   @observable isTermsAgreed: boolean = false
 
@@ -40,7 +48,7 @@ export class TicketStep {
   }
 
   @action
-  setTicketOption = (ticketOption: { tshirtsize: string } | null) => {
+  setTicketOption = (ticketOption: TicketOptionType | null) => {
     this.ticketOption = ticketOption
   }
 

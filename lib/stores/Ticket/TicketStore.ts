@@ -186,7 +186,7 @@ export class TicketStore {
       this.isPaying = true
       this.productId = ticketStep.ticketId
       this.payingTicketTitle = ticketStep.ticketTitle
-      if(ticketStep.ticketOption){
+      if (ticketStep.ticketOption) {
         this.options = JSON.stringify(ticketStep.ticketOption)
       }
     }
