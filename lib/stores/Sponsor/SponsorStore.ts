@@ -95,8 +95,13 @@ export class SponsorStore {
     async retrieveSponsors() {
         const response = await getSponsors(client)({})
         if (response.data.sponsors) {
-            this.sponsors = response.data.sponsors as getSponsors_sponsors[]
+            this.setSponsors(response.data.sponsors as PublicSponsorNode[])
         }
+    }
+
+    @action
+    setSponsors(sponsors: PublicSponsorNode[]) {
+        this.sponsors = sponsors
     }
 
     @action
