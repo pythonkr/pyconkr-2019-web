@@ -27,6 +27,7 @@ export class Patrons extends React.Component<PageDefaultPropsType> {
 
   render() {
     const { t, stores } = this.props
+    const { patrons } = stores.sponsorStore
 
     return (
       <PageTemplate
@@ -39,7 +40,7 @@ export class Patrons extends React.Component<PageDefaultPropsType> {
               <AlertBar text={t('sponsor:patron.waitingAlert')} />
             </Section>
           : <Section>
-              <PatronList stores={stores} />
+              <PatronList patrons={patrons} />
             </Section>
         }
       </PageTemplate>

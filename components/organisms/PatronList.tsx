@@ -1,25 +1,18 @@
 import { FlexColumnWrapper } from 'components/atoms/FlexWrapper'
 import { Loading } from 'components/atoms/Loading'
 import ProfileCard from 'components/molecules/ProfileCard'
-import i18next from 'i18next'
-import _ from 'lodash'
-import { observer } from 'mobx-react'
-import { StoresType } from 'pages/_app'
+import { isEmpty } from 'lodash'
 import React from 'react'
+import { PatronNode } from '../../lib/apollo_graphql/queries/getPatrons';
 
 type PropsType = {
-    stores: StoresType;
+    patrons: PatronNode[];
 }
 
-@observer
 class PatronList extends React.Component<PropsType> {
 
   renderPatronList = () => {
-    const { stores } = this.props
-    const { patrons } = stores.sponsorStore
-    const isPatronExist = !!!_.isNil(patrons)
-
-    if (!isPatronExist) return null
+    const { patrons } = this.props
 
     return patrons.map(patron => {
       const {image, name, bio, organization } = patron
@@ -37,8 +30,8 @@ class PatronList extends React.Component<PropsType> {
   }
 
   render() {
-    const { stores } = this.props
-    if (!stores.sponsorStore.patrons || _.isEmpty(stores.sponsorStore.patrons)) {
+    const { patrons } = this.props
+    if (!patrons || isEmpty(patrons)) {
       return <Loading width={50} height={50}/>
     }
 
