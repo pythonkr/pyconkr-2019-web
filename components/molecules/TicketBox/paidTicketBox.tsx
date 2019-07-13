@@ -47,6 +47,7 @@ class PaidTicketBox extends React.Component<PropsType, StatesType> {
     return (
       <TicketBoxWrapper
         ticketColor={this.getTicketColor(type)}>
+        
         <TicketPaidDescription
           title={status === TicketStatus.CANCELLED ? `[Cancelled] ${name}` : name }
           description={desc}

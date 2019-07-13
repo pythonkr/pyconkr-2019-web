@@ -8,6 +8,7 @@ import {RouterProps} from 'next-server/router'
 import { TicketStatus } from 'lib/apollo_graphql/__generated__/globalTypes'
 import { StoresType } from 'pages/_app'
 import { toast } from 'react-toastify'
+import * as QRCode from 'qrcode.react'
 
 type PropsType = {
   amount: number;
@@ -25,8 +26,8 @@ const TicketInfoWrapper = styled.div`
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 29px 24px 20px 0;
-    border-left: 1px dashed #85c0c1;
+    padding: 29px 10px 20px 10px;
+    border-left: 1px dashed;
 
     p {
     text-align: right;
@@ -52,7 +53,7 @@ const TicketInfoWrapper = styled.div`
         background-color: #088487;
         color: #FFF;
         font-size: 18px;
-        margin-top: auto;
+        margin-top: 5px;
         margin-left: auto;
         outline: none;
     }
@@ -91,6 +92,21 @@ const PriceText = styled.div`
     font-weight: bold;
 `
 
+const TicketQRCode = styled(QRCode)`
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+`
+
+const TicketButtonWrapper = styled.div`
+  margin-top: auto;
+  button {
+    margin-left: auto;
+    width: 100%;
+  }
+`
+
 class TicketInfo extends React.Component<PropsType> {
   state = {
     adjustedPrice: 150000
@@ -121,15 +137,20 @@ class TicketInfo extends React.Component<PropsType> {
   }
 
   render() {
-    const {amount, paidAt, status, cancelledAt, cancelableDate} = this.props
+    const {id, amount, paidAt, status, cancelledAt, cancelableDate} = this.props
     const price = amount
+    const ticketUrl = `${window.location.origin}/ticket/my-ticket?id=${id}`
+    console.log(ticketUrl)
     return (
       <TicketInfoWrapper>
         <PriceText>{price !== 0 ? `₩ ${price.toLocaleString()}` : 'Free'}</PriceText>
         <InfoText>paid at {formatDateInWordsWithWeekdayAndTime(paidAt)}</InfoText>
         {status === TicketStatus.CANCELLED ? <InfoText>cancelled at {formatDateInWordsWithWeekdayAndTime(cancelledAt)}</InfoText> : ''}
-        {isFuture(cancelableDate) ? <button onClick={this.onRefund}>Refund</button> : ''}
-        <button onClick={this.onDetail}>More</button>
+        {status === TicketStatus.PAID && <TicketQRCode value={ticketUrl} size={156}/>}
+        <TicketButtonWrapper>
+          {(isFuture(cancelableDate) && status === TicketStatus.PAID) ? <button onClick={this.onRefund}>Refund</button> : ''}
+          <button onClick={this.onDetail}>More</button>
+        </TicketButtonWrapper>
       </TicketInfoWrapper>
     )
   }
