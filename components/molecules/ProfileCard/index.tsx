@@ -24,12 +24,23 @@ const ProfileCardWrapper = styled.div`
 
 const ProfileImage = styled.div`
   width: 20%;
+  padding: 0 20px;
   text-align: center;
 
+  figure {
+    position: relative;
+    height: 0;
+    padding-top: 100%;
+  }
   img {
-    width: 100px;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
-    box-shadow: 0px 0px 20px #DFDFDF
+    box-shadow: 0px 0px 20px #DFDFDF;
   }
 
   @media (max-width: ${mobileWidth}) {
@@ -90,7 +101,9 @@ class ProfileCard extends React.Component<PropsType> {
     return (
       <ProfileCardWrapper>
         <ProfileImage>
-          <img src={profileImg} onError={this.handleImgError.bind(this)}/>
+          <figure>
+            <img src={profileImg} onError={this.handleImgError.bind(this)}/>
+          </figure>
         </ProfileImage>
         <ProfileDescription>
           <ProfileName>{name}</ProfileName>
