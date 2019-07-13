@@ -4,13 +4,12 @@ import {PageDefaultPropsType} from 'types/PageDefaultPropsType'
 import PageTemplate from 'components/templates/PageTemplate'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
-import {H1, H2, Paragraph, Section} from 'components/atoms/ContentWrappers'
+import {H1, H2, Section} from 'components/atoms/ContentWrappers'
 import {withRouter} from 'next/router'
 import {Loading} from 'components/atoms/Loading'
 import styled from '@emotion/styled'
 import MarkdownWrapper from 'components/atoms/MarkdownWrapper'
 import gql from 'graphql-tag'
-import { Query } from 'react-apollo'
 
 const GET_SPONSOR = gql`
 query Sponsor($id: ID!) {
@@ -57,32 +56,20 @@ const SponsorContent = (props: any) => {
 @inject('stores')
 @observer
 export default class SponsorDetail extends React.Component<PageDefaultPropsType> {
-  async componentDidMount() {
-  }
+  render() {
+    const { id } = this.props.router.query
+    const sponsor = this.props.stores.sponsorStore.sponsors.find(
+      sponsor => sponsor.id === id
+    )
 
-  renderSponsor = () => {
-    const id = this.props.router.query.id
     return (
       <PageTemplate
         header={<Header title='후원사 상세 :: 파이콘 한국 2019' intlKey='sponsor.detail.pageTitle'/>}
         footer={<Footer/>}
       >
-        <Query query={GET_SPONSOR} variables={{ id }}>
-          {({ loading, error, data }) => {
-            if (loading || error) return (<Loading width={50} height={50}/>);
-            return (
-              <SponsorContent sponsor={data.sponsor}/>
-            )
-          }}
-        </Query>
-        
-      </PageTemplate>
-    )
-  }
+        <SponsorContent sponsor={sponsor}/>
 
-  render() {
-    return (
-        this.renderSponsor()
+      </PageTemplate>
     )
   }
 }
