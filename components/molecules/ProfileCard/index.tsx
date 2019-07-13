@@ -76,13 +76,21 @@ const ProfileOrganization = styled.div`
 `
 
 class ProfileCard extends React.Component<PropsType> {
+  handleImgError(e: any) {
+    const { name } = this.props
+    const FALLBACK_IMG_URL = `https://www.tinygraphs.com/squares/${name}?theme=seascape&numcolors=2&size=100&fmt=svg`
+
+    e.target.onerror = null
+    e.target.src = FALLBACK_IMG_URL
+  }
+
   render() {
     const { profileImg, name, organization, bio } = this.props
-    
+
     return (
       <ProfileCardWrapper>
         <ProfileImage>
-          <img src={profileImg} />
+          <img src={profileImg} onError={this.handleImgError.bind(this)}/>
         </ProfileImage>
         <ProfileDescription>
           <ProfileName>{name}</ProfileName>
