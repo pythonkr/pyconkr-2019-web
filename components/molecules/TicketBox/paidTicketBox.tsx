@@ -7,7 +7,7 @@ import {RouterProps} from 'next/router'
 import {TicketNode} from 'lib/apollo_graphql/queries/getMyTickets'
 import i18next from 'i18next'
 import { TicketStatus } from 'lib/apollo_graphql/__generated__/globalTypes'
-import { CONFERENCE, SPRINT, TUTORIAL, YOUNGCODER, CHILD_CARE} from 'styles/colors'
+import { TICKET_COLOR } from 'styles/colors'
 
 type PropsType = {
   stores: StoresType;
@@ -27,15 +27,15 @@ class PaidTicketBox extends React.Component<PropsType, StatesType> {
     const lowerType = type.toLocaleLowerCase()
     switch(lowerType){
       case 'conference':
-        return CONFERENCE
+        return TICKET_COLOR.CONFERENCE
       case 'tutorial':
-        return TUTORIAL
+        return TICKET_COLOR.TUTORIAL
       case 'youngcoder':
-        return YOUNGCODER
+        return TICKET_COLOR.YOUNGCODER
       case 'childcare':
-        return CHILD_CARE
+        return TICKET_COLOR.CHILD_CARE
       case 'sprint':
-        return SPRINT
+        return TICKET_COLOR.SPRINT
     }
   }
 
