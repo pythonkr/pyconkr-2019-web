@@ -66,7 +66,10 @@ const link = ApolloLink.from([
 const cache = new InMemoryCache({
   dataIdFromObject: object => {
     if ('name' in object) {
-      return object['name']
+      return defaultDataIdFromObject(object) + object['name']
+    }
+    if ('title' in object) {
+      return defaultDataIdFromObject(object) + object['title']
     }
     return defaultDataIdFromObject(object); 
   }
