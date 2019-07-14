@@ -9,6 +9,7 @@ import {withRouter} from 'next/router'
 import {Loading} from 'components/atoms/Loading'
 import styled from '@emotion/styled'
 import MarkdownWrapper from 'components/atoms/MarkdownWrapper'
+import { withNamespaces } from '../../i18n'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 
@@ -56,7 +57,7 @@ const SponsorContent = (props: any) => {
 @(withRouter as any)
 @inject('stores')
 @observer
-export default class SponsorDetail extends React.Component<PageDefaultPropsType> {
+export class SponsorDetail extends React.Component<PageDefaultPropsType> {
   async componentDidMount() {
   }
 
@@ -88,3 +89,5 @@ export default class SponsorDetail extends React.Component<PageDefaultPropsType>
     )
   }
 }
+
+export default withNamespaces(['sponsor'])(SponsorDetail)
