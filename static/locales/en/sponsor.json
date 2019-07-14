@@ -75,6 +75,10 @@
       "desc7": "Media sponsorship: Any related history for python is required."
     }
   },
+  "detail": {
+    "title": "Sponsor Detail",
+    "homepage": "Homepage"
+  },
   "patron": {
     "headerTitle": "Patrons",
     "waitingAlert": "There is no patrons. Please contribute to Pycon Korea 2019. 🙏"
