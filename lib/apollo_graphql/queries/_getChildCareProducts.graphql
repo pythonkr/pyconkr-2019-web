@@ -1,0 +1,52 @@
+query getChildCareProducts {
+  childCareProducts {
+    id
+    type
+    name
+    nameKo
+    nameEn
+    desc
+    descKo
+    descEn
+    warning
+    warningKo
+    warningEn
+    startAt
+    finishAt
+    total
+    owner {
+      username
+      email
+      profile {
+        id
+        name
+        nameKo
+        nameEn
+      }
+    }
+    price
+    isDepositTicket
+    isEditablePrice
+    isUniqueInType
+    active
+    cancelableDate
+    ticketOpenAt
+    ticketCloseAt
+    order
+    createdAt
+    updatedAt
+    sprintSet {
+      id
+      name
+      nameKo
+      nameEn
+      desc
+      descKo
+      descEn
+    }
+    purchaseCount
+    isSoldOut
+    remainingCount
+    isPurchased
+  }
+}

@@ -7,6 +7,8 @@ import { getMyTicket, MyTicketNode } from 'lib/apollo_graphql/queries/getMyTicke
 import { getMyTickets, TicketNode } from 'lib/apollo_graphql/queries/getMyTickets'
 import { getSprintProducts, SprintProductType } from 'lib/apollo_graphql/queries/getSprintProducts'
 import { getTutorialProducts, TutorialProductType } from 'lib/apollo_graphql/queries/getTutorialProducts'
+import { getChildCareProducts, ChildCareProductType } from 'lib/apollo_graphql/queries/getChildCareProducts'
+import { getYoungCoderProducts, YoungCoderProductType } from 'lib/apollo_graphql/queries/getYoungCoderProducts'
 import * as _ from 'lodash'
 import { action, configure, observable, toJS } from 'mobx'
 import { TicketStep } from './TicketStep'
@@ -42,6 +44,8 @@ export class TicketStore {
     @observable conferenceProducts: ConferenceProductType[] = []
     @observable tutorialProducts: TutorialProductType[] = []
     @observable sprintProducts: SprintProductType[] = []
+    @observable childCareProducts: ChildCareProductType[] = []
+    @observable youngCoderProducts: YoungCoderProductType[] = []
     @observable isPaying: boolean = false
     @observable isSubmitPayment: boolean = false
     @observable payingTicketTitle: string | null = ''
@@ -78,6 +82,16 @@ export class TicketStore {
     @action
     setSprintProducts = (sprintProducts: SprintProductType[]) => {
       this.sprintProducts = sprintProducts
+    }
+
+    @action
+    setChildCareProducts = (childCareProducts: ChildCareProductType[]) => {
+      this.childCareProducts = childCareProducts
+    }
+
+    @action
+    setYoungCoderProducts = (youngCoderProducts: YoungCoderProductType[]) => {
+      this.youngCoderProducts = youngCoderProducts
     }
 
     @action
@@ -168,6 +182,19 @@ export class TicketStore {
       const { data } = await getSprintProducts(client)({})
       if (data) this.setSprintProducts(data.sprintProducts as SprintProductType[])
     }
+
+    @action
+    retrieveChildCareProducts = async () => {
+      const { data } = await getChildCareProducts(client)({})
+      if (data) this.setChildCareProducts(data.childCareProducts as ChildCareProductType[])
+    }
+
+    @action
+    retrieveYoungCoderProducts = async () => {
+      const { data } = await getYoungCoderProducts(client)({})
+      if (data) this.setYoungCoderProducts(data.youngCoderProducts as YoungCoderProductType[])
+    }
+    
 
     @action
     retrieveMyTickets = async () => {
