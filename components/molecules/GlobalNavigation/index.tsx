@@ -305,7 +305,6 @@ class Navigation extends React.Component<any> {
                 <PyConKRLogo
                   width={139}
                   height={37}
-                  color={CORAL}
                 />
               </HeaderLogo>
             </Link>
