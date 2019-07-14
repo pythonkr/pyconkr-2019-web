@@ -4,11 +4,12 @@ import {PageDefaultPropsType} from 'types/PageDefaultPropsType'
 import PageTemplate from 'components/templates/PageTemplate'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
-import {H1, H2, Paragraph, Section} from 'components/atoms/ContentWrappers'
+import {H1, H2, Section} from 'components/atoms/ContentWrappers'
 import {withRouter} from 'next/router'
 import {Loading} from 'components/atoms/Loading'
 import styled from '@emotion/styled'
 import MarkdownWrapper from 'components/atoms/MarkdownWrapper'
+import { withNamespaces } from '../../i18n'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 
@@ -34,7 +35,7 @@ const SponsorLogo = styled.img`
 `
 
 const SponsorContent = (props: any) => {
-  const sponsor = props.sponsor
+  const {t, sponsor} = props
   if(sponsor == null){
     return <Loading width={50} height={50}/>
   }
@@ -44,7 +45,7 @@ const SponsorContent = (props: any) => {
     <SponsorLogo src={sponsor.logoImage} alt={sponsor.name}/>
   </a>
   <Section>
-    <H2>홈페이지</H2>
+    <H2>{t('sponsor:detail.homepage')}</H2>
     <a href={sponsor.url} target="_blank">{sponsor.url}</a>
   </Section>
   <Section>
@@ -56,22 +57,24 @@ const SponsorContent = (props: any) => {
 @(withRouter as any)
 @inject('stores')
 @observer
-export default class SponsorDetail extends React.Component<PageDefaultPropsType> {
+export class SponsorDetail extends React.Component<PageDefaultPropsType> {
   async componentDidMount() {
   }
 
   renderSponsor = () => {
     const id = this.props.router.query.id
+    const {t} = this.props
+    const title = t('sponsor:detail.title')
     return (
       <PageTemplate
-        header={<Header title='후원사 상세 :: 파이콘 한국 2019' intlKey='sponsor.detail.pageTitle'/>}
+        header={<Header title={t('common:pageTitle', { title })} intlKey='' />}
         footer={<Footer/>}
       >
         <Query query={GET_SPONSOR} variables={{ id }}>
           {({ loading, error, data }) => {
             if (loading || error) return (<Loading width={50} height={50}/>);
             return (
-              <SponsorContent sponsor={data.sponsor}/>
+              <SponsorContent sponsor={data.sponsor} t={t}/>
             )
           }}
         </Query>
@@ -86,3 +89,5 @@ export default class SponsorDetail extends React.Component<PageDefaultPropsType>
     )
   }
 }
+
+export default withNamespaces(['sponsor'])(SponsorDetail)
