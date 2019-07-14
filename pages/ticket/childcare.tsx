@@ -49,8 +49,8 @@ class ChildcarePage extends React.Component<PageDefaultPropsType> {
         </H1>
         <StatusBar
           text={t('ticket:childcare.title')}
-          openDate={stores.scheduleStore.schedule.tutorialTicketStartAt}
-          closeDate={stores.scheduleStore.schedule.tutorialTicketFinishAt}
+          openDate={stores.scheduleStore.schedule.childcareTicketStartAt}
+          closeDate={stores.scheduleStore.schedule.childcareTicketFinishAt}
         />
         <Section>
           {_.isEmpty(tutorialProducts)

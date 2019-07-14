@@ -2,14 +2,12 @@ import { FormNeedsLogin } from 'components/atoms/FormNeedsLogin'
 import { Loading } from 'components/atoms/Loading'
 import TicketBox from 'components/molecules/TicketBox'
 import ChildcareTicketOption from 'components/molecules/TicketBox/ChildcareTicketOption';
-import ConferenceTicketOption from 'components/molecules/TicketBox/ConferenceTicketOption'
 import TermsAgreement from 'components/molecules/TicketBox/TermsAgreement'
 import TicketDescription from 'components/molecules/TicketBox/TicketDescription'
 import i18next from 'i18next'
 import { TicketNode } from 'lib/apollo_graphql/queries/getMyTickets'
 import { TICKET_STEP, TicketStep, VALIDATION_ERROR_TYPE } from 'lib/stores/Ticket/TicketStep'
 import _ from 'lodash'
-import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { RouterProps } from 'next/router'
 import { StoresType } from 'pages/_app'
@@ -24,11 +22,16 @@ type PropsType = {
   router: RouterProps;
 }
 
-type StatesType = {
-  myConferenceTicket: TicketNode;
-}
 @observer
-class ChildcareTicketList extends React.Component<PropsType, StatesType> {
+class ChildcareTicketList extends React.Component<PropsType> {
+  async componentDidMount () {
+    const { stores } = this.props
+    const { childCareProducts, retrieveChildCareProducts } = stores.ticketStore
+
+    if (_.isEmpty(childCareProducts)) {
+      await retrieveChildCareProducts()
+    }
+  }
   getStepAction = (ticketStep: TicketStep) => {
     switch (ticketStep.ticketStepState) {
       case TICKET_STEP.BUYING:
@@ -109,15 +112,15 @@ class ChildcareTicketList extends React.Component<PropsType, StatesType> {
   renderTicketBoxList = () => {
     const { stores, t } = this.props
     const {
-      tutorialProducts,
+      childCareProducts,
       setPrice,
       getTicketStep,
       getIsTicketStepExist,
       setTicketStep,
     } = stores.ticketStore
 
-    return tutorialProducts.map(tutorialProduct => {
-      const { id, name, desc, warning, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut } = tutorialProduct
+    return childCareProducts.map(childCareProduct => {
+      const { id, name, desc, warning, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut, isPurchased } = childCareProduct
       const isTicketStepExist = getIsTicketStepExist(id)
       if (!isTicketStepExist) setTicketStep(id, name)
       const ticketStep = getTicketStep(id)
@@ -175,7 +178,7 @@ class ChildcareTicketList extends React.Component<PropsType, StatesType> {
         <TicketBox
           t={t}
           key={`ticketBox_${id}`}
-          ticketColor={TICKET_COLOR.CONFERENCE}
+          ticketColor={TICKET_COLOR.CHILD_CARE}
           ticketButtonTitle={this.getTicketButtonTitle(ticketStepState)}
           price={price}
           isEditablePrice={isEditablePrice}
