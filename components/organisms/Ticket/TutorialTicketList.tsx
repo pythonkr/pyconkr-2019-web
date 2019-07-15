@@ -1,3 +1,4 @@
+import { AlertBar } from 'components/atoms/AlertBar'
 import { FormNeedsLogin } from 'components/atoms/FormNeedsLogin'
 import { Loading } from 'components/atoms/Loading'
 import TicketBox from 'components/molecules/TicketBox'
@@ -101,6 +102,12 @@ class TutorialTicketList extends React.Component<PropsType> {
       getTicketStep,
       setPrice,
     } = stores.ticketStore
+
+    if (_.isEmpty(tutorialProducts)){
+      return (
+        <AlertBar text={t('ticket:common.noTicketAlert')} />
+      )
+    }
 
     return tutorialProducts.map(tutorialProduct => {
       const {
