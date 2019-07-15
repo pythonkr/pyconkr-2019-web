@@ -1,3 +1,4 @@
+import { AlertBar } from 'components/atoms/AlertBar'
 import { FormNeedsLogin } from 'components/atoms/FormNeedsLogin'
 import { Loading } from 'components/atoms/Loading'
 import TicketBox from 'components/molecules/TicketBox'
@@ -100,6 +101,12 @@ class SprintTicketList extends React.Component<PropsType> {
       getTicketStep,
       setPrice,
     } = stores.ticketStore
+
+    if (_.isEmpty(sprintProducts)){
+      return (
+        <AlertBar text={t('ticket:common.noTicketAlert')} />
+      )
+    }
 
     return sprintProducts.map(sprintProduct => {
       const {

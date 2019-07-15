@@ -1,4 +1,4 @@
-import { InMemoryCache } from 'apollo-cache-inmemory'
+import { InMemoryCache, defaultDataIdFromObject } from 'apollo-cache-inmemory'
 import { ApolloClient } from 'apollo-client'
 import { ApolloLink } from 'apollo-link'
 import { setContext } from 'apollo-link-context'
@@ -63,7 +63,19 @@ const link = ApolloLink.from([
   uploadLink
 ])
 
+const cache = new InMemoryCache({
+  dataIdFromObject: object => {
+    if ('name' in object) {
+      return defaultDataIdFromObject(object) + object['name']
+    }
+    if ('title' in object) {
+      return defaultDataIdFromObject(object) + object['title']
+    }
+    return defaultDataIdFromObject(object); 
+  }
+})
+
 export const client = new ApolloClient({
   link,
-  cache: new InMemoryCache()
+  cache,
 })

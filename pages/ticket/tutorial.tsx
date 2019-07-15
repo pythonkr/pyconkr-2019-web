@@ -37,19 +37,20 @@ export class TutorialTicket extends React.Component<PageDefaultPropsType> {
 
   render() {
     const { stores, t, router } = this.props
-    const { tutorialProducts } = stores.ticketStore
+
+    const title = t('ticket:tutorial.title')
 
     return (
       <PageTemplate
-        header={<Header title='컨퍼런스 티켓 :: 파이콘 한국 2019' intlKey='ticket.tutorial.pageTitle'/>}
+        header={<Header title={t('common:pageTitle', { title })} intlKey='' />}
         footer={<Footer />}
       >
         <LocalNavigation list={ticketMenu.submenu} />
         <H1>
-          {t('ticket:tutorial.title')}
+          { title }
         </H1>
         <StatusBar
-          text={t('ticket:tutorial.title')}
+          text={ title }
           openDate={stores.scheduleStore.schedule.tutorialTicketStartAt}
           closeDate={stores.scheduleStore.schedule.tutorialTicketFinishAt}
         />
@@ -59,11 +60,10 @@ export class TutorialTicket extends React.Component<PageDefaultPropsType> {
         <Paragraph>
           <MarkdownWrapper contents={t('ticket:tutorial.description2')} />
         </Paragraph>
+        
         <Section>
-          {_.isEmpty(tutorialProducts)
-            ? <Loading width={50} height={50}/>
-            : <TutorialTicketList stores={stores} t={t} router={router} />
-          }
+          <H2>{ t('ticket:common.list') }</H2>
+          <TutorialTicketList stores={stores} t={t} router={router} />
         </Section>
         <Section>
           <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>

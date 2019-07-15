@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import classNames from 'classnames'
+import Link from 'next/link'
 import React from 'react'
 import { paths } from 'routes/paths'
 import { mobileWidth } from 'styles/layout'
@@ -87,7 +88,7 @@ export class Banner extends React.Component<BannerPropsType, { isSquare: boolean
     return (
       <>
         <BannerLi key={banner.id} className={boxClass}>
-          <a href={`${paths.sponsor.detail}?id=${banner.id}`}>
+          <Link href={`${paths.sponsor.detail}?id=${banner.id}`}>
             <BannerWrapper>
               <BannerImage
                 id={banner.id}
@@ -95,7 +96,7 @@ export class Banner extends React.Component<BannerPropsType, { isSquare: boolean
                 src={banner.logoImage}
                 onLoad={(event) => this.handleImageLoaded(event)}/>
             </BannerWrapper>
-          </a>
+          </Link>
         </BannerLi>
       </>
     )
