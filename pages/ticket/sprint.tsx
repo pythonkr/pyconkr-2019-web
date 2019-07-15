@@ -37,19 +37,18 @@ export class SprintTicket extends React.Component<PageDefaultPropsType> {
 
   render() {
     const { stores, t, router } = this.props
-    const { sprintProducts } = stores.ticketStore
-
+    const title = t('ticket:sprint.title')
     return (
       <PageTemplate
-        header={<Header title='컨퍼런스 티켓 :: 파이콘 한국 2019' intlKey='ticket.sprint.pageTitle'/>}
+        header={<Header title={t('common:pageTitle', { title })} intlKey='' />}
         footer={<Footer />}
       >
         <LocalNavigation list={ticketMenu.submenu} />
         <H1>
-          {t('ticket:sprint.title')}
+          { title }
         </H1>
         <StatusBar
-          text={t('ticket:sprint.title')}
+          text={ title }
           openDate={stores.scheduleStore.schedule.sprintTicketStartAt}
           closeDate={stores.scheduleStore.schedule.sprintTicketFinishAt}
         />
@@ -60,10 +59,8 @@ export class SprintTicket extends React.Component<PageDefaultPropsType> {
           <MarkdownWrapper contents={t('ticket:sprint.description2')}/>
         </Paragraph>
         <Section>
-          {_.isEmpty(sprintProducts)
-            ? <Loading width={50} height={50}/>
-            : <SprintTicketList stores={stores} t={t} router={router} />
-          }
+          <H2>{ t('ticket:common.list') }</H2>
+          <SprintTicketList stores={stores} t={t} router={router} />
         </Section>
 
         <Section>

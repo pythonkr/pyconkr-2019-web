@@ -19,7 +19,9 @@
     },
     "common": {
         "refundWarning": "Do you want to refund ticket?",
-        "refundSuccess": "The ticket was successfully refunded."
+        "refundSuccess": "The ticket was successfully refunded.",
+        "list": "List of tickets",
+        "noTicketAlert": "Ticket list has not been released yet.🙇‍♀️ 🙇‍♂️"
     },
     "purchased": "Purchased",
     "purchaseNotAvailable": "Not available",

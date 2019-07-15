@@ -19,7 +19,9 @@
     },
     "common": {
         "refundWarning": "정말로 환불하시겠습니까?",
-        "refundSuccess": "환불이 성공적으로 완료되었습니다"
+        "refundSuccess": "환불이 성공적으로 완료되었습니다",
+        "list": "티켓 목록",
+        "noTicketAlert": "아직 티켓이 공개되지 않았습니다.🙇‍♀️ 🙇‍♂️"
     },
     "purchased": "구매완료",
     "purchaseNotAvailable": "구매불가",

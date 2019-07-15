@@ -1,3 +1,4 @@
+import { AlertBar } from 'components/atoms/AlertBar'
 import { FormNeedsLogin } from 'components/atoms/FormNeedsLogin'
 import { Loading } from 'components/atoms/Loading'
 import TicketBox from 'components/molecules/TicketBox'
@@ -119,7 +120,11 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
       getMyConferenceTickets
     } = stores.ticketStore
     const myConferenceTicket = toJS(getMyConferenceTickets()[0])
-
+    if (_.isEmpty(conferenceProducts)){
+      return (
+        <AlertBar text={t('ticket:common.noTicketAlert')} />
+      )
+    }
     return conferenceProducts.map((conferenceProduct) => {
       const { id, type, name, desc, warning, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut } = conferenceProduct
       const isTicketStepExist = getIsTicketStepExist(id)

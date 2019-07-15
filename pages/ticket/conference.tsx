@@ -14,6 +14,7 @@ import React from 'react'
 import { paths, ticketMenu } from 'routes/paths'
 import { PageDefaultPropsType } from 'types/PageDefaultPropsType'
 import { withNamespaces } from '../../i18n'
+import {FormNeedsLogin} from 'components/atoms/FormNeedsLogin'
 
 @(withRouter as any)
 @inject('stores')
@@ -37,7 +38,6 @@ export class ConferenceTicket extends React.Component<PageDefaultPropsType> {
 
   render() {
     const { stores, t, router } = this.props
-    const { conferenceProducts } = stores.ticketStore
     const title = t('ticket:conference.title')
 
     return (
@@ -55,15 +55,11 @@ export class ConferenceTicket extends React.Component<PageDefaultPropsType> {
           closeDate={stores.scheduleStore.schedule.conferenceFinishAt}
         />
         <Paragraph>{t('ticket:conference.description')}</Paragraph>
+        <AlertBar text={t('ticket:conference.alert1')} />
+        <AlertBar text={t('ticket:conference.alert2')} />
         <Section>
-          <AlertBar text={t('ticket:conference.alert1')} />
-          <AlertBar text={t('ticket:conference.alert2')} />
-        </Section>
-        <Section>
-          {_.isEmpty(conferenceProducts)
-            ? <Loading width={50} height={50}/>
-            : <ConferenceTicketList stores={stores} t={t} router={router} />
-          }
+          <H2>{ t('ticket:common.list') }</H2>
+          <ConferenceTicketList stores={stores} t={t} router={router} />
         </Section>
         <Section>
           <H2>{ t('ticket:conference.header2') }</H2>
