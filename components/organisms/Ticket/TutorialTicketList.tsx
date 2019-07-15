@@ -74,9 +74,10 @@ class TutorialTicketList extends React.Component<PropsType> {
     return true
   }
 
-  onPayTicket = (ticketStep: TicketStep) => {
+  onPayTicket = async (ticketStep: TicketStep) => {
     const { stores, router, t } = this.props
-    const { setPayingTicket } = stores.ticketStore
+    const { setPayingTicket, payTicket } = stores.ticketStore
+    const { price } = stores.ticketStore
 
     if (ticketStep.validateTicket) {
       const error = ticketStep.validateTicket()
@@ -88,8 +89,17 @@ class TutorialTicketList extends React.Component<PropsType> {
       }
     }
     setPayingTicket(ticketStep)
-    router.push(paths.ticket.payment)
-
+    if(price === 0){
+      const data = await payTicket()
+      if (data.graphQLErrors) {
+        const { message } = data.graphQLErrors[0]
+        toast.error(message)
+        return false  
+      }
+      if (!_.isEmpty(data)) window.location.href = paths.ticket.myTickets
+    } else {
+      router.push(paths.ticket.payment)
+    }
     return false
   }
 
