@@ -27,16 +27,16 @@ class ChildcarePage extends React.Component<PageDefaultPropsType> {
 
   async componentDidMount () {
     const { stores } = this.props
-    const { tutorialProducts, retrieveTutorialProducts } = stores.ticketStore
+    const { childCareProducts, retrieveChildCareProducts } = stores.ticketStore
 
-    if (_.isEmpty(tutorialProducts)) {
-      await retrieveTutorialProducts()
+    if (_.isEmpty(childCareProducts)) {
+      await retrieveChildCareProducts()
     }
   }
 
   render() {
     const { stores, t, router } = this.props
-    const { tutorialProducts } = stores.ticketStore
+    const { childCareProducts } = stores.ticketStore
 
     return (
       <PageTemplate
@@ -53,7 +53,7 @@ class ChildcarePage extends React.Component<PageDefaultPropsType> {
           closeDate={stores.scheduleStore.schedule.childcareTicketFinishAt}
         />
         <Section>
-          {_.isEmpty(tutorialProducts)
+          {_.isEmpty(childCareProducts)
             ? <Loading width={50} height={50}/>
             : <ChildcareTicketList stores={stores} t={t} router={router} />
           }

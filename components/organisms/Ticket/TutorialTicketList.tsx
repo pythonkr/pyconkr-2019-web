@@ -5,6 +5,7 @@ import TicketBox from 'components/molecules/TicketBox'
 import TermsAgreement from 'components/molecules/TicketBox/TermsAgreement'
 import TicketDescription from 'components/molecules/TicketBox/TicketDescription'
 import i18next from 'i18next'
+import { TicketTypeNode } from 'lib/apollo_graphql/__generated__/globalTypes'
 import { TICKET_STEP, TicketStep, VALIDATION_ERROR_TYPE } from 'lib/stores/Ticket/TicketStep'
 import _ from 'lodash'
 import { observer } from 'mobx-react'
@@ -23,6 +24,12 @@ type PropsType = {
 
 @observer
 class TutorialTicketList extends React.Component<PropsType> {
+
+  componentWillUnmount () {
+    const { stores } = this.props
+    const { clearTicketSteps } = stores.ticketStore
+    clearTicketSteps()
+  }
 
   getStepAction = (ticketStep: TicketStep) => {
     switch (ticketStep.ticketStepState) {
@@ -81,7 +88,7 @@ class TutorialTicketList extends React.Component<PropsType> {
     const { price } = stores.ticketStore
 
     if (ticketStep.validateTicket) {
-      const error = ticketStep.validateTicket()
+      const error = ticketStep.validateTicket(TicketTypeNode.TUTORIAL)
 
       if (error === VALIDATION_ERROR_TYPE.NOT_AGREED_TO_OPTIONS) {
         toast.error(t('ticket:error.notAgreeToOptions'))

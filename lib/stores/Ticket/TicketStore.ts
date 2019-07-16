@@ -2,12 +2,12 @@ import { PaymentInput, TicketStatus, TicketTypeNode } from 'lib/apollo_graphql/_
 import { client } from 'lib/apollo_graphql/client'
 import { buyTicket } from 'lib/apollo_graphql/mutations/buyTicket'
 import { cancelTicket } from 'lib/apollo_graphql/mutations/cancelTicket'
+import { ChildCareProductType, getChildCareProducts } from 'lib/apollo_graphql/queries/getChildCareProducts'
 import { ConferenceProductType, getConferenceProducts } from 'lib/apollo_graphql/queries/getConferenceProducts'
 import { getMyTicket, MyTicketNode } from 'lib/apollo_graphql/queries/getMyTicket'
 import { getMyTickets, TicketNode } from 'lib/apollo_graphql/queries/getMyTickets'
 import { getSprintProducts, SprintProductType } from 'lib/apollo_graphql/queries/getSprintProducts'
 import { getTutorialProducts, TutorialProductType } from 'lib/apollo_graphql/queries/getTutorialProducts'
-import { getChildCareProducts, ChildCareProductType } from 'lib/apollo_graphql/queries/getChildCareProducts'
 import { getYoungCoderProducts, YoungCoderProductType } from 'lib/apollo_graphql/queries/getYoungCoderProducts'
 import * as _ from 'lodash'
 import { action, configure, observable, toJS } from 'mobx'
@@ -194,7 +194,6 @@ export class TicketStore {
       const { data } = await getYoungCoderProducts(client)({})
       if (data) this.setYoungCoderProducts(data.youngCoderProducts as YoungCoderProductType[])
     }
-    
 
     @action
     retrieveMyTickets = async () => {
@@ -229,6 +228,11 @@ export class TicketStore {
     @action
     getTicketStep = (id: string) => {
       return this.ticketSteps.get(id)
+    }
+
+    @action
+    clearTicketSteps = () => {
+      this.ticketSteps.clear()
     }
 
     @action

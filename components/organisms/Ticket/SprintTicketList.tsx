@@ -24,6 +24,12 @@ type PropsType = {
 @observer
 class SprintTicketList extends React.Component<PropsType> {
 
+  componentWillUnmount () {
+    const { stores } = this.props
+    const { clearTicketSteps } = stores.ticketStore
+    clearTicketSteps()
+  }
+
   getStepAction = (ticketStep: TicketStep) => {
     switch (ticketStep.ticketStepState) {
       case TICKET_STEP.BUYING:

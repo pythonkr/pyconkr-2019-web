@@ -1,3 +1,4 @@
+import { TicketTypeNode } from 'lib/apollo_graphql/__generated__/globalTypes'
 import _ from 'lodash'
 import { action, configure, observable } from 'mobx'
 
@@ -17,9 +18,9 @@ export enum TICKET_STEP {
 
 export type TicketOptionType = {
   tshirtsize?: string;
+  childName?: string;
   childcareBirthDate?: string;
   isRequireParkingDiscount?: boolean;
-  isSiblings?: false;
   note?: string;
 }
 
@@ -48,8 +49,11 @@ export class TicketStep {
   }
 
   @action
-  setTicketOption = (ticketOption: TicketOptionType | null) => {
-    this.ticketOption = ticketOption
+  setTicketOption = (newTicketOption: TicketOptionType | null) => {
+    this.ticketOption = {
+      ...this.ticketOption,
+      ...newTicketOption,
+    }
   }
 
   @action
@@ -63,9 +67,25 @@ export class TicketStep {
   }
 
   @action
-  validateTicket = () => {
-    if (!this.ticketOption || _.isEmpty(this.ticketOption.tshirtsize)) return VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED
-    if (!this.isTicketOptionAgreed) return VALIDATION_ERROR_TYPE.NOT_AGREED_TO_OPTIONS
+  validateTicket = (ticketType: TicketTypeNode) => {
+    if (ticketType === TicketTypeNode.CONFERENCE) {
+      if (!this.ticketOption || _.isEmpty(this.ticketOption.tshirtsize)) return VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED
+    }
+
+    if (ticketType === TicketTypeNode.CHILD_CARE) {
+      if (
+        !this.ticketOption ||
+        _.isEmpty(this.ticketOption.childName) ||
+        _.isEmpty(this.ticketOption.childcareBirthDate) ||
+        _.isUndefined(this.ticketOption.isRequireParkingDiscount)
+      ) {
+        return VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED
+      }
+    }
+
+    if (!this.isTicketOptionAgreed) {
+      return VALIDATION_ERROR_TYPE.NOT_AGREED_TO_OPTIONS
+    }
 
     return VALIDATION_ERROR_TYPE.NONE
   }

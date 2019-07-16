@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import i18next from 'i18next'
+import { TicketOptionType } from 'lib/stores/Ticket/TicketStep'
 import * as React from 'react'
 import { mobileWidth } from 'styles/layout'
 
@@ -7,10 +8,10 @@ type PropsType = {
     t: i18next.TFunction;
     title: string;
     id: string;
-    tshirtsize?: string;
+    ticketOption: TicketOptionType | null;
     isTicketAgreed: boolean;
     onCancel(): void;
-    onChangeOption(ticketOption: { tshirtsize: any }): void;
+    onChangeOption(ticketOption: TicketOptionType): void;
     onChangeAgreed(isAgree: boolean): void;
 }
 
@@ -23,7 +24,6 @@ const TicketInformationWrapper = styled.div`
   h1 {
     font-size: 26px;
     font-weight: bold;
-    color: #088487;
     margin-bottom: 23px;
   }
 
@@ -88,6 +88,14 @@ const TicketOptionWrapper = styled.div`
 
   .terms {
     margin-top: auto;
+  }
+
+  textarea {
+    height: 150px;
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 15px;
+    resize: none;
   }
 `
 
@@ -159,39 +167,19 @@ const ChildInfoBox = styled.div`
   }
 }`
 
-const AddChildInfoButton = styled.button`
-  width: 75px;
-  border: solid 1px;
-  font-size: 14px;
-  padding: 10px;
-  margin-bottom: 20px;
-  margin-left: auto;
-  color: #fff;
-`
-
 class ChildcareTicketOption extends React.Component<PropsType> {
-    state = {
-      isSibling: false,
-      isTicketAgreed: false,
-      inputVal: '',
+
+    componentDidMount () {
+      const { onChangeOption } = this.props
+      onChangeOption({ isRequireParkingDiscount: false })
     }
 
-    setIsSibling = (isSibling: boolean) => this.setState({ isSibling })
-
-    onChangeAgreed = (isChecked: boolean) => this.setState({ isChecked: !isChecked })
-
-    onChangeInputValue = (inputVal: string) => this.setState({ inputVal })
-
     render() {
-        const { t } = this.props
-        const { isSibling, isTicketAgreed, inputVal } = this.state
+        const { t, ticketOption, isTicketAgreed, onCancel, onChangeAgreed, onChangeOption } = this.props
 
         return (
             <TicketInformationWrapper>
                 <h1>{'아이돌봄 티켓 옵션'}</h1>
-                <AddChildInfoButton>
-                  {'+ 추가'}
-                </AddChildInfoButton>
                 <ChildInfoBox>
                   <div className='name'>
                     <label className='required'>
@@ -199,12 +187,12 @@ class ChildcareTicketOption extends React.Component<PropsType> {
                     </label>
                     <input
                       type='text'
-                      value={inputVal}
+                      value={(ticketOption && ticketOption.childName) || ''}
                       aria-required={true}
                       required
                       placeholder={'이름'}
-                      onChange={e => this.onChangeInputValue(e.target.value)}
-                      maxLength={8}
+                      onChange={e => onChangeOption({ childName: e.target.value })}
+                      maxLength={10}
                     />
                   </div>
                   <div className='birth'>
@@ -213,58 +201,26 @@ class ChildcareTicketOption extends React.Component<PropsType> {
                     </label>
                     <input
                       type='text'
-                      value={inputVal}
+                      value={(ticketOption && ticketOption.childcareBirthDate) || ''}
                       aria-required={true}
                       required
                       placeholder={'YYYYMMDD'}
-                      onChange={e => this.onChangeInputValue(e.target.value)}
+                      onChange={e => onChangeOption({ childcareBirthDate: e.target.value })}
                       maxLength={8}
                     />
                   </div>
                 </ChildInfoBox>
                 <TicketOptionDivider marginTop={20} marginBottom={20} />
                 <TicketOptionWrapper>
-                  <div className='guide'>형제 및 자매 여부</div>
-                  <RadioButtonGroup>
-                    <div className='radioButton'>
-                      <input
-                        type='radio'
-                        id='radio_sibling_1'
-                        aria-checked={isSibling}
-                        checked={isSibling}
-                        onChange={() => this.setIsSibling(true)}
-                      >
-                      </input>
-                      <label>
-                        {'예'}
-                      </label>
-                    </div>
-                    <div className='radioButton'>
-                      <input
-                        type='radio'
-                        id='radio_sibling_1'
-                        aria-checked={!isSibling}
-                        checked={!isSibling}
-                        onChange={() => this.setIsSibling(false)}
-                      >
-                      </input>
-                      <label>
-                        {'아니오'}
-                      </label>
-                    </div>
-                  </RadioButtonGroup>
-                  {/* <p className='warning'>{t('ticket:conference.option.tshirtWarning')}</p> */}
-                </TicketOptionWrapper>
-                <TicketOptionWrapper>
                   <div className='guide'>주차종일권 할인(50%) 필요여부</div>
                   <RadioButtonGroup>
                     <div className='radioButton'>
                       <input
                         type='radio'
-                        id='radio_sibling_1'
-                        aria-checked={isSibling}
-                        checked={isSibling}
-                        onChange={() => this.setIsSibling(true)}
+                        id='radio_parking_1'
+                        aria-checked={(ticketOption && ticketOption.isRequireParkingDiscount) || undefined}
+                        checked={(ticketOption && ticketOption.isRequireParkingDiscount) || undefined}
+                        onChange={() => onChangeOption({ isRequireParkingDiscount: true })}
                       >
                       </input>
                       <label>
@@ -274,10 +230,10 @@ class ChildcareTicketOption extends React.Component<PropsType> {
                     <div className='radioButton'>
                       <input
                         type='radio'
-                        id='radio_sibling_1'
-                        aria-checked={!isSibling}
-                        checked={!isSibling}
-                        onChange={() => this.setIsSibling(false)}
+                        id='radio_parking_2'
+                        aria-checked={(ticketOption && !ticketOption.isRequireParkingDiscount) || undefined}
+                        checked={(ticketOption && !ticketOption.isRequireParkingDiscount) || undefined}
+                        onChange={() => onChangeOption({ isRequireParkingDiscount: false })}
                       >
                       </input>
                       <label>
@@ -285,9 +241,17 @@ class ChildcareTicketOption extends React.Component<PropsType> {
                       </label>
                     </div>
                   </RadioButtonGroup>
-                  {/* <p className='warning'>{t('ticket:conference.option.tshirtWarning')}</p> */}
+                </TicketOptionWrapper>
+                <TicketOptionWrapper>
+                  <div className='guide'>주의할 점</div>
+                  <textarea
+                    value={(ticketOption && ticketOption.note) || ''}
+                    onChange={e => onChangeOption({ note: e.target.value })}
+                    placeholder='같이 참석하는 형제 혹은 자매가 있는지 알러지가 있는 지 등을 알려주세요.'
+                  />
                 </TicketOptionWrapper>
                 <TicketOptionDivider marginTop={0} marginBottom={20} />
+                <div className='guide'></div>
                 <p className='terms'>
                   <input
                     type='checkbox'
@@ -295,11 +259,16 @@ class ChildcareTicketOption extends React.Component<PropsType> {
                     aria-checked={true}
                     style={{ verticalAlign: 'top' }}
                     checked={isTicketAgreed}
-                    onChange={e => this.onChangeAgreed(e.target.checked)}
+                    onChange={e => onChangeAgreed(e.target.checked)}
                   />
                   <label htmlFor={`payment-option-1`}>{t('ticket:agreeToOptions')}</label>
                 </p>
-                <button className='back'>&lt; {t('ticket:back')}</button>
+                <button
+                  className='back'
+                  onClick={onCancel}
+                >
+                  &lt; {t('ticket:back')}
+                </button>
             </TicketInformationWrapper>
         )
     }

@@ -1,11 +1,11 @@
 import { FormNeedsLogin } from 'components/atoms/FormNeedsLogin'
 import { Loading } from 'components/atoms/Loading'
 import TicketBox from 'components/molecules/TicketBox'
-import ChildcareTicketOption from 'components/molecules/TicketBox/ChildcareTicketOption';
+import ChildcareTicketOption from 'components/molecules/TicketBox/ChildcareTicketOption'
 import TermsAgreement from 'components/molecules/TicketBox/TermsAgreement'
 import TicketDescription from 'components/molecules/TicketBox/TicketDescription'
 import i18next from 'i18next'
-import { TicketNode } from 'lib/apollo_graphql/queries/getMyTickets'
+import { TicketTypeNode } from 'lib/apollo_graphql/__generated__/globalTypes'
 import { TICKET_STEP, TicketStep, VALIDATION_ERROR_TYPE } from 'lib/stores/Ticket/TicketStep'
 import _ from 'lodash'
 import { observer } from 'mobx-react'
@@ -24,14 +24,12 @@ type PropsType = {
 
 @observer
 class ChildcareTicketList extends React.Component<PropsType> {
-  async componentDidMount () {
+  componentWillUnmount () {
     const { stores } = this.props
-    const { childCareProducts, retrieveChildCareProducts } = stores.ticketStore
-
-    if (_.isEmpty(childCareProducts)) {
-      await retrieveChildCareProducts()
-    }
+    const { clearTicketSteps } = stores.ticketStore
+    clearTicketSteps()
   }
+
   getStepAction = (ticketStep: TicketStep) => {
     switch (ticketStep.ticketStepState) {
       case TICKET_STEP.BUYING:
@@ -89,7 +87,7 @@ class ChildcareTicketList extends React.Component<PropsType> {
     const { setPayingTicket } = stores.ticketStore
 
     if (ticketStep.validateTicket) {
-      const error = ticketStep.validateTicket()
+      const error = ticketStep.validateTicket(TicketTypeNode.CHILD_CARE)
 
       if (error === VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED) {
         toast.error(t('ticket:error.noOptionSelected'))
@@ -120,7 +118,7 @@ class ChildcareTicketList extends React.Component<PropsType> {
     } = stores.ticketStore
 
     return childCareProducts.map(childCareProduct => {
-      const { id, name, desc, warning, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut, isPurchased } = childCareProduct
+      const { id, name, desc, warning, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut } = childCareProduct
       const isTicketStepExist = getIsTicketStepExist(id)
       if (!isTicketStepExist) setTicketStep(id, name)
       const ticketStep = getTicketStep(id)
@@ -131,7 +129,6 @@ class ChildcareTicketList extends React.Component<PropsType> {
         ticketStepState,
         setTicketStepState, setTicketOption, setTicketOptionAgreed, setTicketTermsAgreed,
         ticketOption, isTicketOptionAgreed, isTermsAgreed,
-        initConferenceTicketOptions
       } = ticketStep
 
       let options = null
@@ -154,7 +151,7 @@ class ChildcareTicketList extends React.Component<PropsType> {
             title={name || ''}
             id={id}
             isTermsAgreed={isTermsAgreed}
-            onCancel={initConferenceTicketOptions}
+            onCancel={() => setTicketStepState(TICKET_STEP.BUYING)}
             onChangeAgreed={setTicketTermsAgreed}
           />
         )
@@ -165,9 +162,9 @@ class ChildcareTicketList extends React.Component<PropsType> {
             t={t}
             title={name || ''}
             id={id}
-            tshirtsize={ticketOption && ticketOption.tshirtsize || ''}
+            ticketOption={ticketOption}
             isTicketAgreed={isTicketOptionAgreed}
-            onCancel={initConferenceTicketOptions}
+            onCancel={() => setTicketStepState(TICKET_STEP.AGREE_TERMS)}
             onChangeOption={setTicketOption}
             onChangeAgreed={setTicketOptionAgreed}
           />
