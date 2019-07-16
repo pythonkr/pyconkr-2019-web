@@ -98,7 +98,17 @@
     "childcare": {
         "pageTitle": "아이돌봄 티켓",
         "title": "아이돌봄 티켓",
-        "description": "아이돌봄 설명"
+        "description": "아이돌봄 설명",
+        "option" : {
+            "title": "아이돌봄 티켓 옵션",
+            "name": "이름",
+            "birthDate": "생년월일",
+            "requireParkingDiscount": "주차종일권 할인(50%) 필요여부",
+            "yes": "Yes",
+            "no": "No",
+            "keepInMind": "주의할 점",
+            "keepInMindPlaceHolder": "같이 참석하는 형제 혹은 자매가 있는지 알러지가 있는 지 등을 알려주세요."
+        }
     },
     "payment": {
         "pageTitle": "티켓 결제하기",

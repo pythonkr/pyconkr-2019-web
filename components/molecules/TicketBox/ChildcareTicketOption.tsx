@@ -179,25 +179,25 @@ class ChildcareTicketOption extends React.Component<PropsType> {
 
         return (
             <TicketInformationWrapper>
-                <h1>{'아이돌봄 티켓 옵션'}</h1>
+                <h1>{t('ticket:childcare.option.title')}</h1>
                 <ChildInfoBox>
                   <div className='name'>
                     <label className='required'>
-                      {'이름'}
+                      {t('ticket:childcare.option.name')}
                     </label>
                     <input
                       type='text'
                       value={(ticketOption && ticketOption.childName) || ''}
                       aria-required={true}
                       required
-                      placeholder={'이름'}
+                      placeholder={t('ticket:childcare.option.name')}
                       onChange={e => onChangeOption({ childName: e.target.value })}
                       maxLength={10}
                     />
                   </div>
                   <div className='birth'>
                     <label className='required'>
-                      {'생년월일'}
+                      {t('ticket:childcare.option.birthDate')}
                     </label>
                     <input
                       type='text'
@@ -212,7 +212,7 @@ class ChildcareTicketOption extends React.Component<PropsType> {
                 </ChildInfoBox>
                 <TicketOptionDivider marginTop={20} marginBottom={20} />
                 <TicketOptionWrapper>
-                  <div className='guide'>주차종일권 할인(50%) 필요여부</div>
+                  <div className='guide'>{t('ticket:childcare.option.requireParkingDiscount')}</div>
                   <RadioButtonGroup>
                     <div className='radioButton'>
                       <input
@@ -224,7 +224,7 @@ class ChildcareTicketOption extends React.Component<PropsType> {
                       >
                       </input>
                       <label>
-                        {'예'}
+                        {t('ticket:childcare.option.yes')}
                       </label>
                     </div>
                     <div className='radioButton'>
@@ -237,17 +237,17 @@ class ChildcareTicketOption extends React.Component<PropsType> {
                       >
                       </input>
                       <label>
-                        {'아니오'}
+                        {t('ticket:childcare.option.no')}
                       </label>
                     </div>
                   </RadioButtonGroup>
                 </TicketOptionWrapper>
                 <TicketOptionWrapper>
-                  <div className='guide'>주의할 점</div>
+                  <div className='guide'>{t('ticket:childcare.option.keepInMind')}</div>
                   <textarea
                     value={(ticketOption && ticketOption.note) || ''}
                     onChange={e => onChangeOption({ note: e.target.value })}
-                    placeholder='같이 참석하는 형제 혹은 자매가 있는지 알러지가 있는 지 등을 알려주세요.'
+                    placeholder={t('ticket:childcare.option.keepInMindPlaceHolder')}
                   />
                 </TicketOptionWrapper>
                 <TicketOptionDivider marginTop={0} marginBottom={20} />
