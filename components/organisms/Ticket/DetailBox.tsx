@@ -55,7 +55,10 @@ class DetailBox extends React.Component<PropsType> {
             </Tr>
             <Tr>
               <Th>취소기한</Th> {/* cancelat 이 있으면 취소일*/}
-              <Td>{cancelableDate ? cancelableDate : '취소 불가(Unrefundable)'}</Td>
+              <Td>{cancelableDate ?
+                formatDateInWordsWithWeekdayAndTime(cancelableDate) :
+                '취소 불가(Unrefundable)'}
+              </Td>
             </Tr>
             <Tr>
               <Th>등록영수증</Th>
