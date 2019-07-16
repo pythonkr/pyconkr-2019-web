@@ -94,14 +94,13 @@ class DetailBox extends React.Component<PropsType> {
               </Td>
               </Tr>
             }
-            {Object.keys(parsedOptions).map(key => {
-              return (
-                <Tr>
-                  <Th>{key}</Th>
-                  <Td>{parsedOptions[key]}</Td>
-                </Tr>
-              )
-            })}
+            {
+              parsedOptions['tshirtsize'] &&
+              <Tr>
+                <Th>티셔츠 사이즈</Th>
+                <Td>{parsedOptions['tshirtsize']}</Td>
+              </Tr>
+            }
           </TBody>
         </Table>
       </ContentTableWrapper>
