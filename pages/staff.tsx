@@ -6,7 +6,7 @@ import _ from 'lodash'
 import { inject, observer } from 'mobx-react'
 import * as React from 'react'
 import { PageDefaultPropsType } from 'types/PageDefaultPropsType'
-import { withNamespaces } from '../../i18n'
+import { withNamespaces } from '../i18n'
 
 @inject('stores')
 @observer
@@ -41,7 +41,7 @@ export class FinancialAid extends React.Component<PageDefaultPropsType> {
         <Section>
           <H2>{t('help:staff.volunteer.title')}</H2>
           <Paragraph>
-            {t('help:staff.volunteer.desc')}  
+            {t('help:staff.volunteer.desc')}
           </Paragraph>
         </Section>
         <Section>
