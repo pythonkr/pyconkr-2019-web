@@ -8,7 +8,8 @@ export const paths = {
     venue: '/help/venue',
     childcare: '/help/childcare',
     financialAid: '/help/financial-aid',
-    visaSponsing: '/help/visa-sponsing'
+    visaSponsing: '/help/visa-sponsing',
+    staff: '/help/staff'
   },
   program: {
     base: '/program',
@@ -138,6 +139,11 @@ export const helpMenu: WithSubMenu = {
       title: '아이돌봄',
       intlKey: 'gnb.help.childcare',
       link: paths.help.childcare
+    },
+    {
+      title: '준비위원회 및 자원봉사자',
+      intlKey: 'gnb.help.staff',
+      link: paths.help.staff
     },
   ]
 }
