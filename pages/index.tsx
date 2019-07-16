@@ -20,7 +20,9 @@ import { PageDefaultPropsType } from 'types/PageDefaultPropsType'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
-import {Loading} from 'components/atoms/Loading'
+import { Loading } from 'components/atoms/Loading'
+import { Li, Ul } from 'components/atoms/ContentWrappers'
+import { withNamespaces } from '../i18n'
 
 const NOTICES = gql`
 query Notices {
@@ -225,9 +227,10 @@ const SponsorComingSoonBadge = styled.div`
     text-align: left;
   }
 `
-const SponserSection = styled.section`
-  background-color: #fde5e3;
+const NoticeSection = styled.section<{ backgroundColor: string }>`
+  background-color: ${props => props.backgroundColor};
   padding: 86px 0;
+  opacity: .9;
   h2 {
     font-size: 36px;
     line-height: 1.4;
@@ -244,7 +247,7 @@ const SponserSection = styled.section`
     }
   }
   p {
-    margin: 32px 0 0;
+    margin: 20px 0 63px;
     font-size: 17px;
     line-height: 1.9em;
     @media (max-width: ${mobileWidth}) {
@@ -264,44 +267,44 @@ const SponserSection = styled.section`
   }
 `
 
-const NoticeSection = styled.section`
-  background-color: #0584870f;
-  padding: 60px 20px;
-  h2 {
-    font-size: 26px;
-    line-height: 1.4;
-    font-weight: bold;
-    text-align: center;
-    color: #4a4a4a;
-    max-width: 400px;
-    margin: 0 auto;
-  }
+// const NoticeSection = styled.section`
+//   background-color: #0584870f;
+//   padding: 60px 20px;
+//   h2 {
+//     font-size: 26px;
+//     line-height: 1.4;
+//     font-weight: bold;
+//     text-align: center;
+//     color: #4a4a4a;
+//     max-width: 400px;
+//     margin: 0 auto;
+//   }
 
-  ul {
-    padding: 0 20%;
+//   ul {
+//     padding: 0 20%;
 
-    li {
-      margin: 20px 10px;
-    }
+//     li {
+//       margin: 20px 10px;
+//     }
 
-    li:before {
-      content: "📍";
-    }
-  }
+//     li:before {
+//       content: "📍";
+//     }
+//   }
 
-  @media (max-width: ${mobileWidth}) {
-    h2 {
-      width: auto;
-      margin: 0;
-      text-align: left;
-      font-size: 21px;
-    }
+//   @media (max-width: ${mobileWidth}) {
+//     h2 {
+//       width: auto;
+//       margin: 0;
+//       text-align: left;
+//       font-size: 21px;
+//     }
 
-    ul {
-      padding: 0 5%
-    }
-  }
-`
+//     ul {
+//       padding: 0 5%
+//     }
+//   }
+// `
 const IntroduceSection = styled.section`
   padding: 155px 0 171px 0;
   h2 {
@@ -340,17 +343,17 @@ class Index extends React.Component<PageDefaultPropsType> {
 
   static async getInitialProps() {
     return {
-      namespacesRequired: ['account'],
+      namespacesRequired: ['account', 'help'],
     }
   }
 
   render() {
-    const { stores } = this.props
+    const { stores, t } = this.props
     const { schedule } = stores.scheduleStore
 
     return (
       <>
-        <Header title='파이콘 한국 2019' intlKey='constant.pyconKorea.name'/>
+        <Header title='파이콘 한국 2019' intlKey='constant.pyconKorea.name' />
         <BannerSection>
           <MainBannerSvgWrapper>
             <MainBannerSvg color='white' />
@@ -378,7 +381,7 @@ class Index extends React.Component<PageDefaultPropsType> {
                 {`${formatDateInWordsWithWeekdayAndTime(schedule.earlybirdTicketStartAt)} `}
               </strong>
               <IntlText intlKey='constant.pyconKorea.earlybirdTicketOpen'>얼리버드 티켓 오픈</IntlText>
-              <br/>
+              <br />
               <strong style={{ fontWeight: 'bold' }}>
                 {`${formatDateInWordsWithWeekdayAndTime(schedule.conferenceTicketStartAt)} `}
               </strong>
@@ -386,7 +389,7 @@ class Index extends React.Component<PageDefaultPropsType> {
             </p>
           </MainBannerInfoWrapper>
         </BannerSection>
-        <NoticeSection>
+        {/* <NoticeSection>
           <h2>
             Notice 🗣
           </h2>
@@ -408,6 +411,33 @@ class Index extends React.Component<PageDefaultPropsType> {
               }}
             </Query>
           </ul>
+        </NoticeSection> */}
+        <NoticeSection backgroundColor='rgba(5, 132, 135, 0.06)'>
+          <ContentWidthWrapper>
+            <h2>
+              <IntlText intlKey='home.sponsor.title'>
+                Notice
+              </IntlText>
+            </h2>
+            <Ul>
+              <Query query={NOTICES}>
+                {({ loading, error, data }) => {
+                  if (loading) return (<Loading width={50} height={50} />)
+                  return (
+                    data.notices.map((notice) => {
+                      return (
+                        <Li key={notice.id} style={{ fontSize: '1.1em' }}>
+                          <a href={notice.link}>
+                            {notice.title}
+                          </a>
+                        </Li>
+                      )
+                    })
+                  )
+                }}
+              </Query>
+            </Ul>
+          </ContentWidthWrapper>
         </NoticeSection>
         <ScheduleSection>
           <ul>
@@ -521,13 +551,10 @@ class Index extends React.Component<PageDefaultPropsType> {
             </li>
           </ul>
         </ScheduleSection>
-        <ContentWidthWrapper>
-          <SponsorBanners />
-        </ContentWidthWrapper>
-        <SponserSection>
+        <NoticeSection backgroundColor='#fde5e3'>
           <ContentWidthWrapper>
-            <SponsorComingSoonBadge>
-              {/*<span>✦</span> Coming Soon <span>✦</span>*/}
+            {/* <SponsorComingSoonBadge>
+              <span>✦</span> Coming Soon <span>✦</span>
             </SponsorComingSoonBadge>
             <h2>
               <IntlText intlKey='home.sponsor.title'>
@@ -556,9 +583,26 @@ class Index extends React.Component<PageDefaultPropsType> {
               >
                 자세한 후원 안내 보기
               </Button>
+            </div> */}
+            <h2 style={{ maxWidth: '800px' }}>
+              <IntlText intlKey='home.sponsor.title'>
+                준비위원회 및 자원봉사자 안내
+              </IntlText>
+            </h2>
+            <p>
+              {t('help:staff.pyconKoreaOrganizer.desc')}
+            </p>
+            <div style={{ textAlign: 'center' }}>
+              <Button
+                intlKey='home.sponsor.prospectus'
+                to={paths.staff}
+                size='big'
+              >
+                자세히 보기
+              </Button>
             </div>
           </ContentWidthWrapper>
-        </SponserSection>
+        </NoticeSection>
         <IntroduceSection>
           <ContentWidthWrapper>
             <h2>
@@ -615,10 +659,13 @@ class Index extends React.Component<PageDefaultPropsType> {
             </p>
           </ContentWidthWrapper>
         </IntroduceSection>
+        <ContentWidthWrapper>
+          <SponsorBanners />
+        </ContentWidthWrapper>
         <Footer />
       </>
     )
   }
 }
 
-export default Index
+export default withNamespaces(['account', 'help'])(Index)
