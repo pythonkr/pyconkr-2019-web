@@ -343,7 +343,7 @@ class Index extends React.Component<PageDefaultPropsType> {
 
   static async getInitialProps() {
     return {
-      namespacesRequired: ['account', 'help'],
+      namespacesRequired: ['home', 'account', 'contribute'],
     }
   }
 
@@ -415,9 +415,7 @@ class Index extends React.Component<PageDefaultPropsType> {
         <NoticeSection backgroundColor='rgba(5, 132, 135, 0.06)'>
           <ContentWidthWrapper>
             <h2>
-              <IntlText intlKey='home.sponsor.title'>
-                Notice
-              </IntlText>
+              {t('home:notice.title')}
             </h2>
             <Ul>
               <Query query={NOTICES}>
@@ -586,16 +584,14 @@ class Index extends React.Component<PageDefaultPropsType> {
               </Button>
             </div> */}
             <h2 style={{ maxWidth: '800px' }}>
-              <IntlText intlKey='home.sponsor.title'>
-                준비위원회 및 자원봉사자 안내
-              </IntlText>
+              {t('contribute:staff.pyconKoreaOrganizer.title')}
             </h2>
             <p>
-              {t('help:staff.pyconKoreaOrganizer.desc')}
+              {t('contribute:staff.pyconKoreaOrganizer.desc')}
             </p>
             <div style={{ textAlign: 'center' }}>
               <Button
-                intlKey='home.sponsor.prospectus'
+                intlKey='common.more'
                 to={paths.contribute.staff}
                 size='big'
               >
@@ -669,4 +665,4 @@ class Index extends React.Component<PageDefaultPropsType> {
   }
 }
 
-export default withNamespaces(['account', 'help'])(Index)
+export default withNamespaces(['home', 'account', 'contribute'])(Index)

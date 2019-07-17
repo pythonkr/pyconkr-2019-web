@@ -56,7 +56,8 @@
       "untilSelected": "Until Selected",
       "conferenceDays": "Conference Days"
     },
-    "uploadTitle": "Upload"
+    "uploadTitle": "Upload",
+    "more": "More"
   },
   "gnb": {
     "home": "Home",
