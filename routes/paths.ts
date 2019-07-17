@@ -33,6 +33,7 @@ export const paths = {
     proposingATutorial: '/contribute/proposing-a-tutorial',
     proposalReview: '/contribute/proposal-review',
     volunteer: '/contribute/volunteer',
+    staff: '/contribute/staff',
   },
   ticket: {
     base: '/ticket',
@@ -71,7 +72,6 @@ export const paths = {
       sprint: '/account/editproposal/sprint',
     }
   },
-  staff: '/staff'
 }
 
 export type NormalMenu = {
@@ -228,6 +228,11 @@ export const contributionMenu: WithSubMenu = {
     {
       title: '자원봉사',
       intlKey: 'gnb.contribute.volunteer',
+      link: paths.contribute.volunteer,
+    },
+    {
+      title: '파이콘 한국 준비위원회',
+      intlKey: 'gnb.contribute.staff',
       link: paths.contribute.volunteer,
     }
   ]

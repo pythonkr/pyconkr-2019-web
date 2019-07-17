@@ -1,13 +1,17 @@
 import styled from '@emotion/styled'
 import { Button, StyledA } from 'components/atoms/Button'
 import { ContentWidthWrapper } from 'components/atoms/ContentWidthWrapper'
+import { Li, Ul } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
+import { Loading } from 'components/atoms/Loading'
 import { MainBannerSvg, MainBannerSvgCompact } from 'components/atoms/SVG'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import SponsorBanners from 'components/organisms/SponsorBanners'
+import gql from 'graphql-tag'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
+import { Query } from 'react-apollo'
 import { paths } from 'routes/paths'
 import { BG_GRAY, CORAL, HEADING_LIGHT_BLACK, TEAL } from 'styles/colors'
 import {
@@ -18,10 +22,6 @@ import {
 } from 'styles/layout'
 import { PageDefaultPropsType } from 'types/PageDefaultPropsType'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
-import gql from 'graphql-tag'
-import { Query } from 'react-apollo'
-import { Loading } from 'components/atoms/Loading'
-import { Li, Ul } from 'components/atoms/ContentWrappers'
 import { withNamespaces } from '../i18n'
 
 const NOTICES = gql`
@@ -423,6 +423,7 @@ class Index extends React.Component<PageDefaultPropsType> {
               <Query query={NOTICES}>
                 {({ loading, error, data }) => {
                   if (loading) return (<Loading width={50} height={50} />)
+
                   return (
                     data.notices.map((notice) => {
                       return (
@@ -595,7 +596,7 @@ class Index extends React.Component<PageDefaultPropsType> {
             <div style={{ textAlign: 'center' }}>
               <Button
                 intlKey='home.sponsor.prospectus'
-                to={paths.staff}
+                to={paths.contribute.staff}
                 size='big'
               >
                 자세히 보기

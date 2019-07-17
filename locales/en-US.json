@@ -66,8 +66,7 @@
       "notice": "Notice",
       "venue": "Venue",
       "financialAid": "Financial Aid",
-      "childcare": "Child Care",
-      "staff": "Staff Information"
+      "childcare": "Child Care"
     },
     "program": {
       "root": "Program",
@@ -87,7 +86,8 @@
       "proposingATutorial": "Proposing a tutorial",
       "recommendKeynoteSpeaker": "Recommending Keynote",
       "proposalReview": "Review Talk Proposals",
-      "volunteer": "Volunteer"
+      "volunteer": "Volunteer",
+      "staff": "Pycon Korea Organizing Team"
     },
     "sponsor": {
       "root": "Sponsor",
