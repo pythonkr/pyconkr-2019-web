@@ -10,10 +10,16 @@ import { withNamespaces } from '../../i18n'
 
 @inject('stores')
 @observer
-export class FinancialAid extends React.Component<PageDefaultPropsType> {
+export class StaffPage extends React.Component<PageDefaultPropsType> {
+  static async getInitialProps() {
+    return {
+      namespacesRequired: ['contribute'],
+    }
+  }
+
   render() {
     const { t } = this.props
-    const title = t('help:financialAid.title')
+    const title = t('contribute:staff.title')
 
     return (
       <PageTemplate
@@ -21,21 +27,21 @@ export class FinancialAid extends React.Component<PageDefaultPropsType> {
         footer={<Footer />}
       >
         <H1>
-          {t('help:staff.title')}
+          {title}
         </H1>
         <Section>
           <Paragraph>
-            {t('help:staff.desc')}
+            {t('contribute:staff.desc')}
           </Paragraph>
         </Section>
         <Section>
-          <H2>{t('help:staff.pyconKoreaOrganizer.title')}</H2>
+          <H2>{t('contribute:staff.pyconKoreaOrganizer.title')}</H2>
           <Paragraph>
-            {t('help:staff.pyconKoreaOrganizer.desc')}
+            {t('contribute:staff.pyconKoreaOrganizer.desc')}
           </Paragraph>
-          <H3>{t('help:staff.pyconKoreaOrganizer.listTitle')}</H3>
+          <H3>{t('contribute:staff.pyconKoreaOrganizer.listTitle')}</H3>
           <Paragraph style={{ fontWeight: 700, marginBottom: 0, marginTop: 5 }}>
-            {t('help:staff.pyconKoreaOrganizer.list')}
+            {t('contribute:staff.pyconKoreaOrganizer.list')}
           </Paragraph>
         </Section>
         <Section>
@@ -47,4 +53,4 @@ export class FinancialAid extends React.Component<PageDefaultPropsType> {
   }
 }
 
-export default withNamespaces(['help'])(FinancialAid)
+export default withNamespaces(['contribute'])(StaffPage)

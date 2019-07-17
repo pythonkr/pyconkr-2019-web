@@ -233,7 +233,7 @@ export const contributionMenu: WithSubMenu = {
     {
       title: '파이콘 한국 준비위원회',
       intlKey: 'gnb.contribute.staff',
-      link: paths.contribute.volunteer,
+      link: paths.contribute.staff,
     }
   ]
 }

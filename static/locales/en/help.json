@@ -100,15 +100,5 @@
     "desc3-6": "Phone Number",
     "desc3-7": "Address in Korea ( in most case you can use hotel address )",
     "desc3-8": "Visit Date"
-  },
-  "staff": {
-    "title": "Staff Information",
-    "desc": "This page lists the people who organize Pycon Korea 2019",
-    "pyconKoreaOrganizer": {
-      "title": "Pycon Korea Organizing Team 2019",
-      "desc": "PyCon Korea Organizing Team was first organized in 2014 and we’re preparing our 6th PyCon in Korea. PyCon Korea Organizing Team is an open community of Pythonistas recruiting new members every year. The members listed below are preparing for PyCon Korea 2019.",
-      "listTitle": "Pycon Korea Organizing Team (Ordered alphabetically in Korean)",
-      "list": "Hyukmin Kwon, Doohoon Kim, Seul Kim, Aeyeong Kim, Won Kim, Jiwon Kim, Taewook Kim, Yeongguen Na, Gwonhan Bae, Siyoung Oh, Juyoung Oh, Kyungeon Yoon, Haejeong Yoon, Iksung Lee, Jaeyeol Lee, Jongseo Lee, Hyunho Lee, Gyujin Cho, Seongsoo Cho, Kyoyoung Chu, Yeonui Hong"
-    }
   }
 }
