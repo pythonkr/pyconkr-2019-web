@@ -9,7 +9,6 @@ export const paths = {
     childcare: '/help/childcare',
     financialAid: '/help/financial-aid',
     visaSponsing: '/help/visa-sponsing',
-    staff: '/help/staff'
   },
   program: {
     base: '/program',
@@ -34,6 +33,7 @@ export const paths = {
     proposingATutorial: '/contribute/proposing-a-tutorial',
     proposalReview: '/contribute/proposal-review',
     volunteer: '/contribute/volunteer',
+    staff: '/contribute/staff',
   },
   ticket: {
     base: '/ticket',
@@ -140,11 +140,6 @@ export const helpMenu: WithSubMenu = {
       intlKey: 'gnb.help.childcare',
       link: paths.help.childcare
     },
-    {
-      title: '준비위원회 및 자원봉사자',
-      intlKey: 'gnb.help.staff',
-      link: paths.help.staff
-    },
   ]
 }
 
@@ -234,6 +229,11 @@ export const contributionMenu: WithSubMenu = {
       title: '자원봉사',
       intlKey: 'gnb.contribute.volunteer',
       link: paths.contribute.volunteer,
+    },
+    {
+      title: '파이콘 한국 준비위원회',
+      intlKey: 'gnb.contribute.staff',
+      link: paths.contribute.staff,
     }
   ]
 }
