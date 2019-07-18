@@ -349,13 +349,13 @@
     "apply": "Apply for a volunteer"
   },
   "staff": {
-    "title": "Pycon Korea Organizing Team",
-    "desc": "This page lists the people who organize Pycon Korea 2019",
+    "title": "PyCon Korea Organizing Team",
+    "desc": "This page lists the people who organize PyCon Korea 2019",
     "pyconKoreaOrganizer": {
-      "title": "Pycon Korea Organizing Team 2019",
+      "title": "PyCon Korea Organizing Team 2019",
       "desc": "PyCon Korea Organizing Team was first organized in 2014 and we’re preparing our 6th PyCon in Korea. PyCon Korea Organizing Team is an open community of Pythonistas recruiting new members every year.",
-      "listTitle": "Pycon Korea Organizing Team (Ordered alphabetically in Korean)",
-      "list": "Hyukmin Kwon, Doohoon Kim, Seul Kim, Aeyeong Kim, Won Kim, Jiwon Kim, Taewook Kim, Yeongguen Na, Gwonhan Bae, Siyoung Oh, Juyoung Oh, Kyungeon Yoon, Haejeong Yoon, Iksung Lee, Jaeyeol Lee, Jongseo Lee, Hyunho Lee, Gyujin Cho, Seongsoo Cho, Kyoyoung Chu, Yeonui Hong"
+      "listTitle": "PyCon Korea Organizing Team (Ordered alphabetically in Korean)",
+      "list": "Hyukmin Kwon, Doohoon Kim, Seul Kim, Aeyeong Kim, Won Kim, Jiwon Kim, Taewook Kim, Yeongguen Na, Kwonhan Bae, Siyoung Oh, Juyoung Oh, Kyungeon Yoon, Haejeong Yoon, Iksung Lee, Jaeyeol Lee, Jongseo Lee, Hyunho Lee, Gyujin Cho, Seongsoo Cho, Kyoyoung Chu, Yeonui Hong"
     }
   }
 }
