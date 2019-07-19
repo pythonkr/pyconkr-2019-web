@@ -53,7 +53,7 @@ class ChildcarePage extends React.Component<PageDefaultPropsType> {
           closeDate={stores.scheduleStore.schedule.childcareTicketFinishAt}
         />
         <Section>
-          {_.isEmpty(childCareProducts)
+          {_.isNil(childCareProducts)
             ? <Loading width={50} height={50}/>
             : <ChildcareTicketList stores={stores} t={t} router={router} />
           }
