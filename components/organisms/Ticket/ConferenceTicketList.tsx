@@ -138,7 +138,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
       const isTicketStepExist = getIsTicketStepExist(id)
       if (!isTicketStepExist) setTicketStep(id, name)
       const ticketStep = getTicketStep(id)
-      console.log(ticketStep)
+
       if (!ticketStep) return null
 
       const {
