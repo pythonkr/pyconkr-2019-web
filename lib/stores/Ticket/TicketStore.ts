@@ -236,6 +236,11 @@ export class TicketStore {
     }
 
     @action
+    clearTicketOptions = () => {
+      this.options = null
+    }
+
+    @action
     getIsTicketStepExist = (id: string) => {
       return !!this.getTicketStep(id)
     }

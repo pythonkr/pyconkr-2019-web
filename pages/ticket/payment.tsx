@@ -1,19 +1,15 @@
-import styled from '@emotion/styled'
 import { H1, H2, Paragraph, Section } from 'components/atoms/ContentWrappers'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PaymentForm from 'components/organisms/PaymentForm'
 import PageTemplate from 'components/templates/PageTemplate'
 import i18next from 'i18next'
-import { isStringNumber, removeWhiteSpaces } from 'lib/util/common'
 import _ from 'lodash'
 import { inject, observer } from 'mobx-react'
 import { RouterProps, withRouter } from 'next/router'
-import React, { FormEvent } from 'react'
-import { toast } from 'react-toastify'
+import React from 'react'
 import { paths } from 'routes/paths'
 import { withNamespaces } from '../../i18n'
-import { mobileWidth } from '../../styles/layout'
 import { StoresType } from '../_app'
 
 export type PropsType = {
@@ -37,6 +33,12 @@ export class Ticket extends React.Component<PropsType> {
     window.scrollTo(0, 0)
     if (!stores.ticketStore.isPaying) router.push(paths.ticket.overview)
     stores.ticketStore.cleanupPaymentInfo()
+  }
+
+  componentWillUnmount () {
+    const { stores } = this.props
+    const { clearTicketOptions } = stores.ticketStore
+    clearTicketOptions()
   }
 
   render() {
