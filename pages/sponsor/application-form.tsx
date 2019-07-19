@@ -6,21 +6,21 @@ import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import SponsorForm from 'components/organisms/SponsorForm'
 import PageTemplate from 'components/templates/PageTemplate'
-import i18next from 'i18next'
 import { isPast } from 'date-fns'
+import i18next from 'i18next'
 import { inject, observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import React from 'react'
-import ReactMarkdown from 'react-markdown'
 import intl from 'react-intl-universal'
+import ReactMarkdown from 'react-markdown'
 import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 import {
-  ContentTableWrapper, H1, H2, Paragraph, ScheduleTable,
-  Section, Table, TBody, Td, Th, THead, Tr, alignCenter
+  alignCenter, ContentTableWrapper, H1, H2, Paragraph,
+  ScheduleTable, Section, Table, TBody, Td, Th, THead, Tr
 } from '../../components/atoms/ContentWrappers'
 import { IntlText } from '../../components/atoms/IntlText'
-import {paths} from '../../routes/paths'
 import { withNamespaces } from '../../i18n'
+import {paths} from '../../routes/paths'
 
 @inject('stores')
 @observer
