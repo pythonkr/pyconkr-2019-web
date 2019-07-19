@@ -76,7 +76,12 @@
     "youngcoder": {
         "pageTitle": "Youngcoder Ticket",
         "title": "Youngcoder Ticket",
-        "description": "Description of Youngcoder"
+        "description": "Description of Youngcoder",
+        "option" : {
+            "title": "Youngcoder Ticket Option",
+            "name": "Name",
+            "birthDate": "Birth Date"
+        }
     },
     "childcare": {
         "pageTitle": "Childcare Ticket",

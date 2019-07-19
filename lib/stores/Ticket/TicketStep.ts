@@ -22,6 +22,8 @@ export type TicketOptionType = {
   childcareBirthDate?: string;
   isRequireParkingDiscount?: boolean;
   note?: string;
+  youngCoderName?: string;
+  youngCoderBirthDate?: string;
 }
 
 configure({ enforceActions: 'observed' })
@@ -70,9 +72,6 @@ export class TicketStep {
   validateTicket = (ticketType: TicketTypeNode) => {
     if (ticketType === TicketTypeNode.CONFERENCE) {
       if (!this.ticketOption || _.isEmpty(this.ticketOption.tshirtsize)) return VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED
-      if (!this.isTicketOptionAgreed) {
-        return VALIDATION_ERROR_TYPE.NOT_AGREED_TO_OPTIONS
-      }
     }
 
     if (ticketType === TicketTypeNode.CHILD_CARE) {
@@ -84,6 +83,20 @@ export class TicketStep {
       ) {
         return VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED
       }
+    }
+
+    if (ticketType === TicketTypeNode.YOUNG_CODER) {
+      if (
+        !this.ticketOption ||
+        _.isEmpty(this.ticketOption.youngCoderName) ||
+        _.isEmpty(this.ticketOption.youngCoderBirthDate)
+      ) {
+        return VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED
+      }
+    }
+
+    if (!this.isTicketOptionAgreed) {
+      return VALIDATION_ERROR_TYPE.NOT_AGREED_TO_OPTIONS
     }
 
     return VALIDATION_ERROR_TYPE.NONE

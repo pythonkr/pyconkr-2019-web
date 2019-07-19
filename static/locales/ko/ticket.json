@@ -93,7 +93,12 @@
     "youngcoder": {
         "pageTitle": "영코더 티켓",
         "title": "영코더 티켓",
-        "description": "영코더 설명"
+        "description": "영코더 설명",
+        "option" : {
+            "title": "영코더 티켓 옵션",
+            "name": "이름",
+            "birthDate": "생년월일"
+        }
     },
     "childcare": {
         "pageTitle": "아이돌봄 티켓",
