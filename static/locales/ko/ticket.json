@@ -96,7 +96,7 @@
         "description": "영코더 설명",
         "option" : {
             "title": "영코더 티켓 옵션",
-            "name": "이름",
+            "name": "참가 학생 이름",
             "birthDate": "생년월일"
         }
     },
