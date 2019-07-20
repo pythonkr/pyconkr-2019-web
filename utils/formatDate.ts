@@ -1,5 +1,5 @@
 import { differenceInMilliseconds, distanceInWordsToNow } from 'date-fns'
-import format from 'date-fns/format'
+import { formatToTimeZone } from 'date-fns-timezone'
 import en from 'date-fns/locale/en'
 import ko from 'date-fns/locale/ko'
 import { LOCALE_KEY_EN, LOCALE_KEY_KR } from 'locales/constants'
@@ -17,8 +17,10 @@ export const formatDate = (formatTemplate: string) => (date: DateDTO) => {
   }
   const localeKey = intl.getInitOptions().currentLocale!
 
-  return format(date, formatTemplate, {
-    locale: locales[localeKey]
+  return formatToTimeZone(date, formatTemplate, {
+    // No type interface..(https://github.com/prantlf/date-fns-timezone/issues/10)
+    locale: locales[localeKey],
+    timeZone: 'Asia/Seoul'
   })
 }
 
