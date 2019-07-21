@@ -22,6 +22,7 @@ export const paths = {
     sprint: '/program/sprint',
     sprintDetail: '/program/sprint-detail',
     youngcoder: '/program/youngcoder',
+    youngcoderDetail: '/program/youngcoder-detail',
   },
   contribute: {
     base: '/contribute',

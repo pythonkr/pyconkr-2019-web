@@ -91,7 +91,7 @@ export class Tutorial extends React.Component<PropsType> {
               const tutorials = data.tutorials
               if(_.isEmpty(tutorials)){
                 return (
-                    <AlertBar text={t('program:tutorial.waitingAlert')} />
+                    <AlertBar text={t('program:common.waitingAlert')} />
                 )
               }
               return (

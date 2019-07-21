@@ -5,11 +5,55 @@ import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
 import i18next from 'i18next'
 import React from 'react'
-import { programMenu } from 'routes/paths'
+import _ from 'lodash'
+import { paths, programMenu } from 'routes/paths'
 import { withNamespaces } from '../../i18n'
+import { ProgramUl, ProgramItem } from 'components/molecules/Program/List'
+import gql from 'graphql-tag'
+import { Query } from 'react-apollo'
+import { AlertBar } from 'components/atoms/AlertBar'
+import {Loading} from 'components/atoms/Loading'
+
+const YOUNGCODERS = gql`
+query YoungCoders {
+  youngCoders {
+    id
+    name
+    companyName
+    difficulty {
+      id
+      name
+      nameEn
+      nameKo
+    }
+  }
+}
+`
 
 export type PropsType = {
   t: i18next.TFunction;
+}
+
+const YoungCoderList = (props: any) => {
+  const { youngCoders }  = props
+  
+  return (<>
+    <ProgramUl>
+      {
+        youngCoders.map(({id, name, companyName, difficulty}) => {
+          const href = `${paths.program.youngcoderDetail}?id=${id}`
+          return (
+            <ProgramItem
+              key={ id } 
+              href={href}
+              speakerName={companyName}
+              name={name}
+              difficulty={difficulty} />
+          )
+        })
+      }
+    </ProgramUl>
+  </>)
 }
 
 export class Youngcoder extends React.Component<PropsType> {
@@ -27,31 +71,26 @@ export class Youngcoder extends React.Component<PropsType> {
           { title }
         </H1>
         <Section>
-          <H2>{ t('program:youngCoder.header1') }</H2>
-          <Paragraph>
-            { t('program:youngCoder.desc1-1') }
-          </Paragraph>
-          <Paragraph>
-            { t('program:youngCoder.desc1-2') }
-          </Paragraph>
-          <Paragraph>
-            { t('program:youngCoder.desc1-3') }
-          </Paragraph>
+          <Paragraph>{ t('program:youngCoder.desc1') }</Paragraph>
         </Section>
         <Section>
           <H2>{ t('program:youngCoder.header2') }</H2>
-          <Paragraph>
-            { t('program:youngCoder.desc2-1') }
-          </Paragraph>
-          <Paragraph>
-            { t('program:youngCoder.desc2-2') }
-          </Paragraph>
-          <Paragraph>
-            { t('program:youngCoder.desc2-3') }
-          </Paragraph>
-          <Paragraph>
-            { t('program:youngCoder.desc2-4') }
-          </Paragraph>
+          <Paragraph>{ t('program:youngCoder.desc2') }</Paragraph>
+          <Query query={YOUNGCODERS}>
+            {({ loading, error, data }) => {
+                if (loading || error) 
+                  return (<Loading width={50} height={50}/>)
+                const youngCoders = data.youngCoders
+                if(_.isEmpty(youngCoders)){
+                  return (
+                      <AlertBar text={t('program:common.waitingAlert')} />
+                  )
+                }
+                return (
+                  <YoungCoderList youngCoders={youngCoders}/>
+                )
+            }}
+          </Query>
         </Section>
         <Section>
           <H2>{ t('program:youngCoder.header3') }</H2>
@@ -64,14 +103,41 @@ export class Youngcoder extends React.Component<PropsType> {
           <Paragraph>
             { t('program:youngCoder.desc3-3') }
           </Paragraph>
+        </Section>
+        <Section>
+          <H2>{ t('program:youngCoder.header4') }</H2>
           <Paragraph>
-            { t('program:youngCoder.desc3-4') }
+            { t('program:youngCoder.desc4-1') }
           </Paragraph>
           <Paragraph>
-            { t('program:youngCoder.desc3-5') }
+            { t('program:youngCoder.desc4-2') }
           </Paragraph>
           <Paragraph>
-            { t('program:youngCoder.desc3-6') }
+            { t('program:youngCoder.desc4-3') }
+          </Paragraph>
+          <Paragraph>
+            { t('program:youngCoder.desc4-4') }
+          </Paragraph>
+        </Section>
+        <Section>
+          <H2>{ t('program:youngCoder.header5') }</H2>
+          <Paragraph>
+            { t('program:youngCoder.desc5-1') }
+          </Paragraph>
+          <Paragraph>
+            { t('program:youngCoder.desc5-2') }
+          </Paragraph>
+          <Paragraph>
+            { t('program:youngCoder.desc5-3') }
+          </Paragraph>
+          <Paragraph>
+            { t('program:youngCoder.desc5-4') }
+          </Paragraph>
+          <Paragraph>
+            { t('program:youngCoder.desc5-5') }
+          </Paragraph>
+          <Paragraph>
+            { t('program:youngCoder.desc5-6') }
           </Paragraph>
         </Section>
       </PageTemplate>
