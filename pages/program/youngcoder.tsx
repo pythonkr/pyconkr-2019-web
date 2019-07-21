@@ -1,4 +1,4 @@
-import { H1, H2, Paragraph, Section } from 'components/atoms/ContentWrappers'
+import { H1, H2, Paragraph, Section, Ul, Li } from 'components/atoms/ContentWrappers'
 import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
@@ -139,6 +139,24 @@ export class Youngcoder extends React.Component<PropsType> {
           <Paragraph>
             { t('program:youngCoder.desc5-6') }
           </Paragraph>
+        </Section>
+        <Section>
+          <H2>{ t('program:youngCoder.header6') }</H2>
+          <Paragraph> 
+            { t('program:youngCoder.desc6-1') }
+          </Paragraph>
+          <Ul>
+            <Li>{ t('program:youngCoder.desc6-1-1') }</Li>
+            <Li>{ t('program:youngCoder.desc6-1-2') }</Li>
+          </Ul>
+
+          <Paragraph> 
+            { t('program:youngCoder.desc6-2') }
+          </Paragraph>
+          <Ul>
+            <Li>{ t('program:youngCoder.desc6-2-1') }</Li>
+          </Ul>
+
         </Section>
       </PageTemplate>
     )

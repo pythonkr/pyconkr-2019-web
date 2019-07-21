@@ -64,7 +64,7 @@ const YoungCoderContent = ({t, youngCoder}) => {
           { youngCoder.companyName }
         </ProgramTableRow>
         <ProgramTableRow
-          header={t('program:youngCoderDetail.recommentedAge')}
+          header={t('program:youngCoderDetail.minimumAge')}
         >
           { youngCoder.difficulty.name }
         </ProgramTableRow>
