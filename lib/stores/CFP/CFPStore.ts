@@ -4,10 +4,10 @@ import { CreateOrUpdatePresentationProposal } from 'lib/apollo_graphql/mutations
 import { CategoryType, getCategories } from 'lib/apollo_graphql/queries/getCategories'
 import { DifficultyType, getDifficulties } from 'lib/apollo_graphql/queries/getDifficulties'
 import { getMyPresentationProposal } from 'lib/apollo_graphql/queries/getMyPresentationProposal'
-import { getPresentations } from 'lib/apollo_graphql/queries/getPresentations'
 import { getPresentation } from 'lib/apollo_graphql/queries/getPresentation'
+import { getPresentations, PresentationNode } from 'lib/apollo_graphql/queries/getPresentations'
 import _ from 'lodash'
-import { action, configure, observable, set, toJS } from 'mobx'
+import { action, computed, configure, observable, set, toJS } from 'mobx'
 import { PresentationProposal } from './PresentationProposal'
 
 configure({ enforceActions: 'observed' })
@@ -27,6 +27,7 @@ export class CFPStore {
     @observable difficulties: DifficultyType[] = []
     @observable proposal: PresentationProposal
     @observable isProposalInitialized: boolean = false
+    @observable presentations: (PresentationNode | null)[] = []
 
     constructor() {
       this.proposal = new PresentationProposal()
@@ -39,15 +40,16 @@ export class CFPStore {
 
     @action
     setProposal(proposal: any) {
-        if(!proposal){
+        if (!proposal) {
           this.isProposalInitialized = false
-          return  
+
+          return
         }
         set(this.proposal, proposal as { [key: string]: any })
-        if(proposal.category){
+        if (proposal.category) {
           this.proposal.setCategoryId(proposal.category.id)
         }
-        if(proposal.difficulty){
+        if (proposal.difficulty) {
           this.proposal.setDifficultyId(proposal.difficulty.id)
         }
         this.isProposalInitialized = true
@@ -81,16 +83,36 @@ export class CFPStore {
     }
 
     @action
-    async retrievePresentations() {
+    retrievePresentations = async () => {
       const response = await getPresentations(client)({})
+
       return response.data.presentations
     }
 
     @action
-    async retrievePresentation(id) {
+    setPresentations = (presentations: (PresentationNode | null)[]) => {
+      this.presentations = presentations
+    }
+
+    @computed get conferenceTalks () {
+      // tslint:disable: underscore-consistent-invocation
+      const conferenceTalks = _.filter(this.presentations, (presentation: PresentationNode) => {
+        return !presentation.isKeynote
+      })
+
+      return _.sortBy(conferenceTalks, (conferenceTalk: PresentationNode): (PresentationNode | null)[] => {
+        const { startedAt, finishedAt } = conferenceTalk
+
+        return startedAt && finishedAt
+      })
+    }
+
+    @action
+    async retrievePresentation(id: string) {
       const response = await getPresentation(client)({
         id: id
       })
+
       return response.data.presentation
     }
 

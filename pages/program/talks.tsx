@@ -1,5 +1,6 @@
-import { H1, H2, Li, Paragraph, Section, Ul } from 'components/atoms/ContentWrappers'
+import { H1, Section } from 'components/atoms/ContentWrappers'
 import { LocalNavigation } from 'components/molecules/LocalNavigation'
+import { CategoryTitleDecorator, CategoryTitleText, CategoryTitleWrapper, ProgramItem, ProgramUl } from 'components/molecules/Program/List'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
@@ -11,8 +12,6 @@ import React from 'react'
 import { paths, programMenu } from 'routes/paths'
 import { withNamespaces } from '../../i18n'
 import { StoresType } from '../_app'
-import { CategoryTitleWrapper, CategoryTitleText, CategoryTitleDecorator, ProgramUl, ProgramItem } from 'components/molecules/Program/List'
-
 
 export type PropsType = {
   stores: StoresType;
@@ -47,6 +46,7 @@ export class TalkList extends React.Component<PropsType> {
         return `${ownerName} / ${secondaryOwnerName}`
       }
     }
+
     return ownerName
   }
 
@@ -71,12 +71,13 @@ export class TalkList extends React.Component<PropsType> {
                 </CategoryTitleWrapper>
                 <ProgramUl>
                   {
-                    group[1]!.map((presentation: PresentationProposal) => {
+                    group[1].map((presentation: PresentationProposal) => {
                       const href = `${paths.program.talkDetail}?id=${presentation.id}`
+
                       return (
-                        <ProgramItem 
-                          key={presentation.id} 
-                          href={href} 
+                        <ProgramItem
+                          key={presentation.id}
+                          href={href}
                           speakerName={ this.getSpeakerName(presentation) }
                           name={ presentation.name }
                           difficulty={presentation.difficulty}/>

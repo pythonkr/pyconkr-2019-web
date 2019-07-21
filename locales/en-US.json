@@ -67,7 +67,8 @@
       "notice": "Notice",
       "venue": "Venue",
       "financialAid": "Financial Aid",
-      "childcare": "Child Care"
+      "childcare": "Child Care",
+      "visaSponsing": "Visa Sponsing"
     },
     "program": {
       "root": "Program",
@@ -78,6 +79,13 @@
       "tutorial": "Tutorial",
       "sprint": "Sprint",
       "youngcoder": "Youngcoder"
+    },
+    "timetable": {
+      "root": "Timetable",
+      "talks": "Timetable of talks",
+      "lightningTalk": "Lightning Talk",
+      "tutorial": "Tutorial",
+      "sprint": "Sprint"
     },
     "contribute": {
       "root": "Contribution",

@@ -1,0 +1,14 @@
+{
+  "talks": {
+    "title": "발표세션 시간표"
+  },
+  "lightningTalk": {
+    "title": "라이트닝 토크 시간표"
+  },
+  "tutorial": {
+    "title": "튜토리얼 시간표"
+  },
+  "sprint": {
+    "title": "스프린트 시간표"
+  }
+}
