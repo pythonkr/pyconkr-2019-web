@@ -8,7 +8,7 @@ export const paths = {
     venue: '/help/venue',
     childcare: '/help/childcare',
     financialAid: '/help/financial-aid',
-    visaSponsing: '/help/visa-sponsing'
+    visaSponsing: '/help/visa-sponsing',
   },
   program: {
     base: '/program',
@@ -33,6 +33,7 @@ export const paths = {
     proposingATutorial: '/contribute/proposing-a-tutorial',
     proposalReview: '/contribute/proposal-review',
     volunteer: '/contribute/volunteer',
+    staff: '/contribute/staff',
   },
   ticket: {
     base: '/ticket',
@@ -228,6 +229,11 @@ export const contributionMenu: WithSubMenu = {
       title: '자원봉사',
       intlKey: 'gnb.contribute.volunteer',
       link: paths.contribute.volunteer,
+    },
+    {
+      title: '파이콘 한국 준비위원회',
+      intlKey: 'gnb.contribute.staff',
+      link: paths.contribute.staff,
     }
   ]
 }

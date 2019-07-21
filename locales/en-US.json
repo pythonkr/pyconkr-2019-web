@@ -56,7 +56,8 @@
       "untilSelected": "Until Selected",
       "conferenceDays": "Conference Days"
     },
-    "uploadTitle": "Upload"
+    "uploadTitle": "Upload",
+    "more": "More"
   },
   "gnb": {
     "home": "Home",
@@ -86,7 +87,8 @@
       "proposingATutorial": "Proposing a tutorial",
       "recommendKeynoteSpeaker": "Recommending Keynote",
       "proposalReview": "Review Talk Proposals",
-      "volunteer": "Volunteer"
+      "volunteer": "Volunteer",
+      "staff": "Pycon Korea Organizing Team"
     },
     "sponsor": {
       "root": "Sponsor",

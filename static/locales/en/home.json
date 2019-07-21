@@ -16,5 +16,8 @@
   "differenceWithOthers": {
     "title": "What's the difference between PyCon and other developer's conferences?",
     "description": "PyCon Korea is a non-profitable, developer-oriented event organized by community members, and has different characteristics from conferences organized companies or organizations. All attendees, including speakers, tutorial hosts, voluntary workers, and organizing team, participate in PyCon Korea without any profitable purpose, and only to broaden the usage of Python, an open source programming language, and activate its community."
+  },
+  "notice": {
+    "title": "Notice"
   }
 }
