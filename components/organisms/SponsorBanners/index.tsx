@@ -62,7 +62,7 @@ class SponsorBanners extends React.Component<PropsType> {
 
     return (
       <Section>
-        <H2><IntlText intlKey='constant.sponsor'>🧚‍♀️ 후원사 🧚‍♂️</IntlText></H2>
+        <H2><IntlText intlKey='constant.sponsor'>🧚‍ 후원사 🧚‍</IntlText></H2>
         {sponsorLevels.map(sponsorLevel => {
           const level = sponsorLevel
           const banners = sponsorBanners[sponsorLevel.id].sponsors as any[]
