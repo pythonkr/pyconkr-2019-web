@@ -51,7 +51,10 @@ export class Volunteer extends React.Component<PropsType> {
         </Section>
         <Section>
           <H2>{ t('contribute:volunteer.header2') }</H2>
-          <AlertBar text={t('contribute:volunteer.alertFinished')} />
+          {/* <AlertBar text={t('contribute:volunteer.alertFinished')} /> */}
+          <Paragraph>
+            강시온, 강지우, 김동은, 김무훈, 김소연, 김예빈, 김윤재, 김하늬, 남궁하영, 박선영, 박선형, 박진형, 박한나, 손성민, 신은주, 신준형, 우수연, 이경은, 이동열, 이은진, 이창복, 임도균, 장원진, 전병우, 정석준, 정지영, 차영호, 한진수, 황준오, Manoj Pandey
+          </Paragraph>
           {/* <Paragraph>
             { t('contribute:volunteer.desc2-1') }
           </Paragraph> */}
