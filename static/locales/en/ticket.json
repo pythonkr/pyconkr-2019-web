@@ -21,7 +21,8 @@
         "refundWarning": "Do you want to refund ticket?",
         "refundSuccess": "The ticket was successfully refunded.",
         "list": "List of tickets",
-        "noTicketAlert": "Ticket list has not been released yet.🙇‍♀️ 🙇‍♂️"
+        "noTicketAlert": "Ticket list has not been released yet.🙇‍♀️ 🙇‍♂️",
+        "shouldBuyConference": "ChildCare/Youngcoder is for participants who have purchased a conference ticket. A list of programs is available to participants who have purchased conference tickets.🤓"
     },
     "purchased": "Purchased",
     "purchaseNotAvailable": "Not available",

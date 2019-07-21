@@ -10,7 +10,7 @@ import { getSprintProducts, SprintProductType } from 'lib/apollo_graphql/queries
 import { getTutorialProducts, TutorialProductType } from 'lib/apollo_graphql/queries/getTutorialProducts'
 import { getYoungCoderProducts, YoungCoderProductType } from 'lib/apollo_graphql/queries/getYoungCoderProducts'
 import * as _ from 'lodash'
-import { action, configure, observable, toJS } from 'mobx'
+import { action, configure, observable, computed, toJS } from 'mobx'
 import { TicketStep } from './TicketStep'
 
 configure({ enforceActions: 'observed' })
@@ -67,6 +67,18 @@ export class TicketStore {
         myTicket.status === TicketStatus.PAID &&
         myTicket.product.type === TicketTypeNode.CONFERENCE
       )
+    }
+
+    @computed
+    get myConferenceTicket() {
+      const tickets = this.myTickets.filter(myTicket =>
+        myTicket.status === TicketStatus.PAID &&
+        myTicket.product.type === TicketTypeNode.CONFERENCE
+      )
+      if(_.isEmpty(tickets)){
+        return null
+      }
+      return tickets[0]
     }
 
     @action

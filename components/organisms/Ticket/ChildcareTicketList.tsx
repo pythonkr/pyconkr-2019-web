@@ -8,6 +8,7 @@ import i18next from 'i18next'
 import { TicketTypeNode } from 'lib/apollo_graphql/__generated__/globalTypes'
 import { TICKET_STEP, TicketStep, VALIDATION_ERROR_TYPE } from 'lib/stores/Ticket/TicketStep'
 import _ from 'lodash'
+import { AlertBar } from 'components/atoms/AlertBar'
 import { observer } from 'mobx-react'
 import { RouterProps } from 'next/router'
 import { StoresType } from 'pages/_app'
@@ -117,6 +118,12 @@ class ChildcareTicketList extends React.Component<PropsType> {
       setTicketStep,
     } = stores.ticketStore
 
+    if (_.isEmpty(childCareProducts)) {
+      return (
+        <AlertBar text={t('ticket:common.noTicketAlert')} />
+      )
+    }
+
     return childCareProducts.map(childCareProduct => {
       const { id, name, desc, warning, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut } = childCareProduct
       const isTicketStepExist = getIsTicketStepExist(id)
@@ -193,19 +200,27 @@ class ChildcareTicketList extends React.Component<PropsType> {
   }
 
   render() {
-    const { stores } = this.props
+    const { stores, t } = this.props
     const { authStore } = stores
     const isAuthStoreInitialized = authStore.isInitialized
     const isLoggedIn = authStore.loggedIn
+    const { myConferenceTicket } = stores.ticketStore
 
     if (!isAuthStoreInitialized) {
       return <Loading width={50} height={50}/>
     }
 
+    if (!isLoggedIn) {
+      return <FormNeedsLogin />
+    }
+    if (!myConferenceTicket){
+      return (
+        <AlertBar text={t('ticket:common.shouldBuyConference')} />
+      )
+    }
+
     return (
-      !isLoggedIn
-      ? <FormNeedsLogin />
-      :  this.renderTicketBoxList()
+      this.renderTicketBoxList()
     )
   }
 }

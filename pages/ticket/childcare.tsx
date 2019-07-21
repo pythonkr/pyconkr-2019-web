@@ -1,6 +1,5 @@
 import { H1, H2, Paragraph, Section } from 'components/atoms/ContentWrappers'
 import { IntlText } from 'components/atoms/IntlText'
-import { Loading } from 'components/atoms/Loading'
 import { StatusBar } from 'components/atoms/StatusBar'
 import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
@@ -27,20 +26,22 @@ class ChildcarePage extends React.Component<PageDefaultPropsType> {
 
   async componentDidMount () {
     const { stores } = this.props
-    const { childCareProducts, retrieveChildCareProducts } = stores.ticketStore
+    const { childCareProducts, retrieveChildCareProducts, retrieveMyTickets } = stores.ticketStore
 
     if (_.isEmpty(childCareProducts)) {
       await retrieveChildCareProducts()
+    }
+    if(stores.authStore.loggedIn){
+      await retrieveMyTickets()
     }
   }
 
   render() {
     const { stores, t, router } = this.props
-    const { childCareProducts } = stores.ticketStore
-
+    const title = t('ticket:childcare.title')
     return (
       <PageTemplate
-        header={<Header title='컨퍼런스 티켓 :: 파이콘 한국 2019' intlKey='ticket.childcare.pageTitle'/>}
+        header={<Header title={t('common:pageTitle', { title })} intlKey='' />}
         footer={<Footer />}
       >
         <LocalNavigation list={ticketMenu.submenu} />
@@ -53,10 +54,8 @@ class ChildcarePage extends React.Component<PageDefaultPropsType> {
           closeDate={stores.scheduleStore.schedule.childcareTicketFinishAt}
         />
         <Section>
-          {_.isNil(childCareProducts)
-            ? <Loading width={50} height={50}/>
-            : <ChildcareTicketList stores={stores} t={t} router={router} />
-          }
+          <H2>{ t('ticket:common.list') }</H2>
+          <ChildcareTicketList stores={stores} t={t} router={router} />
         </Section>
         <Section>
           <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>

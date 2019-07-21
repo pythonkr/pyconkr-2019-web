@@ -21,7 +21,8 @@
         "refundWarning": "정말로 환불하시겠습니까?",
         "refundSuccess": "환불이 성공적으로 완료되었습니다",
         "list": "티켓 목록",
-        "noTicketAlert": "아직 티켓이 공개되지 않았습니다.🙇‍♀️ 🙇‍♂️"
+        "noTicketAlert": "아직 티켓이 공개되지 않았습니다.🙇‍♀️ 🙇‍♂️",
+        "shouldBuyConference": "아이돌봄/영코더는 컨퍼런스 티켓을 구매한 참가자를 대상으로 진행합니다. 컨퍼런스 티켓을 구매하신 참여자에 한해서 프로그램 목록이 공개됩니다.🤓"
     },
     "purchased": "구매완료",
     "purchaseNotAvailable": "구매불가",
@@ -91,7 +92,6 @@
         "description2": "스프린트는 파이썬 뿐만 아니라 모든 언어의 오픈소스 프로젝트를 대상으로 진행됩니다."
     },
     "youngcoder": {
-        "pageTitle": "영코더 티켓",
         "title": "영코더 티켓",
         "description": "영코더 설명",
         "option" : {
@@ -101,7 +101,6 @@
         }
     },
     "childcare": {
-        "pageTitle": "아이돌봄 티켓",
         "title": "아이돌봄 티켓",
         "description": "아이돌봄 설명",
         "option" : {

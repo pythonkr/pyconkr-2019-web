@@ -225,10 +225,12 @@ class TutorialTicketList extends React.Component<PropsType> {
       return <Loading width={50} height={50}/>
     }
 
+    if (!isLoggedIn) {
+      return <FormNeedsLogin />
+    }
+
     return (
-      !isLoggedIn
-      ? <FormNeedsLogin />
-      :  this.renderTicketBoxList()
+      this.renderTicketBoxList()
     )
   }
 }

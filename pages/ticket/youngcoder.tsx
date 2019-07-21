@@ -27,20 +27,24 @@ class YoungcoderPage extends React.Component<PageDefaultPropsType> {
 
   async componentDidMount () {
     const { stores } = this.props
-    const { youngCoderProducts, retrieveYoungCoderProducts } = stores.ticketStore
+    const { youngCoderProducts, retrieveYoungCoderProducts, retrieveMyTickets } = stores.ticketStore
+
 
     if (_.isEmpty(youngCoderProducts)) {
       await retrieveYoungCoderProducts()
+    }
+    if(stores.authStore.loggedIn){
+      await retrieveMyTickets()
     }
   }
 
   render() {
     const { stores, t, router } = this.props
-    const { youngCoderProducts } = stores.ticketStore
+    const title = t('ticket:youngcoder.title')
 
     return (
       <PageTemplate
-        header={<Header title='컨퍼런스 티켓 :: 파이콘 한국 2019' intlKey='ticket.youngcoder.pageTitle'/>}
+      header={<Header title={t('common:pageTitle', { title })} intlKey='' />}
         footer={<Footer />}
       >
         <LocalNavigation list={ticketMenu.submenu} />
@@ -53,10 +57,8 @@ class YoungcoderPage extends React.Component<PageDefaultPropsType> {
           closeDate={stores.scheduleStore.schedule.childcareTicketFinishAt}
         />
         <Section>
-          {_.isNil(youngCoderProducts)
-            ? <Loading width={50} height={50}/>
-            : <YoungCoderTicketList stores={stores} t={t} router={router} />
-          }
+          <H2>{ t('ticket:common.list') }</H2>
+          <YoungCoderTicketList stores={stores} t={t} router={router} />
         </Section>
         <Section>
           <H2><IntlText intlKey='common.contact'>문의</IntlText></H2>
