@@ -26,11 +26,13 @@ border-radius: 3px;
 padding: 2px 4px;
 opacity: .9;
 
-&.beginner {
+&.beginner,
+&.over10years {
   background: ${GREEN};
 }
 
-&.intermediate {
+&.intermediate,
+&.over13years {
   background: ${YELLOW};
 }
 
@@ -126,7 +128,7 @@ export const DifficultyTag = (props) => {
     return null
   return (
     <TagWrapper>
-      <Tag className={difficulty.nameEn.toLowerCase()}>{difficulty.name}</Tag>
+      <Tag className={difficulty.nameEn.replace(/ /gi, '').toLowerCase()}>{difficulty.name}</Tag>
     </TagWrapper>
   )
 }

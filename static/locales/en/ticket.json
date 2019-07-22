@@ -21,7 +21,8 @@
         "refundWarning": "Do you want to refund ticket?",
         "refundSuccess": "The ticket was successfully refunded.",
         "list": "List of tickets",
-        "noTicketAlert": "Ticket list has not been released yet.🙇‍♀️ 🙇‍♂️"
+        "noTicketAlert": "Ticket list has not been released yet.🙇‍♀️ 🙇‍♂️",
+        "shouldBuyConference": "ChildCare/Youngcoder is for participants who have purchased a conference ticket. A list of programs is available to participants who have purchased conference tickets.🤓"
     },
     "purchased": "Purchased",
     "purchaseNotAvailable": "Not available",
@@ -76,12 +77,27 @@
     "youngcoder": {
         "pageTitle": "Youngcoder Ticket",
         "title": "Youngcoder Ticket",
-        "description": "Description of Youngcoder"
+        "description": "Description of Youngcoder",
+        "option" : {
+            "title": "Youngcoder Ticket Option",
+            "name": "Name",
+            "birthDate": "Birth Date"
+        }
     },
     "childcare": {
         "pageTitle": "Childcare Ticket",
         "title": "Childcare Ticket",
-        "description": "Description of Childcare"
+        "description": "Description of Childcare",
+        "option" : {
+            "title": "Childcare Ticket Option",
+            "name": "Name",
+            "birthDate": "Birth Date",
+            "requireParkingDiscount": "Do you need parking discount(50%) for all day?",
+            "yes": "Yes",
+            "no": "No",
+            "keepInMind": "Please keep in mind",
+            "keepInMindPlaceHolder": "Please let us know everything we should know about your child such as your child has other siblings, allergies, etc."
+        }
     },
     "payment": {
         "pageTitle": "Ticket Payment",

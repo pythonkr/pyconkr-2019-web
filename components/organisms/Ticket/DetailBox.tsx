@@ -1,30 +1,32 @@
-import {observer} from 'mobx-react'
+import { MyTicketNode } from 'lib/apollo_graphql/queries/getMyTicket'
+import * as _ from 'lodash'
+import { observer } from 'mobx-react'
+import Link from 'next/link'
 import * as React from 'react'
-import { TicketNode } from 'lib/apollo_graphql/queries/getMyTickets'
+import { paths } from 'routes/paths'
+import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 import {
   ContentTableWrapper,
-  TBody, Table,
+  Table, TBody,
   Td,
   Th,
   Tr
 } from '../../atoms/ContentWrappers'
-import { paths } from 'routes/paths'
-import {formatDateInWordsWithWeekdayAndTime} from 'utils/formatDate'
 
 type PropsType = {
-  ticket: TicketNode;
+  ticket: MyTicketNode;
 }
 
 @observer
 class DetailBox extends React.Component<PropsType> {
   render() {
-    const {ticket} = this.props
+    const { ticket } = this.props
     const {id, status, amount, paidAt, options, product, receiptUrl, cancelReceiptUrl} = ticket
-    const {type, nameKo, nameEn, descKo, descEn, cancelableDate, startAt, finishAt} = product
+    const {type, name, desc, cancelableDate, startAt, finishAt} = product
     const parsedOptions = JSON.parse(options)
 
     return (
-      <ContentTableWrapper>
+       <ContentTableWrapper>
         <Table>
           <TBody>
             <Tr>
@@ -33,11 +35,11 @@ class DetailBox extends React.Component<PropsType> {
             </Tr>
             <Tr>
               <Th>티켓 종류</Th>
-              <Td>{type} - {nameKo}({nameEn})</Td>
+              <Td>{type} - {name}</Td>
             </Tr>
             <Tr>
               <Th>티켓 설명</Th>
-              <Td>{descKo}<br/>{descEn}</Td>
+              <Td>{desc}</Td>
             </Tr>
             <Tr>
               <Th>행사 기간</Th>
@@ -53,31 +55,55 @@ class DetailBox extends React.Component<PropsType> {
             </Tr>
             <Tr>
               <Th>취소기한</Th> {/* cancelat 이 있으면 취소일*/}
-              <Td>{cancelableDate ? cancelableDate : '취소 불가(Unrefundable)'}</Td>
+              <Td>{cancelableDate ?
+                formatDateInWordsWithWeekdayAndTime(cancelableDate) :
+                '취소 불가(Unrefundable)'}
+              </Td>
             </Tr>
             <Tr>
               <Th>등록영수증</Th>
-              <Td><a href={`${paths.ticket.receipt}?id=${id}`} target='_blank'>link</a></Td>
+              <Td>
+                <Link href={`${paths.ticket.receipt}?id=${id}`}>
+                  <a target='_blank' rel='noreferrer'>
+                    Link
+                  </a>
+                </Link>
+              </Td>
             </Tr>
             <Tr>
               <Th>결제 영수증</Th>
-              <Td><a href={receiptUrl} target='_blank'>link</a></Td>
+              <Td>
+                {receiptUrl && (
+                  <Link href={receiptUrl}>
+                    <a target='_blank' rel='noreferrer'>
+                      Link
+                    </a>
+                  </Link>
+                )}
+              </Td>
             </Tr>
             {
               cancelReceiptUrl &&
               <Tr>
                 <Th>결제 취소 영수증</Th>
-                <Td><a href={cancelReceiptUrl} target='_blank'>link</a></Td>
+                <Td>
+                {cancelReceiptUrl && (
+                  <Link href={cancelReceiptUrl}>
+                    <a target='_blank' rel='noreferrer'>
+                      Link
+                    </a>
+                  </Link>
+                )}
+              </Td>
               </Tr>
             }
-            {Object.keys(parsedOptions).map(key => {
-              return (
-                <Tr>
-                  <Th>{key}</Th>
-                  <Td>{parsedOptions[key]}</Td>
-                </Tr>
-              )
-            })}
+            {
+              parsedOptions['tshirtsize'] &&
+              <Tr>
+                <Th>티셔츠 사이즈</Th>
+                <Td>{parsedOptions['tshirtsize']}</Td>
+              </Tr>
+            }
           </TBody>
         </Table>
       </ContentTableWrapper>

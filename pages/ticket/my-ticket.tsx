@@ -1,9 +1,11 @@
 import {H1, H2, Paragraph, Section} from 'components/atoms/ContentWrappers'
+import {FormNeedsLogin} from 'components/atoms/FormNeedsLogin'
 import {IntlText} from 'components/atoms/IntlText'
+import {Loading} from 'components/atoms/Loading'
 import {LocalNavigation} from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
-import DetailBox from 'components/organisms/Ticket/DetailBox'
 import Header from 'components/organisms/Header'
+import DetailBox from 'components/organisms/Ticket/DetailBox'
 import PageTemplate from 'components/templates/PageTemplate'
 import {inject, observer} from 'mobx-react'
 import {withRouter} from 'next/router'
@@ -11,8 +13,6 @@ import React from 'react'
 import {ticketMenu} from 'routes/paths'
 import {DateDTO} from 'types/common'
 import {PageDefaultPropsType} from 'types/PageDefaultPropsType'
-import {Loading} from 'components/atoms/Loading'
-import {FormNeedsLogin} from 'components/atoms/FormNeedsLogin'
 
 export type IntlTextType = {
   intlKey: string;
@@ -31,13 +31,13 @@ export type Schedule = {
 @observer
 export default class MyTickets extends React.Component<PageDefaultPropsType> {
   async componentDidMount() {
-    const {stores} = this.props
-    await stores.ticketStore.retrieveMyTicket(this.props.router.query.id)
+    const { stores, router } = this.props
+    if (router && router.query && router.query.id) await stores.ticketStore.retrieveMyTicket(router.query.id as string)
   }
 
   renderTicketPage = () => {
-    const {stores} = this.props
-    const {currentTicket} = stores.ticketStore
+    const { stores } = this.props
+    const { currentTicket } = stores.ticketStore
 
     return (
       <PageTemplate
