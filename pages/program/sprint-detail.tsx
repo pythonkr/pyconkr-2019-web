@@ -98,7 +98,9 @@ const SprintDetailContent = (props) => {
             sprint.opensourceUrl &&
             <ProgramTableRow
               header={t('program:sprint.opensourceUrl')} >
-              { sprint.opensourceUrl }
+              <a href={ sprint.opensourceUrl } target="_blank">
+                { sprint.opensourceUrl }
+              </a>
             </ProgramTableRow>
           }
           {
