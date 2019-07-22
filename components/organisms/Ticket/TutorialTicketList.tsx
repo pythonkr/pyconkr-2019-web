@@ -87,15 +87,15 @@ class TutorialTicketList extends React.Component<PropsType> {
     const { setPayingTicket, payTicket } = stores.ticketStore
     const { price } = stores.ticketStore
 
-    if (ticketStep.validateTicket) {
-      const error = ticketStep.validateTicket(TicketTypeNode.TUTORIAL)
-
-      if (error === VALIDATION_ERROR_TYPE.NOT_AGREED_TO_OPTIONS) {
-        toast.error(t('ticket:error.notAgreeToOptions'))
-
-        return false
-      }
-    }
+    // if (ticketStep.validateTicket) {
+    //   const error = ticketStep.validateTicket(TicketTypeNode.TUTORIAL)
+    //
+    //   if (error === VALIDATION_ERROR_TYPE.NOT_AGREED_TO_OPTIONS) {
+    //     toast.error(t('ticket:error.notAgreeToOptions'))
+    //
+    //     return false
+    //   }
+    // }
     setPayingTicket(ticketStep)
     if (price === 0) {
       const data = await payTicket()
