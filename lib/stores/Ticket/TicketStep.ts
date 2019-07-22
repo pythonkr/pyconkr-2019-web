@@ -1,3 +1,4 @@
+import { TicketTypeNode } from 'lib/apollo_graphql/__generated__/globalTypes'
 import _ from 'lodash'
 import { action, configure, observable } from 'mobx'
 
@@ -15,12 +16,22 @@ export enum TICKET_STEP {
   BUYING = 'BUYING',
 }
 
+export type TicketOptionType = {
+  tshirtsize?: string;
+  childName?: string;
+  childcareBirthDate?: string;
+  isRequireParkingDiscount?: boolean;
+  note?: string;
+  youngCoderName?: string;
+  youngCoderBirthDate?: string;
+}
+
 configure({ enforceActions: 'observed' })
 export class TicketStep {
   @observable ticketId: string = ''
   @observable ticketTitle: string | null = ''
   @observable ticketStepState: TICKET_STEP = TICKET_STEP.BUYING
-  @observable ticketOption: { tshirtsize: string } | null = null
+  @observable ticketOption: TicketOptionType | null = null
   @observable isTicketOptionAgreed: boolean = false
   @observable isTermsAgreed: boolean = false
 
@@ -40,8 +51,11 @@ export class TicketStep {
   }
 
   @action
-  setTicketOption = (ticketOption: { tshirtsize: string } | null) => {
-    this.ticketOption = ticketOption
+  setTicketOption = (newTicketOption: TicketOptionType | null) => {
+    this.ticketOption = {
+      ...this.ticketOption,
+      ...newTicketOption,
+    }
   }
 
   @action
@@ -55,9 +69,35 @@ export class TicketStep {
   }
 
   @action
-  validateTicket = () => {
-    if (!this.ticketOption || _.isEmpty(this.ticketOption.tshirtsize)) return VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED
-    if (!this.isTicketOptionAgreed) return VALIDATION_ERROR_TYPE.NOT_AGREED_TO_OPTIONS
+  validateTicket = (ticketType: TicketTypeNode) => {
+    if (ticketType === TicketTypeNode.CONFERENCE) {
+      if (!this.ticketOption || _.isEmpty(this.ticketOption.tshirtsize)) return VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED
+    }
+
+    if (ticketType === TicketTypeNode.CHILD_CARE) {
+      if (
+        !this.ticketOption ||
+        _.isEmpty(this.ticketOption.childName) ||
+        _.isEmpty(this.ticketOption.childcareBirthDate) ||
+        _.isUndefined(this.ticketOption.isRequireParkingDiscount)
+      ) {
+        return VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED
+      }
+    }
+
+    if (ticketType === TicketTypeNode.YOUNG_CODER) {
+      if (
+        !this.ticketOption ||
+        _.isEmpty(this.ticketOption.youngCoderName) ||
+        _.isEmpty(this.ticketOption.youngCoderBirthDate)
+      ) {
+        return VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED
+      }
+    }
+
+    if (!this.isTicketOptionAgreed) {
+      return VALIDATION_ERROR_TYPE.NOT_AGREED_TO_OPTIONS
+    }
 
     return VALIDATION_ERROR_TYPE.NONE
   }

@@ -60,7 +60,6 @@ export class TutorialTicket extends React.Component<PageDefaultPropsType> {
         <Paragraph>
           <MarkdownWrapper contents={t('ticket:tutorial.description2')} />
         </Paragraph>
-        
         <Section>
           <H2>{ t('ticket:common.list') }</H2>
           <TutorialTicketList stores={stores} t={t} router={router} />

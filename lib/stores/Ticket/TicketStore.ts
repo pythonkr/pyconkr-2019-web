@@ -2,13 +2,15 @@ import { PaymentInput, TicketStatus, TicketTypeNode } from 'lib/apollo_graphql/_
 import { client } from 'lib/apollo_graphql/client'
 import { buyTicket } from 'lib/apollo_graphql/mutations/buyTicket'
 import { cancelTicket } from 'lib/apollo_graphql/mutations/cancelTicket'
+import { ChildCareProductType, getChildCareProducts } from 'lib/apollo_graphql/queries/getChildCareProducts'
 import { ConferenceProductType, getConferenceProducts } from 'lib/apollo_graphql/queries/getConferenceProducts'
 import { getMyTicket, MyTicketNode } from 'lib/apollo_graphql/queries/getMyTicket'
 import { getMyTickets, TicketNode } from 'lib/apollo_graphql/queries/getMyTickets'
 import { getSprintProducts, SprintProductType } from 'lib/apollo_graphql/queries/getSprintProducts'
 import { getTutorialProducts, TutorialProductType } from 'lib/apollo_graphql/queries/getTutorialProducts'
+import { getYoungCoderProducts, YoungCoderProductType } from 'lib/apollo_graphql/queries/getYoungCoderProducts'
 import * as _ from 'lodash'
-import { action, configure, observable, toJS } from 'mobx'
+import { action, configure, observable, computed, toJS } from 'mobx'
 import { TicketStep } from './TicketStep'
 
 configure({ enforceActions: 'observed' })
@@ -42,6 +44,8 @@ export class TicketStore {
     @observable conferenceProducts: ConferenceProductType[] = []
     @observable tutorialProducts: TutorialProductType[] = []
     @observable sprintProducts: SprintProductType[] = []
+    @observable childCareProducts: ChildCareProductType[] = []
+    @observable youngCoderProducts: YoungCoderProductType[] = []
     @observable isPaying: boolean = false
     @observable isSubmitPayment: boolean = false
     @observable payingTicketTitle: string | null = ''
@@ -65,6 +69,18 @@ export class TicketStore {
       )
     }
 
+    @computed
+    get myConferenceTicket() {
+      const tickets = this.myTickets.filter(myTicket =>
+        myTicket.status === TicketStatus.PAID &&
+        myTicket.product.type === TicketTypeNode.CONFERENCE
+      )
+      if(_.isEmpty(tickets)){
+        return null
+      }
+      return tickets[0]
+    }
+
     @action
     setConferenceProducts = (conferenceProducts: ConferenceProductType[]) => {
       this.conferenceProducts = conferenceProducts
@@ -78,6 +94,16 @@ export class TicketStore {
     @action
     setSprintProducts = (sprintProducts: SprintProductType[]) => {
       this.sprintProducts = sprintProducts
+    }
+
+    @action
+    setChildCareProducts = (childCareProducts: ChildCareProductType[]) => {
+      this.childCareProducts = childCareProducts
+    }
+
+    @action
+    setYoungCoderProducts = (youngCoderProducts: YoungCoderProductType[]) => {
+      this.youngCoderProducts = youngCoderProducts
     }
 
     @action
@@ -170,6 +196,18 @@ export class TicketStore {
     }
 
     @action
+    retrieveChildCareProducts = async () => {
+      const { data } = await getChildCareProducts(client)({})
+      if (data) this.setChildCareProducts(data.childCareProducts as ChildCareProductType[])
+    }
+
+    @action
+    retrieveYoungCoderProducts = async () => {
+      const { data } = await getYoungCoderProducts(client)({})
+      if (data) this.setYoungCoderProducts(data.youngCoderProducts as YoungCoderProductType[])
+    }
+
+    @action
     retrieveMyTickets = async () => {
       const { data } = await getMyTickets(client)({})
       this.setMyTickets(data.myTickets as TicketNode[])
@@ -186,7 +224,7 @@ export class TicketStore {
       this.isPaying = true
       this.productId = ticketStep.ticketId
       this.payingTicketTitle = ticketStep.ticketTitle
-      if(ticketStep.ticketOption){
+      if (ticketStep.ticketOption) {
         this.options = JSON.stringify(ticketStep.ticketOption)
       }
     }
@@ -202,6 +240,16 @@ export class TicketStore {
     @action
     getTicketStep = (id: string) => {
       return this.ticketSteps.get(id)
+    }
+
+    @action
+    clearTicketSteps = () => {
+      this.ticketSteps.clear()
+    }
+
+    @action
+    clearTicketOptions = () => {
+      this.options = null
     }
 
     @action

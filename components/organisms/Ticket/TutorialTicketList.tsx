@@ -5,6 +5,7 @@ import TicketBox from 'components/molecules/TicketBox'
 import TermsAgreement from 'components/molecules/TicketBox/TermsAgreement'
 import TicketDescription from 'components/molecules/TicketBox/TicketDescription'
 import i18next from 'i18next'
+import { TicketTypeNode } from 'lib/apollo_graphql/__generated__/globalTypes'
 import { TICKET_STEP, TicketStep, VALIDATION_ERROR_TYPE } from 'lib/stores/Ticket/TicketStep'
 import _ from 'lodash'
 import { observer } from 'mobx-react'
@@ -13,6 +14,7 @@ import { StoresType } from 'pages/_app'
 import * as React from 'react'
 import { toast } from 'react-toastify'
 import { paths } from 'routes/paths'
+import { TICKET_COLOR } from 'styles/colors'
 
 type PropsType = {
   stores: StoresType;
@@ -22,6 +24,12 @@ type PropsType = {
 
 @observer
 class TutorialTicketList extends React.Component<PropsType> {
+
+  componentWillUnmount () {
+    const { stores } = this.props
+    const { clearTicketSteps } = stores.ticketStore
+    clearTicketSteps()
+  }
 
   getStepAction = (ticketStep: TicketStep) => {
     switch (ticketStep.ticketStepState) {
@@ -80,7 +88,7 @@ class TutorialTicketList extends React.Component<PropsType> {
     const { price } = stores.ticketStore
 
     if (ticketStep.validateTicket) {
-      const error = ticketStep.validateTicket()
+      const error = ticketStep.validateTicket(TicketTypeNode.TUTORIAL)
 
       if (error === VALIDATION_ERROR_TYPE.NOT_AGREED_TO_OPTIONS) {
         toast.error(t('ticket:error.notAgreeToOptions'))
@@ -89,17 +97,19 @@ class TutorialTicketList extends React.Component<PropsType> {
       }
     }
     setPayingTicket(ticketStep)
-    if(price === 0){
+    if (price === 0) {
       const data = await payTicket()
       if (data.graphQLErrors) {
         const { message } = data.graphQLErrors[0]
         toast.error(message)
-        return false  
+
+        return false
       }
       if (!_.isEmpty(data)) window.location.href = paths.ticket.myTickets
     } else {
       router.push(paths.ticket.payment)
     }
+
     return false
   }
 
@@ -113,7 +123,7 @@ class TutorialTicketList extends React.Component<PropsType> {
       setPrice,
     } = stores.ticketStore
 
-    if (_.isEmpty(tutorialProducts)){
+    if (_.isEmpty(tutorialProducts)) {
       return (
         <AlertBar text={t('ticket:common.noTicketAlert')} />
       )
@@ -122,7 +132,6 @@ class TutorialTicketList extends React.Component<PropsType> {
     return tutorialProducts.map(tutorialProduct => {
       const {
         id,
-        type,
         name,
         desc,
         warning,
@@ -150,6 +159,7 @@ class TutorialTicketList extends React.Component<PropsType> {
       if (ticketStepState === TICKET_STEP.BUYING) {
         options = (
           <TicketDescription
+            t={t}
             title={name || ''}
             description={desc}
             warning={warning}
@@ -173,6 +183,7 @@ class TutorialTicketList extends React.Component<PropsType> {
       if (ticketStepState === TICKET_STEP.PAYING) {
         options = (
           <TicketDescription
+            t={t}
             title={name || ''}
             description={desc}
             warning={warning}
@@ -186,7 +197,7 @@ class TutorialTicketList extends React.Component<PropsType> {
         <TicketBox
           t={t}
           key={`ticketBox_${id}`}
-          type={type}
+          ticketColor={TICKET_COLOR.TUTORIAL}
           ticketButtonTitle={this.getTicketButtonTitle(ticketStepState)}
           price={price}
           isEditablePrice={isEditablePrice}
@@ -214,10 +225,12 @@ class TutorialTicketList extends React.Component<PropsType> {
       return <Loading width={50} height={50}/>
     }
 
+    if (!isLoggedIn) {
+      return <FormNeedsLogin />
+    }
+
     return (
-      !isLoggedIn
-      ? <FormNeedsLogin />
-      :  this.renderTicketBoxList()
+      this.renderTicketBoxList()
     )
   }
 }

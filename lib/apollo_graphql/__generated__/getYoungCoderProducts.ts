@@ -5,29 +5,51 @@
 import { TicketTypeNode } from "./globalTypes";
 
 // ====================================================
-// GraphQL query operation: getConferenceProducts
+// GraphQL query operation: getYoungCoderProducts
 // ====================================================
 
-export interface getConferenceProducts_conferenceProducts_owner_profile {
+export interface getYoungCoderProducts_youngCoderProducts_owner_profile {
   __typename: "ProfileNode";
+  id: string;
   name: string;
-  email: string;
-  image: string | null;
-  avatarUrl: string;
+  nameKo: string | null;
+  nameEn: string | null;
 }
 
-export interface getConferenceProducts_conferenceProducts_owner {
+export interface getYoungCoderProducts_youngCoderProducts_owner {
   __typename: "UserNode";
-  profile: getConferenceProducts_conferenceProducts_owner_profile | null;
+  /**
+   * 150자 이하 문자, 숫자 그리고 @/./+/-/_만 가능합니다.
+   */
+  username: string;
+  email: string;
+  profile: getYoungCoderProducts_youngCoderProducts_owner_profile | null;
 }
 
-export interface getConferenceProducts_conferenceProducts {
+export interface getYoungCoderProducts_youngCoderProducts_sprintSet {
+  __typename: "SprintNode";
+  id: string;
+  name: string | null;
+  nameKo: string | null;
+  nameEn: string | null;
+  desc: string;
+  descKo: string | null;
+  descEn: string | null;
+}
+
+export interface getYoungCoderProducts_youngCoderProducts {
   __typename: "TicketProductNode";
   id: string;
   type: TicketTypeNode | null;
   name: string | null;
+  nameKo: string | null;
+  nameEn: string | null;
   desc: string;
+  descKo: string | null;
+  descEn: string | null;
   warning: string;
+  warningKo: string | null;
+  warningEn: string | null;
   /**
    * 행사가 시작되는 일시입니다.
    */
@@ -40,16 +62,12 @@ export interface getConferenceProducts_conferenceProducts {
    * 판매할 티켓의 총 개수입니다.
    */
   total: number;
-  /**
-   * 해당 제품에 남아있는 티켓 개수입니다.
-   */
-  remainingCount: number | null;
-  /**
-   * True면 매진, False면 판매중 입니다.
-   */
-  isSoldOut: boolean | null;
-  owner: getConferenceProducts_conferenceProducts_owner | null;
+  owner: getYoungCoderProducts_youngCoderProducts_owner | null;
   price: number;
+  /**
+   * 단체 구매 등으로 티켓을 현금으로 입금하는 경우에 True로 설정합니다.
+   */
+  isDepositTicket: boolean;
   /**
    * 개인후원과 같이 가격을 상향조정할 수 있는지 여부를 나타냅니다.
    */
@@ -74,18 +92,28 @@ export interface getConferenceProducts_conferenceProducts {
    * 티켓 판매 종료 일시입니다.
    */
   ticketCloseAt: any | null;
+  order: number;
   createdAt: any;
   updatedAt: any;
+  sprintSet: (getYoungCoderProducts_youngCoderProducts_sprintSet | null)[] | null;
   /**
    * 로그인 했을 때에는 이 값에 구매한 티켓 개수가 들어갑니다.
    */
   purchaseCount: number | null;
+  /**
+   * True면 매진, False면 판매중 입니다.
+   */
+  isSoldOut: boolean | null;
+  /**
+   * 해당 제품에 남아있는 티켓 개수입니다.
+   */
+  remainingCount: number | null;
   /**
    * True면 유저가 해당 티켓을 구매하였으면 True가 반환됩니다. 컨퍼런스와 같이 티켓이 여러 종류로 판매되는 경우 하나라도 구매했으면 True가 반환됩니다.
    */
   isPurchased: boolean | null;
 }
 
-export interface getConferenceProducts {
-  conferenceProducts: (getConferenceProducts_conferenceProducts | null)[] | null;
+export interface getYoungCoderProducts {
+  youngCoderProducts: (getYoungCoderProducts_youngCoderProducts | null)[] | null;
 }

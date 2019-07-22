@@ -6,6 +6,7 @@ import ConferenceTicketOption from 'components/molecules/TicketBox/ConferenceTic
 import TermsAgreement from 'components/molecules/TicketBox/TermsAgreement'
 import TicketDescription from 'components/molecules/TicketBox/TicketDescription'
 import i18next from 'i18next'
+import { TicketTypeNode } from 'lib/apollo_graphql/__generated__/globalTypes'
 import { TicketNode } from 'lib/apollo_graphql/queries/getMyTickets'
 import { TICKET_STEP, TicketStep, VALIDATION_ERROR_TYPE } from 'lib/stores/Ticket/TicketStep'
 import _ from 'lodash'
@@ -16,6 +17,7 @@ import { StoresType } from 'pages/_app'
 import * as React from 'react'
 import { toast } from 'react-toastify'
 import { paths } from 'routes/paths'
+import { TICKET_COLOR } from 'styles/colors'
 
 type PropsType = {
   stores: StoresType;
@@ -30,6 +32,12 @@ type StatesType = {
 class ConferenceTicketList extends React.Component<PropsType, StatesType> {
   state = {
     myConferenceTicket: null as any
+  }
+
+  componentWillUnmount () {
+    const { stores } = this.props
+    const { clearTicketSteps } = stores.ticketStore
+    clearTicketSteps()
   }
 
   getStepAction = (ticketStep: TicketStep) => {
@@ -89,7 +97,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
     const { setPayingTicket } = stores.ticketStore
 
     if (ticketStep.validateTicket) {
-      const error = ticketStep.validateTicket()
+      const error = ticketStep.validateTicket(TicketTypeNode.CONFERENCE)
 
       if (error === VALIDATION_ERROR_TYPE.NO_OPTION_SELECTED) {
         toast.error(t('ticket:error.noOptionSelected'))
@@ -126,7 +134,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
       )
     }
     return conferenceProducts.map((conferenceProduct) => {
-      const { id, type, name, desc, warning, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut } = conferenceProduct
+      const { id, name, desc, warning, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut } = conferenceProduct
       const isTicketStepExist = getIsTicketStepExist(id)
       if (!isTicketStepExist) setTicketStep(id, name)
       const ticketStep = getTicketStep(id)
@@ -189,7 +197,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
         <TicketBox
           t={t}
           key={`ticketBox_${id}`}
-          type={type}
+          ticketColor={TICKET_COLOR.CONFERENCE}
           ticketButtonTitle={this.getTicketButtonTitle(ticketStepState)}
           price={price}
           isEditablePrice={isEditablePrice}
