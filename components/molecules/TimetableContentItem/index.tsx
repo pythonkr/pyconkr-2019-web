@@ -1,9 +1,10 @@
 import * as React from 'react'
 
 import { Tag, TagWrapper } from 'components/molecules/Program/List'
-import Link from 'next/link';
+import Link from 'next/link'
+import { paths } from 'routes/paths'
+import { formatDateOnlyTime } from 'utils/formatDate'
 import { TimeTableContentItem } from './StyledComponents'
-import { paths } from 'routes/paths';
 
 type PropsType = {
   id: string;
@@ -16,6 +17,7 @@ type PropsType = {
   difficultyEn: string;
   isFirstItem: boolean;
   isLastItem: boolean;
+  isSameGroup: boolean | undefined;
 }
 
 class TimetableContentItem extends React.Component<PropsType> {
@@ -31,12 +33,14 @@ class TimetableContentItem extends React.Component<PropsType> {
       difficultyEn,
       isFirstItem,
       isLastItem,
+      isSameGroup,
     } = this.props
     const detailHref = `${paths.program.talkDetail}?id=${id}`
+    const time = isSameGroup ? '' : `${formatDateOnlyTime(startAt)} ~ ${formatDateOnlyTime(finishAt)}`
 
     return (
       <TimeTableContentItem isBorderTop={isFirstItem} isBorderBottom={isLastItem}>
-        <div className='time'>{`${startAt} ~ ${finishAt}`}</div>
+        <div className='time'>{time}</div>
         <div className='content'>
           <div className='room'>{roomNo}</div>
           <div className='contentDetailWrapper'>
