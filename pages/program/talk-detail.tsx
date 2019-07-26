@@ -98,7 +98,7 @@ export class TalkDetail extends React.Component<PropsType> {
               presentation.startedAt &&
               <ProgramTableRow
                 header={t('program:common.datetime')} >
-                `${formatDateInWordsWithWeekdayAndTime(presentation.startedAt)}~${formatDateInWordsWithWeekdayAndTime(presentation.finishedAt)}` }
+                {`${formatDateInWordsWithWeekdayAndTime(presentation.startedAt)}~${formatDateInWordsWithWeekdayAndTime(presentation.finishedAt)}` }
               </ProgramTableRow>
             }
             <ProgramTableRow

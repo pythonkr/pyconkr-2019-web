@@ -195,7 +195,7 @@ class SprintTicketList extends React.Component<PropsType> {
           stepAction={this.getStepAction(ticketStep)}
           nextStep={this.getNextTicketStep(ticketStepState)}
           options={options}
-          isPaid={available}
+          isPaid={!available}
         />
       )
     })

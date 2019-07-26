@@ -125,7 +125,7 @@ class YoungCoderTicketList extends React.Component<PropsType> {
     }
 
     return youngCoderProducts.map(youngCoderProduct => {
-      const { id, name, desc, warning, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut } = youngCoderProduct
+      const { id, name, desc, warning, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut, available } = youngCoderProduct
       const isTicketStepExist = getIsTicketStepExist(id)
       if (!isTicketStepExist) setTicketStep(id, name)
       const ticketStep = getTicketStep(id)
@@ -194,6 +194,7 @@ class YoungCoderTicketList extends React.Component<PropsType> {
           stepAction={this.getStepAction(ticketStep)}
           nextStep={this.getNextTicketStep(ticketStepState)}
           options={options}
+          isPaid={!available}
         />
       )
     })

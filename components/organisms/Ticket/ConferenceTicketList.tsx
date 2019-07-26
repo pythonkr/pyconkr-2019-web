@@ -203,7 +203,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
           stepAction={this.getStepAction(ticketStep)}
           nextStep={this.getNextTicketStep(ticketStepState)}
           options={options}
-          isPaid={available}
+          isPaid={!available}
         />
       )
     })
