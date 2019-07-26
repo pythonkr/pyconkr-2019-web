@@ -125,7 +125,7 @@ class ChildcareTicketList extends React.Component<PropsType> {
     }
 
     return childCareProducts.map(childCareProduct => {
-      const { id, name, desc, warning, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut } = childCareProduct
+      const { id, name, desc, warning, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut, available } = childCareProduct
       const isTicketStepExist = getIsTicketStepExist(id)
       if (!isTicketStepExist) setTicketStep(id, name)
       const ticketStep = getTicketStep(id)
@@ -194,6 +194,7 @@ class ChildcareTicketList extends React.Component<PropsType> {
           stepAction={this.getStepAction(ticketStep)}
           nextStep={this.getNextTicketStep(ticketStepState)}
           options={options}
+          isPaid={available}
         />
       )
     })

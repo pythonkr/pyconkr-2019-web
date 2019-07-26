@@ -81,7 +81,7 @@ export interface TicketProductInfo {
    */
   purchaseCount: number | null;
   /**
-   * True면 유저가 해당 티켓을 구매하였으면 True가 반환됩니다. 컨퍼런스와 같이 티켓이 여러 종류로 판매되는 경우 하나라도 구매했으면 True가 반환됩니다.
+   * True면 유저가 티켓을 구매할 수 있습니다. 컨퍼런스와 같이 티켓이 여러 종류로 판매되는 경우 하나라도 구매했으면 False가 반환됩니다.아이돌봄이나 영코더는 참가자 1인당 하루 2매까지만 구매가 가능합니다
    */
-  isPurchased: boolean | null;
+  available: boolean | null;
 }

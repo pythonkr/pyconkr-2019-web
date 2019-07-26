@@ -124,10 +124,8 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
       setPrice,
       getTicketStep,
       getIsTicketStepExist,
-      setTicketStep,
-      getMyConferenceTickets
+      setTicketStep
     } = stores.ticketStore
-    const myConferenceTicket = toJS(getMyConferenceTickets()[0])
     if (_.isEmpty(conferenceProducts)) {
       return (
         <AlertBar text={t('ticket:common.noTicketAlert')} />
@@ -135,7 +133,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
     }
 
     return conferenceProducts.map((conferenceProduct) => {
-      const { id, name, desc, warning, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut } = conferenceProduct
+      const { id, name, desc, warning, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut, available } = conferenceProduct
       const isTicketStepExist = getIsTicketStepExist(id)
       if (!isTicketStepExist) setTicketStep(id, name)
       const ticketStep = getTicketStep(id)
@@ -189,11 +187,6 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
         )
       }
 
-      let isPaid = null
-      if (!_.isEmpty(myConferenceTicket)) {
-        isPaid = myConferenceTicket.product.id === id
-      }
-
       return (
         <TicketBox
           t={t}
@@ -210,7 +203,7 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
           stepAction={this.getStepAction(ticketStep)}
           nextStep={this.getNextTicketStep(ticketStepState)}
           options={options}
-          isPaid={isPaid}
+          isPaid={available}
         />
       )
     })
