@@ -5,7 +5,7 @@ import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
 import i18next from 'i18next'
-import { PresentationProposal } from 'lib/stores/CFP/PresentationProposal'
+import { PresentationNode } from 'lib/apollo_graphql/queries/getPresentations'
 import _ from 'lodash'
 import { inject, observer } from 'mobx-react'
 import React from 'react'
@@ -30,7 +30,11 @@ export class TalkList extends React.Component<PropsType> {
     const presentations = await stores.cfpStore.retrievePresentations()
     this.setState({
       presentationGroupByCategories: _.chain(presentations)
-        .filter(p => !p.isKeynote)
+        .filter((p => p &&
+          !p.isKeynote &&
+          !p.isBreaktime &&
+          !!(p.category && p.category.name)
+        ))
         .groupBy('category.name')
         .mapValues(presentations => _.sortBy(presentations, ['difficulty.id']))
         .toPairs()
@@ -64,14 +68,14 @@ export class TalkList extends React.Component<PropsType> {
         {
           this.state.presentationGroupByCategories.map(group => {
             return (
-              <Section key={ group[0] }>
+              <Section key={group[0]}>
                 <CategoryTitleWrapper>
                   <CategoryTitleText>{group[0]}</CategoryTitleText>
                   <CategoryTitleDecorator />
                 </CategoryTitleWrapper>
                 <ProgramUl>
                   {
-                    group[1].map((presentation: PresentationProposal) => {
+                    group[1].map((presentation: PresentationNode) => {
                       const href = `${paths.program.talkDetail}?id=${presentation.id}`
 
                       return (
