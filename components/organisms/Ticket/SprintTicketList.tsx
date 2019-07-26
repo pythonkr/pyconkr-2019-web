@@ -126,7 +126,7 @@ class SprintTicketList extends React.Component<PropsType> {
         ticketOpenAt,
         ticketCloseAt,
         isSoldOut,
-        isPurchased,
+        available,
       } = sprintProduct
       const isTicketStepExist = getIsTicketStepExist(id)
       if (!isTicketStepExist) setTicketStep(id, name)
@@ -195,7 +195,7 @@ class SprintTicketList extends React.Component<PropsType> {
           stepAction={this.getStepAction(ticketStep)}
           nextStep={this.getNextTicketStep(ticketStepState)}
           options={options}
-          isPaid={isPurchased}
+          isPaid={!available}
         />
       )
     })

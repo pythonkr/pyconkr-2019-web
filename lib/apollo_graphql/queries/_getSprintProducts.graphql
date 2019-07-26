@@ -47,6 +47,6 @@ query getSprintProducts {
     purchaseCount
     isSoldOut
     remainingCount
-    isPurchased
+    available
   }
 }

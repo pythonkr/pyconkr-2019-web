@@ -25,10 +25,16 @@ const PeriodText = styled.div`
     // color: #088487;
 `
 
-
 class TicketPaidDescription extends React.Component<PropsType> {
+  getOptionsText(options:any){
+    var items:string[] = []
+    for(const key in options){
+      items.push(`${key}: ${options[key]}`)
+    }
+    return items.join(',')
+  }
   render() {
-    const {title, status, description, warning, startAt, finishAt} = this.props
+    const {title, description, warning, startAt, finishAt} = this.props
 
     return (
       <TicketDescriptionWrapper>

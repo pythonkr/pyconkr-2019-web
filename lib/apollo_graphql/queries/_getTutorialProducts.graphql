@@ -47,6 +47,6 @@ query getTutorialProducts {
     purchaseCount
     isSoldOut
     remainingCount
-    isPurchased
+    available
   }
 }

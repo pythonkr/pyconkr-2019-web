@@ -47,6 +47,6 @@ query getChildCareProducts {
     purchaseCount
     isSoldOut
     remainingCount
-    isPurchased
+    available
   }
 }

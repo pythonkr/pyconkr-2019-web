@@ -18,5 +18,6 @@ query getMyTickets {
     }
     createdAt
     updatedAt
+    options
   }
 }
