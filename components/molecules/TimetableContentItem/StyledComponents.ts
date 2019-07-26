@@ -4,6 +4,7 @@ import { mobileWidth } from 'styles/layout'
 export const TimeTableContentItem = styled.div<{
   isBorderBottom?: boolean;
   isBorderTop?: boolean;
+  isBreaktime?: boolean;
 }>`
   display: flex;
   justify-content: space-between;
@@ -11,9 +12,13 @@ export const TimeTableContentItem = styled.div<{
   width: 100%;
   border-top: ${props => props.isBorderTop ? 'solid 2px #088487;' : ''};
   border-bottom: ${props => props.isBorderBottom ? 'solid 1px #dfe3e6' : ''};
-  .time {
+  .timeWrapper {
     flex: 1;
     text-align: center;
+
+    .time {
+      ${props => props.isBreaktime ? 'padding-left: 2.9em;' : ''}
+    }
   }
 
   .content {
@@ -40,7 +45,6 @@ export const TimeTableContentItem = styled.div<{
       .subject {
         padding: 0 20px;
         word-break: break-all;
-        cursor: pointer;
 
         .title {
           line-height: 1.2;
@@ -50,11 +54,7 @@ export const TimeTableContentItem = styled.div<{
           color: gray;
           padding-top: 5px;
         }
-
-        &:hover {
-          color: #088487;
-          font-weight: 600;
-        }
+        ${props => !props.isBreaktime && 'cursor: pointer; &:hover { color: #088487; font-weight: 600; }'}
       }
 
       .tagWrapper {

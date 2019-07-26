@@ -18,6 +18,7 @@ type PropsType = {
   isFirstItem: boolean;
   isLastItem: boolean;
   isSameGroup: boolean | undefined;
+  isBreaktime: boolean;
 }
 
 class TimetableContentItem extends React.Component<PropsType> {
@@ -34,25 +35,55 @@ class TimetableContentItem extends React.Component<PropsType> {
       isFirstItem,
       isLastItem,
       isSameGroup,
+      isBreaktime,
     } = this.props
     const detailHref = `${paths.program.talkDetail}?id=${id}`
-    const time = isSameGroup ? '' : `${formatDateOnlyTime(startAt)} ~ ${formatDateOnlyTime(finishAt)}`
+    let time = isSameGroup ? '' : `${formatDateOnlyTime(startAt)} ~ ${formatDateOnlyTime(finishAt)}`
+
+    //Show finishedAt if it's breaktime
+    if (isBreaktime) {
+      time = ` ~ ${formatDateOnlyTime(finishAt)}`
+    }
 
     return (
-      <TimeTableContentItem isBorderTop={isFirstItem} isBorderBottom={isLastItem}>
-        <div className='time'>{time}</div>
+      <TimeTableContentItem
+        isBorderTop={isFirstItem}
+        isBorderBottom={isLastItem}
+        isBreaktime={isBreaktime}
+      >
+        <div className='timeWrapper'>
+          <div className='time'>{time}</div>
+        </div>
         <div className='content'>
-          <div className='room'>{roomNo}</div>
+          <div className='room'>
+            {isBreaktime ? '' : roomNo}
+          </div>
           <div className='contentDetailWrapper'>
-            <Link href={detailHref}>
-              <div className='subject'>
-                <div className='title'>{title}</div>
-                <div className='speakerName'>{speakerName}</div>
-              </div>
-            </Link>
+            {isBreaktime
+              ? (
+                <div className='subject'>
+                  <div className='title'>{title}</div>
+                  <div className='speakerName'>
+                    {isBreaktime ? '' : speakerName}
+                  </div>
+                </div>
+              )
+              : (
+                <Link href={detailHref}>
+                  <div className='subject'>
+                    <div className='title'>{title}</div>
+                    <div className='speakerName'>
+                      {isBreaktime ? '' : speakerName}
+                    </div>
+                  </div>
+                </Link>
+              )
+            }
             <div className='tagWrapper'>
               <TagWrapper>
-                <Tag className={difficultyEn && difficultyEn.toLowerCase()}>{difficultyKo}</Tag>
+                <Tag className={difficultyEn && difficultyEn.toLowerCase()}>
+                  {difficultyKo}
+                </Tag>
               </TagWrapper>
             </div>
           </div>

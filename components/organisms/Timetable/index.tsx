@@ -26,7 +26,7 @@ class TimeTable extends React.Component<PropsType> {
       <>
         <TimetableContents>
           {timetableData && timetableData.map((talk, index) => {
-            const { owner, place, name, difficulty, id, startedAt, finishedAt } = talk
+            const { owner, place, name, difficulty, id, startedAt, finishedAt, isBreaktime } = talk
             const speakerName = owner && owner.profile && owner.profile.name
             const roomNo = place && place.name
             const previousItem = timetableData[index - 1]
@@ -60,6 +60,7 @@ class TimeTable extends React.Component<PropsType> {
                 isFirstItem={index === 0}
                 isLastItem={isLastItem}
                 isSameGroup={isSameGroup}
+                isBreaktime={isBreaktime}
               />
             )
           })}
