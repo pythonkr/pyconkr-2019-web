@@ -2,6 +2,7 @@ query getPresentation($id: Int!) {
     presentation(id: $id) {
         id
         isKeynote
+        isBreaktime
         name
         desc
         owner {

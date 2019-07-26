@@ -27,6 +27,8 @@ export const formatDate = (formatTemplate: string) => (date: DateDTO) => {
 export const formatDateInWords = formatDate('MMMM Do')
 export const formatDateInWordsWithTime = formatDate('MMMM Do HH:mm')
 export const formatDateInWordsWithWeekdayAndTime = formatDate('MMMM Do [(]dd[)] HH:mm')
+export const formatDateOnlyTime = formatDate('HH:mm')
+export const formatDateYearMonthDay = formatDate('DD/MM/YY')
 
 export const timeDiffToNow = (openDate: DateDTO) => differenceInMilliseconds(new Date(), openDate)
 

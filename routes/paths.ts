@@ -24,6 +24,13 @@ export const paths = {
     youngcoder: '/program/youngcoder',
     youngcoderDetail: '/program/youngcoder-detail',
   },
+  timetable: {
+    base: '/timetable',
+    talks: '/timetable/talks',
+    lightningTalk: '/timetable/lightning-talk',
+    tutorial: '/timetable/tutorial',
+    sprint: '/timetable/sprint',
+  },
   contribute: {
     base: '/contribute',
     overview: '/contribute/overview',
@@ -191,6 +198,38 @@ export const programMenu: WithSubMenu = {
   }]
 }
 
+export const timetableMenu: WithSubMenu = {
+  title: '시간표',
+  intlKey: 'gnb.timetable.root',
+  basePath: paths.timetable.base,
+  submenu: [{
+    title: '컨퍼런스',
+    intlKey: 'gnb.timetable.talks',
+    basePath: paths.timetable.base,
+    submenu: [
+      {
+        title: '발표 세션',
+        intlKey: 'gnb.timetable.talks',
+        link: paths.timetable.talks,
+      },
+      {
+        title: '라이트닝 토크',
+        intlKey: 'gnb.timetable.lightningTalk',
+        link: paths.timetable.lightningTalk,
+      },
+    ]
+  }, {
+    title: '튜토리얼',
+    intlKey: 'gnb.timetable.tutorial',
+    link: paths.timetable.tutorial,
+  },
+  {
+    title: '스프린트',
+    intlKey: 'gnb.timetable.sprint',
+    link: paths.timetable.sprint,
+  }]
+}
+
 export const contributionMenu: WithSubMenu = {
   title: '공헌하기',
   intlKey: 'gnb.contribute.root',
@@ -339,6 +378,7 @@ export const globalNavigationMenu: GNBMenu[] = [
   homeMenu,
   helpMenu,
   programMenu,
+  timetableMenu,
   contributionMenu,
   sponsorMenu,
 ]

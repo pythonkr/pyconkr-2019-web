@@ -4,12 +4,12 @@ import { CORAL, FORM_LABEL_GRAY, FORM_LABEL_GRAY_LIGHT, GREEN, TEAL, YELLOW } fr
 import { H1, H2, Ul, Li, Paragraph, Section } from 'components/atoms/ContentWrappers'
 import Link from 'next/link'
 
-export const TagWrapper = styled.div`
+export const TagWrapper = styled.div<{ isMinWidth?: boolean }>`
 text-align: right;
 padding-left: 10px;
-min-width: 80px;
+min-width: ${props => props.isMinWidth ? '80px' : ''};
 @media (max-width: ${mobileWidth}) {
-  min-width: 60px;
+  min-width: ${props => props.isMinWidth ? '60px' : ''};
 }
 `
 
@@ -124,10 +124,10 @@ export const ProgramLi = styled(Li)`
 
 export const DifficultyTag = (props) => {
   const { difficulty } = props
-  if (!difficulty)
-    return null
+  if (!difficulty) return null
+
   return (
-    <TagWrapper>
+    <TagWrapper isMinWidth>
       <Tag className={difficulty.nameEn.replace(/ /gi, '').toLowerCase()}>{difficulty.name}</Tag>
     </TagWrapper>
   )

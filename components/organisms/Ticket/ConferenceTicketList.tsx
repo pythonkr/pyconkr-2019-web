@@ -128,11 +128,12 @@ class ConferenceTicketList extends React.Component<PropsType, StatesType> {
       getMyConferenceTickets
     } = stores.ticketStore
     const myConferenceTicket = toJS(getMyConferenceTickets()[0])
-    if (_.isEmpty(conferenceProducts)){
+    if (_.isEmpty(conferenceProducts)) {
       return (
         <AlertBar text={t('ticket:common.noTicketAlert')} />
       )
     }
+
     return conferenceProducts.map((conferenceProduct) => {
       const { id, name, desc, warning, price, isEditablePrice, ticketOpenAt, ticketCloseAt, isSoldOut } = conferenceProduct
       const isTicketStepExist = getIsTicketStepExist(id)
