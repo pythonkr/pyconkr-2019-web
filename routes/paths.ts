@@ -378,6 +378,7 @@ export const globalNavigationMenu: GNBMenu[] = [
   homeMenu,
   helpMenu,
   programMenu,
+  timetableMenu,
   contributionMenu,
   sponsorMenu,
 ]
