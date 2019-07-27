@@ -1,0 +1,46 @@
+query getTutorials {
+    tutorials {
+        id
+        isBreaktime
+        owner {
+            profile {
+                name
+                nameKo
+                nameEn
+                image
+                avatarUrl
+                bio
+                bioKo
+                bioEn
+                blogUrl
+                githubUrl
+                facebookUrl
+                twitterUrl
+                linkedInUrl
+                instagramUrl
+            }
+        }
+        name
+        nameKo
+        nameEn
+        place {
+          name
+          nameEn
+          nameKo
+        }
+        startedAt
+        finishedAt
+        desc
+        descKo
+        descEn
+        language
+        difficulty {
+            id
+            name
+            nameKo
+            nameEn
+        }
+        startedAt
+        finishedAt
+    }
+}
