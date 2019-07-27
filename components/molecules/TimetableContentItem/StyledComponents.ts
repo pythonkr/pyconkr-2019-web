@@ -66,6 +66,11 @@ export const TimeTableContentItem = styled.div<{
 
   @media (max-width: ${mobileWidth}) {
     font-size: 12px;
+    .timeWrapper {
+      .time {
+        padding-left: 0;
+      }
+    }
 
     .time,
     .content {
