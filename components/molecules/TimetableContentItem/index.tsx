@@ -13,8 +13,8 @@ type PropsType = {
   roomNo: string;
   title: string;
   speakerName: string;
-  difficultyKo: string;
-  difficultyEn: string;
+  difficultyKo?: string;
+  difficultyEn?: string;
   isFirstItem: boolean;
   isLastItem: boolean;
   isSameGroup: boolean | undefined;
@@ -80,11 +80,13 @@ class TimetableContentItem extends React.Component<PropsType> {
               )
             }
             <div className='tagWrapper'>
+             {difficultyKo && difficultyEn && (
               <TagWrapper>
                 <Tag className={difficultyEn && difficultyEn.toLowerCase()}>
                   {difficultyKo}
                 </Tag>
               </TagWrapper>
+            )}
             </div>
           </div>
         </div>

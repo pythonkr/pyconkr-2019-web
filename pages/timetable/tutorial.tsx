@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { inject, observer } from 'mobx-react'
 import { withRouter } from 'next/router'
 import * as React from 'react'
@@ -6,8 +7,11 @@ import { H1 } from 'components/atoms/ContentWrappers'
 import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
+import TimeTable from 'components/organisms/Timetable'
+import { DateNav, DateNavWrapper } from 'components/organisms/Timetable/StyledComponents'
 import PageTemplate from 'components/templates/PageTemplate'
 
+import { TutorialNode } from 'lib/apollo_graphql/queries/getTutorials'
 import { timetableMenu } from 'routes/paths'
 import { PageDefaultPropsType } from 'types/PageDefaultPropsType'
 import { withNamespaces } from '../../i18n'
@@ -22,9 +26,27 @@ class Tutorial extends React.Component<PageDefaultPropsType> {
     }
   }
 
+  async componentDidMount() {
+    const { stores } = this.props
+    const { retrieveTutorials, tutorials } = stores.programStore
+
+    if (_.isEmpty(tutorials)) {
+      await retrieveTutorials()
+    }
+  }
+
+  componentWillUnmount() {
+    const { stores } = this.props
+    const { setSelectedDate } = stores.programStore
+    setSelectedDate(null)
+  }
+
   render() {
-    const { t } = this.props
+    const { t, stores } = this.props
+    const { sortedTutorials, selectedDate, setSelectedDate } = stores.programStore
+    const { tutorialStartAt } = stores.scheduleStore.schedule
     const _title = t('timetable:tutorial.title')
+    if (!selectedDate) setSelectedDate(tutorialStartAt)
 
     return (
       <PageTemplate
@@ -33,6 +55,12 @@ class Tutorial extends React.Component<PageDefaultPropsType> {
       >
         <LocalNavigation list={timetableMenu.submenu} />
         <H1>{ _title }</H1>
+        <DateNavWrapper>
+          <DateNav isActive>
+            {tutorialStartAt}
+          </DateNav>
+        </DateNavWrapper>
+        <TimeTable stores={stores} t={t} timetableData={sortedTutorials as TutorialNode[]} />
       </PageTemplate >
     )
   }
