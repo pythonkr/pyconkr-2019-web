@@ -1,0 +1,29 @@
+query getSprints {
+    sprints {
+        id
+        isBreaktime
+        owner {
+            profile {
+                name
+                nameKo
+                nameEn
+            }
+        }
+        name
+        nameKo
+        nameEn
+        place {
+          name
+          nameEn
+          nameKo
+        }
+        startedAt
+        finishedAt
+        desc
+        descKo
+        descEn
+        language
+        startedAt
+        finishedAt
+    }
+}
