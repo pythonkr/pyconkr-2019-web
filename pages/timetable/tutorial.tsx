@@ -2,7 +2,7 @@ import _ from 'lodash'
 import { inject, observer } from 'mobx-react'
 import { withRouter } from 'next/router'
 import * as React from 'react'
-
+import { paths } from 'routes/paths'
 import { H1 } from 'components/atoms/ContentWrappers'
 import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
@@ -60,7 +60,7 @@ class Tutorial extends React.Component<PageDefaultPropsType> {
             {tutorialStartAt}
           </DateNav>
         </DateNavWrapper>
-        <TimeTable stores={stores} t={t} timetableData={sortedTutorials as TutorialNode[]} />
+        <TimeTable stores={stores} t={t} timetableData={sortedTutorials as TutorialNode[]} baseDetailHref={paths.program.tutorialDetail}/>
       </PageTemplate >
     )
   }

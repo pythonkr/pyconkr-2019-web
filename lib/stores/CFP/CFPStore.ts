@@ -112,12 +112,7 @@ export class CFPStore {
 
         return presentation.startedAt && presentation.finishedAt && (selectedDate === startDate && selectedDate === finishDate)
       })
-
-      return _.sortBy(conferenceTalks, (conferenceTalk: PresentationNode): (PresentationNode | null)[] => {
-        const { startedAt, finishedAt } = conferenceTalk
-
-        return startedAt && finishedAt
-      })
+      return _.sortBy(conferenceTalks, ['startedAt', 'place.name'])
     }
 
     @action

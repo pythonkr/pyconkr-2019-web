@@ -19,6 +19,7 @@ type PropsType = {
   isLastItem: boolean;
   isSameGroup: boolean | undefined;
   isBreaktime: boolean;
+  detailHref: string;
 }
 
 class TimetableContentItem extends React.Component<PropsType> {
@@ -36,8 +37,8 @@ class TimetableContentItem extends React.Component<PropsType> {
       isLastItem,
       isSameGroup,
       isBreaktime,
+      detailHref,
     } = this.props
-    const detailHref = `${paths.program.talkDetail}?id=${id}`
     let time = isSameGroup ? '' : `${formatDateOnlyTime(startAt)} ~ ${formatDateOnlyTime(finishAt)}`
 
     //Show finishedAt if it's breaktime

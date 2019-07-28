@@ -80,12 +80,15 @@ export class TalkDetail extends React.Component<PropsType> {
             { presentation.category.name }
             </ProgramTableRow>
 
-            <ProgramTableRow
-              header={t('program:common.difficulty')} >
-              <Tag className={presentation.difficulty.nameEn.toLowerCase()}>
-                {presentation.difficulty.name}
-              </Tag>
-            </ProgramTableRow>
+            {
+              presentation.difficulty &&
+              <ProgramTableRow
+                header={t('program:common.difficulty')} >
+                <Tag className={presentation.difficulty.nameEn.toLowerCase()}>
+                  {presentation.difficulty.name}
+                </Tag>
+              </ProgramTableRow>
+            }
             <ProgramTableRow
               header={t('program:common.language')}>
               { presentation.language }

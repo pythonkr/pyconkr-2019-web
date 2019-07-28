@@ -53,11 +53,7 @@ export class ProgramStore {
       return tutorial.startedAt && tutorial.finishedAt && (selectedDate === startDate && selectedDate === finishDate)
     })
 
-    return _.sortBy(filteredTutorials, (filteredTutorial: TutorialNode): (TutorialNode | null)[] => {
-      const { startedAt, finishedAt } = filteredTutorial
-
-      return startedAt && finishedAt
-    })
+    return _.sortBy(filteredTutorials, ['startedAt', 'finishedAt', 'place.name'])
   }
 
   @computed get sortedSprints () {
@@ -71,11 +67,7 @@ export class ProgramStore {
       return sprint.startedAt && sprint.finishedAt && (selectedDate === startDate && selectedDate === finishDate)
     })
 
-    return _.sortBy(filteredSprints, (filteredSprint: SprintNode): (SprintNode | null)[] => {
-      const { startedAt, finishedAt } = filteredSprint
-
-      return startedAt && finishedAt
-    })
+    return _.sortBy(filteredSprints, ['startedAt', 'finishedAt', 'place.name'])
   }
 }
 

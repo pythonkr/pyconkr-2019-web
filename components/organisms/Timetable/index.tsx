@@ -1,7 +1,7 @@
 import i18next from 'i18next'
 import _ from 'lodash'
 import * as React from 'react'
-
+import { paths } from 'routes/paths'
 import { Loading } from 'components/atoms/Loading'
 import TimetableContentItem from 'components/molecules/TimetableContentItem'
 import { differenceInMilliseconds } from 'date-fns'
@@ -16,12 +16,13 @@ type PropsType = {
   timetableData: any;
   stores: StoresType;
   t: i18next.TFunction;
+  baseDetailHref: string;
 }
 
 @observer
 class TimeTable extends React.Component<PropsType> {
   render() {
-    const { timetableData } = this.props
+    const { timetableData, baseDetailHref } = this.props
 
     if (_.isNil(timetableData)) return null
 
@@ -54,7 +55,6 @@ class TimeTable extends React.Component<PropsType> {
               const timeDiffNext = differenceInMilliseconds(nextItem.startedAt, nextItem.finishedAt)
               isLastItem = timeDiffCurrent !== timeDiffNext
             }
-
             return (
               <TimetableContentItem
                 key={`tableContentItem_${id}`}
@@ -70,6 +70,7 @@ class TimeTable extends React.Component<PropsType> {
                 isLastItem={isLastItem}
                 isSameGroup={isSameGroup}
                 isBreaktime={isBreaktime}
+                detailHref={`${baseDetailHref}?id=${id}`}
               />
             )
           })}

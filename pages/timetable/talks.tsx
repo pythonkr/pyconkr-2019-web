@@ -1,7 +1,7 @@
 import { inject, observer } from 'mobx-react'
 import { withRouter } from 'next/router'
 import * as React from 'react'
-
+import { paths } from 'routes/paths'
 import { H1 } from 'components/atoms/ContentWrappers'
 import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
@@ -68,7 +68,7 @@ class Talks extends React.Component<PageDefaultPropsType> {
             {conferenceFinishAt}
           </DateNav>
         </DateNavWrapper>
-        <TimeTable stores={stores} t={t} timetableData={conferenceTalks as PresentationNode[]} />
+        <TimeTable stores={stores} t={t} timetableData={conferenceTalks as PresentationNode[]} baseDetailHref={paths.program.talkDetail}/>
       </PageTemplate >
     )
   }

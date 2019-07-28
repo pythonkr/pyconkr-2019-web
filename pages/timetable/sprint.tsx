@@ -2,7 +2,7 @@ import _ from 'lodash'
 import { inject, observer } from 'mobx-react'
 import { withRouter } from 'next/router'
 import * as React from 'react'
-
+import { paths } from 'routes/paths'
 import { H1 } from 'components/atoms/ContentWrappers'
 import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
@@ -78,7 +78,7 @@ class Sprint extends React.Component<PageDefaultPropsType> {
             {sprintFinishAt}
           </DateNav>
         </DateNavWrapper>
-        <TimeTable stores={stores} t={t} timetableData={sortedSprints as SprintNode[]} />
+        <TimeTable stores={stores} t={t} timetableData={sortedSprints as SprintNode[]} baseDetailHref={paths.program.sprintDetail}/>
       </PageTemplate >
     )
   }
