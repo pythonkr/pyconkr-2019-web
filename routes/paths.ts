@@ -27,7 +27,6 @@ export const paths = {
   timetable: {
     base: '/timetable',
     talks: '/timetable/talks',
-    lightningTalk: '/timetable/lightning-talk',
     tutorial: '/timetable/tutorial',
     sprint: '/timetable/sprint',
   },
@@ -211,11 +210,6 @@ export const timetableMenu: WithSubMenu = {
         title: '발표 세션',
         intlKey: 'gnb.timetable.talks',
         link: paths.timetable.talks,
-      },
-      {
-        title: '라이트닝 토크',
-        intlKey: 'gnb.timetable.lightningTalk',
-        link: paths.timetable.lightningTalk,
       },
     ]
   }, {
