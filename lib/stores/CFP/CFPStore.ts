@@ -112,7 +112,8 @@ export class CFPStore {
 
         return presentation.startedAt && presentation.finishedAt && (selectedDate === startDate && selectedDate === finishDate)
       })
-      return _.sortBy(conferenceTalks, ['startedAt', 'place.name'])
+
+      return _.sortBy(conferenceTalks, ['startedAt', 'finishedAt', 'place.name'])
     }
 
     @action
