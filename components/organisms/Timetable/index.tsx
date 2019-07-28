@@ -1,15 +1,13 @@
-import i18next from 'i18next'
-import _ from 'lodash'
-import * as React from 'react'
-import { paths } from 'routes/paths'
-import { Loading } from 'components/atoms/Loading'
 import TimetableContentItem from 'components/molecules/TimetableContentItem'
 import { differenceInMilliseconds } from 'date-fns'
+import i18next from 'i18next'
 import { PresentationNode } from 'lib/apollo_graphql/queries/getPresentations'
 import { SprintNode } from 'lib/apollo_graphql/queries/getSprints'
 import { TutorialNode } from 'lib/apollo_graphql/queries/getTutorials'
+import _ from 'lodash'
 import { observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
+import * as React from 'react'
 import { TimetableContents } from './StyledComponents'
 
 type PropsType = {
@@ -47,14 +45,20 @@ class TimeTable extends React.Component<PropsType> {
             if (previousItem) {
               const timeDiffCurrent = differenceInMilliseconds(startedAt, finishedAt)
               const timeDiffPrevious = differenceInMilliseconds(previousItem.startedAt, previousItem.finishedAt)
-              isSameGroup = timeDiffCurrent === timeDiffPrevious
+              isSameGroup =
+                startedAt === previousItem.startedAt &&
+                finishedAt === previousItem.finishedAt &&
+                timeDiffCurrent === timeDiffPrevious
             }
 
             if (nextItem) {
               const timeDiffCurrent = differenceInMilliseconds(startedAt, finishedAt)
               const timeDiffNext = differenceInMilliseconds(nextItem.startedAt, nextItem.finishedAt)
-              isLastItem = timeDiffCurrent !== timeDiffNext
+              isLastItem =
+                (startedAt !== nextItem.startedAt && finishedAt !== nextItem.finishedAt) ||
+                timeDiffCurrent !== timeDiffNext
             }
+
             return (
               <TimetableContentItem
                 key={`tableContentItem_${id}`}
