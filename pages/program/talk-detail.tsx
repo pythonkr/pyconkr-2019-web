@@ -120,9 +120,6 @@ export class TalkDetail extends React.Component<PropsType> {
             }
           </TableList>
         </ContentTableWrapper>
-        <Section style={{ marginTop: '36px'}}>
-          <MarkdownWrapper contents={presentation.desc}/>
-        </Section>
         <Section>
           {
             presentation.owner &&
@@ -142,6 +139,9 @@ export class TalkDetail extends React.Component<PropsType> {
                 bio={presentation.secondaryOwner.profile.bio || 'Thank you for your contribution.'}
               />
           }
+        </Section>
+        <Section style={{ marginTop: '36px'}}>
+          <MarkdownWrapper contents={presentation.desc}/>
         </Section>
       </PageTemplate>
     )

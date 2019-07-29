@@ -56,7 +56,6 @@ query Tutorial($id: Int!) {
       name
     }
     participants {
-      name
       email
     }
   }
@@ -116,7 +115,7 @@ const TutorialDetailContent = (props) => {
                 <Ul>
                 { tutorial.participants.map((user) => {
                   return (
-                    <Li key={user.email}>{`${user.name}(${user.email})`}</Li>
+                    <Li key={user.email}>{user.email}</Li>
                   )
                 })}
                 </Ul>
@@ -125,9 +124,6 @@ const TutorialDetailContent = (props) => {
           }
         </TableList>
       </ContentTableWrapper>
-      <Section style={{ marginTop: '36px'}}>
-        <MarkdownWrapper contents={ tutorial.desc }/>
-      </Section>
       <Section>
         {
           tutorial.owner && 
@@ -138,6 +134,9 @@ const TutorialDetailContent = (props) => {
               bio={tutorial.owner.profile.bio || 'Thank you for your contribution.'}
             />
         }
+      </Section>
+      <Section style={{ marginTop: '36px'}}>
+        <MarkdownWrapper contents={ tutorial.desc }/>
       </Section>
     </PageTemplate>
   )
