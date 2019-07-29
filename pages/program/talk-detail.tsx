@@ -74,12 +74,14 @@ export class TalkDetail extends React.Component<PropsType> {
         </H1>
         <ContentTableWrapper>
           <TableList>
-            <ProgramTableRow
-              header={t('program:talkDetail.category')}
-              bold>
-            { presentation.category.name }
-            </ProgramTableRow>
-
+            {
+              presentation.category &&
+              <ProgramTableRow
+                header={t('program:talkDetail.category')}
+                bold>
+              { presentation.category.name }
+              </ProgramTableRow>
+            }
             {
               presentation.difficulty &&
               <ProgramTableRow
@@ -122,12 +124,15 @@ export class TalkDetail extends React.Component<PropsType> {
           <MarkdownWrapper contents={presentation.desc}/>
         </Section>
         <Section>
-          <ProfileCard
-            profileImg={presentation.owner.profile.image}
-            name={presentation.owner.profile.name}
-            organization={presentation.owner.profile.organization}
-            bio={presentation.owner.profile.bio || 'Thank you for your contribution.'}
-          />
+          {
+            presentation.owner &&
+            <ProfileCard
+              profileImg={presentation.owner.profile.image}
+              name={presentation.owner.profile.name}
+              organization={presentation.owner.profile.organization}
+              bio={presentation.owner.profile.bio || 'Thank you for your contribution.'}
+            />
+        }
           {
             presentation.secondaryOwner &&
               <ProfileCard
