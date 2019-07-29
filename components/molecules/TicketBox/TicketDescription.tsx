@@ -60,7 +60,8 @@ export const TicketWarning = styled.div<{isCancel: boolean }>`
   font-weight: bold;
   line-height: 1.47;
   color: #f95858 !important;
-
+  white-space: pre-line;
+  
   @media (max-width: ${mobileWidth}) {
     margin-left: 0;
     margin-top: 20px;
