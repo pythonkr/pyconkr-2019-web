@@ -8,7 +8,9 @@
     "place": "장소",
     "waitingAlert": "아직 목록이 공개되지 않았습니다. 오픈 시 페이스북, 트위터, 홈페이지 등을 통해 공지할 예정이니 기대해주세요 👩‍🏫 👨‍🏫",
     "participantCount": "참가자 수",
-    "participantList": "참가자 목록"
+    "participantList": "참가자 목록",
+    "goToBuyTicket": "이 프로그램은 별도의 티켓을 구매해야 참여할 수 있습니다. 컨퍼런스 티켓이 있어도 이 티켓을 구매하지 않으면 참여할 수 없습니다.🤓",
+    "goToBuyTicketButton": "티켓구매"
   },
   "talks": {
     "title": "발표 세션 리스트"

@@ -7,7 +7,9 @@
     "place": "Place",
     "waitingAlert": "The program list has not been opened yet. It will be notified through the Facebook, Twitter, and homepage at the time of opening. 👩‍🏫 👨‍🏫",
     "participantCount": "Num of participant",
-    "participantList": "Participant List"
+    "participantList": "Participant List",
+    "goToBuyTicket": "You must purchase a separate ticket to participate this program. Even if you have a conference ticket, you will not be able to participate unless you purchase this ticket.🤓",
+    "goToBuyTicketButton": "Buy Ticket"
   },
   "talks": {
     "title": "List of talks"

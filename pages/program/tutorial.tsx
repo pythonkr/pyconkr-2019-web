@@ -83,6 +83,16 @@ export class Tutorial extends React.Component<PropsType> {
         </Section>
         <Section>
           <H2>{ t('program:tutorial.header2') }</H2>
+          <AlertBar 
+            text={t('program:common.goToBuyTicket')} 
+            link={
+              {
+                title: t('program:common.goToBuyTicketButton'), 
+                to: paths.ticket.tutorial, 
+                outlink:false
+              }
+            }
+          />
           <Paragraph>{ t('program:tutorial.desc2') }</Paragraph>
           <Query query={TUTORIALS}>
             {({ loading, error, data }) => {

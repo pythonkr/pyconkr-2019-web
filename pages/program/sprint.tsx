@@ -85,6 +85,16 @@ export class Sprint extends React.Component<PropsType> {
         </Section>
         <Section>
           <H2>{ t('program:sprint.header2') }</H2>
+          <AlertBar 
+            text={t('program:common.goToBuyTicket')} 
+            link={
+              {
+                title: t('program:common.goToBuyTicketButton'), 
+                to: paths.ticket.sprint, 
+                outlink:false
+              }
+            }
+          />
           <Paragraph>{ t('program:sprint.desc2') }</Paragraph>
           <Query query={SPRINTS}>
             {({ loading, error, data }) => {

@@ -26,6 +26,8 @@ border-radius: 3px;
 padding: 2px 4px;
 opacity: .9;
 
+background: ${GREEN};
+
 &.beginner,
 &.over10years {
   background: ${GREEN};
