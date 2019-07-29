@@ -58,7 +58,8 @@ export type PropsType = {
 }
 
 const CompanyImg = styled.img`
-width: 500px
+width: 300px;
+margin: 20px 0;
 `
 
 const YoungCoderContent = ({t, youngCoder}) => {

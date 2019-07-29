@@ -33,9 +33,9 @@ export const ContentWrapper = styled.main`
 `
 
 export const Section = styled.section`
-margin: 100px 0;
+margin: 70px 0;
 @media (max-width: ${mobileWidth}) {
-  margin: 70px 0;
+  margin: 50px 0;
 }
 `
 
