@@ -6,6 +6,7 @@ import {
   TableList,
 } from 'components/atoms/ContentWrappers'
 import styled from '@emotion/styled'
+import ProfileCard from 'components/molecules/ProfileCard'
 import { Loading } from 'components/atoms/Loading'
 import MarkdownWrapper from 'components/atoms/MarkdownWrapper'
 import Footer from 'components/organisms/Footer'
@@ -39,6 +40,13 @@ query YoungCoder($id: Int!) {
       nameEn
       nameKo
     }
+    owner {
+      profile {
+        name
+        bio
+        image
+      }
+    }
   }
 }
 `
@@ -50,7 +58,8 @@ export type PropsType = {
 }
 
 const CompanyImg = styled.img`
-width: 500px
+width: 300px;
+margin: 20px 0;
 `
 
 const YoungCoderContent = ({t, youngCoder}) => {
@@ -80,6 +89,17 @@ const YoungCoderContent = ({t, youngCoder}) => {
         </ProgramTableRow>
       </TableList>
     </ContentTableWrapper>
+    <Section>
+      {
+        youngCoder.owner && 
+          <ProfileCard
+            profileImg={youngCoder.owner.profile.image}
+            name={youngCoder.owner.profile.name}
+            organization={youngCoder.owner.profile.organization}
+            bio={youngCoder.owner.profile.bio || ''}
+          />
+      }
+    </Section>
     <Section style={{ marginTop: '36px'}}>
       <MarkdownWrapper contents={ youngCoder.desc }/>
     </Section>

@@ -53,7 +53,6 @@ query Sprint($id: Int!) {
       name
     }
     participants {
-      name
       email
     }
   }
@@ -134,7 +133,7 @@ const SprintDetailContent = (props) => {
                 <Ul>
                 { sprint.participants.map((user) => {
                   return (
-                    <Li key={user.email}>{`${user.name}(${user.email})`}</Li>
+                    <Li key={user.email}>{user.email}</Li>
                   )
                 })}
                 </Ul>
@@ -143,9 +142,6 @@ const SprintDetailContent = (props) => {
           }
         </TableList>
       </ContentTableWrapper>
-      <Section style={{ marginTop: '36px'}}>
-        <MarkdownWrapper contents={ sprint.desc }/>
-      </Section>
       <Section>
         {
           sprint.owner && 
@@ -156,6 +152,9 @@ const SprintDetailContent = (props) => {
               bio={sprint.owner.profile.bio || 'Thank you for your contribution.'}
             />
         }
+      </Section>
+      <Section style={{ marginTop: '36px'}}>
+        <MarkdownWrapper contents={ sprint.desc }/>
       </Section>
     </PageTemplate>
   )
