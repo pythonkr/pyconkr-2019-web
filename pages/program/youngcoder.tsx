@@ -75,6 +75,16 @@ export class Youngcoder extends React.Component<PropsType> {
         </Section>
         <Section>
           <H2>{ t('program:youngCoder.header2') }</H2>
+          <AlertBar 
+            text={t('program:common.goToBuyTicket')} 
+            link={
+              {
+                title: t('program:common.goToBuyTicketButton'), 
+                to: paths.ticket.youngcoder, 
+                outlink:false
+              }
+            }
+          />
           <Paragraph>{ t('program:youngCoder.desc2') }</Paragraph>
           <Query query={YOUNGCODERS}>
             {({ loading, error, data }) => {

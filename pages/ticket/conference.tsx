@@ -63,7 +63,8 @@ export class ConferenceTicket extends React.Component<PageDefaultPropsType> {
         </Section>
         <Section>
           <H2>{ t('ticket:conference.header2') }</H2>
-          <Paragraph>{t('ticket:conference.desc2')} </Paragraph>
+          <AlertBar text={t('ticket:conference.soldout')} />
+          {/* <Paragraph>{t('ticket:conference.desc2')} </Paragraph>
           <H3>{ t('ticket:conference.header2-1') }</H3>
           <Paragraph>{ t('ticket:conference.desc2-1') }</Paragraph>
           <Ul>
@@ -78,7 +79,7 @@ export class ConferenceTicket extends React.Component<PageDefaultPropsType> {
             <Li>{ t('ticket:conference.desc2-2-3') }</Li>
             <Li>{ t('ticket:conference.desc2-2-4') }</Li>
             <Li>{ t('ticket:conference.desc2-2-5') }</Li>
-          </Ul>
+          </Ul> */}
           <H3>{ t('ticket:conference.header2-3') }</H3>
           <Paragraph>
             <strong style={{ fontWeight: 'bold', display: 'block' }}>{t('ticket:conference.desc2-3-1')}</strong>

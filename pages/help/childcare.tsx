@@ -1,5 +1,6 @@
 import { ContentTableWrapper, Td, Tr, Table, TBody, isHeader, H1, H2, Ul, Li, Paragraph, Section } from 'components/atoms/ContentWrappers'
 import styled from '@emotion/styled'
+import { paths } from 'routes/paths'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
@@ -10,6 +11,7 @@ import { StoresType } from '../_app'
 import i18next from 'i18next'
 import { withNamespaces } from '../../i18n'
 import Link from 'next/link'
+import { AlertBar } from 'components/atoms/AlertBar'
 
 export type PropsType = {
   stores: StoresType;
@@ -45,6 +47,16 @@ export class Childcare extends React.Component<PropsType> {
           { title }
         </H1>
         <Section>
+          <AlertBar 
+              text={t('program:common.goToBuyTicket')} 
+              link={
+                {
+                  title: t('program:common.goToBuyTicketButton'), 
+                  to: paths.ticket.childcare, 
+                  outlink:false
+                }
+              }
+            />
           <Paragraph>
             { t('help:childcare.desc1') }
           </Paragraph>
@@ -92,4 +104,4 @@ export class Childcare extends React.Component<PropsType> {
   }
 }
 
-export default withNamespaces(['help'])(Childcare)
+export default withNamespaces(['help', 'program'])(Childcare)
