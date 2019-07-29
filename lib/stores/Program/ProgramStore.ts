@@ -60,11 +60,8 @@ export class ProgramStore {
     // tslint:disable: underscore-consistent-invocation
     const filteredSprints = _.filter(this.sprints, (sprint: TutorialNode) => {
       if (!this.selectedDate) return
-      const selectedDate = formatDateYearMonthDay(this.selectedDate.toString())
-      const startDate = formatDateYearMonthDay(sprint.startedAt)
-      const finishDate = formatDateYearMonthDay(sprint.finishedAt)
 
-      return sprint.startedAt && sprint.finishedAt && (selectedDate === startDate && selectedDate === finishDate)
+      return sprint.startedAt && sprint.finishedAt
     })
 
     return _.sortBy(filteredSprints, ['startedAt', 'finishedAt', 'place.name'])

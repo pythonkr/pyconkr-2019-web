@@ -1,8 +1,3 @@
-import _ from 'lodash'
-import { inject, observer } from 'mobx-react'
-import { withRouter } from 'next/router'
-import * as React from 'react'
-import { paths } from 'routes/paths'
 import { H1 } from 'components/atoms/ContentWrappers'
 import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
@@ -10,9 +5,13 @@ import Header from 'components/organisms/Header'
 import TimeTable from 'components/organisms/Timetable'
 import { DateNav, DateNavWrapper } from 'components/organisms/Timetable/StyledComponents'
 import PageTemplate from 'components/templates/PageTemplate'
+import _ from 'lodash'
+import { inject, observer } from 'mobx-react'
+import { withRouter } from 'next/router'
+import * as React from 'react'
+import { paths, timetableMenu } from 'routes/paths'
 
 import { SprintNode } from 'lib/apollo_graphql/queries/getSprints'
-import { timetableMenu } from 'routes/paths'
 import { PageDefaultPropsType } from 'types/PageDefaultPropsType'
 import { withNamespaces } from '../../i18n'
 
@@ -65,17 +64,8 @@ class Sprint extends React.Component<PageDefaultPropsType> {
         <LocalNavigation list={timetableMenu.submenu} />
         <H1>{ _title }</H1>
         <DateNavWrapper>
-          <DateNav
-            isActive={!selectedDate || (selectedDate === sprintStartAt)}
-            onClick={() => this.onClickDateNav(sprintStartAt)}
-          >
-            {sprintStartAt}
-          </DateNav>
-          <DateNav
-            isActive={selectedDate === sprintFinishAt}
-            onClick={() => this.onClickDateNav(sprintFinishAt)}
-          >
-            {sprintFinishAt}
+          <DateNav isActive>
+            {`${sprintStartAt} ~ ${sprintFinishAt}`}
           </DateNav>
         </DateNavWrapper>
         <TimeTable stores={stores} t={t} timetableData={sortedSprints as SprintNode[]} baseDetailHref={paths.program.sprintDetail}/>
