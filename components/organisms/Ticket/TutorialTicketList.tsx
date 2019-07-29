@@ -140,7 +140,7 @@ class TutorialTicketList extends React.Component<PropsType> {
         ticketOpenAt,
         ticketCloseAt,
         isSoldOut,
-        isPurchased,
+        available,
       } = tutorialProduct
       const isTicketStepExist = getIsTicketStepExist(id)
       if (!isTicketStepExist) setTicketStep(id, name)
@@ -209,7 +209,7 @@ class TutorialTicketList extends React.Component<PropsType> {
           stepAction={this.getStepAction(ticketStep)}
           nextStep={this.getNextTicketStep(ticketStepState)}
           options={options}
-          isPaid={isPurchased}
+          isPaid={!available}
         />
       )
     })

@@ -90,6 +90,10 @@ export interface getPresentations_presentations {
    * 키노트 스피커인 경우 TRUE로 설정합니다.
    */
   isKeynote: boolean;
+  /**
+   * 쉬는 시간일 경우 TRUE로 설정합니다.
+   */
+  isBreaktime: boolean;
   owner: getPresentations_presentations_owner | null;
   secondaryOwner: getPresentations_presentations_secondaryOwner | null;
   name: string | null;

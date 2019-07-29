@@ -1,9 +1,12 @@
 import {
   ContentTableWrapper,
+  Ul,
+  Li,
   H1,
   Section,
-  TableList,
+  TableList
 } from 'components/atoms/ContentWrappers'
+import {CopyToClipboard} from 'react-copy-to-clipboard'
 import {formatDateInWordsWithWeekdayAndTime} from 'utils/formatDate'
 import {PageDefaultPropsType} from 'types/PageDefaultPropsType'
 import { Loading } from 'components/atoms/Loading'
@@ -49,7 +52,10 @@ query Sprint($id: Int!) {
     place {
       name
     }
-    
+    participants {
+      name
+      email
+    }
   }
 }
 `
@@ -58,6 +64,9 @@ query Sprint($id: Int!) {
 const SprintDetailContent = (props) => {
   const {t, sprint} = props
   const pageTitle = t('common:pageTitle', { title: sprint.name })
+  const emails = sprint.participants ? sprint.participants.map((user) => {
+    return user.email
+  }).join(',') : ''
   return (
     <PageTemplate
       header={<Header title={ pageTitle } intlKey='' />}
@@ -110,7 +119,28 @@ const SprintDetailContent = (props) => {
               { sprint.opensourceDesc }
             </ProgramTableRow>
           }
-          
+          {
+            sprint.participants &&
+            <>
+              <ProgramTableRow
+                header={t('program:common.participantCount')} >
+                { `${sprint.participants.length}` }
+              </ProgramTableRow>
+              <ProgramTableRow
+                header={t('program:common.participantList')} >
+                <CopyToClipboard text={emails}>
+                  <button>Copy emails</button>
+                </CopyToClipboard>
+                <Ul>
+                { sprint.participants.map((user) => {
+                  return (
+                    <Li key={user.email}>{`${user.name}(${user.email})`}</Li>
+                  )
+                })}
+                </Ul>
+              </ProgramTableRow>
+            </>
+          }
         </TableList>
       </ContentTableWrapper>
       <Section style={{ marginTop: '36px'}}>
@@ -142,7 +172,7 @@ export class SprintDetail extends React.Component<PageDefaultPropsType> {
       <Query query={SPRINT} variables={{id}}>
         {
           ({ loading, error, data }) => {
-            if (loading || error) return (<Loading width={50} height={50}/>);
+            if (loading) return (<Loading width={50} height={50}/>);
             return (
               <SprintDetailContent t={t} sprint={data.sprint}/>
             )

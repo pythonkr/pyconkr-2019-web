@@ -1,9 +1,12 @@
 import {
   ContentTableWrapper,
+  Ul,
+  Li,
   H1,
   Section,
   TableList,
 } from 'components/atoms/ContentWrappers'
+import {CopyToClipboard} from 'react-copy-to-clipboard'
 import { Loading } from 'components/atoms/Loading'
 import MarkdownWrapper from 'components/atoms/MarkdownWrapper'
 import ProfileCard from 'components/molecules/ProfileCard'
@@ -52,6 +55,10 @@ query Tutorial($id: Int!) {
     place {
       name
     }
+    participants {
+      name
+      email
+    }
   }
 }
 `
@@ -59,6 +66,9 @@ query Tutorial($id: Int!) {
 const TutorialDetailContent = (props) => {
   const { t, tutorial } = props
   const pageTitle = t('common:pageTitle', { title: tutorial.name })
+  const emails = tutorial.participants ? tutorial.participants.map((user) => {
+    return user.email
+  }).join(',') : ''
 
   return (
     <PageTemplate
@@ -90,6 +100,28 @@ const TutorialDetailContent = (props) => {
               header={t('program:common.datetime')} >
               { `${formatDateInWordsWithWeekdayAndTime(tutorial.startedAt)}~${formatDateInWordsWithWeekdayAndTime(tutorial.finishedAt)}` }
             </ProgramTableRow>
+          }
+          {
+            tutorial.participants &&
+            <>
+              <ProgramTableRow
+                header={t('program:common.participantCount')} >
+                { `${tutorial.participants.length}` }
+              </ProgramTableRow>
+              <ProgramTableRow
+                header={t('program:common.participantList')} >
+                <CopyToClipboard text={emails}>
+                  <button>Copy emails</button>
+                </CopyToClipboard>
+                <Ul>
+                { tutorial.participants.map((user) => {
+                  return (
+                    <Li key={user.email}>{`${user.name}(${user.email})`}</Li>
+                  )
+                })}
+                </Ul>
+              </ProgramTableRow>
+            </>
           }
         </TableList>
       </ContentTableWrapper>
@@ -130,7 +162,7 @@ export class TutorialDetail extends React.Component<PageDefaultPropsType> {
       <Query query={TUTORIAL} variables={{id}}>
         {
           ({ loading, error, data }) => {
-            if (loading || error) return (<Loading width={50} height={50}/>)
+            if (loading) return (<Loading width={50} height={50}/>)
 
             return (
               <TutorialDetailContent t={t} tutorial={data.tutorial}/>

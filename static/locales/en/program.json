@@ -5,7 +5,9 @@
     "speaker": "Speaker",
     "datetime": "Datetime",
     "place": "Place",
-    "waitingAlert": "The program list has not been opened yet. It will be notified through the Facebook, Twitter, and homepage at the time of opening. 👩‍🏫 👨‍🏫"
+    "waitingAlert": "The program list has not been opened yet. It will be notified through the Facebook, Twitter, and homepage at the time of opening. 👩‍🏫 👨‍🏫",
+    "participantCount": "Num of participant",
+    "participantList": "Participant List"
   },
   "talks": {
     "title": "List of talks"

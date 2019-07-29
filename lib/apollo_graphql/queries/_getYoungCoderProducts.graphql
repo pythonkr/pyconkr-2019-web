@@ -47,6 +47,6 @@ query getYoungCoderProducts {
     purchaseCount
     isSoldOut
     remainingCount
-    isPurchased
+    available
   }
 }

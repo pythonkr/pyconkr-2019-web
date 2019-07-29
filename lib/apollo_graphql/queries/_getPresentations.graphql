@@ -2,6 +2,7 @@ query getPresentations {
     presentations {
         id
         isKeynote
+        isBreaktime
         owner {
             profile {
                 name

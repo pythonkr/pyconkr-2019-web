@@ -1,6 +1,8 @@
 import {
   getPresentations as getPresentationsType,
   getPresentations_presentations as PresentationNode,
+  getPresentations_presentations_owner as UserNode,
+  getPresentations_presentations_place as PlaceNode,
 } from 'lib/apollo_graphql/__generated__/getPresentations'
 import {
   createQueryDefinition,
@@ -19,4 +21,6 @@ export const getPresentations = sendQuery(
 
 export {
   PresentationNode,
+  PlaceNode,
+  UserNode,
 }

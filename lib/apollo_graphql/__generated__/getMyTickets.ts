@@ -49,6 +49,7 @@ export interface getMyTickets_myTickets {
   product: getMyTickets_myTickets_product;
   createdAt: any;
   updatedAt: any;
+  options: any;
 }
 
 export interface getMyTickets {

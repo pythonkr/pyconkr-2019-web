@@ -6,6 +6,7 @@ import IntlPolyfill from 'intl'
 import AuthStore, { AuthStore as AuthStoreType } from 'lib/stores/AuthStore'
 import CFPStore, { CFPStore as CFPStoreType } from 'lib/stores/CFP/CFPStore'
 import ProfileStore, { ProfileStore as ProfileStoreType } from 'lib/stores/ProfileStore'
+import ProgramStore, { ProgramStore as ProgramStoreType } from 'lib/stores/Program/ProgramStore'
 import ProposalReviewStore, { ProposalReviewStore as ProposalReviewStoreType } from 'lib/stores/ProposalReview/ProposalReviewStore'
 import ScheduleStore, { ScheduleStore as ScheduleStoreType } from 'lib/stores/Schedule/ScheduleStore'
 import SponsorStore, { SponsorStore as SponsorStoreType } from 'lib/stores/Sponsor/SponsorStore'
@@ -62,6 +63,7 @@ export type StoresType = {
   cfpStore: CFPStoreType;
   proposalReviewStore: ProposalReviewStoreType;
   ticketStore: TicketStoreType;
+  programStore: ProgramStoreType;
 }
 
 class MyApp extends App {
@@ -77,6 +79,7 @@ class MyApp extends App {
       cfpStore: CFPStore,
       proposalReviewStore: ProposalReviewStore,
       ticketStore: TicketStore,
+      programStore: ProgramStore,
     }
 
     const { router: { query } } = this.props

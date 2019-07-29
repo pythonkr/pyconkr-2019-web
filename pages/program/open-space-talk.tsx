@@ -16,10 +16,11 @@ export type PropsType = {
 export class OpenSpaceTalk extends React.Component<PropsType> {
   render() {
     const { t } = this.props
+    const title = t('program:openSpaceTalk.title')
 
     return (
       <PageTemplate
-        header={<Header title={t('program:openSpaceTalk.pageTitle')} intlKey='' />}
+        header={<Header title={t('common:pageTitle', { title })} intlKey='' />}
         footer={<Footer />}
       >
         <LocalNavigation list={programMenu.submenu} />

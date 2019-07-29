@@ -80,12 +80,15 @@ export class TalkDetail extends React.Component<PropsType> {
             { presentation.category.name }
             </ProgramTableRow>
 
-            <ProgramTableRow
-              header={t('program:common.difficulty')} >
-              <Tag className={presentation.difficulty.nameEn.toLowerCase()}>
-                {presentation.difficulty.name}
-              </Tag>
-            </ProgramTableRow>
+            {
+              presentation.difficulty &&
+              <ProgramTableRow
+                header={t('program:common.difficulty')} >
+                <Tag className={presentation.difficulty.nameEn.toLowerCase()}>
+                  {presentation.difficulty.name}
+                </Tag>
+              </ProgramTableRow>
+            }
             <ProgramTableRow
               header={t('program:common.language')}>
               { presentation.language }
@@ -98,7 +101,7 @@ export class TalkDetail extends React.Component<PropsType> {
               presentation.startedAt &&
               <ProgramTableRow
                 header={t('program:common.datetime')} >
-                `${formatDateInWordsWithWeekdayAndTime(presentation.startedAt)}~${formatDateInWordsWithWeekdayAndTime(presentation.finishedAt)}` }
+                {`${formatDateInWordsWithWeekdayAndTime(presentation.startedAt)}~${formatDateInWordsWithWeekdayAndTime(presentation.finishedAt)}` }
               </ProgramTableRow>
             }
             <ProgramTableRow

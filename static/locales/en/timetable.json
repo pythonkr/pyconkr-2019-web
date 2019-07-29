@@ -1,0 +1,14 @@
+{
+  "talks": {
+    "title": "Timetable of Talks"
+  },
+  "lightningTalk": {
+    "title": "Timetable of Lightning talk"
+  },
+  "tutorial": {
+    "title": "Timetable of Tutorial"
+  },
+  "sprint": {
+    "title": "Timetable of Sprint"
+  }
+}

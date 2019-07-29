@@ -43,7 +43,6 @@ class PaidTicketBox extends React.Component<PropsType, StatesType> {
     const {router, ticket, stores, t} = this.props
     const {id, product, amount, status, paidAt, cancelledAt} = ticket
     const {type, name, warning, desc, startAt, finishAt, cancelableDate} = product
-
     return (
       <TicketBoxWrapper
         ticketColor={this.getTicketColor(type)}>
