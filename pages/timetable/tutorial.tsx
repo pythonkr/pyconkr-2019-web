@@ -1,8 +1,3 @@
-import _ from 'lodash'
-import { inject, observer } from 'mobx-react'
-import { withRouter } from 'next/router'
-import * as React from 'react'
-import { paths } from 'routes/paths'
 import { H1 } from 'components/atoms/ContentWrappers'
 import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
@@ -10,6 +5,11 @@ import Header from 'components/organisms/Header'
 import TimeTable from 'components/organisms/Timetable'
 import { DateNav, DateNavWrapper } from 'components/organisms/Timetable/StyledComponents'
 import PageTemplate from 'components/templates/PageTemplate'
+import _ from 'lodash'
+import { inject, observer } from 'mobx-react'
+import { withRouter } from 'next/router'
+import * as React from 'react'
+import { paths } from 'routes/paths'
 
 import { TutorialNode } from 'lib/apollo_graphql/queries/getTutorials'
 import { timetableMenu } from 'routes/paths'
@@ -44,7 +44,7 @@ class Tutorial extends React.Component<PageDefaultPropsType> {
   render() {
     const { t, stores } = this.props
     const { sortedTutorials, selectedDate, setSelectedDate } = stores.programStore
-    const { tutorialStartAt } = stores.scheduleStore.schedule
+    const { tutorialStartAt, tutorialFinishAt } = stores.scheduleStore.schedule
     const _title = t('timetable:tutorial.title')
     if (!selectedDate) setSelectedDate(tutorialStartAt)
 
@@ -56,8 +56,17 @@ class Tutorial extends React.Component<PageDefaultPropsType> {
         <LocalNavigation list={timetableMenu.submenu} />
         <H1>{ _title }</H1>
         <DateNavWrapper>
-          <DateNav isActive>
+          <DateNav
+            isActive={selectedDate === tutorialStartAt}
+            onClick={() => setSelectedDate(tutorialStartAt)}
+          >
             {tutorialStartAt}
+          </DateNav>
+          <DateNav
+            isActive={selectedDate === tutorialFinishAt}
+            onClick={() => setSelectedDate(tutorialFinishAt)}
+          >
+            {tutorialFinishAt}
           </DateNav>
         </DateNavWrapper>
         <TimeTable stores={stores} t={t} timetableData={sortedTutorials as TutorialNode[]} baseDetailHref={paths.program.tutorialDetail}/>
