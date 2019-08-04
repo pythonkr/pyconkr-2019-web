@@ -42,6 +42,7 @@ module.exports = withCSS(withGraphQL(withTypescript({
       'routes': path.join(__dirname, 'routes'),
       'utils': path.join(__dirname, 'utils'),
     }
+    config.resolve.extensions = ['.js', '.json', '.ts', '.tsx'],
     config.plugins.push(new webpack.DefinePlugin(env))
     // https://github.com/zeit/next-plugins/issues/273
     config.module.rules.push({
@@ -53,7 +54,7 @@ module.exports = withCSS(withGraphQL(withTypescript({
           name: '[name].[ext]'
         }
       }
-    })   
+    })
     return config
   }
 })))
