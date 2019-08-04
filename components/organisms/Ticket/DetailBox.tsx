@@ -104,6 +104,48 @@ class DetailBox extends React.Component<PropsType> {
                 <Td>{parsedOptions['tshirtsize']}</Td>
               </Tr>
             }
+            {
+              parsedOptions['youngCoderName'] &&
+              <Tr>
+                <Th>영코더 이름</Th>
+                <Td>{parsedOptions['tshirtsize']}</Td>
+              </Tr>
+            }
+            {
+              parsedOptions['youngCoderBirthDate'] &&
+              <Tr>
+                <Th>영코더 생년월일</Th>
+                <Td>{parsedOptions['youngCoderBirthDate']}</Td>
+              </Tr>
+            }
+            {
+              parsedOptions['childName'] &&
+              <Tr>
+                <Th>아이돌봄 아동이름</Th>
+                <Td>{parsedOptions['childName']}</Td>
+              </Tr>
+            }
+            {
+              parsedOptions['childcareBirthDate'] &&
+              <Tr>
+                <Th>아이돌봄 생년월일</Th>
+                <Td>{parsedOptions['childcareBirthDate']}</Td>
+              </Tr>
+            }
+            {
+              parsedOptions['isRequireParkingDiscount'] &&
+              <Tr>
+                <Th>주차증 필요 여부</Th>
+                <Td>{parsedOptions['isRequireParkingDiscount']}</Td>
+              </Tr>
+            }
+            {
+              parsedOptions['note'] &&
+              <Tr>
+                <Th>아이돌봄 참고사항</Th>
+                <Td>{parsedOptions['note']}</Td>
+              </Tr>
+            }
           </TBody>
         </Table>
       </ContentTableWrapper>

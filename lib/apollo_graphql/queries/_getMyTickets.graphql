@@ -1,6 +1,7 @@
 query getMyTickets {
   myTickets {
     id
+    ticketId
     amount
     paidAt
     cancelledAt
