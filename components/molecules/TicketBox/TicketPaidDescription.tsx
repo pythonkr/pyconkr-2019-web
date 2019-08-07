@@ -5,16 +5,21 @@ import { formatDateInWordsWithWeekdayAndTime } from 'utils/formatDate'
 
 type PropsType = {
   title: string|null;
+  ticketId: string|null;
   description: string|null;
   warning: string|null;
   startAt: any;
   finishAt: any;
 }
 
+const TicketNoText = styled.div`
+    font-size: 16px;
+    line-height: 22px;
+`
+
 const TitleText = styled.div`
     font-size: 26px;
     font-weight: bold;
-    // color: #088487;
     margin: 0;
 `
 const PeriodText = styled.div`
@@ -22,7 +27,6 @@ const PeriodText = styled.div`
     font-size: 16px;
     font-weight: bold;
     line-height: 22px;
-    // color: #088487;
 `
 
 class TicketPaidDescription extends React.Component<PropsType> {
@@ -34,10 +38,13 @@ class TicketPaidDescription extends React.Component<PropsType> {
     return items.join(',')
   }
   render() {
-    const {title, description, warning, startAt, finishAt} = this.props
+    const {title, description, warning, startAt, finishAt, ticketId} = this.props
 
     return (
       <TicketDescriptionWrapper>
+        { ticketId &&
+          <TicketNoText>{`No. ${ticketId.toString().padStart(5, '0')}`}</TicketNoText>
+        }
         <TitleText>{title}</TitleText>
         <PeriodText>Period : {formatDateInWordsWithWeekdayAndTime(startAt)} - {formatDateInWordsWithWeekdayAndTime(finishAt)}</PeriodText>
         <DescText>{description}</DescText>

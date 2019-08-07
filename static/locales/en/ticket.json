@@ -35,7 +35,8 @@
         "headerTitle": "My Ticket :: PyCon Korea 2019",
         "pageTitle": "My Ticket",
         "alert": "Canceled tickets are not valid. Therefore, it can not be used for entry.",
-        "description": "Check the detail of my purchased/canceled tickets."
+        "desc1": "Check the detail of my purchased/canceled tickets. You can register for the each program by presenting the ticket below at the registration booth.",
+        "desc2": "If you want to transfer a ticket to someone, you can send screenshot of the ticket or ticket number to the person who receives the ticket. If you have been transferred, The recipient can register at the registration booth by presenting it. Note that he/she can not change the name or affiliation of the name tag."
     },
     "conference": {
         "pageTitle": "Conference Ticket",

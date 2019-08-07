@@ -47,6 +47,7 @@ export const paths = {
     overview: '/ticket/overview',
     myTickets: '/ticket/my-tickets',
     myTicket: '/ticket/my-ticket',
+    nametag: '/ticket/nametag',
     receipt: '/ticket/receipt',
     conference: '/ticket/conference',
     tutorial: '/ticket/tutorial',

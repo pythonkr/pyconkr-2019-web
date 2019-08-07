@@ -1,6 +1,7 @@
 query getMyTicket($id: ID!) {
   myTicket(id: $id) {
     id
+    ticketId
     isDomesticCard
     amount
     merchantUid

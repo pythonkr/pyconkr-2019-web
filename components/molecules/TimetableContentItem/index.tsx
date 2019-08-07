@@ -1,10 +1,8 @@
 import * as React from 'react'
 
-import { Tag, TagWrapper } from 'components/molecules/Program/List'
 import Link from 'next/link'
-import { paths } from 'routes/paths'
 import { formatDateOnlyTime } from 'utils/formatDate'
-import { TimeTableContentItem } from './StyledComponents'
+import { Tag, TagWrapper, TimeTableContentItem } from './StyledComponents'
 
 type PropsType = {
   id: string;
@@ -80,15 +78,13 @@ class TimetableContentItem extends React.Component<PropsType> {
                 </Link>
               )
             }
-            <div className='tagWrapper'>
-             {difficultyKo && difficultyEn && (
+            {difficultyKo && difficultyEn && (
               <TagWrapper>
                 <Tag className={difficultyEn && difficultyEn.toLowerCase()}>
                   {difficultyKo}
                 </Tag>
               </TagWrapper>
             )}
-            </div>
           </div>
         </div>
       </TimeTableContentItem>

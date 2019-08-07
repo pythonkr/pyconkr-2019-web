@@ -3,7 +3,7 @@ import { updateAgreement } from 'lib/apollo_graphql/mutations/updateAgreement'
 import { ProfileNode, updateProfile } from 'lib/apollo_graphql/mutations/updateProfile'
 import { uploadProfileImage } from 'lib/apollo_graphql/mutations/uploadProfileImage'
 import { getMe } from 'lib/apollo_graphql/queries/getMe'
-import { action, configure, observable } from 'mobx'
+import { action, configure, observable, computed } from 'mobx'
 
 configure({ enforceActions: 'always' })
 
@@ -14,7 +14,7 @@ export class ProfileStore {
   @observable isStaff = false
   @observable isSuperuser = false
   @observable profile: ProfileNode | {} = {}
-
+  
   @action
   async retrieveMe() {
     const response = await getMe(client)({})
@@ -86,6 +86,11 @@ export class ProfileStore {
     }
 
     return image
+  }
+
+  @computed
+  get hasStaffPermission(){
+    return this.isStaff || this.isSuperuser
   }
 }
 

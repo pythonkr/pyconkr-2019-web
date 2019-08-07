@@ -51,9 +51,10 @@ export class MyTickets extends React.Component<PageDefaultPropsType> {
       >
         <LocalNavigation list={ticketMenu.submenu} />
         <H1>{t('ticket:myTickets.pageTitle')}</H1>
-        {/*<Paragraph>{t('ticket:myTickets.description')}</Paragraph>*/}
         <Section>
           <AlertBar text={t('ticket:myTickets.alert')} />
+          <Paragraph>{t('ticket:myTickets.desc1')}</Paragraph>
+          <Paragraph>{t('ticket:myTickets.desc2')}</Paragraph>
         </Section>
         <Section>
           <MyTicketList stores={stores} t={t} router={router}/>
