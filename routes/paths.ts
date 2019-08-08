@@ -23,6 +23,8 @@ export const paths = {
     sprintDetail: '/program/sprint-detail',
     youngcoder: '/program/youngcoder',
     youngcoderDetail: '/program/youngcoder-detail',
+    openlunch: '/program/openlunch',
+    openLunchDetail: '/program/openlunch-detail',
   },
   timetable: {
     base: '/timetable',
@@ -176,10 +178,15 @@ export const programMenu: WithSubMenu = {
         link: paths.program.lightningTalk,
       },
       {
-        title: '열린 공간',
+        title: '열린공간',
         intlKey: 'gnb.program.openSpaceTalk',
         link: paths.program.openSpaceTalk,
       },
+      {
+        title: '열린점심',
+        intlKey: 'gnb.program.openlunch',
+        link: paths.program.openlunch,
+      }
     ]
   }, {
     title: '튜토리얼',

@@ -34,15 +34,20 @@
     "desc1-3": "Complaining...",
     "desc1-4": "Anything else, you want to talk to other people.",
     "desc2": "All talks must take 5 minutes. (Seriously !! After 5 minutes, staff will take the microphone from you )",
-    "desc3": "The proposal of Lightning talks will be open near the conference day. Please talk about your interesting and extraordinary story!!",
-    "header4": "View Past Lightning Talk",
-    "desc4": "You can see the previous Lighting Talks topic.",
-    "desc4-2014": "PyCon Korea 2014",
-    "desc4-2015-1": "PyCon Korea 2015 Day 1",
-    "desc4-2015-2": "PyCon Korea 2015 Day 2",
-    "desc4-2016": "PyCon APAC 2016",
-    "desc4-2017": "PyCon Korea 2017",
-    "desc4-2018": "PyCon Korea 2018"
+    "desc3": "The proposal of Lightning talks will be open from each conference day 9am. Please talk about your interesting and extraordinary story!!",
+    "header4": "List of lightning talks",
+    "alertOpening": "You can apply from 9:00 AM on the conference day, and only 10 first-come (+3 standby) talks are available. Take the courage and apply now! 🌩",
+    "submitButton": "Apply Lightning Talk",
+    "header4-1": "⭐️Lightning Talk Day 1(Sat)",
+    "header4-2": "⭐️Lightning Talk Day 2(Sun)",
+    "header5": "View Past Lightning Talk",
+    "desc5": "You can see the previous Lighting Talks topic.",
+    "desc5-2014": "PyCon Korea 2014",
+    "desc5-2015-1": "PyCon Korea 2015 Day 1",
+    "desc5-2015-2": "PyCon Korea 2015 Day 2",
+    "desc5-2016": "PyCon APAC 2016",
+    "desc5-2017": "PyCon Korea 2017",
+    "desc5-2018": "PyCon Korea 2018"
   },
   "openSpaceTalk": {
     "title": "Open Space",
@@ -106,5 +111,12 @@
     "numOfParticipants": "Num Of Participants",
     "scheduleDesc": "Schedule",
     "companyDescTitle": "Event organizer"
+  },
+  "openlunch": {
+    "title": "Open Lunch",
+    "desc1-1": "It is a program to eat lunch with PyCon Korea sponsors.",
+    "desc1-2": "There are various stories of PyCon Korea sponsors about from their services to recruitment and development culture. Don't miss the chance to eat delicious lunches, listen to passionate sponsors, and ask questions!🍱",
+    "header2": "List of open lunch",
+    "desc2": "📌The targets and contents of the open lunch is different for each sponsor, and participants who apply in advance can attend. Please refer to the more information each detail page."
   }
 }
