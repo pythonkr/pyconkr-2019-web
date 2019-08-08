@@ -31,7 +31,7 @@ query Sponsor($id: ID!) {
 }
 `
 const SponsorLogo = styled.img`
-  width: 50%;
+  width: 30%;
   margin: 40px auto;
   display: block;
 `

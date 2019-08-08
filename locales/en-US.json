@@ -83,7 +83,7 @@
     },
     "timetable": {
       "root": "Timetable",
-      "talks": "Timetable of talks",
+      "talks": "Conference",
       "lightningTalk": "Lightning Talk",
       "tutorial": "Tutorial",
       "sprint": "Sprint"
