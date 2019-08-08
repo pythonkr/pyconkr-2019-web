@@ -54,14 +54,14 @@ class DetailBox extends React.Component<PropsType> {
               <Td>{formatDateInWordsWithWeekdayAndTime(paidAt)}</Td>
             </Tr>
             <Tr>
-              <Th>취소기한</Th> {/* cancelat 이 있으면 취소일*/}
+              <Th>취소 기한</Th> {/* cancelat 이 있으면 취소일*/}
               <Td>{cancelableDate ?
                 formatDateInWordsWithWeekdayAndTime(cancelableDate) :
                 '취소 불가(Unrefundable)'}
               </Td>
             </Tr>
             <Tr>
-              <Th>등록영수증</Th>
+              <Th>등록 영수증</Th>
               <Td>
                 <Link href={`${paths.ticket.receipt}?id=${id}`}>
                   <a target='_blank' rel='noreferrer'>
