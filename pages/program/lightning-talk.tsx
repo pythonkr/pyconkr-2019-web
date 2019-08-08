@@ -1,4 +1,5 @@
-import { H1, H2, Li, Paragraph, Section, Ul } from 'components/atoms/ContentWrappers'
+import { H1, H2, H3, Li, Paragraph, Section, Ul, ContentButtonWrapper } from 'components/atoms/ContentWrappers'
+import { Button } from 'components/atoms/Button'
 import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
@@ -6,6 +7,7 @@ import PageTemplate from 'components/templates/PageTemplate'
 import i18next from 'i18next'
 import _ from 'lodash'
 import React from 'react'
+import { AlertBar } from 'components/atoms/AlertBar'
 import { programMenu } from 'routes/paths'
 import { withNamespaces } from '../../i18n'
 
@@ -44,22 +46,42 @@ export class LightningTalk extends React.Component<PropsType> {
         </Section>
         <Section>
           <H2>{ t('program:lightningTalk.header4') }</H2>
+          <AlertBar text={t('program:lightningTalk.alertOpening')}></AlertBar>
+          <H3>{ t('program:lightningTalk.header4-1') }</H3>
+          <ContentButtonWrapper>
+            <Button
+              intlKey='tempkey'
+              // to='https://forms.gle/6C5JCqGtC657DQ6i6'
+              disabled
+            >{ t('program:lightningTalk.submitButton') }</Button>
+          </ContentButtonWrapper>
+          <H3>{ t('program:lightningTalk.header4-2') }</H3>
+          <ContentButtonWrapper>
+            <Button
+              intlKey='tempkey'
+              // to='https://forms.gle/6C5JCqGtC657DQ6i6'
+              disabled
+            >{ t('program:lightningTalk.submitButton') }</Button>
+          </ContentButtonWrapper>
+        </Section>
+        <Section>
+          <H2>{ t('program:lightningTalk.header5') }</H2>
           <Paragraph>
-            { t('program:lightningTalk.desc4') }
+            { t('program:lightningTalk.desc5') }
           </Paragraph>
           <Ul>
             <Li><a href='https://www.pycon.kr/2014/program/22' target='_blank' rel='noreferrer'>
-              { t('program:lightningTalk.desc4-2014') }</a></Li>
+              { t('program:lightningTalk.desc5-2014') }</a></Li>
             <Li><a href='https://www.pycon.kr/2015/program/77' target='_blank' rel='noreferrer'>
-              { t('program:lightningTalk.desc4-2015-1') }</a></Li>
+              { t('program:lightningTalk.desc5-2015-1') }</a></Li>
             <Li><a href='https://www.pycon.kr/2015/program/78' target='_blank' rel='noreferrer'>
-              { t('program:lightningTalk.desc4-2015-2') }</a></Li>
+              { t('program:lightningTalk.desc5-2015-2') }</a></Li>
             <Li><a href='https://www.pycon.kr/2016apac/program/lightning_talk/' target='_blank' rel='noreferrer'>
-              { t('program:lightningTalk.desc4-2016') }</a></Li>
+              { t('program:lightningTalk.desc5-2016') }</a></Li>
             <Li><a href='https://www.pycon.kr/2017/program/lightning_talk' target='_blank' rel='noreferrer'>
-              { t('program:lightningTalk.desc4-2017') }</a></Li>
+              { t('program:lightningTalk.desc5-2017') }</a></Li>
             <Li><a href='https://archive.pycon.kr/2018/program/lightning_talk/' target='_blank' rel='noreferrer'>
-              { t('program:lightningTalk.desc4-2018') }</a></Li>
+              { t('program:lightningTalk.desc5-2018') }</a></Li>
           </Ul>
 
         </Section>

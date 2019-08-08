@@ -21,6 +21,7 @@ query Sponsors {
     name
     openLunchTitle
     level {
+      id
       openLunch
     }
   }
@@ -80,7 +81,10 @@ export class Openlunch extends React.Component<PropsType> {
           <Query query={SPONSORS}>
             {({ loading, error, data }) => {
               if (loading) return (<Loading width={50} height={50}/>)
-              if (error) return (<AlertBar text={error.message} />)
+              if (error) {
+                console.log(error)
+                return (<AlertBar text={error.message} />)
+              }
               const sponsors = data.sponsors.filter(sponsor => sponsor.level.openLunch && sponsor.openLunchTitle)
               if(_.isEmpty(sponsors)){
                 return (
