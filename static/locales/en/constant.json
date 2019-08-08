@@ -13,8 +13,8 @@
     },
     "tutorial": {
       "name": "Tutorial",
-      "schedule": "August 16",
-      "dayofweek": "Fri"
+      "schedule": "August 15-16",
+      "dayofweek": "Thu-Fri"
     },
     "conference": {
       "name": "Conference",

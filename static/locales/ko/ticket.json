@@ -51,7 +51,7 @@
             "title": "컨퍼런스 얼리버드"
         },
         "patron": {
-            "title": "컨퍼런스 개인 후원",
+            "title": "컨퍼런스 개인후원",
             "minimumPriceWarning": "후원 티켓 가격은 최소 {{price}} 이어야 합니다."
         },
         "option": {
@@ -122,7 +122,7 @@
         "description": "결제 정보를 입력하고 결제를 진행합니다.",
         "paymentInfo": {
             "title": "결제정보",
-            "ticketTypeTitle": "티켓유형",
+            "ticketTypeTitle": "티켓 유형",
             "priceTitle": "가격",
             "currency": "원"
         },
