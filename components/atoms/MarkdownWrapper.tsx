@@ -16,7 +16,9 @@ export const StyledMarkdownWrapper = styled.div`
   .markdown-body ol {
     list-style-type: decimal;
   }
-
+  strong {
+    font-weight: bold;
+  }
   p {
     font-size: 17px;
     line-height: 33px;
