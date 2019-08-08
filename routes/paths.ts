@@ -212,14 +212,7 @@ export const timetableMenu: WithSubMenu = {
   submenu: [{
     title: '컨퍼런스',
     intlKey: 'gnb.timetable.talks',
-    basePath: paths.timetable.base,
-    submenu: [
-      {
-        title: '발표 세션',
-        intlKey: 'gnb.timetable.talks',
-        link: paths.timetable.talks,
-      },
-    ]
+    link: paths.timetable.talks,
   }, {
     title: '튜토리얼',
     intlKey: 'gnb.timetable.tutorial',
