@@ -67,9 +67,6 @@ class YoungcoderPage extends React.Component<PageDefaultPropsType> {
         </Section>
         <Section>
           <H2>{ t('ticket:common.list') }</H2>
-          <Paragraph>
-            { t('ticket:youngcoder.') }
-          </Paragraph>
           <YoungCoderTicketList stores={stores} t={t} router={router} />
         </Section>
         <Section>
