@@ -100,20 +100,23 @@
             "title": "영코더 티켓 옵션",
             "name": "참가 학생 이름",
             "birthDate": "생년월일"
-        }
+        },
+        "desc1": "단체 구매 문의",
+        "desc1-1": "영코더/아이돌봄 티켓은 계정별 2매씩만 구매 가능합니다.",
+        "desc1-2": "한 계정으로 3명 이상의 고등학생을 위해 영코더 티켓을 구매하고자하시는 경우, pyconkr@pycon.kr로 문의 바랍니다."
     },
     "childcare": {
         "title": "아이돌봄 티켓",
         "description": "아이돌봄 설명",
         "option" : {
             "title": "아이돌봄 티켓 옵션",
-            "name": "이름",
-            "birthDate": "생년월일",
-            "requireParkingDiscount": "주차종일권 할인(50%) 필요여부",
+            "name": "아이 이름",
+            "birthDate": "아이 생년월일",
+            "requireParkingDiscount": "주차종일권 할인(50%) 필요 여부",
             "yes": "Yes",
             "no": "No",
             "keepInMind": "주의할 점",
-            "keepInMindPlaceHolder": "같이 참석하는 형제 혹은 자매가 있는지 알러지가 있는 지 등을 알려주세요."
+            "keepInMindPlaceHolder": "같이 참석하는 형제 혹은 자매가 있는지, 알러지가 있는지 등을 알려주세요."
         }
     },
     "payment": {

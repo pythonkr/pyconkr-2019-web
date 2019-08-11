@@ -57,7 +57,19 @@ class YoungcoderPage extends React.Component<PageDefaultPropsType> {
           closeDate={stores.scheduleStore.schedule.childcareTicketFinishAt}
         />
         <Section>
+          <H2> { t('ticket:youngcoder.desc1') }</H2>
+          <Paragraph>
+            { t('ticket:youngcoder.desc1-1') }
+          </Paragraph>
+          <Paragraph>
+            { t('ticket:youngcoder.desc1-2') }
+          </Paragraph>
+        </Section>
+        <Section>
           <H2>{ t('ticket:common.list') }</H2>
+          <Paragraph>
+            { t('ticket:youngcoder.') }
+          </Paragraph>
           <YoungCoderTicketList stores={stores} t={t} router={router} />
         </Section>
         <Section>
