@@ -67,7 +67,9 @@
     "upload": "업로드",
     "comment": "준비위원회에게 전하고 싶은 말",
     "commentDesc": "발표와 관련해 준비위원회에게 전하고 싶은 말이 있다면 남겨주세요.",
-    "submit": "제출"
+    "submit": "제출",
+    "submitAlert": "라이트닝 토크 제출이 완료되었습니다. 발표 자료 검토 후 라이트닝 토크가 확정됩니다.",
+    "materialAlert": "발표 자료 제출이 완료되었습니다."
   },
   "openSpaceTalk": {
     "title": "열린공간",
