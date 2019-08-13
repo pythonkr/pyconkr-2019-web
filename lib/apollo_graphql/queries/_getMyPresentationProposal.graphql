@@ -13,6 +13,8 @@ query getMyPresentationProposal {
         detailDesc
         language
         duration
+        slideUrl
+        videoUrl
         category {
             id
             name

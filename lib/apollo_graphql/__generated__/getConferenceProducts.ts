@@ -25,7 +25,7 @@ export interface getConferenceProducts_conferenceProducts {
   __typename: "TicketProductNode";
   id: string;
   type: TicketTypeNode | null;
-  name: string | null;
+  name: string;
   desc: string;
   warning: string;
   /**

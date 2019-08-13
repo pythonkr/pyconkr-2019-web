@@ -1,12 +1,15 @@
 mutation createOrUpdatePresentationProposal($data: PresentationProposalInput!) {
     createOrUpdatePresentationProposal(data: $data) {
         proposal {
+            id
             name
             desc
             backgroundDesc
             detailDesc
             language
             duration
+            slideUrl
+            videoUrl
             isPresentedBefore
             placePresentedBefore
             presentedSlideUrlBefore

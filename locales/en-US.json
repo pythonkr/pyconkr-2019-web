@@ -356,6 +356,8 @@
       },
       "application": {
         "title": "Apply for CFP",
+        "slideUrl": "Slide Url",
+        "slideUrlDesc": "Please enter the link after uploading presentation material to Google Slide or Slideshare.",
         "stages": {
           "common": {
             "button": {

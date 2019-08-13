@@ -47,6 +47,8 @@ export interface getMyPresentationProposal_myPresentationProposal {
   detailDesc: string;
   language: LanguageNode | null;
   duration: DurationNode | null;
+  slideUrl: string;
+  videoUrl: string;
   category: getMyPresentationProposal_myPresentationProposal_category | null;
   difficulty: getMyPresentationProposal_myPresentationProposal_difficulty | null;
   isPresentedBefore: boolean;

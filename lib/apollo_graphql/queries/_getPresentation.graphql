@@ -64,7 +64,6 @@ query getPresentation($id: Int!) {
         submitted
         accepted
         slideUrl
-        pdfUrl
         videoUrl
         startedAt
         finishedAt

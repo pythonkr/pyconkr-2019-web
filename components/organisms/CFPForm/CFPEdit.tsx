@@ -259,6 +259,24 @@ export default class CFPEdit extends React.Component<PropsType> {
             </fieldset>
           </div>
           <label className='required'>
+            <IntlText intlKey='contribute.talkProposal.application.slideUrl'>
+              슬라이드 주소
+            </IntlText>
+          </label>
+          <p><IntlText intlKey='contribute.talkProposal.application.slideUrlDesc'>
+            Google Slide나 Slideshare 등에 업로드한 이후 해당 링크를 입력해주세요.
+            </IntlText></p>
+          <input
+            type='text'
+            value={proposal.slideUrl}
+            onChange={e => proposal.setSlideUrl(e.target.value)}
+            disabled={!isAcceptedProposal}
+            aria-required={true}
+            required
+          />
+          {
+            // TODO: 불필요한 내용 제거 내년에 살려주세요 :)
+            /* <label className='required'>
             <IntlText intlKey='contribute.talkProposal.application.stages.stages3.item1.sub1'>
               제안의 상세한 내용
             </IntlText>
@@ -319,7 +337,6 @@ export default class CFPEdit extends React.Component<PropsType> {
               발표한 행사
             </IntlText>
           </label>
-          {/*tslint:disable-next-line: react-a11y-required*/}
           <input
             type='text'
             value={proposal.placePresentedBefore}
@@ -333,7 +350,6 @@ export default class CFPEdit extends React.Component<PropsType> {
               발표 자료 링크
             </IntlText>
           </label>
-           {/*tslint:disable-next-line: react-a11y-required*/}
           <input
             type='url'
             value={proposal.presentedSlideUrlBefore}
@@ -353,7 +369,7 @@ export default class CFPEdit extends React.Component<PropsType> {
             value={proposal.comment}
             onChange={e => proposal.setComment(e.target.value)}
             disabled={isAcceptedProposal}
-          />
+          /> */}
           <FlexSpaceBetweenWrapper style={{ justifyContent: 'center', marginTop: 80 }}>
             <Button
               tag='button'
