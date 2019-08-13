@@ -20,6 +20,7 @@ export class PresentationProposal implements PresentationProposalNode {
     @observable descEn: string = ''
     @observable backgroundDesc: string = ''
     @observable detailDesc: string = ''
+    @observable slideUrl: string = ''
     @observable language: LanguageNode | null = null
     @observable duration: DurationNode | null = null
     @observable category: CategoryNode | null = null
@@ -74,6 +75,10 @@ export class PresentationProposal implements PresentationProposalNode {
 
     @action setLanguage(language: LanguageNode) {
         this.language = language
+    }
+
+    @action setSlideUrl(newSlideUrl: string) {
+        this.slideUrl = newSlideUrl
     }
 
     @action setDetailDesc(newDetailDesc: string) {

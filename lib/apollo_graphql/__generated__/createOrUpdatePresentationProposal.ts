@@ -28,12 +28,15 @@ export interface createOrUpdatePresentationProposal_createOrUpdatePresentationPr
 
 export interface createOrUpdatePresentationProposal_createOrUpdatePresentationProposal_proposal {
   __typename: "PresentationProposalNode";
+  id: string;
   name: string | null;
   desc: string;
   backgroundDesc: string;
   detailDesc: string;
   language: LanguageNode | null;
   duration: DurationNode | null;
+  slideUrl: string;
+  videoUrl: string;
   isPresentedBefore: boolean;
   placePresentedBefore: string;
   presentedSlideUrlBefore: string;

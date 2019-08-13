@@ -12,7 +12,7 @@ export interface getMyTickets_myTickets_product {
   __typename: "TicketProductNode";
   id: string;
   type: TicketTypeNode | null;
-  name: string | null;
+  name: string;
   desc: string;
   warning: string;
   /**
@@ -39,6 +39,7 @@ export interface getMyTickets_myTickets {
    * The ID of the object.
    */
   id: string;
+  ticketId: number | null;
   /**
    * 아이엠포트를 통해 결제한 가격입니다.
    */

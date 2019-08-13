@@ -8,11 +8,79 @@ import i18next from 'i18next'
 import _ from 'lodash'
 import React from 'react'
 import { AlertBar } from 'components/atoms/AlertBar'
-import { programMenu } from 'routes/paths'
+import { programMenu, paths } from 'routes/paths'
+import { ProgramUl, ProgramItem } from 'components/molecules/Program/List'
 import { withNamespaces } from '../../i18n'
+import gql from 'graphql-tag'
+import { Query } from 'react-apollo'
+import { Loading } from 'components/atoms/Loading'
 
 export type PropsType = {
   t: i18next.TFunction;
+}
+
+const LIGHTNING_TALKS = gql`
+query LightningTalks {
+  lightningTalks {
+    id
+    name
+    day
+    owner {
+      profile {
+        name
+      }
+    }
+  }
+}
+`
+
+const LightningTalkList = (props) => {
+  const { t, lightningTalks } = props
+  const talk_day1 = lightningTalks.filter(talk => talk.day == 1)
+  const talk_day2 = lightningTalks.filter(talk => talk.day == 2)
+
+  return (<>
+    <H3>{ t('program:lightningTalk.header4-1') }</H3>
+    <ProgramUl>
+      {
+        talk_day1.map(({id, name, owner}, index) => {
+          return (
+            <ProgramItem
+              key={id}
+              speakerName={owner ? owner.profile.name : ''}
+              name={(index > 9 ? t('program:lightningTalk.stanby', {number: index - 9}) : `${index + 1}.`) + name} />
+          )
+        })
+      }
+    </ProgramUl>
+    <ContentButtonWrapper>
+      <Button
+        intlKey='tempkey'
+        to={paths.program.proposingLightningTalk}
+        disabled
+      >{ t('program:lightningTalk.submitButton') }</Button>
+    </ContentButtonWrapper>
+    <H3>{ t('program:lightningTalk.header4-2') }</H3>
+    <ProgramUl>
+      {
+        talk_day2.map(({id, name, owner}, index) => {
+          return (
+            <ProgramItem
+              key={id}
+              speakerName={owner ? owner.profile.name : ''}
+              name={(index > 9 ? t('program:lightningTalk.stanby', {number: index - 9}) : `${index + 1}. `) + name} />
+          )
+        })
+      }
+    </ProgramUl>
+    <ContentButtonWrapper>
+      <Button
+        intlKey='tempkey'
+        to={paths.program.proposingLightningTalk}
+        disabled
+      >{ t('program:lightningTalk.submitButton') }</Button>
+    </ContentButtonWrapper>
+  </>)
 }
 
 export class LightningTalk extends React.Component<PropsType> {
@@ -47,22 +115,15 @@ export class LightningTalk extends React.Component<PropsType> {
         <Section>
           <H2>{ t('program:lightningTalk.header4') }</H2>
           <AlertBar text={t('program:lightningTalk.alertOpening')}></AlertBar>
-          <H3>{ t('program:lightningTalk.header4-1') }</H3>
-          <ContentButtonWrapper>
-            <Button
-              intlKey='tempkey'
-              // to='https://forms.gle/6C5JCqGtC657DQ6i6'
-              disabled
-            >{ t('program:lightningTalk.submitButton') }</Button>
-          </ContentButtonWrapper>
-          <H3>{ t('program:lightningTalk.header4-2') }</H3>
-          <ContentButtonWrapper>
-            <Button
-              intlKey='tempkey'
-              // to='https://forms.gle/6C5JCqGtC657DQ6i6'
-              disabled
-            >{ t('program:lightningTalk.submitButton') }</Button>
-          </ContentButtonWrapper>
+          <Query query={LIGHTNING_TALKS}>
+            {
+              ({ loading, error, data }) => {
+                if (loading) return (<Loading width={50} height={50}/>);
+                if (error) return (<AlertBar text={error.message} />)
+                return (<LightningTalkList t={t} lightningTalks={data.lightningTalks}/>)
+              }
+            }
+          </Query>
         </Section>
         <Section>
           <H2>{ t('program:lightningTalk.header5') }</H2>

@@ -29,8 +29,7 @@ query MyLightningTalk {
     id
     name
     comment
-    material
-    materialLink
+    slideUrl
   }
 }
 `
@@ -42,17 +41,8 @@ mutation UpdateLightningTalk($data: LightningTalkInput!){
       id
       name
       comment
-      material
-      materialLink
+      slideUrl
     }
-  }
-}
-`
-
-const UPLOAD_MATERIAL = gql`
-mutation UploadLightningTalkMaterial($file: Upload!) {
-  uploadLightningTalkMaterial(file: $file) {
-      file
   }
 }
 `
@@ -76,24 +66,16 @@ class LightningTalkEdit extends React.Component {
     name: '',
     material: '',
     comment: '',
-    materialLink: ''
+    slideUrl: ''
   }
   constructor(props) {
     super(props)
     if(props.lightningTalk){
-      const {name, material, materialLink, comment} = props.lightningTalk
+      const {name, slideUrl, comment} = props.lightningTalk
       this.state.name = name
-      this.state.material = material
+      this.state.slideUrl = slideUrl
       this.state.comment = comment
-      this.state.materialLink = materialLink
     }
-  }
-  getFilename(url: string) {
-    if (!url) {
-      return ''
-    }
-    return url.substring(url.lastIndexOf('/') + 1).split('?')[0]
-    
   }
   render () {
     const {t} = this.props
@@ -123,7 +105,7 @@ class LightningTalkEdit extends React.Component {
                   data: {
                     name: this.state.name,
                     comment: this.state.comment,
-                    materialLink: this.state.materialLink
+                    slideUrl: this.state.slideUrl
                   }
                 }})
               }}>
@@ -135,55 +117,16 @@ class LightningTalkEdit extends React.Component {
                 aria-required={true}
                 required
               />
-              <label>{t('program:proposingLightningTalk.materialLink')}</label>
-              <InputDesc>{t('program:proposingLightningTalk.materialDesc')}</InputDesc>
+              <label>{t('program:proposingLightningTalk.slideUrl')}</label>
+              <InputDesc>{t('program:proposingLightningTalk.slideUrlDesc')}</InputDesc>
               <input
                 type='text'
-                value={this.state.materialLink}
-                onChange={e => this.setState({ materialLink: e.target.value })}
+                value={this.state.slideUrl}
+                onChange={e => this.setState({ slideUrl: e.target.value })}
                 aria-required={true}
-                required={!this.state.material}
-require              />
-              <label className='required'>{t('program:proposingLightningTalk.material')}</label>
-              <InputDesc>{t('program:proposingLightningTalk.materialLinkDesc')}</InputDesc>
-              <FileName><a href={this.state.material}>{this.getFilename(this.state.material)}</a></FileName>
-              <Mutation
-                mutation={UPLOAD_MATERIAL}
-                onCompleted={ data => {
-                  alert(t('program:proposingLightningTalk.materialAlert'))
-                  this.setState({
-                    material: data.uploadLightningTalkMaterial.file
-                  })
-                }}
-                onError={ error => {
-                  alert(error)
-                }} >
-                {(uploadLightningTalkMaterial, {data}) => (
-                  <label
-                    htmlFor='material_upload'
-                    className='file-upload__label'
-                  >
-                    {t('program:proposingLightningTalk.upload')}
-                    <input
-                        id='material_upload'
-                        className='file-upload__input'
-                        name='material-upload'
-                        type='file'
-                        onChange={({ target: { validity, files } }) => {
-                          if (!validity.valid || !files) {
-                            return
-                          }
-                          uploadLightningTalkMaterial({variables: {
-                            file: files[0]
-                          }})
-                        }}
-                        required={!this.state.materialLink}
-                        aria-required='true'
-                      />
-                  </label>
-                )}
-            </Mutation>
-            <label>{t('program:proposingLightningTalk.comment')}</label>
+                required
+                />
+              <label>{t('program:proposingLightningTalk.comment')}</label>
               <InputDesc>{t('program:proposingLightningTalk.commentDesc')}</InputDesc>
               <input
                 type='text'
@@ -197,7 +140,6 @@ require              />
                   tag='button'
                   intlKey='xxx'
                   style={{ marginTop: '20px' }}
-                  // disabled={!this.hasSthToSubmit()}
                 >
                   {t('program:proposingLightningTalk.submit')}
                 </Button>
