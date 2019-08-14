@@ -8,6 +8,7 @@ import _ from 'lodash'
 import { observer } from 'mobx-react'
 import { StoresType } from 'pages/_app'
 import * as React from 'react'
+import { withNamespaces } from '../../../i18n'
 import { TimetableContents } from './StyledComponents'
 
 type PropsType = {
@@ -20,7 +21,7 @@ type PropsType = {
 @observer
 class TimeTable extends React.Component<PropsType> {
   render() {
-    const { timetableData, baseDetailHref } = this.props
+    const { timetableData, baseDetailHref, t } = this.props
 
     if (_.isNil(timetableData)) return null
 
@@ -29,6 +30,11 @@ class TimeTable extends React.Component<PropsType> {
         <TimetableContents>
           {timetableData && timetableData.map((item: PresentationNode | TutorialNode | SprintNode, index: number) => {
             const { owner, place, name, id, startedAt, finishedAt, isBreaktime } = item
+            let slideUrl = ''
+            if (item.__typename === 'PublicPresentationNode') {
+              slideUrl = item.slideUrl
+            }
+
             const speakerName = owner && owner.profile && owner.profile.name
             const roomNo = place && place.name
             let difficultyKo
@@ -70,6 +76,8 @@ class TimeTable extends React.Component<PropsType> {
                 title={name || 'Unknown'}
                 difficultyKo={difficultyKo}
                 difficultyEn={difficultyEn}
+                slideUrl={slideUrl}
+                slideTitle={t('timetable:slides')}
                 isFirstItem={index === 0}
                 isLastItem={isLastItem}
                 isSameGroup={isSameGroup}
@@ -84,4 +92,4 @@ class TimeTable extends React.Component<PropsType> {
   }
 }
 
-export default TimeTable
+export default withNamespaces(['timetable'])(TimeTable)
