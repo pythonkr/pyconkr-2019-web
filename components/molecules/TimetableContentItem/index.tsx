@@ -1,8 +1,9 @@
+import _ from 'lodash'
 import * as React from 'react'
 
 import Link from 'next/link'
 import { formatDateOnlyTime } from 'utils/formatDate'
-import { Tag, TagWrapper, TimeTableContentItem } from './StyledComponents'
+import { LinkTag, Tag, TagWrapper, TimeTableContentItem } from './StyledComponents'
 
 type PropsType = {
   id: string;
@@ -13,6 +14,8 @@ type PropsType = {
   speakerName: string;
   difficultyKo?: string;
   difficultyEn?: string;
+  slideUrl?: string;
+  slideTitle?: string;
   isFirstItem: boolean;
   isLastItem: boolean;
   isSameGroup: boolean | undefined;
@@ -36,6 +39,8 @@ class TimetableContentItem extends React.Component<PropsType> {
       isSameGroup,
       isBreaktime,
       detailHref,
+      slideUrl,
+      slideTitle,
     } = this.props
     let time = isSameGroup ? '' : `${formatDateOnlyTime(startAt)} ~ ${formatDateOnlyTime(finishAt)}`
 
@@ -78,13 +83,18 @@ class TimetableContentItem extends React.Component<PropsType> {
                 </Link>
               )
             }
-            {difficultyKo && difficultyEn && (
-              <TagWrapper>
+            <TagWrapper>
+              {difficultyKo && difficultyEn && (
                 <Tag className={difficultyEn && difficultyEn.toLowerCase()}>
                   {difficultyKo}
                 </Tag>
-              </TagWrapper>
-            )}
+              )}
+              {slideUrl && !_.isEmpty(slideUrl) && (
+                <LinkTag href={slideUrl} target='_blank' className='slide'>
+                  {slideTitle}
+                </LinkTag>
+              )}
+            </TagWrapper>
           </div>
         </div>
       </TimeTableContentItem>
