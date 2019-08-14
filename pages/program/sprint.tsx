@@ -76,11 +76,11 @@ export class Sprint extends React.Component<PropsType> {
             { t('program:sprint.desc1-2') }
           </Paragraph>
           <ContentButtonWrapper>
-            <Button
-              intlKey='tempkey'
-              to='https://forms.gle/6C5JCqGtC657DQ6i6'
-              outlink
-            >스프린트 진행 신청하기</Button>
+            {/*<Button*/}
+            {/*  intlKey='tempkey'*/}
+            {/*  to='https://forms.gle/6C5JCqGtC657DQ6i6'*/}
+            {/*  outlink*/}
+            {/*>스프린트 진행 신청하기</Button>*/}
           </ContentButtonWrapper>
         </Section>
         <Section>
