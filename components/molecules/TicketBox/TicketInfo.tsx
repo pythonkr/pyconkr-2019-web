@@ -149,6 +149,7 @@ class TicketInfo extends React.Component<PropsType> {
         {status === TicketStatus.PAID && <TicketQRCode value={ticketUrl} size={156}/>}
         <TicketButtonWrapper>
           {(isFuture(cancelableDate) && status === TicketStatus.PAID) ? <button onClick={this.onRefund}>Refund</button> : ''}
+          {status === TicketStatus.CANCELLED ? <button>Cancelled</button> : ''}
           <button onClick={this.onDetail}>More</button>
         </TicketButtonWrapper>
       </TicketInfoWrapper>

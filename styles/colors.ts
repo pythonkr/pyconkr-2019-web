@@ -41,6 +41,7 @@ export const TICKET_COLOR = {
   SPRINT: '#54428E',
   YOUNGCODER: '#5C2751',
   CHILD_CARE: '#36558F',
+  DISABLE: '#ababab'
 }
 
 export type TICKET_COLOR_TYPE = Enum<typeof TICKET_COLOR>
