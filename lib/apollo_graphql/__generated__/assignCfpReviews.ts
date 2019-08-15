@@ -39,7 +39,7 @@ export interface assignCfpReviews_assignCfpReviews_reviews {
   __typename: "CFPReviewNode";
   id: string;
   presentation: assignCfpReviews_assignCfpReviews_reviews_presentation | null;
-  comment: string;
+  comment: string | null;
   createdAt: any;
   updatedAt: any;
 }

@@ -106,6 +106,13 @@ export class TalkDetail extends React.Component<PropsType> {
                 {`${formatDateInWordsWithWeekdayAndTime(presentation.startedAt)}~${formatDateInWordsWithWeekdayAndTime(presentation.finishedAt)}` }
               </ProgramTableRow>
             }
+            {
+              presentation.place &&
+              <ProgramTableRow
+                header={t('program:common.place')} >
+                { presentation.place.name }
+              </ProgramTableRow>
+            }
             <ProgramTableRow
               header={t('program:talkDetail.videoPublic')}
               color={presentation.recordable ? null : 'red'} >

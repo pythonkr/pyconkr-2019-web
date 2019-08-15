@@ -13,7 +13,7 @@ export interface CreateOrUpdateSponsor_createOrUpdateSponsor_sponsor_creator_pro
   name: string;
   nameKo: string | null;
   nameEn: string | null;
-  email: string;
+  email: string | null;
 }
 
 export interface CreateOrUpdateSponsor_createOrUpdateSponsor_sponsor_creator {

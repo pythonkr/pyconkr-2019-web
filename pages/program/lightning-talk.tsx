@@ -4,6 +4,7 @@ import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
+import { isFuture, isPast } from 'date-fns'
 import i18next from 'i18next'
 import _ from 'lodash'
 import React from 'react'
@@ -14,6 +15,7 @@ import { withNamespaces } from '../../i18n'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 import { Loading } from 'components/atoms/Loading'
+import * as moment from 'moment'
 
 export type PropsType = {
   t: i18next.TFunction;
@@ -21,12 +23,18 @@ export type PropsType = {
 
 const LIGHTNING_TALKS = gql`
 query LightningTalks {
+  schedule {
+    id
+    lightningTalkProposalStartAt
+    lightningTalkProposalFinishAt
+  }
   lightningTalks {
     id
     name
     day
     owner {
       profile {
+        id
         name
       }
     }
@@ -35,15 +43,20 @@ query LightningTalks {
 `
 
 const LightningTalkList = (props) => {
-  const { t, lightningTalks } = props
-  const talk_day1 = lightningTalks.filter(talk => talk.day == 1)
-  const talk_day2 = lightningTalks.filter(talk => talk.day == 2)
-
+  const { t, lightningTalks, proposalStartAt, proposalFinishAt } = props
+  const talkDay1 = lightningTalks.filter(talk => talk.day == 1)
+  const talkDay2 = lightningTalks.filter(talk => talk.day == 2)
+  const proposalStartAt_1 = proposalStartAt
+  const proposalFinishAt_1 = proposalFinishAt
+  const proposalStartAt_2 = moment(proposalStartAt).add(1, 'days')
+  const proposalFinishAt_2 = moment(proposalFinishAt).add(1, 'days')
+  const isDay1Open = isPast(proposalStartAt_1) && isFuture(proposalFinishAt_1)
+  const isDay2Open = isPast(proposalStartAt_2) && isFuture(proposalFinishAt_2)
   return (<>
     <H3>{ t('program:lightningTalk.header4-1') }</H3>
     <ProgramUl>
       {
-        talk_day1.map(({id, name, owner}, index) => {
+        talkDay1.map(({id, name, owner}, index) => {
           return (
             <ProgramItem
               key={id}
@@ -57,13 +70,13 @@ const LightningTalkList = (props) => {
       <Button
         intlKey='tempkey'
         to={paths.program.proposingLightningTalk}
-        disabled
+        disabled={!isDay1Open}
       >{ t('program:lightningTalk.submitButton') }</Button>
     </ContentButtonWrapper>
     <H3>{ t('program:lightningTalk.header4-2') }</H3>
     <ProgramUl>
       {
-        talk_day2.map(({id, name, owner}, index) => {
+        talkDay2.map(({id, name, owner}, index) => {
           return (
             <ProgramItem
               key={id}
@@ -77,7 +90,7 @@ const LightningTalkList = (props) => {
       <Button
         intlKey='tempkey'
         to={paths.program.proposingLightningTalk}
-        disabled
+        disabled={!isDay2Open}
       >{ t('program:lightningTalk.submitButton') }</Button>
     </ContentButtonWrapper>
   </>)
@@ -120,7 +133,16 @@ export class LightningTalk extends React.Component<PropsType> {
               ({ loading, error, data }) => {
                 if (loading) return (<Loading width={50} height={50}/>);
                 if (error) return (<AlertBar text={error.message} />)
-                return (<LightningTalkList t={t} lightningTalks={data.lightningTalks}/>)
+                const {
+                  lightningTalkProposalStartAt, 
+                  lightningTalkProposalFinishAt} = data.schedule
+                return (
+                  <LightningTalkList 
+                    t={t} 
+                    lightningTalks={data.lightningTalks}
+                    proposalStartAt={lightningTalkProposalStartAt}
+                    proposalFinishAt={lightningTalkProposalFinishAt}/>
+                )
               }
             }
           </Query>

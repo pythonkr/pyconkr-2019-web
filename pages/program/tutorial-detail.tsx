@@ -101,6 +101,13 @@ const TutorialDetailContent = (props) => {
             </ProgramTableRow>
           }
           {
+            tutorial.place &&
+            <ProgramTableRow
+              header={t('program:common.place')} >
+              { tutorial.place.name }
+            </ProgramTableRow>
+          }
+          {
             tutorial.participants &&
             <>
               <ProgramTableRow

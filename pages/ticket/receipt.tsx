@@ -2,11 +2,9 @@ import {inject, observer} from 'mobx-react'
 import * as React from 'react'
 import {
   ContentTableWrapper,
-  TBody, Table,
-  Td,
-  Th,
-  Tr
+  TableList,
 } from '../../components/atoms/ContentWrappers'
+import { ProgramTableRow } from 'components/molecules/Program/Detail'
 import {PageDefaultPropsType} from 'types/PageDefaultPropsType'
 import PageTemplate from 'components/templates/PageTemplate'
 import Footer from 'components/organisms/Footer'
@@ -17,6 +15,7 @@ import {toJS} from 'mobx'
 import {withRouter} from 'next/router'
 import {Loading} from 'components/atoms/Loading'
 import {FormNeedsLogin} from 'components/atoms/FormNeedsLogin'
+import {formatDateInWordsWithWeekdayAndTime} from 'utils/formatDate'
 
 @(withRouter as any)
 @inject('stores')
@@ -34,37 +33,44 @@ export default class Receipt extends React.Component<PageDefaultPropsType> {
 
     return (
       <ContentTableWrapper>
-        <Table>
-          <TBody>
-            <Tr>
-              <Th>Name</Th>
-              <Td>{profile.nameKo}({profile.nameEn})</Td>
-            </Tr>
-            <Tr>
-              <Th>Ticket Type</Th>
-              <Td>PyCon Korea 2019 - {currentTicket.product.type} - {currentTicket.product.nameKo}({currentTicket.product.nameEn})</Td>
-            </Tr>
-            <Tr>
-              <Th>Price</Th>
-              <Td>{currentTicket.amount}</Td>
-            </Tr>
-            <Tr>
-              <Th>Provider</Th>
-              <Td>
-                Python Korea Inc.<br/>Chair man. Kwon-Han, Bae<br/>
-                <img
-                  width='160px'
-                  height='160px'
-                  src='/static/images/stamp.jpg'
-                />
-              </Td>
-            </Tr>
-            <Tr>
-              <Th>Provider Company Number</Th>
-              <Td>338-82-00046</Td>
-            </Tr>
-          </TBody>
-        </Table>
+        <TableList>
+          <ProgramTableRow
+            header={'Name'}
+            bold>
+            {profile.nameKo}({profile.nameEn})
+          </ProgramTableRow>
+          <ProgramTableRow
+            header={'Ticket Type'}
+            bold>
+            PyCon Korea 2019 - {currentTicket.product.type} - {currentTicket.product.nameKo}({currentTicket.product.nameEn})
+          </ProgramTableRow>
+          <ProgramTableRow
+            header={'Price'}
+            bold>
+            {currentTicket.amount}
+          </ProgramTableRow>
+          <ProgramTableRow
+            header={'Registered At'}
+            bold>
+            {formatDateInWordsWithWeekdayAndTime(currentTicket.registeredAt)}
+          </ProgramTableRow>
+          <ProgramTableRow
+            header={'Provider'}
+            bold>
+            Python Korea Inc.<br/>Chair man. Kwon-Han, Bae<br/>
+            <img
+              width='160px'
+              height='160px'
+              src='/static/images/stamp.jpg'
+            />
+          </ProgramTableRow>
+          <ProgramTableRow
+            header={'Provider Company Number'}
+            bold>
+            338-82-00046
+          </ProgramTableRow>
+        </TableList>
+        
       </ContentTableWrapper>
     )
   }
@@ -79,10 +85,10 @@ export default class Receipt extends React.Component<PageDefaultPropsType> {
         footer={<Footer/>}
       >
         <H1><IntlText intlKey='ticket.myTickets.title'>
-          등록 영수증
+          등록/참석 확인증
         </IntlText></H1>
         <Paragraph><IntlText intlKey='ticket.myTickets.description'>
-          내가 구매한 티켓의 등록 영수증을 확인합니다.
+          구매한 티켓으로 등록하고 참석하였음을 확인합니다.
         </IntlText></Paragraph>
         <Section>
           {!currentTicket ? '잘못된 요청입니다' : this.renderReceipt()}

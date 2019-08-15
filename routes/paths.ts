@@ -16,6 +16,7 @@ export const paths = {
     talks: '/program/talks',
     talkDetail: '/program/talk-detail',
     lightningTalk: '/program/lightning-talk',
+    proposingLightningTalk: '/program/proposing-lightning-talk',
     openSpaceTalk: '/program/open-space-talk',
     tutorial: '/program/tutorial',
     tutorialDetail: '/program/tutorial-detail',

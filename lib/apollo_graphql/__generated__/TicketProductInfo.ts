@@ -11,7 +11,7 @@ import { TicketTypeNode } from "./globalTypes";
 export interface TicketProductInfo_owner_profile {
   __typename: "ProfileNode";
   name: string;
-  email: string;
+  email: string | null;
   image: string | null;
   avatarUrl: string;
 }
