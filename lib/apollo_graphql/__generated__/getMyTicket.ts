@@ -68,6 +68,7 @@ export interface getMyTicket_myTicket {
   cancelReceiptUrl: string;
   cancelledAt: any | null;
   status: TicketStatus;
+  registeredAt: any | null;
   product: getMyTicket_myTicket_product;
   options: any;
   createdAt: any;

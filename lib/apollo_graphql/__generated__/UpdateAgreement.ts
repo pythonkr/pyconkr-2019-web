@@ -18,9 +18,9 @@ export interface UpdateAgreement_updateAgreement_user_profile {
   bio: string;
   bioKo: string | null;
   bioEn: string | null;
-  email: string;
-  phone: string;
-  organization: string;
+  email: string | null;
+  phone: string | null;
+  organization: string | null;
   nationality: string;
   image: string | null;
   avatarUrl: string;

@@ -113,7 +113,7 @@ export interface getPresentation_presentation {
   recordable: boolean;
   submitted: boolean;
   accepted: boolean;
-  slideUrl: string;
+  slideUrl: string | null;
   videoUrl: string;
   startedAt: any | null;
   finishedAt: any | null;

@@ -6,6 +6,7 @@ import { FlexCenterWrapper } from 'components/atoms/FlexWrapper'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
+import { withRouter } from 'next/router'
 import i18next from 'i18next'
 import { inject, observer } from 'mobx-react'
 import _ from 'lodash'
@@ -17,6 +18,7 @@ import { Loading } from 'components/atoms/Loading'
 import { withNamespaces } from '../../i18n'
 import gql from 'graphql-tag'
 import { Query, Mutation } from 'react-apollo'
+import { paths } from 'routes/paths'
 
 export type PropsType = {
   t: i18next.TFunction;
@@ -78,12 +80,13 @@ class LightningTalkEdit extends React.Component {
     }
   }
   render () {
-    const {t} = this.props
+    const {t, router} = this.props
     return (
       <Mutation
         mutation={UPDATE_LIGHTNING_TALK}
         onCompleted={ data => {
           alert(t('program:proposingLightningTalk.submitAlert'))
+          router.push(paths.program.lightningTalk)
         }}
         onError={ error => {
           alert(error)
@@ -187,7 +190,7 @@ class ProposingLightningTalk extends React.Component<PropsType> {
     )
   }
   renderLightningTalkEdit(){
-    const { t } = this.props
+    const { t, router } = this.props
     const { authStore } = this.props.stores
     const isAuthStoreInitialized = authStore.isInitialized
     const isLoggedIn = authStore.loggedIn
@@ -203,11 +206,11 @@ class ProposingLightningTalk extends React.Component<PropsType> {
         ({ loading, error, data }) => {
           if (loading) return (<Loading width={50} height={50}/>);
           if (error) return (<AlertBar text={error.message} />)
-          return (<LightningTalkEdit t={t} lightningTalk={data.myLightningTalk}/>)
+          return (<LightningTalkEdit t={t} router={router} lightningTalk={data.myLightningTalk}/>)
         }
       }
     </Query>)
   }
 }
 
-export default withNamespaces(['program', 'account'])(ProposingLightningTalk)
+export default withNamespaces(['program', 'account'])(withRouter(ProposingLightningTalk))

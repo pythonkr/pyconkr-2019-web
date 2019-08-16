@@ -23,9 +23,11 @@ type StatesType = {}
 class PaidTicketBox extends React.Component<PropsType, StatesType> {
   state = {}
 
-  getTicketColor = (type: string) => {
+  getTicketColor = (type: string, status: string) => {
+    if (status === TicketStatus.CANCELLED) return TICKET_COLOR.DISABLE
+
     const lowerType = type.toLocaleLowerCase()
-    switch(lowerType){
+    switch (lowerType) {
       case 'conference':
         return TICKET_COLOR.CONFERENCE
       case 'tutorial':
@@ -36,6 +38,8 @@ class PaidTicketBox extends React.Component<PropsType, StatesType> {
         return TICKET_COLOR.CHILD_CARE
       case 'sprint':
         return TICKET_COLOR.SPRINT
+      default:
+        return TICKET_COLOR.DISABLE
     }
   }
 
@@ -45,8 +49,8 @@ class PaidTicketBox extends React.Component<PropsType, StatesType> {
     const {type, name, warning, desc, startAt, finishAt, cancelableDate} = product
     return (
       <TicketBoxWrapper
-        ticketColor={this.getTicketColor(type)}>
-        
+        ticketColor={this.getTicketColor(type, status)}>
+
         <TicketPaidDescription
           ticketId={ticketId}
           title={status === TicketStatus.CANCELLED ? `[Cancelled] ${name}` : name }
