@@ -70,7 +70,7 @@ const LightningTalkList = (props) => {
       <Button
         intlKey='tempkey'
         to={paths.program.proposingLightningTalk}
-        disabled={!isDay1Open}
+        disabled
       >{ t('program:lightningTalk.submitButton') }</Button>
     </ContentButtonWrapper>
     <H3>{ t('program:lightningTalk.header4-2') }</H3>
