@@ -61,7 +61,7 @@ const LightningTalkList = (props) => {
             <ProgramItem
               key={id}
               speakerName={owner ? owner.profile.name : ''}
-              name={(index > 9 ? t('program:lightningTalk.stanby', {number: index - 9}) : `${index + 1}.`) + name} />
+              name={(index > 12 ? t('program:lightningTalk.stanby', {number: index - 12}) : `${index + 1}.`) + name} />
           )
         })
       }
