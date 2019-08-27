@@ -115,7 +115,7 @@ export class TalkDetail extends React.Component<PropsType> {
               presentation.slideUrl &&
                 <ProgramTableRow
                   header={t('program:talkDetail.slideUrl')} >
-                  { presentation.slideUrl }
+                  <MarkdownWrapper contents={ presentation.slideUrl }/>
                 </ProgramTableRow>
             }
           </TableList>
