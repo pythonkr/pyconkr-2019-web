@@ -27,6 +27,7 @@ query Contributions {
     tutorialProposalStartAt
     tutorialProposalFinishAt
     sprintProposalStartAt
+    sprintProposalFinishAt
     volunteerRecruitingStartAt
     volunteerRecruitingFinishAt
     lightningTalkProposalStartAt
@@ -100,6 +101,7 @@ const ContributionTable = (props: any) => {
             <ContributionTableRow
                 title={ t('contribute:overview.table.sprint') } 
                 openDate={schedule.sprintProposalStartAt || ''}
+                closeDate={schedule.sprintProposalFinishAt || ''}
                 link={paths.contribute.proposingASprint || ''}
                 editLink={paths.account.editproposal.sprint || ''}
                 isMyContribution={mySprints && mySprints.length > 0}
