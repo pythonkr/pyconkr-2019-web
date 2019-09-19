@@ -61,7 +61,7 @@ const LightningTalkList = (props) => {
             <ProgramItem
               key={id}
               speakerName={owner ? owner.profile.name : ''}
-              name={(index > 9 ? t('program:lightningTalk.stanby', {number: index - 9}) : `${index + 1}.`) + name} />
+              name={(index > 12 ? t('program:lightningTalk.stanby', {number: index - 12}) : `${index + 1}.`) + name} />
           )
         })
       }
@@ -70,7 +70,7 @@ const LightningTalkList = (props) => {
       <Button
         intlKey='tempkey'
         to={paths.program.proposingLightningTalk}
-        disabled={!isDay1Open}
+        disabled
       >{ t('program:lightningTalk.submitButton') }</Button>
     </ContentButtonWrapper>
     <H3>{ t('program:lightningTalk.header4-2') }</H3>
@@ -81,7 +81,7 @@ const LightningTalkList = (props) => {
             <ProgramItem
               key={id}
               speakerName={owner ? owner.profile.name : ''}
-              name={(index > 9 ? t('program:lightningTalk.stanby', {number: index - 9}) : `${index + 1}. `) + name} />
+              name={(index > 12 ? t('program:lightningTalk.stanby', {number: index - 12}) : `${index + 1}. `) + name} />
           )
         })
       }
@@ -90,7 +90,7 @@ const LightningTalkList = (props) => {
       <Button
         intlKey='tempkey'
         to={paths.program.proposingLightningTalk}
-        disabled={!isDay2Open}
+        disabled
       >{ t('program:lightningTalk.submitButton') }</Button>
     </ContentButtonWrapper>
   </>)
@@ -128,6 +128,15 @@ export class LightningTalk extends React.Component<PropsType> {
         <Section>
           <H2>{ t('program:lightningTalk.header4') }</H2>
           <AlertBar text={t('program:lightningTalk.alertOpening')}></AlertBar>
+          <Paragraph>
+            { t('program:lightningTalk.desc6') }
+          </Paragraph>
+          <Ul>
+            <Li><a href='https://youtu.be/dwRP-J6OPI8' target='_blank' rel='noreferrer'>
+              { t('program:lightningTalk.desc6-1') }</a></Li>
+            <Li><a href='https://youtu.be/Za05A9fiQ3U' target='_blank' rel='noreferrer'>
+              { t('program:lightningTalk.desc6-2') }</a></Li>
+          </Ul>
           <Query query={LIGHTNING_TALKS}>
             {
               ({ loading, error, data }) => {
