@@ -47,6 +47,15 @@ export class LightningTalk extends React.Component<PropsType> {
         <Section>
           <H2>{ t('program:lightningTalk.header4') }</H2>
           <AlertBar text={t('program:lightningTalk.alertOpening')}></AlertBar>
+          <Paragraph>
+            { t('program:lightningTalk.desc6') }
+          </Paragraph>
+          <Ul>
+            <Li><a href='https://youtu.be/dwRP-J6OPI8' target='_blank' rel='noreferrer'>
+              { t('program:lightningTalk.desc6-1') }</a></Li>
+            <Li><a href='https://youtu.be/Za05A9fiQ3U' target='_blank' rel='noreferrer'>
+              { t('program:lightningTalk.desc6-2') }</a></Li>
+          </Ul>
           <H3>{ t('program:lightningTalk.header4-1') }</H3>
           <ContentButtonWrapper>
             <Button
