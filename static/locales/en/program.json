@@ -39,8 +39,8 @@
     "alertOpening": "You can apply from 9:00 AM on the conference day, and only 10 first-come (+3 standby) talks are available. Take the courage and apply now! 🌩",
     "stanby": "[Stanby {{ number }}] ",
     "submitButton": "Apply Lightning Talk",
-    "header4-1": "⭐️Lightning Talk Day 1(Sat)",
-    "header4-2": "⭐️Lightning Talk Day 2(Sun)",
+    "header4-1": "⭐️Lightning Talk Day 1 (Sat)",
+    "header4-2": "⭐️Lightning Talk Day 2 (Sun)",
     "header5": "View Past Lightning Talk",
     "desc5": "You can see the previous Lighting Talks topic.",
     "desc5-2014": "PyCon Korea 2014",
@@ -48,7 +48,10 @@
     "desc5-2015-2": "PyCon Korea 2015 Day 2",
     "desc5-2016": "PyCon APAC 2016",
     "desc5-2017": "PyCon Korea 2017",
-    "desc5-2018": "PyCon Korea 2018"
+    "desc5-2018": "PyCon Korea 2018",
+    "desc6": "Now you can see this year's lightning talk!",
+    "desc6-1": "Lightning Talk Day 1",
+    "desc6-2": "Lightning Talk Day 2"
   },
   "proposingLightningTalk": {
     "title": "Proposing Lightning Talk",
