@@ -11,7 +11,7 @@ import { TicketTypeNode } from "./globalTypes";
 export interface TicketProductInfo_owner_profile {
   __typename: "ProfileNode";
   name: string;
-  email: string;
+  email: string | null;
   image: string | null;
   avatarUrl: string;
 }
@@ -25,7 +25,7 @@ export interface TicketProductInfo {
   __typename: "TicketProductNode";
   id: string;
   type: TicketTypeNode | null;
-  name: string | null;
+  name: string;
   desc: string;
   warning: string;
   /**

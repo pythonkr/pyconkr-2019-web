@@ -61,7 +61,7 @@ class DetailBox extends React.Component<PropsType> {
               </Td>
             </Tr>
             <Tr>
-              <Th>등록 영수증</Th>
+              <Th>등록 확인증</Th>
               <Td>
                 <Link href={`${paths.ticket.receipt}?id=${id}`}>
                   <a target='_blank' rel='noreferrer'>

@@ -4,15 +4,96 @@ import { LocalNavigation } from 'components/molecules/LocalNavigation'
 import Footer from 'components/organisms/Footer'
 import Header from 'components/organisms/Header'
 import PageTemplate from 'components/templates/PageTemplate'
+import { isFuture, isPast } from 'date-fns'
 import i18next from 'i18next'
 import _ from 'lodash'
 import React from 'react'
 import { AlertBar } from 'components/atoms/AlertBar'
-import { programMenu } from 'routes/paths'
+import { programMenu, paths } from 'routes/paths'
+import { ProgramUl, ProgramItem } from 'components/molecules/Program/List'
 import { withNamespaces } from '../../i18n'
+import gql from 'graphql-tag'
+import { Query } from 'react-apollo'
+import { Loading } from 'components/atoms/Loading'
+import * as moment from 'moment'
 
 export type PropsType = {
   t: i18next.TFunction;
+}
+
+const LIGHTNING_TALKS = gql`
+query LightningTalks {
+  schedule {
+    id
+    lightningTalkProposalStartAt
+    lightningTalkProposalFinishAt
+  }
+  lightningTalks {
+    id
+    name
+    day
+    owner {
+      profile {
+        id
+        name
+      }
+    }
+  }
+}
+`
+
+const LightningTalkList = (props) => {
+  const { t, lightningTalks, proposalStartAt, proposalFinishAt } = props
+  const talkDay1 = lightningTalks.filter(talk => talk.day == 1)
+  const talkDay2 = lightningTalks.filter(talk => talk.day == 2)
+  const proposalStartAt_1 = proposalStartAt
+  const proposalFinishAt_1 = proposalFinishAt
+  const proposalStartAt_2 = moment(proposalStartAt).add(1, 'days')
+  const proposalFinishAt_2 = moment(proposalFinishAt).add(1, 'days')
+  const isDay1Open = isPast(proposalStartAt_1) && isFuture(proposalFinishAt_1)
+  const isDay2Open = isPast(proposalStartAt_2) && isFuture(proposalFinishAt_2)
+  return (<>
+    <H3>{ t('program:lightningTalk.header4-1') }</H3>
+    <ProgramUl>
+      {
+        talkDay1.map(({id, name, owner}, index) => {
+          return (
+            <ProgramItem
+              key={id}
+              speakerName={owner ? owner.profile.name : ''}
+              name={(index > 12 ? t('program:lightningTalk.stanby', {number: index - 12}) : `${index + 1}.`) + name} />
+          )
+        })
+      }
+    </ProgramUl>
+    <ContentButtonWrapper>
+      <Button
+        intlKey='tempkey'
+        to={paths.program.proposingLightningTalk}
+        disabled
+      >{ t('program:lightningTalk.submitButton') }</Button>
+    </ContentButtonWrapper>
+    <H3>{ t('program:lightningTalk.header4-2') }</H3>
+    <ProgramUl>
+      {
+        talkDay2.map(({id, name, owner}, index) => {
+          return (
+            <ProgramItem
+              key={id}
+              speakerName={owner ? owner.profile.name : ''}
+              name={(index > 12 ? t('program:lightningTalk.stanby', {number: index - 12}) : `${index + 1}. `) + name} />
+          )
+        })
+      }
+    </ProgramUl>
+    <ContentButtonWrapper>
+      <Button
+        intlKey='tempkey'
+        to={paths.program.proposingLightningTalk}
+        disabled
+      >{ t('program:lightningTalk.submitButton') }</Button>
+    </ContentButtonWrapper>
+  </>)
 }
 
 export class LightningTalk extends React.Component<PropsType> {
@@ -56,22 +137,24 @@ export class LightningTalk extends React.Component<PropsType> {
             <Li><a href='https://youtu.be/Za05A9fiQ3U' target='_blank' rel='noreferrer'>
               { t('program:lightningTalk.desc6-2') }</a></Li>
           </Ul>
-          <H3>{ t('program:lightningTalk.header4-1') }</H3>
-          <ContentButtonWrapper>
-            <Button
-              intlKey='tempkey'
-              // to='https://forms.gle/6C5JCqGtC657DQ6i6'
-              disabled
-            >{ t('program:lightningTalk.submitButton') }</Button>
-          </ContentButtonWrapper>
-          <H3>{ t('program:lightningTalk.header4-2') }</H3>
-          <ContentButtonWrapper>
-            <Button
-              intlKey='tempkey'
-              // to='https://forms.gle/6C5JCqGtC657DQ6i6'
-              disabled
-            >{ t('program:lightningTalk.submitButton') }</Button>
-          </ContentButtonWrapper>
+          <Query query={LIGHTNING_TALKS}>
+            {
+              ({ loading, error, data }) => {
+                if (loading) return (<Loading width={50} height={50}/>);
+                if (error) return (<AlertBar text={error.message} />)
+                const {
+                  lightningTalkProposalStartAt, 
+                  lightningTalkProposalFinishAt} = data.schedule
+                return (
+                  <LightningTalkList 
+                    t={t} 
+                    lightningTalks={data.lightningTalks}
+                    proposalStartAt={lightningTalkProposalStartAt}
+                    proposalFinishAt={lightningTalkProposalFinishAt}/>
+                )
+              }
+            }
+          </Query>
         </Section>
         <Section>
           <H2>{ t('program:lightningTalk.header5') }</H2>

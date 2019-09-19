@@ -12,7 +12,7 @@ export interface getMyTicket_myTicket_product {
   __typename: "TicketProductNode";
   id: string;
   type: TicketTypeNode | null;
-  name: string | null;
+  name: string;
   desc: string;
   warning: string;
   /**
@@ -39,6 +39,7 @@ export interface getMyTicket_myTicket {
    * The ID of the object.
    */
   id: string;
+  ticketId: number | null;
   isDomesticCard: boolean;
   /**
    * 아이엠포트를 통해 결제한 가격입니다.
@@ -67,6 +68,7 @@ export interface getMyTicket_myTicket {
   cancelReceiptUrl: string;
   cancelledAt: any | null;
   status: TicketStatus;
+  registeredAt: any | null;
   product: getMyTicket_myTicket_product;
   options: any;
   createdAt: any;
@@ -74,9 +76,6 @@ export interface getMyTicket_myTicket {
 }
 
 export interface getMyTicket {
-  /**
-   * The ID of the object
-   */
   myTicket: getMyTicket_myTicket | null;
 }
 

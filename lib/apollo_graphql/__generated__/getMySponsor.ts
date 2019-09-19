@@ -11,7 +11,7 @@ export interface getMySponsor_mySponsor_creator_profile {
   name: string;
   nameKo: string | null;
   nameEn: string | null;
-  email: string;
+  email: string | null;
 }
 
 export interface getMySponsor_mySponsor_creator {

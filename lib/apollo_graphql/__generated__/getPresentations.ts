@@ -108,7 +108,7 @@ export interface getPresentations_presentations {
   descEn: string | null;
   language: LanguageNode | null;
   backgroundDesc: string;
-  slideUrl: string;
+  slideUrl: string | null;
   pdfUrl: string;
   videoUrl: string;
   category: getPresentations_presentations_category | null;

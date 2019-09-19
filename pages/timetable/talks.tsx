@@ -16,6 +16,7 @@ import { PresentationNode } from 'lib/apollo_graphql/queries/getPresentations'
 import { paths, timetableMenu } from 'routes/paths'
 import { PageDefaultPropsType } from 'types/PageDefaultPropsType'
 import { withNamespaces } from '../../i18n'
+import { formatDateInTimetable } from 'utils/formatDate'
 
 @(withRouter as any)
 @inject('stores')
@@ -50,7 +51,8 @@ class Talks extends React.Component<PageDefaultPropsType> {
     const { selectedDate, setSelectedDate, conferenceTalks } = stores.cfpStore
     const { conferenceStartAt, conferenceFinishAt } = stores.scheduleStore.schedule
     const _title = t('timetable:talks.title')
-    setSelectedDate(selectedDate || conferenceStartAt)
+    const today = formatDateInTimetable(new Date().toString())
+    setSelectedDate(selectedDate || today)
 
     return (
       <PageTemplate

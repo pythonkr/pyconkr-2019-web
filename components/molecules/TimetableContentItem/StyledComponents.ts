@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { CORAL, GREEN, YELLOW } from 'styles/colors'
+import { BG_GRAY, CORAL, GREEN, YELLOW } from 'styles/colors'
 import { mobileWidth } from 'styles/layout'
 
 export const TimeTableContentItem = styled.div<{
@@ -84,6 +84,7 @@ export const TimeTableContentItem = styled.div<{
 `
 
 export const TagWrapper = styled.div`
+  color: #fff;
   padding-left: 20px;
   justify-content: flex-end;
   width: 100%;
@@ -99,7 +100,6 @@ export const TagWrapper = styled.div`
 `
 
 export const Tag = styled.span`
-  color: white;
   font-size: 12px;
   border-radius: 3px;
   padding: 3px 4px;
@@ -120,5 +120,20 @@ export const Tag = styled.span`
 
   &.experienced {
     background: ${CORAL};
+  }
+`
+
+export const LinkTag = styled.a`
+  font-size: 12px;
+  border-radius: 3px;
+  padding: 3px 4px;
+  opacity: .9;
+  margin-right: 5px;
+  margin-bottom: 2px;
+  height: 20px;
+  text-decoration: none;
+
+  &.slide {
+    background: ${BG_GRAY};
   }
 `

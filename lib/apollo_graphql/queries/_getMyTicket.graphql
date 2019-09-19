@@ -12,6 +12,7 @@ query getMyTicket($id: ID!) {
     cancelReceiptUrl
     cancelledAt
     status
+    registeredAt
     product {
       id
       type

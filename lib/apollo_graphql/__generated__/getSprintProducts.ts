@@ -41,7 +41,7 @@ export interface getSprintProducts_sprintProducts {
   __typename: "TicketProductNode";
   id: string;
   type: TicketTypeNode | null;
-  name: string | null;
+  name: string;
   nameKo: string | null;
   nameEn: string | null;
   desc: string;

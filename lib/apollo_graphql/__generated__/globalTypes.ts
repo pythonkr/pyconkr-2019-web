@@ -65,6 +65,8 @@ export interface PresentationProposalInput {
   descEn?: string | null;
   categoryId?: string | null;
   difficultyId?: string | null;
+  slideUrl?: string | null;
+  videoUrl?: string | null;
   backgroundDesc?: string | null;
   language?: LanguageNode | null;
   duration?: DurationNode | null;
