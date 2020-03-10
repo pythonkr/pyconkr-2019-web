@@ -105,11 +105,11 @@ const cfpFormTable = [{
 }, {
   title: {
     defaultText: '필요한 선수 지식',
-    intlKey: 'contribute.cfpGuide.beforeProposal.information.item.audience.title'
+    intlKey: 'contribute.cfpGuide.beforeProposal.information.item.knowledge.title'
   },
   desc: {
     defaultText: '예) 파이썬으로 웹서비스를 만들어본 경험이 있으면 발표를 듣는데 도움이 됩니다',
-    intlKey: 'contribute.cfpGuide.beforeProposal.information.item.audience.desc'
+    intlKey: 'contribute.cfpGuide.beforeProposal.information.item.knowledge.desc'
   }
 }, {
   title: {
