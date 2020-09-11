@@ -57,7 +57,7 @@
     "next-nprogress": "^1.4.0",
     "next-plugin-graphql": "^0.0.2",
     "next-routes": "^1.4.2",
-    "node-fetch": "^1.7.2",
+    "node-fetch": "^2.6.1",
     "path": "^0.12.7",
     "qrcode.react": "^0.9.3",
     "qs": "^6.6.0",
