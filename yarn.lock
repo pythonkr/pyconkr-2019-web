@@ -3835,9 +3835,9 @@ heroku-client@^3.0.7:
     is-retry-allowed "^1.0.0"
     tunnel-agent "^0.6.0"
 
-highlight.js@^9.15.8:
-  version "9.15.8"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.15.8.tgz#f344fda123f36f1a65490e932cf90569e4999971"
+highlight.js@^10.1.2:
+  version "10.1.2"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-10.1.2.tgz#c20db951ba1c22c055010648dfffd7b2a968e00c"
 
 hmac-drbg@^1.0.0:
   version "1.0.1"
