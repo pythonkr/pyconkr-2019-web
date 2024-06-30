@@ -1,0 +1,16 @@
+FROM --platform=linux/amd64 node:11.10
+
+# Set a working directory
+COPY . /web
+WORKDIR /web
+
+# Install native dependencies
+RUN yarn install --no-cache --frozen-lockfile --production
+
+# prod only
+
+ENV DEPLOY_ENV=production
+ENV API_SERVER=https://2019.pycon.kr/2019/api/graphql/
+RUN /bin/bash -c "source ./envs/production.sh && yarn && yarn build"
+
+ENTRYPOINT ["./docker-entrypoint-prod.sh"]

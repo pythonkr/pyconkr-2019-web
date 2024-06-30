@@ -18,3 +18,12 @@ $ nvm use <node_version>
 
 ## Running the app (Develop Environment)
 `yarn && yarn dev`
+
+## move to prod
+
+I made builded docker file for prod
+
+
+```
+docker build -f DockerfileProd -t {AWS_ID}.dkr.ecr.ap-northeast-2.amazonaws.com/{CLUSTER_NAME}/{APP_ID}:2024_prod_frozen .
+```
